@@ -9,11 +9,12 @@ const CustomTextField = styled((props: TextFieldProps) => (
       {...props}
     />
   ))(({ theme }) => ({
-    '& label': {
+    '& .MuiInputLabel-root': {
         color: 'rgba(255, 255, 255, 0.70)',
         display: 'block',
         fontFamily: ['Poppins','sans-serif'].join(','),
-        fontSize: '14px',
+        fontSize: '13px',
+        textTransform: 'unset',
         letterSpacing: 0.5,
         paddingLeft: 15,
         paddingTop: 6,
@@ -22,22 +23,33 @@ const CustomTextField = styled((props: TextFieldProps) => (
       color: 'rgba(255, 255, 255, 0.70)',
       display: 'block',
       fontFamily: ['Poppins','sans-serif'].join(','),
-      fontSize: '14px',
+      fontSize: '16px',
+      textTransform: 'unset',
       letterSpacing: 0.5,
       paddingLeft: 15,
       paddingTop: 6,
       },
+    '& .MuiInputLabel-shrink': {
+      color: 'rgba(255, 255, 255, 0.70)',
+      display: 'block',
+      fontFamily: ['Poppins','sans-serif'].join(','),
+      fontSize: '16px',
+      textTransform: 'unset',
+      letterSpacing: 0.5,
+      paddingLeft: 15,
+      paddingTop: 6,
+    },
     '& .MuiFilledInput-root': {
-      height: 65,
+      height: 63,
       fontWeight: 300,
-      fontSize: '14px',
+      fontSize: '13.5px',
       letterSpacing: 0.5,
       fontFamily: ['Poppins','sans-serif'].join(','),
       color: '#ffffff',
       border: '1px solid rgba(255, 255, 255, 0.23)',
       overflow: 'hidden',
       paddingLeft: 10,
-      paddingTop: 5,
+      paddingTop: 4,
       backgroundColor: 'transparent',
       transition: theme.transitions.create([
         'border-color',
