@@ -7,7 +7,7 @@ export interface LayoutProps  {
 const AuthContainer = (props: LayoutProps) => {
     return(
         <div className="flex p-[32px] items-center justify-center h-screen w-full main-auth">
-            <div className="bg-[#202020] w-full max-w-[470px] flex flex-col items-center justify-center">
+            <div className="bg-[#202020] w-full max-w-[500px] flex flex-col items-center justify-center">
                 {props.children}
             </div>
         </div>

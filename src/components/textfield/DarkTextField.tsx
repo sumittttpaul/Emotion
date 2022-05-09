@@ -2,6 +2,7 @@ import * as React from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
+import Image from 'next/image';
 
 const CustomTextField = styled((props: TextFieldProps) => (
     <TextField
@@ -16,28 +17,13 @@ const CustomTextField = styled((props: TextFieldProps) => (
         fontSize: '13px',
         textTransform: 'unset',
         letterSpacing: 0.5,
-        paddingLeft: 15,
-        paddingTop: 6,
+        transform: 'translate(67px, 23px) scale(1)',
       },
     '& label.Mui-focused': {
-      color: 'rgba(255, 255, 255, 0.70)',
-      display: 'block',
-      fontFamily: ['Poppins','sans-serif'].join(','),
-      fontSize: '16px',
-      textTransform: 'unset',
-      letterSpacing: 0.5,
-      paddingLeft: 15,
-      paddingTop: 6,
+      transform: 'translate(67px, 12px) scale(0.90)',
       },
     '& .MuiInputLabel-shrink': {
-      color: 'rgba(255, 255, 255, 0.70)',
-      display: 'block',
-      fontFamily: ['Poppins','sans-serif'].join(','),
-      fontSize: '16px',
-      textTransform: 'unset',
-      letterSpacing: 0.5,
-      paddingLeft: 15,
-      paddingTop: 6,
+      transform: 'translate(67px, 12px) scale(0.90)',
     },
     '& .MuiFilledInput-root': {
       height: 63,
@@ -48,7 +34,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
       color: '#ffffff',
       border: '1px solid rgba(255, 255, 255, 0.23)',
       overflow: 'hidden',
-      paddingLeft: 10,
+      paddingLeft: 54,
       paddingTop: 4,
       backgroundColor: 'transparent',
       transition: theme.transitions.create([
@@ -69,14 +55,17 @@ const CustomTextField = styled((props: TextFieldProps) => (
     },
   }));
 
-const DarkTextField: React.FC<{label:string}> = ({label}) => {
+const DarkTextField: React.FC<{label:string, icon:string}> = ({label, icon}) => {
   return(
-    <div className="p-5 w-full max-w-sm">
+    <div className='flex flex-col'>
       <CustomTextField
-      className='w-full'
-      label={label}
-      variant="filled"
+        className='w-full z-10'
+        label={label}
+        variant="filled"
       />
+      <div className='-mt-[46px] ml-[20px] mb-[16px] flex'>
+        <Image height={30} width={30} className="opacity-[0.4]" src={icon} alt="textfield-icons"/>
+      </div>
     </div>
   )
 }
