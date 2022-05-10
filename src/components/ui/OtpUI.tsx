@@ -41,9 +41,10 @@ const OtpUI:FC<{setShow:boolean, setHide: (arg: boolean) => void}> = ({setShow, 
                         leaveFrom="opacity-100 scale-100"
                         leaveTo="opacity-0 scale-95"
                     >
-                        <Dialog.Panel className="transform overflow-hidden rounded-lg bg-[#202020] text-left align-middle shadow-xl transition-all">
-                            <div className="flex flex-col px-14 py-12 space-y-7 justify-center items-center">
+                        <Dialog.Panel className="absolute sm:relative h-full w-full sm:w-auto sm:h-auto transform overflow-hidden rounded-lg bg-[#202020] text-center align-middle shadow-xl transition-all">
+                            <div className="flex flex-col px-14 py-10 space-y-7 justify-center items-center">
                                 <h6 className='text-white font-medium text-center text-md'>OTP Verification</h6>
+                                <h6 className='text-white text-[14px] font-light opacity-75'>Otp sent to 8794007993</h6>
                                 <div className="space-x-8 flex justify-center items-center">
                                     <div className='space-x-2 flex justify-center items-center'>
                                         <OTPTextFieldDark/>
@@ -58,7 +59,7 @@ const OtpUI:FC<{setShow:boolean, setHide: (arg: boolean) => void}> = ({setShow, 
                                 </div>
                                 <div className='flex'>
                                     <h6 className='text-white text-[14px] font-light opacity-75'>Otp not send?&#160;</h6>
-                                    <Link href="#" className='text-white text-[14px]' component="button" underline="always">resend OTP</Link>
+                                    <Link href="#" className='text-white text-[14px]' component="button" underline="always">Resend OTP</Link>
                                 </div>
                             </div> 
                         </Dialog.Panel>
