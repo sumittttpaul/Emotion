@@ -59,7 +59,16 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
 }));
 
-const PasswordTextFieldDark: React.FC<{ label: string, icon: string }> = ({ label, icon }) => {
+const PasswordTextFieldDark: React.FC<{ label: string, icon: string, 
+  // onkeyUp: React.KeyboardEventHandler, 
+  // onChange: React.ChangeEventHandler,
+  // value: string 
+}> = ({ label, icon, 
+  // onkeyUp, 
+  // onChange, 
+  // value 
+}) => {
+
   interface State { showPassword: boolean }
 
   const [values, setValues] = React.useState<State>({ showPassword: false });
@@ -81,6 +90,9 @@ const PasswordTextFieldDark: React.FC<{ label: string, icon: string }> = ({ labe
         id="PasswordInput"
         className='w-full z-10'
         label={label}
+        // onChange={onChange}
+        // onKeyUp={onkeyUp}
+        // value={value}
         variant="filled"
         type={values.showPassword ? 'text' : 'password'}
         InputProps={{

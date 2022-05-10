@@ -58,7 +58,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
 
 const IconTextFieldDark: React.FC<{label:string, icon:string}> = ({label, icon}) => {
   return(
-    <div className='flex flex-col'>
+    <div className='flex flex-col w-full'>
       <CustomTextField
         className='w-full z-10'
         label={label}
