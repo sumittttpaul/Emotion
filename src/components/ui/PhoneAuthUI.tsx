@@ -6,7 +6,12 @@ import OtherAccountAuthUI from "./OtherAccountAuthUI";
 import AuthDivider from "../divider/AuthDivider";
 import { motion, AnimatePresence } from "framer-motion";
 
-const PhoneAuthUI = () => {
+const PhoneAuthUI:React.FC<{setOTP: (arg: boolean) => void}> = ({setOTP}) => {
+    const handleClick = () => {
+        setTimeout(() => {
+            setOTP(true);
+        }, 250);
+    }
     return (
         <AnimatePresence exitBeforeEnter>
             <motion.div className="w-full max-w-[350px] space-y-7 flex flex-col justify-center items-center"
@@ -24,7 +29,7 @@ const PhoneAuthUI = () => {
                         <Link href="#" className='text-white text-xs' component="button" underline="always">privacy policy</Link>
                     </div>
                 </div>
-                <LargeButtonBlue content="verify with OTP"/>
+                <LargeButtonBlue onClick={handleClick} content="verify with OTP"/>
                 <AuthDivider/>
                 <OtherAccountAuthUI/>
             </motion.div>

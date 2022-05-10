@@ -11,7 +11,7 @@ function classNames(...classes: any) {
     return classes.filter(Boolean).join(' ')
 }
 
-const LoginUI = () => {
+const LoginUI:React.FC<{setOTP: (arg: boolean) => void}> = ({setOTP}) => {
     const [value, setValue] = React.useState(true);
 
     const handlePhoneClick = () => {
@@ -61,9 +61,9 @@ const LoginUI = () => {
                         </Tab.List>
                     </Tab.Group>
                 </div>
-                {value ? <PhoneAuthUI/> : <EmailAuthUI/>}
+                {value ? <PhoneAuthUI setOTP={setOTP}/> : <EmailAuthUI/>}
                 <div className='flex'>
-                <h6 className='text-white text-xs font-light opacity-75'>Don't have an Agewear account?&#160;</h6>
+                    <h6 className='text-white text-xs font-light opacity-75'>Don't have an Agewear account?&#160;</h6>
                     <Link href="#" className='text-white text-xs' component="button" underline="always">Sign Up</Link>
                 </div>
             </div>
