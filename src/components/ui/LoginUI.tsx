@@ -5,6 +5,7 @@ import LargeButtonBlue from '../button/LargeButtonBlue';
 import IconTextFieldDark from '../textfield/IconTextFieldDark'
 import PasswordTextFieldDark from '../textfield/PasswordTextFieldDark'
 import { Link } from '@mui/material';
+import LargeToggleButtonDark from '../button/LargeToggleButtonDark';
 
 const LoginUI = () => {
  return(
@@ -12,6 +13,7 @@ const LoginUI = () => {
         <div className='w-full max-w-[350px] space-y-7 py-14 flex flex-col justify-center items-center'>
             <Image height={50} width={50} className='opacity-70' src='/agewear.svg'/>
             <h6 className='font-medium text-center text-md'>Sign in with an Agewear Account</h6>
+            <LargeToggleButtonDark/>
             <IconTextFieldDark label="Email Address" icon="/icons/email.svg"/>
             <PasswordTextFieldDark label="Password" icon="/icons/password.svg"/>
             <div className='w-full space-y-1'>
