@@ -30,3 +30,11 @@ input::-ms-reveal,
 input::-ms-clear {
   display: none;
 }
+
+listBox:focus {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus {
+  -webkit-tap-highlight-color: transparent;
+}
