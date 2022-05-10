@@ -25,7 +25,7 @@ const LoginUI:React.FC<{setOTP: (arg: boolean) => void}> = ({setOTP}) => {
     return(
         <AuthContainer>
             <div className='w-full max-w-[350px] space-y-7 py-14 flex flex-col justify-center items-center'>
-                <Image height={50} width={50} className='opacity-70' src='/agewear.svg'/>
+                <Image height={50} width={50} className='opacity-70' src='/agewear.svg' alt='logo-svg'/>
                 <h6 className='font-medium text-center text-md'>Sign in with an Agewear Account</h6>
                 <div className="w-full">
                     <Tab.Group>
@@ -63,7 +63,7 @@ const LoginUI:React.FC<{setOTP: (arg: boolean) => void}> = ({setOTP}) => {
                 </div>
                 {value ? <PhoneAuthUI setOTP={setOTP}/> : <EmailAuthUI/>}
                 <div className='flex'>
-                    <h6 className='text-white text-xs font-light opacity-75'>Don't have an Agewear account?&#160;</h6>
+                    <h6 className='text-white text-xs font-light opacity-75'>Don&apos;t have an Agewear account?&#160;</h6>
                     <Link href="#" className='text-white text-xs' component="button" underline="always">Sign Up</Link>
                 </div>
             </div>

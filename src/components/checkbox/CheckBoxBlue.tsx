@@ -30,7 +30,7 @@ const CheckBoxBlue = ( props: CheckboxProps ) => {
         }}
         disableRipple
         color='default'
-        icon={<Image height={18} width={18} className="opacity-50" src="/icons/unChecked.svg"/>}
+        icon={<Image height={18} width={18} className="opacity-50" src="/icons/unChecked.svg" alt='unchecked-svg'/>}
         inputProps={{ 'aria-label': 'Privary Policy Checkbox' }}
         {...props}/>
     )

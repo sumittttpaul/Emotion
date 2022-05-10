@@ -6,6 +6,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from '@mui/material';
 
 const EmailAuthUI = () => {
+    const handleClick = () => {
+
+    }
     return (
         <AnimatePresence exitBeforeEnter>
             <motion.div className="w-full max-w-[350px] space-y-7 pb-[7px] flex flex-col justify-center items-center"
@@ -27,7 +30,7 @@ const EmailAuthUI = () => {
                         </div>
                     </div>
                 </div>
-                <LargeButtonBlue content="Log In Now"/>
+                <LargeButtonBlue onClick={handleClick} content="Log In Now"/>
             </motion.div>
         </AnimatePresence>
     )
