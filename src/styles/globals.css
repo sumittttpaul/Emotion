@@ -24,3 +24,8 @@ input:-webkit-autofill:active {
   animation-fill-mode: both;
   animation-name: onAutoFillStart !important;
 }
+
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
