@@ -27,8 +27,9 @@ const ForgetPasswordUI = () => {
                         <LargeButtonBlue onClick={()=>{}} content="Send Email"/>
                     </div>
                     <div className='flex'>
-                        <h6 className='text-white text-xs font-light opacity-75'>Remember your password?&#160;</h6>
-                        <Link onClick={()=>{Router.push('/authentication/login')}} className='text-white text-xs' component="button" underline="always">Sign In</Link>
+                        <h6 className='text-[13px] font-light text-[rgba(255,255,255,0.75)] flex items-center'>Remember your password?&#160;
+                            <Link onClick={()=>{Router.push('/authentication/login')}} className='text-white text-[13px]' component="button" underline="always">Sign In</Link>
+                        </h6>
                     </div>
                 </motion.div>
             </AnimatePresence>

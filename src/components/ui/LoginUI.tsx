@@ -64,8 +64,9 @@ const LoginUI:React.FC<{setOTP: (arg: boolean) => void}> = ({setOTP}) => {
                 </div>
                 {value ? <PhoneAuthUI setOTP={setOTP}/> : <EmailAuthUI/>}
                 <div className='flex'>
-                    <h6 className='text-white text-xs font-light opacity-75'>Don&apos;t have an Agewear account?&#160;</h6>
-                    <Link onClick={()=>{Router.push('/authentication/register')}} className='text-white text-xs' component="button" underline="always">Sign Up</Link>
+                    <h6 className='text-xs font-light text-[rgba(255,255,255,0.75)] flex items-center'>Don&apos;t have an Agewear account?&#160;
+                        <Link onClick={()=>{Router.push('/authentication/register')}} className='text-white text-xs' component="button" underline="always">Sign Up</Link>
+                    </h6>
                 </div>
             </div>
         </AuthContainer>
