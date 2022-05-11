@@ -1,7 +1,7 @@
 import CheckBoxBlue from '../../checkbox/CheckBoxBlue'
 import LargeButtonBlue from '../../button/LargeButtonBlue';
 import IconTextFieldDark from '../../textfield/IconTextFieldDark'
-import PasswordTextFieldDark from '../../textfield/PasswordTextFieldDark'
+import IconPasswordTextFieldDark from '../../textfield/IconPasswordTextFieldDark'
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from '@mui/material';
 import Router from 'next/router';
@@ -20,7 +20,7 @@ const EmailAuthUI = () => {
                 transition={{ duration: 0.25 }}
             >
                 <IconTextFieldDark placeholder="Email Address" icon="/icons/email.svg" type='email'/>
-                <PasswordTextFieldDark placeholder="Password" icon="/icons/password.svg"/>
+                <IconPasswordTextFieldDark placeholder="Password" icon="/icons/password.svg"/>
                 <div className='w-full space-y-1'>
                     <Link onClick={() => {Router.push('/authentication/login/forget-password')}} className='text-white text-xs text-right w-full -mt-5' component="button" underline="always">Forgot Your Password</Link>
                     <div className='flex w-full'>

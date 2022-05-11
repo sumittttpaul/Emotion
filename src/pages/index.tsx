@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from '@mui/material';
 
 const Home: NextPage = () => {
@@ -8,6 +8,7 @@ const Home: NextPage = () => {
   const StatusOTP = (otpStatus:boolean):void => {
     setOTP(otpStatus);
   }
+
   return (
     <>
       <div className='bg-[#121212] justify-center items-center flex h-screen'>

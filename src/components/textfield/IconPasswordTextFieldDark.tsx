@@ -19,14 +19,14 @@ const CustomTextField = styled((props: TextFieldProps) => (
     fontSize: '13px',
     textTransform: 'unset',
     letterSpacing: 0.5,
-    transform: 'translate(26px, 23px) scale(1)',
+    transform: 'translate(67px, 23px) scale(1)',
   },
   '& label.Mui-focused': {
     color: 'rgba(255, 255, 255, 0.70)',
-    transform: 'translate(26px, 12px) scale(0.90)',
+    transform: 'translate(67px, 12px) scale(0.90)',
   },
   '& .MuiInputLabel-shrink': {
-    transform: 'translate(26px, 12px) scale(0.90)',
+    transform: 'translate(67px, 12px) scale(0.90)',
   },
   '& .MuiFilledInput-root': {
     height: 63,
@@ -37,7 +37,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
     color: '#ffffff',
     border: '1px solid rgba(255, 255, 255, 0.23)',
     overflow: 'hidden',
-    paddingLeft: 13,
+    paddingLeft: 54,
     paddingRight: 8,
     paddingTop: 4,
     backgroundColor: 'transparent',
@@ -59,7 +59,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
 }));
 
-const PasswordTextFieldDark: React.FC<{ placeholder: string, icon: string, 
+const IconPasswordTextFieldDark: React.FC<{ placeholder: string, icon: string, 
   // onkeyUp: React.KeyboardEventHandler, 
   // onChange: React.ChangeEventHandler,
   // value: string 
@@ -116,8 +116,11 @@ const PasswordTextFieldDark: React.FC<{ placeholder: string, icon: string,
           </InputAdornment>
         }}
       />
+      <div className='-mt-[46px] ml-[20px] mb-[16px] flex'>
+        <Image height={30} width={30} className="opacity-[0.4]" src={icon} alt="textfield-icons" />
+      </div>
     </div>
   )
 }
 
-export default PasswordTextFieldDark;
+export default IconPasswordTextFieldDark;
