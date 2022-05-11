@@ -59,11 +59,11 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
 }));
 
-const PasswordTextFieldDark: React.FC<{ label: string, icon: string, 
+const PasswordTextFieldDark: React.FC<{ placeholder: string, icon: string, 
   // onkeyUp: React.KeyboardEventHandler, 
   // onChange: React.ChangeEventHandler,
   // value: string 
-}> = ({ label, icon, 
+}> = ({ placeholder, icon, 
   // onkeyUp, 
   // onChange, 
   // value 
@@ -89,7 +89,7 @@ const PasswordTextFieldDark: React.FC<{ label: string, icon: string,
       <CustomTextField
         id="PasswordInput"
         className='w-full z-10'
-        label={label}
+        label={placeholder}
         // onChange={onChange}
         // onKeyUp={onkeyUp}
         // value={value}

@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import { useState } from 'react';
-import LoginUI from '../components/ui/LoginUI';
-import OtpUI from '../components/ui/OtpUI';
+import { Link } from '@mui/material';
 
 const Home: NextPage = () => {
   const [OTP, setOTP] = useState<boolean>(false);
@@ -11,8 +10,9 @@ const Home: NextPage = () => {
   }
   return (
     <>
-      <LoginUI setOTP={StatusOTP}/>
-      <OtpUI setShow={OTP} setHide={StatusOTP}/>
+      <div className='bg-[#121212] justify-center items-center flex h-screen'>
+        <Link className='text-sm font-normal text-white' href='/authentication/login'>Login Now</Link>
+      </div>
     </>
   )
 }

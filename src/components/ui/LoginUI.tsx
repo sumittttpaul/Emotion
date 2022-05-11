@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Image from 'next/image';
-import AuthContainer from '../../components/container/AuthContainer';
+import AuthContainer from '../container/AuthContainer';
 import { Tab } from '@headlessui/react'
 import { DeviceMobileIcon, MailIcon } from '@heroicons/react/solid'
-import EmailAuthUI from './EmailAuthUI';
-import PhoneAuthUI from './PhoneAuthUI';
+import EmailAuthUI from './AuthComponentUI/EmailAuthUI';
+import PhoneAuthUI from './AuthComponentUI/PhoneAuthUI';
 import { Link } from '@mui/material';
+import Router from 'next/router';
 
 function classNames(...classes: any) {
     return classes.filter(Boolean).join(' ')
@@ -24,7 +25,7 @@ const LoginUI:React.FC<{setOTP: (arg: boolean) => void}> = ({setOTP}) => {
 
     return(
         <AuthContainer>
-            <div className='w-full max-w-[350px] space-y-7 py-14 flex flex-col justify-center items-center'>
+            <div className='w-full max-w-[350px] space-y-7 flex flex-col justify-center items-center'>
                 <Image height={50} width={50} className='opacity-70' src='/agewear.svg' alt='logo-svg'/>
                 <h6 className='font-medium text-center text-md'>Sign in with an Agewear Account</h6>
                 <div className="w-full">
@@ -64,7 +65,7 @@ const LoginUI:React.FC<{setOTP: (arg: boolean) => void}> = ({setOTP}) => {
                 {value ? <PhoneAuthUI setOTP={setOTP}/> : <EmailAuthUI/>}
                 <div className='flex'>
                     <h6 className='text-white text-xs font-light opacity-75'>Don&apos;t have an Agewear account?&#160;</h6>
-                    <Link href="#" className='text-white text-xs' component="button" underline="always">Sign Up</Link>
+                    <Link onClick={()=>{Router.push('/authentication/register')}} className='text-white text-xs' component="button" underline="always">Sign Up</Link>
                 </div>
             </div>
         </AuthContainer>

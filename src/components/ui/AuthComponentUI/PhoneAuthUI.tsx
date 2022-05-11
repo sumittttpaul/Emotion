@@ -1,9 +1,9 @@
 import { Link } from "@mui/material";
-import IconTextFieldDark from "../textfield/IconTextFieldDark";
-import CheckBoxBlue from '../checkbox/CheckBoxBlue'
-import LargeButtonBlue from '../button/LargeButtonBlue';
+import IconTextFieldDark from "../../textfield/IconTextFieldDark";
+import CheckBoxBlue from '../../checkbox/CheckBoxBlue'
+import LargeButtonBlue from '../../button/LargeButtonBlue';
 import OtherAccountAuthUI from "./OtherAccountAuthUI";
-import AuthDivider from "../divider/AuthDivider";
+import AuthDivider from "../../divider/AuthDivider";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PhoneAuthUI:React.FC<{setOTP: (arg: boolean) => void}> = ({setOTP}) => {
@@ -21,12 +21,13 @@ const PhoneAuthUI:React.FC<{setOTP: (arg: boolean) => void}> = ({setOTP}) => {
                 exit={{ opacity: 0, x: 50 }}
                 transition={{ duration: 0.25 }}
             >
-                <IconTextFieldDark label="Phone Number" icon="/icons/phone.svg"/>
-                <div className='flex items-center w-full'>
+                <IconTextFieldDark placeholder="Phone Number" icon="/icons/phone.svg" type='phoneNumber'/>
+                <div className='flex w-full'>
                     <CheckBoxBlue/>
                     <div className='flex items-center'>
-                        <h6 className='ml-3 text-white text-xs font-light opacity-75'>I agree with&#160;</h6>
-                        <Link href="#" className='text-white text-xs' component="button" underline="always">privacy policy</Link>
+                        <h6 className='ml-3 text-xs font-light text-[rgba(255,255,255,0.75)]'>I agree with&#160;
+                            <Link className='text-white text-xs' component="button" underline="always">privacy policy</Link>
+                        </h6>
                     </div>
                 </div>
                 <LargeButtonBlue onClick={handleClick} content="verify with OTP"/>

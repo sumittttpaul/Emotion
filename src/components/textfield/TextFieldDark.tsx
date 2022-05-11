@@ -2,7 +2,6 @@ import * as React from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
-import Image from 'next/image';
 
 const CustomTextField = styled((props: TextFieldProps) => (
     <TextField
@@ -17,14 +16,14 @@ const CustomTextField = styled((props: TextFieldProps) => (
         fontSize: '13px',
         textTransform: 'unset',
         letterSpacing: 0.5,
-        transform: 'translate(67px, 23px) scale(1)',
+        transform: 'translate(26px, 23px) scale(1)',
       },
     '& label.Mui-focused': {
       color: 'rgba(255, 255, 255, 0.70)',
-      transform: 'translate(67px, 12px) scale(0.90)',
+      transform: 'translate(26px, 12px) scale(0.90)',
       },
     '& .MuiInputLabel-shrink': {
-      transform: 'translate(67px, 12px) scale(0.90)',
+      transform: 'translate(26px, 12px) scale(0.90)',
     },
     '& .MuiFilledInput-root': {
       height: 63,
@@ -35,7 +34,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
       color: '#ffffff',
       border: '1px solid rgba(255, 255, 255, 0.23)',
       overflow: 'hidden',
-      paddingLeft: 54,
+      paddingLeft: 13,
       paddingTop: 4,
       backgroundColor: 'transparent',
       transition: theme.transitions.create([
@@ -56,7 +55,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
     },
   }));
 
-const IconTextFieldDark: React.FC<{placeholder:string, icon:string, type:string}> = ({placeholder, icon, type}) => {
+const TextFieldDark: React.FC<{placeholder:string, type:string}> = ({placeholder, type}) => {
   return(
     <div className='flex flex-col w-full'>
       <CustomTextField
@@ -65,11 +64,8 @@ const IconTextFieldDark: React.FC<{placeholder:string, icon:string, type:string}
         variant="filled"
         type={type}
       />
-      <div className='-mt-[46px] ml-[20px] mb-[16px] flex'>
-        <Image height={30} width={30} className="opacity-[0.4]" src={icon} alt="textfield-icons"/>
-      </div>
     </div>
   )
 }
 
-export default IconTextFieldDark;
+export default TextFieldDark;
