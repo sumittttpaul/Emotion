@@ -85,7 +85,7 @@ const LoginUI: FC<IProps> = (props) => {
             Don&apos;t have an Agewear account?&#160;
             <Link
               onClick={() => {
-                Router.push('/authentication/register');
+                Router.push('/auth/register');
               }}
               className="text-white text-xs"
               component="button"

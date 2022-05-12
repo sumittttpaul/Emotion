@@ -114,13 +114,15 @@ const RegisterUI: FC<IProps> = (props) => {
               </h6>
             </div>
           </div>
-          <LargeButtonBlue onClick={() => {}} content="Continue" />
+          <LargeButtonBlue onClick={() => {setTimeout(() => {
+            Router.push('/auth/register/setup-account')
+          }, 250);}} content="Continue" />
           <div className="flex">
             <h6 className="text-xs font-light text-[rgba(255,255,255,0.75)] flex items-center">
               Already have an Agewear account?&#160;
               <Link
                 onClick={() => {
-                  Router.push('/authentication/login');
+                  Router.push('/auth/login');
                 }}
                 className="text-white text-xs"
                 component="button"

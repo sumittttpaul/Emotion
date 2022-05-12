@@ -44,7 +44,7 @@ const EmailAuthUI: FC<IProps> = (props) => {
           <div className="text-right w-full">
             <Link
               onClick={() => {
-                Router.push('/authentication/login/forget-password');
+                Router.push('/auth/login/forget-password');
               }}
               className="text-white text-xs -mt-5"
               component="button"

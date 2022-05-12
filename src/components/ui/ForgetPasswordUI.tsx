@@ -58,7 +58,7 @@ const ForgetPasswordUI: FC<IProps> = (props) => {
               Remember your password?&#160;
               <Link
                 onClick={() => {
-                  Router.push('/authentication/login');
+                  Router.push('/auth/login');
                 }}
                 className="text-white text-[13px]"
                 component="button"
