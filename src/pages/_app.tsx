@@ -8,6 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import theme from '../../src/theme';
 import createEmotionCache from '../../src/createEmotionCache';
+import { ColorStateProvider } from '../providers/ColorStateProvider';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -19,13 +20,15 @@ function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
     <CacheProvider value={emotionCache}>
-      <Head>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps}/>
-      </ThemeProvider>
+      <ColorStateProvider>
+        <Head>
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+        </Head>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps}/>
+        </ThemeProvider>
+      </ColorStateProvider>
     </CacheProvider>
   )
 }

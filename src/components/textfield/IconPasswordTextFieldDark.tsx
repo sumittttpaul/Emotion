@@ -1,9 +1,15 @@
-import * as React from 'react';
+import React, {
+  FC,
+  useState,
+  MouseEvent,
+  KeyboardEventHandler,
+  ChangeEventHandler,
+} from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
 import Image from 'next/image';
-import { IconButton, IconButtonProps, InputAdornment } from '@mui/material';
+import { IconButton, InputAdornment } from '@mui/material';
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
 
 const CustomTextField = styled((props: TextFieldProps) => (
@@ -59,19 +65,25 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
 }));
 
-const IconPasswordTextFieldDark: React.FC<{ placeholder: string, icon: string, 
-  // onkeyUp: React.KeyboardEventHandler, 
-  // onChange: React.ChangeEventHandler,
-  // value: string 
-}> = ({ placeholder, icon, 
-  // onkeyUp, 
-  // onChange, 
-  // value 
-}) => {
+interface State {
+  showPassword: boolean;
+}
 
-  interface State { showPassword: boolean }
+interface IProps {
+  placeholder: string;
+  icon: string;
+  onkeyUp: KeyboardEventHandler;
+  onChange: ChangeEventHandler;
+  value: string;
+}
 
-  const [values, setValues] = React.useState<State>({ showPassword: false });
+/**
+ * @author
+ * @function @IconPasswordTextFieldDark
+ **/
+
+const IconPasswordTextFieldDark: FC<IProps> = (props) => {
+  const [values, setValues] = useState<State>({ showPassword: false });
 
   const handleClickShowPassword = () => {
     setValues({
@@ -80,47 +92,62 @@ const IconPasswordTextFieldDark: React.FC<{ placeholder: string, icon: string,
     });
   };
 
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
 
   return (
-    <div className='flex flex-col w-full'>
+    <div className="flex flex-col w-full">
       <CustomTextField
         id="PasswordInput"
-        className='w-full z-10'
-        label={placeholder}
-        // onChange={onChange}
-        // onKeyUp={onkeyUp}
-        // value={value}
+        className="w-full z-10"
+        label={props.placeholder}
+        onChange={props.onChange}
+        onKeyUp={props.onkeyUp}
+        value={props.value}
         variant="filled"
         type={values.showPassword ? 'text' : 'password'}
         InputProps={{
-          endAdornment:
-          <InputAdornment position='end'>
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-              className='z-20 h-11 w-11 mb-[2px] passwordEyeButton'
-              style={{
-                borderRadius: 0,
-              }}
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+                className="z-20 h-11 w-11 mb-[2px] passwordEyeButton"
+                style={{
+                  borderRadius: 0,
+                }}
               >
-              {values.showPassword ?
-                <EyeOffIcon height={22} width={22} className="opacity-[0.4] text-white" />
-                :
-                <EyeIcon height={22} width={22} className="opacity-[0.4] text-white" />
-              }
-            </IconButton>
-          </InputAdornment>
+                {values.showPassword ? (
+                  <EyeOffIcon
+                    height={22}
+                    width={22}
+                    className="opacity-[0.4] text-white"
+                  />
+                ) : (
+                  <EyeIcon
+                    height={22}
+                    width={22}
+                    className="opacity-[0.4] text-white"
+                  />
+                )}
+              </IconButton>
+            </InputAdornment>
+          ),
         }}
       />
-      <div className='-mt-[46px] ml-[20px] mb-[16px] flex'>
-        <Image height={30} width={30} className="opacity-[0.4]" src={icon} alt="textfield-icons" />
+      <div className="-mt-[46px] ml-[20px] mb-[16px] flex">
+        <Image
+          height={30}
+          width={30}
+          className="opacity-[0.4]"
+          src={props.icon}
+          alt="textfield-icons"
+        />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default IconPasswordTextFieldDark;

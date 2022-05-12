@@ -11,8 +11,8 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className='bg-[#121212] justify-center items-center flex h-screen'>
-        <Link className='text-sm font-normal text-white' href='/authentication/login'>Login Now</Link>
+      <div className='justify-center items-center flex h-screen w-full'>
+        <Link className='p-20 rounded-lg text-sm font-normal text-white bg-[#121212]' href='/authentication/login'>Login Now</Link>
       </div>
     </>
   )
