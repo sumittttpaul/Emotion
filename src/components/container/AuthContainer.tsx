@@ -1,5 +1,5 @@
 import React, { useEffect, ReactNode, FC } from 'react';
-import { useColorState } from '../../providers/ColorStateProvider';
+import { useColorState } from '../../providers/state/ColorState';
 
 interface IProps {
   children: ReactNode;
@@ -17,7 +17,7 @@ const AuthContainer: FC<IProps> = (props) => {
     document.body.style.backgroundColor = `${ColorState.bgColor}`;
   }, [setColorState, ColorState.bgColor]);
   return (
-    <div className="flex sm:p-[32px] items-center justify-center h-full sm:h-screen w-screen main-auth">
+    <div className="bg-[#121212] flex sm:p-[32px] items-center justify-center h-full sm:h-screen w-screen main-auth">
       <div className="bg-[#202020] w-full h-full px-5 py-14 sm:px-0 sm:h-auto sm:max-w-[470px] flex flex-col justify-center items-center">
         {props.children}
       </div>

@@ -9,7 +9,7 @@ const ColorStateContext = createContext({
     setColorState: {} as Dispatch<SetStateAction<Partial<ColorStateInterface>>>,
 });
 
-const ColorStateProvider = ({
+const ColorState = ({
     children,
     value = {} as ColorStateInterface,
 }: {
@@ -32,4 +32,4 @@ const useColorState = () => {
     return context;
 };
 
-export { ColorStateProvider, useColorState };
+export { ColorState, useColorState };

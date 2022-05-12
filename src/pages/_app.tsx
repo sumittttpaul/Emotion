@@ -1,5 +1,5 @@
-import '../styles/globals.css'
-import '../styles/main.css'
+import '../styles/globals.css';
+import '../styles/main.css';
 import * as React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
@@ -8,7 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import theme from '../../src/theme';
 import createEmotionCache from '../../src/createEmotionCache';
-import { ColorStateProvider } from '../providers/ColorStateProvider';
+import { StateProvider } from '../providers/StateProvider';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -20,17 +20,17 @@ function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
     <CacheProvider value={emotionCache}>
-      <ColorStateProvider>
+      <StateProvider>
         <Head>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Component {...pageProps}/>
+          <Component {...pageProps} />
         </ThemeProvider>
-      </ColorStateProvider>
+      </StateProvider>
     </CacheProvider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
