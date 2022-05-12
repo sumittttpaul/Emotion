@@ -59,7 +59,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
     '&.Mui-focused': {
       backgroundColor: 'transparent',
       boxShadow: `${alpha('#ffffff', 0.25)} 0 0 0 2px`,
-      borderColor: 'rgba(255, 255, 255, 0.6)',
+      borderColor: 'rgba(255, 255, 255, 0.7)',
       color: '#ffffff',
     },
   },
