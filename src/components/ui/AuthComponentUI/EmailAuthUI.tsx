@@ -41,16 +41,18 @@ const EmailAuthUI: FC<IProps> = (props) => {
           onkeyUp={() => {}}
         />
         <div className="w-full space-y-1">
-          <Link
-            onClick={() => {
-              Router.push('/authentication/login/forget-password');
-            }}
-            className="text-white text-xs text-right w-full -mt-5"
-            component="button"
-            underline="always"
-          >
-            Forgot Your Password
-          </Link>
+          <div className="text-right w-full">
+            <Link
+              onClick={() => {
+                Router.push('/authentication/login/forget-password');
+              }}
+              className="text-white text-xs -mt-5"
+              component="button"
+              underline="always"
+            >
+              Forgot Your Password
+            </Link>
+          </div>
           <div className="flex w-full">
             <CheckBoxBlue />
             <div className="flex items-center">

@@ -97,12 +97,12 @@ const OtpAuthUI: FC<IProps> = (props) => {
                     </div>
                   </div>
                   <div className="flex">
-                    <h6 className="text-white text-[14px] font-light opacity-75">
+                    <h6 className="text-white text-xs font-light opacity-75">
                       Otp not send?&#160;
                     </h6>
                     <Link
                       href="#"
-                      className="text-white text-[14px]"
+                      className="text-white text-xs"
                       component="button"
                       underline="always"
                     >
