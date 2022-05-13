@@ -14,6 +14,7 @@ import { useSelectAvatarState } from '../../providers/state/SelectAvatarState';
 import { useShowAvatarState } from '../../providers/state/ShowAvatarState';
 import { FromAvatars } from './options/FromAvatars';
 import { FromComputer } from './options/FromComputer';
+import { AvatarContainer } from '../container/AvatarContainer';
 
 interface IProps {}
 
@@ -41,7 +42,7 @@ const StyledTabs = styled((props: StyledTabsProps) => (
   />
 ))({
   '& ': {
-    width: '100%',    
+    width: '100%',
   },
   '& .MuiTabs-indicator': {
     display: 'flex',
@@ -90,89 +91,57 @@ const SelectAvatar: FC<IProps> = (props) => {
     setShowAvatar({ setShow: true });
   };
   return (
-    <Transition appear show={SelectAvatar.setShow} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={closeModal}>
-        <Transition.Child
-          as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm" />
-        </Transition.Child>
-
-        <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-75"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-75"
-            >
-              <Dialog.Panel className="absolute sm:relative h-full w-full sm:w-auto sm:h-auto transform overflow-hidden sm:rounded-lg bg-white text-center align-middle shadow-xl transition-all">
-                <div className="flex flex-col justify-center items-center">
-                  {/* Header */}
-                  <div className="flex w-full justify-between items-center p-1">
-                    <IconButton
-                      onClick={() => {
-                        closeModal();
-                      }}
-                      className="hover:bg-[rgba(0,0,0,0.07)] p-3"
-                    >
-                      <ArrowLeftIcon className="h-5" />
-                    </IconButton>
-                    <h6 className="text-black font-medium pt-1">
-                      Change profile picture
-                    </h6>
-                    <IconButton className="hover:bg-[rgba(0,0,0,0.07)] p-3">
-                      <DotsVerticalIcon className="h-5" />
-                    </IconButton>
-                  </div>
-                  {/* Tab */}
-                  <div className="space-y-3 flex flex-col items-center justify-center w-full">
-                    {/* Sub Heading */}
-                    <h6 className="text-[13px] px-6 text-black text-left w-full">
-                      You can choose your profile picture from our one of the
-                      best avatar collections.
-                    </h6>
-                    {/* Tab */}
-                    <StyledTabs
-                      value={value}
-                      onChange={handleChange}
-                      aria-label="styled tabs example"
-                    >
-                      <StyledTab
-                        icon={<SparklesIcon className="h-5 opacity-70" />}
-                        label="From Avatars"
-                      />
-                      <StyledTab
-                        icon={
-                          <DesktopComputerIcon className="h-5 opacity-70" />
-                        }
-                        label="From Computer"
-                      />
-                    </StyledTabs>
-                    {/* Tab Content */}
-                  </div>
-                  {/* Divider */}
-                  <div className="h-[1px] opacity-20 bg-black w-full" />
-                  {/* Main */}
-                  <div className='p-6 space-y-3 flex flex-col items-center justify-center w-full'>
-                    {TabValue? <FromComputer/> : <FromAvatars/>}
-                  </div>
-                </div>
-              </Dialog.Panel>
-            </Transition.Child>
-          </div>
+    <AvatarContainer show={SelectAvatar.setShow} as={Fragment} onClose={closeModal}>
+      <div className="flex flex-col justify-center items-center">
+        {/* Header */}
+        <div className="flex w-full justify-between items-center p-1">
+          <IconButton
+            onClick={() => {
+              closeModal();
+            }}
+            className="hover:bg-[rgba(0,0,0,0.07)] p-3"
+          >
+            <ArrowLeftIcon className="h-5" />
+          </IconButton>
+          <h6 className="text-black font-medium pt-1">
+            Change profile picture
+          </h6>
+          <IconButton className="hover:bg-[rgba(0,0,0,0.07)] p-3">
+            <DotsVerticalIcon className="h-5" />
+          </IconButton>
         </div>
-      </Dialog>
-    </Transition>
+        {/* Tab & sub heading */}
+        <div className="space-y-3 flex flex-col items-center justify-center w-full">
+          {/* Sub Heading */}
+          <h6 className="text-[13px] px-6 text-black text-left w-full">
+            You can choose your profile picture from our one of the best avatar
+            collections.
+          </h6>
+          {/* Tab */}
+          <StyledTabs
+            value={value}
+            onChange={handleChange}
+            aria-label="styled tabs example"
+          >
+            <StyledTab
+              icon={<SparklesIcon className="h-5 opacity-70" />}
+              label="From Avatars"
+            />
+            <StyledTab
+              icon={<DesktopComputerIcon className="h-5 opacity-70" />}
+              label="From Computer"
+            />
+          </StyledTabs>
+          {/* Tab Content */}
+        </div>
+        {/* Divider */}
+        <div className="h-[1px] opacity-20 bg-black w-full" />
+        {/* Main */}
+        <div className="p-6 space-y-3 flex flex-col items-center justify-center w-full">
+          {TabValue ? <FromComputer /> : <FromAvatars />}
+        </div>
+      </div>
+    </AvatarContainer>
   );
 };
 
