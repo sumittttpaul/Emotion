@@ -12,8 +12,8 @@ import { DotsVerticalIcon, ArrowLeftIcon } from '@heroicons/react/solid';
 import { SparklesIcon, DesktopComputerIcon } from '@heroicons/react/outline';
 import { useSelectAvatarState } from '../../providers/state/SelectAvatarState';
 import { useShowAvatarState } from '../../providers/state/ShowAvatarState';
-import { FromAvatars } from './options/FromAvatars';
-import { FromComputer } from './options/FromComputer';
+import { FromAvatars } from './SelectAvatarOptions/FromAvatars';
+import { FromComputer } from './SelectAvatarOptions/FromComputer';
 import { AvatarContainer } from '../container/AvatarContainer';
 
 interface IProps {}
