@@ -15,7 +15,7 @@ interface IProps {
 export const StateProvider: FC<IProps> = (props) => {
   return (
     <ColorState>
-      <AvatarState value={{ setShow: false }}>
+      <AvatarState value={{ setShow: true }}>
         <OtpState value={{ setShow: false}}>
           {props.children}
           </OtpState>

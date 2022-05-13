@@ -13,7 +13,6 @@ interface IProps {}
  **/
 
 const ShowAvatar: FC<IProps> = (props) => {
-
   const { AvatarState, setAvatarState } = useAvatarState();
 
   const closeModal = () => {
@@ -46,7 +45,7 @@ const ShowAvatar: FC<IProps> = (props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-75"
             >
-              <Dialog.Panel className="absolute sm:relative h-full w-full sm:w-auto sm:h-auto transform overflow-hidden sm:rounded-lg bg-white text-center align-middle shadow-xl transition-all">
+              <Dialog.Panel className="absolute sm:max-w-sm sm:relative h-full w-full sm:w-auto sm:h-auto transform overflow-hidden sm:rounded-lg bg-white text-center align-middle shadow-xl transition-all">
                 <div className="flex flex-col justify-center items-center">
                   {/* Header */}
                   <div className="flex w-full justify-between items-center p-1">
@@ -76,6 +75,28 @@ const ShowAvatar: FC<IProps> = (props) => {
                         alt="user photo"
                       />
                     </Button>
+                    <div className="flex space-x-2 w-full">
+                      <Button 
+                        sx={{
+                          border: '1px solid rgba(26, 115, 232, 0.5)'
+                        }}
+                        className="button-text-lower text-[#1a73e8] w-full hover:bg-transparent active:bg-transparent">
+                        <div className="flex space-x-2 items-center justify-center">
+                          <Image height={20} width={20} src="/icons/edit.svg" />
+                          <h6 className="text-[13px]">Change</h6>
+                        </div>
+                      </Button>
+                      <Button 
+                        sx={{
+                          border: '1px solid rgba(26, 115, 232, 0.5)'
+                        }}
+                        className="button-text-lower text-[#1a73e8] w-full hover:bg-transparent active:bg-transparent">
+                        <div className="flex space-x-2 items-center justify-center">
+                          <Image height={20} width={20} src="/icons/edit.svg" />
+                          <h6 className="text-[13px]">Remove</h6>
+                        </div>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </Dialog.Panel>
