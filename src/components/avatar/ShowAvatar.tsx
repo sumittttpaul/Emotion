@@ -53,7 +53,7 @@ const ShowAvatar: FC<IProps> = (props) => {
           </h6>
           {/* Info Heading */}
           <div className="flex w-full space-x-2">
-            <Image height={18} width={18} src="/icons/users.svg" />
+            <Image height={18} width={18} src="/icons/users.svg" alt='user icon'/>
             <h6 className="text-[13px] text-black text-left w-full">
               Visible across Agewear services.
             </h6>
@@ -76,7 +76,7 @@ const ShowAvatar: FC<IProps> = (props) => {
             className="button-text-lower py-[6px] text-[#1a73e8] w-full hover:bg-transparent active:bg-transparent"
           >
             <div className="flex space-x-2 items-center justify-center">
-              <Image height={18} width={18} src="/icons/edit.svg" />
+              <Image height={18} width={18} src="/icons/edit.svg" alt='edit icon'/>
               <h6 className="text-[13px]">Change</h6>
             </div>
           </Button>
@@ -87,7 +87,7 @@ const ShowAvatar: FC<IProps> = (props) => {
             className="button-text-lower py-[6px] text-[#1a73e8] w-full hover:bg-transparent active:bg-transparent"
           >
             <div className="flex space-x-2 items-center justify-center">
-              <Image height={18} width={18} src="/icons/trash.svg" />
+              <Image height={18} width={18} src="/icons/trash.svg" alt='trash icon'/>
               <h6 className="text-[13px]">Remove</h6>
             </div>
           </Button>
