@@ -36,6 +36,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
   '& .MuiFilledInput-root': {
     height: 63,
+    borderRadius: 6,
     fontWeight: 300,
     fontSize: '13.5px',
     letterSpacing: 0.5,
@@ -116,7 +117,7 @@ const IconPasswordTextFieldDark: FC<IProps> = (props) => {
                 onMouseDown={handleMouseDownPassword}
                 className="z-20 h-11 w-11 mb-[2px] passwordEyeButton"
                 style={{
-                  borderRadius: 0,
+                  borderRadius: 6,
                 }}
               >
                 {values.showPassword ? (

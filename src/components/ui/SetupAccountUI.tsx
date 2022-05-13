@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import AuthContainer from '../container/AuthContainer';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image'
+import AvatarUI from './Avatar/AvatarUI';
 
 interface IProps {}
 
@@ -32,6 +33,7 @@ export const SetupAccountUI: FC<IProps> = (props) => {
           <h6 className="font-medium text-center text-md">
             Setup your Agewear account
           </h6>
+          <AvatarUI/>
         </motion.div>
       </AnimatePresence>
     </AuthContainer>

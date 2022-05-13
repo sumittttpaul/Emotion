@@ -17,7 +17,7 @@ const CheckBoxBlue: FC<IProps> = (props) => {
         '&': {
           bgcolor: 'transparent',
           borderWidth: 0,
-          borderRadius: '2px',
+          borderRadius: '6px',
           height: 18,
           width: 18,
           padding: 0,

@@ -52,7 +52,7 @@ const OtpAuthUI: FC<IProps> = (props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-150"
             >
-              <Dialog.Panel className="absolute sm:relative h-full w-full sm:w-auto sm:h-auto transform overflow-hidden rounded-lg bg-[#202020] text-center align-middle shadow-xl transition-all">
+              <Dialog.Panel className="absolute sm:relative h-full w-full sm:w-auto sm:h-auto transform overflow-hidden sm:rounded-lg bg-[#202020] text-center align-middle shadow-xl transition-all">
                 <div className="flex flex-col px-14 py-10 space-y-7 justify-center items-center">
                   <h6 className="text-white font-medium text-center text-md">
                     OTP Verification

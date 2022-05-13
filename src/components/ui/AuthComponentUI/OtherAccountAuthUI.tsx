@@ -12,7 +12,7 @@ interface IProps {}
 const OtherAccountAuthUI: FC<IProps> = (props) => {
   return (
     <div className="flex space-x-3 w-full">
-      <Button className="bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] text-white h-[50px] justify-center items-center flex w-full focus:outline-none">
+      <Button className="bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] text-white h-[50px] justify-center items-center flex w-full rounded-md focus:outline-none">
         <Image
           height={18}
           width={9}
@@ -20,7 +20,7 @@ const OtherAccountAuthUI: FC<IProps> = (props) => {
           alt="facebook-logo-svg"
         />
       </Button>
-      <Button className="bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] text-white h-[50px] justify-center items-center flex w-full focus:outline-none">
+      <Button className="bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] text-white h-[50px] justify-center items-center flex w-full rounded-md focus:outline-none">
         <Image
           height={17}
           width={17}
@@ -28,7 +28,7 @@ const OtherAccountAuthUI: FC<IProps> = (props) => {
           alt="google-logo-svg"
         />
       </Button>
-      <Button className="bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] text-white -mt-[2px] h-[55px] justify-center items-center flex w-full focus:outline-none">
+      <Button className="bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] text-white h-[50px] justify-center items-center flex w-full rounded-md focus:outline-none">
         <Image
           height={18}
           width={18}

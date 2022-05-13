@@ -1,5 +1,6 @@
 import { Button } from '@mui/material';
 import React, { FC, ReactEventHandler } from 'react';
+import { LoadingButton } from '@mui/lab'
 
 interface IProps {
   content: string;
@@ -13,9 +14,9 @@ interface IProps {
 
 const LargeButtonBlue: FC<IProps> = (props) => {
   return (
-    <Button
+    <Button 
       onClick={props.onClick}
-      className="bg-[#0074E4] hover:bg-[#0074E4] text-white h-[60px] w-full text-xs transition-colors"
+      className="bg-[#0074E4] hover:bg-[#0074E4] rounded-md text-white h-[60px] w-full text-xs transition-colors"
     >
       {props.content}
     </Button>

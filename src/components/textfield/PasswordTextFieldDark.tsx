@@ -35,6 +35,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
   '& .MuiFilledInput-root': {
     height: 63,
+    borderRadius: 6,
     fontWeight: 300,
     fontSize: '13.5px',
     letterSpacing: 0.5,
@@ -114,9 +115,9 @@ const PasswordTextFieldDark: FC<IProps> = (props) => {
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
-                className="z-20 h-11 w-11 mb-[2px] passwordEyeButton"
+                className="z-20 h-11 w-11 mb-[2px] rounded-md passwordEyeButton"
                 style={{
-                  borderRadius: 0,
+                  borderRadius: 6,
                 }}
               >
                 {values.showPassword ? (

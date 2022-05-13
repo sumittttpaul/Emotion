@@ -28,6 +28,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
   '& .MuiFilledInput-root': {
     height: 63,
+    borderRadius: 6,
     fontWeight: 300,
     fontSize: '13.5px',
     letterSpacing: 0.5,
