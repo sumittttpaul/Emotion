@@ -8,9 +8,7 @@ import PhoneAuthUI from './AuthComponentUI/PhoneAuthUI';
 import { Link } from '@mui/material';
 import Router from 'next/router';
 
-interface IProps {
-  setOTP: (arg: boolean) => void;
-}
+interface IProps {}
 
 /**
  * @author
@@ -79,7 +77,7 @@ const LoginUI: FC<IProps> = (props) => {
             </Tab.List>
           </Tab.Group>
         </div>
-        {value ? <PhoneAuthUI setOTP={props.setOTP} /> : <EmailAuthUI />}
+        {value ? <PhoneAuthUI/> : <EmailAuthUI />}
         <div className="flex">
           <h6 className="text-xs font-light text-[rgba(255,255,255,0.75)] flex items-center">
             Don&apos;t have an Agewear account?&#160;

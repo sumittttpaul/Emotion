@@ -2,11 +2,9 @@ import React, { FC, Fragment, useEffect, useState } from 'react';
 import { Link } from '@mui/material';
 import OTPTextFieldDark from '../../textfield/OTPTextFieldDark';
 import { Dialog, Transition } from '@headlessui/react';
+import { useOtpState } from '../../../providers/state/OtpState';
 
-interface IProps {
-  setShow: boolean;
-  setHide: (arg: boolean) => void;
-}
+interface IProps {}
 
 /**
  * @author
@@ -15,19 +13,14 @@ interface IProps {
 
 const OtpAuthUI: FC<IProps> = (props) => {
 
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const {OtpState, setOtpState} = useOtpState();
 
-  function closeModal() {
-    setIsOpen(false);
-    props.setHide(isOpen);
+  const closeModal = () => {
+    setOtpState({ setShow: false})
   }
 
-  useEffect(() => {
-    setIsOpen(props.setShow);
-  }, [props.setShow]);
-
   return (
-    <Transition appear show={isOpen} as={Fragment}>
+    <Transition appear show={OtpState.setShow} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
         <Transition.Child
           as={Fragment}

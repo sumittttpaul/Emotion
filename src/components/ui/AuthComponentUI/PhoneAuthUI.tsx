@@ -6,10 +6,9 @@ import LargeButtonBlue from '../../button/LargeButtonBlue';
 import OtherAccountAuthUI from './OtherAccountAuthUI';
 import AuthDivider from '../../divider/AuthDivider';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useOtpState } from '../../../providers/state/OtpState';
 
-interface IProps {
-  setOTP: (arg: boolean) => void;
-}
+interface IProps {}
 
 /**
  * @author
@@ -17,9 +16,11 @@ interface IProps {
  **/
 
 const PhoneAuthUI: FC<IProps> = (props) => {
+  const { setOtpState } = useOtpState();
+
   const handleClick = () => {
     setTimeout(() => {
-      props.setOTP(true);
+      setOtpState({ setShow: true})
     }, 250);
   };
   return (

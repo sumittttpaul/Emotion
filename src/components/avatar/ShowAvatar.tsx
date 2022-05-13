@@ -3,11 +3,9 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Button, IconButton } from '@mui/material';
 import { XIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
+import { useAvatarState } from '../../providers/state/AvatarState';
 
-interface IProps {
-  setShow: boolean;
-  setHide: (arg: boolean) => void;
-}
+interface IProps {}
 
 /**
  * @author
@@ -15,19 +13,15 @@ interface IProps {
  **/
 
 const ShowAvatar: FC<IProps> = (props) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  function closeModal() {
-    setIsOpen(false);
-    props.setHide(isOpen);
-  }
+  const { AvatarState, setAvatarState } = useAvatarState();
 
-  useEffect(() => {
-    setIsOpen(props.setShow);
-  }, [props.setShow]);
+  const closeModal = () => {
+    setAvatarState({ setShow: false });
+  };
 
   return (
-    <Transition appear show={isOpen} as={Fragment}>
+    <Transition appear show={AvatarState.setShow} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
         <Transition.Child
           as={Fragment}
@@ -46,11 +40,11 @@ const ShowAvatar: FC<IProps> = (props) => {
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-50"
+              enterFrom="opacity-0 scale-75"
               enterTo="opacity-100 scale-100"
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-50"
+              leaveTo="opacity-0 scale-75"
             >
               <Dialog.Panel className="absolute sm:relative h-full w-full sm:w-auto sm:h-auto transform overflow-hidden sm:rounded-lg bg-white text-center align-middle shadow-xl transition-all">
                 <div className="flex flex-col justify-center items-center">
@@ -59,7 +53,12 @@ const ShowAvatar: FC<IProps> = (props) => {
                     <h6 className="text-black font-medium pl-4">
                       Profile picture
                     </h6>
-                    <IconButton className="hover:bg-[rgba(0,0,0,0.07)] p-3">
+                    <IconButton
+                      onClick={() => {
+                        closeModal();
+                      }}
+                      className="hover:bg-[rgba(0,0,0,0.07)] p-3"
+                    >
                       <XIcon className="h-5" />
                     </IconButton>
                   </div>
@@ -69,8 +68,13 @@ const ShowAvatar: FC<IProps> = (props) => {
                       A picture helps people recognize you and lets you know
                       when you’re signed in to your account.
                     </h6>
-                    <Button className='h-[288px] w-[288px] rounded-full p-0'>
-                      <Image height={288} width={288} src="/images/user.jpg"/>
+                    <Button className="h-[288px] w-[288px] rounded-full p-0">
+                      <Image
+                        height={288}
+                        width={288}
+                        src="/images/user.jpg"
+                        alt="user photo"
+                      />
                     </Button>
                   </div>
                 </div>

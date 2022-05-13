@@ -1,6 +1,7 @@
-import { Avatar, Button } from '@mui/material';
-import React, { FC, useState } from 'react';
+import { Button } from '@mui/material';
+import React, { FC, useEffect, useState } from 'react';
 import ShowAvatar from '../../avatar/ShowAvatar';
+import { useAvatarState } from '../../../providers/state/AvatarState';
 
 interface IProps {}
 
@@ -10,16 +11,12 @@ interface IProps {}
  **/
 
 const AvatarUI: FC<IProps> = (props) => {
-  // Initail State for Show Avatar Screen
-  const [ShowAvatarScreen, setShowAvatarScreen] = useState<boolean>(true);
 
-  const HideAvatarScreen = (Status: boolean): void => {
-    setShowAvatarScreen(Status);
-  };
+  const { setAvatarState } = useAvatarState();
 
   const handleClick = () => {
     setTimeout(() => {
-      setShowAvatarScreen(true);
+      setAvatarState({ setShow: true });
     }, 250);
   };
 
@@ -44,7 +41,7 @@ const AvatarUI: FC<IProps> = (props) => {
         Select your profile photo
       </Button>
 
-      <ShowAvatar setShow={ShowAvatarScreen} setHide={HideAvatarScreen} />
+      <ShowAvatar />
     </>
   );
 };

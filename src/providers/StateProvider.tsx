@@ -1,5 +1,7 @@
 import React, { FC, ReactNode } from 'react';
+import { AvatarState } from './state/AvatarState';
 import { ColorState } from './state/ColorState';
+import { OtpState } from './state/OtpState';
 
 interface IProps {
   children: ReactNode;
@@ -11,5 +13,13 @@ interface IProps {
  **/
 
 export const StateProvider: FC<IProps> = (props) => {
-  return <ColorState>{props.children}</ColorState>;
+  return (
+    <ColorState>
+      <AvatarState value={{ setShow: false }}>
+        <OtpState value={{ setShow: false}}>
+          {props.children}
+          </OtpState>
+      </AvatarState>
+    </ColorState>
+  );
 };
