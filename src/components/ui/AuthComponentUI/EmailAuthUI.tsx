@@ -18,12 +18,12 @@ const EmailAuthUI: FC<IProps> = (props) => {
   return (
     <AnimatePresence exitBeforeEnter>
       <motion.div
-        className="w-full max-w-[350px] space-y-7 pb-[7px] flex flex-col justify-center items-center"
+        className="w-full space-y-7 pb-[4px] flex flex-col justify-center items-center"
         key=""
         animate={{ opacity: 1, x: 0 }}
-        initial={{ opacity: 0, x: 50 }}
-        exit={{ opacity: 0, x: -50 }}
-        transition={{ duration: 0.25 }}
+        initial={{ opacity: 0, x: 60 }}
+        exit={{ opacity: 0, x: -60 }}
+        transition={{ duration: 0.3 }}
       >
         <IconTextFieldDark
           placeholder="Email Address"
