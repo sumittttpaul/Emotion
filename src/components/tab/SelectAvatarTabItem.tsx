@@ -8,7 +8,7 @@ interface StyledTabProps {
 }
 /**
  * @author
- * @function @CustomTabItem
+ * @function @SelectAvatarTabItem
  **/
 
 const StyledTab = styled((props: StyledTabProps) => <Tab {...props} />)(
@@ -29,8 +29,8 @@ const StyledTab = styled((props: StyledTabProps) => <Tab {...props} />)(
   })
 );
 
-const CustomTabItem: FC<StyledTabProps> = (props) => {
+const SelectAvatarTabItem: FC<StyledTabProps> = (props) => {
   return <StyledTab {...props} />;
 };
 
-export default CustomTabItem;
+export default SelectAvatarTabItem;

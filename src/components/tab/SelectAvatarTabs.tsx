@@ -10,7 +10,7 @@ interface StyledTabsProps {
 
 /**
  * @author
- * @function @CustomTabs
+ * @function @SelectAvatarTabs
  **/
 
 const StyledTabs = styled((props: StyledTabsProps) => (
@@ -37,8 +37,8 @@ const StyledTabs = styled((props: StyledTabsProps) => (
   },
 });
 
-const CustomTabs: FC<StyledTabsProps> = (props) => {
+const SelectAvatarTabs: FC<StyledTabsProps> = (props) => {
   return <StyledTabs {...props} />;
 };
 
-export default CustomTabs;
+export default SelectAvatarTabs;

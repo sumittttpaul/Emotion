@@ -9,10 +9,10 @@ interface TabPanelProps {
 
 /**
  * @author
- * @function @CustomTabPanel
+ * @function @SelectAvatarTabPanel
  **/
 
-const CustomTabPanel = (props: TabPanelProps) => {
+const SelectAvatarTabPanel = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
   return (
     <div
@@ -27,4 +27,4 @@ const CustomTabPanel = (props: TabPanelProps) => {
   );
 };
 
-export default CustomTabPanel;
+export default SelectAvatarTabPanel;

@@ -9,7 +9,7 @@ import PhoneAuthUI from './AuthComponentUI/PhoneAuthUI';
 import { Link, useTheme } from '@mui/material';
 import Router from 'next/router';
 import SwipeableViews from 'react-swipeable-views';
-import TabPanel from '../tab/CustomTabPanel';
+import TabPanel from '../tab/SelectAvatarTabPanel';
 
 interface IProps {}
 

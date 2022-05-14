@@ -8,9 +8,9 @@ import { FromAvatars } from './SelectAvatarOptions/FromAvatars';
 import { FromComputer } from './SelectAvatarOptions/FromComputer';
 import { AvatarContainer } from '../container/AvatarContainer';
 import SwipeableViews from 'react-swipeable-views';
-import CustomTabItem from '../tab/CustomTabItem';
-import CustomTabs from '../tab/CustomTabs';
-import CustomTabPanel from '../tab/CustomTabPanel';
+import SelectAvatarTabItem from '../tab/SelectAvatarTabItem';
+import SelectAvatarTabs from '../tab/SelectAvatarTabs';
+import SelectAvatarTabPanel from '../tab/SelectAvatarTabPanel';
 
 interface IProps {}
 
@@ -72,20 +72,20 @@ const SelectAvatar: FC<IProps> = (props) => {
             collections.
           </h6>
           {/* Tab */}
-          <CustomTabs
+          <SelectAvatarTabs
             value={value}
             onChange={handleChange}
             aria-label="styled tabs example"
           >
-            <CustomTabItem
+            <SelectAvatarTabItem
               icon={<SparklesIcon className="h-5 opacity-70" />}
               label="From Avatars"
             />
-            <CustomTabItem
+            <SelectAvatarTabItem
               icon={<DesktopComputerIcon className="h-5 opacity-70" />}
               label="From Computer"
             />
-          </CustomTabs>
+          </SelectAvatarTabs>
           {/* Tab Content */}
         </div>
         {/* Divider */}
@@ -101,12 +101,12 @@ const SelectAvatar: FC<IProps> = (props) => {
             transition: 'transform 0.35s cubic-bezier(0.15, 0.3, 0.25, 1) 0s',
           }}
         >
-          <CustomTabPanel value={value} index={0} dir={theme.direction}>
+          <SelectAvatarTabPanel value={value} index={0} dir={theme.direction}>
             <FromAvatars />
-          </CustomTabPanel>
-          <CustomTabPanel value={value} index={1} dir={theme.direction}>
+          </SelectAvatarTabPanel>
+          <SelectAvatarTabPanel value={value} index={1} dir={theme.direction}>
             <FromComputer />
-          </CustomTabPanel>
+          </SelectAvatarTabPanel>
         </SwipeableViews>
       </div>
     </AvatarContainer>
