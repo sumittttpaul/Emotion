@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface IProps {}
 
@@ -9,6 +10,8 @@ interface IProps {}
 
 export const FromAvatars: FC<IProps> = (props) => {
   return (
-    <div className="h-[500px] text-center items-center flex">From Avatars</div>
+    <div className="sm:h-[500px] p-6 space-y-4 h-full w-full items-center justify-center flex flex-col">
+      From Avatars
+    </div>
   );
 };

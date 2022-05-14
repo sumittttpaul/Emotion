@@ -75,7 +75,7 @@ const ShowAvatar: FC<IProps> = (props) => {
                 backgroundColor: 'rgba(26, 115, 232, 0.25)',
               },
             }}
-            className="button-text-lower py-[6px] text-[#1a73e8] w-full hover:bg-transparent active:bg-transparent"
+            className="button-text-lower py-[6px] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
           >
             <div className="flex space-x-2 items-center justify-center">
               <Image height={18} width={18} src="/icons/edit.svg" alt='edit icon'/>
@@ -89,7 +89,7 @@ const ShowAvatar: FC<IProps> = (props) => {
                 backgroundColor: 'rgba(26, 115, 232, 0.25)',
               },
             }}
-            className="button-text-lower py-[6px] text-[#1a73e8] w-full hover:bg-transparent active:bg-transparent"
+            className="button-text-lower py-[6px] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
           >
             <div className="flex space-x-2 items-center justify-center">
               <Image height={18} width={18} src="/icons/trash.svg" alt='trash icon'/>

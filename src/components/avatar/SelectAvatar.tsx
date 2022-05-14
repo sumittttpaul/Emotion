@@ -1,12 +1,5 @@
-import React, {
-  FC,
-  Fragment,
-  SyntheticEvent,
-  ReactNode,
-  useState,
-  ReactElement,
-} from 'react';
-import { IconButton, Tabs, Tab, styled } from '@mui/material';
+import React, { FC, Fragment, SyntheticEvent, useState } from 'react';
+import { IconButton, useTheme } from '@mui/material';
 import { DotsVerticalIcon, ArrowLeftIcon } from '@heroicons/react/solid';
 import { SparklesIcon, DesktopComputerIcon } from '@heroicons/react/outline';
 import { useSelectAvatarState } from '../../providers/state/SelectAvatarState';
@@ -14,6 +7,10 @@ import { useShowAvatarState } from '../../providers/state/ShowAvatarState';
 import { FromAvatars } from './SelectAvatarOptions/FromAvatars';
 import { FromComputer } from './SelectAvatarOptions/FromComputer';
 import { AvatarContainer } from '../container/AvatarContainer';
+import SwipeableViews from 'react-swipeable-views';
+import CustomTabItem from '../tab/CustomTabItem';
+import CustomTabs from '../tab/CustomTabs';
+import CustomTabPanel from '../tab/CustomTabPanel';
 
 interface IProps {}
 
@@ -22,69 +19,21 @@ interface IProps {}
  * @function @SelectAvatar
  **/
 
-interface StyledTabProps {
-  label: string;
-  icon: ReactElement;
-}
-
-interface StyledTabsProps {
-  children?: ReactNode;
-  value: number;
-  onChange: (event: SyntheticEvent, newValue: number) => void;
-}
-
-const StyledTabs = styled((props: StyledTabsProps) => (
-  <Tabs
-    {...props}
-    variant="fullWidth"
-    TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
-  />
-))({
-  '& ': {
-    width: '100%',
-    height: 70,
-  },
-  '& .MuiTabs-indicator': {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-  },
-  '& .MuiTabs-indicatorSpan': {
-    maxWidth: 40,
-    width: '100%',
-    backgroundColor: '#1a73e8',
-  },
-});
-
-const StyledTab = styled((props: StyledTabProps) => <Tab {...props} />)(
-  ({ theme }) => ({
-    textTransform: 'none',
-    fontWeight: theme.typography.fontWeightRegular,
-    fontSize: theme.typography.pxToRem(14),
-    color: 'rgba(0, 0, 0, 0.9)',
-    '&.Mui-selected': {
-      color: '#1A73E8',
-    },
-    '.MuiTouchRipple-child': {
-      backgroundColor: 'rgba(26, 115, 232, 0.25)',
-    },
-    '&.Mui-focusVisible': {
-      backgroundColor: 'rgba(100, 95, 228, 0.32)',
-    },
-  })
-);
-
 const SelectAvatar: FC<IProps> = (props) => {
   const { SelectAvatar, setSelectAvatar } = useSelectAvatarState();
   const { setShowAvatar } = useShowAvatarState();
   const [value, setValue] = useState(0);
+  const theme = useTheme();
   const [TabValue, setTabValue] = useState(false);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
     setTabValue((prev) => !prev);
     console.log(TabValue);
+  };
+
+  const handleChangeIndex = (index: number) => {
+    setValue(index);
   };
 
   const closeModal = () => {
@@ -92,8 +41,12 @@ const SelectAvatar: FC<IProps> = (props) => {
     setShowAvatar({ setShow: true });
   };
   return (
-    <AvatarContainer show={SelectAvatar.setShow} as={Fragment} onClose={closeModal}>
-      <div className="max-w-[500px] flex flex-col justify-center items-center">
+    <AvatarContainer
+      show={SelectAvatar.setShow}
+      as={Fragment}
+      onClose={closeModal}
+    >
+      <div className="sm:max-w-[500px] flex flex-col justify-center items-center h-full w-full">
         {/* Header */}
         <div className="flex w-full justify-between items-center p-1">
           <IconButton
@@ -119,28 +72,42 @@ const SelectAvatar: FC<IProps> = (props) => {
             collections.
           </h6>
           {/* Tab */}
-          <StyledTabs
+          <CustomTabs
             value={value}
             onChange={handleChange}
             aria-label="styled tabs example"
           >
-            <StyledTab
+            <CustomTabItem
               icon={<SparklesIcon className="h-5 opacity-70" />}
               label="From Avatars"
             />
-            <StyledTab
+            <CustomTabItem
               icon={<DesktopComputerIcon className="h-5 opacity-70" />}
               label="From Computer"
             />
-          </StyledTabs>
+          </CustomTabs>
           {/* Tab Content */}
         </div>
         {/* Divider */}
         <div className="h-[1px] opacity-20 bg-black w-full" />
         {/* Main */}
-        <div className="p-6 space-y-3 flex flex-col items-center justify-center w-full">
-          {TabValue ? <FromComputer /> : <FromAvatars />}
-        </div>
+        <SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={value}
+          onChangeIndex={handleChangeIndex}
+          className="w-full h-full"
+          id="SwipeableViews"
+          containerStyle={{
+            transition: 'transform 0.35s cubic-bezier(0.15, 0.3, 0.25, 1) 0s',
+          }}
+        >
+          <CustomTabPanel value={value} index={0} dir={theme.direction}>
+            <FromAvatars />
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={1} dir={theme.direction}>
+            <FromComputer />
+          </CustomTabPanel>
+        </SwipeableViews>
       </div>
     </AvatarContainer>
   );

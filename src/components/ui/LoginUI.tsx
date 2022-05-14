@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Image from 'next/image';
 import AuthContainer from '../container/AuthContainer';
 import { Tab } from '@headlessui/react';
@@ -6,8 +6,10 @@ import { DeviceMobileIcon, MailIcon } from '@heroicons/react/solid';
 import { motion, AnimatePresence } from 'framer-motion';
 import EmailAuthUI from './AuthComponentUI/EmailAuthUI';
 import PhoneAuthUI from './AuthComponentUI/PhoneAuthUI';
-import { Link } from '@mui/material';
+import { Link, useTheme } from '@mui/material';
 import Router from 'next/router';
+import SwipeableViews from 'react-swipeable-views';
+import TabPanel from '../tab/CustomTabPanel';
 
 interface IProps {}
 
@@ -21,14 +23,22 @@ function classNames(...classes: any) {
 }
 
 const LoginUI: FC<IProps> = (props) => {
-  const [value, setValue] = React.useState(true);
+  const [value, setValue] = useState(true);
+  const [Tabvalue, setTabValue] = useState(0);
+  const theme = useTheme();
+
+  const handleChangeIndex = (index: number) => {
+    setTabValue(index);
+  };
 
   const handlePhoneClick = () => {
     setValue(true);
+    setTabValue(0);
   };
 
   const handleEmailClick = () => {
     setValue(false);
+    setTabValue(1);
   };
 
   return (
@@ -86,7 +96,23 @@ const LoginUI: FC<IProps> = (props) => {
               </Tab.List>
             </Tab.Group>
           </div>
-          {value ? <PhoneAuthUI /> : <EmailAuthUI />}
+          <SwipeableViews
+            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+            index={Tabvalue}
+            onChangeIndex={handleChangeIndex}
+            className='w-full'
+            id='SwipeableViews'
+            containerStyle={{
+              transition: 'transform 0.35s cubic-bezier(0.15, 0.3, 0.25, 1) 0s'
+          }}
+          >
+            <TabPanel value={Tabvalue} index={0} dir={theme.direction}>
+              <PhoneAuthUI/>
+            </TabPanel>
+            <TabPanel value={Tabvalue} index={1} dir={theme.direction}>
+              <EmailAuthUI/>
+            </TabPanel>
+          </SwipeableViews>
           <div className="flex">
             <h6 className="text-xs font-light text-[rgba(255,255,255,0.75)] flex items-center">
               Don&apos;t have an Agewear account?&#160;
