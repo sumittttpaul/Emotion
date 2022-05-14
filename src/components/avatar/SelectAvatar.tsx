@@ -6,7 +6,6 @@ import React, {
   useState,
   ReactElement,
 } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
 import { IconButton, Tabs, Tab, styled } from '@mui/material';
 import { DotsVerticalIcon, ArrowLeftIcon } from '@heroicons/react/solid';
 import { SparklesIcon, DesktopComputerIcon } from '@heroicons/react/outline';
@@ -43,14 +42,16 @@ const StyledTabs = styled((props: StyledTabsProps) => (
 ))({
   '& ': {
     width: '100%',
+    height: 70,
   },
   '& .MuiTabs-indicator': {
+    width: '100%',
     display: 'flex',
     justifyContent: 'center',
     backgroundColor: 'transparent',
   },
   '& .MuiTabs-indicatorSpan': {
-    maxWidth: 80,
+    maxWidth: 40,
     width: '100%',
     backgroundColor: '#1a73e8',
   },
@@ -58,15 +59,15 @@ const StyledTabs = styled((props: StyledTabsProps) => (
 
 const StyledTab = styled((props: StyledTabProps) => <Tab {...props} />)(
   ({ theme }) => ({
-    paddingTop: 0,
-    paddingBottom: 0,
     textTransform: 'none',
     fontWeight: theme.typography.fontWeightRegular,
     fontSize: theme.typography.pxToRem(14),
-    marginRight: theme.spacing(1),
     color: 'rgba(0, 0, 0, 0.9)',
     '&.Mui-selected': {
-      color: '#1a73e8',
+      color: '#1A73E8',
+    },
+    '.MuiTouchRipple-child': {
+      backgroundColor: 'rgba(26, 115, 232, 0.25)',
     },
     '&.Mui-focusVisible': {
       backgroundColor: 'rgba(100, 95, 228, 0.32)',
@@ -92,7 +93,7 @@ const SelectAvatar: FC<IProps> = (props) => {
   };
   return (
     <AvatarContainer show={SelectAvatar.setShow} as={Fragment} onClose={closeModal}>
-      <div className="flex flex-col justify-center items-center">
+      <div className="max-w-[500px] flex flex-col justify-center items-center">
         {/* Header */}
         <div className="flex w-full justify-between items-center p-1">
           <IconButton

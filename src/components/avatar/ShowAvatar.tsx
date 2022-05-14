@@ -1,5 +1,4 @@
 import React, { FC, Fragment } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
 import { Button, IconButton } from '@mui/material';
 import { XIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
@@ -31,7 +30,7 @@ const ShowAvatar: FC<IProps> = (props) => {
 
   return (
     <AvatarContainer as={Fragment} onClose={closeModal} show={ShowAvatar.setShow}>
-      <div className="sm:max-w-[400px] flex flex-col w-full h-full justify-center items-center">
+      <div className="sm:max-w-[380px] flex flex-col w-full h-full justify-center items-center">
         {/* Header */}
         <div className="flex w-full justify-between items-center p-1">
           <h6 className="text-black font-medium pl-5 pt-1">Profile picture</h6>
@@ -72,6 +71,9 @@ const ShowAvatar: FC<IProps> = (props) => {
             onClick={handleSelectClick}
             sx={{
               border: '1px solid rgba(26, 115, 232, 0.5)',
+              '.MuiTouchRipple-child': {
+                backgroundColor: 'rgba(26, 115, 232, 0.25)',
+              },
             }}
             className="button-text-lower py-[6px] text-[#1a73e8] w-full hover:bg-transparent active:bg-transparent"
           >
@@ -83,6 +85,9 @@ const ShowAvatar: FC<IProps> = (props) => {
           <Button
             sx={{
               border: '1px solid rgba(26, 115, 232, 0.5)',
+              '.MuiTouchRipple-child': {
+                backgroundColor: 'rgba(26, 115, 232, 0.25)',
+              },
             }}
             className="button-text-lower py-[6px] text-[#1a73e8] w-full hover:bg-transparent active:bg-transparent"
           >
