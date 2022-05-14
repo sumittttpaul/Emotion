@@ -24,9 +24,9 @@ const ForgetPasswordUI: FC<IProps> = (props) => {
         <motion.div
           className="w-full max-w-[350px] space-y-6 flex flex-col justify-center items-center"
           key=""
-          animate={{ opacity: 1, scale: 1 }}
-          initial={{ opacity: 0, scale: 1.25 }}
-          exit={{ opacity: 0, scale: 1.25 }}
+          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 50 }}
+          exit={{ opacity: 0, y: -50 }}
           transition={{ duration: 0.25 }}
         >
           <Image
