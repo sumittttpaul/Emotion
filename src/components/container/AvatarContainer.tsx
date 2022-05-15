@@ -13,7 +13,7 @@ interface IProps {
  * @function @AvatarContainer
  **/
 
-export const AvatarContainer: FC<IProps> = (props) => {
+const AvatarContainer: FC<IProps> = (props) => {
   return (
     <Transition appear show={props.show} as={props.as}>
       <Dialog as="div" className="relative z-20" onClose={props.onClose}>
@@ -50,3 +50,5 @@ export const AvatarContainer: FC<IProps> = (props) => {
     </Transition>
   );
 };
+
+export default AvatarContainer;

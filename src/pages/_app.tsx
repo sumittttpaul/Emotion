@@ -9,6 +9,8 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 import theme from '../../src/theme';
 import createEmotionCache from '../../src/createEmotionCache';
 import { StateProvider } from '../providers/StateProvider';
+import { Provider } from 'react-redux';
+import store from '../redux/store';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -20,15 +22,20 @@ function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
     <CacheProvider value={emotionCache}>
-      <StateProvider>
-        <Head>
-          <meta name="viewport" content="initial-scale=1, width=device-width" />
-        </Head>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </StateProvider>
+      <Provider store={store}>
+        <StateProvider>
+          <Head>
+            <meta
+              name="viewport"
+              content="initial-scale=1, width=device-width"
+            />
+          </Head>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </StateProvider>
+      </Provider>
     </CacheProvider>
   );
 }

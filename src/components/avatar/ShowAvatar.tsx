@@ -4,7 +4,7 @@ import { XIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import { useShowAvatarState } from '../../providers/state/ShowAvatarState';
 import { useSelectAvatarState } from '../../providers/state/SelectAvatarState';
-import { AvatarContainer } from '../container/AvatarContainer';
+import AvatarContainer from '../container/AvatarContainer';
 
 interface IProps {}
 

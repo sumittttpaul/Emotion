@@ -13,7 +13,7 @@ const Input = styled('input')({
   display: 'none',
 });
 
-export const FromComputer: FC<IProps> = (props) => {
+const FromComputer: FC<IProps> = (props) => {
   return (
     <div className="sm:h-[500px] box-border overflow-auto p-6 space-y-4 h-full w-full items-center justify-center flex flex-col">
       {/* Heading */}
@@ -65,3 +65,5 @@ export const FromComputer: FC<IProps> = (props) => {
     </div>
   );
 };
+
+export default FromComputer;

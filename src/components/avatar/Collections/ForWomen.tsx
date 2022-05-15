@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 import { PhotographIcon } from '@heroicons/react/outline';
 
-interface IProps {}
+interface IProps {
+  Name?: string
+}
 
 /**
  * @author
@@ -19,7 +21,7 @@ export const ForWomen: FC<IProps> = (props) => {
         </h6>
       </div>
       {/* Main */}
-      <div className="w-full"></div>
+      <div className="w-full">{props.Name}</div>
     </div>
   );
 };
