@@ -1,16 +1,13 @@
 import React, { FC } from 'react';
 import { PhotographIcon } from '@heroicons/react/outline';
-
-interface IProps {
-  Name?: string;
-}
+import { IAvatarState } from '../../../redux/reducers/AvatarReducer';
 
 /**
  * @author
  * @function @ForWomen
  **/
 
-export const ForWomen: FC<IProps> = (props) => {
+const ForWomen: FC<IAvatarState> = ({Names}) => {
   return (
     <div className="w-full items-center justify-center">
       {/* Heading */}
@@ -21,7 +18,10 @@ export const ForWomen: FC<IProps> = (props) => {
         </h6>
       </div>
       {/* Main */}
-      <div className="w-full">{props.Name}</div>
+      <div className="w-full">{Names.map((ShowName)=>{
+        return <h6>{ShowName.fullName}</h6>
+      })}
+      </div>
     </div>
   );
 };

@@ -1,21 +1,25 @@
 import { AnyAction } from 'redux';
 
 export interface IAvatarState {
-  Avatar: AvatarReducerState;
+  Names: AvatarReducerState[];
 }
 
 export interface AvatarReducerState {
-  myName: string;
+  fullName: string;
 }
 
-const initialState: AvatarReducerState = {
-  myName: 'Sumit Paul',
+const initialState = {
+  Names: [
+    {
+      fullName: 'sumit paul',
+    },
+  ],
 };
 
 const AvatarReducer = (
-  state: AvatarReducerState = initialState,
+  state: IAvatarState = initialState,
   action: AnyAction
-) => {
+): IAvatarState => {
   switch (action.type) {
     default:
       return state;
