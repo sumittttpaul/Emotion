@@ -15,7 +15,7 @@ const Input = styled('input')({
 
 export const FromComputer: FC<IProps> = (props) => {
   return (
-    <div className="sm:h-[500px] overflow-auto p-6 space-y-4 h-full w-full items-center justify-center flex flex-col">
+    <div className="sm:h-[500px] box-border overflow-auto p-6 space-y-4 h-full w-full items-center justify-center flex flex-col">
       {/* Heading */}
       <div className="space-y-1">
         <h6 className="text-sm font-medium w-full text-center">
@@ -53,6 +53,15 @@ export const FromComputer: FC<IProps> = (props) => {
           </div>
         </Button>
       </label>
+      {/* Bottom */}
+      <div className="flex flex-col">
+        <h6 className="text-[11px] font-normal w-full text-center">
+          After upload you can edit your image like
+        </h6>
+        <h6 className="text-[11px] font-normal w-full text-center">
+          Cropping and Rotating. 
+        </h6>
+      </div>
     </div>
   );
 };
