@@ -29,7 +29,11 @@ const ShowAvatar: FC<IProps> = (props) => {
   };
 
   return (
-    <AvatarContainer as={Fragment} onClose={closeModal} show={ShowAvatar.setShow}>
+    <AvatarContainer
+      as={Fragment}
+      onClose={closeModal}
+      show={ShowAvatar.setShow}
+    >
       <div className="sm:max-w-[380px] flex flex-col w-full h-full justify-center items-center">
         {/* Header */}
         <div className="flex w-full justify-between items-center p-1">
@@ -52,18 +56,27 @@ const ShowAvatar: FC<IProps> = (props) => {
           </h6>
           {/* Info Heading */}
           <div className="flex w-full space-x-2">
-            <Image height={18} width={18} src="/icons/users.svg" alt='user icon'/>
+            <Image
+              height={18}
+              width={18}
+              src="/icons/users.svg"
+              alt="user icon"
+            />
             <h6 className="text-[13px] text-black text-left w-full">
               Visible across Agewear services.
             </h6>
           </div>
           {/* Center */}
-          <Button
-            onClick={handleSelectClick}
-            className="h-[288px] w-[288px] flex rounded-full p-0"
-          >
-            <Image layout="fill" src="/images/user.png" alt="user photo" />
-          </Button>
+          <div className='flex flex-col'>
+            <Image
+              onClick={handleSelectClick}
+              height={288}
+              width={288}
+              className="rounded-full cursor-pointer"
+              src="/images/user.png"
+              alt="user photo"
+            />
+          </div>
         </div>
         {/* Bottom */}
         <div className="flex space-x-3 w-full px-6 pb-6 pt-2">
@@ -78,7 +91,12 @@ const ShowAvatar: FC<IProps> = (props) => {
             className="button-text-lower py-[6px] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
           >
             <div className="flex space-x-2 items-center justify-center">
-              <Image height={18} width={18} src="/icons/edit.svg" alt='edit icon'/>
+              <Image
+                height={18}
+                width={18}
+                src="/icons/edit.svg"
+                alt="edit icon"
+              />
               <h6 className="text-[13px]">Change</h6>
             </div>
           </Button>
@@ -92,7 +110,12 @@ const ShowAvatar: FC<IProps> = (props) => {
             className="button-text-lower py-[6px] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
           >
             <div className="flex space-x-2 items-center justify-center">
-              <Image height={18} width={18} src="/icons/trash.svg" alt='trash icon'/>
+              <Image
+                height={18}
+                width={18}
+                src="/icons/trash.svg"
+                alt="trash icon"
+              />
               <h6 className="text-[13px]">Remove</h6>
             </div>
           </Button>

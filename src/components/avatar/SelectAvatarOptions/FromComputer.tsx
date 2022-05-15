@@ -32,13 +32,14 @@ export const FromComputer: FC<IProps> = (props) => {
       >
         <Input accept="image/*" type="file" />
         <Button
+          disableRipple
           sx={{
-            '.MuiTouchRipple-child': {
-              backgroundColor: 'rgba(0, 0, 0, 0.25)',
-            },
+            '&': {
+              border: '2px dashed rgba(0,0,0,0.2)',
+            }
           }}
           component="span"
-          className="button-text-lower p-6 bg-[rgba(0,0,0,0.03)] text-[rgba(0,0,0,0.5)] w-full max-w-[350px] rounded-md hover:bg-[rgba(0,0,0,0.03)] active:bg-[rgba(0,0,0,0.03)]"
+          className="button-text-lower p-6 bg-transparent text-[rgba(0,0,0,0.5)] w-full max-w-[350px] rounded-md hover:bg-transparent active:bg-transparent"
         >
           <div className="flex flex-col space-y-2 items-center justify-center">
             <Image
