@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { PhotographIcon } from '@heroicons/react/outline';
 
 interface IProps {
-  Name?: string
+  Name?: string;
 }
 
 /**

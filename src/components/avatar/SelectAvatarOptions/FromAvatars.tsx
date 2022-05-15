@@ -14,7 +14,7 @@ interface IProps {}
 const FromAvatars: FC<IProps> = (props) => {
   const name = useSelector<IAvatarState>((state) => state.Avatar.myName);
   return (
-    <div className="sm:h-[500px] box-border overflow-auto p-6 space-y-4 h-full w-full items-center justify-center flex flex-col">
+    <div className="sm:h-[500px] box-border overflow-auto p-6 space-y-4 h-full w-full items-center flex flex-col">
       <ForWomen Name={`${name}`} />
       <ForMen />
     </div>

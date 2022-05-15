@@ -54,7 +54,7 @@ const FromComputer: FC<IProps> = (props) => {
         </Button>
       </label>
       {/* Bottom */}
-      <div className="flex flex-col">
+      <div className="flex flex-col pb-6">
         <h6 className="text-[11px] font-normal w-full text-center">
           After upload you can edit your image like
         </h6>

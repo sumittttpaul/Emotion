@@ -34,7 +34,7 @@ const ShowAvatar: FC<IProps> = (props) => {
       onClose={closeModal}
       show={ShowAvatar.setShow}
     >
-      <div className="sm:max-w-[380px] flex flex-col w-full h-full justify-center items-center">
+      <div className="sm:max-w-[380px] flex flex-col w-full h-full overflow-auto items-center">
         {/* Header */}
         <div className="flex w-full z-10 bg-white justify-between items-center p-1">
           <h6 className="text-black font-medium pl-5 pt-1">Profile picture</h6>
