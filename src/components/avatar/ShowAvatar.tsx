@@ -36,7 +36,7 @@ const ShowAvatar: FC<IProps> = (props) => {
     >
       <div className="sm:max-w-[380px] flex flex-col w-full h-full justify-center items-center">
         {/* Header */}
-        <div className="flex w-full justify-between items-center p-1">
+        <div className="flex w-full z-10 bg-white justify-between items-center p-1">
           <h6 className="text-black font-medium pl-5 pt-1">Profile picture</h6>
           <IconButton
             onClick={() => {
@@ -48,7 +48,7 @@ const ShowAvatar: FC<IProps> = (props) => {
           </IconButton>
         </div>
         {/* Main */}
-        <div className="px-6 h-full pb-6 space-y-5 flex flex-col items-center w-full">
+        <div className="px-6 overflow-auto h-full pb-6 space-y-5 flex flex-col items-center w-full">
           {/* Sub Heading */}
           <h6 className="text-[13px] text-black text-left w-full">
             A picture helps people recognize you and lets you know when you’re
@@ -67,19 +67,20 @@ const ShowAvatar: FC<IProps> = (props) => {
             </h6>
           </div>
           {/* Center */}
-          <div className='flex flex-col'>
-            <Image
+          <div className="flex relative justify-center min-h-[96px] min-w-[96px] show-avatar-profile-photo">
+            <img
               onClick={handleSelectClick}
-              height={288}
-              width={288}
-              className="rounded-full cursor-pointer"
+              // layout="fill"
+              // height={288}
+              // width={288}
+              className="rounded-[50%] cursor-pointer max-w-[288px] max-h-[288px] h-full"
               src="/images/user.png"
               alt="user photo"
             />
           </div>
         </div>
         {/* Bottom */}
-        <div className="flex space-x-3 w-full px-6 pb-6 pt-2">
+        <div className="flex bg-white space-x-3 w-full px-6 pb-6 pt-2">
           <Button
             onClick={handleSelectClick}
             sx={{

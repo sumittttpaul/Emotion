@@ -15,7 +15,7 @@ const Input = styled('input')({
 
 export const FromComputer: FC<IProps> = (props) => {
   return (
-    <div className="sm:h-[500px] p-6 space-y-4 h-full w-full items-center justify-center flex flex-col">
+    <div className="sm:h-[500px] overflow-auto p-6 space-y-4 h-full w-full items-center justify-center flex flex-col">
       {/* Heading */}
       <div className="space-y-1">
         <h6 className="text-sm font-medium w-full text-center">
@@ -30,7 +30,7 @@ export const FromComputer: FC<IProps> = (props) => {
         htmlFor="icon-button-file"
         className="w-full flex justify-center items-center"
       >
-        <Input accept="image/*" type="file" />
+        <Input accept="image/*" id="icon-button-file" type="file" />
         <Button
           disableRipple
           sx={{
