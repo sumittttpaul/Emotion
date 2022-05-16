@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import ForWomen from '../Collections/ForWomen';
-import ForMen from '../Collections/ForMen';
-import { useTypedSelector } from '../../../redux/useTypeSelector';
+import ForWomen from '../AvatarCollections/ForWomen';
+import ForMen from '../AvatarCollections/ForMen';
+import { useTypedSelector } from '../../../../redux/useTypeSelector';
 
 interface IProps {
   name?: string;

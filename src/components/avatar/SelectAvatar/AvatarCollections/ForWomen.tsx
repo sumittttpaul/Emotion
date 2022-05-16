@@ -1,22 +1,22 @@
-import { PhotographIcon } from '@heroicons/react/outline';
 import React, { FC } from 'react';
-import { IMensAvatarState } from '../../../redux/reducers/MensAvatarReducer';
+import { PhotographIcon } from '@heroicons/react/outline';
+import { IWomensAvatarState } from '../../../../redux/reducers/WomensAvatarReducer';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 /**
  * @author
- * @function @ForMen
+ * @function @ForWomen
  **/
 
-const ForMen: FC<IMensAvatarState> = ({ MensAvatar }) => {
+const ForWomen: FC<IWomensAvatarState> = ({ WomensAvatar }) => {
   return (
-    <div className="w-full items-center justify-center space-y-3">
+    <div className="w-full items-center justify-center space-y-4">
       {/* Heading */}
       <div className="flex space-x-1 items-center">
         <PhotographIcon className="h-6 opacity-60" />
         <h6 className="text-sm font-medium text-center">
-          Collections for Boys & Men
+          Collections for Girls & Women
         </h6>
       </div>
       {/* Main */}
@@ -26,13 +26,13 @@ const ForMen: FC<IMensAvatarState> = ({ MensAvatar }) => {
           grid-cols-4 
           xs-350:grid-cols-5 
           sm-500:grid-cols-6 
-          grid-rows-4 
-          xs-350:grid-rows-3
-          sm-500:grid-rows-3 
+          grid-rows-6 
+          xs-350:grid-rows-5
+          sm-500:grid-rows-4 
           gap-x-3 
           gap-y-2"
       >
-        {MensAvatar.map((avatars) => {
+        {WomensAvatar.map((avatars) => {
           return (
             <motion.button
               className="rounded-[50%] p-0"
@@ -53,4 +53,4 @@ const ForMen: FC<IMensAvatarState> = ({ MensAvatar }) => {
   );
 };
 
-export default ForMen;
+export default ForWomen;
