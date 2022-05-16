@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import AvatarReducer from "./reducers/AvatarReducer";
+import MensAvatarReducer from "./reducers/MensAvatarReducer";
+import WomensAvatarReducer from "./reducers/WomensAvatarReducer";
 
 const rootReducer = combineReducers({
-    Avatar: AvatarReducer
+    WomensAvatar: WomensAvatarReducer,
+    MensAvatar: MensAvatarReducer
 })
 
 export default rootReducer;

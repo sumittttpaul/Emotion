@@ -13,11 +13,12 @@ interface IProps {
  **/
 
 const FromAvatars: FC<IProps> = (props) => {
-  const { Names } = useTypedSelector((state) => state.Avatar);
+  const { WomensAvatar } = useTypedSelector((state) => state.WomensAvatar);
+  const { MensAvatar } = useTypedSelector((state) => state.MensAvatar);
   return (
-    <div className="sm:h-[500px] box-border overflow-auto p-6 space-y-4 h-full w-full items-center flex flex-col">
-      <ForWomen Names={Names} />
-      <ForMen />
+    <div className="sm:h-[500px] box-border overflow-auto p-6 space-y-8 h-full w-full items-center flex flex-col">
+      <ForWomen WomensAvatar={WomensAvatar} />
+      <ForMen MensAvatar={MensAvatar}/>
     </div>
   );
 };
