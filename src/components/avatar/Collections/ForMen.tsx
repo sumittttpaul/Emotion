@@ -1,6 +1,7 @@
 import { PhotographIcon } from '@heroicons/react/outline';
 import React, { FC } from 'react';
 import { IMensAvatarState } from '../../../redux/reducers/MensAvatarReducer';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 /**
@@ -8,7 +9,7 @@ import Image from 'next/image';
  * @function @ForMen
  **/
 
-const ForMen: FC<IMensAvatarState> = ({MensAvatar}) => {
+const ForMen: FC<IMensAvatarState> = ({ MensAvatar }) => {
   return (
     <div className="w-full items-center justify-center space-y-3">
       {/* Heading */}
@@ -19,17 +20,32 @@ const ForMen: FC<IMensAvatarState> = ({MensAvatar}) => {
         </h6>
       </div>
       {/* Main */}
-      <div className="grid grid-cols-5 grid-rows-3 gap-2 ">
+      <div
+        className="
+          grid 
+          grid-cols-4 
+          xs-350:grid-cols-5 
+          sm-500:grid-cols-6 
+          grid-rows-4 
+          xs-350:grid-rows-3
+          sm-500:grid-rows-3 
+          gap-x-3 
+          gap-y-2"
+      >
         {MensAvatar.map((avatars) => {
           return (
-            <div>
+            <motion.button
+              className="rounded-[50%] p-0"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
               <Image
                 height={440}
                 width={440}
                 className="rounded-[50%]"
                 src={avatars.iconURL}
               />
-            </div>
+            </motion.button>
           );
         })}
       </div>

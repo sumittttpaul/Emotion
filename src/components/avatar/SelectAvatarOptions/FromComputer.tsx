@@ -15,7 +15,7 @@ const Input = styled('input')({
 
 const FromComputer: FC<IProps> = (props) => {
   return (
-    <div className="sm:h-[500px] box-border overflow-auto p-6 space-y-4 h-full w-full items-center justify-center flex flex-col">
+    <div className="sm:h-[600px] box-border overflow-auto p-6 space-y-4 h-full w-full items-center justify-center flex flex-col">
       {/* Heading */}
       <div className="space-y-1">
         <h6 className="text-sm font-medium w-full text-center">

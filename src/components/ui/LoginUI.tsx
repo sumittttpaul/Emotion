@@ -1,9 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import Image from 'next/image';
 import AuthContainer from '../container/AuthContainer';
 import { Tab } from '@headlessui/react';
 import { DeviceMobileIcon, MailIcon } from '@heroicons/react/solid';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion';
 import EmailAuthUI from './AuthComponentUI/EmailAuthUI';
 import PhoneAuthUI from './AuthComponentUI/PhoneAuthUI';
 import { Link, useTheme } from '@mui/material';
@@ -63,54 +63,73 @@ const LoginUI: FC<IProps> = (props) => {
             Sign in with an Agewear Account
           </h6>
           <div className="w-full">
-            <Tab.Group>
-              <Tab.List className="flex space-x-2 rounded-md bg-[#121212] p-[5px]">
-                <Tab
-                  onClick={handlePhoneClick}
-                  className={({ selected }) =>
-                    classNames(
-                      'w-full rounded-md py-4 text-[13px] text-white focus:outline-none',
-                      selected ? 'bg-[#202020]' : 'text-white/[0.50]'
-                    )
-                  }
-                >
-                  <div className="flex w-full justify-center space-x-1">
-                    <DeviceMobileIcon height={20} width={20} />
-                    <h6>Phone</h6>
-                  </div>
-                </Tab>
-                <Tab
-                  onClick={handleEmailClick}
-                  className={({ selected }) =>
-                    classNames(
-                      'w-full rounded-md py-4 text-[13px] text-white focus:outline-none',
-                      selected ? 'bg-[#202020]' : 'text-white/[0.50]'
-                    )
-                  }
-                >
-                  <div className="flex w-full justify-center space-x-2">
-                    <MailIcon height={20} width={20} />
-                    <h6>Email</h6>
-                  </div>
-                </Tab>
-              </Tab.List>
-            </Tab.Group>
+          {/* @ts-ignore: Unreachable code error */}
+            <AnimateSharedLayout>
+              <Tab.Group>
+                <Tab.List className="flex space-x-2 rounded-md bg-[#121212] p-[5px]">
+                  <Tab
+                    onClick={handlePhoneClick}
+                    className={({ selected }) =>
+                      classNames(
+                        'w-full relative rounded-md text-[13px] outline-none custom-tab-transition-color',
+                        selected ? 'text-white' : 'text-white/[0.50]'
+                      )
+                    }
+                  >
+                    {Tabvalue ? (
+                      ''
+                    ) : (
+                      <motion.div
+                        layoutId="SegmentedControlActive"
+                        className="w-full h-full absolute rounded-md outline-none z-[1] bg-[#202020]"
+                      />
+                    )}
+                    <div className="flex w-full py-4 relative justify-center space-x-1 z-[2]">
+                      <DeviceMobileIcon height={20} width={20} />
+                      <h6>Phone</h6>
+                    </div>
+                  </Tab>
+                  <Tab
+                    onClick={handleEmailClick}
+                    className={({ selected }) =>
+                      classNames(
+                        'w-full relative rounded-md text-[13px] outline-none custom-tab-transition-color',
+                        selected ? 'text-white' : 'text-white/[0.50]'
+                      )
+                    }
+                  >
+                    {Tabvalue ? (
+                      <motion.div
+                        layoutId="SegmentedControlActive"
+                        className="w-full h-full absolute rounded-md outline-none z-[1] bg-[#202020]"
+                      />
+                    ) : (
+                      ''
+                    )}
+                    <div className="flex w-full py-4 relative justify-center space-x-2 z-[2]">
+                      <MailIcon height={20} width={20} />
+                      <h6>Email</h6>
+                    </div>
+                  </Tab>
+                </Tab.List>
+              </Tab.Group>
+            </AnimateSharedLayout>
           </div>
           <SwipeableViews
             axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
             index={Tabvalue}
             onChangeIndex={handleChangeIndex}
-            className='w-full'
-            id='SwipeableViews'
+            className="w-full"
+            id="SwipeableViews"
             containerStyle={{
-              transition: 'transform 0.35s cubic-bezier(0.15, 0.3, 0.25, 1) 0s'
-          }}
+              transition: 'transform 0.35s cubic-bezier(0.15, 0.3, 0.25, 1) 0s',
+            }}
           >
             <TabPanel value={Tabvalue} index={0} dir={theme.direction}>
-              <PhoneAuthUI/>
+              <PhoneAuthUI />
             </TabPanel>
             <TabPanel value={Tabvalue} index={1} dir={theme.direction}>
-              <EmailAuthUI/>
+              <EmailAuthUI />
             </TabPanel>
           </SwipeableViews>
           <div className="flex">

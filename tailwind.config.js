@@ -8,7 +8,12 @@ module.exports = {
   ],
   media: false,
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'xs-350' :'350px',
+        'sm-500': '500px',
+      }
+    },
   },
   plugins: ['postcss-import', 'tailwindcss', 'autoprefixer'],
 };
