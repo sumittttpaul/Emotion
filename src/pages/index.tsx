@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { Link } from '@mui/material';
+import { CropAvatar } from '../components/avatar/CropAvatar';
 
 const Home: NextPage = () => {
   const [OTP, setOTP] = useState<boolean>(false);
@@ -19,6 +20,8 @@ const Home: NextPage = () => {
           Login Now
         </Link>
       </div>
+
+      <CropAvatar/>
     </>
   );
 };

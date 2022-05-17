@@ -46,7 +46,7 @@ const SelectAvatar: FC<IProps> = (props) => {
       as={Fragment}
       onClose={closeModal}
     >
-      <div className="sm:max-w-[500px] min-w-[288px] flex flex-col overflow-auto items-center h-full w-full">
+      <div className="sm:max-w-[500px] flex flex-col overflow-auto items-center h-full w-full">
         {/* Header */}
         <div className="flex w-full justify-between items-center p-1">
           <IconButton

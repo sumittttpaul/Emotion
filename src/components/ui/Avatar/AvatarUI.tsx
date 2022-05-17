@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import ShowAvatar from '../../avatar/ShowAvatar';
 import { useShowAvatarState } from '../../../providers/state/ShowAvatarState';
 import SelectAvatar from '../../avatar/SelectAvatar';
+import { CropAvatar } from '../../avatar/CropAvatar';
 
 interface IProps {}
 
@@ -43,6 +44,7 @@ const AvatarUI: FC<IProps> = (props) => {
 
       <ShowAvatar />
       <SelectAvatar />
+      <CropAvatar />
     </>
   );
 };
