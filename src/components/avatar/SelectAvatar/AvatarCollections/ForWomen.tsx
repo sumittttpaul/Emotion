@@ -35,6 +35,7 @@ const ForWomen: FC<IWomensAvatarState> = ({ WomensAvatar }) => {
         {WomensAvatar.map((avatars) => {
           return (
             <motion.button
+              key={avatars.iconURL}
               className="rounded-[50%] p-0"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -44,6 +45,7 @@ const ForWomen: FC<IWomensAvatarState> = ({ WomensAvatar }) => {
                 width={440}
                 className="rounded-[50%]"
                 src={avatars.iconURL}
+                alt='womens-avatar-collections-image'
               />
             </motion.button>
           );

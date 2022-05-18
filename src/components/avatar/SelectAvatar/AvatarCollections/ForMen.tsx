@@ -35,6 +35,7 @@ const ForMen: FC<IMensAvatarState> = ({ MensAvatar }) => {
         {MensAvatar.map((avatars) => {
           return (
             <motion.button
+              key={avatars.iconURL}
               className="rounded-[50%] p-0"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -44,6 +45,7 @@ const ForMen: FC<IMensAvatarState> = ({ MensAvatar }) => {
                 width={440}
                 className="rounded-[50%]"
                 src={avatars.iconURL}
+                alt="mens-avatar-collections-image"
               />
             </motion.button>
           );
