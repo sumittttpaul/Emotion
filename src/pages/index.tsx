@@ -1,15 +1,7 @@
 import type { NextPage } from 'next';
-import { useEffect, useState } from 'react';
 import { Link } from '@mui/material';
-import { CropAvatar } from '../components/avatar/CropAvatar';
 
 const Home: NextPage = () => {
-  const [OTP, setOTP] = useState<boolean>(false);
-
-  const StatusOTP = (otpStatus: boolean): void => {
-    setOTP(otpStatus);
-  };
-
   return (
     <>
       <div className="justify-center items-center flex h-screen w-full">
@@ -20,8 +12,6 @@ const Home: NextPage = () => {
           Login Now
         </Link>
       </div>
-
-      <CropAvatar/>
     </>
   );
 };
