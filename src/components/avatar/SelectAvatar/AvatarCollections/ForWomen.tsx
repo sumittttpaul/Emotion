@@ -3,6 +3,8 @@ import { PhotographIcon } from '@heroicons/react/outline';
 import { IWomensAvatarState } from '../../../../redux/reducers/WomensAvatarReducer';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useCropAvatarState } from '../../../../providers/state/CropAvatarState';
+import { useSelectAvatarState } from '../../../../providers/state/SelectAvatarState';
 
 /**
  * @author
@@ -10,6 +12,8 @@ import Image from 'next/image';
  **/
 
 const ForWomen: FC<IWomensAvatarState> = ({ WomensAvatar }) => {
+  const { setSelectAvatar } = useSelectAvatarState();
+  const { setCropAvatar } = useCropAvatarState();
   return (
     <div className="w-full items-center justify-center space-y-4">
       {/* Heading */}
@@ -39,13 +43,19 @@ const ForWomen: FC<IWomensAvatarState> = ({ WomensAvatar }) => {
               className="rounded-[50%] p-0"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
+              onClick={() => {
+                setTimeout(() => {
+                  setSelectAvatar({ setShow: false });
+                  setCropAvatar({ setShow: true });
+                }, 250);
+              }}
             >
               <Image
                 height={440}
                 width={440}
                 className="rounded-[50%]"
                 src={avatars.iconURL}
-                alt='womens-avatar-collections-image'
+                alt="womens-avatar-collections-image"
               />
             </motion.button>
           );

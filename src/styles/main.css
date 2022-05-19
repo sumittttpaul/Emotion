@@ -50,3 +50,7 @@
 .CropAvatar-Stencil-line {
   border-color: rgba(255, 255, 255, 1) !important;
 }
+
+.avatar-container-h {
+  height: calc(100vh - 100px);
+}

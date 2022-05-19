@@ -20,7 +20,7 @@ export const StateProvider: FC<IProps> = (props) => {
       <OtpState value={{ setShow: false }}>
         <ShowAvatarState value={{ setShow: false }}>
           <SelectAvatarState value={{ setShow: false }}>
-            <CropAvatarState value={{ setShow: true }}>
+            <CropAvatarState value={{ setShow: false }}>
               {props.children}
             </CropAvatarState>
           </SelectAvatarState>

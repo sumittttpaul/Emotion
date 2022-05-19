@@ -4,6 +4,7 @@ import { DotsVerticalIcon, ArrowLeftIcon } from '@heroicons/react/solid';
 import { SparklesIcon, DesktopComputerIcon } from '@heroicons/react/outline';
 import { useSelectAvatarState } from '../../providers/state/SelectAvatarState';
 import { useShowAvatarState } from '../../providers/state/ShowAvatarState';
+import { useCropAvatarState } from '../../providers/state/CropAvatarState';
 import FromAvatars from './SelectAvatar/Options/FromAvatars';
 import FromComputer from './SelectAvatar/Options/FromComputer';
 import AvatarContainer from '../container/AvatarContainer';
@@ -21,6 +22,7 @@ interface IProps {}
 
 const SelectAvatar: FC<IProps> = (props) => {
   const { SelectAvatar, setSelectAvatar } = useSelectAvatarState();
+  const { setCropAvatar } = useCropAvatarState();
   const { setShowAvatar } = useShowAvatarState();
   const [value, setValue] = useState(0);
   const theme = useTheme();

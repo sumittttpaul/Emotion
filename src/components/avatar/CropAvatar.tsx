@@ -1,9 +1,4 @@
-import {
-  ArrowLeftIcon,
-  DotsVerticalIcon,
-  CheckIcon,
-  RefreshIcon,
-} from '@heroicons/react/solid';
+import { ArrowLeftIcon, DotsVerticalIcon } from '@heroicons/react/solid';
 import { Button, IconButton, Slider } from '@mui/material';
 import React, { Fragment, useRef, useState } from 'react';
 import {
@@ -13,40 +8,45 @@ import {
   isNumber,
   createState,
   CropperProps,
+  isEqualStates,
+  isInitializedState,
 } from 'react-advanced-cropper';
 import 'react-advanced-cropper/dist/style.css';
 import { useCropAvatarState } from '../../providers/state/CropAvatarState';
 import AvatarContainer from '../container/AvatarContainer';
 import { SmallIconButtonDark } from '../button/SmallIconButtonDark';
-
-export interface DefaultCropperProps extends CropperProps {
-  wrapperClassName?: string;
-}
+import {
+  getAbsoluteZoom,
+  getVisibleAreaSize,
+} from './cropper/CropperAlgorithms';
+import { useSelectAvatarState } from '../../providers/state/SelectAvatarState';
 
 /**
  * @author
  * @function @CropAvatar
  **/
 
-export const CropAvatar = ({
-  wrapperClassName,
-  className,
-  ...props
-}: DefaultCropperProps) => {
+export const CropAvatar = ({ ...props }: CropperProps) => {
   const { CropAvatar, setCropAvatar } = useCropAvatarState();
+  const { setSelectAvatar } = useSelectAvatarState();
 
+  const [changed, setChanged] = useState<boolean>(false);
   const [Active, setActive] = useState<boolean>(false);
   const [RotateValue, setRotateValue] = useState<number>(0);
   const [ZoomValue, setZoomValue] = useState<number>(0);
 
-  const cropperRef = useRef<CropperRef>();
-
-  const onChange = (cropper: CropperRef) => {
-    console.log(cropper.getCoordinates(), cropper.getCanvas());
-  };
-
   const closeModal = () => {
     setCropAvatar({ setShow: false });
+    setSelectAvatar({ setShow: true });
+  };
+
+  const cropperRef = useRef<CropperRef>(null);
+
+  const onChange = (cropper: CropperRef) => {
+    const state = cropper.getState();
+    setChanged(state ? !isEqualStates(state, getDefaultState(cropper)) : false);
+    ChangeZoomValue();
+    // console.log(cropper.getCoordinates(), cropper.getCanvas());
   };
 
   /* @ts-ignore: Unreachable code error */
@@ -54,6 +54,14 @@ export const CropAvatar = ({
     return {
       width: (visibleArea || imageSize).width,
       height: (visibleArea || imageSize).height,
+    };
+  };
+
+  /* @ts-ignore: Unreachable code error */
+  const stencilSize = ({ imageSize }) => {
+    return {
+      width: imageSize.height,
+      height: imageSize.height,
     };
   };
 
@@ -93,8 +101,13 @@ export const CropAvatar = ({
   };
 
   const flip = (horizontal: boolean, vertical: boolean) => {
-    if (cropperRef.current) {
-      cropperRef.current.flipImage(horizontal, vertical);
+    const cropper = cropperRef.current;
+    if (cropper) {
+      if (cropper.getTransforms().rotate % 180 !== 0) {
+        cropper.flipImage(!horizontal, !vertical);
+      } else {
+        cropper.flipImage(horizontal, vertical);
+      }
     }
   };
 
@@ -104,9 +117,23 @@ export const CropAvatar = ({
     }
   };
 
-  const zoom = (value: number) => {
-    if (cropperRef.current) {
-      cropperRef.current.zoomImage(value);
+  const onZoom = (value: number) => {
+    const cropper = cropperRef.current;
+    if (cropper) {
+      const state = cropper.getState();
+      const settings = cropper.getSettings();
+      const absoluteZoom = isInitializedState(state)
+        ? getAbsoluteZoom(state, cropper.getSettings())
+        : 0;
+      if (cropper && isInitializedState(state)) {
+        cropper.zoomImage(
+          getVisibleAreaSize(state, settings, absoluteZoom) /
+            getVisibleAreaSize(state, settings, value),
+          {
+            transitions: !!true,
+          }
+        );
+      }
     }
   };
 
@@ -128,10 +155,12 @@ export const CropAvatar = ({
     }
   };
 
-  const onReset = () => {
+  const reset = () => {
     const cropper = cropperRef.current;
     if (cropper) {
       cropper.setState(getDefaultState(cropper));
+      setZoomValue(0);
+      setRotateValue(0);
     }
   };
 
@@ -141,6 +170,34 @@ export const CropAvatar = ({
 
   const ZoomButtonHandle = () => {
     setActive(true);
+  };
+
+  const toFixed = (x: string) => {
+    return Number.parseFloat(x).toFixed(0);
+  };
+
+  // useEffect(() => {
+  //   const cropper = cropperRef.current;
+  //   if (cropper) {
+  //     const state = cropper.getState();
+  //     const absoluteZoom = isInitializedState(state)
+  //       ? getAbsoluteZoom(state, cropper.getSettings())
+  //       : 0;
+  //     // console.log('Zoom value : ' + toFixed(`${absoluteZoom * 100}`));
+  //     setZoomValue(absoluteZoom);
+  //   }
+  // });
+
+  const ChangeZoomValue = () => {
+    const cropper = cropperRef.current;
+    if (cropper) {
+      const state = cropper.getState();
+      const absoluteZoom = isInitializedState(state)
+        ? getAbsoluteZoom(state, cropper.getSettings())
+        : 0;
+      // console.log('Zoom value : ' + toFixed(`${absoluteZoom * 100}`));
+      setZoomValue(absoluteZoom);
+    }
   };
 
   const InActiveClass =
@@ -155,12 +212,14 @@ export const CropAvatar = ({
       as={Fragment}
       onClose={closeModal}
     >
-      <div className="sm:max-w-[600px] bg-black relative flex flex-col overflow-none items-center h-full w-full">
+      <div className="sm:max-w-[850px] sm:max-h-[850px] bg-black relative box-border flex flex-col overflow-none items-center h-full w-full">
         {/* Top */}
         <div className="z-[1] -mb-[160px] xs-435:-mb-[126px] w-full flex flex-col">
           <div className="flex w-full justify-between items-center p-1">
             <IconButton
-              onClick={() => {}}
+              onClick={() => {
+                closeModal();
+              }}
               className="hover:bg-[rgba(255,255,255,0.15)] p-3"
             >
               <ArrowLeftIcon className="h-5 text-white" />
@@ -206,15 +265,20 @@ export const CropAvatar = ({
         </div>
         {/* Cropper */}
         <Cropper
-          src="/images/avatar/men/men-1.svg"
+          src="/images/avatar/women/women-10.svg"
+          /* @ts-ignore: Unreachable code error */
+          imageRestriction="stencil"
           onChange={onChange}
           autoZoom={true}
           stencilComponent={CircleStencil}
           defaultSize={defaultSize}
+          stencilSize={stencilSize}
           ref={cropperRef}
+          moveImage={true}
           backgroundClassName="bg-[#202020]"
           stencilProps={{
             aspectRatio: 1 / 1,
+            movable: false,
             previewClassName: 'CropAvatar-Stencil-preview',
             handlerClassNames: {
               default: 'CropAvatar-Stencil-handler',
@@ -234,16 +298,17 @@ export const CropAvatar = ({
             },
           }}
           className={
-            'cropper circle-stencil w-full h-full sm:max-w-[600px] sm:max-h-[600px] px-5 sm:px-0 sm:mx-[65px] pb-[230px] pt-[160px] xs-435:pt-[126px] m-0'
+            'cropper circle-stencil flex relative w-full h-full px-7 sm:mx-[65px] pb-[242px] pt-[160px] xs-435:pt-[126px]'
           }
-          {...props}
         />
         {/* Bottom */}
-        <div className="z-[1] -mt-[230px] flex flex-col w-full">
+        <div className="z-[1] -mt-[242px] flex flex-col w-full">
           {/* Sliders */}
           {Active ? (
             <div className="w-full px-10 mx-auto max-w-[520px]">
-              <h6 className="text-white text-xs pb-2 pt-8">{ZoomValue} %</h6>
+              <h6 className="text-white text-xs pb-2 pt-8">
+                {toFixed(`${ZoomValue * 100}`)} %
+              </h6>
               <div className="flex items-center w-full">
                 <h6 className="text-white text-[11px] pr-5 font-light opacity-70">
                   -
@@ -253,10 +318,11 @@ export const CropAvatar = ({
                   track="normal"
                   value={ZoomValue}
                   min={0}
-                  step={1}
-                  max={100}
+                  step={0.01}
+                  max={1}
                   onChange={(_, Value) => {
                     setZoomValue(Value as number);
+                    onZoom(Value as number);
                   }}
                   sx={{
                     height: 2,
@@ -374,8 +440,11 @@ export const CropAvatar = ({
           {/* Submit Button */}
           <div className="flex w-full justify-between space-x-5 px-6 pb-6">
             <Button
-              onClick={() => onReset}
-              className="font-normal max-w-[200px] border border-solid bg-transparent border-[rgba(255,255,255,0.25)] hover:bg-transparent h-[40px] rounded-md button-text-lower text-white text-xs transition-colors w-full"
+              disabled={!changed}
+              onClick={() => {
+                reset();
+              }}
+              className="disabled:text-[rgba(255,255,255,0.5)] font-normal max-w-[200px] border border-solid bg-transparent border-[rgba(255,255,255,0.25)] hover:bg-transparent h-[40px] rounded-md button-text-lower text-white text-xs transition-colors w-full"
             >
               Reset to default
             </Button>
