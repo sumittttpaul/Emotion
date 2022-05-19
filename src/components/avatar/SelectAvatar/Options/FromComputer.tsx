@@ -1,8 +1,11 @@
 import { Button, styled } from '@mui/material';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import Image from 'next/image';
 
-interface IProps {}
+interface IProps {
+  show: () => void;
+  getURL: (value: string) => void;
+}
 
 /**
  * @author
@@ -14,8 +17,16 @@ const Input = styled('input')({
 });
 
 const FromComputer: FC<IProps> = (props) => {
+  const handleUpload = (e: any) => {
+    const file = e.target.files[0];
+    if (file) {
+      props.getURL(URL.createObjectURL(file));
+      props.show();
+    }
+  };
+
   return (
-    <div className="sm:h-[600px] box-border overflow-auto p-6 space-y-4 h-full w-full items-center justify-center flex flex-col">
+    <div className="box-border overflow-auto p-6 space-y-4 h-full w-full items-center justify-center flex flex-col">
       {/* Heading */}
       <div className="space-y-1">
         <h6 className="text-sm font-medium w-full text-center">
@@ -27,16 +38,21 @@ const FromComputer: FC<IProps> = (props) => {
       </div>
       {/* Main */}
       <label
-        htmlFor="icon-button-file"
+        htmlFor="UploadImageInput"
         className="w-full flex justify-center items-center"
       >
-        <Input accept="image/*" id="icon-button-file" type="file" />
+        <Input
+          onChange={handleUpload}
+          accept="image/*"
+          id="UploadImageInput"
+          type="file"
+        />
         <Button
           disableRipple
           sx={{
             '&': {
               border: '2px dashed rgba(0,0,0,0.2)',
-            }
+            },
           }}
           component="span"
           className="button-text-lower p-6 bg-transparent text-[rgba(0,0,0,0.5)] w-full max-w-[350px] rounded-md hover:bg-transparent active:bg-transparent"
@@ -59,7 +75,7 @@ const FromComputer: FC<IProps> = (props) => {
           After upload you can edit your image like
         </h6>
         <h6 className="text-[11px] font-normal w-full text-center">
-          Cropping and Rotating. 
+          Cropping and Rotating.
         </h6>
       </div>
     </div>

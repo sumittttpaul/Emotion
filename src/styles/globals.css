@@ -15,7 +15,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
-  -ms-tap-highlight-color: transparent; 
+  -ms-tap-highlight-color: transparent;
 }
 
 input:-webkit-autofill,
@@ -35,7 +35,12 @@ input::-ms-clear {
   display: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -45,4 +50,6 @@ h1, h2, h3, h4, h5, h6 {
   supported by Chrome, Edge, Opera and Firefox */
 }
 
-
+img::selection {
+  background: transparent !important;
+}

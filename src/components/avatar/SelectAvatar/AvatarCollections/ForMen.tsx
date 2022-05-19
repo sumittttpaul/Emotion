@@ -1,15 +1,21 @@
 import { PhotographIcon } from '@heroicons/react/outline';
 import React, { FC } from 'react';
-import { IMensAvatarState } from '../../../../redux/reducers/MensAvatarReducer';
+import { AvatarReducerState } from '../../../../redux/reducers/MensAvatarReducer';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+
+interface IProps {
+  MensAvatar: AvatarReducerState[];
+  show: () => void;
+  getURL: (value:string) => void;
+}
 
 /**
  * @author
  * @function @ForMen
  **/
 
-const ForMen: FC<IMensAvatarState> = ({ MensAvatar }) => {
+const ForMen: FC<IProps> = (props) => {
   return (
     <div className="w-full items-center justify-center space-y-3">
       {/* Heading */}
@@ -25,20 +31,24 @@ const ForMen: FC<IMensAvatarState> = ({ MensAvatar }) => {
           grid 
           grid-cols-4 
           xs-350:grid-cols-5 
-          sm-500:grid-cols-6 
+          sm-500:grid-cols-8 
           grid-rows-4 
           xs-350:grid-rows-3
-          sm-500:grid-rows-3 
+          sm-500:grid-rows-2 
           gap-x-3 
           gap-y-2"
       >
-        {MensAvatar.map((avatars) => {
+        {props.MensAvatar.map((avatars) => {
           return (
             <motion.button
               key={avatars.iconURL}
               className="rounded-[50%] p-0"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
+              onClick={()=>{
+                props.getURL(avatars.iconURL);
+                props.show()
+              }}
             >
               <Image
                 height={440}

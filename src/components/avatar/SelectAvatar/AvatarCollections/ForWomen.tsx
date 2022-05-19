@@ -1,19 +1,27 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { PhotographIcon } from '@heroicons/react/outline';
-import { IWomensAvatarState } from '../../../../redux/reducers/WomensAvatarReducer';
+import { AvatarReducerState } from '../../../../redux/reducers/WomensAvatarReducer';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useCropAvatarState } from '../../../../providers/state/CropAvatarState';
-import { useSelectAvatarState } from '../../../../providers/state/SelectAvatarState';
+
+interface IProps {
+  WomensAvatar: AvatarReducerState[];
+  show: () => void;
+  getURL: (value:string) => void;
+}
 
 /**
  * @author
  * @function @ForWomen
  **/
 
-const ForWomen: FC<IWomensAvatarState> = ({ WomensAvatar }) => {
-  const { setSelectAvatar } = useSelectAvatarState();
-  const { setCropAvatar } = useCropAvatarState();
+const ForWomen: FC<IProps> = (props) => {
+  const [URL, setURL] = useState<string>('');
+
+  const handleClick = () => {
+
+  }
+
   return (
     <div className="w-full items-center justify-center space-y-4">
       {/* Heading */}
@@ -29,14 +37,14 @@ const ForWomen: FC<IWomensAvatarState> = ({ WomensAvatar }) => {
           grid 
           grid-cols-4 
           xs-350:grid-cols-5 
-          sm-500:grid-cols-6 
+          sm-500:grid-cols-8 
           grid-rows-6 
           xs-350:grid-rows-5
-          sm-500:grid-rows-4 
+          sm-500:grid-rows-3 
           gap-x-3 
           gap-y-2"
       >
-        {WomensAvatar.map((avatars) => {
+        {props.WomensAvatar.map((avatars) => {
           return (
             <motion.button
               key={avatars.iconURL}
@@ -44,10 +52,8 @@ const ForWomen: FC<IWomensAvatarState> = ({ WomensAvatar }) => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => {
-                setTimeout(() => {
-                  setSelectAvatar({ setShow: false });
-                  setCropAvatar({ setShow: true });
-                }, 250);
+                props.getURL(avatars.iconURL);
+                props.show()
               }}
             >
               <Image

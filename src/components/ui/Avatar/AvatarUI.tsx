@@ -1,9 +1,7 @@
 import { Button } from '@mui/material';
 import React, { FC } from 'react';
-import ShowAvatar from '../../avatar/ShowAvatar';
-import { useShowAvatarState } from '../../../providers/state/ShowAvatarState';
-import SelectAvatar from '../../avatar/SelectAvatar';
-import { CropAvatar } from '../../avatar/CropAvatar';
+import { AvatarDialogUI } from './AvatarDialogUI';
+import { useAvatarState } from '../../../providers/state/AvatarState';
 
 interface IProps {}
 
@@ -13,11 +11,11 @@ interface IProps {}
  **/
 
 const AvatarUI: FC<IProps> = (props) => {
-  const { setShowAvatar } = useShowAvatarState();
+  const { setAvatarDialog } = useAvatarState();
 
   const handleClick = () => {
     setTimeout(() => {
-      setShowAvatar({ setShow: true });
+      setAvatarDialog({ show: true });
     }, 250);
   };
 
@@ -41,10 +39,7 @@ const AvatarUI: FC<IProps> = (props) => {
       >
         Select your profile photo
       </Button>
-
-      <ShowAvatar />
-      <SelectAvatar />
-      <CropAvatar />
+      <AvatarDialogUI />
     </>
   );
 };
