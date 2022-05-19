@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, ExoticComponent } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 
 interface IProps {
   children: ReactNode;
@@ -16,8 +16,8 @@ interface IProps {
  **/
 
 const AvatarContainer: FC<IProps> = (props) => {
-
-  const classes = 'absolute sm:relative box-border h-full w-full transform overflow-hidden sm:rounded-lg bg-black text-center align-middle shadow-xl transition-all ease-in';
+  const classes =
+    'absolute sm:relative box-border h-full w-full transform overflow-hidden sm:rounded-lg bg-black text-center align-middle shadow-xl transition-all ease-in';
 
   return (
     <Transition appear show={props.show} as={props.as}>
@@ -45,9 +45,11 @@ const AvatarContainer: FC<IProps> = (props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-75"
             >
-              <motion.div className={`${classes} ${props.className}`}>
-                {props.children}
-              </motion.div>
+              <Dialog.Panel>
+                <motion.div className={`${classes} ${props.className}`}>
+                  {props.children}
+                </motion.div>
+              </Dialog.Panel>
             </Transition.Child>
           </div>
         </div>

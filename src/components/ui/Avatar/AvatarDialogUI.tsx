@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from 'react';
+import React, { FC, Fragment, useEffect, useState } from 'react';
 import { useAvatarState } from '../../../providers/state/AvatarState';
 import { CropAvatar } from '../../avatar/CropAvatar';
 import SelectAvatar from '../../avatar/SelectAvatar';
@@ -19,16 +19,17 @@ export const AvatarDialogUI: FC<IProps> = (props) => {
   const [Screen1, setScreen1] = useState<boolean>(false);
   const [Screen2, setScreen2] = useState<boolean>(false);
 
-  const [URL,setURL] = useState<string>('');
+  const [URL, setURL] = useState<string>('');
 
-  const ImageURL = (value:string) => {
+  const ImageURL = (value: string) => {
     setURL(value);
-  }
+  };
 
   const closeModal = () => {
     setAvatarDialog({ show: false });
-    setScreen1(false);
-    setScreen2(false);
+    // setContainer('ShowAvatar-container');
+    // setScreen2(false);
+    // setScreen1(false);
   };
 
   const SelectAvatarScreen = () => {
@@ -68,9 +69,13 @@ export const AvatarDialogUI: FC<IProps> = (props) => {
     >
       {Screen1 ? (
         Screen2 ? (
-          <CropAvatar back={SelectAvatarScreen_back} URL={URL}/>
+          <CropAvatar back={SelectAvatarScreen_back} URL={URL} />
         ) : (
-          <SelectAvatar back={ShowAvatarScreen} show={CropAvatarScreen} getURL={ImageURL}/>
+          <SelectAvatar
+            back={ShowAvatarScreen}
+            show={CropAvatarScreen}
+            getURL={ImageURL}
+          />
         )
       ) : (
         <ShowAvatar close={closeModal} show={SelectAvatarScreen} />

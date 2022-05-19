@@ -26,7 +26,7 @@ export const SmallIconButtonDark: FC<IProps> = (props) => {
     >
       <div className="flex space-x-2 items-center opacity-80">
         <Image layout='fixed' height={15} width={15} src={props.iconURL} alt="crop-avatar-navigation-button-icon"/>
-        <h6 className="text-xs font-normal font-sans whitespace-nowrap">{props.content}</h6>
+        <h6 className="text-xs font-normal font-sans whitespace-nowrap hidden xs-435:block">{props.content}</h6>
       </div>
     </Button>
   );
