@@ -17,7 +17,7 @@ interface IProps {
 
 const AvatarContainer: FC<IProps> = (props) => {
   const classes =
-    'absolute sm:relative box-border h-full w-full transform overflow-hidden sm:rounded-lg bg-black text-center align-middle shadow-xl transition-all ease-in';
+    'box-border absolute sm:relative h-full w-full transform overflow-hidden sm:rounded-lg bg-black text-center align-middle shadow-xl transition-all ease-in';
 
   return (
     <Transition appear show={props.show} as={props.as}>
@@ -45,7 +45,7 @@ const AvatarContainer: FC<IProps> = (props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-75"
             >
-              <Dialog.Panel>
+              <Dialog.Panel className="absolute h-full w-full sm:relative sm:h-suto sm:w-auto">
                 <motion.div className={`${classes} ${props.className}`}>
                   {props.children}
                 </motion.div>

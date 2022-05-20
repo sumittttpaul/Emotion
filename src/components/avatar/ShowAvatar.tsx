@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Button, IconButton } from '@mui/material';
 import { XIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
+import { useProfileURLState } from '../../providers/state/ProfileURLState';
 
 interface IProps {
   close?: () => void;
@@ -14,6 +15,12 @@ interface IProps {
  **/
 
 const ShowAvatar: FC<IProps> = (props) => {
+  const { ProfileURL, setProfileURL } = useProfileURLState();
+
+  const handleRemove = () => {
+    setProfileURL({ URL: '/images/user.png', change: false });
+  };
+
   return (
     <div className="bg-white flex flex-col w-full h-full overflow-auto items-center">
       {/* Header */}
@@ -50,7 +57,7 @@ const ShowAvatar: FC<IProps> = (props) => {
           <img
             onClick={props.show}
             className="rounded-[50%] cursor-pointer max-w-[288px] max-h-[288px] h-full"
-            src="/images/user.png"
+            src={`${ProfileURL.URL}`}
             alt="user photo"
           />
         </div>
@@ -78,13 +85,15 @@ const ShowAvatar: FC<IProps> = (props) => {
           </div>
         </Button>
         <Button
+          onClick={handleRemove}
+          disabled={!ProfileURL.change}
           sx={{
             border: '1px solid rgba(26, 115, 232, 0.5)',
             '.MuiTouchRipple-child': {
               backgroundColor: 'rgba(26, 115, 232, 0.25)',
             },
           }}
-          className="button-text-lower py-[7px] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
+          className="disabled:opacity-50 button-text-lower py-[7px] disabled:text-[#1a73e8] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
         >
           <div className="flex space-x-2 items-center justify-center">
             <Image

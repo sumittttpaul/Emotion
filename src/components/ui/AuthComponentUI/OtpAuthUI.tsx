@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useEffect, useState } from 'react';
+import React, { FC, Fragment } from 'react';
 import { Link } from '@mui/material';
 import OTPTextFieldDark from '../../textfield/OTPTextFieldDark';
 import { Dialog, Transition } from '@headlessui/react';

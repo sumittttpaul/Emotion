@@ -28,7 +28,6 @@ const SelectAvatar: FC<IProps> = (props) => {
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
     setTabValue((prev) => !prev);
-    console.log(TabValue);
   };
 
   const handleChangeIndex = (index: number) => {

@@ -10,6 +10,8 @@ import {
   isInitializedState,
 } from 'react-advanced-cropper';
 import 'react-advanced-cropper/dist/style.css';
+import { useAvatarState } from '../../providers/state/AvatarState';
+import { useProfileURLState } from '../../providers/state/ProfileURLState';
 import { CropAvatarBottom } from './CropAvatar/CropAvatarBottom';
 import { CropAvatarNavigation } from './CropAvatar/CropAvatarNavigation';
 import { CropAvatarSlider } from './CropAvatar/CropAvatarSlider';
@@ -31,6 +33,8 @@ export interface DefaultCropperProps extends CropperProps {
  **/
 
 export const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
+  const { setAvatarDialog } = useAvatarState();
+  const { setProfileURL } = useProfileURLState();
   const [changed, setChanged] = useState<boolean>(false);
   const [Active, setActive] = useState<boolean>(false);
   const [RotateValue, setRotateValue] = useState<number>(0);
@@ -161,7 +165,7 @@ export const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
       setRotateValue(0);
     }
   };
-  
+
   const ChangeZoomValue = () => {
     const cropper = cropperRef.current;
     if (cropper) {
@@ -212,6 +216,19 @@ export const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
 
   const onZoomhandle = (value: number) => {
     onZoom(value);
+  };
+
+  const submit = async () => {
+    const cropper = cropperRef.current;
+    if (cropper) {
+      const ImageSrc = cropper.getImage()?.src;
+      const coordinates = cropper.getState()?.coordinates;
+      // const { url } = await getCroppedImg(ImageSrc, coordinates);
+      setProfileURL({ URL: ImageSrc, change: true });
+      setTimeout(() => {
+        setAvatarDialog({ show: false });
+      }, 250);
+    }
   };
 
   return (
@@ -279,7 +296,11 @@ export const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
           Zoom={ZoomButtonHandle}
           Active={Active}
         />
-        <CropAvatarBottom changed={changed} resetClick={reset} />
+        <CropAvatarBottom
+          changed={changed}
+          resetClick={reset}
+          submitClick={submit}
+        />
       </div>
     </div>
   );
