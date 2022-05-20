@@ -58,8 +58,8 @@
 @media screen and (min-width: 640px) {
   .ShowAvatar-container {
     height: calc(100vh - 100px);
-    max-width: 400px;
-    max-height: 550px;
+    max-width: 370px;
+    max-height: 560px;
     width: calc(100vw - 100px);
   }
 

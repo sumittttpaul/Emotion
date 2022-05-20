@@ -221,10 +221,8 @@ export const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
   const submit = async () => {
     const cropper = cropperRef.current;
     if (cropper) {
-      const ImageSrc = cropper.getImage()?.src;
-      const coordinates = cropper.getState()?.coordinates;
-      // const { url } = await getCroppedImg(ImageSrc, coordinates);
-      setProfileURL({ URL: ImageSrc, change: true });
+      const Image = cropper.getCanvas()?.toDataURL();
+      setProfileURL({ URL: Image, change: true });
       setTimeout(() => {
         setAvatarDialog({ show: false });
       }, 250);
@@ -242,43 +240,43 @@ export const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
           FlipY={FlipY}
         />
       </div>
-      <Cropper
-        src={URL}
-        /* @ts-ignore: Unreachable code error */
-        imageRestriction="stencil"
-        onChange={onChange}
-        autoZoom={true}
-        stencilComponent={CircleStencil}
-        defaultSize={defaultSize}
-        stencilSize={stencilSize}
-        ref={cropperRef}
-        moveImage={true}
-        scaleImage={true}
-        stencilProps={{
-          aspectRatio: 1 / 1,
-          movable: false,
-          // previewClassName: 'CropAvatar-Stencil-preview',
-          handlerClassNames: {
-            default: 'CropAvatar-Stencil-handler',
-          },
-          lineClassNames: {
-            default: 'CropAvatar-Stencil-line',
-          },
-          handlers: {
-            eastNorth: true,
-            north: false,
-            westNorth: true,
-            west: false,
-            westSouth: true,
-            south: false,
-            eastSouth: true,
-            east: false,
-          },
-        }}
-        className={
-          'cropper circle-stencil CropAvatar-background flex relative w-full h-full px-7 sm:mx-[65px] pb-[242px] pt-[160px] xs-435:pt-[126px]'
-        }
-      />
+        <Cropper
+          src={URL}
+          /* @ts-ignore: Unreachable code error */
+          imageRestriction="stencil"
+          onChange={onChange}
+          autoZoom={true}
+          stencilComponent={CircleStencil}
+          defaultSize={defaultSize}
+          stencilSize={stencilSize}
+          ref={cropperRef}
+          moveImage={true}
+          scaleImage={true}
+          stencilProps={{
+            aspectRatio: 1 / 1,
+            movable: false,
+            // previewClassName: 'CropAvatar-Stencil-preview',
+            handlerClassNames: {
+              default: 'CropAvatar-Stencil-handler',
+            },
+            lineClassNames: {
+              default: 'CropAvatar-Stencil-line',
+            },
+            handlers: {
+              eastNorth: true,
+              north: false,
+              westNorth: true,
+              west: false,
+              westSouth: true,
+              south: false,
+              eastSouth: true,
+              east: false,
+            },
+          }}
+          className={
+            'cropper circle-stencil cursor-grab active:cursor-grabbing CropAvatar-background flex relative w-full h-full px-7 sm:mx-[65px] pb-[242px] pt-[160px] xs-435:pt-[126px]'
+          }
+        />
       <div className="z-[1] -mt-[242px] flex flex-col w-full">
         <CropAvatarSlider
           Active={Active}

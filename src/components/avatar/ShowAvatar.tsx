@@ -38,10 +38,10 @@ const ShowAvatar: FC<IProps> = (props) => {
         {/* Sub Heading */}
         <h6 className="text-[13px] text-black text-left w-full">
           A picture helps people recognize you and lets you know when you’re
-          signed in to your account.
+          signed in to your account
         </h6>
         {/* Info Heading */}
-        <div className="flex w-full space-x-2">
+        <div className="flex w-full space-x-2 pb-2">
           <Image
             height={18}
             width={18}

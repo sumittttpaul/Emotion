@@ -9,6 +9,9 @@ module.exports = {
   media: false,
   theme: {
     extend: {
+      colors: {
+        'color-dark': 'rgba(255, 255, 255, 0.23)'
+      },
       screens: {
         'xs-350' :'350px',
         'xs-435':'435px',
