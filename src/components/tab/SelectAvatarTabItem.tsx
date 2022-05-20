@@ -21,10 +21,10 @@ const StyledTab = styled((props: StyledTabProps) => <Tab {...props} />)(
       color: '#1A73E8',
     },
     '.MuiTouchRipple-child': {
-      backgroundColor: 'rgba(26, 115, 232, 0.25)',
+      backgroundColor: 'rgba(26, 115, 232, 0.25) !important',
     },
     '&.Mui-focusVisible': {
-      backgroundColor: 'rgba(100, 95, 228, 0.32)',
+      backgroundColor: 'rgba(100, 95, 228, 0.32) !important',
     },
   })
 );

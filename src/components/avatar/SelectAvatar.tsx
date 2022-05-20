@@ -10,9 +10,9 @@ import SelectAvatarTabs from '../tab/SelectAvatarTabs';
 import SelectAvatarTabPanel from '../tab/SelectAvatarTabPanel';
 
 interface IProps {
-  back?: () => void
-  show: () => void
-  getURL: (value:string) => void;
+  back?: () => void;
+  show: () => void;
+  getURL: (value: string) => void;
 }
 
 /**
@@ -89,10 +89,10 @@ const SelectAvatar: FC<IProps> = (props) => {
         }}
       >
         <SelectAvatarTabPanel value={value} index={0} dir={theme.direction}>
-          <FromAvatars show={props.show} getURL={props.getURL}/>
+          <FromAvatars show={props.show} getURL={props.getURL} />
         </SelectAvatarTabPanel>
         <SelectAvatarTabPanel value={value} index={1} dir={theme.direction}>
-          <FromComputer show={props.show} getURL={props.getURL}/>
+          <FromComputer show={props.show} getURL={props.getURL} />
         </SelectAvatarTabPanel>
       </SwipeableViews>
     </div>
