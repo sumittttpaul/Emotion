@@ -2,7 +2,8 @@ import React, { FC } from 'react';
 import AuthContainer from '../container/AuthContainer';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image'
-import AvatarUI from './Avatar/AvatarUI';
+import AvatarUI from './AvatarUI/AvatarUI';
+import { DatePickerUI } from './DatePickerUI/DatePickerUI';
 
 interface IProps {}
 
@@ -34,6 +35,7 @@ export const SetupAccountUI: FC<IProps> = (props) => {
             Setup your Agewear account
           </h6>
           <AvatarUI/>
+          <DatePickerUI/>
         </motion.div>
       </AnimatePresence>
     </AuthContainer>

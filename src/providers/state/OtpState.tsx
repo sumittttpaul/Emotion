@@ -1,12 +1,12 @@
 import React, { createContext, useState, useContext, Dispatch, SetStateAction } from "react";
 
 export interface OtpStateInterface {
-    setShow: boolean;
+    show: boolean;
 }
 
 const OtpStateContext = createContext({
-    OtpState: {} as Partial<OtpStateInterface>,
-    setOtpState: {} as Dispatch<SetStateAction<Partial<OtpStateInterface>>>,
+    OtpDialog: {} as Partial<OtpStateInterface>,
+    setOtpDialog: {} as Dispatch<SetStateAction<Partial<OtpStateInterface>>>,
 });
 
 const OtpState = ({
@@ -16,9 +16,9 @@ const OtpState = ({
     children: React.ReactNode;
     value?: Partial<OtpStateInterface>;
 }) => {
-    const [OtpState, setOtpState] = useState(value);
+    const [OtpDialog, setOtpDialog] = useState(value);
     return (
-        <OtpStateContext.Provider value={{ OtpState, setOtpState }}>
+        <OtpStateContext.Provider value={{ OtpDialog, setOtpDialog }}>
         {children}
         </OtpStateContext.Provider>
     );

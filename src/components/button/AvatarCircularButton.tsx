@@ -28,7 +28,7 @@ export const AvatarCircularButton: FC<IProps> = (props) => {
           src={props.profileURL}
           alt="choose user profile photo"
         />
-        <div className="absolute bg-[rgb(32,32,32)] opacity-75 flex justify-center items-center h-[35%] left-0 right-0 bottom-0">
+        <div className="absolute bg-[rgb(32,32,32)] opacity-50 flex justify-center items-center h-[35%] left-0 right-0 bottom-0">
           <Image
             height={25}
             width={25}

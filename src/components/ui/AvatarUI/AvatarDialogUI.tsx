@@ -3,7 +3,7 @@ import { useAvatarState } from '../../../providers/state/AvatarState';
 import { CropAvatar } from '../../avatar/CropAvatar';
 import SelectAvatar from '../../avatar/SelectAvatar';
 import ShowAvatar from '../../avatar/ShowAvatar';
-import AvatarContainer from '../../container/AvatarContainer';
+import AvatarContainerDialog from '../../dialog/AvatarContainerDialog';
 
 interface IProps {
   Container: string;
@@ -30,9 +30,8 @@ export const AvatarDialogUI: FC<IProps> = (props) => {
   };
 
   return (
-    <AvatarContainer
-      as={Fragment}
-      onClose={closeModal}
+    <AvatarContainerDialog
+      close={closeModal}
       show={AvatarDialog.show}
       className={props.Container}
     >
@@ -49,6 +48,6 @@ export const AvatarDialogUI: FC<IProps> = (props) => {
       ) : (
         <ShowAvatar close={closeModal} show={props.SelectAvatarScreen} />
       )}
-    </AvatarContainer>
+    </AvatarContainerDialog>
   );
 };

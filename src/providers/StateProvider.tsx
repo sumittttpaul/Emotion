@@ -3,6 +3,7 @@ import { ColorState } from './state/ColorState';
 import { OtpState } from './state/OtpState';
 import { AvatarState } from './state/AvatarState';
 import { ProfileURLState } from './state/ProfileURLState';
+import { DatePickerState } from './state/DatePickerState';
 
 interface IProps {
   children: ReactNode;
@@ -16,11 +17,13 @@ interface IProps {
 export const StateProvider: FC<IProps> = (props) => {
   return (
     <ColorState>
-      <OtpState value={{ setShow: false }}>
+      <OtpState value={{ show: false }}>
         <AvatarState value={{ show: false }}>
-          <ProfileURLState value={{ URL: '/images/user.png', change: false}}>
-            {props.children}
-          </ProfileURLState>
+          <DatePickerState value={{ show: false }}>
+            <ProfileURLState value={{ URL: '/images/user.png', change: false }}>
+              {props.children}
+            </ProfileURLState>
+          </DatePickerState>
         </AvatarState>
       </OtpState>
     </ColorState>

@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, ExoticComponent } from 'react';
+import React, { FC, ReactNode, Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { motion } from 'framer-motion';
 
@@ -6,24 +6,23 @@ interface IProps {
   children: ReactNode;
   className?: string;
   show?: boolean;
-  as: ExoticComponent;
-  onClose: () => void;
+  close: () => void;
 }
 
 /**
  * @author
- * @function @AvatarContainer
+ * @function @AvatarContainerDialog
  **/
 
-const AvatarContainer: FC<IProps> = (props) => {
+const AvatarContainerDialog: FC<IProps> = (props) => {
   const classes =
     'box-border absolute sm:relative h-full w-full transform overflow-hidden sm:rounded-lg bg-black text-center align-middle shadow-xl transition-all ease-in';
 
   return (
-    <Transition appear show={props.show} as={props.as}>
-      <Dialog as="div" className="relative z-20" onClose={props.onClose}>
+    <Transition appear show={props.show} as={Fragment}>
+      <Dialog as="div" className="relative z-20" onClose={props.close}>
         <Transition.Child
-          as={props.as}
+          as={Fragment}
           enter="ease-out duration-300"
           enterFrom="opacity-0"
           enterTo="opacity-100"
@@ -37,7 +36,7 @@ const AvatarContainer: FC<IProps> = (props) => {
         <div className="fixed inset-0 overflow-none">
           <div className="flex min-h-full items-center justify-center text-center">
             <Transition.Child
-              as={props.as}
+              as={Fragment}
               enter="ease-out duration-300"
               enterFrom="opacity-0 scale-75"
               enterTo="opacity-100 scale-100"
@@ -58,4 +57,4 @@ const AvatarContainer: FC<IProps> = (props) => {
   );
 };
 
-export default AvatarContainer;
+export default AvatarContainerDialog;
