@@ -54,20 +54,61 @@ export const SelectDay: FC<IProps> = (props) => {
     return day.isSame(new Date(), 'day');
   };
 
+  const isBefore1 = (day: any) => {
+    return day.isSame(beforeMonth(), 'day');
+  };
+
+  const isBefore2 = (day: any) => {
+    return day.isBefore(beforeMonth(), 'day');
+  };
+
+  const isAfter1 = (day: any) => {
+    return day.isSame(afterMonth(), 'day');
+  };
+
+  const isAfter2 = (day: any) => {
+    return day.isAfter(afterMonth(), 'day');
+  };
+
+  // Last date of previous month
+  const beforeMonth = () => {
+    return value.clone().subtract(1, 'month').endOf('month');
+  };
+
+  // First date of previous month
+  const afterMonth = () => {
+    return value.clone().add(1, 'month').startOf('month');
+  };
+
+  // button
+  const prevMonth = () => {
+    return value.clone().subtract(1, 'month');
+  };
+
+  // button
+  const nextMonth = () => {
+    return value.clone().add(1, 'month');
+  };
+
+  const disableDay = 'opacity-30 select-none pointer-events-none touch-none';
+
   const dayStyles = (day: any) => {
-    if (afterTaday(day))
-      return 'text-white opacity-30 select-none hover:bg-[rgba(0,0,0,0)]';
-    if (isSelected(day)) return 'bg-white text-black font-bold hover:bg-white';
-    if (isToday(day)) return 'bg-[rgba(255,255,255,0.05)] text-white';
+    if (isSelected(day)) return 'bg-[rgba(255,255,255,0.1)]';
+    if (afterTaday(day)) return disableDay;
+    if (isBefore1(day)) return disableDay;
+    if (isBefore2(day)) return disableDay;
+    if (isAfter1(day)) return disableDay;
+    if (isAfter2(day)) return disableDay;
+    // if (isToday(day)) return 'bg-[rgba(255,255,255,0.03)] text-white';
   };
 
   const currentMonth = () => {
     return value.format('MMM');
-  }
+  };
 
   const currentYear = () => {
     return value.format('YYYY');
-  }
+  };
 
   useEffect(() => {
     const day = startDay.clone().subtract(1, 'day');
@@ -84,7 +125,9 @@ export const SelectDay: FC<IProps> = (props) => {
 
   return (
     <div className="w-full h-full relative box-border p-5">
-      <div className='text-white text-xs font-medium w-full text-left px-2.5 pb-3'>{currentMonth()}, {currentYear()}</div>
+      <div className="text-white text-xs font-medium w-full text-left px-2.5 pb-3">
+        {currentMonth()}, {currentYear()}
+      </div>
       <div className="grid grid-cols-7 relative">
         {weekNames.map((w: any) => (
           <div className="m-1 justify-center flex opacity-60 text-white text-[12px]">
@@ -100,9 +143,8 @@ export const SelectDay: FC<IProps> = (props) => {
                 onClick={() => {
                   setValue(day);
                 }}
-                className={`${'py-[4px] px-[5px] xs-350:py-[8px] xs-350:px-[9px] xs-400:py-[10px] xs-400:px-[11px] m-1 text-[12px] text-white font-medium rounded-[50%] cursor-default text-center box-border relative inline-block transition-all ease-in delay-150'} ${dayStyles(
-                  day
-                )}`}
+                className={`${'py-[4px] px-[5px] xs-350:py-[8px] xs-350:px-[9px] xs-400:py-[10px] xs-400:px-[11px] m-1 text-white text-[12px] rounded-[50%] cursor-default text-center box-border relative inline-block transition-all ease-in delay-150'} 
+                ${dayStyles(day)}`}
                 key={day}
               >
                 {day.format('D')}
