@@ -1,7 +1,9 @@
 import React, { FC, useState } from 'react';
 import { motion } from 'framer-motion';
 
-interface IProps {}
+interface IProps {
+  setYear: (year: number) => void;
+}
 
 /**
  * @author
@@ -28,9 +30,12 @@ export const SelectYear: FC<IProps> = (props) => {
     <div className="p-1 xs-300:p-5 max-h-[400px] grid grid-cols-4 scroll">
       {Years.map((year: any) => (
         <motion.button
-          onClick={() => setSelected(year)}
+          onClick={() => {
+            setSelected(year);
+            props.setYear(year);
+          }}
           key={year}
-          className={`${'text-white text-xs m-1 p-4 rounded-md cursor-default transition-all ease-in delay-150'} ${dayStyles(
+          className={`${'text-white text-xs m-1 p-4 rounded-md cursor-default transition-all ease-in'} ${dayStyles(
             year
           )}`}
         >

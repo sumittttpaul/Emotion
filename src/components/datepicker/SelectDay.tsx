@@ -6,6 +6,7 @@ import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/solid';
 interface IProps {
   year: number;
   month: number;
+  setDay: (day:number) => void;
 }
 
 /**
@@ -181,8 +182,9 @@ export const SelectDay: FC<IProps> = (props) => {
               <motion.button
                 onClick={() => {
                   setValue(day);
+                  props.setDay(day.format('D'));
                 }}
-                className={`${'py-[4px] px-[5px] xs-350:py-[8px] xs-350:px-[9px] xs-400:py-[10px] xs-400:px-[11px] m-1 text-white text-[12px] rounded-md cursor-default text-center box-border relative inline-block transition-all ease-in delay-150'} 
+                className={`${'py-[4px] px-[5px] xs-350:py-[8px] xs-350:px-[9px] xs-400:py-[10px] xs-400:px-[11px] m-1 text-white text-[12px] rounded-md cursor-default text-center box-border relative inline-block transition-all ease-in'} 
                 ${dayStyles(day)}`}
                 key={day}
               >
