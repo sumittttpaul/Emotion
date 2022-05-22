@@ -1,9 +1,10 @@
 import React, { FC, ReactNode } from 'react';
 import { ColorState } from './state/ColorState';
-import { OtpState } from './state/OtpState';
+import { OTPState } from './state/OTPState';
 import { AvatarState } from './state/AvatarState';
 import { ProfileURLState } from './state/ProfileURLState';
 import { DatePickerState } from './state/DatePickerState';
+import { DOBState } from './state/DOBState';
 
 interface IProps {
   children: ReactNode;
@@ -17,15 +18,19 @@ interface IProps {
 export const StateProvider: FC<IProps> = (props) => {
   return (
     <ColorState>
-      <OtpState value={{ show: false }}>
+      <OTPState value={{ show: false }}>
         <AvatarState value={{ show: false }}>
           <DatePickerState value={{ show: false }}>
-            <ProfileURLState value={{ URL: '/images/user.png', change: false }}>
-              {props.children}
-            </ProfileURLState>
+            <DOBState value={{ day:0, month:0, year:0}}>
+              <ProfileURLState
+                value={{ URL: '/images/user.png', change: false }}
+              >
+                {props.children}
+              </ProfileURLState>
+            </DOBState>
           </DatePickerState>
         </AvatarState>
-      </OtpState>
+      </OTPState>
     </ColorState>
   );
 };

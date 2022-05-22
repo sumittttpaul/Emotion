@@ -1,35 +1,35 @@
 import React, { createContext, useState, useContext, Dispatch, SetStateAction } from "react";
 
-export interface OtpStateInterface {
+export interface OTPStateInterface {
     show: boolean;
 }
 
-const OtpStateContext = createContext({
-    OtpDialog: {} as Partial<OtpStateInterface>,
-    setOtpDialog: {} as Dispatch<SetStateAction<Partial<OtpStateInterface>>>,
+const OTPStateContext = createContext({
+    OTPDialog: {} as Partial<OTPStateInterface>,
+    setOTPDialog: {} as Dispatch<SetStateAction<Partial<OTPStateInterface>>>,
 });
 
-const OtpState = ({
+const OTPState = ({
     children,
-    value = {} as OtpStateInterface,
+    value = {} as OTPStateInterface,
 }: {
     children: React.ReactNode;
-    value?: Partial<OtpStateInterface>;
+    value?: Partial<OTPStateInterface>;
 }) => {
-    const [OtpDialog, setOtpDialog] = useState(value);
+    const [OTPDialog, setOTPDialog] = useState(value);
     return (
-        <OtpStateContext.Provider value={{ OtpDialog, setOtpDialog }}>
+        <OTPStateContext.Provider value={{ OTPDialog, setOTPDialog }}>
         {children}
-        </OtpStateContext.Provider>
+        </OTPStateContext.Provider>
     );
 };
 
-const useOtpState = () => {
-    const context = useContext(OtpStateContext);
+const useOTPState = () => {
+    const context = useContext(OTPStateContext);
     if (!context) {
-        throw new Error("useOtpState must be used within a OtpStateContext");
+        throw new Error("useOTPState must be used within a OTPStateContext");
     }
     return context;
 };
 
-export { OtpState, useOtpState };
+export { OTPState, useOTPState };

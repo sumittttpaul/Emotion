@@ -1,8 +1,7 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC } from 'react';
 import { Link } from '@mui/material';
 import OTPTextFieldDark from '../../textfield/OTPTextFieldDark';
-import { Dialog, Transition } from '@headlessui/react';
-import { useOtpState } from '../../../providers/state/OtpState';
+import { useOTPState } from '../../../providers/state/OTPState';
 import { DialogContainerDark } from '../../dialog/DialogContainerDark';
 
 interface IProps {}
@@ -12,15 +11,15 @@ interface IProps {}
  * @function @OtpAuthUI
  **/
 
-const OtpAuthUI: FC<IProps> = (props) => {
-  const { OtpState, setOtpState } = useOtpState();
+const OTPAuthUI: FC<IProps> = (props) => {
+  const { OTPDialog, setOTPDialog } = useOTPState();
 
   const closeModal = () => {
-    setOtpState({ show: false });
+    setOTPDialog({ show: false });
   };
 
   return (
-    <DialogContainerDark show={OtpState.show} close={closeModal}>
+    <DialogContainerDark show={OTPDialog.show} close={closeModal}>
     <div className="flex flex-col px-14 py-10 space-y-7 items-center">
       <h6 className="text-white font-medium text-center text-md">
         OTP Verification
@@ -58,4 +57,4 @@ const OtpAuthUI: FC<IProps> = (props) => {
   );
 };
 
-export default OtpAuthUI;
+export default OTPAuthUI;

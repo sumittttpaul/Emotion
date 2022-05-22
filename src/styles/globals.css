@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap');
 
 html,
 body {
@@ -18,7 +19,6 @@ body {
   -ms-tap-highlight-color: transparent;
 }
 
-
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -29,6 +29,11 @@ input:-webkit-autofill:active {
   transition-delay: 99999s;
   animation-fill-mode: both;
   animation-name: onAutoFillStart !important;
+}
+
+button {
+  outline: 0px solid transparent;
+  outline-offset: 0px;
 }
 
 input::-ms-reveal,

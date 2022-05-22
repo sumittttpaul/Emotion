@@ -5,7 +5,8 @@ import CheckBoxBlue from '../../checkbox/CheckBoxBlue';
 import LargeButtonBlue from '../../button/LargeButtonBlue';
 import OtherAccountAuthUI from './OtherAccountAuthUI';
 import AuthDivider from '../../divider/AuthDivider';
-import { useOtpState } from '../../../providers/state/OtpState';
+import { useOTPState } from '../../../providers/state/OTPState';
+
 
 interface IProps {}
 
@@ -15,11 +16,11 @@ interface IProps {}
  **/
 
 const PhoneAuthUI: FC<IProps> = (props) => {
-  const { setOtpState } = useOtpState();
+  const { setOTPDialog } = useOTPState();
 
   const handleClick = () => {
     setTimeout(() => {
-      setOtpState({ setShow: true });
+      setOTPDialog({ show: true });
     }, 250);
   };
   return (
