@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import { motion } from 'framer-motion';
+import moment from 'moment';
 
 interface IProps {
   setMonth: (month: number) => void;
@@ -26,7 +27,9 @@ const Months = [
 ];
 
 export const SelectMonth: FC<IProps> = (props) => {
-  const [selected, setSelected] = useState<string>('');
+  const [selected, setSelected] = useState<string>(
+    moment().endOf('month').format('MMM')
+  );
 
   const getMonthNumber = (month: any) => {
     var d = Date.parse(month + '10, 2002');
@@ -40,7 +43,13 @@ export const SelectMonth: FC<IProps> = (props) => {
   };
 
   return (
-    <div className="p-1 xs-300:p-5 max-h-[400px] grid grid-cols-3 scroll">
+    <motion.div
+      className="p-1 xs-300:p-5 max-h-[400px] grid grid-cols-3 scroll"
+      animate={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, scale: 1 }}
+      exit={{ opacity: 0, scale: 0 }}
+      transition={{ duration: 0.25 }}
+    >
       {Months.map((month: any) => (
         <motion.button
           onClick={() => {
@@ -48,13 +57,13 @@ export const SelectMonth: FC<IProps> = (props) => {
             props.setMonth(getMonthNumber(month) || 0);
           }}
           key={month}
-          className={`${'text-white text-xs m-1 py-4 px-7 rounded-md cursor-default transition-all ease-in'} ${dayStyles(
+          className={`${'text-white text-xs m-1 py-4 px-7 rounded-md cursor-default transition-all ease-in-out'} ${dayStyles(
             month
           )}`}
         >
           {month}
         </motion.button>
       ))}
-    </div>
+    </motion.div>
   );
 };

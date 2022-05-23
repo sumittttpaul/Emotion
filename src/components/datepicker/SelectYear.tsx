@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import { motion } from 'framer-motion';
+import moment from 'moment';
 
 interface IProps {
   setYear: (year: number) => void;
@@ -11,7 +12,9 @@ interface IProps {
  **/
 
 export const SelectYear: FC<IProps> = (props) => {
-  const [selected, setSelected] = useState<number>(new Date().getFullYear());
+  const [selected, setSelected] = useState<string>(
+    moment().endOf('year').format('YYYY')
+  );
 
   const yearRange = (start: any, end: any) => {
     const allyears = Array(end - start + 1)
@@ -27,7 +30,13 @@ export const SelectYear: FC<IProps> = (props) => {
   };
 
   return (
-    <div className="p-1 xs-300:p-5 max-h-[400px] grid grid-cols-4 scroll">
+    <motion.div
+      className="p-1 xs-300:p-5 max-h-[400px] grid grid-cols-4 scroll"
+      animate={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, scale: 1 }}
+      exit={{ opacity: 0, scale: 0 }}
+      transition={{ duration: 0.25 }}
+    >
       {Years.map((year: any) => (
         <motion.button
           onClick={() => {
@@ -35,13 +44,13 @@ export const SelectYear: FC<IProps> = (props) => {
             props.setYear(year);
           }}
           key={year}
-          className={`${'text-white text-xs m-1 p-4 rounded-md cursor-default transition-all ease-in'} ${dayStyles(
+          className={`${'text-white w-full flex justify-center text-xs m-1 p-4 rounded-md cursor-default transition-all ease-in-out'} ${dayStyles(
             year
           )}`}
         >
           {year}
         </motion.button>
       ))}
-    </div>
+    </motion.div>
   );
 };

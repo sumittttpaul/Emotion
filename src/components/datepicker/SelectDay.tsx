@@ -1,12 +1,14 @@
 import React, { FC, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import moment from 'moment';
-import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/solid';
+import { SelectDayHeader } from './selectDay/SelectDayHeader';
 
 interface IProps {
   year: number;
   month: number;
-  setDay: (day:number) => void;
+  day: number;
+  setDay: (day: number) => void;
+  setMonth: (month: number) => void;
 }
 
 /**
@@ -42,8 +44,6 @@ export const SelectDay: FC<IProps> = (props) => {
   const [value, setValue] = useState(moment(props.year + '-' + props.month));
   const [calender, setCalender] = useState([]);
 
-  // const get = moment('2002-10').daysInMonth();
-  // const set = value.date(get);
   const startDay = value.clone().startOf('month').startOf('week');
   const endDay = value.clone().endOf('month').startOf('week');
 
@@ -53,10 +53,6 @@ export const SelectDay: FC<IProps> = (props) => {
 
   const afterTaday = (day: any) => {
     return day.isAfter(new Date(), 'day');
-  };
-
-  const isToday = (day: any) => {
-    return day.isSame(new Date(), 'day');
   };
 
   const isBefore1 = (day: any) => {
@@ -107,6 +103,16 @@ export const SelectDay: FC<IProps> = (props) => {
     return value.format('YYYY');
   };
 
+  const prevMonthClick = () => {
+    setValue(prevMonth());
+    props.setMonth(parseInt(value.clone().subtract(1, 'month').format('M')));
+  };
+
+  const nextMonthClick = () => {
+    setValue(nextMonth());
+    props.setMonth(parseInt(value.clone().add(1, 'month').format('M')));
+  };
+
   const disableDay = 'opacity-30 select-none pointer-events-none touch-none';
 
   const dayStyles = (day: any) => {
@@ -116,7 +122,6 @@ export const SelectDay: FC<IProps> = (props) => {
     if (isBefore2(day)) return disableDay;
     if (isAfter1(day)) return disableDay;
     if (isAfter2(day)) return disableDay;
-    // if (isToday(day)) return 'bg-[rgba(255,255,255,0.03)] text-white';
   };
 
   useEffect(() => {
@@ -133,38 +138,21 @@ export const SelectDay: FC<IProps> = (props) => {
   }, [value, startDay, endDay]);
 
   return (
-    <div className="w-full h-full relative box-border p-5">
-      <div className="w-full flex justify-between">
-        <h6 className="text-white text-xs font-medium px-2.5 pb-3">
-          {currentMonth()}, {currentYear()}
-        </h6>
-        <div className="block relative -mt-2 -mr-2">
-          <div className="flex space-x-3">
-            <motion.button
-              onClick={() => {
-                setValue(prevMonth());
-              }}
-              whileTap={{ scale: 0.9 }}
-              className="text-white p-[4px] rounded-md bg-[rgba(255,255,255,0.1)] relative block"
-            >
-              <ChevronUpIcon className="text-white h-[16px] opacity-60" />
-            </motion.button>
-            {isthisMonth() ? (
-              ''
-            ) : (
-              <motion.button
-                onClick={() => {
-                  setValue(nextMonth());
-                }}
-                whileTap={{ scale: 0.9 }}
-                className="text-white p-[4px] rounded-md bg-[rgba(255,255,255,0.1)] relative block"
-              >
-                <ChevronDownIcon className="text-white h-[16px] opacity-60" />
-              </motion.button>
-            )}
-          </div>
-        </div>
-      </div>
+    <motion.div
+      className="w-full h-full relative box-border p-5"
+      animate={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, scale: 1 }}
+      exit={{ opacity: 0, scale: 0 }}
+      transition={{ duration: 0.25 }}
+    >
+      <SelectDayHeader
+        currentMonth={currentMonth}
+        currentYear={currentYear}
+        isthisMonth={isthisMonth()}
+        prevMonthClick={prevMonthClick}
+        nextMonthClick={nextMonthClick}
+      />
+      {/* Week */}
       <div className="grid grid-cols-7 relative">
         {weekNames.map((w: any) => (
           <div
@@ -175,6 +163,7 @@ export const SelectDay: FC<IProps> = (props) => {
           </div>
         ))}
       </div>
+      {/* Calender */}
       <div className="relative w-full h-full text-center">
         {calender.map((week: any) => (
           <div key={week} className="grid grid-cols-7 relative">
@@ -184,7 +173,7 @@ export const SelectDay: FC<IProps> = (props) => {
                   setValue(day);
                   props.setDay(day.format('D'));
                 }}
-                className={`${'py-[4px] px-[5px] xs-350:py-[8px] xs-350:px-[9px] xs-400:py-[10px] xs-400:px-[11px] m-1 text-white text-[12px] rounded-md cursor-default text-center box-border relative inline-block transition-all ease-in'} 
+                className={`${'py-[4px] px-[5px] xs-350:py-[8px] xs-350:px-[9px] xs-400:py-[10px] xs-400:px-[11px] m-1 text-white text-[12px] rounded-md cursor-default text-center box-border relative inline-block transition-all ease-in-out'} 
                 ${dayStyles(day)}`}
                 key={day}
               >
@@ -194,6 +183,6 @@ export const SelectDay: FC<IProps> = (props) => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { FC, Fragment, ReactNode } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
+import { motion } from 'framer-motion';
 
 interface IProps {
   children: ReactNode;
@@ -39,8 +40,10 @@ export const DatePickerContainerDialog: FC<IProps> = (props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-150"
             >
-              <Dialog.Panel className="relative w-auto h-auto transform overflow-auto rounded-lg bg-[#202020] text-center align-middle shadow-xl transition-all">
-                {props.children}
+              <Dialog.Panel className="h-auto w-auto relative">
+                <motion.div className="relative w-auto h-auto transform overflow-auto rounded-lg bg-[#202020] text-center align-middle shadow-xl transition-all ease-in">
+                  {props.children}
+                </motion.div>
               </Dialog.Panel>
             </Transition.Child>
           </div>
