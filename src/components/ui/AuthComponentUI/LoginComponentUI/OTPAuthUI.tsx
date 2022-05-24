@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Link } from '@mui/material';
-import OTPTextFieldDark from '../../textfield/OTPTextFieldDark';
-import { useOTPState } from '../../../providers/state/OTPState';
-import { DialogContainerDark } from '../../dialog/DialogContainerDark';
+import OTPTextFieldDark from '../../../textfield/OTPTextFieldDark';
+import { useOTPState } from '../../../../providers/state/OTPState';
+import { DialogContainerDark } from '../../../dialog/DialogContainerDark';
 
 interface IProps {}
 

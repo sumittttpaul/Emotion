@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { Link } from '@mui/material';
-import IconTextFieldDark from '../../textfield/IconTextFieldDark';
-import CheckBoxBlue from '../../checkbox/CheckBoxBlue';
-import LargeButtonBlue from '../../button/LargeButtonBlue';
+import IconTextFieldDark from '../../../textfield/IconTextFieldDark';
+import CheckBoxBlue from '../../../checkbox/CheckBoxBlue';
+import LargeButtonBlue from '../../../button/LargeButtonBlue';
 import OtherAccountAuthUI from './OtherAccountAuthUI';
-import AuthDivider from '../../divider/AuthDivider';
-import { useOTPState } from '../../../providers/state/OTPState';
+import AuthDivider from '../../../divider/AuthDivider';
+import { useOTPState } from '../../../../providers/state/OTPState';
 
 
 interface IProps {}

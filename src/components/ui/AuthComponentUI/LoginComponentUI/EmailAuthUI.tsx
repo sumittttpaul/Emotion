@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import CheckBoxBlue from '../../checkbox/CheckBoxBlue';
-import LargeButtonBlue from '../../button/LargeButtonBlue';
-import IconTextFieldDark from '../../textfield/IconTextFieldDark';
-import IconPasswordTextFieldDark from '../../textfield/IconPasswordTextFieldDark';
+import CheckBoxBlue from '../../../checkbox/CheckBoxBlue';
+import LargeButtonBlue from '../../../button/LargeButtonBlue';
+import IconTextFieldDark from '../../../textfield/IconTextFieldDark';
+import IconPasswordTextFieldDark from '../../../textfield/IconPasswordTextFieldDark';
 import { Link } from '@mui/material';
 import Router from 'next/router';
 
