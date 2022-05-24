@@ -59,7 +59,7 @@ export const RadioGroupDark: FC<IProps> = (props) => {
                     <div className="text-sm w-full">
                       <RadioGroup.Label
                         as="p"
-                        className={`font-normal text-[12px] text-center ${
+                        className={`font-normal text-[12.5px] text-center ${
                           checked
                             ? 'text-white'
                             : 'text-[rgba(255,255,255,0.7)]'
