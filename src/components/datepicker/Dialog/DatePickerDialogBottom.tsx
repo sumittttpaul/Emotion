@@ -4,6 +4,7 @@ import React, { FC } from 'react';
 interface IProps {
   cancel: () => void;
   submit: () => void;
+  submitActive: boolean;
 }
 
 /**
@@ -20,9 +21,9 @@ export const DatePickerDialogBottom: FC<IProps> = (props) => {
       >
         Cancel
       </Button>
-      <Button
+      <Button disabled={!props.submitActive}
         onClick={props.submit}
-        className="text-white rounded-md  text-[11px] h-8 w-[calc(100%/3)] bg-[#0074E4] hover:bg-[#0074E4] outline-none button-text-lower"
+        className="text-white disabled:opacity-50 disabled:text-white rounded-md  text-[11px] h-8 w-[calc(100%/3)] bg-[#0074E4] hover:bg-[#0074E4] outline-none button-text-lower"
       >
         Done
       </Button>

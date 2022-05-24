@@ -21,6 +21,7 @@ interface IProps {
   setYear: (year: number) => void;
   cancel: () => void;
   submit: () => void;
+  submitActive: boolean;
 }
 
 /**
@@ -57,7 +58,7 @@ export const DatePickerDialogUI: FC<IProps> = (props) => {
       ) : (
         <SelectYear setYear={props.setYear} />
       )}
-      <DatePickerDialogBottom cancel={props.cancel} submit={props.submit}/>
+      <DatePickerDialogBottom cancel={props.cancel} submit={props.submit} submitActive={props.submitActive}/>
     </DatePickerContainerDialog>
   );
 };

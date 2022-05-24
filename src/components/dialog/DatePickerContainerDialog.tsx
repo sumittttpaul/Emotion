@@ -34,11 +34,11 @@ export const DatePickerContainerDialog: FC<IProps> = (props) => {
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-150"
+              enterFrom="opacity-0 scale-75"
               enterTo="opacity-100 scale-100"
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-150"
+              leaveTo="opacity-0 scale-75"
             >
               <Dialog.Panel className="h-auto w-auto relative">
                 <motion.div className="relative w-auto h-auto transform overflow-auto rounded-lg bg-[#202020] text-center align-middle shadow-xl transition-all ease-in">

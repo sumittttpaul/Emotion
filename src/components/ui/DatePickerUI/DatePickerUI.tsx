@@ -3,6 +3,7 @@ import { useDatePickerState } from '../../../providers/state/DatePickerState';
 import { DatePickerButtonDark } from '../../button/DatePickerButtonDark';
 import { DatePickerDialogUI } from './DatePickerDialogUI';
 import moment from 'moment';
+import { useDOBState } from '../../../providers/state/DOBState';
 
 interface IProps {}
 
@@ -13,9 +14,11 @@ interface IProps {}
 
 export const DatePickerUI: FC<IProps> = (props) => {
   const { setDatePickerDialog } = useDatePickerState();
+  const { setDOBValue } = useDOBState();
 
   const [Screen1, setScreen1] = useState<boolean>(false);
   const [Screen2, setScreen2] = useState<boolean>(false);
+  const [active, setActive] = useState<boolean>(false);
 
   const [DayValue, setDayValue] = useState<string>(
     moment().endOf('day').format('D')
@@ -32,12 +35,15 @@ export const DatePickerUI: FC<IProps> = (props) => {
   const [year, setYear] = useState<number>(0);
 
   const openModal = () => {
-    setDatePickerDialog({ show: true });
+    setActive(false);
     setScreen1(false);
     setScreen2(false);
-    setDayValue(moment().endOf('day').format('D'));
-    setMonthValue(moment().endOf('month').format('MMM'));
-    setYearValue(moment().endOf('year').format('YYYY'));
+    setTimeout(() => {
+      setDatePickerDialog({ show: true });
+      setDayValue(moment().endOf('day').format('D'));
+      setMonthValue(moment().endOf('month').format('MMM'));
+      setYearValue(moment().endOf('year').format('YYYY'));
+    }, 250);
   };
 
   const getMonthName = (month: number) => {
@@ -52,6 +58,7 @@ export const DatePickerUI: FC<IProps> = (props) => {
   const getDay = (day: number) => {
     setDay(day);
     setDayValue(`${day}`);
+    setActive(true);
   };
 
   const getMonth = (month: number) => {
@@ -75,14 +82,26 @@ export const DatePickerUI: FC<IProps> = (props) => {
   const Cancelhandle = () => {
     setTimeout(() => {
       setDatePickerDialog({ show: false });
+      setDayValue(moment().endOf('day').format('D'));
+      setMonthValue(moment().endOf('month').format('MMM'));
+      setYearValue(moment().endOf('year').format('YYYY'));
     }, 250);
   };
 
-  const Submithandle = () => {};
+  const Submithandle = () => {
+    setDOBValue({ day: day, month: month, year: year });
+    setTimeout(() => {
+      setDatePickerDialog({ show: false });
+    }, 250);
+  };
+
+  const label = () => {
+    return YearValue + ', ' + MonthValue + ' ' + DayValue;
+  };
 
   return (
     <>
-      <DatePickerButtonDark onClick={openModal} />
+      <DatePickerButtonDark onClick={openModal} label={`${label()}`} />
       <DatePickerDialogUI
         day={day}
         month={month}
@@ -97,6 +116,7 @@ export const DatePickerUI: FC<IProps> = (props) => {
         setYear={getYear}
         cancel={Cancelhandle}
         submit={Submithandle}
+        submitActive={active}
       />
     </>
   );
