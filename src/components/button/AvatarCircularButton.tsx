@@ -1,4 +1,5 @@
 import { IconButton } from '@mui/material';
+import { CameraIcon } from '@heroicons/react/solid';
 import React, { FC } from 'react';
 import Image from 'next/image';
 
@@ -28,14 +29,8 @@ export const AvatarCircularButton: FC<IProps> = (props) => {
           src={props.profileURL}
           alt="choose user profile photo"
         />
-        <div className="absolute bg-[rgb(32,32,32)] opacity-50 flex justify-center items-center h-[35%] left-0 right-0 bottom-0">
-          <Image
-            height={25}
-            width={25}
-            className="h-full"
-            alt='camera icon'
-            src="https://www.gstatic.com/images/icons/material/system/2x/photo_camera_white_24dp.png"
-          />
+        <div className="absolute bg-[rgb(32,32,32)] opacity-70 flex justify-center items-center h-[35%] left-0 right-0 bottom-0">
+          <CameraIcon className="text-white h-[25px] w-[25px]" />
         </div>
       </div>
     </IconButton>

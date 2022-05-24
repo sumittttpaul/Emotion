@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import AuthContainer from '../container/AuthContainer';
-import Image from 'next/image';
 import Router from 'next/router';
 import { Link } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import IconTextFieldDark from '../textfield/IconTextFieldDark';
 import LargeButtonBlue from '../button/LargeButtonBlue';
+import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 
 interface IProps {}
 
@@ -29,16 +29,7 @@ const ForgetPasswordUI: FC<IProps> = (props) => {
           exit={{ opacity: 0, y: -50 }}
           transition={{ duration: 0.25 }}
         >
-          <Image
-            height={50}
-            width={50}
-            className="opacity-70"
-            src="/agewear.svg"
-            alt="logo-svg"
-          />
-          <h6 className="font-medium text-center text-md">
-            Forgot your password ?
-          </h6>
+          <AuthHeaderLabel label='Forgot your password ?'/>
           <h6 className="text-white text-[13px] font-light opacity-75">
             {Header}
           </h6>

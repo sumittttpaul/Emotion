@@ -2,6 +2,7 @@ import { Button } from '@mui/material';
 import React, { FC } from 'react';
 import { BorderContainerDark } from '../container/BorderContainerDark';
 import Image from 'next/image';
+import { SetupAccountLabel } from '../label/SetupAccountLabel';
 
 interface IProps {
   onClick?: () => void;
@@ -17,7 +18,10 @@ export const DatePickerButtonDark: FC<IProps> = (props) => {
   return (
     <BorderContainerDark>
       <div className="flex flex-col space-y-2 items-center w-full relative">
-        <h6 className="text-xs text-white">Date of birth</h6>
+        <SetupAccountLabel
+          heading="Date of birth"
+          subheading="Get special discount and offers on your special day."
+        />
         <Button
           onClick={props.onClick}
           className="rounded-md p-3 button-text-lower text-white bg-[#121212] hover:bg-[#121212]"
@@ -34,12 +38,11 @@ export const DatePickerButtonDark: FC<IProps> = (props) => {
               className="opacity-50"
               src="/icons/balloon.svg"
             />
-            <h6 className="text-white text-[11px] font-normal">{props.label}</h6>
+            <h6 className="text-white text-[11px] font-normal">
+              {props.label}
+            </h6>
           </div>
         </Button>
-        <h6 className="text-[10px] opacity-60 font-[350] text-white">
-          Get special discount and offers on your special day.
-        </h6>
       </div>
     </BorderContainerDark>
   );

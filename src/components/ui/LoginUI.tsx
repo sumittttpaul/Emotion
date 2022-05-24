@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react';
-import Image from 'next/image';
 import AuthContainer from '../container/AuthContainer';
 import { Tab } from '@headlessui/react';
 import { DeviceMobileIcon, MailIcon } from '@heroicons/react/solid';
@@ -10,6 +9,7 @@ import { Link, useTheme } from '@mui/material';
 import Router from 'next/router';
 import SwipeableViews from 'react-swipeable-views';
 import TabPanel from '../tab/SelectAvatarTabPanel';
+import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 
 interface IProps {}
 
@@ -52,18 +52,9 @@ const LoginUI: FC<IProps> = (props) => {
           exit={{ opacity: 0, y: -50 }}
           transition={{ duration: 0.25 }}
         >
-          <Image
-            height={50}
-            width={50}
-            className="opacity-70"
-            src="/agewear.svg"
-            alt="logo-svg"
-          />
-          <h6 className="font-medium text-center text-md">
-            Sign in with an Agewear Account
-          </h6>
+          <AuthHeaderLabel label="Sign in with an Agewear Account" />
           <div className="w-full">
-          {/* @ts-ignore: Unreachable code error */}
+            {/* @ts-ignore: Unreachable code error */}
             <AnimateSharedLayout>
               <Tab.Group>
                 <Tab.List className="flex space-x-2 rounded-md bg-[#121212] p-[5px]">

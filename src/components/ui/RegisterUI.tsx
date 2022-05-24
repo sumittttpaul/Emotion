@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import AuthContainer from '../container/AuthContainer';
 import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
 import TextFieldDark from '../textfield/TextFieldDark';
 import LargeButtonBlue from '../button/LargeButtonBlue';
 import CheckBoxBlue from '../checkbox/CheckBoxBlue';
 import { Link } from '@mui/material';
 import Router from 'next/router';
 import PasswordTextFieldDark from '../textfield/PasswordTextFieldDark';
+import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 
 interface IProps {}
 
@@ -31,16 +31,7 @@ const RegisterUI: FC<IProps> = (props) => {
           exit={{ opacity: 0, y: -50 }}
           transition={{ duration: 0.25 }}
         >
-          <Image
-            height={50}
-            width={50}
-            className="opacity-70"
-            src="/agewear.svg"
-            alt="logo-svg"
-          />
-          <h6 className="font-medium text-center text-md">
-            Create your Agewear account
-          </h6>
+          <AuthHeaderLabel label="Create your Agewear account" />
           <div className="w-full flex space-x-6">
             <TextFieldDark
               placeholder="First Name"
@@ -114,9 +105,14 @@ const RegisterUI: FC<IProps> = (props) => {
               </h6>
             </div>
           </div>
-          <LargeButtonBlue onClick={() => {setTimeout(() => {
-            Router.push('/auth/register/setup-account')
-          }, 250);}} content="Continue" />
+          <LargeButtonBlue
+            onClick={() => {
+              setTimeout(() => {
+                Router.push('/auth/register/setup-account');
+              }, 250);
+            }}
+            content="Continue"
+          />
           <div className="flex">
             <h6 className="text-xs font-light text-[rgba(255,255,255,0.75)] flex items-center">
               Already have an Agewear account?&#160;
