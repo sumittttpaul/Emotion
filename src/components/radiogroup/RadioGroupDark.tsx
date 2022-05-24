@@ -5,7 +5,7 @@ interface IProps {}
 
 /**
  * @author
- * @function @IconRadioGroup
+ * @function @RadioGroupDark
  **/
 
 const Genders = [
@@ -20,7 +20,7 @@ const Genders = [
   },
 ];
 
-const CustomCheckIcon = (props: any) => {
+const CheckIcon = (props: any) => {
   return (
     <svg viewBox="0 0 24 24" fill="none" {...props}>
       <circle cx={12} cy={12} r={12} fill="#fff" opacity="0.2" />
@@ -35,7 +35,7 @@ const CustomCheckIcon = (props: any) => {
   );
 };
 
-export const IconRadioGroup: FC<IProps> = (props) => {
+export const RadioGroupDark: FC<IProps> = (props) => {
   const [value, setvalue] = useState();
   return (
     <RadioGroup
@@ -46,19 +46,19 @@ export const IconRadioGroup: FC<IProps> = (props) => {
       <RadioGroup.Label className="sr-only custom-webkit-focus">
         Select Gender
       </RadioGroup.Label>
-      <div className="space-x-3 mx-auto w-full flex custom-webkit-focus">
+      <div className="space-x-1 mx-auto w-full flex custom-webkit-focus">
         {Genders.map((Genders) => (
           <RadioGroup.Option
             key={Genders.gender}
             value={Genders}
             className={({ active, checked }) =>
               `${active ? 'ring-0 ring-offset-0' : ''}
-                              ${
-                                checked
-                                  ? 'bg-gray-900 bg-opacity-75 text-white border-0'
-                                  : 'bg-white border-2'
-                              }
-                                relative rounded-xl py-2 px-5 w-full cursor-pointer custom-webkit-focus flex focus:outline-none border-gray-200`
+              ${
+                checked
+                  ? 'bg-[#121212] text-white border-0'
+                  : 'bg-[#191919] text-white'
+              }
+                relative rounded-md px-4 py-2 w-full cursor-pointer custom-webkit-focus flex outline-none transition-all ease-in`
             }
           >
             {({ active, checked }) => (
@@ -68,8 +68,10 @@ export const IconRadioGroup: FC<IProps> = (props) => {
                     <div className="text-sm w-full">
                       <RadioGroup.Label
                         as="p"
-                        className={`font-normal text-center ${
-                          checked ? 'text-white' : 'text-gray-900'
+                        className={`font-normal text-[11px] text-center ${
+                          checked
+                            ? 'text-white'
+                            : 'text-[rgba(255,255,255,0.7)]'
                         }`}
                       >
                         {Genders.gender}
@@ -77,8 +79,8 @@ export const IconRadioGroup: FC<IProps> = (props) => {
                     </div>
                   </div>
                   {checked && (
-                    <div className="flex-shrink-0 custom-webkit-focus text-white pl-2 -mr-2">
-                      <CustomCheckIcon className="w-6 h-6" />
+                    <div className="flex-shrink-0 custom-webkit-focus text-white pl-2 -mr-1">
+                      <CheckIcon className="w-4 h-4" />
                     </div>
                   )}
                 </div>

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { BorderContainerDark } from '../container/BorderContainerDark';
-import { SetupAccountLabel } from '../label/SetupAccountLabel';
-import { IconRadioGroup } from '../radiogroup/IconRadioGroup';
+import { BorderContainerDark } from '../../container/BorderContainerDark';
+import { SetupAccountLabel } from '../../label/SetupAccountLabel';
+import { RadioGroupDark } from '../../radiogroup/RadioGroupDark';
 
 interface IProps {}
 
@@ -18,7 +18,7 @@ export const GenderButton: FC<IProps> = (props) => {
           heading="Gender"
           subheading="We will customize our product list according to you."
         />
-        <IconRadioGroup />
+        <RadioGroupDark />
       </div>
     </BorderContainerDark>
   );

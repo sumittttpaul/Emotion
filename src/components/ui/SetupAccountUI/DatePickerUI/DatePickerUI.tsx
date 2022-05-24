@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react';
-import { useDatePickerState } from '../../../providers/state/DatePickerState';
-import { DatePickerButtonDark } from '../../button/DatePickerButtonDark';
+import { useDatePickerState } from '../../../../providers/state/DatePickerState';
+import { DatePickerButtonDark } from '../DatePickerButtonDark';
 import { DatePickerDialogUI } from './DatePickerDialogUI';
 import moment from 'moment';
-import { useDOBState } from '../../../providers/state/DOBState';
+import { useDOBState } from '../../../../providers/state/DOBState';
 
 interface IProps {}
 

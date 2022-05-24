@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { GenderButton } from '../../button/GenderButton';
+import { GenderButton } from '../GenderButton';
 
 interface IProps {}
 

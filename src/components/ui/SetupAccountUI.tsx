@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import AuthContainer from '../container/AuthContainer';
 import { motion, AnimatePresence } from 'framer-motion';
-import AvatarUI from './AvatarUI/AvatarUI';
-import { DatePickerUI } from './DatePickerUI/DatePickerUI';
-import { GenderUI } from './GenderUI/GenderUI';
+import AvatarUI from './SetupAccountUI/AvatarUI/AvatarUI';
+import { DatePickerUI } from './SetupAccountUI/DatePickerUI/DatePickerUI';
+import { GenderUI } from './SetupAccountUI/GenderUI/GenderUI';
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 
 interface IProps {}

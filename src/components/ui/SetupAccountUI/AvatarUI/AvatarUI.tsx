@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react';
 import { AvatarDialogUI } from './AvatarDialogUI';
-import { useAvatarState } from '../../../providers/state/AvatarState';
-import { useProfileURLState } from '../../../providers/state/ProfileURLState';
-import { AvatarButton } from '../../button/AvatarButton';
+import { useAvatarState } from '../../../../providers/state/AvatarState';
+import { useProfileURLState } from '../../../../providers/state/ProfileURLState';
+import { AvatarButton } from '../AvatarButton';
 
 interface IProps {}
 
