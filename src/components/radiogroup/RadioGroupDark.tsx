@@ -10,10 +10,10 @@ interface IProps {}
 
 const Genders = [
   {
-    gender: 'Male',
+    gender: 'Female',
   },
   {
-    gender: 'Female',
+    gender: 'Male',
   },
   {
     gender: 'Others',
