@@ -1,8 +1,10 @@
 import { RadioGroup } from '@headlessui/react';
-import React, { FC, useState } from 'react';
+import React, { Dispatch, FC, SetStateAction, useState } from 'react';
 
 interface IProps {
-  value: Array<string>;
+  content: Array<string>;
+  value?: string;
+  onChange: Dispatch<SetStateAction<any>>
 }
 
 /**
@@ -26,21 +28,20 @@ const CheckIcon = (props: any) => {
 };
 
 export const RadioGroupDark: FC<IProps> = (props) => {
-  const [value, setvalue] = useState();
   return (
     <RadioGroup
-      value={value}
+      value={props.value}
       className="custom-webkit-focus"
-      onChange={setvalue}
+      onChange={props.onChange}
     >
       <RadioGroup.Label className="sr-only custom-webkit-focus">
         Radio Group Dark
       </RadioGroup.Label>
       <div className="space-x-1 mx-auto w-full flex custom-webkit-focus">
-        {props.value.map((value) => (
+        {props.content.map((content) => (
           <RadioGroup.Option
-            key={value.toString()}
-            value={value}
+            key={content.toString()}
+            value={content}
             className={({ active, checked }) =>
               `${active ? 'ring-0 ring-offset-0' : ''}
               ${
@@ -48,7 +49,7 @@ export const RadioGroupDark: FC<IProps> = (props) => {
                   ? 'bg-[#121212] text-white border-0'
                   : 'bg-[#191919] text-white'
               }
-                relative rounded-md px-4 py-2 w-full cursor-pointer custom-webkit-focus flex outline-none transition-all ease-in`
+                relative rounded-md px-3 xs-300:px-4 xs-350:px-5 py-2.5 w-full cursor-pointer custom-webkit-focus flex outline-none transition-all ease-in`
             }
           >
             {({ active, checked }) => (
@@ -58,13 +59,13 @@ export const RadioGroupDark: FC<IProps> = (props) => {
                     <div className="text-sm w-full">
                       <RadioGroup.Label
                         as="p"
-                        className={`font-normal text-[11px] text-center ${
+                        className={`font-normal text-[12px] text-center ${
                           checked
                             ? 'text-white'
                             : 'text-[rgba(255,255,255,0.7)]'
                         }`}
                       >
-                        {value}
+                        {content}
                       </RadioGroup.Label>
                     </div>
                   </div>

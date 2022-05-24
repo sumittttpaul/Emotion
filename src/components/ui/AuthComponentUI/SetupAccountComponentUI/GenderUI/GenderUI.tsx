@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { GenderButton } from '../GenderButton';
+import React, { FC, useState } from 'react';
+import { GenderButton } from '../buttonUI/GenderButton';
 
 interface IProps {}
 
@@ -9,9 +9,14 @@ interface IProps {}
  **/
 
 export const GenderUI: FC<IProps> = (props) => {
+  const [value, setValue] = useState();
   return (
     <>
-      <GenderButton value={['Female', 'Male', 'Others']} />
+      <GenderButton
+        content={['Female', 'Male', 'Others']}
+        value={value}
+        onChange={setValue}
+      />
     </>
   );
 };

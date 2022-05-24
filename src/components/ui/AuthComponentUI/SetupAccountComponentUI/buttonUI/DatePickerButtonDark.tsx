@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { BorderContainerDark } from '../../../container/BorderContainerDark';
-import { SetupAccountLabel } from '../../../label/SetupAccountLabel';
-import { DOBbuttonDark } from '../../../button/DOBbuttonDark';
+import { BorderContainerDark } from '../../../../container/BorderContainerDark';
+import { SetupAccountLabel } from '../../../../label/SetupAccountLabel';
+import { DOBbuttonDark } from '../../../../button/DOBbuttonDark';
 
 interface IProps {
   onClick?: () => void;

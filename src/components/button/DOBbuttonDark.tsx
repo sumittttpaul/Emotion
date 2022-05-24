@@ -31,7 +31,7 @@ export const DOBbuttonDark: FC<IProps> = (props) => {
           src="/icons/balloon.svg"
           alt="balloon icon"
         />
-        <h6 className="text-white text-[11px] font-normal">{props.label}</h6>
+        <h6 className="text-white text-[12px] font-normal">{props.label}</h6>
       </div>
     </Button>
   );

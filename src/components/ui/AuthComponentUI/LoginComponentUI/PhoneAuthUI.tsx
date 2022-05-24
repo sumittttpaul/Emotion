@@ -33,7 +33,7 @@ const PhoneAuthUI: FC<IProps> = (props) => {
         onChange={() => {}}
         onkeyUp={() => {}}
       />
-      <div className="flex w-full">
+      <div className="flex w-full pl-2">
         <CheckBoxBlue />
         <div className="flex items-center">
           <h6 className="ml-3 text-xs font-light text-[rgba(255,255,255,0.75)]">
