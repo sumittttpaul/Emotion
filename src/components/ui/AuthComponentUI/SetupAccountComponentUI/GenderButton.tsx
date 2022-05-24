@@ -3,7 +3,9 @@ import { BorderContainerDark } from '../../../container/BorderContainerDark';
 import { SetupAccountLabel } from '../../../label/SetupAccountLabel';
 import { RadioGroupDark } from '../../../radiogroup/RadioGroupDark';
 
-interface IProps {}
+interface IProps {
+  value: Array<string>;
+}
 
 /**
  * @author
@@ -18,7 +20,7 @@ export const GenderButton: FC<IProps> = (props) => {
           heading="Gender"
           subheading="We will customize our product list according to you."
         />
-        <RadioGroupDark />
+        <RadioGroupDark value={props.value}/>
       </div>
     </BorderContainerDark>
   );

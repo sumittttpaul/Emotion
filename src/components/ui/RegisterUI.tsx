@@ -90,21 +90,6 @@ const RegisterUI: FC<IProps> = (props) => {
               </h6>
             </div>
           </div>
-          <div className="flex w-full">
-            <CheckBoxBlue />
-            <div className="flex items-center">
-              <h6 className="ml-3 text-xs font-light text-[rgba(255,255,255,0.75)]">
-                I accept all the&#160;
-                <Link
-                  className="text-white text-xs"
-                  component="button"
-                  underline="always"
-                >
-                  privacy policy
-                </Link>
-              </h6>
-            </div>
-          </div>
           <LargeButtonBlue
             onClick={() => {
               setTimeout(() => {

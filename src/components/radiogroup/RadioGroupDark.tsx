@@ -1,24 +1,14 @@
 import { RadioGroup } from '@headlessui/react';
 import React, { FC, useState } from 'react';
 
-interface IProps {}
+interface IProps {
+  value: Array<string>;
+}
 
 /**
  * @author
  * @function @RadioGroupDark
  **/
-
-const Genders = [
-  {
-    gender: 'Female',
-  },
-  {
-    gender: 'Male',
-  },
-  {
-    gender: 'Others',
-  },
-];
 
 const CheckIcon = (props: any) => {
   return (
@@ -44,13 +34,13 @@ export const RadioGroupDark: FC<IProps> = (props) => {
       onChange={setvalue}
     >
       <RadioGroup.Label className="sr-only custom-webkit-focus">
-        Select Gender
+        Radio Group Dark
       </RadioGroup.Label>
       <div className="space-x-1 mx-auto w-full flex custom-webkit-focus">
-        {Genders.map((Genders) => (
+        {props.value.map((value) => (
           <RadioGroup.Option
-            key={Genders.gender}
-            value={Genders}
+            key={value.toString()}
+            value={value}
             className={({ active, checked }) =>
               `${active ? 'ring-0 ring-offset-0' : ''}
               ${
@@ -74,7 +64,7 @@ export const RadioGroupDark: FC<IProps> = (props) => {
                             : 'text-[rgba(255,255,255,0.7)]'
                         }`}
                       >
-                        {Genders.gender}
+                        {value}
                       </RadioGroup.Label>
                     </div>
                   </div>

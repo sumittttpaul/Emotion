@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import moment from 'moment';
 import { SelectDayHeader } from './selectDay/SelectDayHeader';
+import { WeekNames } from './selectDay/WeekNames';
 
 interface IProps {
   year: number;
@@ -15,30 +16,6 @@ interface IProps {
  * @author
  * @function @CustomCalender
  **/
-
-const weekNames: any = [
-  {
-    weeks: 'Sun',
-  },
-  {
-    weeks: 'Mon',
-  },
-  {
-    weeks: 'Tue',
-  },
-  {
-    weeks: 'Wed',
-  },
-  {
-    weeks: 'Thu',
-  },
-  {
-    weeks: 'Fri',
-  },
-  {
-    weeks: 'Sat',
-  },
-];
 
 export const SelectDay: FC<IProps> = (props) => {
   const [value, setValue] = useState(moment(props.year + '-' + props.month));
@@ -152,18 +129,7 @@ export const SelectDay: FC<IProps> = (props) => {
         prevMonthClick={prevMonthClick}
         nextMonthClick={nextMonthClick}
       />
-      {/* Week */}
-      <div className="grid grid-cols-7 relative">
-        {weekNames.map((w: any) => (
-          <div
-            key={w}
-            className="m-1 justify-center flex opacity-60 text-white text-[12px]"
-          >
-            {w.weeks}
-          </div>
-        ))}
-      </div>
-      {/* Calender */}
+      <WeekNames value={['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']} />
       <div className="relative w-full h-full text-center">
         {calender.map((week: any) => (
           <div key={week} className="grid grid-cols-7 relative">

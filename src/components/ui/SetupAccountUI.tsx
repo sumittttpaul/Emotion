@@ -5,6 +5,9 @@ import AvatarUI from './AuthComponentUI/SetupAccountComponentUI/AvatarUI/AvatarU
 import { DatePickerUI } from './AuthComponentUI/SetupAccountComponentUI/DatePickerUI/DatePickerUI';
 import { GenderUI } from './AuthComponentUI/SetupAccountComponentUI/GenderUI/GenderUI';
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
+import LargeButtonBlue from '../button/LargeButtonBlue';
+import { Link } from '@mui/material';
+import Router from 'next/router';
 
 interface IProps {}
 
@@ -29,6 +32,22 @@ export const SetupAccountUI: FC<IProps> = (props) => {
           <AvatarUI/>
           <DatePickerUI/>
           <GenderUI/>
+          <LargeButtonBlue onClick={()=>{}} content='Continue'/>
+          <div className="flex">
+            <h6 className="text-xs font-light text-[rgba(255,255,255,0.75)] flex items-center">
+              Will do it later?&#160;
+              <Link
+                onClick={() => {
+                  // Router.push('/');
+                }}
+                className="text-white text-xs"
+                component="button"
+                underline="always"
+              >
+                Skip for now
+              </Link>
+            </h6>
+          </div>
         </motion.div>
       </AnimatePresence>
     </AuthContainer>

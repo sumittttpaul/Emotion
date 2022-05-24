@@ -11,7 +11,7 @@ interface IProps {}
 export const GenderUI: FC<IProps> = (props) => {
   return (
     <>
-      <GenderButton />
+      <GenderButton value={['Female', 'Male', 'Others']} />
     </>
   );
 };
