@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { AvatarCircularButton } from '../../button/AvatarCircularButton';
-import { BorderContainerDark } from '../../container/BorderContainerDark';
-import { SetupAccountLabel } from '../../label/SetupAccountLabel';
+import { AvatarCircularButton } from '../../../button/AvatarCircularButton';
+import { BorderContainerDark } from '../../../container/BorderContainerDark';
+import { SetupAccountLabel } from '../../../label/SetupAccountLabel';
 
 interface IProps {
   onClick?: () => void;

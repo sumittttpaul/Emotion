@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
-import { useDatePickerState } from '../../../../providers/state/DatePickerState';
-import { SelectDay } from '../../../datepicker/SelectDay';
-import { DatePickerContainerDialog } from '../../../dialog/DatePickerContainerDialog';
-import { SelectYear } from '../../../datepicker/SelectYear';
-import { SelectMonth } from '../../../datepicker/SelectMonth';
-import { DatePickerDialogHeader } from '../../../datepicker/Dialog/DatePickerDialogHeader';
-import { DatePickerDialogBottom } from '../../../datepicker/Dialog/DatePickerDialogBottom';
+import { useDatePickerState } from '../../../../../providers/state/DatePickerState';
+import { SelectDay } from '../../../../datepicker/SelectDay';
+import { DatePickerContainerDialog } from '../../../../dialog/DatePickerContainerDialog';
+import { SelectYear } from '../../../../datepicker/SelectYear';
+import { SelectMonth } from '../../../../datepicker/SelectMonth';
+import { DatePickerDialogHeader } from '../../../../datepicker/Dialog/DatePickerDialogHeader';
+import { DatePickerDialogBottom } from '../../../../datepicker/Dialog/DatePickerDialogBottom';
 
 interface IProps {
   Screen1: boolean;

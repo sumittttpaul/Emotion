@@ -1,9 +1,9 @@
 import React, { FC, Fragment } from 'react';
-import { useAvatarState } from '../../../../providers/state/AvatarState';
-import { CropAvatar } from '../../../avatar/CropAvatar';
-import SelectAvatar from '../../../avatar/SelectAvatar';
-import ShowAvatar from '../../../avatar/ShowAvatar';
-import AvatarContainerDialog from '../../../dialog/AvatarContainerDialog';
+import { useAvatarState } from '../../../../../providers/state/AvatarState';
+import { CropAvatar } from '../../../../avatar/CropAvatar';
+import SelectAvatar from '../../../../avatar/SelectAvatar';
+import ShowAvatar from '../../../../avatar/ShowAvatar';
+import AvatarContainerDialog from '../../../../dialog/AvatarContainerDialog';
 
 interface IProps {
   Container: string;
