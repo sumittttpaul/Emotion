@@ -1,15 +1,7 @@
-import React, {
-  FC,
-  useState,
-  MouseEvent,
-  KeyboardEventHandler,
-  ChangeEventHandler,
-} from 'react';
+import React, { FC, KeyboardEventHandler, ChangeEventHandler } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
-import { IconButton, InputAdornment } from '@mui/material';
-import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
 
 const CustomTextField = styled((props: TextFieldProps) => (
   <TextField
@@ -44,7 +36,6 @@ const CustomTextField = styled((props: TextFieldProps) => (
     border: '1px solid rgba(255, 255, 255, 0.23)',
     overflow: 'hidden',
     paddingLeft: 13,
-    paddingRight: 8,
     paddingTop: 4,
     backgroundColor: 'transparent',
     transition: theme.transitions.create([
@@ -65,43 +56,26 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
 }));
 
-interface State {
-  showPassword: boolean;
-}
-
 interface IProps {
-  placeholder: string;
-  icon: string;
+  value: string;
+  placeholder?: string;
+  type?: string;
+  onChange: ChangeEventHandler;
   onkeyUp?: KeyboardEventHandler<HTMLDivElement>;
   onkeyDown?: KeyboardEventHandler<HTMLDivElement>;
   onKeyPress?: KeyboardEventHandler<HTMLDivElement>;
-  onChange: ChangeEventHandler;
-  value: string;
+  dataPhonecode?: string;
 }
 
 /**
  * @author
- * @function @PasswordTextFieldDark
+ * @function @NumberTextFieldDark
  **/
 
-const PasswordTextFieldDark: FC<IProps> = (props) => {
-  const [values, setValues] = useState<State>({ showPassword: false });
-
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
+const NumberTextFieldDark: FC<IProps> = (props) => {
   return (
     <div className="flex flex-col w-full">
       <CustomTextField
-        id="PasswordInput"
         className="w-full z-10"
         label={props.placeholder}
         onChange={props.onChange}
@@ -109,41 +83,12 @@ const PasswordTextFieldDark: FC<IProps> = (props) => {
         onKeyDown={props.onkeyDown}
         onKeyPress={props.onKeyPress}
         value={props.value}
+        type={props.type}
         variant="filled"
-        type={values.showPassword ? 'text' : 'password'}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                disableRipple
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                className="z-20 h-11 w-11 mb-[2px] rounded-md passwordEyeButton"
-                style={{
-                  borderRadius: 6,
-                }}
-              >
-                {values.showPassword ? (
-                  <EyeOffIcon
-                    height={22}
-                    width={22}
-                    className="opacity-[0.5] text-white"
-                  />
-                ) : (
-                  <EyeIcon
-                    height={22}
-                    width={22}
-                    className="opacity-[0.5] text-white"
-                  />
-                )}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
+        data-phonecode={props.dataPhonecode}
       />
     </div>
   );
 };
 
-export default PasswordTextFieldDark;
+export default NumberTextFieldDark;

@@ -71,11 +71,13 @@ interface State {
 }
 
 interface IProps {
+  value: string;
+  onChange: ChangeEventHandler;
   placeholder: string;
   icon: string;
-  onkeyUp: KeyboardEventHandler;
-  onChange: ChangeEventHandler;
-  value: string;
+  onkeyUp?: KeyboardEventHandler<HTMLDivElement>;
+  onkeyDown?: KeyboardEventHandler<HTMLDivElement>;
+  onKeyPress?: KeyboardEventHandler<HTMLDivElement>;
 }
 
 /**
@@ -105,6 +107,8 @@ const IconPasswordTextFieldDark: FC<IProps> = (props) => {
         label={props.placeholder}
         onChange={props.onChange}
         onKeyUp={props.onkeyUp}
+        onKeyDown={props.onkeyDown}
+        onKeyPress={props.onKeyPress}
         value={props.value}
         variant="filled"
         type={values.showPassword ? 'text' : 'password'}
@@ -112,6 +116,7 @@ const IconPasswordTextFieldDark: FC<IProps> = (props) => {
           endAdornment: (
             <InputAdornment position="end">
               <IconButton
+                disableRipple
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
@@ -124,13 +129,13 @@ const IconPasswordTextFieldDark: FC<IProps> = (props) => {
                   <EyeOffIcon
                     height={22}
                     width={22}
-                    className="opacity-[0.4] text-white"
+                    className="opacity-[0.5] text-white"
                   />
                 ) : (
                   <EyeIcon
                     height={22}
                     width={22}
-                    className="opacity-[0.4] text-white"
+                    className="opacity-[0.5] text-white"
                   />
                 )}
               </IconButton>

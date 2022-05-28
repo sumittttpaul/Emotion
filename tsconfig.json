@@ -18,6 +18,6 @@
     "noImplicitThis": true,
     "strictNullChecks": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/test.jsx", "src/components/avatar/cropper/CropperAlgorithms.tss", "src/components/avatar/cropper/CroppedImage.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/test.jsx", "src/components/avatar/cropper/CropperAlgorithms.tss", "src/components/avatar/cropper/CroppedImage.ts", "src/firebase/AuthService.js"],
   "exclude": ["node_modules"]
 }

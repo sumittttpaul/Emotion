@@ -1,4 +1,8 @@
-import React, { FC, useState, MouseEvent, KeyboardEventHandler, ChangeEventHandler } from 'react';
+import React, {
+  FC,
+  KeyboardEventHandler,
+  ChangeEventHandler,
+} from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
@@ -58,12 +62,14 @@ const CustomTextField = styled((props: TextFieldProps) => (
 }));
 
 interface IProps {
-  placeholder: string;
-  icon: string,
-  onkeyUp: KeyboardEventHandler,
-  onChange: ChangeEventHandler,
-  value: string,
-  type: string,
+  value: string;
+  onChange: ChangeEventHandler;
+  placeholder?: string;
+  icon: string;
+  type?: string;
+  onkeyUp?: KeyboardEventHandler<HTMLDivElement>;
+  onkeyDown?: KeyboardEventHandler<HTMLDivElement>;
+  onKeyPress?: KeyboardEventHandler<HTMLDivElement>;
 }
 
 /**
@@ -79,9 +85,13 @@ const IconTextFieldDark: FC<IProps> = (props) => {
         label={props.placeholder}
         onChange={props.onChange}
         onKeyUp={props.onkeyUp}
+        onKeyDown={props.onkeyDown}
+        onKeyPress={props.onKeyPress}
         value={props.value}
-        variant="filled"
         type={props.type}
+        variant="filled"
+        autoCorrect="off"
+        autoComplete="off"
       />
       <div className="-mt-[46px] ml-[20px] mb-[16px] flex">
         <Image

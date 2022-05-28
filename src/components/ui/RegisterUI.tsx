@@ -8,6 +8,7 @@ import { Link } from '@mui/material';
 import Router from 'next/router';
 import PasswordTextFieldDark from '../textfield/PasswordTextFieldDark';
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
+import NumberTextFieldDark from '../textfield/NumberTextFieldDark';
 
 interface IProps {}
 
@@ -55,9 +56,10 @@ const RegisterUI: FC<IProps> = (props) => {
             onChange={() => {}}
             onkeyUp={() => {}}
           />
-          <TextFieldDark
+          <NumberTextFieldDark
             placeholder="Phone Number"
-            type="phoneNumber"
+            type="tel"
+            dataPhonecode="+91"
             value=""
             onChange={() => {}}
             onkeyUp={() => {}}

@@ -11,6 +11,7 @@ import createEmotionCache from '../../src/createEmotionCache';
 import { StateProvider } from '../providers/StateProvider';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
+import { AuthProvider } from '../firebase/AuthProvider';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -22,20 +23,22 @@ function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
     <CacheProvider value={emotionCache}>
-      <Provider store={store}>
-        <StateProvider>
-          <Head>
-            <meta
-              name="viewport"
-              content="initial-scale=1, width=device-width"
-            />
-          </Head>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </StateProvider>
-      </Provider>
+      <AuthProvider>
+        <Provider store={store}>
+          <StateProvider>
+            <Head>
+              <meta
+                name="viewport"
+                content="initial-scale=1, width=device-width"
+              />
+            </Head>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <Component {...pageProps} />
+            </ThemeProvider>
+          </StateProvider>
+        </Provider>
+      </AuthProvider>
     </CacheProvider>
   );
 }

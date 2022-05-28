@@ -1,15 +1,8 @@
-import React, {
-  FC,
-  useState,
-  MouseEvent,
-  KeyboardEventHandler,
-  ChangeEventHandler,
-} from 'react';
+import React, { FC, KeyboardEventHandler, ChangeEventHandler } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
-import { IconButton, InputAdornment } from '@mui/material';
-import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
+import Image from 'next/image';
 
 const CustomTextField = styled((props: TextFieldProps) => (
   <TextField
@@ -24,14 +17,14 @@ const CustomTextField = styled((props: TextFieldProps) => (
     fontSize: '13px',
     textTransform: 'unset',
     letterSpacing: 0.5,
-    transform: 'translate(26px, 23px) scale(1)',
+    transform: 'translate(67px, 23px) scale(1)',
   },
   '& label.Mui-focused': {
     color: 'rgba(255, 255, 255, 0.70)',
-    transform: 'translate(26px, 12px) scale(0.90)',
+    transform: 'translate(67px, 12px) scale(0.90)',
   },
   '& .MuiInputLabel-shrink': {
-    transform: 'translate(26px, 12px) scale(0.90)',
+    transform: 'translate(67px, 12px) scale(0.90)',
   },
   '& .MuiFilledInput-root': {
     height: 63,
@@ -43,8 +36,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
     color: '#ffffff',
     border: '1px solid rgba(255, 255, 255, 0.23)',
     overflow: 'hidden',
-    paddingLeft: 13,
-    paddingRight: 8,
+    paddingLeft: 54,
     paddingTop: 4,
     backgroundColor: 'transparent',
     transition: theme.transitions.create([
@@ -65,43 +57,27 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
 }));
 
-interface State {
-  showPassword: boolean;
-}
-
 interface IProps {
-  placeholder: string;
+  value: string;
+  onChange: ChangeEventHandler;
+  placeholder?: string;
   icon: string;
+  type?: string;
   onkeyUp?: KeyboardEventHandler<HTMLDivElement>;
   onkeyDown?: KeyboardEventHandler<HTMLDivElement>;
   onKeyPress?: KeyboardEventHandler<HTMLDivElement>;
-  onChange: ChangeEventHandler;
-  value: string;
+  dataPhonecode?: string;
 }
 
 /**
  * @author
- * @function @PasswordTextFieldDark
+ * @function @IconNumberTextFieldDark
  **/
 
-const PasswordTextFieldDark: FC<IProps> = (props) => {
-  const [values, setValues] = useState<State>({ showPassword: false });
-
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
+const IconNumberTextFieldDark: FC<IProps> = (props) => {
   return (
     <div className="flex flex-col w-full">
       <CustomTextField
-        id="PasswordInput"
         className="w-full z-10"
         label={props.placeholder}
         onChange={props.onChange}
@@ -109,41 +85,26 @@ const PasswordTextFieldDark: FC<IProps> = (props) => {
         onKeyDown={props.onkeyDown}
         onKeyPress={props.onKeyPress}
         value={props.value}
+        type={props.type}
+        data-phonecode={props.dataPhonecode}
         variant="filled"
-        type={values.showPassword ? 'text' : 'password'}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                disableRipple
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                className="z-20 h-11 w-11 mb-[2px] rounded-md passwordEyeButton"
-                style={{
-                  borderRadius: 6,
-                }}
-              >
-                {values.showPassword ? (
-                  <EyeOffIcon
-                    height={22}
-                    width={22}
-                    className="opacity-[0.5] text-white"
-                  />
-                ) : (
-                  <EyeIcon
-                    height={22}
-                    width={22}
-                    className="opacity-[0.5] text-white"
-                  />
-                )}
-              </IconButton>
-            </InputAdornment>
-          ),
+        autoCorrect="off"
+        autoComplete="off"
+        inputProps={{
+          maxLength: 10
         }}
       />
+      <div className="-mt-[46px] ml-[20px] mb-[16px] flex">
+        <Image
+          height={30}
+          width={30}
+          className="opacity-[0.4]"
+          src={props.icon}
+          alt="textfield-icons"
+        />
+      </div>
     </div>
   );
 };
 
-export default PasswordTextFieldDark;
+export default IconNumberTextFieldDark;

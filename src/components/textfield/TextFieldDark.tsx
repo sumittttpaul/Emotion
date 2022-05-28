@@ -58,7 +58,9 @@ const CustomTextField = styled((props: TextFieldProps) => (
 
 interface IProps {
   placeholder: string;
-  onkeyUp: KeyboardEventHandler;
+  onkeyUp?: KeyboardEventHandler<HTMLDivElement>;
+  onkeyDown?: KeyboardEventHandler<HTMLDivElement>;
+  onKeyPress?: KeyboardEventHandler<HTMLDivElement>;
   onChange: ChangeEventHandler;
   value: string;
   type: string;
@@ -77,6 +79,8 @@ const TextFieldDark: FC<IProps> = (props) => {
         label={props.placeholder}
         onChange={props.onChange}
         onKeyUp={props.onkeyUp}
+        onKeyDown={props.onkeyDown}
+        onKeyPress={props.onKeyPress}
         value={props.value}
         variant="filled"
         type={props.type}
