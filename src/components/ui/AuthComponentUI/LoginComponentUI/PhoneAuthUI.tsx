@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Link } from '@mui/material';
 import CheckBoxBlue from '../../../checkbox/CheckBoxBlue';
 import LargeButtonBlue from '../../../button/LargeButtonBlue';
@@ -6,6 +6,7 @@ import OtherAccountAuthUI from './OtherAccountAuthUI';
 import AuthDivider from '../../../divider/AuthDivider';
 import { useOTPState } from '../../../../providers/state/OTPState';
 import IconNumberTextFieldDark from '../../../textfield/IconNumberTextFieldDark';
+import { InputNumberOnly } from '../../../../algorithms/UIAlgorithms';
 
 interface IProps {}
 
@@ -17,11 +18,14 @@ interface IProps {}
 const PhoneAuthUI: FC<IProps> = (props) => {
   const { setOTPDialog } = useOTPState();
 
+  const [value, setValue] = useState<string>('');
+
   const handleClick = () => {
     setTimeout(() => {
       setOTPDialog({ show: true });
     }, 250);
   };
+
   return (
     <div className="w-full space-y-7 flex flex-col justify-center items-center">
       <IconNumberTextFieldDark
@@ -31,7 +35,6 @@ const PhoneAuthUI: FC<IProps> = (props) => {
         dataPhonecode="+91"
         value=""
         onChange={() => {}}
-        onkeyUp={() => {}}
       />
       <div className="flex w-full pl-2">
         <CheckBoxBlue />

@@ -21,7 +21,7 @@ export const StateProvider: FC<IProps> = (props) => {
       <OTPState value={{ show: false }}>
         <AvatarState value={{ show: false }}>
           <DatePickerState value={{ show: false }}>
-            <DOBState value={{ day:0, month:0, year:0}}>
+            <DOBState value={{ day: 0, month: 0, year: 0 }}>
               <ProfileURLState
                 value={{ URL: '/images/user.png', change: false }}
               >

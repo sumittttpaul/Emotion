@@ -26,6 +26,7 @@
     "moment": "^2.29.3",
     "next": "12.1.6",
     "nookies": "^2.5.2",
+    "notistack": "^2.0.5",
     "react": "18.1.0",
     "react-advanced-cropper": "^0.6.2",
     "react-dom": "18.1.0",
