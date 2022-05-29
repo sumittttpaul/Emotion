@@ -160,7 +160,7 @@ const LoginUI: FC<IProps> = (props) => {
         message="OTP sent successfully !"
         open={open}
         close={handleClose}
-        autoHideDuration={10000}
+        autoHideDuration={6000}
         slideDirection="down"
         positionVertical="top"
         positionHorizontal="center"

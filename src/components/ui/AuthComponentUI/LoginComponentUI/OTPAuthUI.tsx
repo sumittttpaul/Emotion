@@ -1,8 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Link } from '@mui/material';
 import OTPTextFieldDark from '../../../textfield/OTPTextFieldDark';
 import { useOTPState } from '../../../../providers/state/OTPState';
 import { DialogContainerDark } from '../../../dialog/DialogContainerDark';
+import { OTPTimer } from '../../../timer/OTPTimer';
 
 interface IProps {}
 
@@ -13,9 +14,21 @@ interface IProps {}
 
 const OTPAuthUI: FC<IProps> = (props) => {
   const { OTPDialog, setOTPDialog } = useOTPState();
+  const [bool, setBool] = useState(false);
 
   const closeModal = () => {
     setOTPDialog({ show: false });
+    setTimeout(() => {
+      setBool(false);
+    }, 200);
+  };
+
+  const showResend = () => {
+    setBool(true);
+  };
+
+  const hideResend = () => {
+    setBool(false);
   };
 
   return (
@@ -39,19 +52,26 @@ const OTPAuthUI: FC<IProps> = (props) => {
             <OTPTextFieldDark value="" onChange={() => {}} />
           </div>
         </div>
-        <div className="flex">
-          <h6 className="text-white text-xs font-light opacity-75">
-            Otp not send?&#160;
-          </h6>
-          <Link
-            disabled={false}
-            href="#"
-            className="text-white text-xs disabled:opacity-75"
-            component="button"
-            underline="always"
-          >
-            Resend OTP
-          </Link>
+        <div className="flex h-4">
+          {bool ? (
+            <>
+              <h6 className="text-white text-xs font-light opacity-75">
+                Otp not send?&#160;
+              </h6>
+              <Link
+                onClick={hideResend}
+                className="text-white text-xs"
+                component="button"
+                underline="always"
+              >
+                Resend OTP
+              </Link>
+            </>
+          ) : (
+            <>
+              <OTPTimer min={1} sec={30} resend={showResend} />
+            </>
+          )}
         </div>
         <Link
           onClick={closeModal}
