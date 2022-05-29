@@ -16,16 +16,16 @@ interface IProps {
   positionHorizontal: any;
   open: boolean;
   type: string;
+  bgColor: string;
+  autoHideDuration: number;
   close: (value: boolean) => void;
 }
 
-/**
- * @author
- * @function @GradientToastDark
- **/
+const textColor = 'text-white opacity-100';
+const maxWidth = 'max-w-[400px]';
 
 const ErrorBorderColor = 'border-[#fd1616]';
-const ErrorIconColor = 'text-[#fd1616]';
+const ErrorIconColor = 'text-[#FF2828]';
 
 const SuccessBorderColor = 'border-[#00cc11cc]';
 const SuccessIconColor = 'text-[#00cc11cc]';
@@ -36,7 +36,15 @@ const InfoIconColor = 'text-[#0099ff]';
 const WarningBorderColor = 'border-[#ffae00ea]';
 const WarningIconColor = 'text-[#ffae00ea]';
 
+/**
+ * @author
+ * @function @ToastDark
+ **/
+
 export const ToastDark: FC<IProps> = (props) => {
+  const bgColor = props.bgColor;
+  const autoHideDuration = props.autoHideDuration;
+
   const SlideTransition = (prop: SlideProps) => {
     return <Slide {...prop} direction={props.slideDirection} />;
   };
@@ -85,7 +93,7 @@ export const ToastDark: FC<IProps> = (props) => {
     return (
       <Snackbar
         open={state.open}
-        autoHideDuration={6000}
+        autoHideDuration={autoHideDuration}
         onClose={handleClose}
         TransitionComponent={state.Transition}
         anchorOrigin={{
@@ -94,12 +102,12 @@ export const ToastDark: FC<IProps> = (props) => {
         }}
       >
         <div
-          className={`${'text-white flex relative space-x-3 p-3 items-center border-l-[3px] bg-[#121212] rounded-lg max-w-[400px]'} ${ErrorBorderColor}`}
+          className={`${'text-white flex relative space-x-3 p-3 items-center border-l-[3px] rounded-lg'} ${maxWidth} ${ErrorBorderColor} ${bgColor}`}
         >
           <div className="h-full items-start">
             <XCircleIcon className={`${'h-7 w-7'} ${ErrorIconColor}`} />
           </div>
-          <h6 className="text-xs opacity-80 font-[350] pr-2">
+          <h6 className={`${'text-xs font-[350] pr-2'} ${textColor}`}>
             {props.message}
           </h6>
           <div className="h-full items-start">
@@ -119,7 +127,7 @@ export const ToastDark: FC<IProps> = (props) => {
     return (
       <Snackbar
         open={state.open}
-        autoHideDuration={6000}
+        autoHideDuration={autoHideDuration}
         onClose={handleClose}
         TransitionComponent={state.Transition}
         anchorOrigin={{
@@ -128,12 +136,12 @@ export const ToastDark: FC<IProps> = (props) => {
         }}
       >
         <div
-          className={`${'text-white flex relative space-x-3 p-3 items-center border-l-[3px] bg-[#121212] rounded-lg max-w-[400px]'} ${SuccessBorderColor}`}
+          className={`${'text-white flex relative space-x-3 p-3 items-center border-l-[3px] rounded-lg'} ${maxWidth} ${SuccessBorderColor} ${bgColor}`}
         >
           <div className="h-full items-start">
             <CheckCircleIcon className={`${'h-7 w-7'} ${SuccessIconColor}`} />
           </div>
-          <h6 className="text-xs opacity-80 font-[350] pr-2">
+          <h6 className={`${'text-xs font-[350] pr-2'} ${textColor}`}>
             {props.message}
           </h6>
           <div className="h-full items-start">
@@ -153,7 +161,7 @@ export const ToastDark: FC<IProps> = (props) => {
     return (
       <Snackbar
         open={state.open}
-        autoHideDuration={6000}
+        autoHideDuration={autoHideDuration}
         onClose={handleClose}
         TransitionComponent={state.Transition}
         anchorOrigin={{
@@ -162,14 +170,14 @@ export const ToastDark: FC<IProps> = (props) => {
         }}
       >
         <div
-          className={`${'text-white flex relative space-x-3 p-3 items-center border-l-[3px] bg-[#121212] rounded-lg max-w-[400px]'} ${InfoBorderColor}`}
+          className={`${'text-white flex relative space-x-3 p-3 items-center border-l-[3px] rounded-lg'} ${maxWidth} ${InfoBorderColor} ${bgColor}`}
         >
           <div className="h-full items-start">
             <InformationCircleIcon
               className={`${'h-7 w-7'} ${InfoIconColor}`}
             />
           </div>
-          <h6 className="text-xs opacity-80 font-[350] pr-2">
+          <h6 className={`${'text-xs font-[350] pr-2'} ${textColor}`}>
             {props.message}
           </h6>
           <div className="h-full items-start">
@@ -189,7 +197,7 @@ export const ToastDark: FC<IProps> = (props) => {
     return (
       <Snackbar
         open={state.open}
-        autoHideDuration={6000}
+        autoHideDuration={autoHideDuration}
         onClose={handleClose}
         TransitionComponent={state.Transition}
         anchorOrigin={{
@@ -198,14 +206,14 @@ export const ToastDark: FC<IProps> = (props) => {
         }}
       >
         <div
-          className={`${'text-white flex relative space-x-3 p-3 items-center border-l-[3px] bg-[#121212] rounded-lg max-w-[400px]'} ${WarningBorderColor}`}
+          className={`${'text-white flex relative space-x-3 p-3 items-center border-l-[3px] rounded-lg'} ${maxWidth} ${WarningBorderColor} ${bgColor}`}
         >
           <div className="h-full items-start">
             <InformationCircleIcon
               className={`${'h-7 w-7'} ${WarningIconColor}`}
             />
           </div>
-          <h6 className="text-xs opacity-80 font-[350] pr-2">
+          <h6 className={`${'text-xs font-[350] pr-2'} ${textColor}`}>
             {props.message}
           </h6>
           <div className="h-full items-start">

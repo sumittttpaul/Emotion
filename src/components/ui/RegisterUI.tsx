@@ -39,14 +39,12 @@ const RegisterUI: FC<IProps> = (props) => {
               type="text"
               value=""
               onChange={() => {}}
-              onkeyUp={() => {}}
             />
             <TextFieldDark
               placeholder="Last Name"
               type="text"
               value=""
               onChange={() => {}}
-              onkeyUp={() => {}}
             />
           </div>
           <TextFieldDark
@@ -54,7 +52,6 @@ const RegisterUI: FC<IProps> = (props) => {
             type="email"
             value=""
             onChange={() => {}}
-            onkeyUp={() => {}}
           />
           <NumberTextFieldDark
             placeholder="Phone Number"
@@ -62,7 +59,6 @@ const RegisterUI: FC<IProps> = (props) => {
             dataPhonecode="+91"
             value=""
             onChange={() => {}}
-            onkeyUp={() => {}}
           />
           <div className="w-full space-y-3">
             <h6 className="text-white text-xs font-light opacity-75">
@@ -73,7 +69,6 @@ const RegisterUI: FC<IProps> = (props) => {
               icon="/icons/password.svg"
               value=""
               onChange={() => {}}
-              onkeyUp={() => {}}
             />
           </div>
 

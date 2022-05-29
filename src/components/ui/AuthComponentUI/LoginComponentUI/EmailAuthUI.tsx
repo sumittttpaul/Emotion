@@ -22,14 +22,12 @@ const EmailAuthUI: FC<IProps> = (props) => {
         type="email"
         value=""
         onChange={() => {}}
-        onkeyUp={() => {}}
       />
       <IconPasswordTextFieldDark
         placeholder="Password"
         icon="/icons/password.svg"
         value=""
         onChange={() => {}}
-        onkeyUp={() => {}}
       />
       <div className="w-full space-y-1">
         <div className="text-right w-full">

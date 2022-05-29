@@ -6,9 +6,10 @@ import OtherAccountAuthUI from './OtherAccountAuthUI';
 import AuthDivider from '../../../divider/AuthDivider';
 import { useOTPState } from '../../../../providers/state/OTPState';
 import IconNumberTextFieldDark from '../../../textfield/IconNumberTextFieldDark';
-import { InputNumberOnly } from '../../../../algorithms/UIAlgorithms';
 
-interface IProps {}
+interface IProps {
+  click: () => void;
+}
 
 /**
  * @author
@@ -18,11 +19,10 @@ interface IProps {}
 const PhoneAuthUI: FC<IProps> = (props) => {
   const { setOTPDialog } = useOTPState();
 
-  const [value, setValue] = useState<string>('');
-
   const handleClick = () => {
     setTimeout(() => {
       setOTPDialog({ show: true });
+      props.click();
     }, 250);
   };
 
