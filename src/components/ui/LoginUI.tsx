@@ -2,7 +2,11 @@ import React, { FC, useState } from 'react';
 import AuthContainer from '../container/AuthContainer';
 import { Tab } from '@headlessui/react';
 import { DeviceMobileIcon, MailIcon } from '@heroicons/react/solid';
-import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion';
+import {
+  motion,
+  AnimatePresence,
+  LayoutGroup,
+} from 'framer-motion';
 import EmailAuthUI from './AuthComponentUI/LoginComponentUI/EmailAuthUI';
 import PhoneAuthUI from './AuthComponentUI/LoginComponentUI/PhoneAuthUI';
 import { Link, useTheme } from '@mui/material';
@@ -65,8 +69,7 @@ const LoginUI: FC<IProps> = (props) => {
           >
             <AuthHeaderLabel label="Sign in with an Agewear Account" />
             <div className="w-full">
-              {/* @ts-ignore: Unreachable code error */}
-              <AnimateSharedLayout>
+              <LayoutGroup>
                 <Tab.Group>
                   <Tab.List className="flex space-x-2 rounded-md bg-[#121212] p-[5px]">
                     <Tab
@@ -115,7 +118,7 @@ const LoginUI: FC<IProps> = (props) => {
                     </Tab>
                   </Tab.List>
                 </Tab.Group>
-              </AnimateSharedLayout>
+              </LayoutGroup>
             </div>
             <SwipeableViews
               axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -129,7 +132,7 @@ const LoginUI: FC<IProps> = (props) => {
               }}
             >
               <TabPanel value={Tabvalue} index={0} dir={theme.direction}>
-                <PhoneAuthUI click={handleClick}/>
+                <PhoneAuthUI click={handleClick} />
               </TabPanel>
               <TabPanel value={Tabvalue} index={1} dir={theme.direction}>
                 <EmailAuthUI />

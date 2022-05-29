@@ -79,6 +79,7 @@ export const ToastDark: FC<IProps> = (props) => {
     }, 200);
   };
 
+  // @ts-ignore: Unreachable code error
   useEffect(() => {
     if (state.open === props.open) {
       return;
@@ -87,7 +88,7 @@ export const ToastDark: FC<IProps> = (props) => {
       ...state,
       open: props.open,
     });
-  });
+  },[props.open, state]);
 
   if (props.type === 'error') {
     return (

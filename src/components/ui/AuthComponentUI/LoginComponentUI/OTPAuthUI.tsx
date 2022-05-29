@@ -19,11 +19,11 @@ const OTPAuthUI: FC<IProps> = (props) => {
     setOTPDialog({ show: false });
   };
 
-  useEffect(() => {
-    const timer =
-      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-    return () => clearInterval(timer);
-  }, [counter]);
+  // useEffect(() => {
+  //   const timer =
+  //     counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+  //   return () => clearInterval(timer);
+  // }, [counter]);
 
   return (
     <DialogContainerDark show={OTPDialog.show} close={() => {}}>

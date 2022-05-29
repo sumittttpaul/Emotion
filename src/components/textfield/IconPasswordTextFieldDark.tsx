@@ -103,6 +103,7 @@ const IconPasswordTextFieldDark: FC<IProps> = (props) => {
     <div className="flex flex-col w-full">
       <CustomTextField
         id="PasswordInput"
+        aria-label='password-textfield'
         className="w-full z-10"
         label={props.placeholder}
         onChange={props.onChange}
@@ -111,6 +112,8 @@ const IconPasswordTextFieldDark: FC<IProps> = (props) => {
         onKeyPress={props.onKeyPress}
         value={props.value}
         variant="filled"
+        autoComplete='off'
+        autoCapitalize='off'
         type={values.showPassword ? 'text' : 'password'}
         InputProps={{
           endAdornment: (
