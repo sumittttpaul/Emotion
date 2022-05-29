@@ -13,17 +13,10 @@ interface IProps {}
 
 const OTPAuthUI: FC<IProps> = (props) => {
   const { OTPDialog, setOTPDialog } = useOTPState();
-  const [counter, setCounter] = useState<number>(59);
 
   const closeModal = () => {
     setOTPDialog({ show: false });
   };
-
-  // useEffect(() => {
-  //   const timer =
-  //     counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-  //   return () => clearInterval(timer);
-  // }, [counter]);
 
   return (
     <DialogContainerDark show={OTPDialog.show} close={() => {}}>
@@ -48,16 +41,16 @@ const OTPAuthUI: FC<IProps> = (props) => {
         </div>
         <div className="flex">
           <h6 className="text-white text-xs font-light opacity-75">
-            {/* Otp not send?&#160; */}
+            Otp not send?&#160;
           </h6>
           <Link
-            disabled={true}
+            disabled={false}
             href="#"
             className="text-white text-xs disabled:opacity-75"
             component="button"
             underline="none"
           >
-            Resend OTP in {counter} sec
+            Resend OTP
           </Link>
         </div>
         <Link
