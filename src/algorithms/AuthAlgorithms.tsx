@@ -20,7 +20,7 @@ const user = useAuth();
 export const configureCaptcha = () => {
   if (typeof window === 'object') {
     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-      'sign-in-button',
+      'verify-sign-in-recaptcha',
       {
         size: 'invisible',
         callback: (response: any) => {
