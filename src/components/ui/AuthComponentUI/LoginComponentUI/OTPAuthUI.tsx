@@ -48,7 +48,7 @@ const OTPAuthUI: FC<IProps> = (props) => {
             href="#"
             className="text-white text-xs disabled:opacity-75"
             component="button"
-            underline="none"
+            underline="always"
           >
             Resend OTP
           </Link>

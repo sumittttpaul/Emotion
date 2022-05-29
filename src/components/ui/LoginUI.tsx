@@ -30,7 +30,7 @@ function classNames(...classes: any) {
 const LoginUI: FC<IProps> = (props) => {
   const [value, setValue] = useState(true);
   const [Tabvalue, setTabValue] = useState(0);
-  const [open, setOpen] = useState<boolean>(true);
+  const [open, setOpen] = useState(false);
   const theme = useTheme();
 
   const handleClick = () => {
