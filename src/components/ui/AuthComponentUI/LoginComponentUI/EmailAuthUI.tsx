@@ -1,12 +1,33 @@
-import React, { FC } from 'react';
+import React, { ChangeEvent, FC, KeyboardEventHandler } from 'react';
 import CheckBoxBlue from '../../../checkbox/CheckBoxBlue';
 import LargeButtonBlue from '../../../button/LargeButtonBlue';
 import IconTextFieldDark from '../../../textfield/IconTextFieldDark';
 import IconPasswordTextFieldDark from '../../../textfield/IconPasswordTextFieldDark';
 import { Link } from '@mui/material';
 import Router from 'next/router';
+import { EmailPrivacyPolicy } from '../../../terms & policy/EmailPrivacyPolicy';
 
-interface IProps {}
+interface IProps {
+  Email: string;
+  EmailKeyUp?: KeyboardEventHandler<HTMLDivElement>;
+  EmailKeyPress?: KeyboardEventHandler<HTMLDivElement>;
+  EmailKeyDown?: KeyboardEventHandler<HTMLDivElement>;
+  EmailChange: () => void;
+
+  Password: string;
+  PasswordKeyUp?: KeyboardEventHandler<HTMLDivElement>;
+  PasswordKeyPress?: KeyboardEventHandler<HTMLDivElement>;
+  PasswordKeyDown?: KeyboardEventHandler<HTMLDivElement>;
+  PasswordChange: () => void;
+
+  EmailPolicyChecked: boolean;
+  EmailPolicyCheckedChange: (
+    event: ChangeEvent<HTMLInputElement>
+  ) => void;
+
+  EmailSubmitDisabled: boolean;
+  EmailSubmitClick: () => void;
+}
 
 /**
  * @author
@@ -20,14 +41,20 @@ const EmailAuthUI: FC<IProps> = (props) => {
         placeholder="Email Address"
         icon="/icons/email.svg"
         type="email"
-        value=""
-        onChange={() => {}}
+        value={props.Email}
+        onChange={props.EmailChange}
+        onkeyDown={props.EmailKeyDown}
+        onKeyPress={props.EmailKeyPress}
+        onkeyUp={props.EmailKeyUp}
       />
       <IconPasswordTextFieldDark
         placeholder="Password"
         icon="/icons/password.svg"
-        value=""
-        onChange={() => {}}
+        value={props.Password}
+        onChange={props.PasswordChange}
+        onkeyDown={props.PasswordKeyDown}
+        onKeyPress={props.PasswordKeyPress}
+        onkeyUp={props.PasswordKeyUp}
       />
       <div className="w-full space-y-1">
         <div className="text-right w-full">
@@ -43,22 +70,18 @@ const EmailAuthUI: FC<IProps> = (props) => {
           </Link>
         </div>
         <div className="flex w-full pl-2">
-          <CheckBoxBlue />
-          <div className="flex items-center">
-            <h6 className="ml-3 text-xs font-light text-[rgba(255,255,255,0.75)]">
-              I agree with&#160;
-              <Link
-                className="text-white text-xs"
-                component="button"
-                underline="always"
-              >
-                privacy policy
-              </Link>
-            </h6>
-          </div>
+          <CheckBoxBlue
+            Checked={props.EmailPolicyChecked}
+            OnCnange={props.EmailPolicyCheckedChange}
+          />
+          <EmailPrivacyPolicy />
         </div>
       </div>
-      <LargeButtonBlue onClick={() => {}} content="Log In Now" />
+      <LargeButtonBlue
+        onClick={props.EmailSubmitClick}
+        content="Log In Now"
+        Disabled={props.EmailSubmitDisabled}
+      />
     </div>
   );
 };

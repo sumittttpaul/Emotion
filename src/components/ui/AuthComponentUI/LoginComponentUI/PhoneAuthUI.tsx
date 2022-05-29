@@ -1,14 +1,30 @@
-import React, { FC, useState } from 'react';
-import { Link } from '@mui/material';
+import React, { ChangeEvent, FC, KeyboardEventHandler } from 'react';
 import CheckBoxBlue from '../../../checkbox/CheckBoxBlue';
 import LargeButtonBlue from '../../../button/LargeButtonBlue';
 import OtherAccountAuthUI from './OtherAccountAuthUI';
 import AuthDivider from '../../../divider/AuthDivider';
 import { useOTPState } from '../../../../providers/state/OTPState';
 import IconNumberTextFieldDark from '../../../textfield/IconNumberTextFieldDark';
+import { PhonePrivacyPolicy } from '../../../terms & policy/PhonePrivacyPolicy';
 
 interface IProps {
-  click: () => void;
+  Phone: string;
+  PhoneKeyUp?: KeyboardEventHandler<HTMLDivElement>;
+  PhoneKeyPress?: KeyboardEventHandler<HTMLDivElement>;
+  PhoneKeyDown?: KeyboardEventHandler<HTMLDivElement>;
+  PhoneChange: () => void;
+
+  PhonePolicyChecked: boolean;
+  PhonePolicyCheckedChange: (
+    event: ChangeEvent<HTMLInputElement>
+  ) => void;
+
+  PhoneSubmitDisabled: boolean;
+  PhoneSubmitClick: () => void;
+
+  FacebookSignIn: () => void;
+  GoogleSignIn: () => void;
+  AppleSignIn: () => void;
 }
 
 /**
@@ -22,7 +38,6 @@ const PhoneAuthUI: FC<IProps> = (props) => {
   const handleClick = () => {
     setTimeout(() => {
       setOTPDialog({ show: true });
-      props.click();
     }, 250);
   };
 
@@ -33,27 +48,30 @@ const PhoneAuthUI: FC<IProps> = (props) => {
         icon="/icons/phone.svg"
         type="tel"
         dataPhonecode="+91"
-        value=""
-        onChange={() => {}}
+        value={props.Phone}
+        onChange={props.PhoneChange}
+        onKeyPress={props.PhoneKeyPress}
+        onkeyDown={props.PhoneKeyDown}
+        onkeyUp={props.PhoneKeyUp}
       />
       <div className="flex w-full pl-2">
-        <CheckBoxBlue />
-        <div className="flex items-center">
-          <h6 className="ml-3 text-xs font-light text-[rgba(255,255,255,0.75)]">
-            I agree with&#160;
-            <Link
-              className="text-white text-xs"
-              component="button"
-              underline="always"
-            >
-              privacy policy
-            </Link>
-          </h6>
-        </div>
+        <CheckBoxBlue
+          Checked={props.PhonePolicyChecked}
+          OnCnange={props.PhonePolicyCheckedChange}
+        />
+        <PhonePrivacyPolicy />
       </div>
-      <LargeButtonBlue onClick={handleClick} content="verify with OTP" />
+      <LargeButtonBlue
+        onClick={props.PhoneSubmitClick}
+        content="verify with OTP"
+        Disabled={props.PhoneSubmitDisabled}
+      />
       <AuthDivider />
-      <OtherAccountAuthUI />
+      <OtherAccountAuthUI
+        FacebookSignInButton={props.FacebookSignIn}
+        GoogleSignInButton={props.GoogleSignIn}
+        AppleSignInButton={props.AppleSignIn}
+      />
     </div>
   );
 };

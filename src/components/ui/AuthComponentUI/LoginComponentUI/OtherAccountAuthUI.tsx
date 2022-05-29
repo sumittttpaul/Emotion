@@ -2,17 +2,24 @@ import React, { FC } from 'react';
 import { Button } from '@mui/material';
 import Image from 'next/image';
 
-interface IProps {}
+interface IProps {
+  FacebookSignInButton: () => void;
+  GoogleSignInButton: () => void;
+  AppleSignInButton: () => void;
+}
 
 /**
  * @author
  * @function @OtherAccountAuthUI
  **/
 
+const buttonDesign =
+  'bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] text-white h-[50px] justify-center items-center flex w-full rounded-md focus:outline-none';
+
 const OtherAccountAuthUI: FC<IProps> = (props) => {
   return (
     <div className="flex space-x-3 w-full">
-      <Button className="bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] text-white h-[50px] justify-center items-center flex w-full rounded-md focus:outline-none">
+      <Button onClick={props.FacebookSignInButton} className={buttonDesign}>
         <Image
           height={18}
           width={9}
@@ -20,7 +27,7 @@ const OtherAccountAuthUI: FC<IProps> = (props) => {
           alt="facebook-logo-svg"
         />
       </Button>
-      <Button className="bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] text-white h-[50px] justify-center items-center flex w-full rounded-md focus:outline-none">
+      <Button onClick={props.GoogleSignInButton} className={buttonDesign}>
         <Image
           height={17}
           width={17}
@@ -28,7 +35,7 @@ const OtherAccountAuthUI: FC<IProps> = (props) => {
           alt="google-logo-svg"
         />
       </Button>
-      <Button className="bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] text-white h-[50px] justify-center items-center flex w-full rounded-md focus:outline-none">
+      <Button onClick={props.AppleSignInButton} className={buttonDesign}>
         <Image
           height={18}
           width={18}

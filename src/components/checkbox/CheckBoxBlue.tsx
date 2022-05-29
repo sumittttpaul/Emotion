@@ -1,9 +1,12 @@
-import { Checkbox, CheckboxProps } from '@mui/material';
+import { Checkbox } from '@mui/material';
 import { alpha } from '@mui/material/styles';
 import Image from 'next/image';
 import React, { ChangeEvent, FC, useState } from 'react';
 
-interface IProps {}
+interface IProps {
+  Checked: boolean;
+  OnCnange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
 
 /**
  * @author
@@ -17,8 +20,8 @@ const CheckBoxBlue: FC<IProps> = (props) => {
   };
   return (
     <Checkbox
-      checked={check}
-      onChange={handleChange}
+      checked={props.Checked}
+      onChange={props.OnCnange}
       sx={{
         '&': {
           bgcolor: 'transparent',
