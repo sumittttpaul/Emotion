@@ -1,5 +1,4 @@
 import firebase from 'firebase/compat/app';
-import { useAuth } from '../firebase/AuthProvider';
 import {
   ResendOTPProps,
   VerifyOTPProps,
@@ -9,11 +8,15 @@ import {
   SignInWithGoogleProps,
   SignInWithAppleProps,
 } from './AuthProps';
+import 'firebase/compat/auth';
 
-var window: any;
+declare global {
+  interface Window {
+    recaptchaVerifier: any;
+    confirmationResult: any;
+  }
+}
 var grecaptcha: any;
-
-const user = useAuth();
 
 // Captcha
 
@@ -26,7 +29,7 @@ export const configureCaptcha = () => {
         callback: (response: any) => {
           // reCAPTCHA solved, allow signInWithPhoneNumber.
           // onSignInSubmit();
-          console.log('Recaptca Verified : ' + response);
+          console.log('Recaptca Verified');
         },
         'expired-callback': () => {
           // token expire
@@ -42,9 +45,15 @@ export const configureCaptcha = () => {
 export const ResentOTP = ({
   phoneNumber,
   Loading,
-  ErrorToastMessage,
-  SuccessToastMessage,
+  ToastMessage,
+  ToastType,
+  ToastShow,
 }: ResendOTPProps) => {
+  const Toast = (message: string, type: string, show: boolean) => {
+    ToastMessage(message);
+    ToastType(type);
+    ToastShow(show);
+  };
   Loading(true);
   window.recaptchaVerifier.render().then(function (widgetId: any) {
     grecaptcha.reset(widgetId);
@@ -58,12 +67,12 @@ export const ResentOTP = ({
     .then((confirmationResult) => {
       window.confirmationResult = confirmationResult;
       Loading(false);
-      SuccessToastMessage('OTP sent successfully !');
+      Toast('OTP sent successfully', 'Success', true);
       console.log('Otp has been sent to ' + number);
     })
     .catch((error) => {
       Loading(false);
-      ErrorToastMessage('OTP not sent !');
+      Toast('OTP not sent', 'Error', true);
       console.log('Otp not sent beacuse' + error.message);
     });
 };
@@ -71,8 +80,15 @@ export const ResentOTP = ({
 export const VerifyOTP = ({
   OTP,
   Loading,
-  ErrorToastMessage,
+  ToastMessage,
+  ToastType,
+  ToastShow,
 }: VerifyOTPProps) => {
+  const Toast = (message: string, type: string, show: boolean) => {
+    ToastMessage(message);
+    ToastType(type);
+    ToastShow(show);
+  };
   Loading(true);
   const code = OTP.toString();
   var credential = firebase.auth.PhoneAuthProvider.credential(
@@ -87,13 +103,15 @@ export const VerifyOTP = ({
       const IsNewUser = result.additionalUserInfo.isNewUser;
       if (IsNewUser) {
         // navigate to SignUp page
+        Loading(false);
       } else {
         // navigate to home page
+        Loading(false);
       }
     })
     .catch((error) => {
       Loading(false);
-      ErrorToastMessage('Verification Failed');
+      Toast('Verification Failed', 'Error', true);
       console.log('OTP verification failed beacuse ' + error.message);
     });
 };
@@ -101,131 +119,143 @@ export const VerifyOTP = ({
 // SignIn
 
 export const SignInWithPhoneNumber = ({
-  phoneNumber,
-  EmptyPhoneNumberTextField,
-  ErrorToastMessage,
-  SuccessToastMessage,
+  Phone,
+  EmptyPhone,
+  ToastShow,
+  ToastMessage,
+  ToastType,
   ShowOTPDialog,
   Loading,
 }: SignInWithPhoneNumberProps) => {
-  if (!user) {
-    Loading(true);
-    configureCaptcha();
-    // const getNumber = phoneNumber.slice(-10);
-    const number = '+91' + phoneNumber;
-    const appVerifier = window.recaptchaVerifier;
-    firebase
-      .auth()
-      .signInWithPhoneNumber(number, appVerifier)
-      .then((confirmationResult) => {
-        window.confirmationResult = confirmationResult;
-        Loading(false);
-        SuccessToastMessage('OTP sent successfully !');
-        ShowOTPDialog();
-        console.log('Otp has been sent to ' + number);
-      })
-      .catch((error) => {
-        Loading(false);
-        ErrorToastMessage('OTP not sent !');
-        EmptyPhoneNumberTextField();
-        console.log('Otp not sent beacuse' + error.message);
-      });
-  } else {
-    console.log('user already exist');
-  }
+  const Toast = (message: string, type: string, show: boolean) => {
+    ToastMessage(message);
+    ToastType(type);
+    ToastShow(show);
+  };
+  Loading(true);
+  configureCaptcha();
+  // const getNumber = phoneNumber.slice(-10);
+  const number = '+91' + Phone;
+  const appVerifier = window.recaptchaVerifier;
+  firebase
+    .auth()
+    .signInWithPhoneNumber(number, appVerifier)
+    .then((confirmationResult) => {
+      window.confirmationResult = confirmationResult;
+      Loading(false);
+      Toast('OTP sent successfully', 'Success', true);
+      console.log('OTP sent to ' + number);
+      ShowOTPDialog();
+    })
+    .catch((error) => {
+      Loading(false);
+      Toast('OTP not sent', 'Error', true);
+      EmptyPhone();
+      console.log('OTP not sent beacuse' + error.message);
+    });
 };
 
 export const SignInWithEmailAndPassword = ({
   Email,
   Password,
   EmptyPasswordTextField,
-  ErrorToastMessage,
+  ToastMessage,
+  ToastType,
+  ToastShow,
   Loading,
 }: SignInWithEmailAndPasswordProps) => {
-  if (!user) {
-    Loading(true);
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(Email, Password)
-      .then(() => {
-        // navigate to home page
-        Loading(false);
-        console.log('SingIn with Email & Password Successful !');
-      })
-      .catch((error) => {
-        Loading(false);
-        ErrorToastMessage('SignIn Failed');
-        EmptyPasswordTextField();
-        console.log(
-          'SingIn with Email & Password Failed because ' + error.message
-        );
-      });
-  } else {
-    console.log('user already exist');
-  }
+  const Toast = (message: string, type: string, show: boolean) => {
+    ToastMessage(message);
+    ToastType(type);
+    ToastShow(show);
+  };
+  Loading(true);
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(Email, Password)
+    .then(() => {
+      // navigate to home page
+      Loading(false);
+      console.log('SingIn with Email & Password Successful !');
+    })
+    .catch((error) => {
+      Loading(false);
+      Toast('SignIn Failed', 'Error', true);
+      EmptyPasswordTextField();
+      console.log(
+        'SingIn with Email & Password Failed because ' + error.message
+      );
+    });
 };
 
 export const SignInWithFacebook = ({
-  ErrorToastMessage,
+  ToastMessage,
+  ToastType,
+  ToastShow,
 }: SignInWithFacebookProps) => {
-  if (!user) {
-    const facebookProvider = new firebase.auth.FacebookAuthProvider();
-    firebase
-      .auth()
-      .signInWithPopup(facebookProvider)
-      .then((result) => {
-        console.log('Signed in with Facebook!');
-        // navigate to home page
-      })
-      .catch((error) => {
-        ErrorToastMessage('SignIn Failed');
-        console.error(
-          'Failed to SignIn with Facebook because ' + error.message
-        );
-      });
-  } else {
-    console.log('user already exist');
-  }
+  const Toast = (message: string, type: string, show: boolean) => {
+    ToastMessage(message);
+    ToastType(type);
+    ToastShow(show);
+  };
+  const facebookProvider = new firebase.auth.FacebookAuthProvider();
+  firebase
+    .auth()
+    .signInWithPopup(facebookProvider)
+    .then((result) => {
+      console.log('Signed in with Facebook!');
+      // navigate to home page
+    })
+    .catch((error) => {
+      Toast('SignIn Failed', 'Error', true);
+      console.error('Failed to SignIn with Facebook because ' + error.message);
+    });
 };
 
 export const SignInWithGoogle = ({
-  ErrorToastMessage,
+  ToastMessage,
+  ToastType,
+  ToastShow,
 }: SignInWithGoogleProps) => {
-  if (!user) {
-    const googleProvider = new firebase.auth.GoogleAuthProvider();
-    firebase
-      .auth()
-      .signInWithPopup(googleProvider)
-      .then((result) => {
-        console.log('Signed in with Google!');
-        // navigate to home page
-      })
-      .catch((error) => {
-        ErrorToastMessage('SignIn Failed');
-        console.error('Failed to SignIn with Google because ' + error.message);
-      });
-  } else {
-    console.log('user already exist');
-  }
+  const Toast = (message: string, type: string, show: boolean) => {
+    ToastMessage(message);
+    ToastType(type);
+    ToastShow(show);
+  };
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
+  firebase
+    .auth()
+    .signInWithPopup(googleProvider)
+    .then((result) => {
+      console.log('Signed in with Google!');
+      // navigate to home page
+    })
+    .catch((error) => {
+      Toast('SignIn Failed', 'Error', true);
+      console.error('Failed to SignIn with Google because ' + error.message);
+    });
 };
 
 export const SignInWithApple = ({
-  ErrorToastMessage,
+  ToastMessage,
+  ToastType,
+  ToastShow,
 }: SignInWithAppleProps) => {
-  if (!user) {
-    const appleProvider = new firebase.auth.OAuthProvider('apple.com');
-    firebase
-      .auth()
-      .signInWithPopup(appleProvider)
-      .then((result) => {
-        console.log('Signed in with Apple!');
-        // navigate to home page
-      })
-      .catch((error) => {
-        ErrorToastMessage('SignIn Failed');
-        console.error('Failed to SignIn with Apple because ' + error.message);
-      });
-  } else {
-    console.log('user already exist');
-  }
+  const Toast = (message: string, type: string, show: boolean) => {
+    ToastMessage(message);
+    ToastType(type);
+    ToastShow(show);
+  };
+  const appleProvider = new firebase.auth.OAuthProvider('apple.com');
+  firebase
+    .auth()
+    .signInWithPopup(appleProvider)
+    .then((result) => {
+      console.log('Signed in with Apple!');
+      // navigate to home page
+    })
+    .catch((error) => {
+      Toast('SignIn Failed', 'Error', true);
+      console.error('Failed to SignIn with Apple because ' + error.message);
+    });
 };

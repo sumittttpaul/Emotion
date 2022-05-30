@@ -7,6 +7,10 @@ import {
   InputChangeFocus,
   InputNumberOnly,
 } from '../../../algorithms/UIAlgorithms';
+import {
+  SignInWithPhoneNumber,
+  VerifyOTP,
+} from '../../../algorithms/AuthAlgorithms';
 
 const Login: NextPage = () => {
   // State
@@ -66,6 +70,11 @@ const Login: NextPage = () => {
     setEmailCheck(event.target.checked);
   };
 
+  // Loading
+  const LaadingScreen = (value: boolean) => {
+    console.log('Loading : ' + value);
+  };
+
   // Valid Format
   var passwordExpression =
     /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
@@ -121,26 +130,34 @@ const Login: NextPage = () => {
     }
   };
 
-  // Handle Focus & Blur
-  const PhoneFocus = (event: FocusEvent<HTMLInputElement>) => {};
-  const EmailFocus = (event: FocusEvent<HTMLInputElement>) => {};
-  const PasswordFocus = (event: FocusEvent<HTMLInputElement>) => {};
-  const PhoneBlur = (event: FocusEvent<HTMLInputElement>) => {};
-  const EmailBlur = (event: FocusEvent<HTMLInputElement>) => {};
-  const PasswordBlur = (event: FocusEvent<HTMLInputElement>) => {};
+  // Handle Blur
+  const PhoneBlur = (event: FocusEvent<HTMLInputElement>) => {
+    if (ValidatePhone) {
+      ValidPhone();
+    } else {
+      setPhoneError(true);
+    }
+  };
+  const EmailBlur = (event: FocusEvent<HTMLInputElement>) => {
+    if (ValidateEmail) {
+      ValidEmail();
+    } else {
+      setEmailError(true);
+    }
+  };
+  const PasswordBlur = (event: FocusEvent<HTMLInputElement>) => {
+    if (ValidatePassword) {
+      ValidPassword();
+    } else {
+      setPasswordError(true);
+    }
+  };
 
   // Buttons
   const PhoneSubmitDisabled: boolean =
     Phone.length < 9 || Phone.length == 9 || PhoneCheck === false;
   const EmailSubmitDisabled: boolean =
     Email.length < 1 || Password.length < 8 || EmailCheck === false;
-
-  const PhoneSubmitClick = () => {
-    ShowToast('OTP sent successfully', 'Success');
-    setTimeout(() => {
-      setOTPDialog(true);
-    }, 250);
-  };
 
   const EmailSubmitClick = () => {};
 
@@ -156,27 +173,6 @@ const Login: NextPage = () => {
         setPhone('');
         setPhoneCheck(false);
       }, 250);
-    }
-  };
-
-  const OTPSubmit = () => {
-    if (
-      OTP1.length > 0 &&
-      OTP1.length == 1 &&
-      OTP2.length > 0 &&
-      OTP2.length == 1 &&
-      OTP3.length > 0 &&
-      OTP3.length == 1 &&
-      OTP4.length > 0 &&
-      OTP4.length == 1 &&
-      OTP5.length > 0 &&
-      OTP5.length == 1 &&
-      OTP6.length > 0 &&
-      OTP6.length == 1
-    ) {
-      setTimeout(() => {
-        CloseOTPDialog();
-      }, 100);
     }
   };
 
@@ -200,18 +196,21 @@ const Login: NextPage = () => {
   };
   const InvalidPhone = () => {
     setPhoneError(true);
-    ShowToast('Invalid phone number', 'Error');
+    ShowToast('Invalid phone number', 'Error', true);
   };
   const InvalidEmail = () => {
     setEmailError(true);
-    ShowToast('Invalid email', 'Error');
+    ShowToast('Invalid email', 'Error', true);
   };
   const InvalidPassword = () => {
     setPasswordError(true);
-    ShowToast('Invalid password', 'Error');
+    ShowToast('Invalid password', 'Error', true);
   };
 
   // OTPDialog
+  const ShowOTPDialog = () => {
+    setOTPDialog(true);
+  };
   const CloseOTPDialog = () => {
     setOTPDialog(false);
     HideToast();
@@ -228,18 +227,93 @@ const Login: NextPage = () => {
     setOTP6('');
   };
 
-  // toast
-  const ShowToast = (message: string, type: string) => {
+  // Toast
+  const ShowToast = (message: string, type: string, show: boolean) => {
     setToastMessage(message);
     setToastType(type);
-    setToast(true);
+    setToast(show);
   };
   const HideToast = () => {
     setToast(false);
   };
 
+  // Auth Toast
+  const AuthToastMessage = (value: string) => {
+    setToastMessage(value);
+  };
+  const AuthToastType = (value: string) => {
+    setToastType(value);
+  };
+  const AuthToast = (value: boolean) => {
+    setToast(value);
+  };
+
+  // Empty TextField
+  const EmptyPhone = () => {
+    setPhone('');
+  };
+  const EmptyEmail = () => {
+    setEmail('');
+  };
+  const EmptyPassword = () => {
+    setPassword('');
+  };
+
+  // signIn with phone number
+  const PhoneSubmitClick = () => {
+    setTimeout(() => {
+      if (ValidatePhone) {
+        SignInWithPhoneNumber({
+          Phone: parseInt(Phone),
+          EmptyPhone: EmptyPhone,
+          Loading: LaadingScreen,
+          ShowOTPDialog: ShowOTPDialog,
+          ToastMessage: AuthToastMessage,
+          ToastType: AuthToastType,
+          ToastShow: AuthToast,
+        });
+        ShowToast(ToastMessage, ToastType, Toast);
+      } else {
+        InvalidPhone();
+      }
+    }, 250);
+  };
+
+  // OTP Submit
+  const OTPSubmit = () => {
+    if (
+      OTP1.length > 0 &&
+      OTP1.length == 1 &&
+      OTP2.length > 0 &&
+      OTP2.length == 1 &&
+      OTP3.length > 0 &&
+      OTP3.length == 1 &&
+      OTP4.length > 0 &&
+      OTP4.length == 1 &&
+      OTP5.length > 0 &&
+      OTP5.length == 1 &&
+      OTP6.length > 0 &&
+      OTP6.length == 1
+    ) {
+      setTimeout(() => {
+        VerifyOTP({
+          OTP: parseInt(OTP1 + OTP2 + OTP3 + OTP4 + OTP5 + OTP6),
+          Loading: LaadingScreen,
+          ToastMessage: AuthToastMessage,
+          ToastType: AuthToastType,
+          ToastShow: AuthToast,
+        });
+        ShowToast(ToastMessage, ToastType, Toast);
+        CloseOTPDialog();
+      }, 200);
+    }
+  };
+
+  const recaptchaContainer =
+    'h-full sm:h-screen w-full absolute flex flex-col text-center items-center justify-center';
   return (
     <>
+      <div className={recaptchaContainer} id="verify-sign-in-recaptcha" />
       <LoginUI
         Phone={Phone.slice(-10)}
         PhoneChange={PhoneChange}
@@ -266,9 +340,6 @@ const Login: NextPage = () => {
         PhoneError={PhoneError}
         EmailError={EmailError}
         PasswordError={PasswordError}
-        PhoneFocus={PhoneFocus}
-        EmailFocus={EmailFocus}
-        PasswordFocus={PasswordFocus}
         PhoneBlur={PhoneBlur}
         EmailBlur={EmailBlur}
         PasswordBlur={PasswordBlur}
