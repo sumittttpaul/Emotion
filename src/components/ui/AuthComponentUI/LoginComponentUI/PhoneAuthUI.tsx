@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, KeyboardEvent } from 'react';
+import React, { ChangeEvent, FC, KeyboardEvent, FocusEvent } from 'react';
 import CheckBoxBlue from '../../../checkbox/CheckBoxBlue';
 import LargeButtonBlue from '../../../button/LargeButtonBlue';
 import OtherAccountAuthUI from './OtherAccountAuthUI';
@@ -20,6 +20,8 @@ interface IProps {
   GoogleSignIn: () => void;
   AppleSignIn: () => void;
   PhoneError?: boolean;
+  PhoneFocus?: (event: FocusEvent<HTMLInputElement>) => void;
+  PhoneBlur?: (event: FocusEvent<HTMLInputElement>) => void;
 }
 
 /**
@@ -42,6 +44,8 @@ const PhoneAuthUI: FC<IProps> = (props) => {
         onKeyPress={props.PhoneKeyPress}
         onkeyDown={props.PhoneKeyDown}
         onkeyUp={props.PhoneKeyUp}
+        onFocus={props.PhoneFocus}
+        onBlur={props.PhoneBlur}
         error={props.PhoneError}
       />
 

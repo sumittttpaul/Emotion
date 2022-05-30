@@ -1,7 +1,8 @@
-import React, { FC, KeyboardEvent, ChangeEvent } from 'react';
+import React, { FC } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
+import { NumberTextFieldProps } from './AllTextFieldProps';
 
 const CustomTextField = styled((props: TextFieldProps) => (
   <TextField
@@ -19,7 +20,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
     transform: 'translate(26px, 23px) scale(1)',
     '&.Mui-error': {
       color: 'rgba(255, 255, 255, 0.70)',
-    }
+    },
   },
   '& label.Mui-focused': {
     color: 'rgba(255, 255, 255, 0.70)',
@@ -65,24 +66,12 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
 }));
 
-interface IProps {
-  value: string;
-  placeholder?: string;
-  type?: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  dataPhonecode?: string;
-  error?: boolean;
-}
-
 /**
  * @author
  * @function @NumberTextFieldDark
  **/
 
-const NumberTextFieldDark: FC<IProps> = (props) => {
+const NumberTextFieldDark: FC<NumberTextFieldProps> = (props) => {
   return (
     <div className="flex flex-col w-full">
       <CustomTextField
@@ -95,6 +84,8 @@ const NumberTextFieldDark: FC<IProps> = (props) => {
         value={props.value}
         type={props.type}
         error={props.error}
+        onFocus={props.onFocus}
+        onBlur={props.onBlur}
         variant="filled"
         data-phonecode={props.dataPhonecode}
       />

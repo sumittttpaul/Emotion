@@ -1,12 +1,9 @@
-import React, {
-  FC,
-  KeyboardEvent,
-  ChangeEvent,
-} from 'react';
+import React, { FC } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
 import Image from 'next/image';
+import { IconTextFieldProps } from './AllTextFieldProps';
 
 const CustomTextField = styled((props: TextFieldProps) => (
   <TextField
@@ -24,7 +21,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
     transform: 'translate(67px, 23px) scale(1)',
     '&.Mui-error': {
       color: 'rgba(255, 255, 255, 0.70)',
-    }
+    },
   },
   '& label.Mui-focused': {
     color: 'rgba(255, 255, 255, 0.70)',
@@ -70,24 +67,12 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
 }));
 
-interface IProps {
-  value: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  icon: string;
-  type?: string;
-  onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  error?: boolean;
-}
-
 /**
  * @author
  * @function @IconTextFieldDark
  **/
 
-const IconTextFieldDark: FC<IProps> = (props) => {
+const IconTextFieldDark: FC<IconTextFieldProps> = (props) => {
   return (
     <div className="flex flex-col w-full">
       <CustomTextField
@@ -100,6 +85,8 @@ const IconTextFieldDark: FC<IProps> = (props) => {
         value={props.value}
         type={props.type}
         error={props.error}
+        onFocus={props.onFocus}
+        onBlur={props.onBlur}
         variant="filled"
         autoCorrect="off"
         autoComplete="off"

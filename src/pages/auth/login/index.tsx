@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import LoginUI from '../../../components/ui/LoginUI';
 import OTPAuthUI from '../../../components/ui/AuthComponentUI/LoginComponentUI/OTPAuthUI';
 import { ToastDark } from '../../../components/toast/ToastDark';
-import { ChangeEvent, KeyboardEvent, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useState, FocusEvent } from 'react';
 import {
   InputChangeFocus,
   InputNumberOnly,
@@ -67,10 +67,13 @@ const Login: NextPage = () => {
   };
 
   // Valid Format
-  var passwordExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-  var emailExpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  var passwordExpression =
+    /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+  var emailExpression =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   var ValidateEmail = Email.toLowerCase().match(emailExpression);
-  var ValidatePassword = passwordExpression.test(Password) && Password.length > 8;
+  var ValidatePassword =
+    passwordExpression.test(Password) && Password.length > 8;
   var ValidatePhone = Phone.length == 10;
 
   // Handle Keys
@@ -118,17 +121,22 @@ const Login: NextPage = () => {
     }
   };
 
+  // Handle Focus & Blur
+  const PhoneFocus = (event: FocusEvent<HTMLInputElement>) => {};
+  const EmailFocus = (event: FocusEvent<HTMLInputElement>) => {};
+  const PasswordFocus = (event: FocusEvent<HTMLInputElement>) => {};
+  const PhoneBlur = (event: FocusEvent<HTMLInputElement>) => {};
+  const EmailBlur = (event: FocusEvent<HTMLInputElement>) => {};
+  const PasswordBlur = (event: FocusEvent<HTMLInputElement>) => {};
+
   // Buttons
   const PhoneSubmitDisabled: boolean =
     Phone.length < 9 || Phone.length == 9 || PhoneCheck === false;
-
   const EmailSubmitDisabled: boolean =
     Email.length < 1 || Password.length < 8 || EmailCheck === false;
 
   const PhoneSubmitClick = () => {
-    setToastMessage('OTP sent successfully');
-    setToastType('Success');
-    setToast(true);
+    ShowToast('OTP sent successfully', 'Success');
     setTimeout(() => {
       setOTPDialog(true);
     }, 250);
@@ -177,16 +185,39 @@ const Login: NextPage = () => {
   const AppleSignIn = () => {};
   const OTPResend = () => {};
 
-  // OTPDialog and Toast
+  // error
+  const ValidPhone = () => {
+    setPhoneError(false);
+    HideToast();
+  };
+  const ValidEmail = () => {
+    setEmailError(false);
+    HideToast();
+  };
+  const ValidPassword = () => {
+    setPasswordError(false);
+    HideToast();
+  };
+  const InvalidPhone = () => {
+    setPhoneError(true);
+    ShowToast('Invalid phone number', 'Error');
+  };
+  const InvalidEmail = () => {
+    setEmailError(true);
+    ShowToast('Invalid email', 'Error');
+  };
+  const InvalidPassword = () => {
+    setPasswordError(true);
+    ShowToast('Invalid password', 'Error');
+  };
+
+  // OTPDialog
   const CloseOTPDialog = () => {
     setOTPDialog(false);
-    setToast(false);
+    HideToast();
     setTimeout(() => {
       clearOTP();
     }, 250);
-  };
-  const CloseToast = () => {
-    setToast(false);
   };
   const clearOTP = () => {
     setOTP1('');
@@ -197,36 +228,14 @@ const Login: NextPage = () => {
     setOTP6('');
   };
 
-  // error
-  const ValidPhone = () => {
-    setPhoneError(false);
-    setToast(false);
-  };
-  const ValidEmail = () => {
-    setEmailError(false);
-    setToast(false);
-  };
-  const ValidPassword = () => {
-    setPasswordError(false);
-    setToast(false);
-  };
-  const InvalidPhone = () => {
-    setPhoneError(true);
-    setToastMessage('Invalid phone number');
-    setToastType('Error');
+  // toast
+  const ShowToast = (message: string, type: string) => {
+    setToastMessage(message);
+    setToastType(type);
     setToast(true);
   };
-  const InvalidEmail = () => {
-    setEmailError(true);
-    setToastMessage('Invalid email');
-    setToastType('Error');
-    setToast(true);
-  };
-  const InvalidPassword = () => {
-    setPasswordError(true);
-    setToastMessage('Invalid password');
-    setToastType('Error');
-    setToast(true);
+  const HideToast = () => {
+    setToast(false);
   };
 
   return (
@@ -257,6 +266,12 @@ const Login: NextPage = () => {
         PhoneError={PhoneError}
         EmailError={EmailError}
         PasswordError={PasswordError}
+        PhoneFocus={PhoneFocus}
+        EmailFocus={EmailFocus}
+        PasswordFocus={PasswordFocus}
+        PhoneBlur={PhoneBlur}
+        EmailBlur={EmailBlur}
+        PasswordBlur={PasswordBlur}
       />
       <OTPAuthUI
         open={OTPDialog}
@@ -291,7 +306,7 @@ const Login: NextPage = () => {
       <ToastDark
         message={ToastMessage}
         open={Toast}
-        close={CloseToast}
+        close={HideToast}
         autoHideDuration={6000}
         slideDirection="down"
         positionVertical="top"

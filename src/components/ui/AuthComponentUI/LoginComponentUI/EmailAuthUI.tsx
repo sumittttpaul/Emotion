@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, KeyboardEvent } from 'react';
+import React, { ChangeEvent, FC, KeyboardEvent, FocusEvent } from 'react';
 import CheckBoxBlue from '../../../checkbox/CheckBoxBlue';
 import LargeButtonBlue from '../../../button/LargeButtonBlue';
 import IconTextFieldDark from '../../../textfield/IconTextFieldDark';
@@ -23,7 +23,11 @@ interface IProps {
   EmailSubmitDisabled: boolean;
   EmailSubmitClick: () => void;
   EmailError?: boolean;
+  EmailFocus?: (event: FocusEvent<HTMLInputElement>) => void;
+  EmailBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   PasswordError?: boolean;
+  PasswordFocus?: (event: FocusEvent<HTMLInputElement>) => void;
+  PasswordBlur?: (event: FocusEvent<HTMLInputElement>) => void;
 }
 
 /**
@@ -43,6 +47,8 @@ const EmailAuthUI: FC<IProps> = (props) => {
         onkeyDown={props.EmailKeyDown}
         onKeyPress={props.EmailKeyPress}
         onkeyUp={props.EmailKeyUp}
+        onFocus={props.EmailFocus}
+        onBlur={props.EmailBlur}
         error={props.EmailError}
       />
       <IconPasswordTextFieldDark
@@ -53,6 +59,8 @@ const EmailAuthUI: FC<IProps> = (props) => {
         onkeyDown={props.PasswordKeyDown}
         onKeyPress={props.PasswordKeyPress}
         onkeyUp={props.PasswordKeyUp}
+        onFocus={props.PasswordFocus}
+        onBlur={props.PasswordBlur}
         error={props.PasswordError}
       />
       <div className="w-full space-y-1">

@@ -1,20 +1,12 @@
-import React, { FC, KeyboardEvent, ChangeEvent } from 'react';
-
-interface IProps {
-  value: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  className?: string;
-}
+import React, { FC } from 'react';
+import { OTPTextFieldProps } from './AllTextFieldProps';
 
 /**
  * @author
  * @function @OTPTextFieldDark
  **/
 
-const OTPTextFieldDark: FC<IProps> = (props) => {
+const OTPTextFieldDark: FC<OTPTextFieldProps> = (props) => {
   return (
     <input
       maxLength={1}

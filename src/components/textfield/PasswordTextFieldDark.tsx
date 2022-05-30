@@ -2,14 +2,13 @@ import React, {
   FC,
   useState,
   MouseEvent,
-  KeyboardEvent,
-  ChangeEvent,
 } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
 import { IconButton, InputAdornment } from '@mui/material';
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
+import { PasswordTextFieldProps } from './AllTextFieldProps';
 
 const CustomTextField = styled((props: TextFieldProps) => (
   <TextField
@@ -81,23 +80,12 @@ interface State {
   showPassword: boolean;
 }
 
-interface IProps {
-  placeholder: string;
-  icon: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  value: string;
-  error?: boolean;
-}
-
 /**
  * @author
  * @function @PasswordTextFieldDark
  **/
 
-const PasswordTextFieldDark: FC<IProps> = (props) => {
+const PasswordTextFieldDark: FC<PasswordTextFieldProps> = (props) => {
   const [values, setValues] = useState<State>({ showPassword: false });
 
   const handleClickShowPassword = () => {
@@ -124,6 +112,8 @@ const PasswordTextFieldDark: FC<IProps> = (props) => {
         onKeyPress={props.onKeyPress}
         value={props.value}
         error={props.error}
+        onFocus={props.onFocus}
+        onBlur={props.onBlur}
         variant="filled"
         autoComplete="off"
         autoCapitalize="off"

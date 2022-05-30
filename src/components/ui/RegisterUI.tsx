@@ -66,7 +66,6 @@ const RegisterUI: FC<IProps> = (props) => {
             </h6>
             <PasswordTextFieldDark
               placeholder="Password"
-              icon="/icons/password.svg"
               value=""
               onChange={() => {}}
             />

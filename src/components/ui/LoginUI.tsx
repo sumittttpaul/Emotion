@@ -3,6 +3,7 @@ import React, {
   FC,
   KeyboardEvent,
   useState,
+  FocusEvent,
 } from 'react';
 import AuthContainer from '../container/AuthContainer';
 import { Tab } from '@headlessui/react';
@@ -43,10 +44,16 @@ interface IProps {
   FacebookSignIn: () => void;
   GoogleSignIn: () => void;
   AppleSignIn: () => void;
-  TabClick: (value:boolean) => void;
+  TabClick: (value: boolean) => void;
   PhoneError?: boolean;
   EmailError?: boolean;
   PasswordError?: boolean;
+  PhoneFocus?: (event: FocusEvent<HTMLInputElement>) => void;
+  PhoneBlur?: (event: FocusEvent<HTMLInputElement>) => void;
+  EmailFocus?: (event: FocusEvent<HTMLInputElement>) => void;
+  EmailBlur?: (event: FocusEvent<HTMLInputElement>) => void;
+  PasswordFocus?: (event: FocusEvent<HTMLInputElement>) => void;
+  PasswordBlur?: (event: FocusEvent<HTMLInputElement>) => void;
 }
 
 /**
@@ -168,6 +175,8 @@ const LoginUI: FC<IProps> = (props) => {
                 GoogleSignIn={props.GoogleSignIn}
                 AppleSignIn={props.AppleSignIn}
                 PhoneError={props.PhoneError}
+                PhoneFocus={props.PhoneFocus}
+                PhoneBlur={props.PhoneBlur}
               />
             </TabPanel>
             <TabPanel value={Tabvalue} index={1} dir={theme.direction}>
@@ -188,6 +197,10 @@ const LoginUI: FC<IProps> = (props) => {
                 EmailSubmitClick={props.EmailSubmitClick}
                 EmailError={props.EmailError}
                 PasswordError={props.PasswordError}
+                EmailFocus={props.EmailFocus}
+                EmailBlur={props.EmailBlur}
+                PasswordFocus={props.PasswordFocus}
+                PasswordBlur={props.PasswordBlur}
               />
             </TabPanel>
           </SwipeableViews>
