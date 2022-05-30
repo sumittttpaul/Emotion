@@ -66,6 +66,13 @@ const Login: NextPage = () => {
     setEmailCheck(event.target.checked);
   };
 
+  // Valid Format
+  var passwordExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+  var emailExpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  var ValidateEmail = Email.toLowerCase().match(emailExpression);
+  var ValidatePassword = passwordExpression.test(Password) && Password.length > 8;
+  var ValidatePhone = Phone.length == 10;
+
   // Handle Keys
   const NumberOnly = (event: KeyboardEvent<HTMLInputElement>) => {
     InputNumberOnly(event);
@@ -75,30 +82,38 @@ const Login: NextPage = () => {
     OTPSubmit();
   };
   const PhoneKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
-    ValidPhone();
+    if (ValidatePhone) {
+      ValidPhone();
+    }
     if (event.key === 'Enter') {
-      if (Phone.length == 10) {
-        if (PhoneCheck === true) {
-          // SignIn
-        } else {
-          // Privacy policy not check
-        }
+      if (ValidatePhone) {
+        // SignIn
       } else {
         InvalidPhone();
       }
     }
   };
   const EmailKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (ValidateEmail) {
+      ValidEmail();
+    }
     if (event.key === 'Enter') {
-      if (Email.length > 0) {
+      if (ValidateEmail) {
         // Change focus to password input
+      } else {
+        InvalidEmail();
       }
     }
   };
   const PasswordKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (ValidatePassword) {
+      ValidPassword();
+    }
     if (event.key === 'Enter') {
-      if (Email.length > 0 && Password.length > 8 && EmailCheck === true) {
+      if (ValidatePassword) {
         // SignIn
+      } else {
+        InvalidPassword();
       }
     }
   };
@@ -184,24 +199,34 @@ const Login: NextPage = () => {
 
   // error
   const ValidPhone = () => {
-    if (Phone.length == 10) {
-      setPhoneError(false);
-    }
+    setPhoneError(false);
+    setToast(false);
   };
   const ValidEmail = () => {
     setEmailError(false);
+    setToast(false);
   };
   const ValidPassword = () => {
     setPasswordError(false);
+    setToast(false);
   };
   const InvalidPhone = () => {
     setPhoneError(true);
+    setToastMessage('Invalid phone number');
+    setToastType('Error');
+    setToast(true);
   };
   const InvalidEmail = () => {
     setEmailError(true);
+    setToastMessage('Invalid email');
+    setToastType('Error');
+    setToast(true);
   };
   const InvalidPassword = () => {
     setPasswordError(true);
+    setToastMessage('Invalid password');
+    setToastType('Error');
+    setToast(true);
   };
 
   return (
