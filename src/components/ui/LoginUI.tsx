@@ -1,4 +1,9 @@
-import React, { ChangeEvent, FC, KeyboardEventHandler, useState } from 'react';
+import React, {
+  ChangeEvent,
+  FC,
+  KeyboardEvent,
+  useState,
+} from 'react';
 import AuthContainer from '../container/AuthContainer';
 import { Tab } from '@headlessui/react';
 import { DeviceMobileIcon, MailIcon } from '@heroicons/react/solid';
@@ -13,20 +18,20 @@ import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 
 interface IProps {
   Phone: string;
-  PhoneKeyUp?: KeyboardEventHandler<HTMLDivElement>;
-  PhoneKeyPress?: KeyboardEventHandler<HTMLDivElement>;
-  PhoneKeyDown?: KeyboardEventHandler<HTMLDivElement>;
-  PhoneChange: () => void;
+  PhoneChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  PhoneKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  PhoneKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  PhoneKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   Email: string;
-  EmailKeyUp?: KeyboardEventHandler<HTMLDivElement>;
-  EmailKeyPress?: KeyboardEventHandler<HTMLDivElement>;
-  EmailKeyDown?: KeyboardEventHandler<HTMLDivElement>;
-  EmailChange: () => void;
+  EmailChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  EmailKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  EmailKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  EmailKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   Password: string;
-  PasswordKeyUp?: KeyboardEventHandler<HTMLDivElement>;
-  PasswordKeyPress?: KeyboardEventHandler<HTMLDivElement>;
-  PasswordKeyDown?: KeyboardEventHandler<HTMLDivElement>;
-  PasswordChange: () => void;
+  PasswordChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  PasswordKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  PasswordKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  PasswordKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   PhonePolicyChecked: boolean;
   PhonePolicyCheckedChange: (event: ChangeEvent<HTMLInputElement>) => void;
   EmailPolicyChecked: boolean;
@@ -38,6 +43,7 @@ interface IProps {
   FacebookSignIn: () => void;
   GoogleSignIn: () => void;
   AppleSignIn: () => void;
+  TabClick: (value:boolean) => void;
 }
 
 /**
@@ -61,11 +67,13 @@ const LoginUI: FC<IProps> = (props) => {
   const handlePhoneClick = () => {
     setValue(true);
     setTabValue(0);
+    props.TabClick(true);
   };
 
   const handleEmailClick = () => {
     setValue(false);
     setTabValue(1);
+    props.TabClick(false);
   };
 
   return (

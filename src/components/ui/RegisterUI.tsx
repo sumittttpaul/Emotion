@@ -73,7 +73,7 @@ const RegisterUI: FC<IProps> = (props) => {
           </div>
 
           <div className="flex w-full">
-            <CheckBoxBlue />
+            {/* <CheckBoxBlue Checked={false}/> */}
             <div className="flex items-center">
               <h6 className="ml-3 text-xs font-light text-[rgba(255,255,255,0.75)]">
                 I have read and agree with&#160;
@@ -87,7 +87,7 @@ const RegisterUI: FC<IProps> = (props) => {
               </h6>
             </div>
           </div>
-          <LargeButtonBlue
+          <LargeButtonBlue Disabled={false}
             onClick={() => {
               setTimeout(() => {
                 Router.push('/auth/register/setup-account');

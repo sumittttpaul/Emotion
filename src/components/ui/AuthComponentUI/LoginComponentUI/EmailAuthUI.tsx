@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, KeyboardEventHandler } from 'react';
+import React, { ChangeEvent, FC, KeyboardEvent } from 'react';
 import CheckBoxBlue from '../../../checkbox/CheckBoxBlue';
 import LargeButtonBlue from '../../../button/LargeButtonBlue';
 import IconTextFieldDark from '../../../textfield/IconTextFieldDark';
@@ -9,22 +9,17 @@ import { EmailPrivacyPolicy } from '../../../terms & policy/EmailPrivacyPolicy';
 
 interface IProps {
   Email: string;
-  EmailKeyUp?: KeyboardEventHandler<HTMLDivElement>;
-  EmailKeyPress?: KeyboardEventHandler<HTMLDivElement>;
-  EmailKeyDown?: KeyboardEventHandler<HTMLDivElement>;
-  EmailChange: () => void;
-
+  EmailChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  EmailKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  EmailKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  EmailKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   Password: string;
-  PasswordKeyUp?: KeyboardEventHandler<HTMLDivElement>;
-  PasswordKeyPress?: KeyboardEventHandler<HTMLDivElement>;
-  PasswordKeyDown?: KeyboardEventHandler<HTMLDivElement>;
-  PasswordChange: () => void;
-
+  PasswordChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  PasswordKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  PasswordKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  PasswordKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   EmailPolicyChecked: boolean;
-  EmailPolicyCheckedChange: (
-    event: ChangeEvent<HTMLInputElement>
-  ) => void;
-
+  EmailPolicyCheckedChange: (event: ChangeEvent<HTMLInputElement>) => void;
   EmailSubmitDisabled: boolean;
   EmailSubmitClick: () => void;
 }

@@ -1,4 +1,4 @@
-import React, { FC, KeyboardEventHandler, ChangeEventHandler } from 'react';
+import React, { FC, KeyboardEvent, ChangeEvent } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
@@ -58,10 +58,10 @@ const CustomTextField = styled((props: TextFieldProps) => (
 
 interface IProps {
   placeholder: string;
-  onkeyUp?: KeyboardEventHandler<HTMLDivElement>;
-  onkeyDown?: KeyboardEventHandler<HTMLDivElement>;
-  onKeyPress?: KeyboardEventHandler<HTMLDivElement>;
-  onChange: ChangeEventHandler;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   value: string;
   type: string;
 }

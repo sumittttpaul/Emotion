@@ -1,4 +1,4 @@
-import React, { FC, KeyboardEventHandler, ChangeEventHandler } from 'react';
+import React, { FC, KeyboardEvent, ChangeEvent } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
@@ -59,13 +59,13 @@ const CustomTextField = styled((props: TextFieldProps) => (
 
 interface IProps {
   value: string;
-  onChange: ChangeEventHandler;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   icon: string;
   type?: string;
-  onkeyUp?: KeyboardEventHandler<HTMLDivElement>;
-  onkeyDown?: KeyboardEventHandler<HTMLDivElement>;
-  onKeyPress?: KeyboardEventHandler<HTMLDivElement>;
+  onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   dataPhonecode?: string;
 }
 
@@ -91,7 +91,7 @@ const IconNumberTextFieldDark: FC<IProps> = (props) => {
         autoCorrect="off"
         autoComplete="off"
         inputProps={{
-          maxLength: 10
+          maxLength: 10,
         }}
       />
       <div className="-mt-[46px] ml-[20px] mb-[16px] flex">

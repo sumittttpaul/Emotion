@@ -1,27 +1,21 @@
-import React, { ChangeEvent, FC, KeyboardEventHandler } from 'react';
+import React, { ChangeEvent, FC, KeyboardEvent } from 'react';
 import CheckBoxBlue from '../../../checkbox/CheckBoxBlue';
 import LargeButtonBlue from '../../../button/LargeButtonBlue';
 import OtherAccountAuthUI from './OtherAccountAuthUI';
 import AuthDivider from '../../../divider/AuthDivider';
-import { useOTPState } from '../../../../providers/state/OTPState';
 import IconNumberTextFieldDark from '../../../textfield/IconNumberTextFieldDark';
 import { PhonePrivacyPolicy } from '../../../terms & policy/PhonePrivacyPolicy';
 
 interface IProps {
   Phone: string;
-  PhoneKeyUp?: KeyboardEventHandler<HTMLDivElement>;
-  PhoneKeyPress?: KeyboardEventHandler<HTMLDivElement>;
-  PhoneKeyDown?: KeyboardEventHandler<HTMLDivElement>;
-  PhoneChange: () => void;
-
+  PhoneChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  PhoneKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  PhoneKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  PhoneKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   PhonePolicyChecked: boolean;
-  PhonePolicyCheckedChange: (
-    event: ChangeEvent<HTMLInputElement>
-  ) => void;
-
+  PhonePolicyCheckedChange: (event: ChangeEvent<HTMLInputElement>) => void;
   PhoneSubmitDisabled: boolean;
   PhoneSubmitClick: () => void;
-
   FacebookSignIn: () => void;
   GoogleSignIn: () => void;
   AppleSignIn: () => void;
@@ -32,17 +26,11 @@ interface IProps {
  * @function @OtherAccountAuthUI
  **/
 
+const container = 'w-full flex flex-col justify-center items-center';
+
 const PhoneAuthUI: FC<IProps> = (props) => {
-  const { setOTPDialog } = useOTPState();
-
-  const handleClick = () => {
-    setTimeout(() => {
-      setOTPDialog({ show: true });
-    }, 250);
-  };
-
   return (
-    <div className="w-full space-y-7 flex flex-col justify-center items-center">
+    <div className={`${container} ${'space-y-7'}`}>
       <IconNumberTextFieldDark
         placeholder="Phone Number"
         icon="/icons/phone.svg"
@@ -54,6 +42,7 @@ const PhoneAuthUI: FC<IProps> = (props) => {
         onkeyDown={props.PhoneKeyDown}
         onkeyUp={props.PhoneKeyUp}
       />
+
       <div className="flex w-full pl-2">
         <CheckBoxBlue
           Checked={props.PhonePolicyChecked}

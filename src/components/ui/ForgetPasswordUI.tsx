@@ -42,7 +42,7 @@ const ForgetPasswordUI: FC<IProps> = (props) => {
               onChange={() => {}}
               onkeyUp={() => {}}
             />
-            <LargeButtonBlue onClick={() => {}} content="Send Email" />
+            <LargeButtonBlue onClick={() => {}} content="Send Email" Disabled={false}/>
           </div>
           <div className="flex">
             <h6 className="text-[13px] font-light text-[rgba(255,255,255,0.75)] flex items-center">

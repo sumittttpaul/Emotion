@@ -1,9 +1,9 @@
 import React, {
   FC,
   useState,
+  KeyboardEvent,
+  ChangeEvent,
   MouseEvent,
-  KeyboardEventHandler,
-  ChangeEventHandler,
 } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
@@ -72,12 +72,12 @@ interface State {
 
 interface IProps {
   value: string;
-  onChange: ChangeEventHandler;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   icon: string;
-  onkeyUp?: KeyboardEventHandler<HTMLDivElement>;
-  onkeyDown?: KeyboardEventHandler<HTMLDivElement>;
-  onKeyPress?: KeyboardEventHandler<HTMLDivElement>;
+  onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
 }
 
 /**

@@ -39,7 +39,7 @@ const WarningIconColor = 'text-[#ffae00ea]';
 /**
  * @author
  * @function @ToastDark
- **/
+ **/ 
 
 export const ToastDark: FC<IProps> = (props) => {
   const bgColor = props.bgColor;
@@ -90,7 +90,7 @@ export const ToastDark: FC<IProps> = (props) => {
     });
   },[props.open, state]);
 
-  if (props.type === 'error') {
+  if (props.type.toLowerCase() === 'error') {
     return (
       <Snackbar
         open={state.open}
@@ -124,7 +124,7 @@ export const ToastDark: FC<IProps> = (props) => {
       </Snackbar>
     );
   }
-  if (props.type === 'success') {
+  if (props.type.toLowerCase() === 'success') {
     return (
       <Snackbar
         open={state.open}
@@ -158,7 +158,7 @@ export const ToastDark: FC<IProps> = (props) => {
       </Snackbar>
     );
   }
-  if (props.type === 'info') {
+  if (props.type.toLowerCase() === 'info') {
     return (
       <Snackbar
         open={state.open}
@@ -194,7 +194,7 @@ export const ToastDark: FC<IProps> = (props) => {
       </Snackbar>
     );
   }
-  if (props.type === 'warning') {
+  if (props.type.toLowerCase() === 'warning') {
     return (
       <Snackbar
         open={state.open}

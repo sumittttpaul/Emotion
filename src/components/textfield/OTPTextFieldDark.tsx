@@ -1,11 +1,12 @@
-import React, { FC, KeyboardEventHandler, ChangeEventHandler } from 'react';
+import React, { FC, KeyboardEvent, ChangeEvent } from 'react';
 
 interface IProps {
-  onkeyUp?: KeyboardEventHandler<HTMLDivElement>;
-  onkeyDown?: KeyboardEventHandler<HTMLDivElement>;
-  onKeyPress?: KeyboardEventHandler<HTMLDivElement>;
-  onChange: ChangeEventHandler;
   value: string;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  className?: string;
 }
 
 /**
@@ -25,7 +26,7 @@ const OTPTextFieldDark: FC<IProps> = (props) => {
       onKeyDown={props.onkeyDown}
       onKeyPress={props.onKeyPress}
       value={props.value}
-      className="text-white rounded-md focus:outline-none bg-[#121212] h-[50px] w-[40px] text-center items-center"
+      className={`${"text-white rounded-md focus:outline-none bg-[#121212] h-[50px] w-[40px] text-center items-center"} ${props.className}`}
       aria-label="otp box"
       type="otp"
     />

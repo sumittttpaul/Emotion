@@ -1,4 +1,4 @@
-import React, { FC, KeyboardEventHandler, ChangeEventHandler } from 'react';
+import React, { FC, KeyboardEvent, ChangeEvent } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
@@ -60,10 +60,10 @@ interface IProps {
   value: string;
   placeholder?: string;
   type?: string;
-  onChange: ChangeEventHandler;
-  onkeyUp?: KeyboardEventHandler<HTMLDivElement>;
-  onkeyDown?: KeyboardEventHandler<HTMLDivElement>;
-  onKeyPress?: KeyboardEventHandler<HTMLDivElement>;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   dataPhonecode?: string;
 }
 
