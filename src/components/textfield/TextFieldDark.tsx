@@ -17,6 +17,9 @@ const CustomTextField = styled((props: TextFieldProps) => (
     textTransform: 'unset',
     letterSpacing: 0.5,
     transform: 'translate(26px, 23px) scale(1)',
+    '&.Mui-error': {
+      color: 'rgba(255, 255, 255, 0.70)',
+    }
   },
   '& label.Mui-focused': {
     color: 'rgba(255, 255, 255, 0.70)',
@@ -53,6 +56,12 @@ const CustomTextField = styled((props: TextFieldProps) => (
       borderColor: 'rgba(255, 255, 255, 0.7)',
       color: '#ffffff',
     },
+    '&.Mui-error': {
+      backgroundColor: 'transparent',
+      boxShadow: `${alpha('#FF2020', 0.25)} 0 0 0 0px`,
+      borderColor: '#CE0000',
+      color: '#ffffff',
+    },
   },
 }));
 
@@ -64,6 +73,7 @@ interface IProps {
   onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   value: string;
   type: string;
+  error?: boolean;
 }
 
 /**
@@ -82,6 +92,7 @@ const TextFieldDark: FC<IProps> = (props) => {
         onKeyDown={props.onkeyDown}
         onKeyPress={props.onKeyPress}
         value={props.value}
+        error={props.error}
         variant="filled"
         type={props.type}
       />

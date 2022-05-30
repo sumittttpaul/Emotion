@@ -44,6 +44,9 @@ interface IProps {
   GoogleSignIn: () => void;
   AppleSignIn: () => void;
   TabClick: (value:boolean) => void;
+  PhoneError?: boolean;
+  EmailError?: boolean;
+  PasswordError?: boolean;
 }
 
 /**
@@ -88,7 +91,7 @@ const LoginUI: FC<IProps> = (props) => {
           transition={{ duration: 0.25 }}
         >
           <AuthHeaderLabel label="Sign in with an Agewear Account" />
-          <div className="w-full">
+          <div className="w-full px-[2px]">
             <LayoutGroup>
               <Tab.Group>
                 <Tab.List className="flex space-x-2 rounded-md bg-[#121212] p-[5px]">
@@ -164,6 +167,7 @@ const LoginUI: FC<IProps> = (props) => {
                 FacebookSignIn={props.FacebookSignIn}
                 GoogleSignIn={props.GoogleSignIn}
                 AppleSignIn={props.AppleSignIn}
+                PhoneError={props.PhoneError}
               />
             </TabPanel>
             <TabPanel value={Tabvalue} index={1} dir={theme.direction}>
@@ -182,6 +186,8 @@ const LoginUI: FC<IProps> = (props) => {
                 EmailPolicyCheckedChange={props.EmailPolicyCheckedChange}
                 EmailSubmitDisabled={props.EmailSubmitDisabled}
                 EmailSubmitClick={props.EmailSubmitClick}
+                EmailError={props.EmailError}
+                PasswordError={props.PasswordError}
               />
             </TabPanel>
           </SwipeableViews>

@@ -25,6 +25,9 @@ const CustomTextField = styled((props: TextFieldProps) => (
     textTransform: 'unset',
     letterSpacing: 0.5,
     transform: 'translate(26px, 23px) scale(1)',
+    '&.Mui-error': {
+      color: 'rgba(255, 255, 255, 0.70)',
+    }
   },
   '& label.Mui-focused': {
     color: 'rgba(255, 255, 255, 0.70)',
@@ -62,6 +65,15 @@ const CustomTextField = styled((props: TextFieldProps) => (
       borderColor: 'rgba(255, 255, 255, 0.7)',
       color: '#ffffff',
     },
+    '&.Mui-error': {
+      backgroundColor: 'transparent',
+      boxShadow: `${alpha('#FF2020', 0.25)} 0 0 0 0px`,
+      borderColor: '#CE0000',
+      color: '#ffffff',
+      '&:after': {
+        borderBottom: 'none'
+      }
+    },
   },
 }));
 
@@ -77,6 +89,7 @@ interface IProps {
   onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   value: string;
+  error?: boolean;
 }
 
 /**
@@ -110,6 +123,7 @@ const PasswordTextFieldDark: FC<IProps> = (props) => {
         onKeyDown={props.onkeyDown}
         onKeyPress={props.onKeyPress}
         value={props.value}
+        error={props.error}
         variant="filled"
         autoComplete="off"
         autoCapitalize="off"
@@ -122,7 +136,7 @@ const PasswordTextFieldDark: FC<IProps> = (props) => {
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
-                className="z-20 h-11 w-11 mb-[2px] rounded-md passwordEyeButton"
+                className="z-20 h-11 w-11 mb-[3px] rounded-md passwordEyeButton"
                 style={{
                   borderRadius: 6,
                 }}

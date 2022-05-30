@@ -25,8 +25,9 @@ const Login: NextPage = () => {
   const [Toast, setToast] = useState(false);
   const [ToastMessage, setToastMessage] = useState('');
   const [ToastType, setToastType] = useState('');
-  const [PhoneErrorMessage, setPhoneErrorMessage] = useState('');
   const [PhoneError, setPhoneError] = useState(false);
+  const [EmailError, setEmailError] = useState(false);
+  const [PasswordError, setPasswordError] = useState(false);
 
   // Handle State
   const PhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -74,6 +75,7 @@ const Login: NextPage = () => {
     OTPSubmit();
   };
   const PhoneKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
+    ValidPhone();
     if (event.key === 'Enter') {
       if (Phone.length == 10) {
         if (PhoneCheck === true) {
@@ -82,7 +84,7 @@ const Login: NextPage = () => {
           // Privacy policy not check
         }
       } else {
-        // invalid phone number
+        InvalidPhone();
       }
     }
   };
@@ -106,7 +108,7 @@ const Login: NextPage = () => {
     Phone.length < 9 || Phone.length == 9 || PhoneCheck === false;
 
   const EmailSubmitDisabled: boolean =
-    Phone != '' || Password != '' || EmailCheck === true;
+    Email.length < 1 || Password.length < 8 || EmailCheck === false;
 
   const PhoneSubmitClick = () => {
     setToastMessage('OTP sent successfully');
@@ -180,6 +182,28 @@ const Login: NextPage = () => {
     setOTP6('');
   };
 
+  // error
+  const ValidPhone = () => {
+    if (Phone.length == 10) {
+      setPhoneError(false);
+    }
+  };
+  const ValidEmail = () => {
+    setEmailError(false);
+  };
+  const ValidPassword = () => {
+    setPasswordError(false);
+  };
+  const InvalidPhone = () => {
+    setPhoneError(true);
+  };
+  const InvalidEmail = () => {
+    setEmailError(true);
+  };
+  const InvalidPassword = () => {
+    setPasswordError(true);
+  };
+
   return (
     <>
       <LoginUI
@@ -205,6 +229,9 @@ const Login: NextPage = () => {
         FacebookSignIn={FacebookSignIn}
         GoogleSignIn={GoogleSignIn}
         AppleSignIn={AppleSignIn}
+        PhoneError={PhoneError}
+        EmailError={EmailError}
+        PasswordError={PasswordError}
       />
       <OTPAuthUI
         open={OTPDialog}

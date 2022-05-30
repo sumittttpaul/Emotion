@@ -19,6 +19,7 @@ interface IProps {
   FacebookSignIn: () => void;
   GoogleSignIn: () => void;
   AppleSignIn: () => void;
+  PhoneError?: boolean;
 }
 
 /**
@@ -26,7 +27,7 @@ interface IProps {
  * @function @OtherAccountAuthUI
  **/
 
-const container = 'w-full flex flex-col justify-center items-center';
+const container = 'px-[2px] pt-[2px] w-full flex flex-col justify-center items-center';
 
 const PhoneAuthUI: FC<IProps> = (props) => {
   return (
@@ -41,6 +42,7 @@ const PhoneAuthUI: FC<IProps> = (props) => {
         onKeyPress={props.PhoneKeyPress}
         onkeyDown={props.PhoneKeyDown}
         onkeyUp={props.PhoneKeyUp}
+        error={props.PhoneError}
       />
 
       <div className="flex w-full pl-2">

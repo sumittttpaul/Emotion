@@ -22,6 +22,8 @@ interface IProps {
   EmailPolicyCheckedChange: (event: ChangeEvent<HTMLInputElement>) => void;
   EmailSubmitDisabled: boolean;
   EmailSubmitClick: () => void;
+  EmailError?: boolean;
+  PasswordError?: boolean;
 }
 
 /**
@@ -31,7 +33,7 @@ interface IProps {
 
 const EmailAuthUI: FC<IProps> = (props) => {
   return (
-    <div className="w-full space-y-7 pb-[4px] flex flex-col justify-center items-center">
+    <div className="w-full space-y-7 pb-[4px] pt-[2px] px-[2px] flex flex-col justify-center items-center">
       <IconTextFieldDark
         placeholder="Email Address"
         icon="/icons/email.svg"
@@ -41,6 +43,7 @@ const EmailAuthUI: FC<IProps> = (props) => {
         onkeyDown={props.EmailKeyDown}
         onKeyPress={props.EmailKeyPress}
         onkeyUp={props.EmailKeyUp}
+        error={props.EmailError}
       />
       <IconPasswordTextFieldDark
         placeholder="Password"
@@ -50,6 +53,7 @@ const EmailAuthUI: FC<IProps> = (props) => {
         onkeyDown={props.PasswordKeyDown}
         onKeyPress={props.PasswordKeyPress}
         onkeyUp={props.PasswordKeyUp}
+        error={props.PasswordError}
       />
       <div className="w-full space-y-1">
         <div className="text-right w-full">

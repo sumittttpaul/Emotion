@@ -18,6 +18,9 @@ const CustomTextField = styled((props: TextFieldProps) => (
     textTransform: 'unset',
     letterSpacing: 0.5,
     transform: 'translate(67px, 23px) scale(1)',
+    '&.Mui-error': {
+      color: 'rgba(255, 255, 255, 0.70)',
+    }
   },
   '& label.Mui-focused': {
     color: 'rgba(255, 255, 255, 0.70)',
@@ -54,6 +57,12 @@ const CustomTextField = styled((props: TextFieldProps) => (
       borderColor: 'rgba(255, 255, 255, 0.7)',
       color: '#ffffff',
     },
+    '&.Mui-error': {
+      backgroundColor: 'transparent',
+      boxShadow: `${alpha('#FF2020', 0.25)} 0 0 0 0px`,
+      borderColor: '#CE0000',
+      color: '#ffffff',
+    },
   },
 }));
 
@@ -67,6 +76,7 @@ interface IProps {
   onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   dataPhonecode?: string;
+  error?: boolean;
 }
 
 /**
@@ -90,6 +100,7 @@ const IconNumberTextFieldDark: FC<IProps> = (props) => {
         variant="filled"
         autoCorrect="off"
         autoComplete="off"
+        error={props.error}
         inputProps={{
           maxLength: 10,
         }}
