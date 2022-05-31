@@ -10,6 +10,7 @@ import {
 } from './AuthProps';
 import 'firebase/compat/auth';
 import { AuthError } from '../firebase/AuthError';
+import Router from 'next/router';
 
 declare global {
   interface Window {
@@ -59,7 +60,6 @@ export const ResentOTP = ({
   window.recaptchaVerifier.render().then(function (widgetId: any) {
     grecaptcha.reset(widgetId);
   });
-  // const getNumber = phoneNumber.slice(-10);
   const number = '+91' + Phone;
   const appVerifier = window.recaptchaVerifier;
   firebase
@@ -104,11 +104,9 @@ export const VerifyOTP = ({
       console.log('user is verified and SignIn');
       const IsNewUser = result.additionalUserInfo.isNewUser;
       if (IsNewUser) {
-        // navigate to SignUp page
-        Loading(false);
+        Router.push('/auth/register');
       } else {
-        // navigate to home page
-        Loading(false);
+        Router.push('/');
       }
     })
     .catch((error) => {
@@ -136,8 +134,7 @@ export const SignInWithPhoneNumber = ({
     ToastShow(show);
   };
   Loading(true);
-  configureCaptcha();
-  // const getNumber = phoneNumber.slice(-10);
+  configureCaptcha()
   const number = '+91' + Phone;
   const appVerifier = window.recaptchaVerifier;
   firebase
@@ -178,8 +175,7 @@ export const SignInWithEmailAndPassword = ({
     .auth()
     .signInWithEmailAndPassword(Email, Password)
     .then(() => {
-      // navigate to home page
-      Loading(false);
+      Router.push('/');
       console.log('SingIn with Email & Password Successful !');
     })
     .catch((error) => {
@@ -206,8 +202,8 @@ export const SignInWithFacebook = ({
     .auth()
     .signInWithPopup(facebookProvider)
     .then((result) => {
-      console.log('Signed in with Facebook!');
-      // navigate to home page
+      Router.push('/');
+      console.log('SignIn with Facebook Successful !');
     })
     .catch((error) => {
       const message = AuthError(error.code);
@@ -231,8 +227,8 @@ export const SignInWithGoogle = ({
     .auth()
     .signInWithPopup(googleProvider)
     .then((result) => {
-      console.log('Signed in with Google!');
-      // navigate to home page
+      Router.push('/');
+      console.log('SignIn with Google Successful !');
     })
     .catch((error) => {
       const message = AuthError(error.code);
@@ -256,8 +252,8 @@ export const SignInWithApple = ({
     .auth()
     .signInWithPopup(appleProvider)
     .then((result) => {
-      console.log('Signed in with Apple!');
-      // navigate to home page
+      Router.push('/');
+      console.log('SignIn with Apple Successful !');
     })
     .catch((error) => {
       const message = AuthError(error.code);

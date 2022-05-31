@@ -13,6 +13,7 @@ import {
   SignInWithPhoneNumber,
   VerifyOTP,
 } from '../../../algorithms/AuthAlgorithms';
+import { useLoaderState } from '../../../providers/state/LoadingState';
 
 const Login: NextPage = () => {
   // ID
@@ -78,8 +79,9 @@ const Login: NextPage = () => {
   };
 
   // Loading
+  const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => {
-    console.log('Loading : ' + value);
+    setLoader({ show: value });
   };
 
   // Valid Format
@@ -166,19 +168,26 @@ const Login: NextPage = () => {
   // Buttons
   const PhoneSubmitDisabled: boolean =
     Phone.length < 9 || Phone.length == 9 || PhoneCheck === false;
-  const EmailSubmitDisabled: boolean =
-    Email.length < 1 || Password.length < 8 || EmailCheck === false;
+  const EmailSubmitDisabled: boolean | any =
+    Email.length < 1 ||
+    !ValidateEmail ||
+    !ValidatePassword ||
+    Password.length < 8 ||
+    EmailCheck === false;
   const TabClick = (value: boolean) => {
     if (value) {
       setTimeout(() => {
         setEmail('');
         setPassword('');
         setEmailCheck(false);
+        ValidEmail();
+        ValidPassword();
       }, 250);
     } else {
       setTimeout(() => {
         setPhone('');
         setPhoneCheck(false);
+        ValidPhone();
       }, 250);
     }
   };
@@ -275,6 +284,8 @@ const Login: NextPage = () => {
           ToastShow: AuthToast,
         });
         ShowToast(ToastMessage, ToastType, Toast);
+      } else {
+        ShowToast('Incorrect phone number', 'Error', true);
       }
     }, 250);
   };
@@ -337,6 +348,9 @@ const Login: NextPage = () => {
           Loading: LoadingScreen,
         });
         ShowToast(ToastMessage, ToastType, Toast);
+      } else {
+        ShowToast('Incorrect email or password', 'Error', true);
+        EmptyPassword();
       }
     }, 250);
   };

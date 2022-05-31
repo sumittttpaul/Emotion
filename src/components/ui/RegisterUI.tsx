@@ -3,12 +3,13 @@ import AuthContainer from '../container/AuthContainer';
 import { motion, AnimatePresence } from 'framer-motion';
 import TextFieldDark from '../textfield/TextFieldDark';
 import LargeButtonBlue from '../button/LargeButtonBlue';
-import CheckBoxBlue from '../checkbox/CheckBoxBlue';
 import { Link } from '@mui/material';
-import Router from 'next/router';
 import PasswordTextFieldDark from '../textfield/PasswordTextFieldDark';
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 import NumberTextFieldDark from '../textfield/NumberTextFieldDark';
+import { AuthFooter } from '../footer/AuthFooter';
+import CheckBoxBlue from '../checkbox/CheckBoxBlue';
+import { TermsAndCondition } from '../terms & policy/TermsAndCondition';
 
 interface IProps {}
 
@@ -25,7 +26,7 @@ const RegisterUI: FC<IProps> = (props) => {
     <AuthContainer>
       <AnimatePresence exitBeforeEnter>
         <motion.div
-          className="w-full max-w-[350px] space-y-6 flex flex-col justify-center items-center"
+          className="w-full max-w-[350px] space-y-6 flex flex-col justify-center items-center relative"
           key=""
           animate={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 50 }}
@@ -70,45 +71,16 @@ const RegisterUI: FC<IProps> = (props) => {
               onChange={() => {}}
             />
           </div>
-
           <div className="flex w-full">
-            {/* <CheckBoxBlue Checked={false}/> */}
-            <div className="flex items-center">
-              <h6 className="ml-3 text-xs font-light text-[rgba(255,255,255,0.75)]">
-                I have read and agree with&#160;
-                <Link
-                  className="text-white text-xs"
-                  component="button"
-                  underline="always"
-                >
-                  terms & conditions
-                </Link>
-              </h6>
-            </div>
+            <CheckBoxBlue Checked={false} OnCnange={() => {}} />
+            <TermsAndCondition />
           </div>
-          <LargeButtonBlue Disabled={false}
-            onClick={() => {
-              setTimeout(() => {
-                Router.push('/auth/register/setup-account');
-              }, 250);
-            }}
+          <LargeButtonBlue
+            Disabled={false}
+            onClick={() => {}}
             content="Continue"
           />
-          <div className="flex">
-            <h6 className="text-xs font-light text-[rgba(255,255,255,0.75)] flex items-center">
-              Already have an Agewear account?&#160;
-              <Link
-                onClick={() => {
-                  Router.push('/auth/login');
-                }}
-                className="text-white text-xs"
-                component="button"
-                underline="always"
-              >
-                Sign In
-              </Link>
-            </h6>
-          </div>
+          <AuthFooter />
         </motion.div>
       </AnimatePresence>
     </AuthContainer>

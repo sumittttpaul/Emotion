@@ -12,6 +12,7 @@ import { StateProvider } from '../providers/StateProvider';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 import { AuthProvider } from '../firebase/AuthProvider';
+import { Loading } from '../components/loader/Loading';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -35,6 +36,7 @@ function MyApp(props: MyAppProps) {
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <Component {...pageProps} />
+              <Loading/>
             </ThemeProvider>
           </StateProvider>
         </Provider>

@@ -11,11 +11,11 @@ import { DeviceMobileIcon, MailIcon } from '@heroicons/react/solid';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import EmailAuthUI from './AuthComponentUI/LoginComponentUI/EmailAuthUI';
 import PhoneAuthUI from './AuthComponentUI/LoginComponentUI/PhoneAuthUI';
-import { Link, useTheme } from '@mui/material';
-import Router from 'next/router';
+import { useTheme } from '@mui/material';
 import SwipeableViews from 'react-swipeable-views';
 import TabPanel from '../tab/SelectAvatarTabPanel';
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
+import { AuthFooter } from '../footer/AuthFooter';
 
 interface IProps {
   Phone: string;
@@ -207,21 +207,7 @@ const LoginUI: FC<IProps> = (props) => {
               />
             </TabPanel>
           </SwipeableViews>
-          <div className="flex">
-            <h6 className="text-xs font-light text-[rgba(255,255,255,0.75)] flex items-center">
-              Don&apos;t have an Agewear account?&#160;
-              <Link
-                onClick={() => {
-                  Router.push('/auth/register');
-                }}
-                className="text-white text-xs"
-                component="button"
-                underline="always"
-              >
-                Sign Up
-              </Link>
-            </h6>
-          </div>
+          <AuthFooter/>
         </motion.div>
       </AnimatePresence>
     </AuthContainer>
