@@ -144,6 +144,7 @@ const IconPasswordTextFieldDark: FC<IconPasswordTextFieldProps> = (props) => {
               </IconButton>
             </InputAdornment>
           ),
+          readOnly: props.readonly,
         }}
       />
       <div className="-mt-[46px] ml-[20px] mb-[16px] flex">

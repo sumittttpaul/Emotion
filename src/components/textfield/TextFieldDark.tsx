@@ -62,6 +62,9 @@ const CustomTextField = styled((props: TextFieldProps) => (
       boxShadow: `${alpha('#FF2020', 0.25)} 0 0 0 0px`,
       borderColor: '#CE0000',
       color: '#ffffff',
+      '&:after': {
+        borderBottom: 'none',
+      },
     },
   },
 }));
@@ -88,6 +91,9 @@ const TextFieldDark: FC<PlainTextFieldProps> = (props) => {
         onBlur={props.onBlur}
         variant="filled"
         type={props.type}
+        InputProps={{
+          readOnly: props.readonly,
+        }}
       />
     </div>
   );

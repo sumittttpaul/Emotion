@@ -100,9 +100,6 @@ const Login: NextPage = () => {
   };
   const ChangeFocus = (event: KeyboardEvent<HTMLInputElement>) => {
     InputChangeFocus(event);
-  };
-  const OTPChangeFocus = (event: KeyboardEvent<HTMLInputElement>) => {
-    InputChangeFocus(event);
     OTPSubmit();
   };
   const PhoneKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -111,7 +108,7 @@ const Login: NextPage = () => {
     }
     if (event.key === 'Enter') {
       if (ValidatePhone) {
-        // SignIn
+        PhoneSubmitClick();
       } else {
         InvalidPhone();
       }
@@ -135,7 +132,7 @@ const Login: NextPage = () => {
     }
     if (event.key === 'Enter') {
       if (ValidatePassword) {
-        // SignIn
+        EmailSubmitClick();
       } else {
         InvalidPassword();
       }
@@ -182,13 +179,13 @@ const Login: NextPage = () => {
         setEmailCheck(false);
         ValidEmail();
         ValidPassword();
-      }, 250);
+      }, 200);
     } else {
       setTimeout(() => {
         setPhone('');
         setPhoneCheck(false);
         ValidPhone();
-      }, 250);
+      }, 200);
     }
   };
 
@@ -405,37 +402,37 @@ const Login: NextPage = () => {
         OTP1={OTP1}
         OTP1Change={OTP1Change}
         OTP1KeyPress={NumberOnly}
-        OTP1KeyUp={OTPChangeFocus}
+        OTP1KeyUp={ChangeFocus}
         OTP2={OTP2}
         OTP2Change={OTP2Change}
         OTP2KeyPress={NumberOnly}
-        OTP2KeyUp={OTPChangeFocus}
+        OTP2KeyUp={ChangeFocus}
         OTP3={OTP3}
         OTP3Change={OTP3Change}
         OTP3KeyPress={NumberOnly}
-        OTP3KeyUp={OTPChangeFocus}
+        OTP3KeyUp={ChangeFocus}
         OTP4={OTP4}
         OTP4Change={OTP4Change}
         OTP4KeyPress={NumberOnly}
-        OTP4KeyUp={OTPChangeFocus}
+        OTP4KeyUp={ChangeFocus}
         OTP5={OTP5}
         OTP5Change={OTP5Change}
         OTP5KeyPress={NumberOnly}
-        OTP5KeyUp={OTPChangeFocus}
+        OTP5KeyUp={ChangeFocus}
         OTP6={OTP6}
         OTP6Change={OTP6Change}
         OTP6KeyPress={NumberOnly}
-        OTP6KeyUp={OTPChangeFocus}
+        OTP6KeyUp={ChangeFocus}
       />
       <ToastDark
         message={ToastMessage}
         open={Toast}
         close={HideToast}
+        type={ToastType}
         autoHideDuration={6000}
         slideDirection="down"
         positionVertical="top"
         positionHorizontal="center"
-        type={ToastType}
         bgColor="bg-[#121212] sm:bg-[#202020]"
       />
     </>

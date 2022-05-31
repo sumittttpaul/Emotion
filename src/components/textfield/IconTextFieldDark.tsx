@@ -63,6 +63,9 @@ const CustomTextField = styled((props: TextFieldProps) => (
       boxShadow: `${alpha('#FF2020', 0.25)} 0 0 0 0px`,
       borderColor: '#CE0000',
       color: '#ffffff',
+      '&:after': {
+        borderBottom: 'none',
+      },
     },
   },
 }));
@@ -91,6 +94,9 @@ const IconTextFieldDark: FC<IconTextFieldProps> = (props) => {
         variant="filled"
         autoCorrect="off"
         autoComplete="off"
+        InputProps={{
+          readOnly: props.readonly,
+        }}
       />
       <div className="-mt-[46px] ml-[20px] mb-[16px] flex">
         <Image

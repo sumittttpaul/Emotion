@@ -8,6 +8,7 @@ export interface IconNumberTextFieldProps {
   type?: string;
   dataPhonecode?: string;
   error?: boolean;
+  readonly?: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
@@ -22,6 +23,7 @@ export interface IconPasswordTextFieldProps {
   placeholder: string;
   icon: string;
   error?: boolean;
+  readonly?: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
@@ -37,6 +39,7 @@ export interface IconTextFieldProps {
   icon: string;
   type?: string;
   error?: boolean;
+  readonly?: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
@@ -52,6 +55,7 @@ export interface NumberTextFieldProps {
   type?: string;
   dataPhonecode?: string;
   error?: boolean;
+  readonly?: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
@@ -66,6 +70,7 @@ export interface PlainTextFieldProps {
   placeholder: string;
   type: string;
   error?: boolean;
+  readonly?: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
@@ -79,6 +84,7 @@ export interface PasswordTextFieldProps {
   value: string;
   placeholder: string;
   error?: boolean;
+  readonly?: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;

@@ -143,6 +143,7 @@ const PasswordTextFieldDark: FC<PasswordTextFieldProps> = (props) => {
               </IconButton>
             </InputAdornment>
           ),
+          readOnly: props.readonly,
         }}
       />
     </div>

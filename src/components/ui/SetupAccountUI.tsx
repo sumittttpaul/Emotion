@@ -28,11 +28,15 @@ export const SetupAccountUI: FC<IProps> = (props) => {
           exit={{ opacity: 0, y: -50 }}
           transition={{ duration: 0.25 }}
         >
-          <AuthHeaderLabel label='Setup your Agewear account'/>
-          <AvatarUI/>
-          <DatePickerUI/>
-          <GenderUI/>
-          <LargeButtonBlue onClick={()=>{}} content='Continue'/>
+          <AuthHeaderLabel label="Setup your Agewear account" />
+          <AvatarUI />
+          <DatePickerUI />
+          <GenderUI />
+          <LargeButtonBlue
+            onClick={() => {}}
+            Disabled={false}
+            content="Continue"
+          />
           <div className="flex">
             <h6 className="text-xs font-light text-[rgba(255,255,255,0.75)] flex items-center">
               Will do it later?&#160;
