@@ -108,10 +108,10 @@ export const ToastDark: FC<IProps> = (props) => {
           <div className="h-full items-start">
             <XCircleIcon className={`${'h-7 w-7'} ${ErrorIconColor}`} />
           </div>
-          <h6 className={`${'text-xs font-[350] pr-2'} ${textColor}`}>
+          <h6 className={`${'text-xs font-[350] pr-10'} ${textColor}`}>
             {props.message}
           </h6>
-          <div className="h-full items-start">
+          <div className="h-full absolute block top-3 right-3">
             <motion.button
               onClick={handleCloseClick}
               whileTap={{ scale: 0.8 }}
@@ -137,19 +137,19 @@ export const ToastDark: FC<IProps> = (props) => {
         }}
       >
         <div
-          className={`${'text-white flex relative space-x-3 p-3 items-center border-l-[3px] rounded-lg'} ${maxWidth} ${SuccessBorderColor} ${bgColor}`}
+          className={`${'text-white flex relative items-center border-l-[3px] space-x-3 p-3 rounded-lg'} ${maxWidth} ${SuccessBorderColor} ${bgColor}`}
         >
           <div className="h-full items-start">
             <CheckCircleIcon className={`${'h-7 w-7'} ${SuccessIconColor}`} />
           </div>
-          <h6 className={`${'text-xs font-[350] pr-2'} ${textColor}`}>
+          <h6 className={`${'text-xs font-[350] pr-10'} ${textColor}`}>
             {props.message}
           </h6>
-          <div className="h-full items-start">
+          <div className="h-full absolute block top-3 right-3">
             <motion.button
               onClick={handleCloseClick}
               whileTap={{ scale: 0.8 }}
-              className="bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] cursor-default p-[6px] rounded-md"
+              className="bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] cursor-default p-[6px] relative block rounded-md"
             >
               <XIcon className="text-white h-[14px] w-[14px] opacity-70" />
             </motion.button>
@@ -178,10 +178,10 @@ export const ToastDark: FC<IProps> = (props) => {
               className={`${'h-7 w-7'} ${InfoIconColor}`}
             />
           </div>
-          <h6 className={`${'text-xs font-[350] pr-2'} ${textColor}`}>
+          <h6 className={`${'text-xs font-[350] pr-10'} ${textColor}`}>
             {props.message}
           </h6>
-          <div className="h-full items-start">
+          <div className="h-full absolute block top-3 right-3">
             <motion.button
               onClick={handleCloseClick}
               whileTap={{ scale: 0.8 }}
@@ -214,10 +214,10 @@ export const ToastDark: FC<IProps> = (props) => {
               className={`${'h-7 w-7'} ${WarningIconColor}`}
             />
           </div>
-          <h6 className={`${'text-xs font-[350] pr-2'} ${textColor}`}>
+          <h6 className={`${'text-xs font-[350] pr-10'} ${textColor}`}>
             {props.message}
           </h6>
-          <div className="h-full items-start">
+          <div className="h-full absolute block top-3 right-3">
             <motion.button
               onClick={handleCloseClick}
               whileTap={{ scale: 0.8 }}

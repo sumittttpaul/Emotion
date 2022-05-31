@@ -1,8 +1,4 @@
-import React, {
-  FC,
-  useState,
-  MouseEvent,
-} from 'react';
+import React, { FC, useState, MouseEvent } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
@@ -26,7 +22,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
     transform: 'translate(26px, 23px) scale(1)',
     '&.Mui-error': {
       color: 'rgba(255, 255, 255, 0.70)',
-    }
+    },
   },
   '& label.Mui-focused': {
     color: 'rgba(255, 255, 255, 0.70)',
@@ -70,8 +66,8 @@ const CustomTextField = styled((props: TextFieldProps) => (
       borderColor: '#CE0000',
       color: '#ffffff',
       '&:after': {
-        borderBottom: 'none'
-      }
+        borderBottom: 'none',
+      },
     },
   },
 }));
@@ -102,7 +98,7 @@ const PasswordTextFieldDark: FC<PasswordTextFieldProps> = (props) => {
   return (
     <div className="flex flex-col w-full">
       <CustomTextField
-        id="PasswordInput"
+        id={props.id}
         aria-label="password-textfield"
         className="w-full z-10"
         label={props.placeholder}

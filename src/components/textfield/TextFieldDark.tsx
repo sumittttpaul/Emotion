@@ -75,6 +75,7 @@ const TextFieldDark: FC<PlainTextFieldProps> = (props) => {
   return (
     <div className="flex flex-col w-full">
       <CustomTextField
+        id={props.id}
         className="w-full z-10"
         label={props.placeholder}
         onChange={props.onChange}

@@ -9,11 +9,13 @@ import { EmailPrivacyPolicy } from '../../../terms & policy/EmailPrivacyPolicy';
 
 interface IProps {
   Email: string;
+  EmailID?: string;
   EmailChange: (event: ChangeEvent<HTMLInputElement>) => void;
   EmailKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   EmailKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   EmailKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   Password: string;
+  PasswordID?: string;
   PasswordChange: (event: ChangeEvent<HTMLInputElement>) => void;
   PasswordKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   PasswordKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
@@ -39,6 +41,7 @@ const EmailAuthUI: FC<IProps> = (props) => {
   return (
     <div className="w-full space-y-7 pb-[4px] pt-[2px] px-[2px] flex flex-col justify-center items-center">
       <IconTextFieldDark
+        id={props.EmailID}
         placeholder="Email Address"
         icon="/icons/email.svg"
         type="email"
@@ -52,6 +55,7 @@ const EmailAuthUI: FC<IProps> = (props) => {
         error={props.EmailError}
       />
       <IconPasswordTextFieldDark
+        id={props.PasswordID}
         placeholder="Password"
         icon="/icons/password.svg"
         value={props.Password}

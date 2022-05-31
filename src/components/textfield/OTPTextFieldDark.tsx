@@ -9,6 +9,7 @@ import { OTPTextFieldProps } from './AllTextFieldProps';
 const OTPTextFieldDark: FC<OTPTextFieldProps> = (props) => {
   return (
     <input
+      id={props.id}
       maxLength={1}
       autoCorrect="off"
       autoComplete="off"
@@ -18,7 +19,9 @@ const OTPTextFieldDark: FC<OTPTextFieldProps> = (props) => {
       onKeyDown={props.onkeyDown}
       onKeyPress={props.onKeyPress}
       value={props.value}
-      className={`${"text-white rounded-md focus:outline-none bg-[#121212] h-[50px] w-[40px] text-center items-center"} ${props.className}`}
+      className={`${'text-white rounded-md focus:outline-none bg-[#121212] h-[50px] w-[40px] text-center items-center'} ${
+        props.className
+      }`}
       aria-label="otp box"
       type="otp"
     />

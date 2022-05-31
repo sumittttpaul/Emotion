@@ -1,5 +1,5 @@
 export interface ResendOTPProps {
-  phoneNumber: number;
+  Phone: number;
   Loading: (value: boolean) => void;
   ToastShow: (value: boolean) => void;
   ToastMessage: (value: string) => void;

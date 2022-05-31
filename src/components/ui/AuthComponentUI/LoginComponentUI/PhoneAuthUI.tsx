@@ -8,6 +8,7 @@ import { PhonePrivacyPolicy } from '../../../terms & policy/PhonePrivacyPolicy';
 
 interface IProps {
   Phone: string;
+  PhoneID?: string;
   PhoneChange: (event: ChangeEvent<HTMLInputElement>) => void;
   PhoneKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   PhoneKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
@@ -29,12 +30,14 @@ interface IProps {
  * @function @OtherAccountAuthUI
  **/
 
-const container = 'px-[2px] pt-[2px] w-full flex flex-col justify-center items-center';
+const container =
+  'px-[2px] pt-[2px] w-full flex flex-col justify-center items-center';
 
 const PhoneAuthUI: FC<IProps> = (props) => {
   return (
     <div className={`${container} ${'space-y-7'}`}>
       <IconNumberTextFieldDark
+        id={props.PhoneID}
         placeholder="Phone Number"
         icon="/icons/phone.svg"
         type="tel"

@@ -9,6 +9,7 @@ import {
   SignInWithAppleProps,
 } from './AuthProps';
 import 'firebase/compat/auth';
+import { AuthError } from '../firebase/AuthError';
 
 declare global {
   interface Window {
@@ -43,7 +44,7 @@ export const configureCaptcha = () => {
 // OTP
 
 export const ResentOTP = ({
-  phoneNumber,
+  Phone,
   Loading,
   ToastMessage,
   ToastType,
@@ -59,7 +60,7 @@ export const ResentOTP = ({
     grecaptcha.reset(widgetId);
   });
   // const getNumber = phoneNumber.slice(-10);
-  const number = '+91' + phoneNumber;
+  const number = '+91' + Phone;
   const appVerifier = window.recaptchaVerifier;
   firebase
     .auth()
@@ -72,8 +73,9 @@ export const ResentOTP = ({
     })
     .catch((error) => {
       Loading(false);
-      Toast('OTP not sent', 'Error', true);
-      console.log('Otp not sent beacuse' + error.message);
+      const message = AuthError(error.code);
+      Toast(`${message}`, 'Error', true);
+      console.log('Otp not sent beacuse' + error.code);
     });
 };
 
@@ -111,8 +113,9 @@ export const VerifyOTP = ({
     })
     .catch((error) => {
       Loading(false);
-      Toast('Verification Failed', 'Error', true);
-      console.log('OTP verification failed beacuse ' + error.message);
+      const message = AuthError(error.code);
+      Toast(`${message}`, 'Error', true);
+      console.log('OTP verification failed beacuse ' + error.code);
     });
 };
 
@@ -149,9 +152,10 @@ export const SignInWithPhoneNumber = ({
     })
     .catch((error) => {
       Loading(false);
-      Toast('OTP not sent', 'Error', true);
+      const message = AuthError(error.code);
+      Toast(`${message}`, 'Error', true);
       EmptyPhone();
-      console.log('OTP not sent beacuse' + error.message);
+      console.log('OTP not sent beacuse' + error.code);
     });
 };
 
@@ -180,11 +184,10 @@ export const SignInWithEmailAndPassword = ({
     })
     .catch((error) => {
       Loading(false);
-      Toast('SignIn Failed', 'Error', true);
+      const message = AuthError(error.code);
+      Toast(`${message}`, 'Error', true);
       EmptyPasswordTextField();
-      console.log(
-        'SingIn with Email & Password Failed because ' + error.message
-      );
+      console.log('SingIn with Email & Password Failed because ' + error.code);
     });
 };
 
@@ -207,8 +210,9 @@ export const SignInWithFacebook = ({
       // navigate to home page
     })
     .catch((error) => {
-      Toast('SignIn Failed', 'Error', true);
-      console.error('Failed to SignIn with Facebook because ' + error.message);
+      const message = AuthError(error.code);
+      Toast(`${message}`, 'Error', true);
+      console.error('Failed to SignIn with Facebook because ' + error.code);
     });
 };
 
@@ -231,8 +235,9 @@ export const SignInWithGoogle = ({
       // navigate to home page
     })
     .catch((error) => {
-      Toast('SignIn Failed', 'Error', true);
-      console.error('Failed to SignIn with Google because ' + error.message);
+      const message = AuthError(error.code);
+      Toast(`${message}`, 'Error', true);
+      console.error('Failed to SignIn with Google because ' + error.code);
     });
 };
 
@@ -255,7 +260,8 @@ export const SignInWithApple = ({
       // navigate to home page
     })
     .catch((error) => {
-      Toast('SignIn Failed', 'Error', true);
-      console.error('Failed to SignIn with Apple because ' + error.message);
+      const message = AuthError(error.code);
+      Toast(`${message}`, 'Error', true);
+      console.error('Failed to SignIn with Apple because ' + error.code);
     });
 };

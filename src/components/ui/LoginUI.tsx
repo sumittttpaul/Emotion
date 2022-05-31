@@ -19,16 +19,19 @@ import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 
 interface IProps {
   Phone: string;
+  PhoneID?: string;
   PhoneChange: (event: ChangeEvent<HTMLInputElement>) => void;
   PhoneKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   PhoneKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   PhoneKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   Email: string;
+  EmailID?: string;
   EmailChange: (event: ChangeEvent<HTMLInputElement>) => void;
   EmailKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   EmailKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   EmailKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   Password: string;
+  PasswordID?: string;
   PasswordChange: (event: ChangeEvent<HTMLInputElement>) => void;
   PasswordKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   PasswordKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
@@ -66,7 +69,6 @@ function classNames(...classes: any) {
 }
 
 const LoginUI: FC<IProps> = (props) => {
-  const [value, setValue] = useState(true);
   const [Tabvalue, setTabValue] = useState(0);
   const theme = useTheme();
 
@@ -75,13 +77,11 @@ const LoginUI: FC<IProps> = (props) => {
   };
 
   const handlePhoneClick = () => {
-    setValue(true);
     setTabValue(0);
     props.TabClick(true);
   };
 
   const handleEmailClick = () => {
-    setValue(false);
     setTabValue(1);
     props.TabClick(false);
   };
@@ -163,6 +163,7 @@ const LoginUI: FC<IProps> = (props) => {
             <TabPanel value={Tabvalue} index={0} dir={theme.direction}>
               <PhoneAuthUI
                 Phone={props.Phone}
+                PhoneID={props.PhoneID}
                 PhoneKeyUp={props.PhoneKeyUp}
                 PhoneKeyPress={props.PhoneKeyPress}
                 PhoneKeyDown={props.PhoneKeyDown}
@@ -182,11 +183,13 @@ const LoginUI: FC<IProps> = (props) => {
             <TabPanel value={Tabvalue} index={1} dir={theme.direction}>
               <EmailAuthUI
                 Email={props.Email}
+                EmailID={props.EmailID}
                 EmailKeyUp={props.EmailKeyUp}
                 EmailKeyPress={props.EmailKeyPress}
                 EmailKeyDown={props.EmailKeyDown}
                 EmailChange={props.EmailChange}
                 Password={props.Password}
+                PasswordID={props.PasswordID}
                 PasswordKeyUp={props.PasswordKeyUp}
                 PasswordKeyPress={props.PasswordKeyPress}
                 PasswordKeyDown={props.PasswordKeyDown}

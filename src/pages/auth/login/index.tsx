@@ -8,11 +8,18 @@ import {
   InputNumberOnly,
 } from '../../../algorithms/UIAlgorithms';
 import {
+  ResentOTP,
+  SignInWithEmailAndPassword,
   SignInWithPhoneNumber,
   VerifyOTP,
 } from '../../../algorithms/AuthAlgorithms';
 
 const Login: NextPage = () => {
+  // ID
+  const PhoneID = 'PhoneNumber-TextField-Login';
+  const EmailID = 'EmailAddress-TextField-Login';
+  const PasswordID = 'Password-TextField-Login';
+
   // State
   const [Phone, setPhone] = useState('');
   const [Email, setEmail] = useState('');
@@ -71,7 +78,7 @@ const Login: NextPage = () => {
   };
 
   // Loading
-  const LaadingScreen = (value: boolean) => {
+  const LoadingScreen = (value: boolean) => {
     console.log('Loading : ' + value);
   };
 
@@ -90,6 +97,9 @@ const Login: NextPage = () => {
     InputNumberOnly(event);
   };
   const ChangeFocus = (event: KeyboardEvent<HTMLInputElement>) => {
+    InputChangeFocus(event);
+  };
+  const OTPChangeFocus = (event: KeyboardEvent<HTMLInputElement>) => {
     InputChangeFocus(event);
     OTPSubmit();
   };
@@ -111,7 +121,7 @@ const Login: NextPage = () => {
     }
     if (event.key === 'Enter') {
       if (ValidateEmail) {
-        // Change focus to password input
+        document.getElementById(PasswordID)?.focus();
       } else {
         InvalidEmail();
       }
@@ -158,9 +168,6 @@ const Login: NextPage = () => {
     Phone.length < 9 || Phone.length == 9 || PhoneCheck === false;
   const EmailSubmitDisabled: boolean =
     Email.length < 1 || Password.length < 8 || EmailCheck === false;
-
-  const EmailSubmitClick = () => {};
-
   const TabClick = (value: boolean) => {
     if (value) {
       setTimeout(() => {
@@ -175,11 +182,6 @@ const Login: NextPage = () => {
       }, 250);
     }
   };
-
-  const FacebookSignIn = () => {};
-  const GoogleSignIn = () => {};
-  const AppleSignIn = () => {};
-  const OTPResend = () => {};
 
   // error
   const ValidPhone = () => {
@@ -266,15 +268,13 @@ const Login: NextPage = () => {
         SignInWithPhoneNumber({
           Phone: parseInt(Phone),
           EmptyPhone: EmptyPhone,
-          Loading: LaadingScreen,
+          Loading: LoadingScreen,
           ShowOTPDialog: ShowOTPDialog,
           ToastMessage: AuthToastMessage,
           ToastType: AuthToastType,
           ToastShow: AuthToast,
         });
         ShowToast(ToastMessage, ToastType, Toast);
-      } else {
-        InvalidPhone();
       }
     }, 250);
   };
@@ -298,7 +298,7 @@ const Login: NextPage = () => {
       setTimeout(() => {
         VerifyOTP({
           OTP: parseInt(OTP1 + OTP2 + OTP3 + OTP4 + OTP5 + OTP6),
-          Loading: LaadingScreen,
+          Loading: LoadingScreen,
           ToastMessage: AuthToastMessage,
           ToastType: AuthToastType,
           ToastShow: AuthToast,
@@ -309,6 +309,42 @@ const Login: NextPage = () => {
     }
   };
 
+  // Resend OTP
+  const OTPResend = () => {
+    setTimeout(() => {
+      ResentOTP({
+        Phone: parseInt(Phone),
+        Loading: LoadingScreen,
+        ToastMessage: AuthToastMessage,
+        ToastType: AuthToastType,
+        ToastShow: AuthToast,
+      });
+      ShowToast(ToastMessage, ToastType, Toast);
+    }, 250);
+  };
+
+  // signIn with email and password
+  const EmailSubmitClick = () => {
+    setTimeout(() => {
+      if (ValidateEmail && ValidatePassword) {
+        SignInWithEmailAndPassword({
+          Email: Email,
+          Password: Password,
+          EmptyPasswordTextField: EmptyPassword,
+          ToastMessage: AuthToastMessage,
+          ToastType: AuthToastType,
+          ToastShow: AuthToast,
+          Loading: LoadingScreen,
+        });
+        ShowToast(ToastMessage, ToastType, Toast);
+      }
+    }, 250);
+  };
+
+  const FacebookSignIn = () => {};
+  const GoogleSignIn = () => {};
+  const AppleSignIn = () => {};
+
   const recaptchaContainer =
     'h-full sm:h-screen w-full absolute flex flex-col text-center items-center justify-center';
   return (
@@ -316,13 +352,16 @@ const Login: NextPage = () => {
       <div className={recaptchaContainer} id="verify-sign-in-recaptcha" />
       <LoginUI
         Phone={Phone.slice(-10)}
+        PhoneID={PhoneID}
         PhoneChange={PhoneChange}
         PhoneKeyUp={PhoneKeyUp}
         PhoneKeyPress={NumberOnly}
         Email={Email}
+        EmailID={EmailID}
         EmailChange={EmailChange}
         EmailKeyUp={EmailKeyUp}
         Password={Password}
+        PasswordID={PasswordID}
         PasswordChange={PasswordChange}
         PasswordKeyUp={PasswordKeyUp}
         PhonePolicyChecked={PhoneCheck}
@@ -352,27 +391,27 @@ const Login: NextPage = () => {
         OTP1={OTP1}
         OTP1Change={OTP1Change}
         OTP1KeyPress={NumberOnly}
-        OTP1KeyUp={ChangeFocus}
+        OTP1KeyUp={OTPChangeFocus}
         OTP2={OTP2}
         OTP2Change={OTP2Change}
         OTP2KeyPress={NumberOnly}
-        OTP2KeyUp={ChangeFocus}
+        OTP2KeyUp={OTPChangeFocus}
         OTP3={OTP3}
         OTP3Change={OTP3Change}
         OTP3KeyPress={NumberOnly}
-        OTP3KeyUp={ChangeFocus}
+        OTP3KeyUp={OTPChangeFocus}
         OTP4={OTP4}
         OTP4Change={OTP4Change}
         OTP4KeyPress={NumberOnly}
-        OTP4KeyUp={ChangeFocus}
+        OTP4KeyUp={OTPChangeFocus}
         OTP5={OTP5}
         OTP5Change={OTP5Change}
         OTP5KeyPress={NumberOnly}
-        OTP5KeyUp={ChangeFocus}
+        OTP5KeyUp={OTPChangeFocus}
         OTP6={OTP6}
         OTP6Change={OTP6Change}
         OTP6KeyPress={NumberOnly}
-        OTP6KeyUp={ChangeFocus}
+        OTP6KeyUp={OTPChangeFocus}
       />
       <ToastDark
         message={ToastMessage}

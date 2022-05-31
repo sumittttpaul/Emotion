@@ -1,6 +1,4 @@
-import React, {
-  FC,
-} from 'react';
+import React, { FC } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
@@ -78,6 +76,7 @@ const IconNumberTextFieldDark: FC<IconNumberTextFieldProps> = (props) => {
   return (
     <div className="flex flex-col w-full">
       <CustomTextField
+        id={props.id}
         className="w-full z-10"
         label={props.placeholder}
         onChange={props.onChange}
