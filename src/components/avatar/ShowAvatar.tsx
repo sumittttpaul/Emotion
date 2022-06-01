@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { Button, IconButton } from '@mui/material';
+import React, { FC, useState } from 'react';
+import { Button, CircularProgress, IconButton } from '@mui/material';
 import { XIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 
@@ -17,6 +17,7 @@ interface IProps {
  **/
 
 const ShowAvatar: FC<IProps> = (props) => {
+  const [show, setShow] = useState(false);
   return (
     <div className="bg-white flex flex-col w-full h-full overflow-auto items-center">
       {/* Header */}
@@ -52,10 +53,25 @@ const ShowAvatar: FC<IProps> = (props) => {
         <div className="flex relative justify-center min-h-[96px] min-w-[96px] show-avatar-profile-photo">
           <img
             onClick={props.forward}
-            className="rounded-[50%] cursor-pointer max-w-[288px] max-h-[288px] h-full"
+            className="rounded-[50%] cursor-pointer max-w-[288px] max-h-[288px] h-full transition-all"
             src={props.URL}
             alt="user photo"
           />
+          {show ? (
+            <div className="absolute h-full w-full flex items-center justify-center rounded-[50%] opacity-75 bg-white">
+              <CircularProgress
+                size={250}
+                thickness={0.3}
+                sx={{
+                  position: 'relative',
+                  color: '#0074E4',
+                  zIndex: 1,
+                }}
+              />
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       {/* Bottom */}

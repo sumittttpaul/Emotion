@@ -64,3 +64,14 @@ export interface SignUpProps {
   ToastMessage: (value: string) => void;
   ToastType: (value: string) => void;
 }
+
+export interface UploadAvatarProps {
+  Progress: (value: string) => void;
+  File: File;
+  getImageURL: (value: string) => void;
+  Loading: (value: boolean) => void;
+  ToastShow: (value: boolean) => void;
+  ToastMessage: (value: string) => void;
+  ToastType: (value: string) => void;
+  ProceedNext: () => void;
+}

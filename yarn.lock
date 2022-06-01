@@ -3855,6 +3855,11 @@ react-advanced-cropper@^0.6.2:
     debounce "^1.2.0"
     tslib "^2.0.3"
 
+react-customizable-progressbar@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-customizable-progressbar/-/react-customizable-progressbar-1.0.3.tgz#db4151802ae844eb051c38aa238e68bffb848452"
+  integrity sha512-aqkZoexIfXXiQgFvo1++7GaxAKAQCb/zj5lRMj6oniZjn9CSIhowr3dSnGnvvvygvegVcPGEYK8shPV5MZasSQ==
+
 react-dom@18.1.0:
   version "18.1.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.1.0.tgz"

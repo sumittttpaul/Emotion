@@ -8,9 +8,11 @@ import {
   SignInWithGoogleProps,
   SignInWithAppleProps,
   SignUpProps,
+  UploadAvatarProps,
 } from './AuthProps';
 import 'firebase/compat/auth';
 import { AuthError } from '../firebase/AuthError';
+import { getDownloadURL } from 'firebase/storage';
 import Router from 'next/router';
 
 declare global {
@@ -336,4 +338,59 @@ export const SignUp = ({
       Toast(`${message}`, 'Error', true);
       console.error('Name not updated because ' + error.code);
     });
+};
+
+// Upload Avatar
+
+export const UploadAvatar = ({
+  Progress,
+  ProceedNext,
+  File,
+  getImageURL,
+  Loading,
+  ToastMessage,
+  ToastShow,
+  ToastType,
+}: UploadAvatarProps) => {
+  const Toast = (message: string, type: string, show: boolean) => {
+    ToastMessage(message);
+    ToastType(type);
+    ToastShow(show);
+  };
+  Loading(true);
+  const extension = File.type.split('/')[1];
+  const storage = firebase.storage();
+  const ref = storage.ref(
+    `userPhoto/${firebase.auth().currentUser?.uid}/profilePhoto.${extension}`
+  );
+  // Starts the upload
+  const STATE_CHANGED = firebase.storage.TaskEvent.STATE_CHANGED;
+  const task = ref.put(File);
+  task.on(STATE_CHANGED, (snapshot) => {
+    const pct = (
+      (snapshot.bytesTransferred / snapshot.totalBytes) *
+      100
+    ).toFixed(0);
+    Progress(pct);
+    // Image Link
+    task
+      .then(() => getDownloadURL(ref))
+      .then((url) => {
+        firebase
+          .auth()
+          .currentUser?.updateProfile({
+            photoURL: url,
+          })
+          .then(() => {
+            //Image update successfully
+            getImageURL(url);
+            ProceedNext();
+          })
+          .catch((error) => {
+            const message = AuthError(error.code);
+            Toast(`${message}`, 'Error', true);
+            console.log('Image upload failed because ' + error.code);
+          });
+      });
+  });
 };
