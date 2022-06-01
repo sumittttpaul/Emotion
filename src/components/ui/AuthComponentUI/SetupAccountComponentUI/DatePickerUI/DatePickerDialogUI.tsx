@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { useDatePickerState } from '../../../../../providers/state/DatePickerState';
 import { SelectDay } from '../../../../datepicker/SelectDay';
 import { DatePickerContainerDialog } from '../../../../dialog/DatePickerContainerDialog';
 import { SelectYear } from '../../../../datepicker/SelectYear';
