@@ -1,7 +1,6 @@
-import React, { FC } from 'react';
+import Router from 'next/router';
+import React, { FC, useEffect, useState } from 'react';
 import { AvatarCircularButton } from '../../../../button/AvatarCircularButton';
-import { BorderContainerDark } from '../../../../container/BorderContainerDark';
-import { SetupAccountLabel } from '../../../../label/SetupAccountLabel';
 
 interface IProps {
   onClick?: () => void;
@@ -14,18 +13,25 @@ interface IProps {
  **/
 
 export const AvatarButton: FC<IProps> = (props) => {
+  const [FristName, setFirstName] = useState('');
+  const [LastName, setLastName] = useState('');
+  useEffect(() => {
+    const { firstname, lastname } = Router.query;
+    setFirstName(`${firstname}`);
+    setLastName(`${lastname}`);
+  });
   return (
-    <BorderContainerDark>
-      <div className="flex flex-col space-y-2 items-center w-full relative">
-        <SetupAccountLabel
-          heading="Profile photo"
-          subheading="Try our new avatar collections for women & men."
-        />
-        <AvatarCircularButton
-          onClick={props.onClick}
-          profileURL={props.profileURL}
-        />
-      </div>
-    </BorderContainerDark>
+    <div className="flex flex-col space-y-2 items-center w-full relative">
+      <AvatarCircularButton
+        onClick={props.onClick}
+        profileURL={props.profileURL}
+      />
+      <h6 className="text-md font-[300] text-center text-white">
+        {'Welcome, '}{FristName}{' '}{LastName}
+      </h6>
+      <h6 className="text-xs opacity-75 font-[300] text-center text-white">
+        Manage your info to make Agewear work better for you
+      </h6>
+    </div>
   );
 };

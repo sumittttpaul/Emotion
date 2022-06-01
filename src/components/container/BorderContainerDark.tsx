@@ -11,7 +11,7 @@ interface IProps {
 
 export const BorderContainerDark: FC<IProps> = (props) => {
   return (
-    <div className="text-[rgba(255, 255, 255, 0.70)] border-color-dark border border-solid text-xs font-normal hover:border bg-transparent w-full p-3 rounded-md flex items-center justify-center">
+    <div className="border-color-dark border border-solid hover:border bg-transparent w-full p-3 rounded-md flex items-center justify-center">
       {props.children}
     </div>
   );
