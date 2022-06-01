@@ -8,6 +8,8 @@ import { DatePickerDialogHeader } from '../../../../datepicker/Dialog/DatePicker
 import { DatePickerDialogBottom } from '../../../../datepicker/Dialog/DatePickerDialogBottom';
 
 interface IProps {
+  ShowDialog: boolean;
+  CloseDialog: () => void;
   Screen1: boolean;
   Screen2: boolean;
   day: number;
@@ -30,23 +32,17 @@ interface IProps {
  **/
 
 export const DatePickerDialogUI: FC<IProps> = (props) => {
-  const { DatePickerDialog, setDatePickerDialog } = useDatePickerState();
-
-  const closeModal = () => {
-    setDatePickerDialog({ show: false });
-  };
-
   const setHeaderDates = () => {
     return props.getYear + ', ' + props.getMonth + ' ' + props.getDay;
   };
 
   return (
-    <DatePickerContainerDialog show={DatePickerDialog.show} close={closeModal}>
-      <DatePickerDialogHeader setHeaderDates={setHeaderDates()}/>
+    <DatePickerContainerDialog show={props.ShowDialog} close={props.CloseDialog}>
+      <DatePickerDialogHeader setHeaderDates={setHeaderDates()} />
       {props.Screen1 ? (
         props.Screen2 ? (
           <SelectDay
-          day={props.day}
+            day={props.day}
             month={props.month}
             year={props.year}
             setDay={props.setDay}
@@ -58,7 +54,11 @@ export const DatePickerDialogUI: FC<IProps> = (props) => {
       ) : (
         <SelectYear setYear={props.setYear} />
       )}
-      <DatePickerDialogBottom cancel={props.cancel} submit={props.submit} submitActive={props.submitActive}/>
+      <DatePickerDialogBottom
+        cancel={props.cancel}
+        submit={props.submit}
+        submitActive={props.submitActive}
+      />
     </DatePickerContainerDialog>
   );
 };
