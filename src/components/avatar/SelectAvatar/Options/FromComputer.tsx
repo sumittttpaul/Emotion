@@ -1,5 +1,5 @@
 import { Button, styled } from '@mui/material';
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import Image from 'next/image';
 
 interface IProps {

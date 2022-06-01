@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 interface IProps {
   MensAvatar: AvatarReducerState[];
-  show: () => void;
+  forward: () => void;
   getURL: (value:string) => void;
 }
 
@@ -47,7 +47,7 @@ const ForMen: FC<IProps> = (props) => {
               whileTap={{ scale: 0.9 }}
               onClick={()=>{
                 props.getURL(avatars.iconURL);
-                props.show()
+                props.forward()
               }}
             >
               <Image

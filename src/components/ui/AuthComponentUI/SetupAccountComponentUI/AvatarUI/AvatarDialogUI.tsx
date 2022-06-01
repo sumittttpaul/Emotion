@@ -1,20 +1,35 @@
-import React, { FC, Fragment } from 'react';
-import { useAvatarState } from '../../../../../providers/state/AvatarState';
+import React, { FC } from 'react';
 import { CropAvatar } from '../../../../avatar/CropAvatar';
 import SelectAvatar from '../../../../avatar/SelectAvatar';
 import ShowAvatar from '../../../../avatar/ShowAvatar';
 import AvatarContainerDialog from '../../../../dialog/AvatarContainerDialog';
 
 interface IProps {
+  ShowDialog: boolean;
+  CloseDialog: () => void;
   Container: string;
   Screen1: boolean;
   Screen2: boolean;
-  URL: string;
-  SelectAvatarScreen: () => void;
-  SelectAvatarScreen_back: () => void;
-  ShowAvatarScreen: () => void;
-  CropAvatarScreen: () => void;
-  ImageURL: (value:string) => void;
+
+  // Show Avatar
+  ShowAvatarBackward: () => void;
+  ShowAvatarForward: () => void;
+  ShowAvatarImageURL: string;
+  ShowAvatarRemoveClick: () => void;
+  ShowAvatarRemoveDisabled: boolean;
+
+  // Select Avatar
+  SelectAvatarBackward: () => void;
+  SelectAvatarFormard: () => void;
+  SelectAvatarGetImageURL: (value: string) => void;
+
+  // Crop Avatar
+  CropAvatarBackward: () => void;
+  CropAvatarImageURL: string;
+  CropAvatarGetImageURL: (value: string) => void;
+  CropAvatarGetImageFile: (value: File) => void;
+  CropAvatarClose: () => void;
+  CropAvatarImageChange: (value: boolean) => void;
 }
 
 /**
@@ -23,30 +38,37 @@ interface IProps {
  **/
 
 export const AvatarDialogUI: FC<IProps> = (props) => {
-  const { AvatarDialog, setAvatarDialog } = useAvatarState();
-
-  const closeModal = () => {
-    setAvatarDialog({ show: false });
-  };
-
   return (
     <AvatarContainerDialog
-      close={closeModal}
-      show={AvatarDialog.show}
+      close={props.CloseDialog}
+      show={props.ShowDialog}
       className={props.Container}
     >
       {props.Screen1 ? (
         props.Screen2 ? (
-          <CropAvatar back={props.SelectAvatarScreen_back} URL={props.URL} />
+          <CropAvatar
+            back={props.CropAvatarBackward}
+            close={props.CropAvatarClose}
+            change={props.CropAvatarImageChange}
+            URL={props.CropAvatarImageURL}
+            getURL={props.CropAvatarGetImageURL}
+            getFile={props.CropAvatarGetImageFile}
+          />
         ) : (
           <SelectAvatar
-            back={props.ShowAvatarScreen}
-            show={props.CropAvatarScreen}
-            getURL={props.ImageURL}
+            backward={props.SelectAvatarBackward}
+            forward={props.SelectAvatarFormard}
+            getURL={props.SelectAvatarGetImageURL}
           />
         )
       ) : (
-        <ShowAvatar close={closeModal} show={props.SelectAvatarScreen} />
+        <ShowAvatar
+          URL={props.ShowAvatarImageURL}
+          remove={props.ShowAvatarRemoveClick}
+          disabled={props.ShowAvatarRemoveDisabled}
+          backward={props.ShowAvatarBackward}
+          forward={props.ShowAvatarForward}
+        />
       )}
     </AvatarContainerDialog>
   );

@@ -1,4 +1,4 @@
-import React, { FC, Fragment, SyntheticEvent, useState } from 'react';
+import React, { FC, SyntheticEvent, useState } from 'react';
 import { IconButton, useTheme } from '@mui/material';
 import { DotsVerticalIcon, ArrowLeftIcon } from '@heroicons/react/solid';
 import { SparklesIcon, DesktopComputerIcon } from '@heroicons/react/outline';
@@ -10,8 +10,8 @@ import SelectAvatarTabs from '../tab/SelectAvatarTabs';
 import SelectAvatarTabPanel from '../tab/SelectAvatarTabPanel';
 
 interface IProps {
-  back?: () => void;
-  show: () => void;
+  backward?: () => void;
+  forward: () => void;
   getURL: (value: string) => void;
 }
 
@@ -23,11 +23,9 @@ interface IProps {
 const SelectAvatar: FC<IProps> = (props) => {
   const [value, setValue] = useState(0);
   const theme = useTheme();
-  const [TabValue, setTabValue] = useState(false);
 
-  const handleChange = (event: SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-    setTabValue((prev) => !prev);
+  const handleChange = (event: SyntheticEvent, index: number) => {
+    setValue(index);
   };
 
   const handleChangeIndex = (index: number) => {
@@ -39,7 +37,7 @@ const SelectAvatar: FC<IProps> = (props) => {
       {/* Header */}
       <div className="flex w-full justify-between items-center p-1">
         <IconButton
-          onClick={props.back}
+          onClick={props.backward}
           className="hover:bg-[rgba(0,0,0,0.07)] p-3"
         >
           <ArrowLeftIcon className="h-5" />
@@ -89,10 +87,10 @@ const SelectAvatar: FC<IProps> = (props) => {
         }}
       >
         <SelectAvatarTabPanel value={value} index={0} dir={theme.direction}>
-          <FromAvatars show={props.show} getURL={props.getURL} />
+          <FromAvatars show={props.forward} getURL={props.getURL} />
         </SelectAvatarTabPanel>
         <SelectAvatarTabPanel value={value} index={1} dir={theme.direction}>
-          <FromComputer show={props.show} getURL={props.getURL} />
+          <FromComputer show={props.forward} getURL={props.getURL} />
         </SelectAvatarTabPanel>
       </SwipeableViews>
     </div>

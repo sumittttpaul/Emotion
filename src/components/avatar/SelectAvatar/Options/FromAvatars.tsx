@@ -18,8 +18,8 @@ const FromAvatars: FC<IProps> = (props) => {
   const { MensAvatar } = useTypedSelector((state) => state.MensAvatar);
   return (
     <div className="box-border overflow-none p-6 space-y-8 h-full w-full items-center flex flex-col">
-      <ForWomen WomensAvatar={WomensAvatar} show={props.show} getURL={props.getURL}/>
-      <ForMen MensAvatar={MensAvatar} show={props.show} getURL={props.getURL}/>
+      <ForWomen WomensAvatar={WomensAvatar} forward={props.show} getURL={props.getURL}/>
+      <ForMen MensAvatar={MensAvatar} forward={props.show} getURL={props.getURL}/>
     </div>
   );
 };

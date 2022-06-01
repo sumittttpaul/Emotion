@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 interface IProps {
   onClick?: () => void;
-  profileURL: string;
+  ImageURL: string;
 }
 
 /**
@@ -26,7 +26,7 @@ export const AvatarCircularButton: FC<IProps> = (props) => {
           height={100}
           width={100}
           className="rounded-[50%]"
-          src={props.profileURL}
+          src={props.ImageURL}
           alt="choose user profile photo"
         />
         <div className="absolute bg-[rgb(32,32,32)] opacity-70 flex justify-center items-center h-[35%] left-0 right-0 bottom-0">

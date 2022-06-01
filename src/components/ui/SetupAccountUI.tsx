@@ -7,7 +7,6 @@ import { GenderUI } from './AuthComponentUI/SetupAccountComponentUI/GenderUI/Gen
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 import LargeButtonBlue from '../button/LargeButtonBlue';
 import { Link } from '@mui/material';
-import Router from 'next/router';
 
 interface IProps {}
 

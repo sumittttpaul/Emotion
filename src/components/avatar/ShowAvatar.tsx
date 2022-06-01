@@ -2,11 +2,13 @@ import React, { FC } from 'react';
 import { Button, IconButton } from '@mui/material';
 import { XIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
-import { useProfileURLState } from '../../providers/state/ProfileURLState';
 
 interface IProps {
-  close?: () => void;
-  show?: () => void;
+  backward?: () => void;
+  forward?: () => void;
+  URL: string;
+  remove: () => void;
+  disabled: boolean;
 }
 
 /**
@@ -15,19 +17,13 @@ interface IProps {
  **/
 
 const ShowAvatar: FC<IProps> = (props) => {
-  const { ProfileURL, setProfileURL } = useProfileURLState();
-
-  const handleRemove = () => {
-    setProfileURL({ URL: '/images/user.png', change: false });
-  };
-
   return (
     <div className="bg-white flex flex-col w-full h-full overflow-auto items-center">
       {/* Header */}
       <div className="flex w-full z-10 justify-between items-center p-1">
         <h6 className="text-black font-medium pl-5 pt-1">Profile picture</h6>
         <IconButton
-          onClick={props.close}
+          onClick={props.backward}
           className="hover:bg-[rgba(0,0,0,0.07)] p-3"
         >
           <XIcon className="h-5" />
@@ -55,9 +51,9 @@ const ShowAvatar: FC<IProps> = (props) => {
         {/* Center */}
         <div className="flex relative justify-center min-h-[96px] min-w-[96px] show-avatar-profile-photo">
           <img
-            onClick={props.show}
+            onClick={props.forward}
             className="rounded-[50%] cursor-pointer max-w-[288px] max-h-[288px] h-full"
-            src={`${ProfileURL.URL}`}
+            src={props.URL}
             alt="user photo"
           />
         </div>
@@ -65,7 +61,7 @@ const ShowAvatar: FC<IProps> = (props) => {
       {/* Bottom */}
       <div className="flex space-x-3 w-full px-6 pb-6 pt-2">
         <Button
-          onClick={props.show}
+          onClick={props.forward}
           sx={{
             border: '1px solid rgba(26, 115, 232, 0.5)',
             '.MuiTouchRipple-child': {
@@ -85,8 +81,8 @@ const ShowAvatar: FC<IProps> = (props) => {
           </div>
         </Button>
         <Button
-          onClick={handleRemove}
-          disabled={!ProfileURL.change}
+          onClick={props.remove}
+          disabled={!props.disabled}
           sx={{
             border: '1px solid rgba(26, 115, 232, 0.5)',
             '.MuiTouchRipple-child': {

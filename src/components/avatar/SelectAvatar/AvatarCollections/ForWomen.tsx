@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 interface IProps {
   WomensAvatar: AvatarReducerState[];
-  show: () => void;
+  forward: () => void;
   getURL: (value:string) => void;
 }
 
@@ -16,12 +16,6 @@ interface IProps {
  **/
 
 const ForWomen: FC<IProps> = (props) => {
-  const [URL, setURL] = useState<string>('');
-
-  const handleClick = () => {
-
-  }
-
   return (
     <div className="w-full items-center justify-center space-y-4">
       {/* Heading */}
@@ -53,7 +47,7 @@ const ForWomen: FC<IProps> = (props) => {
               whileTap={{ scale: 0.9 }}
               onClick={() => {
                 props.getURL(avatars.iconURL);
-                props.show()
+                props.forward()
               }}
             >
               <Image

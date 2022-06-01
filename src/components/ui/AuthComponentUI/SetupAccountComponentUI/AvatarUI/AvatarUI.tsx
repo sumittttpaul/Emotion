@@ -1,7 +1,5 @@
 import React, { FC, useState } from 'react';
 import { AvatarDialogUI } from './AvatarDialogUI';
-import { useAvatarState } from '../../../../../providers/state/AvatarState';
-import { useProfileURLState } from '../../../../../providers/state/ProfileURLState';
 import { AvatarButton } from '../buttonUI/AvatarButton';
 
 interface IProps {}
@@ -12,20 +10,32 @@ interface IProps {}
  **/
 
 const AvatarUI: FC<IProps> = (props) => {
-  const { ProfileURL } = useProfileURLState();
-  const { setAvatarDialog } = useAvatarState();
+  const [open, setOpen] = useState(false);
+  const [URL, setURL] = useState('/images/user.png');
+  const [Container, setContainer] = useState('ShowAvatar-container');
+  const [Screen1, setScreen1] = useState(false);
+  const [Screen2, setScreen2] = useState(false);
+  const [Disabled, setDisabled] = useState(true);
 
-  const [Container, setContainer] = useState<string>('ShowAvatar-container');
-  const [Screen1, setScreen1] = useState<boolean>(false);
-  const [Screen2, setScreen2] = useState<boolean>(false);
-
-  const [URL, setURL] = useState<string>('');
-
-  const ImageURL = (value: string) => {
-    setURL(value);
+  const ShowDialog = () => {
+    ShowAvatar();
   };
 
-  const SelectAvatarScreen = () => {
+  const CloseDialog = () => {
+    setOpen(false);
+  };
+
+  const ShowAvatar = () => {
+    setTimeout(() => {
+      setContainer('ShowAvatar-container');
+      setScreen1(false);
+      setScreen2(false);
+      // open dialog
+      setOpen(true);
+    }, 200);
+  };
+
+  const SelectAvatar = () => {
     setTimeout(() => {
       setContainer('SelectAvatar-container');
       setScreen1(true);
@@ -33,48 +43,64 @@ const AvatarUI: FC<IProps> = (props) => {
     }, 200);
   };
 
-  const SelectAvatarScreen_back = () => {
-    setContainer('SelectAvatar-container');
-    setScreen1(true);
-    setScreen2(false);
-  };
-
-  const ShowAvatarScreen = () => {
-    setContainer('ShowAvatar-container');
-    setScreen1(false);
-    setScreen2(false);
-  };
-
-  const CropAvatarScreen = () => {
+  const CropAvatar = () => {
     setTimeout(() => {
-      setContainer('CropAvatar-container');
+      setContainer('SelectAvatar-container');
       setScreen1(true);
       setScreen2(true);
     }, 200);
   };
 
-  const handleClick = () => {
-    setTimeout(() => {
-      setScreen1(false);
-      setScreen2(false);
-      setContainer('ShowAvatar-container');
-      setAvatarDialog({ show: true });
-    }, 250);
+  const BackToShowAvatar = () => {
+    setContainer('ShowAvatar-container');
+    setScreen1(false);
+    setScreen2(false);
   };
+
+  const BackToSelectAvatar = () => {
+    setContainer('SelectAvatar-container');
+    setScreen1(true);
+    setScreen2(false);
+  };
+
+  const RemoveImage = () => {
+    setURL('/images/user.png');
+    setDisabled(true);
+  };
+
+  const ImageChange = () => {
+    setDisabled(false);
+  };
+
+  const GetImage = (value: string) => {
+    setURL(value);
+  };
+
+  const GetImageFile = (value: File) => {};
 
   return (
     <>
-      <AvatarButton onClick={handleClick} profileURL={`${ProfileURL.URL}`} />
+      <AvatarButton onClick={ShowDialog} ImageURL={URL} />
       <AvatarDialogUI
+        ShowDialog={open}
+        CloseDialog={CloseDialog}
         Container={Container}
         Screen1={Screen1}
         Screen2={Screen2}
-        URL={URL}
-        SelectAvatarScreen={SelectAvatarScreen}
-        SelectAvatarScreen_back={SelectAvatarScreen_back}
-        ShowAvatarScreen={ShowAvatarScreen}
-        CropAvatarScreen={CropAvatarScreen}
-        ImageURL={ImageURL}
+        ShowAvatarBackward={CloseDialog}
+        ShowAvatarForward={SelectAvatar}
+        ShowAvatarImageURL={URL}
+        ShowAvatarRemoveClick={RemoveImage}
+        ShowAvatarRemoveDisabled={!Disabled}
+        SelectAvatarBackward={BackToShowAvatar}
+        SelectAvatarFormard={CropAvatar}
+        SelectAvatarGetImageURL={GetImage}
+        CropAvatarBackward={BackToSelectAvatar}
+        CropAvatarImageURL={URL}
+        CropAvatarGetImageURL={GetImage}
+        CropAvatarGetImageFile={GetImageFile}
+        CropAvatarClose={CloseDialog}
+        CropAvatarImageChange={ImageChange}
       />
     </>
   );

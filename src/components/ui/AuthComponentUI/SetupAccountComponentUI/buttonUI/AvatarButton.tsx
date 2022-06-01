@@ -4,7 +4,7 @@ import { AvatarCircularButton } from '../../../../button/AvatarCircularButton';
 
 interface IProps {
   onClick?: () => void;
-  profileURL: string;
+  ImageURL: string;
 }
 
 /**
@@ -24,7 +24,7 @@ export const AvatarButton: FC<IProps> = (props) => {
     <div className="flex flex-col space-y-2 items-center w-full relative">
       <AvatarCircularButton
         onClick={props.onClick}
-        profileURL={props.profileURL}
+        ImageURL={props.ImageURL}
       />
       <h6 className="text-md font-[300] text-center text-white">
         {'Welcome, '}{FristName}{' '}{LastName}
