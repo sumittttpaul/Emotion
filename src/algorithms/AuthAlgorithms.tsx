@@ -7,6 +7,7 @@ import {
   SignInWithFacebookProps,
   SignInWithGoogleProps,
   SignInWithAppleProps,
+  SignUpProps,
 } from './AuthProps';
 import 'firebase/compat/auth';
 import { AuthError } from '../firebase/AuthError';
@@ -75,11 +76,12 @@ export const ResentOTP = ({
       Loading(false);
       const message = AuthError(error.code);
       Toast(`${message}`, 'Error', true);
-      console.log('Otp not sent beacuse' + error.code);
+      console.error('Otp not sent beacuse' + error.code);
     });
 };
 
 export const VerifyOTP = ({
+  Phone,
   OTP,
   Loading,
   ToastMessage,
@@ -104,7 +106,13 @@ export const VerifyOTP = ({
       console.log('user is verified and SignIn');
       const IsNewUser = result.additionalUserInfo.isNewUser;
       if (IsNewUser) {
-        Router.push('/auth/register');
+        if (firebase.auth().currentUser) {
+          const UID = firebase.auth().currentUser?.uid;
+          Router.push({
+            pathname: '/auth/register',
+            query: { id: `${UID}`, phone: `${Phone}` },
+          });
+        }
       } else {
         Router.push('/');
       }
@@ -113,7 +121,7 @@ export const VerifyOTP = ({
       Loading(false);
       const message = AuthError(error.code);
       Toast(`${message}`, 'Error', true);
-      console.log('OTP verification failed beacuse ' + error.code);
+      console.error('OTP verification failed beacuse ' + error.code);
     });
 };
 
@@ -134,7 +142,7 @@ export const SignInWithPhoneNumber = ({
     ToastShow(show);
   };
   Loading(true);
-  configureCaptcha()
+  configureCaptcha();
   const number = '+91' + Phone;
   const appVerifier = window.recaptchaVerifier;
   firebase
@@ -152,7 +160,7 @@ export const SignInWithPhoneNumber = ({
       const message = AuthError(error.code);
       Toast(`${message}`, 'Error', true);
       EmptyPhone();
-      console.log('OTP not sent beacuse' + error.code);
+      console.error('OTP not sent beacuse' + error.code);
     });
 };
 
@@ -176,14 +184,16 @@ export const SignInWithEmailAndPassword = ({
     .signInWithEmailAndPassword(Email, Password)
     .then(() => {
       Router.push('/');
-      console.log('SingIn with Email & Password Successful !');
+      console.error('SingIn with Email & Password Successful !');
     })
     .catch((error) => {
       Loading(false);
       const message = AuthError(error.code);
       Toast(`${message}`, 'Error', true);
       EmptyPasswordTextField();
-      console.log('SingIn with Email & Password Failed because ' + error.code);
+      console.error(
+        'SingIn with Email & Password Failed because ' + error.code
+      );
     });
 };
 
@@ -259,5 +269,71 @@ export const SignInWithApple = ({
       const message = AuthError(error.code);
       Toast(`${message}`, 'Error', true);
       console.error('Failed to SignIn with Apple because ' + error.code);
+    });
+};
+
+// Sign Up
+
+export const SignUp = ({
+  FirstName,
+  LastName,
+  Email,
+  Password,
+  EmptyPasswordTextField,
+  Loading,
+  ToastMessage,
+  ToastShow,
+  ToastType,
+}: SignUpProps) => {
+  const Toast = (message: string, type: string, show: boolean) => {
+    ToastMessage(message);
+    ToastType(type);
+    ToastShow(show);
+  };
+  Loading(true);
+  const user = firebase.auth().currentUser;
+  user
+    ?.updateProfile({
+      displayName: FirstName + ' ' + LastName,
+    })
+    .then(() => {
+      console.log('Name updated');
+      var credential = firebase.auth.EmailAuthProvider.credential(
+        Email,
+        Password
+      );
+      user
+        ?.linkWithCredential(credential)
+        .then(() => {
+          console.log('Linking account successfully');
+          const { phone } = Router.query;
+          if (firebase.auth().currentUser) {
+            const UID = firebase.auth().currentUser?.uid;
+            Router.push({
+              pathname: '/auth/register/setup-account',
+              query: {
+                id: `${UID}`,
+                firstname: `${FirstName}`,
+                lastname: `${LastName}`,
+                email: `${Email}`,
+                phone: `${phone}`,
+              },
+            });
+          }
+        })
+        .catch((error) => {
+          Loading(false);
+          EmptyPasswordTextField();
+          const message = AuthError(error.code);
+          Toast(`${message}`, 'Error', true);
+          console.error('Failed to Link account because ' + error.code);
+        });
+    })
+    .catch((error) => {
+      Loading(false);
+      EmptyPasswordTextField();
+      const message = AuthError(error.code);
+      Toast(`${message}`, 'Error', true);
+      console.error('Name not updated because ' + error.code);
     });
 };

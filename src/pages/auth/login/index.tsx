@@ -9,7 +9,10 @@ import {
 } from '../../../algorithms/UIAlgorithms';
 import {
   ResentOTP,
+  SignInWithApple,
   SignInWithEmailAndPassword,
+  SignInWithFacebook,
+  SignInWithGoogle,
   SignInWithPhoneNumber,
   VerifyOTP,
 } from '../../../algorithms/AuthAlgorithms';
@@ -89,6 +92,8 @@ const Login: NextPage = () => {
     /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
   var emailExpression =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  // Validate
   var ValidateEmail = Email.toLowerCase().match(emailExpression);
   var ValidatePassword =
     passwordExpression.test(Password) && Password.length > 8;
@@ -260,9 +265,6 @@ const Login: NextPage = () => {
   const EmptyPhone = () => {
     setPhone('');
   };
-  const EmptyEmail = () => {
-    setEmail('');
-  };
   const EmptyPassword = () => {
     setPassword('');
   };
@@ -305,6 +307,7 @@ const Login: NextPage = () => {
     ) {
       setTimeout(() => {
         VerifyOTP({
+          Phone: parseInt(Phone),
           OTP: parseInt(OTP1 + OTP2 + OTP3 + OTP4 + OTP5 + OTP6),
           Loading: LoadingScreen,
           ToastMessage: AuthToastMessage,
@@ -352,9 +355,33 @@ const Login: NextPage = () => {
     }, 250);
   };
 
-  const FacebookSignIn = () => {};
-  const GoogleSignIn = () => {};
-  const AppleSignIn = () => {};
+  const FacebookSignIn = () => {
+    setTimeout(() => {
+      SignInWithFacebook({
+        ToastMessage: AuthToastMessage,
+        ToastType: AuthToastType,
+        ToastShow: AuthToast,
+      });
+    }, 150);
+  };
+  const GoogleSignIn = () => {
+    setTimeout(() => {
+      SignInWithGoogle({
+        ToastMessage: AuthToastMessage,
+        ToastType: AuthToastType,
+        ToastShow: AuthToast,
+      });
+    }, 150);
+  };
+  const AppleSignIn = () => {
+    setTimeout(() => {
+      SignInWithApple({
+        ToastMessage: AuthToastMessage,
+        ToastType: AuthToastType,
+        ToastShow: AuthToast,
+      });
+    }, 150);
+  };
 
   const recaptchaContainer =
     'h-full sm:h-screen w-full absolute flex flex-col text-center items-center justify-center';

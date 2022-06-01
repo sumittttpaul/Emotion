@@ -114,6 +114,9 @@ const PasswordTextFieldDark: FC<PasswordTextFieldProps> = (props) => {
         autoComplete="off"
         autoCapitalize="off"
         type={values.showPassword ? 'text' : 'password'}
+        // inputProps={{
+        //   maxLength: 16,
+        // }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">

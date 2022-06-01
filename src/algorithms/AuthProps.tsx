@@ -7,6 +7,7 @@ export interface ResendOTPProps {
 }
 
 export interface VerifyOTPProps {
+  Phone: number;
   OTP: number;
   Loading: (value: boolean) => void;
   ToastShow: (value: boolean) => void;
@@ -47,6 +48,18 @@ export interface SignInWithGoogleProps {
 }
 
 export interface SignInWithAppleProps {
+  ToastShow: (value: boolean) => void;
+  ToastMessage: (value: string) => void;
+  ToastType: (value: string) => void;
+}
+
+export interface SignUpProps {
+  FirstName: string;
+  LastName: string;
+  Email: string;
+  Password: string;
+  EmptyPasswordTextField: () => void;
+  Loading: (value: boolean) => void;
   ToastShow: (value: boolean) => void;
   ToastMessage: (value: string) => void;
   ToastType: (value: string) => void;

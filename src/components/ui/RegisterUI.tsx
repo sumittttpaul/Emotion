@@ -41,19 +41,16 @@ interface IProps {
   PasswordKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   PasswordKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   PasswordKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  
   FirstNameFocus?: (event: FocusEvent<HTMLInputElement>) => void;
   LastNameFocus?: (event: FocusEvent<HTMLInputElement>) => void;
   EmailFocus?: (event: FocusEvent<HTMLInputElement>) => void;
   PhoneFocus?: (event: FocusEvent<HTMLInputElement>) => void;
   PasswordFocus?: (event: FocusEvent<HTMLInputElement>) => void;
-  
   FirstNameBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   LastNameBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   EmailBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   PhoneBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   PasswordBlur?: (event: FocusEvent<HTMLInputElement>) => void;
-  
   TermsChecked: boolean;
   TermsCheckedChange: (event: ChangeEvent<HTMLInputElement>) => void;
   FirstNameError?: boolean;
@@ -104,6 +101,7 @@ const RegisterUI: FC<IProps> = (props) => {
               onFocus={props.FirstNameFocus}
               onBlur={props.FirstNameBlur}
               readonly={props.FirstNameReadOnly}
+              error={props.FirstNameError}
             />
             <TextFieldDark
               placeholder="Last Name"
@@ -117,6 +115,7 @@ const RegisterUI: FC<IProps> = (props) => {
               onFocus={props.LastNameFocus}
               onBlur={props.LastNameBlur}
               readonly={props.LastNameReadOnly}
+              error={props.LastNameError}
             />
           </div>
           <TextFieldDark
@@ -131,6 +130,7 @@ const RegisterUI: FC<IProps> = (props) => {
             onFocus={props.EmailFocus}
             onBlur={props.EmailBlur}
             readonly={props.EmailReadOnly}
+            error={props.EmailError}
           />
           <NumberTextFieldDark
             placeholder="Phone Number"
@@ -145,6 +145,7 @@ const RegisterUI: FC<IProps> = (props) => {
             onFocus={props.PhoneFocus}
             onBlur={props.PhoneBlur}
             readonly={props.PhoneReadOnly}
+            error={props.PhoneError}
           />
           <div className="w-full space-y-3">
             <h6 className="text-white text-xs font-light opacity-75">
@@ -161,6 +162,7 @@ const RegisterUI: FC<IProps> = (props) => {
               onFocus={props.PasswordFocus}
               onBlur={props.PasswordBlur}
               readonly={props.PasswordReadOnly}
+              error={props.PasswordError}
             />
           </div>
           <div className="flex w-full">
