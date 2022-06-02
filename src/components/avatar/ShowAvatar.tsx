@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Button, CircularProgress, IconButton } from '@mui/material';
 import { XIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
@@ -60,7 +60,7 @@ const ShowAvatar: FC<IProps> = (props) => {
             alt="user photo"
           />
           {props.ShowProgress ? (
-            <div className="absolute h-full w-full flex items-center justify-center rounded-[50%] opacity-75 bg-white">
+            <div className="absolute h-full w-full flex items-center justify-center rounded-[50%] opacity-[0.85] bg-white">
               <CircularProgress
                 size={250}
                 thickness={0.3}

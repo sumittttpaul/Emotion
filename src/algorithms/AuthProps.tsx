@@ -74,3 +74,12 @@ export interface UploadAvatarProps {
   ToastMessage: (value: string) => void;
   ToastType: (value: string) => void;
 }
+
+export interface DeleteAvatarProps {
+  AvatarURL: string;
+  AfterDelete: () => void;
+  Loading: (value: boolean) => void;
+  ToastShow: (value: boolean) => void;
+  ToastMessage: (value: string) => void;
+  ToastType: (value: string) => void;
+}

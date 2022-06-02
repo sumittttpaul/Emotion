@@ -29,6 +29,8 @@ interface IProps {
   MoveToCropAvatar: () => void;
   GetImageURL: (value: string) => void;
   // Crop Avatar [ Screen 3 ]
+  GetCropImageURL: (value: string) => void;
+  ImageURLToCrop: string;
   BackToSelectAvatar: () => void;
   AvatarSubmit: (value: File) => void;
 }
@@ -68,6 +70,8 @@ export const SetupAccountUI: FC<IProps> = (props) => {
             BackToShowAvatar={props.BackToShowAvatar}
             MoveToCropAvatar={props.MoveToCropAvatar}
             GetImageURL={props.GetImageURL}
+            GetCropImageURL={props.GetCropImageURL}
+            ImageURLToCrop={props.ImageURLToCrop}
             BackToSelectAvatar={props.BackToSelectAvatar}
             AvatarSubmit={props.AvatarSubmit}
           />

@@ -9,6 +9,7 @@ import {
   SignInWithAppleProps,
   SignUpProps,
   UploadAvatarProps,
+  DeleteAvatarProps,
 } from './AuthProps';
 import 'firebase/compat/auth';
 import { AuthError } from '../firebase/AuthError';
@@ -340,7 +341,7 @@ export const SignUp = ({
     });
 };
 
-// Upload Avatar
+// Avatar
 
 export const UploadAvatar = ({
   Progress,
@@ -391,9 +392,42 @@ export const UploadAvatar = ({
               Loading(false);
               const message = AuthError(error.code);
               Toast(`${message}`, 'Error', true);
-              console.log('Image upload failed because ' + error.code);
+              console.log('Avatar upload failed because ' + error.code);
             });
         });
     });
+  }
+};
+
+export const DeleteAvatar = ({
+  AvatarURL,
+  AfterDelete,
+  Loading,
+  ToastMessage,
+  ToastShow,
+  ToastType,
+}: DeleteAvatarProps) => {
+  const Toast = (message: string, type: string, show: boolean) => {
+    ToastMessage(message);
+    ToastType(type);
+    ToastShow(show);
+  };
+  if (AvatarURL) {
+    Loading(true);
+    const storage = firebase.storage();
+    let avatarRef = storage.refFromURL(AvatarURL);
+    avatarRef
+      .delete()
+      .then(() => {
+        Loading(false);
+        Toast('Avatar deleted successfully', 'Success', true);
+        AfterDelete();
+      })
+      .catch((error) => {
+        Loading(false);
+        const message = AuthError(error.code);
+        Toast(`${message}`, 'Error', true);
+        console.log('Avatar delete failed because ' + error.code);
+      });
   }
 };

@@ -1,13 +1,16 @@
 import { NextPage } from 'next';
-import { useState } from 'react';
-import { UploadAvatar } from '../../../algorithms/AuthAlgorithms';
+import { useEffect, useState } from 'react';
+import { DeleteAvatar, UploadAvatar } from '../../../algorithms/AuthAlgorithms';
 import { ToastDark } from '../../../components/toast/ToastDark';
 import { SetupAccountUI } from '../../../components/ui/SetupAccountUI';
+import { useAuth } from '../../../firebase/AuthProvider';
 
 const SetupAccount: NextPage = () => {
+  const user = useAuth();
   // State
   const [AvatarDialog, setAvatarDialog] = useState(false);
   const [AvatarURL, setAvatarURL] = useState('/images/user.png');
+  const [CropAvatarURL, setCropAvatarURL] = useState('');
   const [AvatarContainer, setAvatarContainer] = useState(
     'ShowAvatar-container'
   );
@@ -22,13 +25,21 @@ const SetupAccount: NextPage = () => {
   const [UploadProgess, setUploadProgess] = useState('');
 
   // Handle State
-  const AvatarLoadingState = (value:boolean) => {
+  const AvatarLoadingState = (value: boolean) => {
     setAvatarLoading(value);
   };
   const ShowAvatarDialog = () => {
     setAvatarDialog(true);
   };
   const HideAvatarDialog = () => {
+    setAvatarDialog(false);
+    setTimeout(() => {
+      setAvatarContainer('ShowAvatar-container');
+      setAvatarScreen1(false);
+      setAvatarScreen2(false);
+    }, 200);
+  };
+  const HideAvatarDialogDefault = () => {
     setAvatarDialog(false);
   };
 
@@ -59,6 +70,12 @@ const SetupAccount: NextPage = () => {
     setAvatarScreen1(false);
     setAvatarScreen2(false);
   };
+  const BackToShowAvatarScreenWithDefaultAvatar = () => {
+    setAvatarURL('/images/user.png');
+    setAvatarContainer('ShowAvatar-container');
+    setAvatarScreen1(false);
+    setAvatarScreen2(false);
+  };
   const BackToSelectAvatarScreen = () => {
     setAvatarContainer('SelectAvatar-container');
     setAvatarScreen1(true);
@@ -66,19 +83,23 @@ const SetupAccount: NextPage = () => {
   };
 
   // Handle Image
-  const RemoveImageClick = () => {
-    setAvatarURL('/images/user.png');
-    RemoveImageDisabled(true);
-    /* Rmove image from data base */
-  };
-  const ChangeImageDisabled = (value:boolean) => {
+  const ChangeImageDisabled = (value: boolean) => {
     setChangeDisabled(value);
   };
-  const RemoveImageDisabled = (value:boolean) => {
+  const RemoveImageDisabled = (value: boolean) => {
     setRemoveDisabled(value);
   };
   const GetImageURL = (value: string) => {
+    ImageURLToCrop(value);
+  };
+  const GetServerImageURL = (value: string) => {
     setAvatarURL(value);
+  };
+  const GetCropImageURL = (value: string) => {
+    setAvatarURL(value);
+  };
+  const ImageURLToCrop = (value: string) => {
+    setCropAvatarURL(value);
   };
 
   // Toast
@@ -107,12 +128,15 @@ const SetupAccount: NextPage = () => {
   const AvatarClick = () => {
     ShowAvatarScreen();
     ShowAvatarDialog();
-  }
-  const handleImageURL = (value:string)=> {
-    GetImageURL(value);
+  };
+  const handleImageURL = (value: string) => {
+    GetServerImageURL(value);
     RemoveImageDisabled(false);
     ChangeImageDisabled(false);
-  }
+    setTimeout(() => {
+      HideAvatarDialogDefault();
+    }, 3000);
+  };
   const AvatarSubmit = (value: File) => {
     if (value) {
       RemoveImageDisabled(true);
@@ -127,11 +151,33 @@ const SetupAccount: NextPage = () => {
           ToastMessage: AuthToastMessage,
           ToastShow: AuthToast,
           ToastType: AuthToastType,
-        })
-      }, 250);
-      ShowToast(ToastMessage, ToastType, Toast);
+        });
+        ShowToast(ToastMessage, ToastType, Toast);
+      }, 100);
     }
   };
+  const RemoveImageClick = () => {
+    if (user?.photoURL) {
+      setTimeout(() => {
+        RemoveImageDisabled(true);
+        ChangeImageDisabled(true);
+        DeleteAvatar({
+          AvatarURL: `${user?.photoURL}`,
+          Loading: AvatarLoadingState,
+          ToastMessage: AuthToastMessage,
+          ToastShow: AuthToast,
+          ToastType: AuthToastType,
+          AfterDelete: () => {
+            setAvatarURL('/images/user.png');
+            ChangeImageDisabled(false);
+            RemoveImageDisabled(true);
+          },
+        });
+        ShowToast(ToastMessage, ToastType, Toast);
+      }, 200);
+    }
+  };
+
   return (
     <>
       <SetupAccountUI
@@ -149,9 +195,11 @@ const SetupAccount: NextPage = () => {
         UploadProgress={UploadProgess}
         MoveToSelectAvatar={SelectAvatarScreen}
         MoveToCropAvatar={CropAvatarScreen}
-        BackToShowAvatar={BackToShowAvatarScreen}
+        BackToShowAvatar={BackToShowAvatarScreenWithDefaultAvatar}
         BackToSelectAvatar={BackToSelectAvatarScreen}
         GetImageURL={GetImageURL}
+        GetCropImageURL={GetCropImageURL}
+        ImageURLToCrop={CropAvatarURL}
         AvatarSubmit={AvatarSubmit}
       />
       <ToastDark

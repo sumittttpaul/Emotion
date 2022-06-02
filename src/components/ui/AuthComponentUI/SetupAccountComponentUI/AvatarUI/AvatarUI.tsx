@@ -22,6 +22,8 @@ interface IProps {
   MoveToCropAvatar: () => void;
   GetImageURL: (value: string) => void;
   // Crop Avatar [ Screen 3 ]
+  GetCropImageURL: (value: string) => void;
+  ImageURLToCrop: string;
   BackToSelectAvatar: () => void;
   AvatarSubmit: (value: File) => void;
 }
@@ -53,8 +55,8 @@ const AvatarUI: FC<IProps> = (props) => {
         SelectAvatarFormard={props.MoveToCropAvatar}
         SelectAvatarGetImageURL={props.GetImageURL}
         CropAvatarBackward={props.BackToSelectAvatar}
-        CropAvatarImageURL={props.AvatarURL}
-        CropAvatarGetImageURL={props.GetImageURL}
+        CropAvatarImageURL={props.ImageURLToCrop}
+        CropAvatarGetImageURL={props.GetCropImageURL}
         CropAvatarSubmit={props.AvatarSubmit}
       />
       {/* <ToastDark

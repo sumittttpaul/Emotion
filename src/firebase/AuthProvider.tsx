@@ -34,10 +34,4 @@ export const AuthProvider: FC<IProps> = ({ children }) => {
   return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
 };
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('AuthProvider must be used within a AuthContext');
-  }
-  return context;
-};
+export const useAuth = () =>  useContext(AuthContext);
