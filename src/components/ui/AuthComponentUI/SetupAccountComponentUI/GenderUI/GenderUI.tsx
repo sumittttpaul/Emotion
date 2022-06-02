@@ -1,7 +1,11 @@
-import React, { FC, useState } from 'react';
+import React, { Dispatch, FC, SetStateAction } from 'react';
 import { GenderButton } from '../buttonUI/GenderButton';
 
-interface IProps {}
+interface IProps {
+  GenderContent: Array<string>;
+  GenderValue?: string;
+  GenderValueChange: Dispatch<SetStateAction<any>>;
+}
 
 /**
  * @author
@@ -9,13 +13,12 @@ interface IProps {}
  **/
 
 export const GenderUI: FC<IProps> = (props) => {
-  const [value, setValue] = useState();
   return (
     <>
       <GenderButton
-        content={['Female', 'Male', 'Others']}
-        value={value}
-        onChange={setValue}
+        content={props.GenderContent}
+        value={props.GenderValue}
+        onChange={props.GenderValueChange}
       />
     </>
   );

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { Dispatch, FC, SetStateAction } from 'react';
 import AuthContainer from '../container/AuthContainer';
 import { motion, AnimatePresence } from 'framer-motion';
 import AvatarUI from './AuthComponentUI/SetupAccountComponentUI/AvatarUI/AvatarUI';
@@ -53,6 +53,13 @@ interface IProps {
   DOBLabel: string;
   DOBSubmitDisabled: boolean;
   // ------------- Gender ------------- //
+  GenderContent: Array<string>;
+  GenderValue?: string;
+  GenderValueChange: Dispatch<SetStateAction<any>>;
+  // ------------- Handle Button ------------- //
+  HandleSubmit: () => void;
+  HandleSkip: () => void;
+  HandleSubmitDisabled: boolean;
 }
 
 /**
@@ -95,7 +102,7 @@ export const SetupAccountUI: FC<IProps> = (props) => {
             BackToSelectAvatar={props.BackToSelectAvatar}
             AvatarSubmit={props.AvatarSubmit}
           />
-          <DatePickerUI 
+          <DatePickerUI
             DOBShow={props.DOBShow}
             setDOBShow={props.setDOBShow}
             DOBScreen1={props.DOBScreen1}
@@ -115,19 +122,21 @@ export const SetupAccountUI: FC<IProps> = (props) => {
             DOBLabel={props.DOBLabel}
             DOBSubmitDisabled={props.DOBSubmitDisabled}
           />
-          <GenderUI />
+          <GenderUI
+            GenderContent={props.GenderContent}
+            GenderValue={props.GenderValue}
+            GenderValueChange={props.GenderValueChange}
+          />
           <LargeButtonBlue
-            onClick={() => {}}
-            Disabled={false}
+            onClick={props.HandleSubmit}
+            Disabled={props.HandleSubmitDisabled}
             content="Continue"
           />
           <div className="flex">
             <h6 className="text-xs font-light text-[rgba(255,255,255,0.75)] flex items-center">
               Will do it later?&#160;
               <Link
-                onClick={() => {
-                  // Router.push('/');
-                }}
+                onClick={props.HandleSkip}
                 className="text-white text-xs"
                 component="button"
                 underline="always"

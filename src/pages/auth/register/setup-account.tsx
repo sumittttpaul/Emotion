@@ -37,6 +37,8 @@ const SetupAccount: NextPage = () => {
   const [DOBDayValue, setDOBDayValue] = useState(MomentDay);
   const [DOBMonthValue, setDOBMonthValue] = useState(MomentMonth);
   const [DOBYearValue, setDOBYearValue] = useState(MomentYear);
+  const [GenderValue, setGenderValue] = useState('');
+    const [HandleSubmitBool, setHandleSubmitBool] = useState(true);
 
   // Handle Dialog
   const AvatarLoadingState = (value: boolean) => {
@@ -256,12 +258,20 @@ const SetupAccount: NextPage = () => {
   const DOBSubmithandle = () => {
     /* Uplaod DOB to database (ex: setDOBValue({ day: day, month: month, year: year })) */
     setTimeout(() => {
+      setHandleSubmitBool(false);
       setDOBDialog(false);
     }, 200);
   };
-  const DOBLabel = () => {
-    return DOBDayValue + ' ' + DOBMonthValue + ' , ' + DOBYearValue;
-  };
+  const DOBLabel = DOBDayValue + ' ' + DOBMonthValue + ' , ' + DOBYearValue;
+
+  // Gender
+  const GenderContetnt = ['Female', 'Male', 'Others'];
+  /* Uplaod Gender to database (ex: setGenderValue({ Gender: GenderValue })) */
+
+  // Handle Submit
+  const HandleSubmit = () => {};
+  const HandleSkip = () => {};
+  const HandleSubmitDisabled: boolean = GenderValue.length > 0 && HandleSubmitBool === false;
 
   return (
     <>
@@ -304,9 +314,16 @@ const SetupAccount: NextPage = () => {
         DOBCancel={DOBCancelhandle}
         DOBSubmit={DOBSubmithandle}
         DOBClick={DOBOpenhandle}
-        DOBLabel={`${DOBLabel()}`}
+        DOBLabel={`${DOBLabel}`}
         DOBSubmitDisabled={DOBSubmitDisabled}
         // ------------- Gender ------------- //
+        GenderContent={GenderContetnt}
+        GenderValue={GenderValue}
+        GenderValueChange={setGenderValue}
+        // ------------- Handle Button ------------- //
+        HandleSubmit={HandleSubmit}
+        HandleSkip={HandleSkip}
+        HandleSubmitDisabled={!HandleSubmitDisabled}
       />
       <ToastDark
         message={ToastMessage}
