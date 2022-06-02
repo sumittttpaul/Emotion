@@ -1,12 +1,16 @@
 import { NextPage } from 'next';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { DeleteAvatar, UploadAvatar } from '../../../algorithms/AuthAlgorithms';
 import { ToastDark } from '../../../components/toast/ToastDark';
 import { SetupAccountUI } from '../../../components/ui/SetupAccountUI';
 import { useAuth } from '../../../firebase/AuthProvider';
+import moment from 'moment';
 
 const SetupAccount: NextPage = () => {
   const user = useAuth();
+  var MomentDay = moment().endOf('day').format('DD');
+  var MomentMonth = moment().endOf('month').format('MMM');
+  var MomentYear = moment().endOf('year').format('YYYY');
   // State
   const [AvatarDialog, setAvatarDialog] = useState(false);
   const [AvatarURL, setAvatarURL] = useState('/images/user.png');
@@ -23,8 +27,18 @@ const SetupAccount: NextPage = () => {
   const [ToastType, setToastType] = useState('');
   const [AvatarLoading, setAvatarLoading] = useState(false);
   const [UploadProgess, setUploadProgess] = useState('');
+  const [DOBDialog, setDOBDialog] = useState(false);
+  const [DOBScreen1, setDOBScreen1] = useState(false);
+  const [DOBScreen2, setDOBScreen2] = useState(false);
+  const [DOBSubmitDisabled, setDOBSubmitDisabled] = useState(false);
+  const [DOBday, setDOBDay] = useState(0);
+  const [DOBmonth, setDOBMonth] = useState(0);
+  const [DOByear, setDOBYear] = useState(0);
+  const [DOBDayValue, setDOBDayValue] = useState(MomentDay);
+  const [DOBMonthValue, setDOBMonthValue] = useState(MomentMonth);
+  const [DOBYearValue, setDOBYearValue] = useState(MomentYear);
 
-  // Handle State
+  // Handle Dialog
   const AvatarLoadingState = (value: boolean) => {
     setAvatarLoading(value);
   };
@@ -41,6 +55,17 @@ const SetupAccount: NextPage = () => {
   };
   const HideAvatarDialogDefault = () => {
     setAvatarDialog(false);
+  };
+  const ShowDOBDialog = () => {
+    setDOBDialog(true);
+  };
+  const HideDOBDialog = () => {
+    setDOBDialog(false);
+    setTimeout(() => {
+      setDOBDayValue(MomentDay);
+      setDOBMonthValue(MomentMonth);
+      setDOBYearValue(MomentYear);
+    }, 250);
   };
 
   // Avatar Screens
@@ -121,7 +146,7 @@ const SetupAccount: NextPage = () => {
     setToast(false);
   };
 
-  // Submit
+  // Avatar handle
   const AvatarUploadProgress = (value: string) => {
     setUploadProgess(value);
   };
@@ -178,9 +203,70 @@ const SetupAccount: NextPage = () => {
     }
   };
 
+  // DOB Get
+  const GetDOBMonthName = (month: number) => {
+    const date = new Date();
+    date.setMonth(month - 1);
+    return date.toLocaleString('en-IN', {
+      month: 'short',
+    });
+  };
+  const GetDOBDay = (day: number) => {
+    setDOBDay(day);
+    setDOBDayValue(`${day}`);
+    setDOBSubmitDisabled(true);
+  };
+  const GetDOBMonth = (month: number) => {
+    setDOBMonth(month);
+    setTimeout(() => {
+      setDOBScreen1(true);
+      setDOBScreen2(true);
+      setDOBMonthValue(GetDOBMonthName(month));
+    }, 500);
+  };
+  const GetDOBYear = (year: number) => {
+    setDOBYear(year);
+    setTimeout(() => {
+      setDOBScreen1(true);
+      setDOBScreen2(false);
+      setDOBYearValue(`${year}`);
+    }, 500);
+  };
+
+  // DOB handle
+  const DOBOpenhandle = () => {
+    setDOBSubmitDisabled(false);
+    setDOBScreen1(false);
+    setDOBScreen2(false);
+    setTimeout(() => {
+      ShowDOBDialog();
+      setDOBDayValue(MomentDay);
+      setDOBMonthValue(MomentMonth);
+      setDOBYearValue(MomentYear);
+    }, 200);
+  };
+  const DOBCancelhandle = () => {
+    setTimeout(() => {
+      HideDOBDialog();
+      setDOBDayValue(MomentDay);
+      setDOBMonthValue(MomentMonth);
+      setDOBYearValue(MomentYear);
+    }, 200);
+  };
+  const DOBSubmithandle = () => {
+    /* Uplaod DOB to database (ex: setDOBValue({ day: day, month: month, year: year })) */
+    setTimeout(() => {
+      setDOBDialog(false);
+    }, 200);
+  };
+  const DOBLabel = () => {
+    return DOBDayValue + ' ' + DOBMonthValue + ' , ' + DOBYearValue;
+  };
+
   return (
     <>
       <SetupAccountUI
+        // ------------- Avatar ------------- //
         AvatarDialog={AvatarDialog}
         setAvatarDialog={HideAvatarDialog}
         AvatarContainer={AvatarContainer}
@@ -201,6 +287,26 @@ const SetupAccount: NextPage = () => {
         GetCropImageURL={GetCropImageURL}
         ImageURLToCrop={CropAvatarURL}
         AvatarSubmit={AvatarSubmit}
+        // ------------- Date Of Birth ------------- //
+        DOBShow={DOBDialog}
+        setDOBShow={HideDOBDialog}
+        DOBScreen1={DOBScreen1}
+        DOBScreen2={DOBScreen2}
+        DOBDay={DOBday}
+        DOBMonth={DOBmonth}
+        DOBYear={DOByear}
+        DOBDayValue={DOBDayValue}
+        DOBMonthValue={DOBMonthValue}
+        DOBYearValue={DOBYearValue}
+        GetDOBDay={GetDOBDay}
+        GetDOBMonth={GetDOBMonth}
+        GetDOBYear={GetDOBYear}
+        DOBCancel={DOBCancelhandle}
+        DOBSubmit={DOBSubmithandle}
+        DOBClick={DOBOpenhandle}
+        DOBLabel={`${DOBLabel()}`}
+        DOBSubmitDisabled={DOBSubmitDisabled}
+        // ------------- Gender ------------- //
       />
       <ToastDark
         message={ToastMessage}

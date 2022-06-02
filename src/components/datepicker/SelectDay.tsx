@@ -137,7 +137,7 @@ export const SelectDay: FC<IProps> = (props) => {
               <motion.button
                 onClick={() => {
                   setValue(day);
-                  props.setDay(day.format('D'));
+                  props.setDay(day.format('DD'));
                 }}
                 className={`${'py-[4px] px-[5px] xs-350:py-[8px] xs-350:px-[9px] xs-400:py-[10px] xs-400:px-[11px] m-1 text-white text-[12px] rounded-md cursor-default text-center box-border relative inline-block transition-all ease-in-out'} 
                 ${dayStyles(day)}`}

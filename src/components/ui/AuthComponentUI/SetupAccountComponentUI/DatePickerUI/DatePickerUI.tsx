@@ -1,9 +1,27 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { DatePickerButtonDark } from '../buttonUI/DatePickerButtonDark';
 import { DatePickerDialogUI } from './DatePickerDialogUI';
-import moment from 'moment';
 
-interface IProps {}
+interface IProps {
+  DOBShow: boolean;
+  setDOBShow: () => void;
+  DOBScreen1: boolean;
+  DOBScreen2: boolean;
+  DOBDay: number;
+  DOBMonth: number;
+  DOBYear: number;
+  DOBDayValue: string;
+  DOBMonthValue: string;
+  DOBYearValue: string;
+  GetDOBDay: (value: number) => void;
+  GetDOBMonth: (value: number) => void;
+  GetDOBYear: (value: number) => void;
+  DOBCancel: () => void;
+  DOBSubmit: () => void;
+  DOBClick: () => void;
+  DOBLabel: string;
+  DOBSubmitDisabled: boolean;
+}
 
 /**
  * @author
@@ -11,118 +29,26 @@ interface IProps {}
  **/
 
 export const DatePickerUI: FC<IProps> = (props) => {
-  const [open, setOpen] = useState(false);
-  const [Screen1, setScreen1] = useState<boolean>(false);
-  const [Screen2, setScreen2] = useState<boolean>(false);
-  const [active, setActive] = useState<boolean>(false);
-
-  const [DayValue, setDayValue] = useState<string>(
-    moment().endOf('day').format('D')
-  );
-  const [MonthValue, setMonthValue] = useState<string>(
-    moment().endOf('month').format('MMM')
-  );
-  const [YearValue, setYearValue] = useState<string>(
-    moment().endOf('year').format('YYYY')
-  );
-
-  const [day, setDay] = useState<number>(0);
-  const [month, setMonth] = useState<number>(0);
-  const [year, setYear] = useState<number>(0);
-
-  const CloseDialog = () => {
-    setOpen(false);
-  };
-
-  const ShowDialog = () => {
-    setOpen(true);
-  };
-
-  const openModal = () => {
-    setActive(false);
-    setScreen1(false);
-    setScreen2(false);
-    setTimeout(() => {
-      ShowDialog();
-      setDayValue(moment().endOf('day').format('D'));
-      setMonthValue(moment().endOf('month').format('MMM'));
-      setYearValue(moment().endOf('year').format('YYYY'));
-    }, 250);
-  };
-
-  const getMonthName = (month: number) => {
-    const date = new Date();
-    date.setMonth(month - 1);
-
-    return date.toLocaleString('en-IN', {
-      month: 'short',
-    });
-  };
-
-  const getDay = (day: number) => {
-    setDay(day);
-    setDayValue(`${day}`);
-    setActive(true);
-  };
-
-  const getMonth = (month: number) => {
-    setMonth(month);
-    setTimeout(() => {
-      setScreen1(true);
-      setScreen2(true);
-      setMonthValue(getMonthName(month));
-    }, 500);
-  };
-
-  const getYear = (year: number) => {
-    setYear(year);
-    setTimeout(() => {
-      setScreen1(true);
-      setScreen2(false);
-      setYearValue(`${year}`);
-    }, 500);
-  };
-
-  const Cancelhandle = () => {
-    setTimeout(() => {
-      CloseDialog();
-      setDayValue(moment().endOf('day').format('D'));
-      setMonthValue(moment().endOf('month').format('MMM'));
-      setYearValue(moment().endOf('year').format('YYYY'));
-    }, 250);
-  };
-
-  const Submithandle = () => {
-    // setDOBValue({ day: day, month: month, year: year });
-    setTimeout(() => {
-      setOpen(false);
-    }, 250);
-  };
-
-  const label = () => {
-    return YearValue + ', ' + MonthValue + ' ' + DayValue;
-  };
-
   return (
     <>
-      <DatePickerButtonDark onClick={openModal} label={`${label()}`} />
+      <DatePickerButtonDark onClick={props.DOBClick} label={props.DOBLabel} />
       <DatePickerDialogUI
-        ShowDialog={open}
-        CloseDialog={CloseDialog}
-        day={day}
-        month={month}
-        year={year}
-        Screen1={Screen1}
-        Screen2={Screen2}
-        getDay={DayValue}
-        getMonth={MonthValue}
-        getYear={YearValue}
-        setDay={getDay}
-        setMonth={getMonth}
-        setYear={getYear}
-        cancel={Cancelhandle}
-        submit={Submithandle}
-        submitActive={active}
+        ShowDialog={props.DOBShow}
+        CloseDialog={props.setDOBShow}
+        day={props.DOBDay}
+        month={props.DOBMonth}
+        year={props.DOBYear}
+        Screen1={props.DOBScreen1}
+        Screen2={props.DOBScreen2}
+        getDay={props.DOBDayValue}
+        getMonth={props.DOBMonthValue}
+        getYear={props.DOBYearValue}
+        setDay={props.GetDOBDay}
+        setMonth={props.GetDOBMonth}
+        setYear={props.GetDOBYear}
+        cancel={props.DOBCancel}
+        submit={props.DOBSubmit}
+        submitActive={props.DOBSubmitDisabled}
       />
     </>
   );
