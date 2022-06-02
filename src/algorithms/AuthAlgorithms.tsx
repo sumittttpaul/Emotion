@@ -344,7 +344,6 @@ export const SignUp = ({
 
 export const UploadAvatar = ({
   Progress,
-  ProceedNext,
   File,
   getImageURL,
   Loading,
@@ -357,40 +356,44 @@ export const UploadAvatar = ({
     ToastType(type);
     ToastShow(show);
   };
-  Loading(true);
-  const extension = File.type.split('/')[1];
-  const storage = firebase.storage();
-  const ref = storage.ref(
-    `userPhoto/${firebase.auth().currentUser?.uid}/profilePhoto.${extension}`
-  );
-  // Starts the upload
-  const STATE_CHANGED = firebase.storage.TaskEvent.STATE_CHANGED;
-  const task = ref.put(File);
-  task.on(STATE_CHANGED, (snapshot) => {
-    const pct = (
-      (snapshot.bytesTransferred / snapshot.totalBytes) *
-      100
-    ).toFixed(0);
-    Progress(pct);
-    // Image Link
-    task
-      .then(() => getDownloadURL(ref))
-      .then((url) => {
-        firebase
-          .auth()
-          .currentUser?.updateProfile({
-            photoURL: url,
-          })
-          .then(() => {
-            //Image update successfully
-            getImageURL(url);
-            ProceedNext();
-          })
-          .catch((error) => {
-            const message = AuthError(error.code);
-            Toast(`${message}`, 'Error', true);
-            console.log('Image upload failed because ' + error.code);
-          });
-      });
-  });
+  if (File) {
+    Loading(true);
+    const extension = File.type.split('/')[1];
+    const storage = firebase.storage();
+    const ref = storage.ref(
+      `userAvatar/${firebase.auth().currentUser?.uid}/profilePhoto.${extension}`
+    );
+    // Start the upload
+    const STATE_CHANGED = firebase.storage.TaskEvent.STATE_CHANGED;
+    const task = ref.put(File);
+    task.on(STATE_CHANGED, (snapshot) => {
+      const pct = (
+        (snapshot.bytesTransferred / snapshot.totalBytes) *
+        100
+      ).toFixed(0);
+      Progress(pct);
+      // Get image Link
+      task
+        .then(() => getDownloadURL(ref))
+        .then((url) => {
+          firebase
+            .auth()
+            .currentUser?.updateProfile({
+              photoURL: url,
+            })
+            .then(() => {
+              //Image update successfully
+              getImageURL(url);
+              Loading(false);
+              Toast('Avatar updated successfully', 'Success', true);
+            })
+            .catch((error) => {
+              Loading(false);
+              const message = AuthError(error.code);
+              Toast(`${message}`, 'Error', true);
+              console.log('Image upload failed because ' + error.code);
+            });
+        });
+    });
+  }
 };

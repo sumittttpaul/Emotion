@@ -23,10 +23,8 @@ import {
 export interface DefaultCropperProps extends CropperProps {
   URL: string;
   getURL: (value: string) => void;
-  getFile: (value: File) => void;
   back: () => void;
-  close: () => void;
-  change: (value: boolean) => void;
+  submit: (value: File) => void;
 }
 
 /**
@@ -222,16 +220,16 @@ export const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
     const cropper = cropperRef.current;
     if (cropper) {
       cropper.getCanvas()?.toBlob((blob: any) => {
-        let ImageFile = new File([blob], 'userAvatar.jpg', {
-          type: 'image/jpeg',
+        let ImageFile = new File([blob], 'userAvatar.png', {
+          type: 'image/png',
         });
-        props.getURL(`${cropper.getCanvas()?.toDataURL()}`);
-        props.getFile(ImageFile);
-        props.change(true);
-        setTimeout(() => {
-          props.close();
-        }, 250);
-      }, 'image/jpeg');
+        if (ImageFile) {
+          props.getURL(`${cropper.getCanvas()?.toDataURL()}`);
+          setTimeout(() => {
+            props.submit(ImageFile);
+          }, 250);
+        }
+      }, 'image/png');
     }
   };
 

@@ -8,7 +8,10 @@ interface IProps {
   forward?: () => void;
   URL: string;
   remove: () => void;
-  disabled: boolean;
+  removedisabled: boolean;
+  changedisabled: boolean;
+  ShowProgress: boolean;
+  Progress: string;
 }
 
 /**
@@ -17,7 +20,6 @@ interface IProps {
  **/
 
 const ShowAvatar: FC<IProps> = (props) => {
-  const [show, setShow] = useState(false);
   return (
     <div className="bg-white flex flex-col w-full h-full overflow-auto items-center">
       {/* Header */}
@@ -57,7 +59,7 @@ const ShowAvatar: FC<IProps> = (props) => {
             src={props.URL}
             alt="user photo"
           />
-          {show ? (
+          {props.ShowProgress ? (
             <div className="absolute h-full w-full flex items-center justify-center rounded-[50%] opacity-75 bg-white">
               <CircularProgress
                 size={250}
@@ -78,13 +80,14 @@ const ShowAvatar: FC<IProps> = (props) => {
       <div className="flex space-x-3 w-full px-6 pb-6 pt-2">
         <Button
           onClick={props.forward}
+          disabled={props.changedisabled}
           sx={{
             border: '1px solid rgba(26, 115, 232, 0.5)',
             '.MuiTouchRipple-child': {
               backgroundColor: 'rgba(26, 115, 232, 0.25) !important',
             },
-          }}
-          className="button-text-lower py-[7px] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
+          }} 
+          className="disabled:opacity-50 button-text-lower py-[7px] disabled:text-[#1a73e8] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
         >
           <div className="flex space-x-2 items-center justify-center">
             <Image
@@ -98,7 +101,7 @@ const ShowAvatar: FC<IProps> = (props) => {
         </Button>
         <Button
           onClick={props.remove}
-          disabled={!props.disabled}
+          disabled={props.removedisabled}
           sx={{
             border: '1px solid rgba(26, 115, 232, 0.5)',
             '.MuiTouchRipple-child': {

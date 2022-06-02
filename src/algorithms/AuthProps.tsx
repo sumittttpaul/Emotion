@@ -67,11 +67,10 @@ export interface SignUpProps {
 
 export interface UploadAvatarProps {
   Progress: (value: string) => void;
-  File: File;
+  File: File | undefined;
   getImageURL: (value: string) => void;
   Loading: (value: boolean) => void;
   ToastShow: (value: boolean) => void;
   ToastMessage: (value: string) => void;
   ToastType: (value: string) => void;
-  ProceedNext: () => void;
 }

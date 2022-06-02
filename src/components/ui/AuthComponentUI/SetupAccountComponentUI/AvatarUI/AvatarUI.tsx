@@ -1,8 +1,30 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { AvatarDialogUI } from './AvatarDialogUI';
 import { AvatarButton } from '../buttonUI/AvatarButton';
 
-interface IProps {}
+interface IProps {
+  AvatarDialog: boolean;
+  setAvatarDialog: () => void;
+  AvatarContainer: string;
+  AvatarScreen1: boolean;
+  AvatarScreen2: boolean;
+  AvatarURL: string;
+  AvatarClick: () => void;
+  // Show Avatar [ Screen 1 ]
+  MoveToSelectAvatar: () => void;
+  RemoveClick: () => void;
+  RemoveDisabled: boolean;
+  ChangeDisabled: boolean;
+  UploadLoadingScreen: boolean;
+  UploadProgress: string;
+  // Select Avatar [ Screen 2 ]
+  BackToShowAvatar: () => void;
+  MoveToCropAvatar: () => void;
+  GetImageURL: (value: string) => void;
+  // Crop Avatar [ Screen 3 ]
+  BackToSelectAvatar: () => void;
+  AvatarSubmit: (value: File) => void;
+}
 
 /**
  * @author
@@ -10,98 +32,42 @@ interface IProps {}
  **/
 
 const AvatarUI: FC<IProps> = (props) => {
-  const [open, setOpen] = useState(false);
-  const [URL, setURL] = useState('/images/user.png');
-  const [Container, setContainer] = useState('ShowAvatar-container');
-  const [Screen1, setScreen1] = useState(false);
-  const [Screen2, setScreen2] = useState(false);
-  const [Disabled, setDisabled] = useState(true);
-
-  const ShowDialog = () => {
-    ShowAvatar();
-  };
-
-  const CloseDialog = () => {
-    setOpen(false);
-  };
-
-  const ShowAvatar = () => {
-    setTimeout(() => {
-      setContainer('ShowAvatar-container');
-      setScreen1(false);
-      setScreen2(false);
-      // open dialog
-      setOpen(true);
-    }, 200);
-  };
-
-  const SelectAvatar = () => {
-    setTimeout(() => {
-      setContainer('SelectAvatar-container');
-      setScreen1(true);
-      setScreen2(false);
-    }, 200);
-  };
-
-  const CropAvatar = () => {
-    setTimeout(() => {
-      setContainer('SelectAvatar-container');
-      setScreen1(true);
-      setScreen2(true);
-    }, 200);
-  };
-
-  const BackToShowAvatar = () => {
-    setContainer('ShowAvatar-container');
-    setScreen1(false);
-    setScreen2(false);
-  };
-
-  const BackToSelectAvatar = () => {
-    setContainer('SelectAvatar-container');
-    setScreen1(true);
-    setScreen2(false);
-  };
-
-  const RemoveImage = () => {
-    setURL('/images/user.png');
-    setDisabled(true);
-  };
-
-  const ImageChange = () => {
-    setDisabled(false);
-  };
-
-  const GetImage = (value: string) => {
-    setURL(value);
-  };
-
-  const GetImageFile = (value: File) => {};
-
   return (
     <>
-      <AvatarButton onClick={ShowDialog} ImageURL={URL} />
+      <AvatarButton onClick={props.AvatarClick} ImageURL={props.AvatarURL} />
       <AvatarDialogUI
-        ShowDialog={open}
-        CloseDialog={CloseDialog}
-        Container={Container}
-        Screen1={Screen1}
-        Screen2={Screen2}
-        ShowAvatarBackward={CloseDialog}
-        ShowAvatarForward={SelectAvatar}
-        ShowAvatarImageURL={URL}
-        ShowAvatarRemoveClick={RemoveImage}
-        ShowAvatarRemoveDisabled={!Disabled}
-        SelectAvatarBackward={BackToShowAvatar}
-        SelectAvatarFormard={CropAvatar}
-        SelectAvatarGetImageURL={GetImage}
-        CropAvatarBackward={BackToSelectAvatar}
-        CropAvatarImageURL={URL}
-        CropAvatarGetImageURL={GetImage}
-        CropAvatarGetImageFile={GetImageFile}
-        CropAvatarClose={CloseDialog}
-        CropAvatarImageChange={ImageChange}
+        ShowDialog={props.AvatarDialog}
+        CloseDialog={props.setAvatarDialog}
+        Container={props.AvatarContainer}
+        Screen1={props.AvatarScreen1}
+        Screen2={props.AvatarScreen2}
+        ShowAvatarBackward={props.setAvatarDialog}
+        ShowAvatarForward={props.MoveToSelectAvatar}
+        ShowAvatarImageURL={props.AvatarURL}
+        ShowAvatarRemoveClick={props.RemoveClick}
+        ShowAvatarChangeDisabled={props.ChangeDisabled}
+        ShowAvatarRemoveDisabled={props.RemoveDisabled}
+        ShowAvatarShowProgress={props.UploadLoadingScreen}
+        ShowAvatarProgress={props.UploadProgress}
+        SelectAvatarBackward={props.BackToShowAvatar}
+        SelectAvatarFormard={props.MoveToCropAvatar}
+        SelectAvatarGetImageURL={props.GetImageURL}
+        CropAvatarBackward={props.BackToSelectAvatar}
+        CropAvatarImageURL={props.AvatarURL}
+        CropAvatarGetImageURL={props.GetImageURL}
+        CropAvatarSubmit={props.AvatarSubmit}
       />
+      {/* <ToastDark
+        message={ToastMessage}
+        open={Toast}
+        close={HideToast}
+        type={ToastType}
+        autoHideDuration={6000}
+        slideDirection="down"
+        positionVertical="top"
+        positionHorizontal="center"
+        bgColor="bg-[#121212] sm:bg-[#202020]"
+      /> */}
     </>
   );
 };

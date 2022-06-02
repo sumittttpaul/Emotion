@@ -8,7 +8,30 @@ import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 import LargeButtonBlue from '../button/LargeButtonBlue';
 import { Link } from '@mui/material';
 
-interface IProps {}
+interface IProps {
+  // ------------- Avatar ------------- //
+  AvatarDialog: boolean;
+  setAvatarDialog: () => void;
+  AvatarContainer: string;
+  AvatarScreen1: boolean;
+  AvatarScreen2: boolean;
+  AvatarURL: string;
+  AvatarClick: () => void;
+  // Show Avatar [ Screen 1 ]
+  MoveToSelectAvatar: () => void;
+  RemoveClick: () => void;
+  ChangeDisabled: boolean;
+  RemoveDisabled: boolean;
+  UploadLoadingScreen: boolean;
+  UploadProgress: string;
+  // Select Avatar [ Screen 2 ]
+  BackToShowAvatar: () => void;
+  MoveToCropAvatar: () => void;
+  GetImageURL: (value: string) => void;
+  // Crop Avatar [ Screen 3 ]
+  BackToSelectAvatar: () => void;
+  AvatarSubmit: (value: File) => void;
+}
 
 /**
  * @author
@@ -28,7 +51,26 @@ export const SetupAccountUI: FC<IProps> = (props) => {
           transition={{ duration: 0.25 }}
         >
           <AuthHeaderLabel label="Setup your Agewear account" />
-          <AvatarUI />
+          <AvatarUI
+            AvatarDialog={props.AvatarDialog}
+            setAvatarDialog={props.setAvatarDialog}
+            AvatarContainer={props.AvatarContainer}
+            AvatarScreen1={props.AvatarScreen1}
+            AvatarScreen2={props.AvatarScreen2}
+            AvatarURL={props.AvatarURL}
+            AvatarClick={props.AvatarClick}
+            MoveToSelectAvatar={props.MoveToSelectAvatar}
+            RemoveClick={props.RemoveClick}
+            ChangeDisabled={props.ChangeDisabled}
+            RemoveDisabled={props.RemoveDisabled}
+            UploadLoadingScreen={props.UploadLoadingScreen}
+            UploadProgress={props.UploadProgress}
+            BackToShowAvatar={props.BackToShowAvatar}
+            MoveToCropAvatar={props.MoveToCropAvatar}
+            GetImageURL={props.GetImageURL}
+            BackToSelectAvatar={props.BackToSelectAvatar}
+            AvatarSubmit={props.AvatarSubmit}
+          />
           <DatePickerUI />
           <GenderUI />
           <LargeButtonBlue
