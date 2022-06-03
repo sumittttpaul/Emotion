@@ -1,3 +1,9 @@
+export interface RecaptchaProps {
+  ToastShow: (value: boolean) => void;
+  ToastMessage: (value: string) => void;
+  ToastType: (value: string) => void;
+}
+
 export interface ResendOTPProps {
   Phone: number;
   Loading: (value: boolean) => void;

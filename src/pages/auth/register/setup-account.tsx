@@ -5,6 +5,9 @@ import { ToastDark } from '../../../components/toast/ToastDark';
 import { SetupAccountUI } from '../../../components/ui/SetupAccountUI';
 import { useAuth } from '../../../firebase/AuthProvider';
 import moment from 'moment';
+import { CreateUserAuthData } from '../../../algorithms/AuthDB';
+import Router from 'next/router';
+import { AuthError } from '../../../firebase/AuthError';
 
 const SetupAccount: NextPage = () => {
   const user = useAuth();
@@ -31,14 +34,14 @@ const SetupAccount: NextPage = () => {
   const [DOBScreen1, setDOBScreen1] = useState(false);
   const [DOBScreen2, setDOBScreen2] = useState(false);
   const [DOBSubmitDisabled, setDOBSubmitDisabled] = useState(false);
-  const [DOBday, setDOBDay] = useState(0);
-  const [DOBmonth, setDOBMonth] = useState(0);
-  const [DOByear, setDOBYear] = useState(0);
+  const [DOBDay, setDOBDay] = useState(0);
+  const [DOBMonth, setDOBMonth] = useState(0);
+  const [DOBYear, setDOBYear] = useState(0);
   const [DOBDayValue, setDOBDayValue] = useState(MomentDay);
   const [DOBMonthValue, setDOBMonthValue] = useState(MomentMonth);
   const [DOBYearValue, setDOBYearValue] = useState(MomentYear);
   const [GenderValue, setGenderValue] = useState('');
-    const [HandleSubmitBool, setHandleSubmitBool] = useState(true);
+  const [HandleSubmitBool, setHandleSubmitBool] = useState(true);
 
   // Handle Dialog
   const AvatarLoadingState = (value: boolean) => {
@@ -162,7 +165,7 @@ const SetupAccount: NextPage = () => {
     ChangeImageDisabled(false);
     setTimeout(() => {
       HideAvatarDialogDefault();
-    }, 3000);
+    }, 2500);
   };
   const AvatarSubmit = (value: File) => {
     if (value) {
@@ -256,7 +259,6 @@ const SetupAccount: NextPage = () => {
     }, 200);
   };
   const DOBSubmithandle = () => {
-    /* Uplaod DOB to database (ex: setDOBValue({ day: day, month: month, year: year })) */
     setTimeout(() => {
       setHandleSubmitBool(false);
       setDOBDialog(false);
@@ -266,12 +268,55 @@ const SetupAccount: NextPage = () => {
 
   // Gender
   const GenderContetnt = ['Female', 'Male', 'Others'];
-  /* Uplaod Gender to database (ex: setGenderValue({ Gender: GenderValue })) */
 
   // Handle Submit
-  const HandleSubmit = () => {};
-  const HandleSkip = () => {};
-  const HandleSubmitDisabled: boolean = GenderValue.length > 0 && HandleSubmitBool === false;
+  const HandleSubmit = () => {
+    setTimeout(() => {
+      if (user) {
+        const { id, firstname, lastname, email, phone } = Router.query;
+        const DateOfBirth = DOBDay + '-' + DOBMonth + '-' + DOBYear;
+        CreateUserAuthData(`${id}`, {
+          FirstName: `${firstname}`,
+          LastName: `${lastname}`,
+          Email: `${email}`,
+          PhoneNumber: `${'+91'}${phone}`,
+          DOB: `${DateOfBirth}`,
+          Gender: `${GenderValue}`,
+        })
+          .then(() => {
+            Router.push('/');
+          })
+          .catch((error) => {
+            const message = AuthError(error.code);
+            ShowToast(`${message}`, 'Error', true);
+            console.error('UserData not created because ' + error.code);
+          });
+      }
+    }, 250);
+  };
+  const HandleSkip = () => {
+    if (user) {
+      const { id, firstname, lastname, email, phone } = Router.query;
+      CreateUserAuthData(`${id}`, {
+        FirstName: `${firstname}`,
+        LastName: `${lastname}`,
+        Email: `${email}`,
+        PhoneNumber: `${phone}`,
+        DOB: 'Not Defined yet',
+        Gender: 'Not Defined yet',
+      })
+        .then(() => {
+          Router.push('/');
+        })
+        .catch((error) => {
+          const message = AuthError(error.code);
+          ShowToast(`${message}`, 'Error', true);
+          console.error('UserData not created because ' + error.code);
+        });
+    }
+  };
+  const HandleSubmitDisabled: boolean =
+    GenderValue.length > 0 && HandleSubmitBool === false;
 
   return (
     <>
@@ -302,9 +347,9 @@ const SetupAccount: NextPage = () => {
         setDOBShow={HideDOBDialog}
         DOBScreen1={DOBScreen1}
         DOBScreen2={DOBScreen2}
-        DOBDay={DOBday}
-        DOBMonth={DOBmonth}
-        DOBYear={DOByear}
+        DOBDay={DOBDay}
+        DOBMonth={DOBMonth}
+        DOBYear={DOBYear}
         DOBDayValue={DOBDayValue}
         DOBMonthValue={DOBMonthValue}
         DOBYearValue={DOBYearValue}

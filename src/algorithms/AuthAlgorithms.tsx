@@ -10,6 +10,7 @@ import {
   SignUpProps,
   UploadAvatarProps,
   DeleteAvatarProps,
+  RecaptchaProps,
 } from './AuthProps';
 import 'firebase/compat/auth';
 import { AuthError } from '../firebase/AuthError';
@@ -26,19 +27,27 @@ var grecaptcha: any;
 
 // Captcha
 
-export const configureCaptcha = () => {
+export const configureCaptcha = ({
+  ToastMessage,
+  ToastType,
+  ToastShow,
+}: RecaptchaProps) => {
   if (typeof window === 'object') {
+    const Toast = (message: string, type: string, show: boolean) => {
+      ToastMessage(message);
+      ToastType(type);
+      ToastShow(show);
+    };
     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
       'verify-sign-in-recaptcha',
       {
         size: 'invisible',
         callback: (response: any) => {
           // reCAPTCHA solved, allow signInWithPhoneNumber.
-          // onSignInSubmit();
           console.log('Recaptca Verified');
         },
         'expired-callback': () => {
-          // token expire
+          Toast('Recaptcha token expired', 'Error', true);
         },
         defaultCountry: 'IN',
       }
@@ -145,7 +154,11 @@ export const SignInWithPhoneNumber = ({
     ToastShow(show);
   };
   Loading(true);
-  configureCaptcha();
+  configureCaptcha({
+    ToastShow: ToastShow,
+    ToastMessage: ToastMessage,
+    ToastType: ToastType,
+  });
   const number = '+91' + Phone;
   const appVerifier = window.recaptchaVerifier;
   firebase
@@ -241,12 +254,12 @@ export const SignInWithGoogle = ({
     .signInWithPopup(googleProvider)
     .then((result) => {
       Router.push('/');
-      console.log('SignIn with Google Successful !');
+      console.log('SignIn with Apple Successful !');
     })
     .catch((error) => {
       const message = AuthError(error.code);
       Toast(`${message}`, 'Error', true);
-      console.error('Failed to SignIn with Google because ' + error.code);
+      console.error('Failed to SignIn with Apple because ' + error.code);
     });
 };
 

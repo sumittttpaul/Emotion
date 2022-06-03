@@ -225,9 +225,7 @@ export const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
         });
         if (ImageFile) {
           props.getURL(`${cropper.getCanvas()?.toDataURL()}`);
-          setTimeout(() => {
-            props.submit(ImageFile);
-          }, 250);
+          props.submit(ImageFile);
         }
       }, 'image/png');
     }
