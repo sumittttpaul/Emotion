@@ -7,7 +7,7 @@ import { useAuth } from '../../../firebase/AuthProvider';
 import moment from 'moment';
 import { CreateUserAuthData } from '../../../algorithms/AuthDB';
 import Router from 'next/router';
-import { AuthError } from '../../../firebase/AuthError';
+import { useLoaderState } from '../../../providers/state/LoadingState';
 
 const SetupAccount: NextPage = () => {
   const user = useAuth();
@@ -42,6 +42,17 @@ const SetupAccount: NextPage = () => {
   const [DOBYearValue, setDOBYearValue] = useState(MomentYear);
   const [GenderValue, setGenderValue] = useState('');
   const [HandleSubmitBool, setHandleSubmitBool] = useState(true);
+  const [SubmitLoader, setSubmitLoader] = useState(false);
+
+  // Loading
+  const { setLoader } = useLoaderState();
+  /* Loading Screen Defined but not used yet */
+  const LoadingScreen = (value: boolean) => {
+    setLoader({ show: value });
+  };
+  const SubmitLoading = (value: boolean) => {
+    setSubmitLoader(value);
+  };
 
   // Handle Dialog
   const AvatarLoadingState = (value: boolean) => {
@@ -275,44 +286,40 @@ const SetupAccount: NextPage = () => {
       if (user) {
         const { id, firstname, lastname, email, phone } = Router.query;
         const DateOfBirth = DOBDay + '-' + DOBMonth + '-' + DOBYear;
-        CreateUserAuthData(`${id}`, {
+        CreateUserAuthData({
+          Id: `${id}`,
           FirstName: `${firstname}`,
           LastName: `${lastname}`,
           Email: `${email}`,
           PhoneNumber: `${'+91'}${phone}`,
           DOB: `${DateOfBirth}`,
           Gender: `${GenderValue}`,
-        })
-          .then(() => {
-            Router.push('/');
-          })
-          .catch((error) => {
-            const message = AuthError(error.code);
-            ShowToast(`${message}`, 'Error', true);
-            console.error('UserData not created because ' + error.code);
-          });
+          ToastMessage: AuthToastMessage,
+          ToastType: AuthToastType,
+          ToastShow: AuthToast,
+          Loading: SubmitLoading,
+        });
+        ShowToast(ToastMessage, ToastType, Toast);
       }
     }, 250);
   };
   const HandleSkip = () => {
     if (user) {
       const { id, firstname, lastname, email, phone } = Router.query;
-      CreateUserAuthData(`${id}`, {
+      CreateUserAuthData({
+        Id: `${id}`,
         FirstName: `${firstname}`,
         LastName: `${lastname}`,
         Email: `${email}`,
-        PhoneNumber: `${phone}`,
+        PhoneNumber: `${'+91'}${phone}`,
         DOB: 'Not Defined yet',
         Gender: 'Not Defined yet',
-      })
-        .then(() => {
-          Router.push('/');
-        })
-        .catch((error) => {
-          const message = AuthError(error.code);
-          ShowToast(`${message}`, 'Error', true);
-          console.error('UserData not created because ' + error.code);
-        });
+        ToastMessage: AuthToastMessage,
+        ToastType: AuthToastType,
+        ToastShow: AuthToast,
+        Loading: SubmitLoading,
+      });
+      ShowToast(ToastMessage, ToastType, Toast);
     }
   };
   const HandleSubmitDisabled: boolean =
@@ -369,6 +376,7 @@ const SetupAccount: NextPage = () => {
         HandleSubmit={HandleSubmit}
         HandleSkip={HandleSkip}
         HandleSubmitDisabled={!HandleSubmitDisabled}
+        HandleSubmitLoading={SubmitLoader}
       />
       <ToastDark
         message={ToastMessage}

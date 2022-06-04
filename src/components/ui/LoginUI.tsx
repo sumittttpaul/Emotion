@@ -41,8 +41,13 @@ interface IProps {
   EmailPolicyChecked: boolean;
   EmailPolicyCheckedChange: (event: ChangeEvent<HTMLInputElement>) => void;
   PhoneSubmitDisabled: boolean;
+  PhoneSubmitLoading: boolean;
+  PhoneReadOnly?: boolean;
+  EmailReadOnly?: boolean;
+  PasswordReadOnly?: boolean;
   PhoneSubmitClick: () => void;
   EmailSubmitDisabled: boolean;
+  EmailSubmitLoading: boolean;
   EmailSubmitClick: () => void;
   FacebookSignIn: () => void;
   GoogleSignIn: () => void;
@@ -171,6 +176,7 @@ const LoginUI: FC<IProps> = (props) => {
                 PhonePolicyChecked={props.PhonePolicyChecked}
                 PhonePolicyCheckedChange={props.PhonePolicyCheckedChange}
                 PhoneSubmitDisabled={props.PhoneSubmitDisabled}
+                PhoneSubmitLoading={props.PhoneSubmitLoading}
                 PhoneSubmitClick={props.PhoneSubmitClick}
                 FacebookSignIn={props.FacebookSignIn}
                 GoogleSignIn={props.GoogleSignIn}
@@ -178,6 +184,7 @@ const LoginUI: FC<IProps> = (props) => {
                 PhoneError={props.PhoneError}
                 PhoneFocus={props.PhoneFocus}
                 PhoneBlur={props.PhoneBlur}
+                PhoneReadOnly={props.PhoneReadOnly}
               />
             </TabPanel>
             <TabPanel value={Tabvalue} index={1} dir={theme.direction}>
@@ -197,6 +204,7 @@ const LoginUI: FC<IProps> = (props) => {
                 EmailPolicyChecked={props.EmailPolicyChecked}
                 EmailPolicyCheckedChange={props.EmailPolicyCheckedChange}
                 EmailSubmitDisabled={props.EmailSubmitDisabled}
+                EmailSubmitLoading={props.EmailSubmitLoading}
                 EmailSubmitClick={props.EmailSubmitClick}
                 EmailError={props.EmailError}
                 PasswordError={props.PasswordError}
@@ -204,6 +212,8 @@ const LoginUI: FC<IProps> = (props) => {
                 EmailBlur={props.EmailBlur}
                 PasswordFocus={props.PasswordFocus}
                 PasswordBlur={props.PasswordBlur}
+                EmailReadOnly={props.EmailReadOnly}
+                PasswordReadOnly={props.PasswordReadOnly}
               />
             </TabPanel>
           </SwipeableViews>

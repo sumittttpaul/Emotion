@@ -43,6 +43,8 @@ const Login: NextPage = () => {
   const [PhoneError, setPhoneError] = useState(false);
   const [EmailError, setEmailError] = useState(false);
   const [PasswordError, setPasswordError] = useState(false);
+  const [PhoneLoader, setPhoneLoader] = useState(false);
+  const [EmailLoader, setEmailLoader] = useState(false);
 
   // Handle State
   const PhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -85,6 +87,12 @@ const Login: NextPage = () => {
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => {
     setLoader({ show: value });
+  };
+  const PhoneLoading = (value: boolean) => {
+    setPhoneLoader(value);
+  };
+  const EmailLoading = (value: boolean) => {
+    setEmailLoader(value);
   };
 
   // Valid Format
@@ -276,7 +284,7 @@ const Login: NextPage = () => {
         SignInWithPhoneNumber({
           Phone: parseInt(Phone),
           EmptyPhone: EmptyPhone,
-          Loading: LoadingScreen,
+          Loading: PhoneLoading,
           ShowOTPDialog: ShowOTPDialog,
           ToastMessage: AuthToastMessage,
           ToastType: AuthToastType,
@@ -345,7 +353,7 @@ const Login: NextPage = () => {
           ToastMessage: AuthToastMessage,
           ToastType: AuthToastType,
           ToastShow: AuthToast,
-          Loading: LoadingScreen,
+          Loading: EmailLoading,
         });
         ShowToast(ToastMessage, ToastType, Toast);
       } else {
@@ -408,6 +416,8 @@ const Login: NextPage = () => {
         EmailPolicyCheckedChange={EmailCheckChange}
         PhoneSubmitDisabled={PhoneSubmitDisabled}
         EmailSubmitDisabled={EmailSubmitDisabled}
+        PhoneSubmitLoading={PhoneLoader}
+        EmailSubmitLoading={EmailLoader}
         PhoneSubmitClick={PhoneSubmitClick}
         EmailSubmitClick={EmailSubmitClick}
         TabClick={TabClick}
@@ -420,6 +430,9 @@ const Login: NextPage = () => {
         PhoneBlur={PhoneBlur}
         EmailBlur={EmailBlur}
         PasswordBlur={PasswordBlur}
+        PhoneReadOnly={PhoneLoader}
+        EmailReadOnly={EmailLoader}
+        PasswordReadOnly={EmailLoader}
       />
       <OTPAuthUI
         open={OTPDialog}

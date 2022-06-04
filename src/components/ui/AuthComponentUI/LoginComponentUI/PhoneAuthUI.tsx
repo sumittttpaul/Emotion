@@ -16,6 +16,8 @@ interface IProps {
   PhonePolicyChecked: boolean;
   PhonePolicyCheckedChange: (event: ChangeEvent<HTMLInputElement>) => void;
   PhoneSubmitDisabled: boolean;
+  PhoneSubmitLoading: boolean;
+  PhoneReadOnly?: boolean;
   PhoneSubmitClick: () => void;
   FacebookSignIn: () => void;
   GoogleSignIn: () => void;
@@ -50,6 +52,7 @@ const PhoneAuthUI: FC<IProps> = (props) => {
         onFocus={props.PhoneFocus}
         onBlur={props.PhoneBlur}
         error={props.PhoneError}
+        readonly={props.PhoneReadOnly}
       />
 
       <div className="flex w-full pl-2">
@@ -63,6 +66,7 @@ const PhoneAuthUI: FC<IProps> = (props) => {
         onClick={props.PhoneSubmitClick}
         content="verify with OTP"
         Disabled={props.PhoneSubmitDisabled}
+        Loading={props.PhoneSubmitLoading}
       />
       <AuthDivider />
       <OtherAccountAuthUI

@@ -10,12 +10,14 @@ import { EmailPrivacyPolicy } from '../../../terms & policy/EmailPrivacyPolicy';
 interface IProps {
   Email: string;
   EmailID?: string;
+  EmailReadOnly?: boolean;
   EmailChange: (event: ChangeEvent<HTMLInputElement>) => void;
   EmailKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   EmailKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   EmailKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   Password: string;
   PasswordID?: string;
+  PasswordReadOnly?: boolean;
   PasswordChange: (event: ChangeEvent<HTMLInputElement>) => void;
   PasswordKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   PasswordKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
@@ -23,6 +25,7 @@ interface IProps {
   EmailPolicyChecked: boolean;
   EmailPolicyCheckedChange: (event: ChangeEvent<HTMLInputElement>) => void;
   EmailSubmitDisabled: boolean;
+  EmailSubmitLoading: boolean;
   EmailSubmitClick: () => void;
   EmailError?: boolean;
   EmailFocus?: (event: FocusEvent<HTMLInputElement>) => void;
@@ -53,6 +56,7 @@ const EmailAuthUI: FC<IProps> = (props) => {
         onFocus={props.EmailFocus}
         onBlur={props.EmailBlur}
         error={props.EmailError}
+        readonly={props.EmailReadOnly}
       />
       <IconPasswordTextFieldDark
         id={props.PasswordID}
@@ -66,6 +70,7 @@ const EmailAuthUI: FC<IProps> = (props) => {
         onFocus={props.PasswordFocus}
         onBlur={props.PasswordBlur}
         error={props.PasswordError}
+        readonly={props.PasswordReadOnly}
       />
       <div className="w-full space-y-1">
         <div className="text-right w-full">
@@ -92,6 +97,7 @@ const EmailAuthUI: FC<IProps> = (props) => {
         onClick={props.EmailSubmitClick}
         content="Log In Now"
         Disabled={props.EmailSubmitDisabled}
+        Loading={props.EmailSubmitLoading}
       />
     </div>
   );

@@ -60,6 +60,7 @@ interface IProps {
   HandleSubmit: () => void;
   HandleSkip: () => void;
   HandleSubmitDisabled: boolean;
+  HandleSubmitLoading: boolean;
 }
 
 /**
@@ -130,6 +131,7 @@ export const SetupAccountUI: FC<IProps> = (props) => {
           <LargeButtonBlue
             onClick={props.HandleSubmit}
             Disabled={props.HandleSubmitDisabled}
+            Loading={props.HandleSubmitLoading}
             content="Continue"
           />
           <div className="flex">

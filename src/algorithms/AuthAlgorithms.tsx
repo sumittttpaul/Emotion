@@ -11,7 +11,7 @@ import {
   UploadAvatarProps,
   DeleteAvatarProps,
   RecaptchaProps,
-} from './AuthProps';
+} from './Props/AuthProps';
 import 'firebase/compat/auth';
 import { AuthError } from '../firebase/AuthError';
 import { getDownloadURL } from 'firebase/storage';
@@ -47,7 +47,7 @@ export const configureCaptcha = ({
           console.log('Recaptca Verified');
         },
         'expired-callback': () => {
-          Toast('Recaptcha token expired', 'Error', true);
+          Toast('Recaptcha token expired, please try again', 'Error', true);
         },
         defaultCountry: 'IN',
       }
@@ -166,10 +166,10 @@ export const SignInWithPhoneNumber = ({
     .signInWithPhoneNumber(number, appVerifier)
     .then((confirmationResult) => {
       window.confirmationResult = confirmationResult;
-      Loading(false);
       Toast('OTP sent successfully', 'Success', true);
       console.log('OTP sent to ' + number);
       ShowOTPDialog();
+      // Loading(false);
     })
     .catch((error) => {
       Loading(false);

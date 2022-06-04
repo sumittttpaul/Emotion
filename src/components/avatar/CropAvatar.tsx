@@ -33,10 +33,11 @@ export interface DefaultCropperProps extends CropperProps {
  **/
 
 export const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
-  const [changed, setChanged] = useState<boolean>(false);
-  const [Active, setActive] = useState<boolean>(false);
-  const [RotateValue, setRotateValue] = useState<number>(0);
-  const [ZoomValue, setZoomValue] = useState<number>(0);
+  const [changed, setChanged] = useState(false);
+  const [Active, setActive] = useState(false);
+  const [RotateValue, setRotateValue] = useState(0);
+  const [ZoomValue, setZoomValue] = useState(0);
+  const [Loading, setLaoding] = useState(false);
 
   const cropperRef = useRef<CropperRef>(null);
 
@@ -216,19 +217,22 @@ export const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
     onZoom(value);
   };
 
-  const submit = async () => {
-    const cropper = cropperRef.current;
-    if (cropper) {
-      cropper.getCanvas()?.toBlob((blob: any) => {
-        let ImageFile = new File([blob], 'userAvatar.png', {
-          type: 'image/png',
-        });
-        if (ImageFile) {
-          props.getURL(`${cropper.getCanvas()?.toDataURL()}`);
-          props.submit(ImageFile);
-        }
-      }, 'image/png');
-    }
+  const submit = () => {
+    setTimeout(() => {
+      setLaoding(true);
+      const cropper = cropperRef.current;
+      if (cropper) {
+        cropper.getCanvas()?.toBlob((blob: any) => {
+          let ImageFile = new File([blob], 'userAvatar.png', {
+            type: 'image/png',
+          });
+          if (ImageFile) {
+            props.getURL(`${cropper.getCanvas()?.toDataURL()}`);
+            props.submit(ImageFile);
+          }
+        }, 'image/png');
+      }
+    }, 200);
   };
 
   return (
@@ -300,6 +304,7 @@ export const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
           changed={changed}
           resetClick={reset}
           submitClick={submit}
+          submitLoading={Loading}
         />
       </div>
     </div>

@@ -34,6 +34,7 @@ const Register: NextPage = () => {
   const [LastNameError, setLastNameError] = useState(false);
   const [EmailError, setEmailError] = useState(false);
   const [PasswordError, setPasswordError] = useState(false);
+  const [SubmitLoader, setSubmitLoader] = useState(false);
 
   // Handle State
   const FirstNameChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -59,8 +60,12 @@ const Register: NextPage = () => {
 
   // Loading
   const { setLoader } = useLoaderState();
+  /* Loading Screen Defined but not used yet */
   const LoadingScreen = (value: boolean) => {
     setLoader({ show: value });
+  };
+  const SubmitLoading = (value: boolean) => {
+    setSubmitLoader(value);
   };
 
   // Valid Format
@@ -242,7 +247,7 @@ const Register: NextPage = () => {
           ToastMessage: AuthToastMessage,
           ToastType: AuthToastType,
           ToastShow: AuthToast,
-          Loading: LoadingScreen,
+          Loading: SubmitLoading,
         });
         ShowToast(ToastMessage, ToastType, Toast);
       } else {
@@ -282,7 +287,11 @@ const Register: NextPage = () => {
         LastNameError={LastNameError}
         EmailError={EmailError}
         PasswordError={PasswordError}
+        FirstNameReadOnly={SubmitLoader}
+        LastNameReadOnly={SubmitLoader}
+        EmailReadOnly={SubmitLoader}
         PhoneReadOnly={true}
+        PasswordReadOnly={SubmitLoader}
         FirstNameBlur={FirstNameBlur}
         LastNameBlur={LastNameBlur}
         EmailBlur={EmailBlur}
@@ -291,6 +300,7 @@ const Register: NextPage = () => {
         TermsCheckedChange={TermsCheckChange}
         SubmitClick={SubmitClick}
         SubmitDisabled={SubmitDisabled}
+        SubmitLoading={SubmitLoader}
       />
       <ToastDark
         message={ToastMessage}

@@ -59,17 +59,6 @@ const AvatarUI: FC<IProps> = (props) => {
         CropAvatarGetImageURL={props.GetCropImageURL}
         CropAvatarSubmit={props.AvatarSubmit}
       />
-      {/* <ToastDark
-        message={ToastMessage}
-        open={Toast}
-        close={HideToast}
-        type={ToastType}
-        autoHideDuration={6000}
-        slideDirection="down"
-        positionVertical="top"
-        positionHorizontal="center"
-        bgColor="bg-[#121212] sm:bg-[#202020]"
-      /> */}
     </>
   );
 };

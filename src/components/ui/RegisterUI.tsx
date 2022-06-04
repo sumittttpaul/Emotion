@@ -60,6 +60,7 @@ interface IProps {
   PasswordError?: boolean;
   SubmitClick: () => void;
   SubmitDisabled: boolean;
+  SubmitLoading: boolean;
   FirstNameReadOnly?: boolean;
   LastNameReadOnly?: boolean;
   EmailReadOnly?: boolean;
@@ -175,6 +176,7 @@ const RegisterUI: FC<IProps> = (props) => {
           <LargeButtonBlue
             Disabled={props.SubmitDisabled}
             onClick={props.SubmitClick}
+            Loading={props.SubmitLoading}
             content="Continue"
           />
           <AuthFooter />
