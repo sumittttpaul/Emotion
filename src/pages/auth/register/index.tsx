@@ -10,6 +10,7 @@ import {
 import { SignUp } from '../../../algorithms/AuthAlgorithms';
 import { ToastDark } from '../../../components/toast/ToastDark';
 import RegisterUI from '../../../components/ui/RegisterUI';
+import { NoAccessToNullUserPages } from '../../../hoc/ProtectedRoutes';
 import { useLoaderState } from '../../../providers/state/LoadingState';
 
 const Register: NextPage = () => {
@@ -318,3 +319,9 @@ const Register: NextPage = () => {
 };
 
 export default Register;
+
+export const getServerSideProps = NoAccessToNullUserPages(() => {
+  return {
+    props: {},
+  };
+});

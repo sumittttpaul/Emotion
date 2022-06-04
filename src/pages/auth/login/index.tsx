@@ -17,6 +17,7 @@ import {
   VerifyOTP,
 } from '../../../algorithms/AuthAlgorithms';
 import { useLoaderState } from '../../../providers/state/LoadingState';
+import { NoAccessToUserExistPages } from '../../../hoc/ProtectedRoutes';
 
 const Login: NextPage = () => {
   // ID
@@ -480,3 +481,9 @@ const Login: NextPage = () => {
 };
 
 export default Login;
+
+export const getServerSideProps = NoAccessToUserExistPages(() => {
+  return {
+    props: {},
+  };
+});

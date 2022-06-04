@@ -21,6 +21,14 @@ export interface VerifyOTPProps {
   ToastType: (value: string) => void;
 }
 
+export interface PasswordResentProps {
+  Email: string;
+  Loading: (value: boolean) => void;
+  ToastShow: (value: boolean) => void;
+  ToastMessage: (value: string) => void;
+  ToastType: (value: string) => void;
+}
+
 export interface SignInWithPhoneNumberProps {
   Phone: number;
   EmptyPhone: () => void;

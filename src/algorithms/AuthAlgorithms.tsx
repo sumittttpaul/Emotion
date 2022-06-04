@@ -11,6 +11,7 @@ import {
   UploadAvatarProps,
   DeleteAvatarProps,
   RecaptchaProps,
+  PasswordResentProps,
 } from './Props/AuthProps';
 import 'firebase/compat/auth';
 import { AuthError } from '../firebase/AuthError';
@@ -134,6 +135,34 @@ export const VerifyOTP = ({
       const message = AuthError(error.code);
       Toast(`${message}`, 'Error', true);
       console.error('OTP verification failed beacuse ' + error.code);
+    });
+};
+
+export const PasswordReset = ({
+  Email,
+  Loading,
+  ToastShow,
+  ToastMessage,
+  ToastType,
+}: PasswordResentProps) => {
+  const Toast = (message: string, type: string, show: boolean) => {
+    ToastMessage(message);
+    ToastType(type);
+    ToastShow(show);
+  };
+  Loading(true);
+  firebase
+    .auth()
+    .sendPasswordResetEmail(Email)
+    .then(() => {
+      Loading(false);
+      Toast('Password reset link sent successfully', 'Success', true);
+    })
+    .catch((error) => {
+      Loading(false);
+      const message = AuthError(error.code);
+      Toast(`${message}`, 'Error', true);
+      console.error('Password reset link not sent beacuse' + error.code);
     });
 };
 

@@ -10,6 +10,7 @@ import Router from 'next/router';
 import { useLoaderState } from '../../../providers/state/LoadingState';
 import { EncryptData } from '../../../algorithms/security/CryptionSecurity';
 import { DOBEncrytionKey, EmailEncrytionKey, FirstNameEncrytionKey, GenderEncrytionKey, LastNameEncrytionKey, PhoneEncrytionKey } from '../../../algorithms/security/CryptionKey';
+import { NoAccessToNullUserPages } from '../../../hoc/ProtectedRoutes';
 
 const SetupAccount: NextPage = () => {
   const user = useAuth();
@@ -407,3 +408,9 @@ const SetupAccount: NextPage = () => {
 };
 
 export default SetupAccount;
+
+export const getServerSideProps = NoAccessToNullUserPages(() => {
+  return {
+    props: {},
+  };
+});
