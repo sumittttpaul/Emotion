@@ -35,3 +35,17 @@ export const NoAccessToNullUserPages = (gssp: any) => {
     return await gssp(Context);
   };
 };
+
+/**
+ * @Access_Denied_For_Null_Pages
+ **/
+export const NoAccessToNullPages = (gssp: any) => {
+  return async () => {
+    return {
+      redirect: {
+        destination: '/',
+        statusCode: 302,
+      },
+    };
+  };
+};

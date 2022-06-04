@@ -2,6 +2,9 @@ import type { NextPage } from 'next';
 import { Button } from '@mui/material';
 import Router from 'next/router';
 
+/**
+ * @Home_Page
+ **/
 const Home: NextPage = () => {
   return (
     <>

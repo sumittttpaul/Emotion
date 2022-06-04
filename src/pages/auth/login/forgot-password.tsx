@@ -6,6 +6,9 @@ import ForgotPasswordUI from '../../../components/ui/ForgotPasswordUI';
 import { NoAccessToUserExistPages } from '../../../hoc/ProtectedRoutes';
 import { useLoaderState } from '../../../providers/state/LoadingState';
 
+/**
+ * @ForgotPassword_Page
+ **/
 const ForgotPassword: NextPage = () => {
   // ID
   const EmailID = 'EmailAddress-TextField-Forgot-Password';
@@ -25,6 +28,7 @@ const ForgotPassword: NextPage = () => {
 
   // Loading
   const { setLoader } = useLoaderState();
+  /* Loading Screen Defined but not used yet */
   const LoadingScreen = (value: boolean) => {
     setLoader({ show: value });
   };

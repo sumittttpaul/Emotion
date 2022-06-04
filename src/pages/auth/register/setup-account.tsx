@@ -12,6 +12,9 @@ import { EncryptData } from '../../../algorithms/security/CryptionSecurity';
 import { DOBEncrytionKey, EmailEncrytionKey, FirstNameEncrytionKey, GenderEncrytionKey, LastNameEncrytionKey, PhoneEncrytionKey } from '../../../algorithms/security/CryptionKey';
 import { NoAccessToNullUserPages } from '../../../hoc/ProtectedRoutes';
 
+/**
+ * @SetupAccount_Page
+ **/
 const SetupAccount: NextPage = () => {
   const user = useAuth();
   var MomentDay = moment().endOf('day').format('DD');

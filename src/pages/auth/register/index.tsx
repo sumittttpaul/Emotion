@@ -13,6 +13,9 @@ import RegisterUI from '../../../components/ui/RegisterUI';
 import { NoAccessToNullUserPages } from '../../../hoc/ProtectedRoutes';
 import { useLoaderState } from '../../../providers/state/LoadingState';
 
+/**
+ * @Signup_Page
+ **/
 const Register: NextPage = () => {
   // ID
   const FirstNameID = 'FirstName-TextField-Signup';
