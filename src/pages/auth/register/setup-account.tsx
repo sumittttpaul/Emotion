@@ -8,6 +8,8 @@ import moment from 'moment';
 import { CreateUserAuthData } from '../../../algorithms/AuthDB';
 import Router from 'next/router';
 import { useLoaderState } from '../../../providers/state/LoadingState';
+import { EncryptData } from '../../../algorithms/security/CryptionSecurity';
+import { DOBEncrytionKey, EmailEncrytionKey, FirstNameEncrytionKey, GenderEncrytionKey, LastNameEncrytionKey, PhoneEncrytionKey } from '../../../algorithms/security/CryptionKey';
 
 const SetupAccount: NextPage = () => {
   const user = useAuth();
@@ -285,15 +287,21 @@ const SetupAccount: NextPage = () => {
     setTimeout(() => {
       if (user) {
         const { id, firstname, lastname, email, phone } = Router.query;
-        const DateOfBirth = DOBDay + '-' + DOBMonth + '-' + DOBYear;
+        const UserID = `${id}`
+        const UserFirstName = EncryptData(`${firstname}`, FirstNameEncrytionKey(UserID));
+        const UserLastName = EncryptData(`${lastname}`, LastNameEncrytionKey(UserID));
+        const UserEmail = EncryptData(`${email}`, EmailEncrytionKey(UserID));
+        const UserPhone = EncryptData(`${'+91'}${phone}`, PhoneEncrytionKey(UserID));
+        const UserDOB = EncryptData(`${DOBDay + '-' + DOBMonth + '-' + DOBYear}`,DOBEncrytionKey(UserID));
+        const UserGender = EncryptData(`${GenderValue}`,GenderEncrytionKey(UserID))
         CreateUserAuthData({
-          Id: `${id}`,
-          FirstName: `${firstname}`,
-          LastName: `${lastname}`,
-          Email: `${email}`,
-          PhoneNumber: `${'+91'}${phone}`,
-          DOB: `${DateOfBirth}`,
-          Gender: `${GenderValue}`,
+          Id: UserID,
+          FirstName: UserFirstName,
+          LastName: UserLastName,
+          Email: UserEmail,
+          PhoneNumber: UserPhone,
+          DOB: UserDOB,
+          Gender: UserGender,
           ToastMessage: AuthToastMessage,
           ToastType: AuthToastType,
           ToastShow: AuthToast,
@@ -306,12 +314,17 @@ const SetupAccount: NextPage = () => {
   const HandleSkip = () => {
     if (user) {
       const { id, firstname, lastname, email, phone } = Router.query;
+      const UserID = `${id}`
+      const UserFirstName = EncryptData(`${firstname}`, FirstNameEncrytionKey(UserID));
+      const UserLastName = EncryptData(`${lastname}`, LastNameEncrytionKey(UserID));
+      const UserEmail = EncryptData(`${email}`, EmailEncrytionKey(UserID));
+      const UserPhone = EncryptData(`${'+91'}${phone}`, PhoneEncrytionKey(UserID));
       CreateUserAuthData({
-        Id: `${id}`,
-        FirstName: `${firstname}`,
-        LastName: `${lastname}`,
-        Email: `${email}`,
-        PhoneNumber: `${'+91'}${phone}`,
+        Id: UserID,
+        FirstName: UserFirstName,
+        LastName: UserLastName,
+        Email: UserEmail,
+        PhoneNumber: UserPhone,
         DOB: 'Not Defined yet',
         Gender: 'Not Defined yet',
         ToastMessage: AuthToastMessage,
