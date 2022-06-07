@@ -29,6 +29,8 @@ export const AvatarCircularButton: FC<IProps> = (props) => {
           src={props.ImageURL}
           priority={true}
           alt="choose user profile photo"
+          placeholder="blur"
+          blurDataURL={`data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mPM/A8AAdcBav6SYsIAAAAASUVORK5CYII=`}
         />
         <div className="absolute bg-[rgb(32,32,32)] opacity-70 flex justify-center items-center h-[35%] left-0 right-0 bottom-0">
           <CameraIcon className="text-white h-[25px] w-[25px] mb-2.5" />

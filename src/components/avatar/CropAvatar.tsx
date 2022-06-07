@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   CircleStencil,
   CropperRef,
@@ -234,6 +234,14 @@ export const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
       }
     }, 200);
   };
+
+  let bool = true;
+  useEffect(() => {
+    if (bool == true) {
+      // reset()
+      bool = false;
+    }
+  });
 
   return (
     <div className="bg-[#202020] relative box-border flex flex-col overflow-none items-center h-full w-full">

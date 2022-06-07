@@ -15,7 +15,8 @@ interface IProps {
 
 export const SmallIconButtonDark: FC<IProps> = (props) => {
   return (
-    <Button onClick={props.onClick}
+    <Button
+      onClick={props.onClick}
       className="button-text-lower text-white p-2 rounded-full outline-none hover:border-[rgba(255,255,255,0.2)]"
       sx={{
         border: '1px solid rgba(255,255,255,0)',
@@ -25,8 +26,18 @@ export const SmallIconButtonDark: FC<IProps> = (props) => {
       }}
     >
       <div className="flex space-x-2 items-center opacity-80">
-        <Image layout='fixed' height={15} width={15} src={props.iconURL} alt="crop-avatar-navigation-button-icon"/>
-        <h6 className="text-xs font-normal font-sans whitespace-nowrap hidden xs-435:block">{props.content}</h6>
+        <Image
+          layout="fixed"
+          height={15}
+          width={15}
+          src={props.iconURL}
+          alt="crop-avatar-navigation-button-icon"
+          placeholder="blur"
+          blurDataURL={`data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mPM/A8AAdcBav6SYsIAAAAASUVORK5CYII=`}
+        />
+        <h6 className="text-xs font-normal font-sans whitespace-nowrap hidden xs-435:block">
+          {props.content}
+        </h6>
       </div>
     </Button>
   );

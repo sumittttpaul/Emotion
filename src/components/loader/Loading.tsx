@@ -3,7 +3,6 @@ import {
   CircularProgress,
   circularProgressClasses,
 } from '@mui/material';
-import Image from 'next/image';
 import React, { FC } from 'react';
 import { useLoaderState } from '../../providers/state/LoadingState';
 

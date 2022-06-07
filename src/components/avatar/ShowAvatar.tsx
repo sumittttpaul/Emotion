@@ -21,7 +21,7 @@ interface IProps {
 
 const ShowAvatar: FC<IProps> = (props) => {
   return (
-    <div className="bg-white flex flex-col w-full h-full overflow-auto items-center">
+    <div className="bg-white flex flex-col w-full h-full scroll-smooth overflow-auto items-center">
       {/* Header */}
       <div className="flex w-full z-10 justify-between items-center p-1">
         <h6 className="text-black font-medium pl-5 pt-1">Profile picture</h6>
@@ -33,7 +33,7 @@ const ShowAvatar: FC<IProps> = (props) => {
         </IconButton>
       </div>
       {/* Main */}
-      <div className="px-6 overflow-auto h-full pb-6 space-y-5 flex flex-col items-center w-full">
+      <div className="px-6 overflow-auto scroll-smooth h-full pb-6 space-y-5 flex flex-col items-center w-full">
         {/* Sub Heading */}
         <h6 className="text-[13px] text-black text-left w-full">
           A picture helps people recognize you and lets you know when you’re
@@ -46,6 +46,8 @@ const ShowAvatar: FC<IProps> = (props) => {
             width={18}
             src="/icons/users.svg"
             alt="user icon"
+            placeholder="blur"
+            blurDataURL={`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' class='feather feather-users'%3E%3Cpath d='M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2'%3E%3C/path%3E%3Ccircle cx='9' cy='7' r='4'%3E%3C/circle%3E%3Cpath d='M23 21v-2a4 4 0 0 0-3-3.87'%3E%3C/path%3E%3Cpath d='M16 3.13a4 4 0 0 1 0 7.75'%3E%3C/path%3E%3C/svg%3E`}
           />
           <h6 className="text-[13px] text-black text-left w-full">
             Visible across Agewear services.
@@ -86,7 +88,7 @@ const ShowAvatar: FC<IProps> = (props) => {
             '.MuiTouchRipple-child': {
               backgroundColor: 'rgba(26, 115, 232, 0.25) !important',
             },
-          }} 
+          }}
           className="disabled:opacity-50 button-text-lower py-[7px] disabled:text-[#1a73e8] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
         >
           <div className="flex space-x-2 items-center justify-center">
@@ -95,6 +97,8 @@ const ShowAvatar: FC<IProps> = (props) => {
               width={18}
               src="/icons/edit.svg"
               alt="edit icon"
+              placeholder="blur"
+              blurDataURL={`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%231a73e8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' class='feather feather-edit'%3E%3Cpath d='M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7'%3E%3C/path%3E%3Cpath d='M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z'%3E%3C/path%3E%3C/svg%3E`}
             />
             <h6 className="text-[12px]">Change</h6>
           </div>
@@ -116,6 +120,8 @@ const ShowAvatar: FC<IProps> = (props) => {
               width={18}
               src="/icons/trash.svg"
               alt="trash icon"
+              placeholder="blur"
+              blurDataURL={`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%231a73e8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' class='feather feather-trash-2'%3E%3Cpolyline points='3 6 5 6 21 6'%3E%3C/polyline%3E%3Cpath d='M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2'%3E%3C/path%3E%3Cline x1='10' y1='11' x2='10' y2='17'%3E%3C/line%3E%3Cline x1='14' y1='11' x2='14' y2='17'%3E%3C/line%3E%3C/svg%3E`}
             />
             <h6 className="text-[12px]">Remove</h6>
           </div>

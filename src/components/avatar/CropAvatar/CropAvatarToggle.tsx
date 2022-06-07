@@ -17,7 +17,7 @@ export const CropAvatarToggle: FC<IProps> = (props) => {
     'transition ease-in rounded-full p-2 px-4 outline-none button-text-lower text-xs font-normal font-sans whitespace-nowrap text-white';
 
   const ActiveClass =
-    'transition ease-in rounded-full p-2 px-4 bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.2)] outline-none button-text-lower text-xs font-normal font-sans whitespace-nowrap text-white';
+    'transition ease-in rounded-full p-2 px-4 bg-[rgba(255,255,255,0.15)] hover:bg-[rgba(255,255,255,0.15)] outline-none button-text-lower text-xs font-normal font-sans whitespace-nowrap text-white';
 
   return (
     <div className="flex w-full justify-center space-x-2 p-6">

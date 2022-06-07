@@ -1,11 +1,13 @@
-import React, { FC } from 'react';
-import ForWomen from '../AvatarCollections/ForWomen';
-import ForMen from '../AvatarCollections/ForMen';
+import React, { FC, useState } from 'react';
+import { AnimalReducerState } from '../../../../redux/reducers/AnimalAvatarReducer';
 import { useTypedSelector } from '../../../../redux/useTypeSelector';
+import { Animal } from '../AvatarCollections/Animal';
+import { AvatarCollections } from '../AvatarCollections/Collections/AvatarCollections';
+import { Emoji } from '../AvatarCollections/Emoji';
 
 interface IProps {
-  show: () => void
-  getURL: (value:string) => void;
+  show: () => void;
+  getURL: (value: string) => void;
 }
 
 /**
@@ -14,12 +16,22 @@ interface IProps {
  **/
 
 const FromAvatars: FC<IProps> = (props) => {
-  const { WomensAvatar } = useTypedSelector((state) => state.WomensAvatar);
-  const { MensAvatar } = useTypedSelector((state) => state.MensAvatar);
+  const [ collection, setCollection] = useState<AnimalReducerState[]>();
+  const { AnimalAvatar } = useTypedSelector((state) => state.AnimalAvatar);
+  const { EmojiAvatar } = useTypedSelector((state) => state.EmojiAvatar);
   return (
-    <div className="box-border overflow-none p-6 space-y-8 h-full w-full items-center flex flex-col">
-      <ForWomen WomensAvatar={WomensAvatar} forward={props.show} getURL={props.getURL}/>
-      <ForMen MensAvatar={MensAvatar} forward={props.show} getURL={props.getURL}/>
+    <div className="box-border scroll-smooth overflow-auto p-3 space-y-2 h-full w-full items-center flex flex-col">
+      {/* <Animal
+        AnimalAvatar={AnimalAvatar}
+        forward={props.show}
+        getURL={props.getURL}
+      /> */}
+      <AvatarCollections/>
+      {/* <Emoji
+        EmojiAvatar={EmojiAvatar}
+        forward={props.show}
+        getURL={props.getURL}
+      /> */}
     </div>
   );
 };

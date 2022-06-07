@@ -41,7 +41,7 @@ export const DatePickerContainerDialog: FC<IProps> = (props) => {
               leaveTo="opacity-0 scale-75"
             >
               <Dialog.Panel className="h-auto w-auto relative">
-                <motion.div className="relative w-auto h-auto transform overflow-auto rounded-lg bg-[#202020] text-center align-middle shadow-xl transition-all ease-in">
+                <motion.div className="relative w-auto h-auto transform scroll-smooth overflow-auto rounded-lg bg-[#202020] text-center align-middle shadow-xl transition-all ease-in">
                   {props.children}
                 </motion.div>
               </Dialog.Panel>

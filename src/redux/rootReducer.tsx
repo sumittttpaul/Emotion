@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import MensAvatarReducer from "./reducers/MensAvatarReducer";
-import WomensAvatarReducer from "./reducers/WomensAvatarReducer";
+import AnimalAvatarReducer from "./reducers/AnimalAvatarReducer";
+import EmojiAvatarReducer from "./reducers/EmojiAvatarReducer";
 
 const rootReducer = combineReducers({
-    WomensAvatar: WomensAvatarReducer,
-    MensAvatar: MensAvatarReducer
+    AnimalAvatar: AnimalAvatarReducer,
+    EmojiAvatar: EmojiAvatarReducer,
 })
 
 export default rootReducer;

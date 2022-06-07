@@ -26,7 +26,7 @@ const FromComputer: FC<IProps> = (props) => {
   };
 
   return (
-    <div className="box-border overflow-auto p-6 space-y-4 h-full w-full items-center justify-center flex flex-col">
+    <div className="box-border scroll-smooth overflow-auto p-6 space-y-4 h-full w-full items-center justify-center flex flex-col">
       {/* Heading */}
       <div className="space-y-1">
         <h6 className="text-sm font-medium w-full text-center">
@@ -64,6 +64,8 @@ const FromComputer: FC<IProps> = (props) => {
               className="opacity-30"
               src="/icons/upload-cloud.svg"
               alt="trash icon"
+              placeholder="blur"
+              blurDataURL={`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round' class='feather feather-upload-cloud'%3E%3Cpolyline points='16 16 12 12 8 16'%3E%3C/polyline%3E%3Cline x1='12' y1='12' x2='12' y2='21'%3E%3C/line%3E%3Cpath d='M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3'%3E%3C/path%3E%3Cpolyline points='16 16 12 12 8 16'%3E%3C/polyline%3E%3C/svg%3E`}
             />
             <h6 className="text-[13px]">Choose a file to upload</h6>
           </div>

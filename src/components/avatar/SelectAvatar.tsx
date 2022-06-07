@@ -33,7 +33,7 @@ const SelectAvatar: FC<IProps> = (props) => {
   };
 
   return (
-    <div className=" bg-white flex flex-col overflow-auto items-center h-full w-full">
+    <div className=" bg-white flex flex-col scroll-smooth overflow-auto items-center h-full w-full">
       {/* Header */}
       <div className="flex w-full justify-between items-center p-1">
         <IconButton

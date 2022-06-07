@@ -52,7 +52,6 @@ const SetupAccount: NextPage = () => {
 
   // Loading
   const { setLoader } = useLoaderState();
-  /* Loading Screen Defined but not used yet */
   const LoadingScreen = (value: boolean) => {
     setLoader({ show: value });
   };
@@ -329,12 +328,12 @@ const SetupAccount: NextPage = () => {
         LastName: UserLastName,
         Email: UserEmail,
         PhoneNumber: UserPhone,
-        DOB: 'Not Defined yet',
-        Gender: 'Not Defined yet',
+        DOB: 'Not yet defined',
+        Gender: 'Not yet defined',
         ToastMessage: AuthToastMessage,
         ToastType: AuthToastType,
         ToastShow: AuthToast,
-        Loading: SubmitLoading,
+        Loading: LoadingScreen,
       });
       ShowToast(ToastMessage, ToastType, Toast);
     }

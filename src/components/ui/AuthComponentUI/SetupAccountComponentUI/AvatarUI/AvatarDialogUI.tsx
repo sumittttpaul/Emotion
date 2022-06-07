@@ -57,6 +57,8 @@ export const AvatarDialogUI: FC<IProps> = (props) => {
             getURL={props.SelectAvatarGetImageURL}
           />
         )
+      ) : props.Screen2 ? (
+        <div className='bg-white h-full w-full'>This will second screen of select avatar</div>
       ) : (
         <ShowAvatar
           URL={props.ShowAvatarImageURL}
