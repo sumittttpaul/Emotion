@@ -9,8 +9,17 @@ import { CreateUserAuthData } from '../../../algorithms/AuthDB';
 import Router from 'next/router';
 import { useLoaderState } from '../../../providers/state/LoadingState';
 import { EncryptData } from '../../../algorithms/security/CryptionSecurity';
-import { DOBEncrytionKey, EmailEncrytionKey, FirstNameEncrytionKey, GenderEncrytionKey, LastNameEncrytionKey, PhoneEncrytionKey } from '../../../algorithms/security/CryptionKey';
+import {
+  DOBEncrytionKey,
+  EmailEncrytionKey,
+  FirstNameEncrytionKey,
+  GenderEncrytionKey,
+  LastNameEncrytionKey,
+  PhoneEncrytionKey,
+} from '../../../algorithms/security/CryptionKey';
 import { NoAccessToNullUserPages } from '../../../hoc/ProtectedRoutes';
+import { IAvatarIconReducerState } from '../../../redux/reducers/AvatarReducer';
+import { useTypedSelector } from '../../../redux/useTypeSelector';
 
 /**
  * @SetupAccount_Page
@@ -20,6 +29,8 @@ const SetupAccount: NextPage = () => {
   var MomentDay = moment().endOf('day').format('DD');
   var MomentMonth = moment().endOf('month').format('MMM');
   var MomentYear = moment().endOf('year').format('YYYY');
+  // Handle Collections
+  const { Avatar } = useTypedSelector((state) => state);
   // State
   const [AvatarDialog, setAvatarDialog] = useState(false);
   const [AvatarURL, setAvatarURL] = useState('/images/user.png');
@@ -27,6 +38,10 @@ const SetupAccount: NextPage = () => {
   const [AvatarContainer, setAvatarContainer] = useState(
     'ShowAvatar-container'
   );
+  const [Collection, setCollection] = useState<IAvatarIconReducerState[]>(
+    Avatar.Animal
+  );
+  const [Collectionheading, setCollectionHeading] = useState('');
   const [AvatarScreen1, setAvatarScreen1] = useState(false);
   const [AvatarScreen2, setAvatarScreen2] = useState(false);
   const [RemoveDisabled, setRemoveDisabled] = useState(true);
@@ -104,6 +119,13 @@ const SetupAccount: NextPage = () => {
       setAvatarScreen2(false);
     }, 200);
   };
+  const AvatarCollectionScreen = () => {
+    setTimeout(() => {
+      setAvatarContainer('SelectAvatar-container');
+      setAvatarScreen1(false);
+      setAvatarScreen2(true);
+    }, 200);
+  };
   const CropAvatarScreen = () => {
     setTimeout(() => {
       setAvatarContainer('SelectAvatar-container');
@@ -127,6 +149,11 @@ const SetupAccount: NextPage = () => {
     setAvatarScreen1(true);
     setAvatarScreen2(false);
   };
+  const BackToAvatarCollectionScreen = () => {
+    setAvatarContainer('SelectAvatar-container');
+    setAvatarScreen1(false);
+    setAvatarScreen2(true);
+  };
 
   // Handle Image
   const ChangeImageDisabled = (value: boolean) => {
@@ -146,6 +173,38 @@ const SetupAccount: NextPage = () => {
   };
   const ImageURLToCrop = (value: string) => {
     setCropAvatarURL(value);
+  };
+  const CollectionReducerName = (value: string) => {
+    if (value === 'Animal') {
+      setCollection(Avatar.Animal);
+    }
+    if (value === 'Emoji') {
+      setCollection(Avatar.Emoji);
+    }
+    if (value === 'Festival') {
+      setCollection(Avatar.Festival);
+    }
+    if (value === 'Handdrawing') {
+      setCollection(Avatar.Handdrawing);
+    }
+    if (value === 'Flat') {
+      setCollection(Avatar.Flat);
+    }
+    if (value === 'Hipster') {
+      setCollection(Avatar.Hipster);
+    }
+    if (value === 'Paint') {
+      setCollection(Avatar.Paint);
+    }
+    if (value === 'Minimal') {
+      setCollection(Avatar.Minimal);
+    }
+    if (value === 'Plain') {
+      setCollection(Avatar.Plain);
+    }
+  };
+  const CollectionHeading = (value: string) => {
+    setCollectionHeading(value);
   };
 
   // Toast
@@ -290,13 +349,28 @@ const SetupAccount: NextPage = () => {
     setTimeout(() => {
       if (user) {
         const { id, firstname, lastname, email, phone } = Router.query;
-        const UserID = `${id}`
-        const UserFirstName = EncryptData(`${firstname}`, FirstNameEncrytionKey(UserID));
-        const UserLastName = EncryptData(`${lastname}`, LastNameEncrytionKey(UserID));
+        const UserID = `${id}`;
+        const UserFirstName = EncryptData(
+          `${firstname}`,
+          FirstNameEncrytionKey(UserID)
+        );
+        const UserLastName = EncryptData(
+          `${lastname}`,
+          LastNameEncrytionKey(UserID)
+        );
         const UserEmail = EncryptData(`${email}`, EmailEncrytionKey(UserID));
-        const UserPhone = EncryptData(`${'+91'}${phone}`, PhoneEncrytionKey(UserID));
-        const UserDOB = EncryptData(`${DOBDay + '-' + DOBMonth + '-' + DOBYear}`,DOBEncrytionKey(UserID));
-        const UserGender = EncryptData(`${GenderValue}`,GenderEncrytionKey(UserID))
+        const UserPhone = EncryptData(
+          `${'+91'}${phone}`,
+          PhoneEncrytionKey(UserID)
+        );
+        const UserDOB = EncryptData(
+          `${DOBDay + '-' + DOBMonth + '-' + DOBYear}`,
+          DOBEncrytionKey(UserID)
+        );
+        const UserGender = EncryptData(
+          `${GenderValue}`,
+          GenderEncrytionKey(UserID)
+        );
         CreateUserAuthData({
           Id: UserID,
           FirstName: UserFirstName,
@@ -317,11 +391,20 @@ const SetupAccount: NextPage = () => {
   const HandleSkip = () => {
     if (user) {
       const { id, firstname, lastname, email, phone } = Router.query;
-      const UserID = `${id}`
-      const UserFirstName = EncryptData(`${firstname}`, FirstNameEncrytionKey(UserID));
-      const UserLastName = EncryptData(`${lastname}`, LastNameEncrytionKey(UserID));
+      const UserID = `${id}`;
+      const UserFirstName = EncryptData(
+        `${firstname}`,
+        FirstNameEncrytionKey(UserID)
+      );
+      const UserLastName = EncryptData(
+        `${lastname}`,
+        LastNameEncrytionKey(UserID)
+      );
       const UserEmail = EncryptData(`${email}`, EmailEncrytionKey(UserID));
-      const UserPhone = EncryptData(`${'+91'}${phone}`, PhoneEncrytionKey(UserID));
+      const UserPhone = EncryptData(
+        `${'+91'}${phone}`,
+        PhoneEncrytionKey(UserID)
+      );
       CreateUserAuthData({
         Id: UserID,
         FirstName: UserFirstName,
@@ -361,9 +444,15 @@ const SetupAccount: NextPage = () => {
         MoveToCropAvatar={CropAvatarScreen}
         BackToShowAvatar={BackToShowAvatarScreenWithDefaultAvatar}
         BackToSelectAvatar={BackToSelectAvatarScreen}
+        BackToAvatarCollection={BackToAvatarCollectionScreen}
         GetImageURL={GetImageURL}
         GetCropImageURL={GetCropImageURL}
         ImageURLToCrop={CropAvatarURL}
+        CollectionShow={AvatarCollectionScreen}
+        CollectionReducerName={CollectionReducerName}
+        CollectionHeading={CollectionHeading}
+        CollectionShowHeading={Collectionheading}
+        CollectionReducer={Collection}
         AvatarSubmit={AvatarSubmit}
         // ------------- Date Of Birth ------------- //
         DOBShow={DOBDialog}

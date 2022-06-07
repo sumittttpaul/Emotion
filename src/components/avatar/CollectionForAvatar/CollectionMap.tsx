@@ -1,23 +1,22 @@
 import React, { FC } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { EmojiReducerState } from '../../../../redux/reducers/EmojiAvatarReducer';
+import { IAvatarIconReducerState } from '../../../redux/reducers/AvatarReducer';
 
 interface IProps {
-  EmojiAvatar: EmojiReducerState[];
+  AvatarReducer: IAvatarIconReducerState[];
   forward: () => void;
   getURL: (value: string) => void;
 }
 
 /**
  * @author
- * @function @Emoji
+ * @function @CollectionMap
  **/
 
-export const Emoji: FC<IProps> = (props) => {
+export const CollectionMap: FC<IProps> = (props) => {
   return (
-    <div className="w-full items-center justify-center space-y-4">
-      <h6 className="text-sm font-medium text-left">Emojies</h6>
+    <div className="w-full items-center justify-center px-6 pt-2 pb-6">
       <div
         className="
           grid 
@@ -27,15 +26,14 @@ export const Emoji: FC<IProps> = (props) => {
           grid-rows-6 
           xs-350:grid-rows-5
           sm-500:grid-rows-3 
-          gap-x-3 
-          gap-y-2"
+          gap-x-2 
+          gap-y-[2px]"
       >
-        {props.EmojiAvatar.map((avatars) => {
+        {props.AvatarReducer.map((avatars) => {
           return (
             <motion.button
               key={avatars.iconURL}
               className="rounded-[50%] p-0"
-              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => {
                 props.getURL(avatars.iconURL);

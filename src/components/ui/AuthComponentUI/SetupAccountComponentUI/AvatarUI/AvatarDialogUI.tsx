@@ -1,4 +1,6 @@
 import React, { FC } from 'react';
+import { IAvatarIconReducerState } from '../../../../../redux/reducers/AvatarReducer';
+import { CollectionForAvatar } from '../../../../avatar/CollectionForAvatar';
 import { CropAvatar } from '../../../../avatar/CropAvatar';
 import SelectAvatar from '../../../../avatar/SelectAvatar';
 import ShowAvatar from '../../../../avatar/ShowAvatar';
@@ -23,6 +25,15 @@ interface IProps {
   SelectAvatarBackward: () => void;
   SelectAvatarFormard: () => void;
   SelectAvatarGetImageURL: (value: string) => void;
+  AvatarCollectionShow: () => void;
+  AvatarCollectionHeading: (value: string) => void;
+  AvatarCollectionShowHeading: string;
+  AvatarCollectionReducerName: (value: string) => void;
+  // Avatar Collection
+  AvatarCollectionBackward: () => void;
+  AvatarCollectionFormard: () => void;
+  AvatarCollectionGetImageURL: (value: string) => void;
+  AvatarCollectionReducer: IAvatarIconReducerState[];
   // Crop Avatar
   CropAvatarBackward: () => void;
   CropAvatarImageURL: string;
@@ -55,10 +66,19 @@ export const AvatarDialogUI: FC<IProps> = (props) => {
             backward={props.SelectAvatarBackward}
             forward={props.SelectAvatarFormard}
             getURL={props.SelectAvatarGetImageURL}
+            ShowCollection={props.AvatarCollectionShow}
+            CollectionHeading={props.AvatarCollectionHeading}
+            AvatarName={props.AvatarCollectionReducerName}
           />
         )
       ) : props.Screen2 ? (
-        <div className='bg-white h-full w-full'>This will second screen of select avatar</div>
+        <CollectionForAvatar
+          heading={props.AvatarCollectionShowHeading}
+          backward={props.AvatarCollectionBackward}
+          forward={props.AvatarCollectionFormard}
+          getURL={props.AvatarCollectionGetImageURL}
+          AvatarReducer={props.AvatarCollectionReducer}
+        />
       ) : (
         <ShowAvatar
           URL={props.ShowAvatarImageURL}

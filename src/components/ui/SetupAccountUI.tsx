@@ -7,6 +7,7 @@ import { GenderUI } from './AuthComponentUI/SetupAccountComponentUI/GenderUI/Gen
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 import LargeButtonBlue from '../button/LargeButtonBlue';
 import { Link } from '@mui/material';
+import { IAvatarIconReducerState } from '../../redux/reducers/AvatarReducer';
 
 interface IProps {
   // ------------- Avatar ------------- //
@@ -28,7 +29,14 @@ interface IProps {
   BackToShowAvatar: () => void;
   MoveToCropAvatar: () => void;
   GetImageURL: (value: string) => void;
-  // Crop Avatar [ Screen 3 ]
+  // Avatar Collection [ Screen 3 ]
+  BackToAvatarCollection: () => void;
+  CollectionShow: () => void;
+  CollectionHeading: (value: string) => void;
+  CollectionShowHeading: string;
+  CollectionReducer: IAvatarIconReducerState[];
+  CollectionReducerName: (value: string) => void;
+  // Crop Avatar [ Screen 4 ]
   GetCropImageURL: (value: string) => void;
   ImageURLToCrop: string;
   BackToSelectAvatar: () => void;
@@ -101,6 +109,14 @@ export const SetupAccountUI: FC<IProps> = (props) => {
             GetCropImageURL={props.GetCropImageURL}
             ImageURLToCrop={props.ImageURLToCrop}
             BackToSelectAvatar={props.BackToSelectAvatar}
+            BackToAvatarCollection={props.BackToAvatarCollection}
+            CollectionShow={props.CollectionShow}
+            CollectionHeading={props.CollectionHeading}
+            CollectionShowHeading={props.CollectionShowHeading}
+            CollectionReducer={props.CollectionReducer}
+            CollectionReducerName={props.CollectionReducerName}
+            CollectionFormard={props.MoveToCropAvatar}
+            CollectionBackward={props.BackToSelectAvatar}
             AvatarSubmit={props.AvatarSubmit}
           />
           <DatePickerUI

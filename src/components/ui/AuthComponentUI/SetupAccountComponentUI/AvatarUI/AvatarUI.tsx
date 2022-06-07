@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { AvatarDialogUI } from './AvatarDialogUI';
 import { AvatarButton } from '../buttonUI/AvatarButton';
+import { IAvatarIconReducerState } from '../../../../../redux/reducers/AvatarReducer';
 
 interface IProps {
   AvatarDialog: boolean;
@@ -21,7 +22,16 @@ interface IProps {
   BackToShowAvatar: () => void;
   MoveToCropAvatar: () => void;
   GetImageURL: (value: string) => void;
-  // Crop Avatar [ Screen 3 ]
+  // Avatar Collection [ Screen 3 ]
+  BackToAvatarCollection: () => void;
+  CollectionShow: () => void;
+  CollectionHeading: (value: string) => void;
+  CollectionShowHeading: string;
+  CollectionReducer: IAvatarIconReducerState[];
+  CollectionReducerName: (value: string) => void;
+  CollectionBackward: () => void;
+  CollectionFormard: () => void;
+  // Crop Avatar [ Screen 4 ]
   GetCropImageURL: (value: string) => void;
   ImageURLToCrop: string;
   BackToSelectAvatar: () => void;
@@ -54,7 +64,15 @@ const AvatarUI: FC<IProps> = (props) => {
         SelectAvatarBackward={props.BackToShowAvatar}
         SelectAvatarFormard={props.MoveToCropAvatar}
         SelectAvatarGetImageURL={props.GetImageURL}
-        CropAvatarBackward={props.BackToSelectAvatar}
+        AvatarCollectionReducerName={props.CollectionReducerName}
+        AvatarCollectionHeading={props.CollectionHeading}
+        AvatarCollectionShowHeading={props.CollectionShowHeading}
+        AvatarCollectionShow={props.CollectionShow}
+        AvatarCollectionBackward={props.BackToSelectAvatar}
+        AvatarCollectionFormard={props.MoveToCropAvatar}
+        AvatarCollectionGetImageURL={props.GetImageURL}
+        AvatarCollectionReducer={props.CollectionReducer}
+        CropAvatarBackward={props.BackToAvatarCollection}
         CropAvatarImageURL={props.ImageURLToCrop}
         CropAvatarGetImageURL={props.GetCropImageURL}
         CropAvatarSubmit={props.AvatarSubmit}
