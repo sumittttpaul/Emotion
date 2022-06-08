@@ -42,6 +42,7 @@ const SetupAccount: NextPage = () => {
     Avatar.Animal
   );
   const [Collectionheading, setCollectionHeading] = useState('');
+  const [CollectionBackBool, setCollectionBackBool] = useState(false);
   const [AvatarScreen1, setAvatarScreen1] = useState(false);
   const [AvatarScreen2, setAvatarScreen2] = useState(false);
   const [RemoveDisabled, setRemoveDisabled] = useState(true);
@@ -150,9 +151,15 @@ const SetupAccount: NextPage = () => {
     setAvatarScreen2(false);
   };
   const BackToAvatarCollectionScreen = () => {
-    setAvatarContainer('SelectAvatar-container');
-    setAvatarScreen1(false);
-    setAvatarScreen2(true);
+    if (CollectionBackBool === true) {
+      setAvatarContainer('SelectAvatar-container');
+      setAvatarScreen1(true);
+      setAvatarScreen2(false);
+    } else {
+      setAvatarContainer('SelectAvatar-container');
+      setAvatarScreen1(false);
+      setAvatarScreen2(true);
+    }
   };
 
   // Handle Image
@@ -205,6 +212,9 @@ const SetupAccount: NextPage = () => {
   };
   const CollectionHeading = (value: string) => {
     setCollectionHeading(value);
+  };
+  const CollectionBool = (value: boolean) => {
+    setCollectionBackBool(value);
   };
 
   // Toast
@@ -453,6 +463,7 @@ const SetupAccount: NextPage = () => {
         CollectionHeading={CollectionHeading}
         CollectionShowHeading={Collectionheading}
         CollectionReducer={Collection}
+        CollectionBackBool={CollectionBool}
         AvatarSubmit={AvatarSubmit}
         // ------------- Date Of Birth ------------- //
         DOBShow={DOBDialog}

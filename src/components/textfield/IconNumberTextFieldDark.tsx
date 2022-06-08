@@ -4,6 +4,7 @@ import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
 import Image from 'next/image';
 import { IconNumberTextFieldProps } from './AllTextFieldProps';
+import { Square_BlurDataURL } from '../loader/BlurDataURL';
 
 const CustomTextField = styled((props: TextFieldProps) => (
   <TextField
@@ -110,7 +111,7 @@ const IconNumberTextFieldDark: FC<IconNumberTextFieldProps> = (props) => {
           src={props.icon}
           alt="textfield-icons"
           placeholder="blur"
-          blurDataURL={`data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mPM/A8AAdcBav6SYsIAAAAASUVORK5CYII=`}
+          blurDataURL={Square_BlurDataURL}
         />
       </div>
     </div>

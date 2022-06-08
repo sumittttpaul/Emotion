@@ -1,6 +1,7 @@
 import { Button } from '@mui/material';
 import React, { FC, ReactEventHandler } from 'react';
 import Image from 'next/image';
+import { Square_BlurDataURL } from '../loader/BlurDataURL';
 
 interface IProps {
   content: string;
@@ -33,7 +34,7 @@ export const SmallIconButtonDark: FC<IProps> = (props) => {
           src={props.iconURL}
           alt="crop-avatar-navigation-button-icon"
           placeholder="blur"
-          blurDataURL={`data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mPM/A8AAdcBav6SYsIAAAAASUVORK5CYII=`}
+          blurDataURL={Square_BlurDataURL}
         />
         <h6 className="text-xs font-normal font-sans whitespace-nowrap hidden xs-435:block">
           {props.content}

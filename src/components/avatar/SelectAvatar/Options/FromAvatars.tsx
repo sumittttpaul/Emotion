@@ -4,7 +4,8 @@ import { IllustrationCollections } from '../AvatarCollections/IllustrationCollec
 
 interface IProps {
   show: () => void;
-  ShowCollection: ()=> void;
+  backBool: (value: boolean) => void;
+  ShowCollection: () => void;
   getURL: (value: string) => void;
   heading: (value: string) => void;
   avatarName: (value: string) => void;
@@ -62,7 +63,7 @@ const FromAvatars: FC<IProps> = (props) => {
     props.ShowCollection();
   };
   return (
-    <div className="box-border scroll-smooth overflow-auto p-3 space-y-3 h-full w-full items-center flex flex-col">
+    <div className="box-border scroll-smooth overflow-auto space-y-5 h-full w-full items-center flex flex-col">
       <AvatarCollections
         AnimalClick={AnimalClick}
         EmojiClick={EmojiClick}
@@ -73,8 +74,15 @@ const FromAvatars: FC<IProps> = (props) => {
         PaintClick={PaintClick}
         MinimalClick={MinimalClick}
         PlainClick={PlainClick}
+        getURL={props.getURL}
+        show={props.show}
+        backBool={props.backBool}
       />
-      <IllustrationCollections />
+      <IllustrationCollections
+        getURL={props.getURL}
+        show={props.show}
+        backBool={props.backBool}
+      />
     </div>
   );
 };

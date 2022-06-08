@@ -16,6 +16,7 @@ interface IProps {
   ShowCollection: ()=> void;
   CollectionHeading: (value: string) => void;
   AvatarName: (value: string) => void;
+  backBool: (value: boolean) => void;
 }
 
 /**
@@ -90,7 +91,7 @@ const SelectAvatar: FC<IProps> = (props) => {
         }}
       >
         <SelectAvatarTabPanel value={value} index={0} dir={theme.direction}>
-          <FromAvatars show={props.forward} getURL={props.getURL} ShowCollection={props.ShowCollection} heading={props.CollectionHeading} avatarName={props.AvatarName}/>
+          <FromAvatars show={props.forward} getURL={props.getURL} backBool={props.backBool} ShowCollection={props.ShowCollection} heading={props.CollectionHeading} avatarName={props.AvatarName}/>
         </SelectAvatarTabPanel>
         <SelectAvatarTabPanel value={value} index={1} dir={theme.direction}>
           <FromComputer show={props.forward} getURL={props.getURL} />

@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { IAvatarIconReducerState } from '../../../redux/reducers/AvatarReducer';
+import { Square_BlurDataURL } from '../../loader/BlurDataURL';
 
 interface IProps {
   AvatarReducer: IAvatarIconReducerState[];
@@ -47,7 +48,7 @@ export const CollectionMap: FC<IProps> = (props) => {
                 src={avatars.iconURL}
                 alt="womens-avatar-collections-image"
                 placeholder="blur"
-                blurDataURL={`data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM88R8AApUByU2MEcEAAAAASUVORK5CYII=`}
+                blurDataURL={Square_BlurDataURL}
               />
             </motion.button>
           );

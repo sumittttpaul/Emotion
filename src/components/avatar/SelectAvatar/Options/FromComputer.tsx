@@ -1,6 +1,7 @@
 import { Button, styled } from '@mui/material';
 import React, { FC } from 'react';
 import Image from 'next/image';
+import { Square_BlurDataURL } from '../../../loader/BlurDataURL';
 
 interface IProps {
   show: () => void;
@@ -65,7 +66,7 @@ const FromComputer: FC<IProps> = (props) => {
               src="/icons/upload-cloud.svg"
               alt="trash icon"
               placeholder="blur"
-              blurDataURL={`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round' class='feather feather-upload-cloud'%3E%3Cpolyline points='16 16 12 12 8 16'%3E%3C/polyline%3E%3Cline x1='12' y1='12' x2='12' y2='21'%3E%3C/line%3E%3Cpath d='M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3'%3E%3C/path%3E%3Cpolyline points='16 16 12 12 8 16'%3E%3C/polyline%3E%3C/svg%3E`}
+              blurDataURL={Square_BlurDataURL}
             />
             <h6 className="text-[13px]">Choose a file to upload</h6>
           </div>
@@ -77,7 +78,7 @@ const FromComputer: FC<IProps> = (props) => {
           After upload you can edit your image like
         </h6>
         <h6 className="text-[11px] font-normal w-full text-center">
-          Cropping and Rotating.
+          Cropping, Rotating, etc.
         </h6>
       </div>
     </div>

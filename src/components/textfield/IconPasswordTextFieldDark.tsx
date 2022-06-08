@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { IconButton, InputAdornment } from '@mui/material';
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
 import { IconPasswordTextFieldProps } from './AllTextFieldProps';
+import { Square_BlurDataURL } from '../loader/BlurDataURL';
 
 const CustomTextField = styled((props: TextFieldProps) => (
   <TextField
@@ -158,7 +159,7 @@ const IconPasswordTextFieldDark: FC<IconPasswordTextFieldProps> = (props) => {
           src={props.icon}
           alt="textfield-icons"
           placeholder="blur"
-          blurDataURL={`data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mPM/A8AAdcBav6SYsIAAAAASUVORK5CYII=`}
+          blurDataURL={Square_BlurDataURL}
         />
       </div>
     </div>

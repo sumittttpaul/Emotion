@@ -25,6 +25,7 @@ interface IProps {
   // Avatar Collection [ Screen 3 ]
   BackToAvatarCollection: () => void;
   CollectionShow: () => void;
+  CollectionBackBool: (value:boolean) => void;
   CollectionHeading: (value: string) => void;
   CollectionShowHeading: string;
   CollectionReducer: IAvatarIconReducerState[];
@@ -64,6 +65,7 @@ const AvatarUI: FC<IProps> = (props) => {
         SelectAvatarBackward={props.BackToShowAvatar}
         SelectAvatarFormard={props.MoveToCropAvatar}
         SelectAvatarGetImageURL={props.GetImageURL}
+        AvatarCollectionBackBool={props.CollectionBackBool}
         AvatarCollectionReducerName={props.CollectionReducerName}
         AvatarCollectionHeading={props.CollectionHeading}
         AvatarCollectionShowHeading={props.CollectionShowHeading}

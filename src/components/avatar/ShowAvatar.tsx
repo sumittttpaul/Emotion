@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Button, CircularProgress, IconButton } from '@mui/material';
 import { XIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
+import { Square_BlurDataURL } from '../loader/BlurDataURL';
 
 interface IProps {
   backward?: () => void;
@@ -47,7 +48,7 @@ const ShowAvatar: FC<IProps> = (props) => {
             src="/icons/users.svg"
             alt="user icon"
             placeholder="blur"
-            blurDataURL={`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' class='feather feather-users'%3E%3Cpath d='M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2'%3E%3C/path%3E%3Ccircle cx='9' cy='7' r='4'%3E%3C/circle%3E%3Cpath d='M23 21v-2a4 4 0 0 0-3-3.87'%3E%3C/path%3E%3Cpath d='M16 3.13a4 4 0 0 1 0 7.75'%3E%3C/path%3E%3C/svg%3E`}
+            blurDataURL={Square_BlurDataURL}
           />
           <h6 className="text-[13px] text-black text-left w-full">
             Visible across Agewear services.

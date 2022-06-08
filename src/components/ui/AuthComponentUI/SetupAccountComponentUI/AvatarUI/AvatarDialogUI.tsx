@@ -26,6 +26,7 @@ interface IProps {
   SelectAvatarFormard: () => void;
   SelectAvatarGetImageURL: (value: string) => void;
   AvatarCollectionShow: () => void;
+  AvatarCollectionBackBool: (value:boolean) => void;
   AvatarCollectionHeading: (value: string) => void;
   AvatarCollectionShowHeading: string;
   AvatarCollectionReducerName: (value: string) => void;
@@ -66,6 +67,7 @@ export const AvatarDialogUI: FC<IProps> = (props) => {
             backward={props.SelectAvatarBackward}
             forward={props.SelectAvatarFormard}
             getURL={props.SelectAvatarGetImageURL}
+            backBool={props.AvatarCollectionBackBool}
             ShowCollection={props.AvatarCollectionShow}
             CollectionHeading={props.AvatarCollectionHeading}
             AvatarName={props.AvatarCollectionReducerName}

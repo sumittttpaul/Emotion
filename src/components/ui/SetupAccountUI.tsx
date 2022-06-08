@@ -31,6 +31,7 @@ interface IProps {
   GetImageURL: (value: string) => void;
   // Avatar Collection [ Screen 3 ]
   BackToAvatarCollection: () => void;
+  CollectionBackBool: (value:boolean) => void;
   CollectionShow: () => void;
   CollectionHeading: (value: string) => void;
   CollectionShowHeading: string;
@@ -112,6 +113,7 @@ export const SetupAccountUI: FC<IProps> = (props) => {
             BackToAvatarCollection={props.BackToAvatarCollection}
             CollectionShow={props.CollectionShow}
             CollectionHeading={props.CollectionHeading}
+            CollectionBackBool={props.CollectionBackBool}
             CollectionShowHeading={props.CollectionShowHeading}
             CollectionReducer={props.CollectionReducer}
             CollectionReducerName={props.CollectionReducerName}

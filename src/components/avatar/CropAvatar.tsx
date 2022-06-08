@@ -288,7 +288,7 @@ export const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
           },
         }}
         className={
-          'cropper circle-stencil cursor-grab active:cursor-grabbing CropAvatar-background flex relative w-full h-full px-7 sm:mx-[65px] pb-[242px] pt-[160px] xs-435:pt-[126px]'
+          'cropper circle-stencil cursor-default active:cursor-grab CropAvatar-background flex relative w-full h-full px-7 sm:mx-[65px] pb-[242px] pt-[160px] xs-435:pt-[126px]'
         }
       />
       <div className="z-[1] -mt-[242px] flex flex-col w-full">

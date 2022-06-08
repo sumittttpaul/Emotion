@@ -2,6 +2,7 @@ import { Checkbox } from '@mui/material';
 import { alpha } from '@mui/material/styles';
 import Image from 'next/image';
 import React, { ChangeEvent, FC, useState } from 'react';
+import { Square_BlurDataURL } from '../loader/BlurDataURL';
 
 interface IProps {
   Checked: boolean;
@@ -51,7 +52,7 @@ const CheckBoxBlue: FC<IProps> = (props) => {
           src="/icons/unChecked.svg"
           alt="unchecked-svg"
           placeholder="blur"
-          blurDataURL={`data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 79.17 79.17'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:none;stroke:%23fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:4.17px;%7D%3C/style%3E%3C/defs%3E%3Crect class='cls-1' x='2.08' y='2.08' width='75' height='75' rx='8.33'/%3E%3C/svg%3E`}
+          blurDataURL={Square_BlurDataURL}
         />
       }
       inputProps={{ 'aria-label': 'Privary Policy Checkbox' }}
