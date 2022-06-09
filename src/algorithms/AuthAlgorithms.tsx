@@ -283,12 +283,12 @@ export const SignInWithGoogle = ({
     .signInWithPopup(googleProvider)
     .then((result) => {
       Router.push('/');
-      console.log('SignIn with Apple Successful !');
+      console.log('SignIn with Google Successful !');
     })
     .catch((error) => {
       const message = AuthError(error.code);
       Toast(`${message}`, 'Error', true);
-      console.error('Failed to SignIn with Apple because ' + error.code);
+      console.error('Failed to SignIn with Google because ' + error.code);
     });
 };
 

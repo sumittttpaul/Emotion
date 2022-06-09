@@ -149,7 +149,7 @@ const OTPAuthUI: FC<IProps> = (props) => {
             </>
           ) : (
             <>
-              <OTPTimer min={1} sec={0} resend={showResend} />
+              <OTPTimer min={0} sec={30} resend={showResend} />
             </>
           )}
         </div>

@@ -101,7 +101,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
         slider.removeEventListener('scroll', ListenToScroll);
       }
     };
-  }, []);
+  });
   return (
     <div className="relative flex flex-col space-y-2 pb-1 box-border w-full">
       {/* Heading */}
@@ -122,6 +122,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
         {Illustrations.map((illustrationURL) => {
           return (
             <Button
+              key={illustrationURL}
               onClick={() => {
                 props.getURL(illustrationURL);
                 props.show();
