@@ -1,20 +1,17 @@
-import type { NextPage } from 'next';
-import { useEffect } from 'react';
-import { PageContainerDark } from '../components/container/PageContainerDark';
-import { HeaderHomeTop } from '../components/header/HeaderHomeTop';
+import { NextPage } from 'next';
+import { NoAccessToIndexPages } from '../hoc/ProtectedRoutes';
 
 /**
- * @Home_Page
+ * @Null_Page
  **/
 const Home: NextPage = () => {
-  return (
-    <PageContainerDark>
-      <HeaderHomeTop />
-      <div className="w-full h-full items-center justify-center box-border relative flex flex-col overflow-auto">
-        
-      </div>
-    </PageContainerDark>
-  );
+  return null;
 };
 
 export default Home;
+
+export const getServerSideProps = NoAccessToIndexPages(() => {
+  return {
+    props: {},
+  };
+});
