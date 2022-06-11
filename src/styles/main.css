@@ -88,14 +88,14 @@
   left: 50%;
   position: absolute;
   background: #fff;
-  opacity: 0.3;
+  opacity: 0.4;
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
 
 .navLinks:hover:after {
-  width: 100%;
-  left: 0;
+  width: 70%;
+  left: 15%;
 }
 
 

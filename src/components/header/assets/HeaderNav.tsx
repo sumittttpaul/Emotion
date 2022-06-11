@@ -129,7 +129,7 @@ export const HeaderNav: FC<IProps> = (props) => {
             Fanbook
           </Button>
           {Fanbook && (
-            <div className="h-[1px] w-full block absolute bottom-0 opacity-80 bg-white" />
+            <div className="h-[1px] mx-[10px] w-[52.5px] block absolute bottom-0 opacity-80 bg-white" />
           )}
         </li>
         <li className="relative box-border h-full">
@@ -150,7 +150,7 @@ export const HeaderNav: FC<IProps> = (props) => {
             FAQ
           </Button>
           {FAQ && (
-            <div className="h-[1px] w-full block absolute bottom-0 opacity-80 bg-white" />
+            <div className="h-[1px] mx-3 w-10 block absolute bottom-0 opacity-80 bg-white" />
           )}
         </li>
         <li className="relative box-border h-full">
@@ -171,7 +171,7 @@ export const HeaderNav: FC<IProps> = (props) => {
             Help
           </Button>
           {Help && (
-            <div className="h-[1px] w-full block absolute bottom-0 opacity-80 bg-white" />
+            <div className="h-[1px] mx-3 w-10 block absolute bottom-0 opacity-80 bg-white" />
           )}
         </li>
         <li className="relative box-border h-full">
@@ -189,10 +189,10 @@ export const HeaderNav: FC<IProps> = (props) => {
             }}
             className={`${AboutUsOpacity} ${'text-white navLinks hover:opacity-100 transition-opacity ease-in whitespace-nowrap font-[350] text-[12px] tracking-[0.075em] h-full flex items-center px-[10px] button-text-lower'}`}
           >
-            AboutUs
+            About Us
           </Button>
           {AboutUs && (
-            <div className="h-[1px] w-full block absolute bottom-0 opacity-80 bg-white" />
+            <div className="h-[1px] mx-[9.5px] w-[55px] block absolute bottom-0 opacity-80 bg-white" />
           )}
         </li>
       </ul>
