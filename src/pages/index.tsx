@@ -1,28 +1,19 @@
 import type { NextPage } from 'next';
-import { Button } from '@mui/material';
-import Router from 'next/router';
-import { HeaderHome } from '../components/header/HeaderHome';
+import { useEffect } from 'react';
+import { PageContainerDark } from '../components/container/PageContainerDark';
+import { HeaderHomeTop } from '../components/header/HeaderHomeTop';
 
 /**
  * @Home_Page
  **/
 const Home: NextPage = () => {
   return (
-    <>
-      <div className="relative flex flex-col space-y-5 h-screen w-full bg-[#121212]">
-        <HeaderHome />
-        <div className='flex items-center justify-center h-full w-full'>
-          <Button
-            onClick={() => {
-              Router.push('/auth/login');
-            }}
-            className="py-8 px-20 rounded-lg text-sm font-normal text-white hover:bg-[#202020] bg-[#202020]"
-          >
-            Login Now
-          </Button>
-        </div>
+    <PageContainerDark>
+      <HeaderHomeTop />
+      <div className="w-full h-full items-center justify-center box-border relative flex flex-col overflow-auto">
+        
       </div>
-    </>
+    </PageContainerDark>
   );
 };
 
