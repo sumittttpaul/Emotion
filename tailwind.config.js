@@ -10,6 +10,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'primary-blue':'#0074E4',
         'color-dark': 'rgba(255, 255, 255, 0.23)',
       },
       screens: {

@@ -78,6 +78,27 @@
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
 }
 
+
+.navLinks:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: '';
+  display: block;
+  height: 1px;
+  left: 50%;
+  position: absolute;
+  background: #fff;
+  opacity: 0.4;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.navLinks:hover:after {
+  width: 70%;
+  left: 15%;
+}
+
+
 @media screen and (min-width: 640px) {
   .ShowAvatar-container {
     height: calc(100vh - 100px);

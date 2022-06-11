@@ -20,6 +20,6 @@
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/test.jsx", "src/components/avatar/cropper/CropperAlgorithms.tss", "src/components/avatar/cropper/CroppedImage.ts", "src/firebase/AuthService.js", "src/components/header/HeaderNavBar.js", "src/components/header/HeaderHome.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/test.jsx", "src/components/avatar/cropper/CropperAlgorithms.tss", "src/components/avatar/cropper/CroppedImage.ts", "src/firebase/AuthService.js", "src/components/header/HeaderNavBar.js", "src/components/header/HeaderHomeTop.tsx"],
   "exclude": ["node_modules"]
 }
