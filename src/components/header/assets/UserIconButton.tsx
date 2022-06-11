@@ -60,6 +60,7 @@ export const UserIconButton: FC<IProps> = (props) => {
               placeholder="blur"
               blurDataURL={Square_BlurDataURL}
               src={`${user.photoURL}`}
+              alt='user profile'
             />
           </IconButton>
           <Button
@@ -79,6 +80,7 @@ export const UserIconButton: FC<IProps> = (props) => {
                 placeholder="blur"
                 blurDataURL={Square_BlurDataURL}
                 src={`${user.photoURL}`}
+                alt='user profile'
               />
               <h6 className="text-white hidden sm:block whitespace-nowrap font-[350] text-[12px]">
                 {`${user.displayName}`}
@@ -125,6 +127,7 @@ export const UserIconButton: FC<IProps> = (props) => {
                     placeholder="blur"
                     blurDataURL={Square_BlurDataURL}
                     src={`${user.photoURL}`}
+                    alt='user profile'
                   />
                 </div>
                 <div className="relative block">
@@ -148,7 +151,7 @@ export const UserIconButton: FC<IProps> = (props) => {
               className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
             >
               <div className="flex relative space-x-[10px]">
-                <Image height={17} width={17} src="/icons/folder.svg" />
+                <Image height={17} width={17} src="/icons/folder.svg" alt='folder icon' />
                 <h6 className="text-[14px] font-sans font-[400] text-black">
                   Manage your account
                 </h6>
@@ -160,7 +163,7 @@ export const UserIconButton: FC<IProps> = (props) => {
               className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
             >
               <div className="flex relative space-x-[10px]">
-                <Image height={18} width={18} src="/icons/truck.svg" />
+                <Image height={18} width={18} src="/icons/truck.svg" alt='truck icon'/>
                 <h6 className="text-[14px] font-sans font-[400] text-black">
                   Track orders
                 </h6>
@@ -172,7 +175,7 @@ export const UserIconButton: FC<IProps> = (props) => {
               className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
             >
               <div className="flex relative space-x-[10px]">
-                <Image height={17} width={17} src="/icons/shopping-bag.svg" />
+                <Image height={17} width={17} src="/icons/shopping-bag.svg" alt='shopping bag icon'/>
                 <h6 className="text-[14px] font-sans font-[400] text-black">
                   View all orders
                 </h6>
@@ -184,7 +187,7 @@ export const UserIconButton: FC<IProps> = (props) => {
               className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
             >
               <div className="flex relative space-x-[10px]">
-                <Image height={17} width={17} src="/icons/gift.svg" />
+                <Image height={17} width={17} src="/icons/gift.svg" alt='gift icon'/>
                 <h6 className="text-[14px] font-sans font-[400] text-black">
                   Redeem code or gift cards
                 </h6>
@@ -214,6 +217,7 @@ export const UserIconButton: FC<IProps> = (props) => {
               placeholder="blur"
               blurDataURL={Square_BlurDataURL}
               src="/icons/user-fill.svg"
+              alt='user icon'
             />
             <h6 className="text-white hidden sm:block whitespace-nowrap font-[350] text-[12px]">
               Login

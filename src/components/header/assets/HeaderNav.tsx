@@ -87,8 +87,17 @@ export const HeaderNav: FC<IProps> = (props) => {
       }
     }
   });
+
+  const indicator = (e: any) => {
+    var marker:any = global.document.querySelector('#SliderID')!;
+    var item:any = global.document.querySelector('#StoreNavButton')!;
+    marker.style.left = e.offsetLeft + 'px';
+    item.style.width = e.offsetWidth + 'px';
+  };
+
   return (
     <nav className="sm:flex hidden h-full">
+      <div id='SliderID' className="bg-white absolute h-1 w-10" />
       <ul className="flex flex-row h-full">
         <li className="relative box-border h-full">
           <Button
@@ -98,11 +107,7 @@ export const HeaderNav: FC<IProps> = (props) => {
                 backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
               },
             }}
-            onClick={() => {
-              setTimeout(() => {
-                StoreClick();
-              }, 150);
-            }}
+            onClick={indicator}
             className={`${StoreOpacity} ${'text-white navLinks hover:opacity-100 transition-opacity ease-in whitespace-nowrap font-[350] text-[12px] tracking-[0.075em] h-full flex items-center px-[10px] button-text-lower'}`}
           >
             Store
@@ -119,11 +124,7 @@ export const HeaderNav: FC<IProps> = (props) => {
                 backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
               },
             }}
-            onClick={() => {
-              setTimeout(() => {
-                FanbookClick();
-              }, 150);
-            }}
+            onClick={indicator}
             className={`${FanbookOpacity} ${'text-white navLinks hover:opacity-100 transition-opacity ease-in whitespace-nowrap font-[350] text-[12px] tracking-[0.075em] h-full flex items-center px-[10px] button-text-lower'}`}
           >
             Fanbook

@@ -33,7 +33,7 @@ export const HeaderHomeTop: FC<IProps> = (props) => {
         }
       });
     };
-  });
+  },[Hvalue]);
 
   return (
     <>
