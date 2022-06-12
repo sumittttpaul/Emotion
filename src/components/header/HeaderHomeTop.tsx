@@ -40,7 +40,7 @@ export const HeaderHomeTop: FC<IProps> = (props) => {
       <div className="w-full relative h-[45px] bg-[#2a2a2a]">
         <div className="flex w-full justify-between max-w-[1440px] mx-auto">
           <MenuButton Cycle={Cycle} onClick={() => setCycle()} />
-          <div className=" flex relative">
+          <div className="flex relative">
             <HeaderLogo />
             <HeaderNav Store={true}/>
           </div>
