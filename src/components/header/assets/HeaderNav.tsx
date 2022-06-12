@@ -1,202 +1,124 @@
 import { Button } from '@mui/material';
 import Router from 'next/router';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, ChangeEvent, useState } from 'react';
 
-interface IProps {
-  Store?: boolean;
-  Fanbook?: boolean;
-  FAQ?: boolean;
-  Help?: boolean;
-  AboutUs?: boolean;
-}
+interface IProps {}
 
 /**
  * @author
  * @function @HeaderNav
  **/
 
-const StoreLink = '#';
-const FanbookLink = '#';
-const FAQLink = '#';
-const HelpLink = '#';
-const AboutUsLink = '#';
+const NavLabel = [
+  {
+    name: 'Store',
+    to: '#',
+    for: 'tab1',
+  },
+  {
+    name: 'Fanbook',
+    to: '#',
+    for: 'tab2',
+  },
+  {
+    name: 'FAQ',
+    to: '#',
+    for: 'tab3',
+  },
+  {
+    name: 'Help',
+    to: '#',
+    for: 'tab4',
+  },
+  {
+    name: 'About Us',
+    to: '#',
+    for: 'tab5',
+  },
+];
+
+const ButtonStyle =
+  'text-white opacity-70 hover:opacity-100 navLinks transition-opacity ease-out whitespace-nowrap font-[350] text-[12px] tracking-[0.075em] h-full w-[65px] flex text-center justify-center items-center px-[10px] button-text-lower';
 
 export const HeaderNav: FC<IProps> = (props) => {
-  const { Store, Fanbook, FAQ, Help, AboutUs } = props;
-
-  const [StoreOpacity, setStoreOpacity] = useState('opacity-75');
-  const [FanbookOpacity, setFanbookOpacity] = useState('opacity-75');
-  const [FAQOpacity, setFAQOpacity] = useState('opacity-75');
-  const [HelpOpacity, setHelpOpacity] = useState('opacity-75');
-  const [AboutUsOpacity, setAboutUsOpacity] = useState('opacity-75');
-
-  const StoreActive = () => setStoreOpacity('opacity-100');
-  const FanbookActive = () => setFanbookOpacity('opacity-100');
-  const FAQActive = () => setFAQOpacity('opacity-100');
-  const HelpActive = () => setHelpOpacity('opacity-100');
-  const AboutUsActive = () => setAboutUsOpacity('opacity-100');
-
-  const StoreInactive = () => setStoreOpacity('opacity-75');
-  const FanbookInactive = () => setFanbookOpacity('opacity-75');
-  const FAQInactive = () => setFAQOpacity('opacity-75');
-  const HelpInactive = () => setHelpOpacity('opacity-75');
-  const AboutUsInactive = () => setAboutUsOpacity('opacity-75');
-
-  const StoreClick = () => {
-    Router.push(StoreLink);
+  const [selectedValue, setSelectedValue] = useState('tab1');
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSelectedValue(event.target.value);
   };
-  const FanbookClick = () => {
-    Router.push(FanbookLink);
-  };
-  const FAQClick = () => {
-    Router.push(FAQLink);
-  };
-  const HelpClick = () => {
-    Router.push(HelpLink);
-  };
-  const AboutUsClick = () => {
-    Router.push(AboutUsLink);
-  };
-
-  useEffect(() => {
-    if (typeof window === 'object') {
-      if (Store) {
-        StoreActive();
-      } else {
-        StoreInactive();
-      }
-      if (Fanbook) {
-        FanbookActive();
-      } else {
-        FanbookInactive();
-      }
-      if (FAQ) {
-        FAQActive();
-      } else {
-        FAQInactive();
-      }
-      if (Help) {
-        HelpActive();
-      } else {
-        HelpInactive();
-      }
-      if (AboutUs) {
-        AboutUsActive();
-      } else {
-        AboutUsInactive();
-      }
-    }
-  });
-
-  const indicator = (e: any) => {
-    var marker:any = global.document.querySelector('#SliderID')!;
-    var item:any = global.document.querySelector('#StoreNavButton')!;
-    marker.style.left = e.offsetLeft + 'px';
-    item.style.width = e.offsetWidth + 'px';
-  };
-
   return (
-    <nav className="sm:flex hidden h-full">
-      <div id='SliderID' className="bg-white absolute h-1 w-10" />
+    <div className="navBar sm:flex flex-col hidden h-full">
+      <input
+        value="tab1"
+        checked={selectedValue === 'tab1'}
+        onChange={handleChange}
+        type="radio"
+        id="tab1"
+        className="hidden"
+        name="tab-control"
+        aria-label="tab1"
+      />
+      <input
+        value="tab2"
+        checked={selectedValue === 'tab2'}
+        onChange={handleChange}
+        type="radio"
+        id="tab2"
+        className="hidden"
+        name="tab-control"
+        aria-label="tab2"
+      />
+      <input
+        value="tab3"
+        checked={selectedValue === 'tab3'}
+        onChange={handleChange}
+        type="radio"
+        id="tab3"
+        className="hidden"
+        name="tab-control"
+        aria-label="tab3"
+      />
+      <input
+        value="tab4"
+        checked={selectedValue === 'tab4'}
+        onChange={handleChange}
+        type="radio"
+        id="tab4"
+        className="hidden"
+        name="tab-control"
+        aria-label="tab4"
+      />
+      <input
+        value="tab5"
+        checked={selectedValue === 'tab5'}
+        onChange={handleChange}
+        type="radio"
+        id="tab5"
+        className="hidden"
+        name="tab-control"
+        aria-label="tab5"
+      />
       <ul className="flex flex-row h-full">
-        <li className="relative box-border h-full">
-          <Button
-            id="StoreNavButton"
-            sx={{
-              '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
-              },
-            }}
-            onClick={indicator}
-            className={`${StoreOpacity} ${'text-white navLinks hover:opacity-100 transition-opacity ease-in whitespace-nowrap font-[350] text-[12px] tracking-[0.075em] h-full flex items-center px-[10px] button-text-lower'}`}
-          >
-            Store
-          </Button>
-          {Store && (
-            <div className="h-[1px] mx-3 w-10 block absolute bottom-0 opacity-80 bg-white" />
-          )}
-        </li>
-        <li className="relative box-border h-full">
-          <Button
-            id="StoreNavButton"
-            sx={{
-              '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
-              },
-            }}
-            onClick={indicator}
-            className={`${FanbookOpacity} ${'text-white navLinks hover:opacity-100 transition-opacity ease-in whitespace-nowrap font-[350] text-[12px] tracking-[0.075em] h-full flex items-center px-[10px] button-text-lower'}`}
-          >
-            Fanbook
-          </Button>
-          {Fanbook && (
-            <div className="h-[1px] mx-[10px] w-[52.5px] block absolute bottom-0 opacity-80 bg-white" />
-          )}
-        </li>
-        <li className="relative box-border h-full">
-          <Button
-            id="StoreNavButton"
-            sx={{
-              '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
-              },
-            }}
-            onClick={() => {
-              setTimeout(() => {
-                FAQClick();
-              }, 150);
-            }}
-            className={`${FAQOpacity} ${'text-white navLinks hover:opacity-100 transition-opacity ease-in whitespace-nowrap font-[350] text-[12px] tracking-[0.075em] h-full flex items-center px-[10px] button-text-lower'}`}
-          >
-            FAQ
-          </Button>
-          {FAQ && (
-            <div className="h-[1px] mx-3 w-10 block absolute bottom-0 opacity-80 bg-white" />
-          )}
-        </li>
-        <li className="relative box-border h-full">
-          <Button
-            id="StoreNavButton"
-            sx={{
-              '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
-              },
-            }}
-            onClick={() => {
-              setTimeout(() => {
-                HelpClick();
-              }, 150);
-            }}
-            className={`${HelpOpacity} ${'text-white navLinks hover:opacity-100 transition-opacity ease-in whitespace-nowrap font-[350] text-[12px] tracking-[0.075em] h-full flex items-center px-[10px] button-text-lower'}`}
-          >
-            Help
-          </Button>
-          {Help && (
-            <div className="h-[1px] mx-3 w-10 block absolute bottom-0 opacity-80 bg-white" />
-          )}
-        </li>
-        <li className="relative box-border h-full">
-          <Button
-            id="StoreNavButton"
-            sx={{
-              '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
-              },
-            }}
-            onClick={() => {
-              setTimeout(() => {
-                AboutUsClick();
-              }, 150);
-            }}
-            className={`${AboutUsOpacity} ${'text-white navLinks hover:opacity-100 transition-opacity ease-in whitespace-nowrap font-[350] text-[12px] tracking-[0.075em] h-full flex items-center px-[10px] button-text-lower'}`}
-          >
-            About Us
-          </Button>
-          {AboutUs && (
-            <div className="h-[1px] mx-[9.5px] w-[55px] block absolute bottom-0 opacity-80 bg-white" />
-          )}
-        </li>
+        {NavLabel.map((value) => (
+          <li key={value.name} className="relative box-border h-full">
+            <label htmlFor={value.for} role="button">
+              <Button
+                component="a"
+                sx={{
+                  '.MuiTouchRipple-child': {
+                    backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                  },
+                }}
+                className={ButtonStyle}
+              >
+                {value.name}
+              </Button>
+            </label>
+          </li>
+        ))}
       </ul>
-    </nav>
+      <div className="w-[20%] navIndicator relative">
+        <div className="h-[1px] -mt-[1px] w-[60%] left-[18%] relative opacity-80 bg-white" />
+      </div>
+    </div>
   );
 };

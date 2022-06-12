@@ -42,7 +42,7 @@ export const HeaderHomeTop: FC<IProps> = (props) => {
           <MenuButton Cycle={Cycle} onClick={() => setCycle()} />
           <div className="flex relative">
             <HeaderLogo />
-            <HeaderNav Store={true}/>
+            <HeaderNav />
           </div>
           <UserIconButton />
         </div>
