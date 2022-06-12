@@ -33,11 +33,11 @@ export const HeaderHomeTop: FC<IProps> = (props) => {
         }
       });
     };
-  },[Hvalue]);
+  }, [Hvalue]);
 
   return (
     <>
-      <div className="w-full relative h-[45px] bg-[#2a2a2a]">
+      <div className="w-full relative box-border z-[9999] h-[45px] bg-[#2a2a2a]">
         <div className="flex w-full justify-between max-w-[1440px] mx-auto">
           <MenuButton Cycle={Cycle} onClick={() => setCycle()} />
           <div className="flex relative">
@@ -47,7 +47,11 @@ export const HeaderHomeTop: FC<IProps> = (props) => {
           <UserIconButton />
         </div>
       </div>
-      <MobileHeaderSlider Hvalue={Hvalue} Cycle={Cycle} />
+      <MobileHeaderSlider
+        Hvalue={Hvalue}
+        Cycle={Cycle}
+        onClose={() => setCycle()}
+      />
     </>
   );
 };
