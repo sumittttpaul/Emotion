@@ -1,5 +1,5 @@
 import { IconButton } from '@mui/material';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 interface IProps {
@@ -25,8 +25,8 @@ const path02Variants = {
 
 export const MenuButton: FC<IProps> = (props) => {
   const [animation, setAnimation] = useState('closed');
-  const onMenuClick = () => {
-    if (props.Cycle) {
+  useEffect(() => {
+    if (!props.Cycle) {
       setAnimation('moving');
       setTimeout(() => {
         setAnimation('closed');
@@ -37,14 +37,11 @@ export const MenuButton: FC<IProps> = (props) => {
         setAnimation('open');
       }, 200);
     }
-  };
+  }, [props.Cycle]);
   return (
     <IconButton
       className="relative flex p-0 sm:hidden"
-      onClick={() => {
-        props.onClick();
-        onMenuClick();
-      }}
+      onClick={props.onClick}
       sx={{
         borderRadius: '0 !important',
         '.MuiTouchRipple-child': {

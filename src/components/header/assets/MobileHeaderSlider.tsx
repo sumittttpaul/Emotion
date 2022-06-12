@@ -80,13 +80,14 @@ export const MobileHeaderSlider: FC<IProps> = (props) => {
       }}
     >
       <motion.ul variants={UlVariants}>
-        <div className="h-[1px] w-full mb-5 bg-[rgba(255,255,255,0.10)]" />
+        <div className="h-[1px] w-full my-5 bg-[rgba(255,255,255,0.10)]" />
         {Links.map((value) => (
           <motion.li key={value.label} variants={LiVariants}>
             <Button
               onClick={() => {
                 setTimeout(() => {
                   Router.push(value.to);
+                  props.onClose();
                 }, 200);
               }}
               sx={{
