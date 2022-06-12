@@ -11,7 +11,7 @@ interface IProps {}
 
 export const HeaderHome: FC<IProps> = (props) => {
   return (
-    <div className="flex relative box-border w-full max-w-[1300px] mx-auto justify-between items-center my-2.5 px-5">
+    <div className="flex relative box-border w-full max-w-[1340px] mx-auto justify-between items-center my-2.5 px-5">
       <div className="flex relative space-x-3">
         <Button
           disableRipple

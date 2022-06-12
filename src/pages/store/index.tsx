@@ -9,7 +9,7 @@ import { HeaderHomeTop } from '../../components/header/HeaderHomeTop';
 const Store: NextPage = () => {
   return (
     <PageContainerDark>
-      <div className="w-full h-full box-border relative flex flex-col overflow-auto">
+      <div className="w-full h-full box-border relative flex flex-col overflow-y-auto scroll-smooth">
         <HeaderHomeTop />
         <div className="w-full h-5 flex relative bg-transparent" />
         <HeaderHome />

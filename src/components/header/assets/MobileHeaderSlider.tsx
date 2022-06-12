@@ -17,23 +17,23 @@ interface IProps {
 const Links = [
   {
     label: 'Store',
-    to: '#',
+    to: '',
   },
   {
     label: 'Fanbook',
-    to: '#',
+    to: '',
   },
   {
     label: 'FAQ',
-    to: '#',
+    to: '',
   },
   {
     label: 'Help',
-    to: '#',
+    to: '',
   },
   {
     label: 'About Us',
-    to: '#',
+    to: '',
   },
 ];
 
@@ -70,7 +70,7 @@ export const MobileHeaderSlider: FC<IProps> = (props) => {
       open={props.Cycle}
       anchor={'top'}
       variant="temporary"
-      className="sm:hidden w-full relative box-border overflow-hidden overscroll-none"
+      className="sm:hidden w-full relative box-border overflow-y-auto scroll-smooth"
       sx={{
         '.MuiDrawer-paper': {
           background: '#2a2a2a',
