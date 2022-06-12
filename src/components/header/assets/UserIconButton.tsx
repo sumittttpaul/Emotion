@@ -94,7 +94,7 @@ export const UserIconButton: FC<IProps> = (props) => {
             PaperProps={{
               elevation: 0,
               sx: {
-                background: 'rgba(255,255,255,0.9)',
+                background: 'rgba(255,255,255,1)',
                 mt: 0.6,
                 overflow: 'visible',
                 filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
@@ -131,12 +131,12 @@ export const UserIconButton: FC<IProps> = (props) => {
                   />
                 </div>
                 <div className="relative block">
-                  <h6 className="text-[15px] whitespace-nowrap font-[450] font-sans text-black">{`${user.displayName}`}</h6>
-                  <h6 className="text-[11px] mr-1 whitespace-nowrap font-normal text-black opacity-90">{`${user.email}`}</h6>
+                  <h6 className="text-[15px] whitespace-nowrap font-sans text-black">{`${user.displayName}`}</h6>
+                  <h6 className="text-[11px] mr-1 whitespace-nowrap text-black">{`${user.email}`}</h6>
                   <div className="relative block">
                     <Button
                       onClick={SignOutUser}
-                      className="mt-[8px] p-[2px] relative block bg-[rgba(0,0,0,0.05)] hover:bg-[rgba(0,0,0,0.09)] button-text-lower font-[400] text-black text-[11.5px]"
+                      className="mt-[8px] p-[2px] relative block bg-[rgba(0,0,0,0.05)] hover:bg-[rgba(0,0,0,0.1)] button-text-lower font-[400] text-black text-[11.5px]"
                     >
                       Sign out
                     </Button>

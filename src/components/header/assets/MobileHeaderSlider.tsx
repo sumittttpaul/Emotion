@@ -76,7 +76,7 @@ export const MobileHeaderSlider: FC<IProps> = (props) => {
 
   return (
     <motion.nav
-      className="sm:hidden overflow-none w-full bg-[#2a2a2a]"
+      className="sm:hidden w-full overscroll-none bg-[#2a2a2a]"
       initial={false}
       animate={props.Cycle ? 'open' : 'closed'}
     >
