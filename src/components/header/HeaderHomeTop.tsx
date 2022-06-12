@@ -37,7 +37,11 @@ export const HeaderHomeTop: FC<IProps> = (props) => {
 
   return (
     <>
-      <div className="w-full relative box-border z-[9999] h-[45px] bg-[#2a2a2a]">
+      <div
+        className={`${
+          Cycle ? 'z-[9999]' : ''
+        } ${'w-full relative box-border h-[45px] bg-[#2a2a2a]'}`}
+      >
         <div className="flex w-full justify-between max-w-[1440px] mx-auto">
           <MenuButton Cycle={Cycle} onClick={() => setCycle()} />
           <div className="flex relative">
