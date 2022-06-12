@@ -62,3 +62,13 @@
   -webkit-transform: translateX(400%);
   transform: translateX(400%);
 }
+
+// 
+
+.MaiNavBar
+  input[name='main-tab-control']:nth-of-type(1):checked
+  ~ ul
+  > li:nth-child(1)
+  > label a {
+  opacity: 0.9;
+}

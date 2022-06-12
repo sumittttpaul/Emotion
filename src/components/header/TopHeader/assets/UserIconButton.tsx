@@ -60,10 +60,11 @@ export const UserIconButton: FC<IProps> = (props) => {
               placeholder="blur"
               blurDataURL={Square_BlurDataURL}
               src={`${user.photoURL}`}
-              alt='user profile'
+              alt="user profile"
             />
           </IconButton>
           <Button
+            disableFocusRipple
             onClick={handleClick}
             className="p-0 hidden sm:inline-flex button-text-lower h-full pl-2 pr-3 bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.05)]"
             sx={{
@@ -80,7 +81,7 @@ export const UserIconButton: FC<IProps> = (props) => {
                 placeholder="blur"
                 blurDataURL={Square_BlurDataURL}
                 src={`${user.photoURL}`}
-                alt='user profile'
+                alt="user profile"
               />
               <h6 className="text-white hidden sm:block whitespace-nowrap font-[350] text-[12px]">
                 {`${user.displayName}`}
@@ -127,7 +128,7 @@ export const UserIconButton: FC<IProps> = (props) => {
                     placeholder="blur"
                     blurDataURL={Square_BlurDataURL}
                     src={`${user.photoURL}`}
-                    alt='user profile'
+                    alt="user profile"
                   />
                 </div>
                 <div className="relative block">
@@ -135,6 +136,7 @@ export const UserIconButton: FC<IProps> = (props) => {
                   <h6 className="text-[11px] mr-1 whitespace-nowrap text-black">{`${user.email}`}</h6>
                   <div className="relative block">
                     <Button
+                      disableFocusRipple
                       onClick={SignOutUser}
                       className="mt-[8px] p-[2px] relative block bg-[rgba(0,0,0,0.05)] hover:bg-[rgba(0,0,0,0.1)] button-text-lower font-[400] text-black text-[11.5px]"
                     >
@@ -151,7 +153,12 @@ export const UserIconButton: FC<IProps> = (props) => {
               className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
             >
               <div className="flex relative space-x-[10px]">
-                <Image height={17} width={17} src="/icons/folder.svg" alt='folder icon' />
+                <Image
+                  height={17}
+                  width={17}
+                  src="/icons/folder.svg"
+                  alt="folder icon"
+                />
                 <h6 className="text-[14px] font-sans font-[400] text-black">
                   Manage your account
                 </h6>
@@ -163,7 +170,12 @@ export const UserIconButton: FC<IProps> = (props) => {
               className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
             >
               <div className="flex relative space-x-[10px]">
-                <Image height={18} width={18} src="/icons/truck.svg" alt='truck icon'/>
+                <Image
+                  height={18}
+                  width={18}
+                  src="/icons/truck.svg"
+                  alt="truck icon"
+                />
                 <h6 className="text-[14px] font-sans font-[400] text-black">
                   Track orders
                 </h6>
@@ -175,7 +187,12 @@ export const UserIconButton: FC<IProps> = (props) => {
               className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
             >
               <div className="flex relative space-x-[10px]">
-                <Image height={17} width={17} src="/icons/shopping-bag.svg" alt='shopping bag icon'/>
+                <Image
+                  height={17}
+                  width={17}
+                  src="/icons/shopping-bag.svg"
+                  alt="shopping bag icon"
+                />
                 <h6 className="text-[14px] font-sans font-[400] text-black">
                   View all orders
                 </h6>
@@ -187,7 +204,12 @@ export const UserIconButton: FC<IProps> = (props) => {
               className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
             >
               <div className="flex relative space-x-[10px]">
-                <Image height={17} width={17} src="/icons/gift.svg" alt='gift icon'/>
+                <Image
+                  height={17}
+                  width={17}
+                  src="/icons/gift.svg"
+                  alt="gift icon"
+                />
                 <h6 className="text-[14px] font-sans font-[400] text-black">
                   Redeem code or gift cards
                 </h6>
@@ -197,6 +219,7 @@ export const UserIconButton: FC<IProps> = (props) => {
         </Fragment>
       ) : (
         <Button
+          disableFocusRipple
           onClick={() => {
             setTimeout(() => {
               Router.push('/auth/login');
@@ -217,7 +240,7 @@ export const UserIconButton: FC<IProps> = (props) => {
               placeholder="blur"
               blurDataURL={Square_BlurDataURL}
               src="/icons/user-fill.svg"
-              alt='user icon'
+              alt="user icon"
             />
             <h6 className="text-white hidden sm:block whitespace-nowrap font-[350] text-[12px]">
               Login

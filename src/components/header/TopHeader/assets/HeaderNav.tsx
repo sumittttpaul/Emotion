@@ -1,5 +1,4 @@
 import { Button } from '@mui/material';
-import Router from 'next/router';
 import React, { FC, ChangeEvent, useState } from 'react';
 
 interface IProps {}
@@ -102,6 +101,7 @@ export const HeaderNav: FC<IProps> = (props) => {
           <li key={value.name} className="relative box-border h-full">
             <label htmlFor={value.for} role="button">
               <Button
+                disableFocusRipple
                 component="a"
                 sx={{
                   '.MuiTouchRipple-child': {

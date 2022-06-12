@@ -50,6 +50,8 @@ const FromComputer: FC<IProps> = (props) => {
         />
         <Button
           disableRipple
+          disableFocusRipple
+          disableTouchRipple
           sx={{
             '&': {
               border: '2px dashed rgba(0,0,0,0.2)',

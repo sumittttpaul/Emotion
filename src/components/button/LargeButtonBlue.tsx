@@ -17,6 +17,7 @@ const LargeButtonBlue: FC<IProps> = (props) => {
   return (
     <div className="w-full relative">
       <Button
+        disableFocusRipple
         sx={{
           '.MuiTouchRipple-child': {
             backgroundColor: 'rgba(225, 225, 255, 0.5) !important',

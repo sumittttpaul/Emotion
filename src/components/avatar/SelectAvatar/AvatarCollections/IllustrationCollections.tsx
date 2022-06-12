@@ -122,6 +122,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
         {Illustrations.map((illustrationURL) => {
           return (
             <Button
+              disableFocusRipple
               key={illustrationURL}
               onClick={() => {
                 props.getURL(illustrationURL);

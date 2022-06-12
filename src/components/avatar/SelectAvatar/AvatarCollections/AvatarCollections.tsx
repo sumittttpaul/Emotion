@@ -2,7 +2,10 @@ import React, { FC } from 'react';
 import { PhotographIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import { Button } from '@mui/material';
-import { Banner_BlurDataURL, Square_BlurDataURL } from '../../../loader/BlurDataURL';
+import {
+  Banner_BlurDataURL,
+  Square_BlurDataURL,
+} from '../../../loader/BlurDataURL';
 
 interface IProps {
   AnimalClick: () => void;
@@ -102,6 +105,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
       <div className="relative box-border w-full space-y-[7px]">
         <div className="sm:flex relative space-y-[7px] sm:space-y-0 sm:space-x-[6px] w-full">
           <Button
+            disableFocusRipple
             onClick={AnimalClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
@@ -121,6 +125,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             />
           </Button>
           <Button
+            disableFocusRipple
             onClick={EmojiClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
@@ -142,6 +147,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
         </div>
         <div className="sm:flex relative space-y-[7px] sm:space-y-0 sm:space-x-[6px] w-full">
           <Button
+            disableFocusRipple
             onClick={FestivalClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
@@ -161,6 +167,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             />
           </Button>
           <Button
+            disableFocusRipple
             onClick={HandDrawingClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
@@ -182,6 +189,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
         </div>
         <div className="sm:flex relative space-y-[7px] sm:space-y-0 sm:space-x-[6px] w-full">
           <Button
+            disableFocusRipple
             onClick={FlatClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
@@ -201,6 +209,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             />
           </Button>
           <Button
+            disableFocusRipple
             onClick={HispterClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
@@ -222,6 +231,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
         </div>
         <div className="sm:flex relative space-y-[7px] sm:space-y-0 sm:space-x-[6px] w-full">
           <Button
+            disableFocusRipple
             onClick={PaintClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
@@ -241,6 +251,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             />
           </Button>
           <Button
+            disableFocusRipple
             onClick={MinimalClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
@@ -262,6 +273,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
         </div>
         <div className="sm:flex relative space-y-[7px] sm:space-y-0 sm:space-x-[6px] w-full">
           <Button
+            disableFocusRipple
             onClick={PlainClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
@@ -282,6 +294,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
           </Button>
           <div className="flex w-full relative sm:max-w-[50%] space-x-[6px]">
             <Button
+              disableFocusRipple
               onClick={Popular1Click}
               className="p-0 relative w-full flex cursor-default rounded-md"
               sx={{
@@ -301,6 +314,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               />
             </Button>
             <Button
+              disableFocusRipple
               onClick={Popular2Click}
               className="p-0 relative w-full flex cursor-default rounded-md"
               sx={{
@@ -320,6 +334,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               />
             </Button>
             <Button
+              disableFocusRipple
               onClick={Popular3Click}
               className="p-0 relative w-full flex cursor-default rounded-md"
               sx={{
@@ -339,6 +354,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               />
             </Button>
             <Button
+              disableFocusRipple
               onClick={Popular4Click}
               className="p-0 relative w-full flex cursor-default rounded-md"
               sx={{

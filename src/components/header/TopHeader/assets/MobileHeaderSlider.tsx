@@ -84,6 +84,7 @@ export const MobileHeaderSlider: FC<IProps> = (props) => {
         {Links.map((value) => (
           <motion.li key={value.label} variants={LiVariants}>
             <Button
+              disableFocusRipple
               onClick={() => {
                 setTimeout(() => {
                   Router.push(value.to);

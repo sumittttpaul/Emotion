@@ -82,6 +82,7 @@ const ShowAvatar: FC<IProps> = (props) => {
       {/* Bottom */}
       <div className="flex space-x-3 w-full px-6 pb-6 pt-2">
         <Button
+          disableFocusRipple
           onClick={props.forward}
           disabled={props.changedisabled}
           sx={{
@@ -105,6 +106,7 @@ const ShowAvatar: FC<IProps> = (props) => {
           </div>
         </Button>
         <Button
+          disableFocusRipple
           onClick={props.remove}
           disabled={props.removedisabled}
           sx={{

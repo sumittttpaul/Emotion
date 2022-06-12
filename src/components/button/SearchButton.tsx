@@ -13,6 +13,8 @@ export const SearchButton: FC<IProps> = (props) => {
   return (
     <Button
       disableRipple
+      disableFocusRipple
+      disableTouchRipple
       className="text-white w-[200px] cursor-text justify-start button-text-lower p-[11px] rounded-full bg-[rgba(255,255,255,0.075)] hover:bg-[rgba(255,255,255,0.075)]"
     >
       <div className="space-x-3 flex items-center opacity-60 ml-1">

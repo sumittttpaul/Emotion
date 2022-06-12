@@ -22,6 +22,7 @@ export const CropAvatarToggle: FC<IProps> = (props) => {
   return (
     <div className="flex w-full justify-center space-x-2 p-6">
       <Button
+        disableFocusRipple
         onClick={props.Rotataion}
         className={props.Active ? InActiveClass : ActiveClass}
         sx={{
@@ -33,6 +34,7 @@ export const CropAvatarToggle: FC<IProps> = (props) => {
         Rotation
       </Button>
       <Button
+        disableFocusRipple
         onClick={props.Zoom}
         className={props.Active ? ActiveClass : InActiveClass}
         sx={{

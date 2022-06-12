@@ -20,7 +20,11 @@ const buttonDesign =
 const OtherAccountAuthUI: FC<IProps> = (props) => {
   return (
     <div className="flex space-x-3 w-full">
-      <Button onClick={props.FacebookSignInButton} className={buttonDesign}>
+      <Button
+        disableFocusRipple
+        onClick={props.FacebookSignInButton}
+        className={buttonDesign}
+      >
         <Image
           height={18}
           width={9}
@@ -30,7 +34,11 @@ const OtherAccountAuthUI: FC<IProps> = (props) => {
           blurDataURL={Square_BlurDataURL}
         />
       </Button>
-      <Button onClick={props.GoogleSignInButton} className={buttonDesign}>
+      <Button
+        disableFocusRipple
+        onClick={props.GoogleSignInButton}
+        className={buttonDesign}
+      >
         <Image
           height={17}
           width={17}
@@ -40,7 +48,11 @@ const OtherAccountAuthUI: FC<IProps> = (props) => {
           blurDataURL={Square_BlurDataURL}
         />
       </Button>
-      <Button onClick={props.AppleSignInButton} className={buttonDesign}>
+      <Button
+        disableFocusRipple
+        onClick={props.AppleSignInButton}
+        className={buttonDesign}
+      >
         <Image
           height={18}
           width={18}
