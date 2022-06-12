@@ -1,8 +1,8 @@
 import React, { FC, Fragment, useState } from 'react';
 import { IconButton, Button, Menu, MenuItem } from '@mui/material';
 import Image from 'next/image';
-import { Square_BlurDataURL } from '../../loader/BlurDataURL';
-import { useAuth } from '../../../firebase/AuthProvider';
+import { Square_BlurDataURL } from '../../../loader/BlurDataURL';
+import { useAuth } from '../../../../firebase/AuthProvider';
 import firebase from 'firebase/compat/app';
 import Router from 'next/router';
 

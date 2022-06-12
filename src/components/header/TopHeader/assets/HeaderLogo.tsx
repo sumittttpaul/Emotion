@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Square_BlurDataURL } from '../../loader/BlurDataURL';
+import { Square_BlurDataURL } from '../../../loader/BlurDataURL';
 import Image from 'next/image';
 
 interface IProps {}
