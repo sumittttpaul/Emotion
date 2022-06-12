@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import React, { FC } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 
 interface IProps {}
 
@@ -27,9 +27,16 @@ const NavLabel = [
 ];
 
 export const MainHeaderNav: FC<IProps> = (props) => {
+  const [selectedValue, setSelectedValue] = useState('MainTab1');
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSelectedValue(event.target.value);
+  };
   return (
-    <div className="hidden sm:flex flex-col MainNavBar">
+    <div className="flex flex-col MainNavBar">
       <input
+        value="MainTab1"
+        checked={selectedValue === 'MainTab1'}
+        onChange={handleChange}
         id="MainTab1"
         type="radio"
         name="main-tab-control"
@@ -37,6 +44,9 @@ export const MainHeaderNav: FC<IProps> = (props) => {
         aria-label="MainTab1"
       />
       <input
+        value="MainTab2"
+        checked={selectedValue === 'MainTab2'}
+        onChange={handleChange}
         id="MainTab2"
         type="radio"
         name="main-tab-control"
@@ -44,6 +54,9 @@ export const MainHeaderNav: FC<IProps> = (props) => {
         aria-label="MainTab2"
       />
       <input
+        value="MainTab3"
+        checked={selectedValue === 'MainTab3'}
+        onChange={handleChange}
         id="MainTab3"
         type="radio"
         name="main-tab-control"
@@ -52,7 +65,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
       />
       <ul className="flex flex-row space-x-3">
         {NavLabel.map((value) => (
-          <li key={value.name} className="relative box-border">
+          <li key={value.name} className="relative">
             <label htmlFor={value.for} role="button">
               <Button
                 disableRipple
