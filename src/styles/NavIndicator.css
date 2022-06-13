@@ -70,7 +70,7 @@
 
 //
 
-.MainNavBar
+.mainNav
   input[name='main-tab-control']:nth-of-type(1):checked
   ~ ul
   > li:nth-child(1)
@@ -78,8 +78,7 @@
   a {
   opacity: 0.9;
 }
-
-.MainNavBar
+.mainNav
   input[name='main-tab-control']:nth-of-type(2):checked
   ~ ul
   > li:nth-child(2)
@@ -87,8 +86,7 @@
   a {
   opacity: 0.9;
 }
-
-.MainNavBar
+.mainNav
   input[name='main-tab-control']:nth-of-type(3):checked
   ~ ul
   > li:nth-child(3)

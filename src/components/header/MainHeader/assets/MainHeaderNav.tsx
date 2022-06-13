@@ -32,7 +32,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
     setSelectedValue(event.target.value);
   };
   return (
-    <div className="MainNavBar flex flex-col">
+    <div className="mainNav flex flex-col">
       <input
         value="MainTab1"
         checked={selectedValue === 'MainTab1'}
@@ -65,14 +65,14 @@ export const MainHeaderNav: FC<IProps> = (props) => {
       />
       <ul className="flex flex-row space-x-3">
         {NavLabel.map((value) => (
-          <li key={value.name} className="relative">
-            <label htmlFor={value.for}>
+          <li key={value.name} className="relative box-border">
+            <label htmlFor={value.for} role="button">
               <Button
-                aria-label="main-header-button"
+                component="a"
                 disableRipple
                 disableFocusRipple
                 disableTouchRipple
-                component="a"
+                aria-label="main-header-button"
                 className="opacity-50 hover:opacity-75 transition-opacity ease-in font-normal text-white button-text-lower"
               >
                 {value.name}
