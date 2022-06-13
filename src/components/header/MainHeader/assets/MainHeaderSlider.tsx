@@ -1,5 +1,5 @@
-import { Drawer } from '@mui/material';
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 interface IProps {}
 
@@ -8,8 +8,22 @@ interface IProps {}
  * @function @MainHeaderSlider
  **/
 
+const SliderVariant = {
+  open: { height: 500 },
+  closed: { height: 0 },
+};
+
 export const MainHeaderSlider: FC<IProps> = (props) => {
+  const [Slider, setSlider] = useState('closed');
+  useEffect(() => {
+    setSlider('open');
+  }, [Slider]);
   return (
-    <div></div>
+    <motion.div
+      
+      className="relative bg-[#202020]"
+      animate={Slider}
+      variants={SliderVariant}
+    ></motion.div>
   );
 };

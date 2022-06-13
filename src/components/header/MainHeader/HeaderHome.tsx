@@ -14,8 +14,8 @@ interface IProps {}
 
 export const HeaderHome: FC<IProps> = (props) => {
   return (
-    <>
-      <div className="flex relative box-border w-full max-w-[1440px] mx-auto justify-between items-center my-2.5 sm:px-5 px-3">
+    <div className='flex sticky items-start box-border w-full max-w-[1440px] mx-auto my-2.5'>
+      <div className="flex relative box-border w-full justify-between items-center sm:px-5 px-3">
         <div className="flex relative md-900:space-x-6 items-center">
           <SearchButton />
           <MainHeaderNav />
@@ -26,6 +26,6 @@ export const HeaderHome: FC<IProps> = (props) => {
         </div>
       </div>
       <MainHeaderSlider/>
-    </>
+    </div>
   );
 };

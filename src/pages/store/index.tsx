@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import { PageContainerDark } from '../../components/container/PageContainerDark';
+import { MainHeaderSlider } from '../../components/header/MainHeader/assets/MainHeaderSlider';
 import { HeaderHome } from '../../components/header/MainHeader/HeaderHome';
 import { HeaderHomeTop } from '../../components/header/TopHeader/HeaderHomeTop';
 
@@ -14,6 +15,7 @@ const Store: NextPage = () => {
         <div className="w-full h-[20px] min-h-[20px] block bg-transparent" />
         <HeaderHome />
         <div className="w-full h-[20px] min-h-[20px] block bg-transparent" />
+        <h6 className="text-white">CONTENT</h6> 
       </div>
     </PageContainerDark>
   );
