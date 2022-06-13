@@ -1,5 +1,7 @@
+import { ChevronDownIcon } from '@heroicons/react/solid';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { Button } from '@mui/material';
-import React, { ChangeEvent, FC, useState } from 'react';
+import { motion } from 'framer-motion';
 
 interface IProps {}
 
@@ -26,11 +28,17 @@ const NavLabel = [
   },
 ];
 
+const ArrowVariant = {
+  open: { transform: 'rotate(180deg)' },
+  closed: { transform: 'rotate(0deg)' },
+};
+
 export const MainHeaderNav: FC<IProps> = (props) => {
   const [selectedValue, setSelectedValue] = useState('MainTab1');
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
   };
+  const [Arrow, setArrow] = useState('closed');
   return (
     <>
       <div className="mainNav hidden sm:flex sm:ml-6 md:ml-0 flex-col">
@@ -87,11 +95,14 @@ export const MainHeaderNav: FC<IProps> = (props) => {
         disableRipple
         disableFocusRipple
         disableTouchRipple
-        aria-label='mobile-main-nav-button'
-        className="ml-[20%] flex sm:hidden font-normal opacity-90 text-white button-text-lower"
+        aria-label="mobile-main-nav-button"
+        className="ml-[20%] flex sm:hidden opacity-90 text-white button-text-lower"
       >
-        <div>
-          <h6>Discover</h6>
+        <div className="flex space-x-2 items-center">
+          <h6 className="font-normal">Discover</h6>
+          <motion.div animate={Arrow} variants={ArrowVariant}>
+            <ChevronDownIcon className="h-5 w-5 opacity-90" />
+          </motion.div>
         </div>
       </Button>
     </>
