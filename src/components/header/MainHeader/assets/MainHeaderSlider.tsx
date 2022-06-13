@@ -1,7 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
-interface IProps {}
+interface IProps {
+  open: boolean;
+  onClose: () => void;
+}
 
 /**
  * @author
@@ -16,12 +19,15 @@ const SliderVariant = {
 export const MainHeaderSlider: FC<IProps> = (props) => {
   const [Slider, setSlider] = useState('closed');
   useEffect(() => {
-    setSlider('open');
-  }, [Slider]);
+    if (props.open) {
+      setSlider('open');
+    } else {
+      setSlider('closed');
+    }
+  }, [props.open]);
   return (
     <motion.div
-      
-      className="relative bg-[#202020]"
+      className="bg-[#202020]"
       animate={Slider}
       variants={SliderVariant}
     ></motion.div>

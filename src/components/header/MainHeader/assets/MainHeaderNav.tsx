@@ -1,9 +1,12 @@
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
-import { Button, Menu, MenuItem } from '@mui/material';
+import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
 
-interface IProps {}
+interface IProps {
+  open: boolean;
+  onOpen: () => void;
+}
 
 /**
  * @author
@@ -39,6 +42,13 @@ export const MainHeaderNav: FC<IProps> = (props) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
   };
+  useEffect(() => {
+    if (props.open) {
+      setArrow('open');
+    } else {
+      setArrow('closed');
+    }
+  });
   return (
     <>
       <div className="mainNav hidden sm:flex sm:ml-6 md-900:ml-0 flex-col">
@@ -92,6 +102,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
         </ul>
       </div>
       <Button
+        onClick={props.onOpen}
         disableRipple
         disableFocusRipple
         disableTouchRipple

@@ -15,7 +15,7 @@ const Store: NextPage = () => {
         <div className="w-full h-[20px] min-h-[20px] block bg-transparent" />
         <HeaderHome />
         <div className="w-full h-[20px] min-h-[20px] block bg-transparent" />
-        <h6 className="text-white">CONTENT</h6> 
+        <h6 className="text-white w-full flex justify-center">CONTENT</h6> 
       </div>
     </PageContainerDark>
   );

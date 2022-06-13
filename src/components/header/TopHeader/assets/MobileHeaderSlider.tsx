@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { Button, Drawer } from '@mui/material';
 import Router from 'next/router';
