@@ -85,7 +85,7 @@ export const UserIconButton: FC<IProps> = (props) => {
                 src={`${user.photoURL}`}
                 alt="user profile"
               />
-              <h6 className="text-white hidden sm:block whitespace-nowrap font-[350] text-[12px]">
+              <h6 className="text-white hidden sm:block whitespace-nowrap font-[300] tracking-[0.075em] text-[12px]">
                 {`${user.displayName}`}
               </h6>
             </div>
@@ -135,13 +135,13 @@ export const UserIconButton: FC<IProps> = (props) => {
                 </div>
                 <div className="relative block">
                   <h6 className="text-[15px] whitespace-nowrap font-sans text-black">{`${user.displayName}`}</h6>
-                  <h6 className="text-[11px] mr-1 whitespace-nowrap text-black">{`${user.email}`}</h6>
+                  <h6 className="text-[11px] mr-1 whitespace-nowrap text-black opacity-[0.85]">{`${user.email}`}</h6>
                   <div className="relative block">
                     <Button
                       aria-label="user-sign-out-button"
                       disableFocusRipple
                       onClick={SignOutUser}
-                      className="mt-[8px] p-[2px] relative block bg-[rgba(0,0,0,0.05)] hover:bg-[rgba(0,0,0,0.1)] button-text-lower font-[400] text-black text-[11.5px]"
+                      className="mt-[8px] p-[2px] relative block bg-[rgba(0,0,0,0.05)] hover:bg-[rgba(0,0,0,0.1)] button-text-lower font-normal text-black text-[11px]"
                     >
                       Sign out
                     </Button>

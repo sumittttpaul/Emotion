@@ -1,6 +1,6 @@
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
-import { Button } from '@mui/material';
+import { Button, Menu, MenuItem } from '@mui/material';
 import { motion } from 'framer-motion';
 
 interface IProps {}
@@ -29,16 +29,35 @@ const NavLabel = [
 ];
 
 const ArrowVariant = {
-  open: { transform: 'rotate(180deg)' },
+  open: { transform: 'rotate(-180deg)' },
   closed: { transform: 'rotate(0deg)' },
 };
 
 export const MainHeaderNav: FC<IProps> = (props) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedValue, setSelectedValue] = useState('MainTab1');
+  const [Arrow, setArrow] = useState('closed');
+
+  const open = Boolean(anchorEl);
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
   };
-  const [Arrow, setArrow] = useState('closed');
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setArrow('open');
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setArrow('closed');
+    setAnchorEl(null);
+  };
+  const handleCloseClick = () => {
+    setTimeout(() => {
+      setAnchorEl(null);
+      setArrow('closed');
+    }, 150);
+  };
   return (
     <>
       <div className="mainNav hidden sm:flex sm:ml-6 md:ml-0 flex-col">
@@ -95,6 +114,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
         disableRipple
         disableFocusRipple
         disableTouchRipple
+        onClick={handleClick}
         aria-label="mobile-main-nav-button"
         className="ml-[20%] flex sm:hidden opacity-90 text-white button-text-lower"
       >
@@ -105,6 +125,53 @@ export const MainHeaderNav: FC<IProps> = (props) => {
           </motion.div>
         </div>
       </Button>
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            background: '#202020',
+            mt: 1,
+            overflow: 'visible',
+            filter: 'drop-shadow(0px 2px 8px rgba(255,255,255,0.02))',
+            '.MuiMenu-list': {
+              padding: '1px 0',
+            },
+            '.MuiMenuItem-root': {
+              minHeight: 0,
+            },
+            '.MuiTouchRipple-child': {
+              backgroundColor: 'rgba(255, 255, 255, 0.3) !important',
+            },
+          },
+        }}
+        transformOrigin={{ horizontal: 'left', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+      >
+        <MenuItem
+          key={1}
+          onClick={handleCloseClick}
+          className="m-1.5 rounded-md hover:bg-[rgba(255,255,255,0.05)]"
+        >
+          <h6 className="text-white text-xs font-normal">hello I AM YOUR CONTENT</h6>
+        </MenuItem>
+        <MenuItem
+          key={2}
+          onClick={handleCloseClick}
+          className="m-1.5 rounded-md hover:bg-[rgba(255,255,255,0.05)]"
+        >
+          <h6 className="text-white text-xs font-normal">hello I AM YOUR CONTENT</h6>
+        </MenuItem>
+        <MenuItem
+          key={3}
+          onClick={handleCloseClick}
+          className="m-1.5 rounded-md hover:bg-[rgba(255,255,255,0.05)]"
+        >
+          <h6 className="text-white text-xs font-normal">hello I AM YOUR CONTENT</h6>
+        </MenuItem>
+      </Menu>
     </>
   );
 };
