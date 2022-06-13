@@ -14,7 +14,7 @@ export const CartButtonDark: FC<IProps> = (props) => {
     <>
       <Button
         aria-label="desktop-cart-button"
-        className="hidden md:block text-white py-2.5 px-3 border border-solid border-[rgba(255,255,255,0.23)] rounded-md button-text-lower opacity-80"
+        className="hidden md-900:block text-white py-2.5 px-3 border border-solid border-[rgba(255,255,255,0.23)] rounded-md button-text-lower opacity-80"
         sx={{
           '.MuiTouchRipple-child': {
             backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
@@ -28,7 +28,7 @@ export const CartButtonDark: FC<IProps> = (props) => {
       </Button>
       <IconButton
         aria-label="mobile-cart-button"
-        className="block md:hidden opacity-80 button-text-lower h-full p-2.5 border border-solid border-[rgba(255,255,255,0.23)]"
+        className="block md-900:hidden opacity-80 button-text-lower h-full p-2.5 border border-solid border-[rgba(255,255,255,0.23)]"
         sx={{
           borderRadius: '6px !important',
           '.MuiTouchRipple-child': {

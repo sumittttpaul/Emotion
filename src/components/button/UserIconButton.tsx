@@ -45,7 +45,7 @@ export const UserIconButton: FC<IProps> = (props) => {
         <Fragment>
           <IconButton
             onClick={handleClick}
-            className="p-0 inline-flex sm:hidden button-text-lower h-full px-2 sm:mr-2"
+            className="sm:hidden items-center h-full px-2 sm:mr-2"
             sx={{
               borderRadius: '0 !important',
               '.MuiTouchRipple-child': {
@@ -68,14 +68,14 @@ export const UserIconButton: FC<IProps> = (props) => {
             aria-label="user-popup-button"
             disableFocusRipple
             onClick={handleClick}
-            className="p-0 hidden sm:inline-flex button-text-lower h-full pl-2 pr-3 bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.05)]"
+            className="hidden sm:flex items-center button-text-lower h-full pl-2 pr-3 bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.05)]"
             sx={{
               '.MuiTouchRipple-child': {
                 backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
               },
             }}
           >
-            <div className="relative flex space-x-3 items-center">
+            <div className="relative flex space-x-2.5 items-center">
               <Image
                 height={35}
                 width={35}
@@ -229,7 +229,7 @@ export const UserIconButton: FC<IProps> = (props) => {
               Router.push('/auth/login');
             }, 150);
           }}
-          className="p-0 inline-flex button-text-lower h-full px-4 bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.05)]"
+          className="flex items-center button-text-lower h-full px-4 bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.05)]"
           sx={{
             '.MuiTouchRipple-child': {
               backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
