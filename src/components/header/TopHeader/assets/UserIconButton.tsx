@@ -5,6 +5,7 @@ import { Square_BlurDataURL } from '../../../loader/BlurDataURL';
 import { useAuth } from '../../../../firebase/AuthProvider';
 import firebase from 'firebase/compat/app';
 import Router from 'next/router';
+import UserIcon from '../../../../../public/icons/user-fill.svg';
 
 interface IProps {}
 
@@ -237,10 +238,9 @@ export const UserIconButton: FC<IProps> = (props) => {
               height={20}
               width={20}
               className="opacity-70"
-              placeholder="blur"
-              blurDataURL={Square_BlurDataURL}
-              src="/icons/user-fill.svg"
+              src={UserIcon}
               alt="user icon"
+              priority
             />
             <h6 className="text-white hidden sm:block whitespace-nowrap font-[350] text-[12px]">
               Login

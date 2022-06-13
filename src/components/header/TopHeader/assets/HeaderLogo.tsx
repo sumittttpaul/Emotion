@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { Square_BlurDataURL } from '../../../loader/BlurDataURL';
 import Image from 'next/image';
+import Logo from '../../../../../public/agewear.svg';
 
 interface IProps {}
 
@@ -16,10 +16,9 @@ export const HeaderLogo: FC<IProps> = (props) => {
         height={35}
         width={35}
         className="opacity-70"
-        src="/agewear.svg"
+        src={Logo}
         alt="logo-svg"
-        placeholder="blur"
-        blurDataURL={Square_BlurDataURL}
+        priority
       />
     </div>
   );

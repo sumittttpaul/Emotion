@@ -32,7 +32,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
     setSelectedValue(event.target.value);
   };
   return (
-    <div className="flex flex-col MainNavBar">
+    <div className="MainNavBar flex flex-col">
       <input
         value="MainTab1"
         checked={selectedValue === 'MainTab1'}
@@ -72,7 +72,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
                 disableFocusRipple
                 disableTouchRipple
                 component="a"
-                className="opacity-50 hover:opacity-90 transition-opacity ease-in font-normal text-white button-text-lower"
+                className="opacity-50 hover:opacity-75 transition-opacity ease-in font-normal text-white button-text-lower"
               >
                 {value.name}
               </Button>

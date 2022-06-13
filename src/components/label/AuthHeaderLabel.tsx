@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
-import { Square_BlurDataURL } from '../loader/BlurDataURL';
+import Logo from '../../../public/agewear.svg';
 
 interface IProps {
   label: string;
@@ -18,10 +18,9 @@ export const AuthHeaderLabel: FC<IProps> = (props) => {
         height={50}
         width={50}
         className="opacity-70"
-        src="/agewear.svg"
+        src={Logo}
         alt="logo-svg"
-        placeholder="blur"
-        blurDataURL={Square_BlurDataURL}
+        priority
       />
       <h6 className="font-medium text-center text-md">{props.label}</h6>
     </>
