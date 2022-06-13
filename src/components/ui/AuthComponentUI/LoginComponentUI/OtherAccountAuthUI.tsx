@@ -21,6 +21,7 @@ const OtherAccountAuthUI: FC<IProps> = (props) => {
   return (
     <div className="flex space-x-3 w-full">
       <Button
+        aria-label="facebook-sign-in-button"
         disableFocusRipple
         onClick={props.FacebookSignInButton}
         className={buttonDesign}
@@ -35,6 +36,7 @@ const OtherAccountAuthUI: FC<IProps> = (props) => {
         />
       </Button>
       <Button
+        aria-label="google-sign-in-button"
         disableFocusRipple
         onClick={props.GoogleSignInButton}
         className={buttonDesign}
@@ -49,6 +51,7 @@ const OtherAccountAuthUI: FC<IProps> = (props) => {
         />
       </Button>
       <Button
+        aria-label="apple-sign-in-button"
         disableFocusRipple
         onClick={props.AppleSignInButton}
         className={buttonDesign}

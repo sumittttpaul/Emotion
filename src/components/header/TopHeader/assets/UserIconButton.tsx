@@ -65,6 +65,7 @@ export const UserIconButton: FC<IProps> = (props) => {
             />
           </IconButton>
           <Button
+            aria-label="user-popup-button"
             disableFocusRipple
             onClick={handleClick}
             className="p-0 hidden sm:inline-flex button-text-lower h-full pl-2 pr-3 bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.05)]"
@@ -137,6 +138,7 @@ export const UserIconButton: FC<IProps> = (props) => {
                   <h6 className="text-[11px] mr-1 whitespace-nowrap text-black">{`${user.email}`}</h6>
                   <div className="relative block">
                     <Button
+                      aria-label="user-sign-out-button"
                       disableFocusRipple
                       onClick={SignOutUser}
                       className="mt-[8px] p-[2px] relative block bg-[rgba(0,0,0,0.05)] hover:bg-[rgba(0,0,0,0.1)] button-text-lower font-[400] text-black text-[11.5px]"
@@ -220,6 +222,7 @@ export const UserIconButton: FC<IProps> = (props) => {
         </Fragment>
       ) : (
         <Button
+          aria-label="user-login-button"
           disableFocusRipple
           onClick={() => {
             setTimeout(() => {

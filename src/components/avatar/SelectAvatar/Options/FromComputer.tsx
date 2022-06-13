@@ -49,6 +49,7 @@ const FromComputer: FC<IProps> = (props) => {
           type="file"
         />
         <Button
+          aria-label="from-computer-button"
           disableRipple
           disableFocusRipple
           disableTouchRipple

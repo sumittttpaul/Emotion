@@ -16,6 +16,7 @@ export const DatePickerDialogBottom: FC<IProps> = (props) => {
   return (
     <div className="p-3 flex space-x-3 relative justify-end">
       <Button
+        aria-label="dob-cancel-button"
         disableFocusRipple
         onClick={props.cancel}
         className="text-[rgba(255,255,255,0.8)] rounded-md font-normal text-[11px] h-8 w-[calc(100%/3)] border border-solid border-[rgba(255,255,255,0.2)] outline-none button-text-lower"
@@ -23,6 +24,7 @@ export const DatePickerDialogBottom: FC<IProps> = (props) => {
         Cancel
       </Button>
       <Button
+        aria-label="dob-submit-button"
         disableFocusRipple
         disabled={!props.submitActive}
         onClick={props.submit}

@@ -12,6 +12,7 @@ interface IProps {}
 export const SearchButton: FC<IProps> = (props) => {
   return (
     <Button
+      aria-label="search-button"
       disableRipple
       disableFocusRipple
       disableTouchRipple

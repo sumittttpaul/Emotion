@@ -101,6 +101,7 @@ export const HeaderNav: FC<IProps> = (props) => {
           <li key={value.name} className="relative box-border h-full">
             <label htmlFor={value.for} role="button">
               <Button
+                aria-label="header-button"
                 disableFocusRipple
                 component="a"
                 sx={{

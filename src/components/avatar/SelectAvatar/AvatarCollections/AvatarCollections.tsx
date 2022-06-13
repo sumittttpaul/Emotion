@@ -105,6 +105,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
       <div className="relative box-border w-full space-y-[7px]">
         <div className="sm:flex relative space-y-[7px] sm:space-y-0 sm:space-x-[6px] w-full">
           <Button
+            aria-label="animal-banner-button"
             disableFocusRipple
             onClick={AnimalClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
@@ -125,6 +126,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             />
           </Button>
           <Button
+            aria-label="emoji-banner-button"
             disableFocusRipple
             onClick={EmojiClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
@@ -147,6 +149,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
         </div>
         <div className="sm:flex relative space-y-[7px] sm:space-y-0 sm:space-x-[6px] w-full">
           <Button
+            aria-label="festival-banner-button"
             disableFocusRipple
             onClick={FestivalClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
@@ -167,6 +170,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             />
           </Button>
           <Button
+            aria-label="hand-drawing-banner-button"
             disableFocusRipple
             onClick={HandDrawingClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
@@ -189,6 +193,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
         </div>
         <div className="sm:flex relative space-y-[7px] sm:space-y-0 sm:space-x-[6px] w-full">
           <Button
+            aria-label="flat-banner-button"
             disableFocusRipple
             onClick={FlatClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
@@ -209,6 +214,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             />
           </Button>
           <Button
+            aria-label="hipster-banner-button"
             disableFocusRipple
             onClick={HispterClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
@@ -231,6 +237,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
         </div>
         <div className="sm:flex relative space-y-[7px] sm:space-y-0 sm:space-x-[6px] w-full">
           <Button
+            aria-label="paint-banner-button"
             disableFocusRipple
             onClick={PaintClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
@@ -251,6 +258,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             />
           </Button>
           <Button
+            aria-label="minimal-banner-button"
             disableFocusRipple
             onClick={MinimalClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
@@ -273,6 +281,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
         </div>
         <div className="sm:flex relative space-y-[7px] sm:space-y-0 sm:space-x-[6px] w-full">
           <Button
+            aria-label="plain-banner-button"
             disableFocusRipple
             onClick={PlainClick}
             className="p-0 relative w-full flex cursor-default rounded-md"
@@ -294,6 +303,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
           </Button>
           <div className="flex w-full relative sm:max-w-[50%] space-x-[6px]">
             <Button
+              aria-label="popular-image-1-button"
               disableFocusRipple
               onClick={Popular1Click}
               className="p-0 relative w-full flex cursor-default rounded-md"
@@ -314,6 +324,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               />
             </Button>
             <Button
+              aria-label="popular-image-2-button"
               disableFocusRipple
               onClick={Popular2Click}
               className="p-0 relative w-full flex cursor-default rounded-md"
@@ -334,6 +345,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               />
             </Button>
             <Button
+              aria-label="popular-image-3-button"
               disableFocusRipple
               onClick={Popular3Click}
               className="p-0 relative w-full flex cursor-default rounded-md"
@@ -354,6 +366,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               />
             </Button>
             <Button
+              aria-label="popular-image-4-button"
               disableFocusRipple
               onClick={Popular4Click}
               className="p-0 relative w-full flex cursor-default rounded-md"

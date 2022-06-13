@@ -17,6 +17,7 @@ const LargeButtonBlue: FC<IProps> = (props) => {
   return (
     <div className="w-full relative">
       <Button
+        aria-label="all-purpose-blue-button"
         disableFocusRipple
         sx={{
           '.MuiTouchRipple-child': {

@@ -84,6 +84,7 @@ export const MobileHeaderSlider: FC<IProps> = (props) => {
         {Links.map((value) => (
           <motion.li key={value.label} variants={LiVariants}>
             <Button
+              aria-label="mobile-header-slider-button"
               disableFocusRipple
               onClick={() => {
                 setTimeout(() => {

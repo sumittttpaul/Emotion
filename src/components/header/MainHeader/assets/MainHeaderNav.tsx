@@ -66,8 +66,9 @@ export const MainHeaderNav: FC<IProps> = (props) => {
       <ul className="flex flex-row space-x-3">
         {NavLabel.map((value) => (
           <li key={value.name} className="relative">
-            <label htmlFor={value.for} role="button">
+            <label htmlFor={value.for}>
               <Button
+                aria-label="main-header-button"
                 disableRipple
                 disableFocusRipple
                 disableTouchRipple

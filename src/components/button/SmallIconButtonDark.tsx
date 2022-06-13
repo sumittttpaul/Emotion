@@ -17,6 +17,7 @@ interface IProps {
 export const SmallIconButtonDark: FC<IProps> = (props) => {
   return (
     <Button
+      aria-label="small-icon-button"
       disableFocusRipple
       onClick={props.onClick}
       className="button-text-lower text-white p-2 rounded-full outline-none hover:border-[rgba(255,255,255,0.2)]"

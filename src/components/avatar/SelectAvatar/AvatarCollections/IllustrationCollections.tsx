@@ -122,6 +122,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
         {Illustrations.map((illustrationURL) => {
           return (
             <Button
+              aria-label="all-illustration-button"
               disableFocusRipple
               key={illustrationURL}
               onClick={() => {

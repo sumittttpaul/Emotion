@@ -83,6 +83,7 @@ const ShowAvatar: FC<IProps> = (props) => {
       <div className="flex space-x-3 w-full px-6 pb-6 pt-2">
         <Button
           disableFocusRipple
+          aria-label='change-image-button'
           onClick={props.forward}
           disabled={props.changedisabled}
           sx={{
@@ -106,6 +107,7 @@ const ShowAvatar: FC<IProps> = (props) => {
           </div>
         </Button>
         <Button
+        aria-label="remove-image-button"
           disableFocusRipple
           onClick={props.remove}
           disabled={props.removedisabled}
