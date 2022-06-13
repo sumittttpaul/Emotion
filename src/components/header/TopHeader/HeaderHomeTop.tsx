@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useCycle } from 'framer-motion';
 import { HeaderNav } from './assets/HeaderNav';
-import { MenuButton } from './assets/MenuButton';
-import { UserIconButton } from './assets/UserIconButton';
+import { MobileMenuButton } from '../../button/MobileMenuButton';
+import { UserIconButton } from '../../button/UserIconButton';
 import { HeaderLogo } from './assets/HeaderLogo';
 import { MobileHeaderSlider } from './assets/MobileHeaderSlider';
 
@@ -37,9 +37,9 @@ export const HeaderHomeTop: FC<IProps> = (props) => {
 
   return (
     <>
-      <div className="w-full z-[9999] relative box-border h-[45px] bg-[#2a2a2a]">
-        <div className="flex w-full justify-between max-w-[1440px] mx-auto">
-          <MenuButton Cycle={Cycle} onClick={() => setCycle()} />
+      <div className="w-full z-[9999] relative box-border h-[50px] bg-[#2a2a2a]">
+        <div className="flex w-full justify-between max-w-[1540px] mx-auto">
+          <MobileMenuButton Cycle={Cycle} onClick={() => setCycle()} />
           <div className="flex relative">
             <HeaderLogo />
             <HeaderNav />

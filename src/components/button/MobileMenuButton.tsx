@@ -23,7 +23,7 @@ const path02Variants = {
  * @function @MenuButton
  **/
 
-export const MenuButton: FC<IProps> = (props) => {
+export const MobileMenuButton: FC<IProps> = (props) => {
   const [animation, setAnimation] = useState('closed');
   useEffect(() => {
     if (!props.Cycle) {

@@ -11,7 +11,7 @@ interface IProps {}
 
 export const HeaderLogo: FC<IProps> = (props) => {
   return (
-    <div className="flex relative py-[5px] sm:px-[12px]">
+    <div className="flex relative py-[7px] sm:px-[12px]">
       <Image
         height={35}
         width={35}
