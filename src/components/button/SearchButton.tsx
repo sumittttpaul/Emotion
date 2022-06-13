@@ -17,7 +17,7 @@ export const SearchButton: FC<IProps> = (props) => {
         disableRipple
         disableFocusRipple
         disableTouchRipple
-        className="hidden md:block text-white w-[180px] cursor-text justify-start button-text-lower p-[10px] rounded-full bg-[rgba(255,255,255,0.075)] hover:bg-[rgba(255,255,255,0.075)]"
+        className="hidden md-900:block text-white w-[180px] cursor-text justify-start button-text-lower p-[10px] rounded-full bg-[rgba(255,255,255,0.075)] hover:bg-[rgba(255,255,255,0.075)]"
       >
         <div className="space-x-3 flex items-center opacity-60 ml-1">
           <SearchIcon className="h-[14px] w-[14px]" />
@@ -26,7 +26,7 @@ export const SearchButton: FC<IProps> = (props) => {
       </Button>
       <IconButton
       aria-label="mobile-search-button"
-        className="block md:hidden opacity-80 button-text-lower h-full p-2.5 border border-solid border-[rgba(255,255,255,0.23)]"
+        className="block md-900:hidden opacity-80 button-text-lower h-full p-2.5 border border-solid border-[rgba(255,255,255,0.23)]"
         sx={{
           borderRadius: '6px !important',
           '.MuiTouchRipple-child': {
