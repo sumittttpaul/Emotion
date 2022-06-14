@@ -65,7 +65,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
     } else {
       setArrow('closed');
     }
-  }, [Arrow]);
+  }, [props.open, Arrow]);
   return (
     <>
       <div className="mainNav hidden sm:flex sm:ml-6 md-900:ml-0 flex-col">
