@@ -14,33 +14,7 @@ const Store: NextPage = () => {
         <div className="w-full h-[15px] min-h-[15px] block bg-transparent" />
         <HeaderHome />
         <div className="w-full h-[15px] min-h-[15px] block bg-transparent" />
-        {/*  */}
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
-        {/*  */}
+        
       </div>
     </PageContainerDark>
   );

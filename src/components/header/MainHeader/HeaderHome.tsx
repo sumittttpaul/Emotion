@@ -17,7 +17,7 @@ export const HeaderHome: FC<IProps> = (props) => {
   const [open, setOpen] = useCycle(false, true);
   const [Content, setContent] = useState('Discover');
   return (
-    <div className="flex flex-col sticky-top items-start box-border w-full py-3 sm:py-4 backdrop-blur-sm bg-[rgba(12,12,12,0.85)]">
+    <div className="flex flex-col sticky-top items-start box-border w-full py-3 sm:py-4 backdrop-blur-sm bg-[rgba(18,18,18,0.85)]">
       <div className="flex relative box-border w-full max-w-[1440px] mx-auto justify-between items-center sm:px-5 px-3">
         <div className="flex relative md-900:space-x-6 items-center">
           <SearchButton />
