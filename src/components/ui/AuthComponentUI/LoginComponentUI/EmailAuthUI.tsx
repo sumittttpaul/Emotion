@@ -42,7 +42,7 @@ interface IProps {
 
 const EmailAuthUI: FC<IProps> = (props) => {
   return (
-    <div className="w-full space-y-7 pb-[5px] pt-[2px] px-[2px] flex flex-col justify-center items-center">
+    <div className="w-full space-y-7 pb-[6px] pt-[2px] px-[2px] flex flex-col justify-center items-center">
       <IconTextFieldDark
         id={props.EmailID}
         placeholder="Email Address"
@@ -76,7 +76,7 @@ const EmailAuthUI: FC<IProps> = (props) => {
         <div className="text-right w-full">
           <Link
             onClick={() => {
-              Router.push('/auth/login/forget-password');
+              Router.push('/auth/login/forgot-password');
             }}
             className="text-white text-xs -mt-5"
             component="button"

@@ -71,13 +71,13 @@ const ForgotPasswordUI: FC<IProps> = (props) => {
             />
           </div>
           <div className="flex">
-            <h6 className="text-[13px] font-light text-[rgba(255,255,255,0.75)] flex items-center">
+            <h6 className="text-xs font-light text-[rgba(255,255,255,0.75)] flex items-center">
               Remember your password?&#160;
               <Link
                 onClick={() => {
                   Router.push('/auth/login');
                 }}
-                className="text-white text-[13px]"
+                className="text-white text-xs"
                 component="button"
                 underline="always"
               >
