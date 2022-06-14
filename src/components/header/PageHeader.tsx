@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { HeaderBottom } from './BottomHeader/HeaderBottom';
-import { HeaderTop } from './TopHeader/HeaderTop';
+import { HeaderBottom } from './BottomPageHeader/HeaderBottom';
+import { HeaderTop } from './TopPageHeader/HeaderTop';
 
 interface IProps {}
 
