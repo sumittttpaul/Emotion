@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
-import Logo from '../../../public/agewear.svg';
+import Logo from '../../../public/agewear_white.svg';
 
 interface IProps {
   label: string;
@@ -15,8 +15,8 @@ export const AuthHeaderLabel: FC<IProps> = (props) => {
   return (
     <>
       <Image
-        height={50}
-        width={50}
+        height={45}
+        width={45}
         className="opacity-70"
         src={Logo}
         alt="logo-svg"

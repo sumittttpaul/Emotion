@@ -42,7 +42,7 @@ interface IProps {
 
 const EmailAuthUI: FC<IProps> = (props) => {
   return (
-    <div className="w-full space-y-7 pb-[4px] pt-[2px] px-[2px] flex flex-col justify-center items-center">
+    <div className="w-full space-y-7 pb-[5px] pt-[2px] px-[2px] flex flex-col justify-center items-center">
       <IconTextFieldDark
         id={props.EmailID}
         placeholder="Email Address"

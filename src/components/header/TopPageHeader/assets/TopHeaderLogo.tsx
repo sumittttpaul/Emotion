@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
-import Logo from '../../../../../public/agewear.svg';
+import Logo from '../../../../../public/agewear_white.svg';
 
 interface IProps {}
 
@@ -11,10 +11,10 @@ interface IProps {}
 
 export const TopHeaderLogo: FC<IProps> = (props) => {
   return (
-    <div className="flex relative py-[7px] sm:px-[12px]">
+    <div className="flex relative py-[8.4px] sm:px-[12px]">
       <Image
-        height={35}
-        width={35}
+        height={32.5}
+        width={32.5}
         className="opacity-70"
         src={Logo}
         alt="logo-svg"
