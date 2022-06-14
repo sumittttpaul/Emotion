@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import { PageContainerDark } from '../../components/container/PageContainerDark';
+import { PageFooter } from '../../components/footer/PageFooter';
 import { PageHeader } from '../../components/header/PageHeader';
 
 /**
@@ -9,6 +10,7 @@ const Store: NextPage = () => {
   return (
     <PageContainerDark>
       <PageHeader/>
+      <PageFooter/>
     </PageContainerDark>
   );
 };

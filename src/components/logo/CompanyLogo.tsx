@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Logo from '../../../public/agewear_white.svg';
+import Logo_Full from '../../../public/agewear_full_white.svg';
 
 export const TopHeaderLogo = () => {
   return (
@@ -24,6 +25,19 @@ export const AuthHeaderLogo = () => {
       width={45}
       className="opacity-70"
       src={Logo}
+      alt="logo-svg"
+      priority
+    />
+  );
+};
+
+export const FooterLogo = () => {
+  return (
+    <Image
+      height={25}
+      width={100}
+      className="opacity-70"
+      src={Logo_Full}
       alt="logo-svg"
       priority
     />

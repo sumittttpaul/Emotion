@@ -3,9 +3,9 @@ import CheckBoxBlue from '../../../checkbox/CheckBoxBlue';
 import LargeButtonBlue from '../../../button/LargeButtonBlue';
 import IconTextFieldDark from '../../../textfield/IconTextFieldDark';
 import IconPasswordTextFieldDark from '../../../textfield/IconPasswordTextFieldDark';
+import { EmailPrivacyPolicy } from '../../../terms & policy/EmailPrivacyPolicy';
 import { Link } from '@mui/material';
 import Router from 'next/router';
-import { EmailPrivacyPolicy } from '../../../terms & policy/EmailPrivacyPolicy';
 
 interface IProps {
   Email: string;
