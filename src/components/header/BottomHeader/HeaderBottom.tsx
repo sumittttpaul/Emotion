@@ -3,17 +3,17 @@ import React, { FC, useState } from 'react';
 import { CartButtonDark } from '../../button/CartButtonDark';
 import { SearchButton } from '../../button/SearchButton';
 import { WishlistButtonDark } from '../../button/WishlistButtonDark';
-import { MainHeaderNav } from './assets/MainHeaderNav';
-import { MainHeaderSlider } from './assets/MainHeaderSlider';
+import { BottomHeaderNav } from './assets/BottomHeaderNav';
+import { BottomHeaderSlider } from './assets/BottomHeaderSlider';
 
 interface IProps {}
 
 /**
  * @author
- * @function @HeaderHome
+ * @function @HeaderBottom
  **/
 
-export const HeaderHome: FC<IProps> = (props) => {
+export const HeaderBottom: FC<IProps> = (props) => {
   const [open, setOpen] = useCycle(false, true);
   const [Content, setContent] = useState('Discover');
   return (
@@ -21,7 +21,7 @@ export const HeaderHome: FC<IProps> = (props) => {
       <div className="flex relative box-border w-full max-w-[1440px] mx-auto justify-between items-center sm:px-5 px-3">
         <div className="flex relative md-900:space-x-6 items-center">
           <SearchButton />
-          <MainHeaderNav
+          <BottomHeaderNav
             open={open}
             onOpen={() => setOpen()}
             Value={Content}
@@ -33,7 +33,7 @@ export const HeaderHome: FC<IProps> = (props) => {
           <CartButtonDark />
         </div>
       </div>
-      <MainHeaderSlider
+      <BottomHeaderSlider
         open={open}
         onClose={() => setOpen()}
         Value={Content}

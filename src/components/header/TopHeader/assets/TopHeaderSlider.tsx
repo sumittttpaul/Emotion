@@ -10,10 +10,6 @@ interface IProps {
   onValueChange: (value: string) => void;
 }
 
-/**
- * @author
- * @function @MobileHeaderSlider
- **/
 
 const Links = [
   {
@@ -38,7 +34,12 @@ const Links = [
   },
 ];
 
-export const MobileHeaderSlider: FC<IProps> = (props) => {
+/**
+ * @author
+ * @function @TopHeaderSlider
+ **/
+
+export const TopHeaderSlider: FC<IProps> = (props) => {
   const UlVariants: Variants = {
     open: {
       transition: { staggerChildren: 0.07, delayChildren: 0 },

@@ -20,10 +20,10 @@ const path02Variants = {
 
 /**
  * @author
- * @function @MenuButton
+ * @function @TopHeaderMenuButton
  **/
 
-export const MobileMenuButton: FC<IProps> = (props) => {
+export const TopHeaderMenuButton: FC<IProps> = (props) => {
   const [animation, setAnimation] = useState('closed');
   useEffect(() => {
     if (!props.Cycle) {

@@ -6,10 +6,10 @@ interface IProps {}
 
 /**
  * @author
- * @function @HeaderLogo
+ * @function @TopHeaderLogo
  **/
 
-export const HeaderLogo: FC<IProps> = (props) => {
+export const TopHeaderLogo: FC<IProps> = (props) => {
   return (
     <div className="flex relative py-[7px] sm:px-[12px]">
       <Image

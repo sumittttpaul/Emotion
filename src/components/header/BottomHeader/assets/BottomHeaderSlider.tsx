@@ -9,10 +9,6 @@ interface IProps {
   Value: string;
 }
 
-/**
- * @author
- * @function @MainHeaderSlider
- **/
 
 const Links = [
   {
@@ -76,7 +72,12 @@ const ActiveContent = (props: string, value: string) => {
   }
 };
 
-export const MainHeaderSlider: FC<IProps> = (props) => {
+/**
+ * @author
+ * @function @BottomHeaderSlider
+ **/
+
+export const BottomHeaderSlider: FC<IProps> = (props) => {
   const [Slider, setSlider] = useState('closed');
   useEffect(() => {
     if (props.open) {
@@ -87,9 +88,9 @@ export const MainHeaderSlider: FC<IProps> = (props) => {
   }, [props.open]);
   return (
     <motion.div
-      className="bg-transparent w-full sm:hidden"
-      animate={Slider}
-      variants={SliderVariant}
+    className="bg-transparent w-full sm:hidden"
+    animate={Slider}
+    variants={SliderVariant}
     >
       <motion.ul variants={UlVariants} className="py-5 sm:hidden">
         {Links.map((value) => (

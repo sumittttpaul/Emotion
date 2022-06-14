@@ -1,19 +1,19 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useCycle } from 'framer-motion';
-import { HeaderNav } from './assets/HeaderNav';
-import { MobileMenuButton } from '../../button/MobileMenuButton';
-import { UserIconButton } from '../../button/UserIconButton';
-import { HeaderLogo } from './assets/HeaderLogo';
-import { MobileHeaderSlider } from './assets/MobileHeaderSlider';
+import { TopHeaderUserButton } from '../../button/TopHeaderUserButton';
+import { TopHeaderMenuButton } from '../../button/TopHeaderMenuButton';
+import { TopHeaderLogo } from './assets/TopHeaderLogo';
+import { TopHeaderNav } from './assets/TopHeaderNav';
+import { TopHeaderSlider } from './assets/TopHeaderSlider';
 
 interface IProps {}
 
 /**
  * @author
- * @function @HeaderHome
+ * @function @HeaderTop
  **/
 
-export const HeaderHomeTop: FC<IProps> = (props) => {
+export const HeaderTop: FC<IProps> = (props) => {
   const [Cycle, setCycle] = useCycle(false, true);
   const [Hvalue, setHvalue] = useState(0);
   const [Content, setContent] = useState('Store');
@@ -40,18 +40,18 @@ export const HeaderHomeTop: FC<IProps> = (props) => {
     <>
       <div className="w-full z-[9999] relative box-border h-[50px] bg-[#2a2a2a]">
         <div className="flex w-full justify-between max-w-[1540px] mx-auto">
-          <MobileMenuButton Cycle={Cycle} onClick={() => setCycle()} />
+          <TopHeaderMenuButton Cycle={Cycle} onClick={() => setCycle()} />
           <div className="flex relative">
-            <HeaderLogo />
-            <HeaderNav
+            <TopHeaderLogo />
+            <TopHeaderNav
               Value={Content}
               onValueChange={(value) => setContent(value)}
             />
           </div>
-          <UserIconButton />
+          <TopHeaderUserButton />
         </div>
       </div>
-      <MobileHeaderSlider
+      <TopHeaderSlider
         Hvalue={Hvalue}
         Cycle={Cycle}
         onClose={() => setCycle()}

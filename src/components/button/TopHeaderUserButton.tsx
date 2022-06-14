@@ -11,10 +11,10 @@ interface IProps {}
 
 /**
  * @author
- * @function @UserIconButton
+ * @function @TopHeaderUserButton
  **/
 
-export const UserIconButton: FC<IProps> = (props) => {
+export const TopHeaderUserButton: FC<IProps> = (props) => {
   const user = useAuth();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

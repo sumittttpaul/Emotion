@@ -6,10 +6,6 @@ interface IProps {
   onValueChange: (value: string) => void;
 }
 
-/**
- * @author
- * @function @HeaderNav
- **/
 
 const NavLabel = [
   {
@@ -59,7 +55,12 @@ const ActiveContent = (value: string) => {
   }
 };
 
-export const HeaderNav: FC<IProps> = (props) => {
+/**
+ * @author
+ * @function @TopHeaderNav
+ **/
+
+export const TopHeaderNav: FC<IProps> = (props) => {
   const [selectedValue, setSelectedValue] = useState('tab1');
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     props.onValueChange(ActiveContent(event.target.value));

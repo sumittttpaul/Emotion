@@ -10,10 +10,6 @@ interface IProps {
   Value: string;
 }
 
-/**
- * @author
- * @function @MainHeaderNav
- **/
 
 const NavLabel = [
   {
@@ -52,7 +48,12 @@ const ActiveContent = (value: string) => {
   }
 };
 
-export const MainHeaderNav: FC<IProps> = (props) => {
+/**
+ * @author
+ * @function @BottomHeaderNav
+ **/
+
+export const BottomHeaderNav: FC<IProps> = (props) => {
   const [selectedValue, setSelectedValue] = useState('MainTab1');
   const [Arrow, setArrow] = useState('closed');
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
