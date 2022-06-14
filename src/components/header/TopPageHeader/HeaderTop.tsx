@@ -2,9 +2,9 @@ import React, { FC, useEffect, useState } from 'react';
 import { useCycle } from 'framer-motion';
 import { TopHeaderUserButton } from '../../button/header/TopHeaderUserButton';
 import { TopHeaderMenuButton } from '../../button/header/TopHeaderMenuButton';
-import { TopHeaderLogo } from './assets/TopHeaderLogo';
 import { TopHeaderNav } from './assets/TopHeaderNav';
 import { TopHeaderSlider } from './assets/TopHeaderSlider';
+import { TopHeaderLogo } from '../../logo/CompanyLogo';
 
 interface IProps {}
 
