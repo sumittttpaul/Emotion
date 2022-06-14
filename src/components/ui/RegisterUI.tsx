@@ -89,7 +89,7 @@ const RegisterUI: FC<IProps> = (props) => {
           transition={{ duration: 0.25 }}
         >
           <AuthHeaderLabel label="Create your Agewear account" />
-          <div className="w-full flex space-x-6">
+          <div className="w-full flex space-x-[20px]">
             <TextFieldDark
               placeholder="First Name"
               type="text"
