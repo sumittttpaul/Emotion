@@ -1,7 +1,10 @@
 import { Button } from '@mui/material';
-import React, { FC, ChangeEvent, useState } from 'react';
+import React, { FC, ChangeEvent, useState, useEffect } from 'react';
 
-interface IProps {}
+interface IProps {
+  Value: string;
+  onValueChange: (value: string) => void;
+}
 
 /**
  * @author
@@ -10,39 +13,88 @@ interface IProps {}
 
 const NavLabel = [
   {
-    name: 'Store',
+    label: 'Store',
     to: '#',
     for: 'tab1',
   },
   {
-    name: 'Fanbook',
+    label: 'Fanbook',
     to: '#',
     for: 'tab2',
   },
   {
-    name: 'FAQ',
+    label: 'FAQ',
     to: '#',
     for: 'tab3',
   },
   {
-    name: 'Help',
+    label: 'Help',
     to: '#',
     for: 'tab4',
   },
   {
-    name: 'About Us',
+    label: 'About Us',
     to: '#',
     for: 'tab5',
   },
 ];
 
+const DisableButton = (props: string, value: string) => {
+  if (props === value) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+const ActiveContent = (value: string) => {
+  if (value === 'tab1') {
+    return 'Store';
+  }
+  if (value === 'tab2') {
+    return 'Fanbook';
+  }
+  if (value === 'tab3') {
+    return 'FAQ';
+  }
+  if (value === 'tab4') {
+    return 'Help';
+  }
+  if (value === 'tab5') {
+    return 'About Us';
+  } else {
+    return 'Store';
+  }
+};
+
 const ButtonStyle =
-  'text-white opacity-70 hover:opacity-100 navLinks transition-opacity ease-out whitespace-nowrap font-[350] text-[12px] tracking-[0.075em] h-full w-[65px] flex text-center justify-center items-center px-[10px] button-text-lower';
+  'text-white disabled:text-white opacity-70 hover:opacity-100 navLinks transition-opacity ease-out whitespace-nowrap font-[350] text-[12px] tracking-[0.075em] h-full w-[65px] flex text-center justify-center items-center px-[10px] button-text-lower';
 
 export const HeaderNav: FC<IProps> = (props) => {
   const [selectedValue, setSelectedValue] = useState('tab1');
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    props.onValueChange(ActiveContent(event.target.value));
     setSelectedValue(event.target.value);
+  };
+  const ActiveSelectedValue = (value: string) => {
+    if (value === 'Store') {
+      setSelectedValue('tab1');
+    }
+    if (value === 'Fanbook') {
+      setSelectedValue('tab2');
+    }
+    if (value === 'FAQ') {
+      setSelectedValue('tab3');
+    }
+    if (value === 'Help') {
+      setSelectedValue('tab4');
+    }
+    if (value === 'About Us') {
+      setSelectedValue('tab5');
+    }
+    useEffect(() => {
+      ActiveSelectedValue(props.Value);
+    }, [props.Value]);
   };
   return (
     <div className="navBar sm:flex flex-col hidden h-full">
@@ -98,12 +150,13 @@ export const HeaderNav: FC<IProps> = (props) => {
       />
       <ul className="flex flex-row h-full">
         {NavLabel.map((value) => (
-          <li key={value.name} className="relative box-border h-full">
+          <li key={value.label} className="relative box-border h-full">
             <label htmlFor={value.for} role="button">
               <Button
+                component="a"
                 aria-label="header-button"
                 disableFocusRipple
-                component="a"
+                disabled={Boolean(DisableButton(props.Value, value.label))}
                 sx={{
                   '.MuiTouchRipple-child': {
                     backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
@@ -111,7 +164,7 @@ export const HeaderNav: FC<IProps> = (props) => {
                 }}
                 className={ButtonStyle}
               >
-                {value.name}
+                {value.label}
               </Button>
             </label>
           </li>

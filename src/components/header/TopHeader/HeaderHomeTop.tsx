@@ -16,6 +16,7 @@ interface IProps {}
 export const HeaderHomeTop: FC<IProps> = (props) => {
   const [Cycle, setCycle] = useCycle(false, true);
   const [Hvalue, setHvalue] = useState(0);
+  const [Content, setContent] = useState('Store');
 
   useEffect(() => {
     if (global.window) {
@@ -42,7 +43,10 @@ export const HeaderHomeTop: FC<IProps> = (props) => {
           <MobileMenuButton Cycle={Cycle} onClick={() => setCycle()} />
           <div className="flex relative">
             <HeaderLogo />
-            <HeaderNav />
+            <HeaderNav
+              Value={Content}
+              onValueChange={(value) => setContent(value)}
+            />
           </div>
           <UserIconButton />
         </div>
@@ -51,6 +55,8 @@ export const HeaderHomeTop: FC<IProps> = (props) => {
         Hvalue={Hvalue}
         Cycle={Cycle}
         onClose={() => setCycle()}
+        Value={Content}
+        onValueChange={(value) => setContent(value)}
       />
     </>
   );

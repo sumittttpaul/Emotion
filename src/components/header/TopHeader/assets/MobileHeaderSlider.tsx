@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { Button, Drawer } from '@mui/material';
-import Router from 'next/router';
 
 interface IProps {
   Cycle: boolean;
   onClose: () => void;
   Hvalue: number;
+  Value: string;
+  onValueChange: (value: string) => void;
 }
 
 /**
@@ -88,6 +89,9 @@ export const MobileHeaderSlider: FC<IProps> = (props) => {
               disableFocusRipple
               onClick={() => {
                 setTimeout(() => {
+                  if (props.Value != value.label) {
+                    props.onValueChange(value.label);
+                  }
                   props.onClose();
                 }, 200);
               }}
@@ -96,7 +100,7 @@ export const MobileHeaderSlider: FC<IProps> = (props) => {
                   backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
                 },
               }}
-              className="text-white w-full opacity-[0.85] hover:opacity-100 transition-opacity ease-in whitespace-nowrap font-[350] text-sm tracking-[0.075em] h-full justify-start items-center py-4 px-14 button-text-lower"
+              className="text-white disabled:text-white w-full opacity-[0.85] hover:opacity-100 transition-opacity ease-in whitespace-nowrap font-[350] text-sm tracking-[0.075em] h-full justify-start items-center py-4 px-14 button-text-lower"
             >
               {value.label}
             </Button>
