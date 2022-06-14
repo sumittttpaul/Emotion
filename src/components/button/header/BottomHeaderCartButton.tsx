@@ -6,10 +6,10 @@ interface IProps {}
 
 /**
  * @author
- * @function @CartButtonDark
+ * @function @BottomHeaderCartButton
  **/
 
-export const CartButtonDark: FC<IProps> = (props) => {
+export const BottomHeaderCartButton: FC<IProps> = (props) => {
   return (
     <>
       <Button

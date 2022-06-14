@@ -1,8 +1,8 @@
 import { useCycle } from 'framer-motion';
 import React, { FC, useState } from 'react';
-import { CartButtonDark } from '../../button/CartButtonDark';
-import { SearchButton } from '../../button/SearchButton';
-import { WishlistButtonDark } from '../../button/WishlistButtonDark';
+import { BottomHeaderCartButton } from '../../button/header/BottomHeaderCartButton';
+import { BottomHeaderSearchButton } from '../../button/header/BottomHeaderSearchButton';
+import { BottomHeaderWishlistButton } from '../../button/header/BottomHeaderWishlistButton';
 import { BottomHeaderNav } from './assets/BottomHeaderNav';
 import { BottomHeaderSlider } from './assets/BottomHeaderSlider';
 
@@ -20,7 +20,7 @@ export const HeaderBottom: FC<IProps> = (props) => {
     <div className="flex flex-col sticky-top items-start box-border w-full py-3 sm:py-4 backdrop-blur-sm bg-[rgba(18,18,18,0.85)]">
       <div className="flex relative box-border w-full max-w-[1440px] mx-auto justify-between items-center sm:px-5 px-3">
         <div className="flex relative md-900:space-x-6 items-center">
-          <SearchButton />
+          <BottomHeaderSearchButton />
           <BottomHeaderNav
             open={open}
             onOpen={() => setOpen()}
@@ -29,8 +29,8 @@ export const HeaderBottom: FC<IProps> = (props) => {
           />
         </div>
         <div className="flex relative space-x-2.5 sm:space-x-4 items-center">
-          <WishlistButtonDark />
-          <CartButtonDark />
+          <BottomHeaderWishlistButton />
+          <BottomHeaderCartButton />
         </div>
       </div>
       <BottomHeaderSlider

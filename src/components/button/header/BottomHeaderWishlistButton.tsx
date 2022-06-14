@@ -6,10 +6,10 @@ interface IProps {}
 
 /**
  * @author
- * @function @WishListButton
+ * @function @BottomHeaderWishlistButton
  **/
 
-export const WishlistButtonDark: FC<IProps> = (props) => {
+export const BottomHeaderWishlistButton: FC<IProps> = (props) => {
   return (
     <>
       <Button
