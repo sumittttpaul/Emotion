@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import { PageContainerDark } from '../../components/container/PageContainerDark';
-import { MainHeaderSlider } from '../../components/header/MainHeader/assets/MainHeaderSlider';
 import { HeaderHome } from '../../components/header/MainHeader/HeaderHome';
 import { HeaderHomeTop } from '../../components/header/TopHeader/HeaderHomeTop';
 
@@ -10,12 +9,38 @@ import { HeaderHomeTop } from '../../components/header/TopHeader/HeaderHomeTop';
 const Store: NextPage = () => {
   return (
     <PageContainerDark>
-      <div className="w-full h-full box-border relative flex flex-col overflow-y-auto scroll-smooth">
+      <div className="w-full h-full box-border relative flex flex-col overflow-clip sm:overflow-auto scroll-smooth">
         <HeaderHomeTop />
-        <div className="w-full h-[20px] min-h-[20px] block bg-transparent" />
+        <div className="w-full h-[15px] min-h-[15px] block bg-transparent" />
         <HeaderHome />
-        <div className="w-full h-[20px] min-h-[20px] block bg-transparent" />
-        <h6 className="text-white w-full flex justify-center">CONTENT</h6> 
+        <div className="w-full h-[15px] min-h-[15px] block bg-transparent" />
+        {/*  */}
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        <h6 className="text-white w-full bg-slate-800 p-5 flex justify-center">CONTENT</h6> 
+        {/*  */}
       </div>
     </PageContainerDark>
   );

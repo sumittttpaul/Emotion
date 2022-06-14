@@ -1,3 +1,9 @@
+.sticky-top {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0; /* required */
+}
+
 .main-auth {
   user-select: none;
   color: #fff;
@@ -97,7 +103,6 @@
   left: 19%;
   opacity: 0.2;
 }
-
 
 @media screen and (min-width: 640px) {
   .ShowAvatar-container {

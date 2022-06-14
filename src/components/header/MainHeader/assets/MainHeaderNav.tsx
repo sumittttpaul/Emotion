@@ -6,6 +6,8 @@ import { motion } from 'framer-motion';
 interface IProps {
   open: boolean;
   onOpen: () => void;
+  onValueChange: (value: string) => void;
+  Value: string;
 }
 
 /**
@@ -36,10 +38,25 @@ const ArrowVariant = {
   closed: { transform: 'rotate(0deg)' },
 };
 
+const ActiveContent = (value: string) => {
+  if (value === 'MainTab1') {
+    return 'Discover';
+  }
+  if (value === 'MainTab2') {
+    return 'Offers';
+  }
+  if (value === 'MainTab3') {
+    return 'Collections';
+  } else {
+    return 'Discover';
+  }
+};
+
 export const MainHeaderNav: FC<IProps> = (props) => {
   const [selectedValue, setSelectedValue] = useState('MainTab1');
   const [Arrow, setArrow] = useState('closed');
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    props.onValueChange(ActiveContent(event.target.value));
     setSelectedValue(event.target.value);
   };
   useEffect(() => {
@@ -110,7 +127,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
         className="ml-[20%] flex sm:hidden opacity-90 text-white button-text-lower"
       >
         <div className="flex space-x-2 items-center">
-          <h6 className="font-normal text-[13.5px]">Discover</h6>
+          <h6 className="font-normal text-[13.5px]">{props.Value}</h6>
           <motion.div animate={Arrow} variants={ArrowVariant}>
             <ChevronDownIcon className="h-5 w-5 opacity-90" />
           </motion.div>

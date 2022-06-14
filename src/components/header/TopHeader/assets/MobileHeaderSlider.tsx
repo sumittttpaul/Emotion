@@ -75,7 +75,7 @@ export const MobileHeaderSlider: FC<IProps> = (props) => {
         '.MuiDrawer-paper': {
           background: '#2a2a2a',
           height: '100%',
-          marginTop: '45px',
+          paddingTop: '45px',
         },
       }}
     >
@@ -88,7 +88,6 @@ export const MobileHeaderSlider: FC<IProps> = (props) => {
               disableFocusRipple
               onClick={() => {
                 setTimeout(() => {
-                  Router.push(value.to);
                   props.onClose();
                 }, 200);
               }}
