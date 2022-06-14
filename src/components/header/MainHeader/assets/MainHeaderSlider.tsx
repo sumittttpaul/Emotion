@@ -91,7 +91,7 @@ export const MainHeaderSlider: FC<IProps> = (props) => {
       animate={Slider}
       variants={SliderVariant}
     >
-      <motion.ul variants={UlVariants} className="py-5">
+      <motion.ul variants={UlVariants} className="py-5 sm:hidden">
         {Links.map((value) => (
           <motion.li key={value.label} variants={LiVariants}>
             <div className="w-full block relative h-[10px] min-h-[10px]" />
