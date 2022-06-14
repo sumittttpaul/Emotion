@@ -59,25 +59,22 @@ export const MainHeaderNav: FC<IProps> = (props) => {
     props.onValueChange(ActiveContent(event.target.value));
     setSelectedValue(event.target.value);
   };
-  const ActiveSelectedValue = (value: string) => {
-    if (value === 'Discover') {
+  useEffect(() => {
+    if (props.Value === 'Discover') {
       setSelectedValue('MainTab1');
     }
-    if (value === 'Offers') {
+    if (props.Value === 'Offers') {
       setSelectedValue('MainTab2');
     }
-    if (value === 'Collections') {
+    if (props.Value === 'Collections') {
       setSelectedValue('MainTab3');
     }
-  };
-  useEffect(() => {
-    ActiveSelectedValue(props.Value);
     if (props.open) {
       setArrow('open');
     } else {
       setArrow('closed');
     }
-  }, [props.open, props.Value, Arrow]);
+  }, [props.open, props.Value]);
   return (
     <>
       <div className="mainNav hidden sm:flex sm:ml-6 md-900:ml-0 flex-col">

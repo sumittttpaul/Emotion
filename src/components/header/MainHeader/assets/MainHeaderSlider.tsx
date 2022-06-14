@@ -112,7 +112,10 @@ export const MainHeaderSlider: FC<IProps> = (props) => {
                   backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
                 },
               }}
-              className={`${ActiveContent(props.Value, value.label)} ${'text-white disabled:text-white w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center py-2.5 px-14 button-text-lower'}`}
+              className={`${ActiveContent(
+                props.Value,
+                value.label
+              )} ${'text-white disabled:text-white w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center py-2.5 px-14 button-text-lower'}`}
             >
               {value.label}
             </Button>

@@ -39,14 +39,6 @@ const NavLabel = [
   },
 ];
 
-const DisableButton = (props: string, value: string) => {
-  if (props === value) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
 const ActiveContent = (value: string) => {
   if (value === 'tab1') {
     return 'Store';
@@ -67,35 +59,29 @@ const ActiveContent = (value: string) => {
   }
 };
 
-const ButtonStyle =
-  'text-white disabled:text-white opacity-70 hover:opacity-100 navLinks transition-opacity ease-out whitespace-nowrap font-[350] text-[12px] tracking-[0.075em] h-full w-[65px] flex text-center justify-center items-center px-[10px] button-text-lower';
-
 export const HeaderNav: FC<IProps> = (props) => {
   const [selectedValue, setSelectedValue] = useState('tab1');
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     props.onValueChange(ActiveContent(event.target.value));
     setSelectedValue(event.target.value);
   };
-  const ActiveSelectedValue = (value: string) => {
-    if (value === 'Store') {
+  useEffect(() => {
+    if (props.Value === 'Store') {
       setSelectedValue('tab1');
     }
-    if (value === 'Fanbook') {
+    if (props.Value === 'Fanbook') {
       setSelectedValue('tab2');
     }
-    if (value === 'FAQ') {
+    if (props.Value === 'FAQ') {
       setSelectedValue('tab3');
     }
-    if (value === 'Help') {
+    if (props.Value === 'Help') {
       setSelectedValue('tab4');
     }
-    if (value === 'About Us') {
+    if (props.Value === 'About Us') {
       setSelectedValue('tab5');
     }
-    useEffect(() => {
-      ActiveSelectedValue(props.Value);
-    }, [props.Value]);
-  };
+  }, [props.Value]);
   return (
     <div className="navBar sm:flex flex-col hidden h-full">
       <input
@@ -156,13 +142,19 @@ export const HeaderNav: FC<IProps> = (props) => {
                 component="a"
                 aria-label="header-button"
                 disableFocusRipple
-                disabled={Boolean(DisableButton(props.Value, value.label))}
                 sx={{
                   '.MuiTouchRipple-child': {
                     backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
                   },
                 }}
-                className={ButtonStyle}
+                onClick={() => {
+                  setTimeout(() => {
+                    if (props.Value != value.label) {
+                      props.onValueChange(value.label);
+                    }
+                  }, 200);
+                }}
+                className="text-white disabled:text-white opacity-70 hover:opacity-100 navLinks transition-opacity ease-out whitespace-nowrap font-[350] text-[12px] tracking-[0.075em] h-full w-[65px] flex text-center justify-center items-center px-[10px] button-text-lower"
               >
                 {value.label}
               </Button>
