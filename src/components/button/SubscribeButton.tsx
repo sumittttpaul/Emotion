@@ -32,6 +32,7 @@ export class SubscribeButton extends Component<IProps> {
             setTimeout(() => {
               if (!button.classList.contains('active')) {
                 this.setState({ loading: false });
+                // Send newsletter email and add email to newsletter database
                 button.classList.add('active');
                 gsap.to(button, {
                   keyframes: [
