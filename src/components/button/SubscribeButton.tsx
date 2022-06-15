@@ -171,7 +171,7 @@ export class SubscribeButton extends Component<IProps> {
         <button
           disabled={this.props.disabled}
           type="button"
-          className="EmailSubscribebutton disabled:opacity-80 disabled:cursor-not-allowed"
+          className="EmailSubscribebutton disabled:opacity-80"
         >
           <span className="default">Subscribe</span>
           <span className="success">

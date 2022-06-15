@@ -26,7 +26,7 @@ const LargeButtonBlue: FC<IProps> = (props) => {
         }}
         disabled={props.Disabled}
         onClick={props.onClick}
-        className="bg-[#0074E4] hover:bg-[#0074E4] disabled:opacity-50 disabled:text-white disabled:cursor-not-allowed rounded-md text-white h-[60px] w-full text-xs transition-all ease-in"
+        className="bg-[#0074E4] hover:bg-[#0074E4] disabled:opacity-50 disabled:text-white rounded-md text-white h-[60px] w-full text-xs transition-all ease-in"
       >
         {props.content}
       </Button>

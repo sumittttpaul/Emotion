@@ -21,7 +21,7 @@ export const CropAvatarBottom: FC<IProps> = (props) => {
         aria-label="reset-crop-image-button"
         disabled={!props.changed}
         onClick={props.resetClick}
-        className="disabled:text-[rgba(255,255,255,0.5)] disabled:cursor-not-allowed font-normal max-w-[200px] border border-solid bg-transparent border-[rgba(255,255,255,0.25)] hover:bg-transparent h-[40px] rounded-md button-text-lower text-white text-xs transition-colors w-full"
+        className="disabled:text-[rgba(255,255,255,0.5)] font-normal max-w-[200px] border border-solid bg-transparent border-[rgba(255,255,255,0.25)] hover:bg-transparent h-[40px] rounded-md button-text-lower text-white text-xs transition-colors w-full"
       >
         Reset to default
       </Button>

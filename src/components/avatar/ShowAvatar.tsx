@@ -93,7 +93,7 @@ const ShowAvatar: FC<IProps> = (props) => {
               backgroundColor: 'rgba(26, 115, 232, 0.25) !important',
             },
           }}
-          className="disabled:opacity-50 button-text-lower py-[7px] disabled:text-[#1a73e8] disabled:cursor-not-allowed text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
+          className="disabled:opacity-50 button-text-lower py-[7px] disabled:text-[#1a73e8] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
         >
           <div className="flex space-x-2 items-center justify-center">
             <Image
@@ -118,7 +118,7 @@ const ShowAvatar: FC<IProps> = (props) => {
               backgroundColor: 'rgba(26, 115, 232, 0.25) !important',
             },
           }}
-          className="disabled:opacity-50 button-text-lower py-[7px] disabled:text-[#1a73e8] disabled:cursor-not-allowed text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
+          className="disabled:opacity-50 button-text-lower py-[7px] disabled:text-[#1a73e8] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
         >
           <div className="flex space-x-2 items-center justify-center">
             <Image

@@ -1,7 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { Button } from '@mui/material';
-import { Collections_Link, Discover_Link, Offers_Link } from '../../../../routerLinks/RouterLinks';
+import {
+  Collections_Link,
+  Discover_Link,
+  Offers_Link,
+} from '../../../../routerLinks/RouterLinks';
 
 interface IProps {
   open: boolean;
@@ -9,7 +13,6 @@ interface IProps {
   onValueChange: (value: string) => void;
   Value: string;
 }
-
 
 const Links = [
   {
@@ -89,9 +92,9 @@ export const BottomHeaderSlider: FC<IProps> = (props) => {
   }, [props.open]);
   return (
     <motion.div
-    className="bg-transparent w-full sm:hidden"
-    animate={Slider}
-    variants={SliderVariant}
+      className="bg-transparent w-full sm:hidden"
+      animate={Slider}
+      variants={SliderVariant}
     >
       <motion.ul variants={UlVariants} className="py-5 sm:hidden">
         {Links.map((value) => (
@@ -117,7 +120,7 @@ export const BottomHeaderSlider: FC<IProps> = (props) => {
               className={`${ActiveContent(
                 props.Value,
                 value.label
-              )} ${'text-white disabled:text-white disabled:cursor-not-allowed w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center py-2.5 px-14 button-text-lower'}`}
+              )} ${'text-white disabled:text-white w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center py-2.5 px-14 button-text-lower'}`}
             >
               {value.label}
             </Button>
