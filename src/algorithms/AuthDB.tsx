@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import Router from 'next/router';
+import { Home_Link } from '../routerLinks/RouterLinks';
 import {
   CreateUserDataProps,
   UpdateUserDataProps,
@@ -85,7 +86,7 @@ export const CreateUserAuthData = ({
     Gender: Gender,
   })
     .then(() => {
-      Router.push('/');
+      Router.push(Home_Link);
       // Loading(false);
     })
     .catch((error) => {

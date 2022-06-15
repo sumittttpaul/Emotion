@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import IconTextFieldDark from '../textfield/IconTextFieldDark';
 import LargeButtonBlue from '../button/LargeButtonBlue';
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
+import { Login_Link } from '../../routerLinks/RouterLinks';
 
 interface IProps {
   Email: string;
@@ -75,7 +76,7 @@ const ForgotPasswordUI: FC<IProps> = (props) => {
               Remember your password?&#160;
               <Link
                 onClick={() => {
-                  Router.push('/auth/login');
+                  Router.push(Login_Link);
                 }}
                 className="text-white text-xs"
                 component="button"

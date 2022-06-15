@@ -17,6 +17,7 @@ import 'firebase/compat/auth';
 import { AuthError } from '../firebase/AuthError';
 import { getDownloadURL } from 'firebase/storage';
 import Router from 'next/router';
+import { Home_Link, Register_Link, Setup_Account_Link } from '../routerLinks/RouterLinks';
 
 declare global {
   interface Window {
@@ -122,12 +123,12 @@ export const VerifyOTP = ({
         if (firebase.auth().currentUser) {
           const UID = firebase.auth().currentUser?.uid;
           Router.push({
-            pathname: '/auth/register',
+            pathname: Register_Link,
             query: { id: `${UID}`, phone: `${Phone}` },
           });
         }
       } else {
-        Router.push('/');
+        Router.push(Home_Link);
       }
     })
     .catch((error) => {
@@ -228,7 +229,7 @@ export const SignInWithEmailAndPassword = ({
     .auth()
     .signInWithEmailAndPassword(Email, Password)
     .then(() => {
-      Router.push('/');
+      Router.push(Home_Link);
       console.error('SingIn with Email & Password Successful !');
     })
     .catch((error) => {
@@ -257,7 +258,7 @@ export const SignInWithFacebook = ({
     .auth()
     .signInWithPopup(facebookProvider)
     .then((result) => {
-      Router.push('/');
+      Router.push(Home_Link);
       console.log('SignIn with Facebook Successful !');
     })
     .catch((error) => {
@@ -282,7 +283,7 @@ export const SignInWithGoogle = ({
     .auth()
     .signInWithPopup(googleProvider)
     .then((result) => {
-      Router.push('/');
+      Router.push(Home_Link);
       console.log('SignIn with Google Successful !');
     })
     .catch((error) => {
@@ -307,7 +308,7 @@ export const SignInWithApple = ({
     .auth()
     .signInWithPopup(appleProvider)
     .then((result) => {
-      Router.push('/');
+      Router.push(Home_Link);
       console.log('SignIn with Apple Successful !');
     })
     .catch((error) => {
@@ -355,7 +356,7 @@ export const SignUp = ({
           if (firebase.auth().currentUser) {
             const UID = firebase.auth().currentUser?.uid;
             Router.push({
-              pathname: '/auth/register/setup-account',
+              pathname: Setup_Account_Link,
               query: {
                 id: `${UID}`,
                 firstname: `${FirstName}`,

@@ -6,6 +6,7 @@ import IconPasswordTextFieldDark from '../../../textfield/IconPasswordTextFieldD
 import { EmailPrivacyPolicy } from '../../../terms & policy/EmailPrivacyPolicy';
 import { Link } from '@mui/material';
 import Router from 'next/router';
+import { Forgot_Password_Link } from '../../../../routerLinks/RouterLinks';
 
 interface IProps {
   Email: string;
@@ -76,7 +77,7 @@ const EmailAuthUI: FC<IProps> = (props) => {
         <div className="text-right w-full">
           <Link
             onClick={() => {
-              Router.push('/auth/login/forgot-password');
+              Router.push(Forgot_Password_Link);
             }}
             className="text-white text-xs -mt-5"
             component="button"

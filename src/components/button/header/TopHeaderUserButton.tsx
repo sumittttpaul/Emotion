@@ -6,6 +6,7 @@ import { useAuth } from '../../../firebase/AuthProvider';
 import firebase from 'firebase/compat/app';
 import Router from 'next/router';
 import UserIcon from '../../../../public/icons/user-fill.svg';
+import { Login_Link } from '../../../routerLinks/RouterLinks';
 
 interface IProps {}
 
@@ -226,7 +227,7 @@ export const TopHeaderUserButton: FC<IProps> = (props) => {
           disableFocusRipple
           onClick={() => {
             setTimeout(() => {
-              Router.push('/auth/login');
+              Router.push(Login_Link);
             }, 150);
           }}
           className="flex items-center button-text-lower h-full px-4 bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.05)]"
