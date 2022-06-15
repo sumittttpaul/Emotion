@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from 'react';
+import React, { FC, Fragment, MouseEvent, useState } from 'react';
 import { IconButton, Button, Menu, MenuItem } from '@mui/material';
 import Image from 'next/image';
 import { Square_BlurDataURL } from '../../loader/BlurDataURL';
@@ -6,7 +6,13 @@ import { useAuth } from '../../../firebase/AuthProvider';
 import firebase from 'firebase/compat/app';
 import Router from 'next/router';
 import UserIcon from '../../../../public/icons/user-fill.svg';
-import { Cart_Link, Login_Link, Manage_Your_Account_Link, Redeem_Gift_Codes_Link, Track_Order_Link } from '../../../routerLinks/RouterLinks';
+import {
+  Cart_Link,
+  Login_Link,
+  Manage_Your_Account_Link,
+  Redeem_Gift_Codes_Link,
+  Track_Order_Link,
+} from '../../../routerLinks/RouterLinks';
 
 interface IProps {}
 
@@ -20,7 +26,7 @@ export const TopHeaderUserButton: FC<IProps> = (props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -57,7 +63,7 @@ export const TopHeaderUserButton: FC<IProps> = (props) => {
               placeholder="blur"
               blurDataURL={Square_BlurDataURL}
               src={`${user.photoURL}`}
-              alt="user profile"
+              alt="user profile small button"
             />
           </IconButton>
           <Button
@@ -79,7 +85,7 @@ export const TopHeaderUserButton: FC<IProps> = (props) => {
                 placeholder="blur"
                 blurDataURL={Square_BlurDataURL}
                 src={`${user.photoURL}`}
-                alt="user profile"
+                alt="user profile large button"
               />
               <h6 className="text-white hidden sm:block whitespace-nowrap font-[300] tracking-[0.075em] text-[12px]">
                 {`${user.displayName}`}
@@ -173,7 +179,7 @@ export const TopHeaderUserButton: FC<IProps> = (props) => {
               onClick={() => {
                 setTimeout(() => {
                   handleClose();
-                  Router.push(Track_Order_Link)
+                  Router.push(Track_Order_Link);
                 }, 150);
               }}
               className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
@@ -195,7 +201,7 @@ export const TopHeaderUserButton: FC<IProps> = (props) => {
               onClick={() => {
                 setTimeout(() => {
                   handleClose();
-                  Router.push(Cart_Link)
+                  Router.push(Cart_Link);
                 }, 150);
               }}
               className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
@@ -217,7 +223,7 @@ export const TopHeaderUserButton: FC<IProps> = (props) => {
               onClick={() => {
                 setTimeout(() => {
                   handleClose();
-                  Router.push(Redeem_Gift_Codes_Link)
+                  Router.push(Redeem_Gift_Codes_Link);
                 }, 150);
               }}
               className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
