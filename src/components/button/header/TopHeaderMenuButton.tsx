@@ -40,6 +40,7 @@ export const TopHeaderMenuButton: FC<IProps> = (props) => {
   }, [props.Cycle]);
   return (
     <IconButton
+      disableFocusRipple
       className="relative flex p-0 sm:hidden"
       onClick={props.onClick}
       sx={{

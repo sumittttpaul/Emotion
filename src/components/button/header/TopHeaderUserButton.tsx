@@ -40,6 +40,7 @@ export const TopHeaderUserButton: FC<IProps> = (props) => {
         <Fragment>
           <IconButton
             onClick={handleClick}
+            disableFocusRipple
             className="sm:hidden items-center h-full px-2 sm:mr-2"
             sx={{
               borderRadius: '0 !important',

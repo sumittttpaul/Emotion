@@ -152,6 +152,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
       </ScrollContainer>
       {LeftButton ? (
         <IconButton
+          disableFocusRipple
           onClick={() => {
             setTimeout(() => {
               slideLeft();
@@ -173,6 +174,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
       )}
       {RightButton ? (
         <IconButton
+          disableFocusRipple
           onClick={() => {
             setTimeout(() => {
               slideRight();

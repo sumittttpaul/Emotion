@@ -16,6 +16,7 @@ export const CropAvatarTop: FC<IProps> = (props) => {
   return (
     <div className="flex w-full justify-between items-center p-1">
       <IconButton
+        disableFocusRipple
         onClick={props.back}
         className="hover:bg-[rgba(255,255,255,0.1)] p-3"
       >
@@ -23,6 +24,7 @@ export const CropAvatarTop: FC<IProps> = (props) => {
       </IconButton>
       <h6 className="text-white font-normal pt-1">Crop & Rotate</h6>
       <IconButton
+        disableFocusRipple
         onClick={props.moreInfo}
         className="hover:bg-[rgba(255,255,255,0.1)] p-3"
       >

@@ -13,7 +13,7 @@ interface IProps {
   backward?: () => void;
   forward: () => void;
   getURL: (value: string) => void;
-  ShowCollection: ()=> void;
+  ShowCollection: () => void;
   CollectionHeading: (value: string) => void;
   AvatarName: (value: string) => void;
   backBool: (value: boolean) => void;
@@ -41,13 +41,17 @@ const SelectAvatar: FC<IProps> = (props) => {
       {/* Header */}
       <div className="flex w-full justify-between items-center p-1">
         <IconButton
+          disableFocusRipple
           onClick={props.backward}
           className="hover:bg-[rgba(0,0,0,0.07)] p-3"
         >
           <ArrowLeftIcon className="h-5" />
         </IconButton>
         <h6 className="text-black font-medium pt-1">Change profile picture</h6>
-        <IconButton className="hover:bg-[rgba(0,0,0,0.07)] p-3">
+        <IconButton
+          disableFocusRipple
+          className="hover:bg-[rgba(0,0,0,0.07)] p-3"
+        >
           <DotsVerticalIcon className="h-5" />
         </IconButton>
       </div>
@@ -91,7 +95,14 @@ const SelectAvatar: FC<IProps> = (props) => {
         }}
       >
         <SelectAvatarTabPanel value={value} index={0} dir={theme.direction}>
-          <FromAvatars show={props.forward} getURL={props.getURL} backBool={props.backBool} ShowCollection={props.ShowCollection} heading={props.CollectionHeading} avatarName={props.AvatarName}/>
+          <FromAvatars
+            show={props.forward}
+            getURL={props.getURL}
+            backBool={props.backBool}
+            ShowCollection={props.ShowCollection}
+            heading={props.CollectionHeading}
+            avatarName={props.AvatarName}
+          />
         </SelectAvatarTabPanel>
         <SelectAvatarTabPanel value={value} index={1} dir={theme.direction}>
           <FromComputer show={props.forward} getURL={props.getURL} />

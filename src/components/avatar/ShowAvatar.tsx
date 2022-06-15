@@ -27,6 +27,7 @@ const ShowAvatar: FC<IProps> = (props) => {
       <div className="flex w-full z-10 justify-between items-center p-1">
         <h6 className="text-black font-medium pl-5 pt-1">Profile picture</h6>
         <IconButton
+          disableFocusRipple
           onClick={props.backward}
           className="hover:bg-[rgba(0,0,0,0.07)] p-3"
         >
@@ -83,7 +84,7 @@ const ShowAvatar: FC<IProps> = (props) => {
       <div className="flex space-x-3 w-full px-6 pb-6 pt-2">
         <Button
           disableFocusRipple
-          aria-label='change-image-button'
+          aria-label="change-image-button"
           onClick={props.forward}
           disabled={props.changedisabled}
           sx={{
@@ -107,7 +108,7 @@ const ShowAvatar: FC<IProps> = (props) => {
           </div>
         </Button>
         <Button
-        aria-label="remove-image-button"
+          aria-label="remove-image-button"
           disableFocusRipple
           onClick={props.remove}
           disabled={props.removedisabled}

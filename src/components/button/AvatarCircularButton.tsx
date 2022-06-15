@@ -19,6 +19,8 @@ export const AvatarCircularButton: FC<IProps> = (props) => {
     <IconButton
       onClick={props.onClick}
       disableRipple
+      disableFocusRipple
+      disableTouchRipple
       className="p-0 flex-grow-0 flex-shrink-0"
       sx={{ borderRadius: '50%' }}
     >

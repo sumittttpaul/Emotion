@@ -15,6 +15,7 @@ export const BottomHeaderCartButton: FC<IProps> = (props) => {
   return (
     <>
       <Button
+        disableFocusRipple
         onClick={props.Click}
         aria-label="desktop-cart-button"
         className="hidden md-900:block text-white py-2.5 px-3 border border-solid border-[rgba(255,255,255,0.23)] rounded-md button-text-lower opacity-80"
@@ -30,6 +31,7 @@ export const BottomHeaderCartButton: FC<IProps> = (props) => {
         </div>
       </Button>
       <IconButton
+        disableFocusRipple
         onClick={props.Click}
         aria-label="mobile-cart-button"
         className="block md-900:hidden opacity-80 button-text-lower h-full p-2.5 border border-solid border-[rgba(255,255,255,0.23)]"

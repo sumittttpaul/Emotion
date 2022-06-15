@@ -33,6 +33,8 @@ export const CropAvatarSlider: FC<IProps> = (props) => {
           <div className="flex items-center w-full">
             <IconButton
               onClick={props.onZoomOut}
+              disableTouchRipple
+              disableFocusRipple
               disableRipple
               className="text-white h-[28px] w-[28px] mr-5 opacity-50 bg-transparent hover:bg-transparent"
               style={{
@@ -86,6 +88,8 @@ export const CropAvatarSlider: FC<IProps> = (props) => {
             <IconButton
               onClick={props.onZoomIn}
               disableRipple
+              disableFocusRipple
+              disableTouchRipple
               className="text-white h-[28px] w-[28px] ml-5 opacity-50 bg-transparent hover:bg-transparent"
               style={{
                 padding: 0,

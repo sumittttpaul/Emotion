@@ -16,6 +16,7 @@ export const BottomHeaderWishlistButton: FC<IProps> = (props) => {
     <>
       <Button
         onClick={props.Click}
+        disableFocusRipple
         aria-label="desktop-wishlist-button"
         className="hidden md-900:block text-white py-2.5 px-3 border border-solid border-[rgba(255,255,255,0.23)] rounded-md button-text-lower opacity-80"
         sx={{
@@ -30,6 +31,7 @@ export const BottomHeaderWishlistButton: FC<IProps> = (props) => {
         </div>
       </Button>
       <IconButton
+        disableFocusRipple
         onClick={props.Click}
         aria-label="mobile-wishlist-button"
         className="block md-900:hidden opacity-80 button-text-lower h-full p-2.5 border border-solid border-[rgba(255,255,255,0.23)]"

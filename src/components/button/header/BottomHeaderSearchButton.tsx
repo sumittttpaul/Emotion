@@ -25,6 +25,7 @@ export const BottomHeaderSearchButton: FC<IProps> = (props) => {
         </div>
       </Button>
       <IconButton
+        disableFocusRipple
         aria-label="mobile-search-button"
         className="block md-900:hidden opacity-80 button-text-lower h-full p-2.5 border border-solid border-[rgba(255,255,255,0.23)]"
         sx={{
