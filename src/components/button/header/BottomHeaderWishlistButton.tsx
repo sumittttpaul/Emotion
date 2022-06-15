@@ -2,7 +2,9 @@ import { HeartIcon } from '@heroicons/react/solid';
 import { Button, IconButton } from '@mui/material';
 import React, { FC } from 'react';
 
-interface IProps {}
+interface IProps {
+  Click: () => void;
+}
 
 /**
  * @author
@@ -13,6 +15,7 @@ export const BottomHeaderWishlistButton: FC<IProps> = (props) => {
   return (
     <>
       <Button
+        onClick={props.Click}
         aria-label="desktop-wishlist-button"
         className="hidden md-900:block text-white py-2.5 px-3 border border-solid border-[rgba(255,255,255,0.23)] rounded-md button-text-lower opacity-80"
         sx={{
@@ -27,6 +30,7 @@ export const BottomHeaderWishlistButton: FC<IProps> = (props) => {
         </div>
       </Button>
       <IconButton
+        onClick={props.Click}
         aria-label="mobile-wishlist-button"
         className="block md-900:hidden opacity-80 button-text-lower h-full p-2.5 border border-solid border-[rgba(255,255,255,0.23)]"
         sx={{

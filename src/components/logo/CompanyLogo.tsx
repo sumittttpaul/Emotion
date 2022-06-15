@@ -34,8 +34,8 @@ export const AuthHeaderLogo = () => {
 export const FooterLogo = () => {
   return (
     <Image
-      height={25}
-      width={100}
+      height={30}
+      width={125}
       className="opacity-70"
       src={Logo_Full}
       alt="logo-svg"

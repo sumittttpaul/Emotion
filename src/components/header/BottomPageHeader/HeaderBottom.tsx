@@ -1,5 +1,7 @@
 import { useCycle } from 'framer-motion';
+import Router from 'next/router';
 import React, { FC, useState } from 'react';
+import { Cart_Link, Wishlist_Link } from '../../../routerLinks/RouterLinks';
 import { BottomHeaderCartButton } from '../../button/header/BottomHeaderCartButton';
 import { BottomHeaderSearchButton } from '../../button/header/BottomHeaderSearchButton';
 import { BottomHeaderWishlistButton } from '../../button/header/BottomHeaderWishlistButton';
@@ -29,8 +31,20 @@ export const HeaderBottom: FC<IProps> = (props) => {
           />
         </div>
         <div className="flex relative space-x-2.5 sm:space-x-4 items-center">
-          <BottomHeaderWishlistButton />
-          <BottomHeaderCartButton />
+          <BottomHeaderWishlistButton
+            Click={() => {
+              setTimeout(() => {
+                Router.push(Wishlist_Link);
+              }, 150);
+            }}
+          />
+          <BottomHeaderCartButton
+            Click={() => {
+              setTimeout(() => {
+                Router.push(Cart_Link);
+              }, 150);
+            }}
+          />
         </div>
       </div>
       <BottomHeaderSlider

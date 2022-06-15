@@ -8,10 +8,10 @@ interface IProps {
 
 /**
  * @author
- * @function @PageFooterLinks
+ * @function @PageFooterSocials
  **/
 
-export const PageFooterLinks: FC<IProps> = (props) => {
+export const PageFooterSocials: FC<IProps> = (props) => {
   return (
     <div className="flex flex-col py-2">
       <h6 className="text-white text-sm opacity-50 py-1">{props.heading}</h6>

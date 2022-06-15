@@ -6,7 +6,7 @@ import { useAuth } from '../../../firebase/AuthProvider';
 import firebase from 'firebase/compat/app';
 import Router from 'next/router';
 import UserIcon from '../../../../public/icons/user-fill.svg';
-import { Login_Link } from '../../../routerLinks/RouterLinks';
+import { Cart_Link, Login_Link, Manage_Your_Account_Link, Redeem_Gift_Codes_Link, Track_Order_Link } from '../../../routerLinks/RouterLinks';
 
 interface IProps {}
 
@@ -26,12 +26,6 @@ export const TopHeaderUserButton: FC<IProps> = (props) => {
 
   const handleClose = () => {
     setAnchorEl(null);
-  };
-
-  const handleCloseClick = () => {
-    setTimeout(() => {
-      setAnchorEl(null);
-    }, 150);
   };
 
   const SignOutUser = () => {
@@ -153,7 +147,12 @@ export const TopHeaderUserButton: FC<IProps> = (props) => {
             <div className="h-[1px] w-full bg-[rgba(0,0,0,0.05)]" />
             <MenuItem
               key={2}
-              onClick={handleCloseClick}
+              onClick={() => {
+                setTimeout(() => {
+                  handleClose();
+                  Router.push(Manage_Your_Account_Link);
+                }, 150);
+              }}
               className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
             >
               <div className="flex relative space-x-[10px]">
@@ -170,7 +169,12 @@ export const TopHeaderUserButton: FC<IProps> = (props) => {
             </MenuItem>
             <MenuItem
               key={3}
-              onClick={handleCloseClick}
+              onClick={() => {
+                setTimeout(() => {
+                  handleClose();
+                  Router.push(Track_Order_Link)
+                }, 150);
+              }}
               className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
             >
               <div className="flex relative space-x-[10px]">
@@ -187,7 +191,12 @@ export const TopHeaderUserButton: FC<IProps> = (props) => {
             </MenuItem>
             <MenuItem
               key={4}
-              onClick={handleCloseClick}
+              onClick={() => {
+                setTimeout(() => {
+                  handleClose();
+                  Router.push(Cart_Link)
+                }, 150);
+              }}
               className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
             >
               <div className="flex relative space-x-[10px]">
@@ -204,7 +213,12 @@ export const TopHeaderUserButton: FC<IProps> = (props) => {
             </MenuItem>
             <MenuItem
               key={5}
-              onClick={handleCloseClick}
+              onClick={() => {
+                setTimeout(() => {
+                  handleClose();
+                  Router.push(Redeem_Gift_Codes_Link)
+                }, 150);
+              }}
               className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
             >
               <div className="flex relative space-x-[10px]">
