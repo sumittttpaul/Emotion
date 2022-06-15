@@ -96,7 +96,7 @@ const Socials = [
 
 export const PageFooter: FC<IProps> = (props) => {
   return (
-    <footer className="w-full relative box-border bg-[#202020]">
+    <footer className="w-full relative box-border bg-[#202020] overflow-hidden">
       <div className="w-full relative p-8 box-border max-w-[1570px] mx-auto">
         <FooterLogo />
         <div className="flex relative w-full justify-between">

@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { SubscribeButton } from '../../button/SubscribeButton';
 
 interface IProps {}
 
@@ -9,8 +10,8 @@ interface IProps {}
 
 export const PageFooterSubscribe: FC<IProps> = (props) => {
   return (
-    <>
-     
-    </>
+    <div className="overscroll-none">
+      <SubscribeButton />
+    </div>
   );
 };

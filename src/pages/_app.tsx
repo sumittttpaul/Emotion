@@ -1,6 +1,7 @@
 import '../styles/globals.css';
 import '../styles/main.css';
 import '../styles/NavIndicator.css'
+import '../styles/SubscribeButton.css'
 import * as React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
