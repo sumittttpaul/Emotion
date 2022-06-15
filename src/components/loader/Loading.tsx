@@ -20,7 +20,7 @@ export const Loading: FC<IProps> = (props) => {
     <Backdrop
       className="backdrop-blur-sm transition-all ease-out"
       sx={{
-        backgroundColor: 'rgba(0, 0, 0, 0.85)',
+        backgroundColor: 'rgba(0, 0, 0, 0.65)',
         zIndex: (theme) => theme.zIndex.drawer + 1,
       }}
       open={ShowLoader}
