@@ -1,8 +1,9 @@
 import { Link } from '@mui/material';
 import React, { FC } from 'react';
+import Image from 'next/image';
 
 interface IProps {
-  Content: { label: string; to: string }[];
+  Content: { label: string; to: string; icon: string; }[];
   heading: string;
 }
 
@@ -16,15 +17,14 @@ export const PageFooterSocials: FC<IProps> = (props) => {
     <div className="flex flex-col py-2">
       <h6 className="text-white text-sm opacity-50 py-1">{props.heading}</h6>
       <div className="relative flex">
-        <ul className="flex flex-col relative space-y-[2px]">
+        <ul className="flex relative space-x-2 pt-1">
           {props.Content.map((value) => (
             <li key={value.label} className="relative flex">
               <Link
-                key={value.label}
                 href={value.to}
-                className="text-white flex justify-start items-center p-0 w-28 whitespace-nowrap font-[300] text-[12px] button-text-lower"
+                className="flex whitespace-nowrap space-x-2 button-text-lower"
               >
-                {value.label}
+                <Image height={25} width={25} src={value.icon} />
               </Link>
             </li>
           ))}

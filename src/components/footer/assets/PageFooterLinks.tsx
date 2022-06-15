@@ -1,5 +1,6 @@
 import { Link } from '@mui/material';
 import React, { FC } from 'react';
+import Image from 'next/image';
 
 interface IProps {
   Content: { label: string; to: string }[];

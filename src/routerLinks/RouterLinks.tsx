@@ -29,3 +29,7 @@ export const Redeem_Gift_Codes_Link = '#';
 //
 export const Cart_Link = '#';
 export const Wishlist_Link = '#';
+//
+export const Facebook_Link = '#';
+export const Instagram_Link = '#';
+export const Twitter_Link = '#';

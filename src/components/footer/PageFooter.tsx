@@ -1,22 +1,21 @@
 import React, { FC } from 'react';
 import {
-  About_Us_Link,
   Cancel_Order_Link,
   Cart_Link,
-  Collections_Link,
-  Contact_Us_Link,
-  Discover_Link,
+  Facebook_Link,
+  Instagram_Link,
   Manage_Your_Account_Link,
-  Offers_Link,
   Privacy_Policy_Link,
   Redeem_Gift_Codes_Link,
   Refund_Policy_Link,
   Return_Order_Link,
   Return_Order_Policy_Link,
   Track_Order_Link,
+  Twitter_Link,
 } from '../../routerLinks/RouterLinks';
 import { FooterLogo } from '../logo/CompanyLogo';
 import { PageFooterLinks } from './assets/PageFooterLinks';
+import { PageFooterSocials } from './assets/PageFooterSocials';
 
 interface IProps {}
 
@@ -55,7 +54,7 @@ const Company = [
   },
 ];
 
-const Account =[
+const Account = [
   {
     label: 'Manage your account',
     to: Manage_Your_Account_Link,
@@ -68,23 +67,23 @@ const Account =[
     label: 'View all orders',
     to: Cart_Link,
   },
-]
+];
 
-const OurSocials = [
+const Socials = [
   {
     label: 'Facebook',
-    icon: '',
-    to: '',
+    icon: '/images/social/facebook_square.png',
+    to: Facebook_Link,
   },
   {
     label: 'Instagram',
-    icon: '',
-    to: '',
+    icon: '/images/social/instagram_square.png',
+    to: Instagram_Link,
   },
   {
     label: 'Twitter',
-    icon: '',
-    to: '',
+    icon: '/images/social/twitter_square.png',
+    to: Twitter_Link,
   },
 ];
 
@@ -94,12 +93,10 @@ export const PageFooter: FC<IProps> = (props) => {
       <div className="w-full relative p-8 box-border max-w-[1570px] mx-auto">
         <FooterLogo />
         <div className="flex relative w-[50%] justify-between">
-          <PageFooterLinks
-            heading="Services"
-            Content={Services}
-          />
+          <PageFooterLinks heading="Services" Content={Services} />
           <PageFooterLinks heading="Company" Content={Company} />
-          <PageFooterLinks heading='Account' Content={Account}/>
+          <PageFooterLinks heading="Account" Content={Account} />
+          <PageFooterSocials heading="Socials" Content={Socials} />
         </div>
       </div>
     </footer>
