@@ -98,7 +98,8 @@
         top: 0;
         right: 0;
         bottom: 0;
-        border-radius: calc(var(--border-radius) * 1px);
+        border-top-right-radius: calc(var(--border-radius) * 1px);
+        border-bottom-right-radius: calc(var(--border-radius) * 1px);
         transform: translate(var(--part-x, 0.4%), var(--part-y, 0))
           translateZ(0);
         z-index: var(--z-index, 2);
