@@ -33,3 +33,4 @@ export const Wishlist_Link = '#';
 export const Facebook_Link = '#';
 export const Instagram_Link = '#';
 export const Twitter_Link = '#';
+export const Youtube_Link = '#';

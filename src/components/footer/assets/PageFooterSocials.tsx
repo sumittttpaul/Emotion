@@ -24,7 +24,7 @@ export const PageFooterSocials: FC<IProps> = (props) => {
                 href={value.to}
                 className="flex whitespace-nowrap space-x-2 button-text-lower"
               >
-                <Image height={25} width={25} src={value.icon} />
+                <Image height={25} width={25} className="flex items-center" src={value.icon} />
               </Link>
             </li>
           ))}
