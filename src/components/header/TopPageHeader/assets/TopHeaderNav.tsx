@@ -1,5 +1,6 @@
 import { Button } from '@mui/material';
 import React, { FC, ChangeEvent, useState, useEffect } from 'react';
+import { About_Us_Link, Fanbook_Link, FAQ_Link, Help_Link, Store_Link } from '../../../../routerLinks/RouterLinks';
 
 interface IProps {
   Value: string;
@@ -10,27 +11,27 @@ interface IProps {
 const NavLabel = [
   {
     label: 'Store',
-    to: '#',
+    to: Store_Link,
     for: 'tab1',
   },
   {
     label: 'Fanbook',
-    to: '#',
+    to: Fanbook_Link,
     for: 'tab2',
   },
   {
     label: 'FAQ',
-    to: '#',
+    to: FAQ_Link,
     for: 'tab3',
   },
   {
     label: 'Help',
-    to: '#',
+    to: Help_Link,
     for: 'tab4',
   },
   {
     label: 'About Us',
-    to: '#',
+    to: About_Us_Link,
     for: 'tab5',
   },
 ];

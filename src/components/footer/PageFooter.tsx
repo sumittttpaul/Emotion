@@ -1,4 +1,10 @@
 import React, { FC } from 'react';
+import {
+  Cancel_Order_Link,
+  Contact_Us_Link,
+  Return_Order_Link,
+  Track_Order_Link,
+} from '../../routerLinks/RouterLinks';
 import { FooterLogo } from '../logo/CompanyLogo';
 import { PageFooterLinks } from './assets/PageFooterLinks';
 
@@ -12,19 +18,19 @@ interface IProps {}
 const CustomerService = [
   {
     label: 'Contact Us',
-    to: '#',
+    to: Contact_Us_Link,
   },
   {
     label: 'Track Order',
-    to: '#',
+    to: Track_Order_Link,
   },
   {
     label: 'Return Order',
-    to: '#',
+    to: Return_Order_Link,
   },
   {
     label: 'Cancel Order',
-    to: '#',
+    to: Cancel_Order_Link,
   },
 ];
 

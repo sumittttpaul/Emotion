@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { Button } from '@mui/material';
+import { Collections_Link, Discover_Link, Offers_Link } from '../../../../routerLinks/RouterLinks';
 
 interface IProps {
   open: boolean;
@@ -13,15 +14,15 @@ interface IProps {
 const Links = [
   {
     label: 'Discover',
-    to: '',
+    to: Discover_Link,
   },
   {
     label: 'Offers',
-    to: '',
+    to: Offers_Link,
   },
   {
     label: 'Collections',
-    to: '',
+    to: Collections_Link,
   },
 ];
 

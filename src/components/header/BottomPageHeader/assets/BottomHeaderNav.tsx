@@ -2,6 +2,7 @@ import { ChevronDownIcon } from '@heroicons/react/solid';
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
+import { Collections_Link, Discover_Link, Offers_Link } from '../../../../routerLinks/RouterLinks';
 
 interface IProps {
   open: boolean;
@@ -14,17 +15,17 @@ interface IProps {
 const NavLabel = [
   {
     name: 'Discover',
-    to: '#',
+    to: Discover_Link,
     for: 'MainTab1',
   },
   {
     name: 'Offers',
-    to: '#',
+    to: Offers_Link,
     for: 'MainTab2',
   },
   {
     name: 'Collections',
-    to: '#',
+    to: Collections_Link,
     for: 'MainTab3',
   },
 ];

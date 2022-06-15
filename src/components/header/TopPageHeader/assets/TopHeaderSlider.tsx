@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { Button, Drawer } from '@mui/material';
+import { About_Us_Link, Fanbook_Link, FAQ_Link, Help_Link, Store_Link } from '../../../../routerLinks/RouterLinks';
 
 interface IProps {
   Cycle: boolean;
@@ -14,23 +15,23 @@ interface IProps {
 const Links = [
   {
     label: 'Store',
-    to: '',
+    to: Store_Link,
   },
   {
     label: 'Fanbook',
-    to: '',
+    to: Fanbook_Link,
   },
   {
     label: 'FAQ',
-    to: '',
+    to: FAQ_Link,
   },
   {
     label: 'Help',
-    to: '',
+    to: Help_Link,
   },
   {
     label: 'About Us',
-    to: '',
+    to: About_Us_Link,
   },
 ];
 
