@@ -5,6 +5,10 @@ export const Register_Link = '/auth/register';
 export const Forgot_Password_Link = '/auth/login/forgot-password';
 export const Setup_Account_Link = '/auth/register/setup-account';
 
+/* ----------- Policy ----------- */
+export const Privacy_Policy_Link = '#';
+export const Terms_Conditions_Link = '#';
+
 /* ----------- Page Header ----------- */
 // Top Header
 export const Store_Link = '#';

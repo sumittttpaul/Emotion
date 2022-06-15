@@ -1,5 +1,6 @@
 import { Link } from '@mui/material';
 import React, { FC } from 'react';
+import { Terms_Conditions_Link } from '../../routerLinks/RouterLinks';
 
 interface IProps {}
 
@@ -17,6 +18,7 @@ export const TermsAndCondition: FC<IProps> = (props) => {
           className="text-white text-xs"
           component="button"
           underline="always"
+          href={Terms_Conditions_Link}
         >
           terms & conditions
         </Link>

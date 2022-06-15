@@ -1,5 +1,6 @@
 import { Link } from '@mui/material';
 import React, { FC } from 'react';
+import { Privacy_Policy_Link } from '../../routerLinks/RouterLinks';
 
 interface IProps {}
 
@@ -17,6 +18,7 @@ export const PhonePrivacyPolicy: FC<IProps> = (props) => {
           className="text-white text-xs"
           component="button"
           underline="always"
+          href={Privacy_Policy_Link}
         >
           privacy policy
         </Link>
