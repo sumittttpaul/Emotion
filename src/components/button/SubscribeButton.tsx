@@ -5,6 +5,7 @@ import { CircularProgress } from '@mui/material';
 interface IProps {
   disabled: boolean;
   validEmail: boolean;
+  emailEmpty: () => void;
 }
 
 /**
@@ -154,6 +155,9 @@ export class SubscribeButton extends Component<IProps> {
                 });
               }
             }, 5000);
+            setTimeout(() => {
+              this.props.emailEmpty();
+            }, 8000);
           } else {
           }
         });

@@ -28,8 +28,14 @@ export const PageFooterSubscribe: FC<IProps> = (props) => {
       setValidEmail(true);
     }
   };
+
+  const EmptyEmail = () => {
+    setDisabled(true);
+    setValidEmail(false);
+    setEmail('');
+  };
   return (
-    <div className="overscroll-none h-full flex items-start relative">
+    <div className="overscroll-none h-full flex py-2 items-start relative">
       <div className="flex relative bg-[#121212] rounded-lg p-0">
         <input
           value={Email}
@@ -37,11 +43,13 @@ export const PageFooterSubscribe: FC<IProps> = (props) => {
           onKeyUp={EmailKeyUp}
           placeholder="Email Address"
           type="text"
+          autoComplete="email"
           className="text-[13px] whitespace-nowrap rounded-l-lg w-[220px] p-[10px] font-normal text-[rgba(255,255,255,0.9)] bg-[#121212] border-0 ring-0 outline-none"
         />
         <SubscribeButton
           validEmail={ValidEmail}
           disabled={Disabled}
+          emailEmpty={EmptyEmail}
         />
       </div>
     </div>
