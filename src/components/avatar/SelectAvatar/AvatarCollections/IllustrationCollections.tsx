@@ -3,8 +3,8 @@ import { Button, IconButton } from '@mui/material';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import Image from 'next/image';
 import { Poster_BlurDataURL } from '../../../loader/BlurDataURL';
+import Image from 'next/image';
 
 interface IProps {
   show: () => void;

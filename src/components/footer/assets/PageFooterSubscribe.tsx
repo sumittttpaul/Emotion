@@ -8,5 +8,9 @@ interface IProps {}
  **/
 
 export const PageFooterSubscribe: FC<IProps> = (props) => {
-  return <></>;
+  return (
+    <>
+     
+    </>
+  );
 };
