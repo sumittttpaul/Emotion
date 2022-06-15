@@ -64,7 +64,7 @@ const ShowAvatar: FC<IProps> = (props) => {
             alt="user photo"
           />
           {props.ShowProgress ? (
-            <div className="absolute h-full w-full flex items-center justify-center rounded-[50%] opacity-[0.85] bg-white">
+            <div className="absolute cursor-not-allowed h-full w-full flex items-center justify-center rounded-[50%] opacity-[0.85] bg-white">
               <CircularProgress
                 size={250}
                 thickness={0.3}
