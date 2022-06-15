@@ -10,8 +10,8 @@ interface IProps {}
 export const AuthFooter: FC<IProps> = (props) => {
   return (
     <div className="flex">
-      <h6 className="text-[11px] font-light text-[rgba(255,255,255,0.75)] flex items-center">
-      Discover the new you through Agewear-lifestyle
+      <h6 className="text-[11.5px] font-[300] text-white whitespace-normal opacity-80 flex items-center">
+        Discover the new you with Agewear-lifestyle.
       </h6>
     </div>
   );

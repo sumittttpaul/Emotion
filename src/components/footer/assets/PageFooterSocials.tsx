@@ -1,9 +1,9 @@
 import { Link } from '@mui/material';
 import React, { FC } from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
 interface IProps {
-  Content: { label: string; to: string; icon: string; }[];
+  Content: { label: string; to: string; icon: StaticImageData; }[];
   heading: string;
 }
 

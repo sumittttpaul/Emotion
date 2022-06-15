@@ -18,6 +18,10 @@ import { FooterLogo } from '../logo/CompanyLogo';
 import { PageFooterLinks } from './assets/PageFooterLinks';
 import { PageFooterSocials } from './assets/PageFooterSocials';
 import { PageFooterSubscribe } from './assets/PageFooterSubscribe';
+import Facebook_Logo from '../../../public/images/social/facebook_square.png';
+import Instagram_Logo from '../../../public/images/social/instagram_square.png';
+import Twitter_Logo from '../../../public/images/social/twitter_square.png';
+import Youtube_Logo from '../../../public/images/social/youtube_square.png';
 
 interface IProps {}
 
@@ -74,29 +78,29 @@ const Account = [
 const Socials = [
   {
     label: 'Facebook',
-    icon: '/images/social/facebook_square.png',
+    icon: Facebook_Logo,
     to: Facebook_Link,
   },
   {
     label: 'Instagram',
-    icon: '/images/social/instagram_square.png',
+    icon: Instagram_Logo,
     to: Instagram_Link,
   },
   {
     label: 'Twitter',
-    icon: '/images/social/twitter_square.png',
+    icon: Twitter_Logo,
     to: Twitter_Link,
   },
   {
     label: 'Youtube',
-    icon: '/images/social/youtube_square.png',
+    icon: Youtube_Logo,
     to: Youtube_Link,
   },
 ];
 
 export const PageFooter: FC<IProps> = (props) => {
   return (
-    <footer className="w-full relative box-border bg-[#202020] overflow-hidden">
+    <footer className="w-full h-[600px] relative box-border bg-[#202020] overflow-hidden">
       <div className="w-full relative p-8 box-border max-w-[1570px] mx-auto">
         <FooterLogo />
         <div className="flex relative w-full justify-between">
@@ -104,9 +108,20 @@ export const PageFooter: FC<IProps> = (props) => {
           <PageFooterLinks heading="Company" Content={Company} />
           <PageFooterLinks heading="Account" Content={Account} />
           <PageFooterSocials heading="Socials" Content={Socials} />
-          <PageFooterSubscribe/>
+          <div className="w-full max-w-[50%] flex justify-center">
+            <PageFooterSubscribe />
+          </div>
         </div>
-        <div className="h-[1px] w-full my-6 bg-[rgba(255,255,255,0.1)]" />
+        <div className="h-[1px] w-full my-5 bg-[rgba(255,255,255,0.1)]" />
+        <h6 className="text-[11.5px] py-2 font-[300] leading-[22px] whitespace-normal max-w-[60%] flex text-white opacity-80">
+          Founded in 2022, Agewear is a lifestyle fashion brand that makes
+          creative, distinctive fashion for the trendy, contemporary Indian.
+          Agewear-lifestyle was created on the principle of creating impact
+          through innovation, honesty and thoughtfulness. We like to experiment
+          freely, which allows us to balance creativity and relatability, and
+          our innovative designs. Our range of products is always fresh and
+          up-to-date. Discover the new you with Agewear-lifestyle.
+        </h6>
       </div>
     </footer>
   );
