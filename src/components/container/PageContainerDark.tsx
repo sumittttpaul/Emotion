@@ -17,7 +17,7 @@ export const PageContainerDark: FC<IProps> = ({ children }) => {
     document.body.style.backgroundColor = `${ColorState.bgColor}`;
   }, [setColorState, ColorState.bgColor]);
   return (
-    <div className="p-0 m-0 flex flex-col flex-grow w-full bg-[#121212]">
+    <div className="p-0 m-0 flex flex-col flex-grow relative w-full bg-[#121212]">
       {children}
     </div>
   );

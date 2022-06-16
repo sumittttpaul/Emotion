@@ -30,8 +30,8 @@ const Links = [
 ];
 
 const SliderVariant = {
-  open: { height: 250 },
-  closed: { height: 0 },
+  open: { height: 250, display: 'block' },
+  closed: { height: 0, display: 'none' },
 };
 const UlVariants: Variants = {
   open: {
@@ -92,11 +92,14 @@ export const MainHeaderSlider: FC<IProps> = (props) => {
   }, [props.open]);
   return (
     <motion.div
-      className="bg-transparent w-full sm:hidden bg-white"
+      className="bg-transparent absolute left-0 top-full w-full sm:hidden"
       animate={Slider}
       variants={SliderVariant}
     >
-      <motion.ul variants={UlVariants} className="py-5 sm:hidden">
+      <motion.ul
+        variants={UlVariants}
+        className="py-5 sm:hidden bg-[rgba(18,18,18,0.85)]"
+      >
         {Links.map((value, idx) => (
           <motion.li key={value.label} variants={LiVariants}>
             <div className="w-full block relative h-[10px] min-h-[10px]" />
