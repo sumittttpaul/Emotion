@@ -14,7 +14,9 @@ interface IProps {
 export const StateProvider: FC<IProps> = (props) => {
   return (
     <ColorState>
-      <LoaderState value={{ show: false }}>{props.children}</LoaderState>
+      {/* <LoaderState value={{ show: false }}> */}
+        {props.children}
+        {/* </LoaderState> */}
     </ColorState>
   );
 };

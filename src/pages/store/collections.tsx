@@ -5,9 +5,9 @@ import { PageFooter } from '../../components/footer/PageFooter/PageFooter';
 import { StoreUICollections } from '../../components/ui/StoreUI';
 
 /**
- * @Offers_Page
+ * @Collections_Page
  **/
-const Offers: NextPage = () => {
+const Collections: NextPage = () => {
   return (
     <PageContainerDark>
       <PageHeader />
@@ -17,4 +17,4 @@ const Offers: NextPage = () => {
   );
 };
 
-export default Offers;
+export default Collections;

@@ -15,9 +15,9 @@ export const FAQ_Link = '#';
 export const Help_Link = '#';
 export const About_Us_Link = '#';
 //
-export const Discover_Link = '#';
-export const Offers_Link = '#';
-export const Collections_Link = '#';
+export const Discover_Link = '/store';
+export const Offers_Link = '/store/offers';
+export const Collections_Link = '/store/collections';
 //
 export const Contact_Us_Link = '#';
 export const Track_Order_Link = '#';

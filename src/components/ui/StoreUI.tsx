@@ -11,36 +11,36 @@ interface IPropsDiscover {}
 interface IPropsOffers {}
 
 /**
- * @Store_UI_Discover
+ * @Store_Discover
  **/
 export const StoreUIDiscover: FC<IPropsDiscover> = (props) => {
   return (
     <main className="w-full flex-grow z-auto">
-      <MainHeader />
+      <MainHeader CurrentPage="Discover" />
       <DiscoverUI />
     </main>
   );
 };
 
 /**
- * @Store_UI_Offers
+ * @Store_Offers
  **/
 export const StoreUIOffers: FC<IPropsOffers> = (props) => {
   return (
     <main className="w-full flex-grow z-auto">
-      <MainHeader />
+      <MainHeader CurrentPage="Offers" />
       <OffersUI />
     </main>
   );
 };
 
 /**
- * @Store_UI_Collections
+ * @Store_Collections
  **/
 export const StoreUICollections: FC<IPropsCollections> = (props) => {
   return (
     <main className="w-full flex-grow z-auto">
-      <MainHeader />
+      <MainHeader CurrentPage="Collections" />
       <CollectionsUI />
     </main>
   );

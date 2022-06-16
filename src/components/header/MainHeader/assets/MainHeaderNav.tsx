@@ -7,6 +7,7 @@ import {
   Discover_Link,
   Offers_Link,
 } from '../../../../routerLinks/RouterLinks';
+import NextLink from 'next/link';
 
 interface IProps {
   open: boolean;
@@ -117,16 +118,17 @@ export const MainHeaderNav: FC<IProps> = (props) => {
           {NavLabel.map((value) => (
             <li key={value.name} className="relative box-border">
               <label htmlFor={value.for} role="button">
-                <Button
-                  component="a"
-                  disableRipple
-                  disableFocusRipple
-                  disableTouchRipple
-                  aria-label="main-header-button"
-                  className="opacity-50 text-[13.5px] hover:opacity-75 transition-all duration-200 font-normal text-white button-text-lower"
-                >
-                  {value.name}
-                </Button>
+                <NextLink href={value.to} passHref>
+                  <Button
+                    disableRipple
+                    disableFocusRipple
+                    disableTouchRipple
+                    aria-label="main-header-button"
+                    className="opacity-50 text-[13.5px] hover:opacity-75 transition-all duration-200 font-normal text-white button-text-lower"
+                  >
+                    {value.name}
+                  </Button>
+                </NextLink>
               </label>
             </li>
           ))}
