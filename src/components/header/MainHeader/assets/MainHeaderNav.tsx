@@ -59,7 +59,7 @@ const ActiveContent = (value: string) => {
  **/
 
 export const MainHeaderNav: FC<IProps> = (props) => {
-  const [selectedValue, setSelectedValue] = useState('MainTab1');
+  const [selectedValue, setSelectedValue] = useState('');
   const [Arrow, setArrow] = useState('closed');
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     props.onValueChange(ActiveContent(event.target.value));
@@ -120,6 +120,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
               <label htmlFor={value.for} role="button">
                 <NextLink href={value.to} passHref>
                   <Button
+                    onClick={() => props.onValueChange(value.name)}
                     disableRipple
                     disableFocusRipple
                     disableTouchRipple

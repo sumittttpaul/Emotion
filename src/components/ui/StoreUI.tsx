@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { MainHeader } from '../header/MainHeader/MainHeader';
 import { CollectionsUI } from './StoreComponentUI/CollectionsUI';
 import { DiscoverUI } from './StoreComponentUI/DiscoverUI';
@@ -9,6 +9,8 @@ interface IPropsCollections {}
 interface IPropsDiscover {}
 
 interface IPropsOffers {}
+
+// const [state, setstate] = useState<string>('Discover');
 
 /**
  * @Store_Discover
