@@ -6,10 +6,10 @@ interface IProps {}
 
 /**
  * @author
- * @function @BottomHeaderSearchButton
+ * @function @MainHeaderSearchButton
  **/
 
-export const BottomHeaderSearchButton: FC<IProps> = (props) => {
+export const MainHeaderSearchButton: FC<IProps> = (props) => {
   return (
     <>
       <Button

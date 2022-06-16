@@ -16,7 +16,7 @@ export const FooterBottomLinks: FC<IProps> = (props) => {
     <Link
       href={props.to}
       underline="hover"
-      className="text-[11.5px] py-2 font-[300] whitespace-nowrap flex text-white opacity-80"
+      className="text-[11.5px] pt-2 font-[300] whitespace-nowrap flex text-white opacity-80"
     >
       {props.label}
     </Link>

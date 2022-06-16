@@ -17,6 +17,7 @@ export class SubscribeButton extends Component<IProps> {
   state = {
     open: false,
     loading: false,
+    label: true,
   };
 
   componentDidMount() {
@@ -28,7 +29,7 @@ export class SubscribeButton extends Component<IProps> {
 
         button.addEventListener('click', (e) => {
           if (this.props.validEmail) {
-            this.setState({ loading: true });
+            this.setState({ loading: true, label: false });
             setTimeout(() => {
               if (!button.classList.contains('active')) {
                 this.setState({ loading: false });
@@ -157,6 +158,7 @@ export class SubscribeButton extends Component<IProps> {
               }
             }, 5000);
             setTimeout(() => {
+              this.setState({ label: true });
               this.props.emailEmpty();
             }, 8000);
           } else {
@@ -173,7 +175,7 @@ export class SubscribeButton extends Component<IProps> {
           type="button"
           className="EmailSubscribebutton disabled:cursor-not-allowed disabled:opacity-80"
         >
-          <span className="default">Subscribe</span>
+          <span className="default">{this.state.label ? 'Subscribe' : ''}</span>
           <span className="success">
             <svg viewBox="0 0 16 16">
               <polyline points="3.75 9 7 12 13 5"></polyline>

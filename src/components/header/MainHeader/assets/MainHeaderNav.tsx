@@ -51,10 +51,10 @@ const ActiveContent = (value: string) => {
 
 /**
  * @author
- * @function @BottomHeaderNav
+ * @function @MainHeaderNav
  **/
 
-export const BottomHeaderNav: FC<IProps> = (props) => {
+export const MainHeaderNav: FC<IProps> = (props) => {
   const [selectedValue, setSelectedValue] = useState('MainTab1');
   const [Arrow, setArrow] = useState('closed');
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

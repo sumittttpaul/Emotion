@@ -37,10 +37,10 @@ const Links = [
 
 /**
  * @author
- * @function @TopHeaderSlider
+ * @function @PageHeaderSlider
  **/
 
-export const TopHeaderSlider: FC<IProps> = (props) => {
+export const PageHeaderSlider: FC<IProps> = (props) => {
   const UlVariants: Variants = {
     open: {
       transition: { staggerChildren: 0.07, delayChildren: 0 },

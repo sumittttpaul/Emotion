@@ -78,10 +78,10 @@ const ActiveContent = (props: string, value: string) => {
 
 /**
  * @author
- * @function @BottomHeaderSlider
+ * @function @MainHeaderSlider
  **/
 
-export const BottomHeaderSlider: FC<IProps> = (props) => {
+export const MainHeaderSlider: FC<IProps> = (props) => {
   const [Slider, setSlider] = useState('closed');
   useEffect(() => {
     if (props.open) {

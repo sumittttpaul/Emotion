@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Logo from '../../../public/agewear_white.svg';
 import Logo_Full from '../../../public/agewear_full_white.svg';
 
-export const TopHeaderLogo = () => {
+export const PageHeaderLogo = () => {
   return (
     <div className="flex relative py-[8.4px] sm:px-[12px]">
       <Image

@@ -1,4 +1,4 @@
-import { ShoppingCartIcon } from '@heroicons/react/solid';
+import { HeartIcon } from '@heroicons/react/solid';
 import { Button, IconButton } from '@mui/material';
 import React, { FC } from 'react';
 
@@ -8,16 +8,16 @@ interface IProps {
 
 /**
  * @author
- * @function @BottomHeaderCartButton
+ * @function @MainHeaderWishlistButton
  **/
 
-export const BottomHeaderCartButton: FC<IProps> = (props) => {
+export const MainHeaderWishlistButton: FC<IProps> = (props) => {
   return (
     <>
       <Button
-        disableFocusRipple
         onClick={props.Click}
-        aria-label="desktop-cart-button"
+        disableFocusRipple
+        aria-label="desktop-wishlist-button"
         className="hidden md-900:block text-white py-2.5 px-3 border border-solid border-[rgba(255,255,255,0.23)] rounded-md button-text-lower opacity-80"
         sx={{
           '.MuiTouchRipple-child': {
@@ -26,14 +26,14 @@ export const BottomHeaderCartButton: FC<IProps> = (props) => {
         }}
       >
         <div className="flex space-x-2">
-          <ShoppingCartIcon className="h-4 w-4 opacity-80" />
-          <h6 className="text-xs font-normal">Cart</h6>
+          <HeartIcon className="h-4 w-4 opacity-80" />
+          <h6 className="text-xs font-normal">Wishlist</h6>
         </div>
       </Button>
       <IconButton
         disableFocusRipple
         onClick={props.Click}
-        aria-label="mobile-cart-button"
+        aria-label="mobile-wishlist-button"
         className="block md-900:hidden opacity-80 button-text-lower h-full p-2.5 border border-solid border-[rgba(255,255,255,0.23)]"
         sx={{
           borderRadius: '6px !important',
@@ -43,7 +43,7 @@ export const BottomHeaderCartButton: FC<IProps> = (props) => {
           },
         }}
       >
-        <ShoppingCartIcon className="h-4 w-4 opacity-80 text-white" />
+        <HeartIcon className="h-4 w-4 opacity-80 text-white" />
       </IconButton>
     </>
   );

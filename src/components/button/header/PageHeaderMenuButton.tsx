@@ -20,10 +20,10 @@ const path02Variants = {
 
 /**
  * @author
- * @function @TopHeaderMenuButton
+ * @function @PageHeaderMenuButton
  **/
 
-export const TopHeaderMenuButton: FC<IProps> = (props) => {
+export const PageHeaderMenuButton: FC<IProps> = (props) => {
   const [animation, setAnimation] = useState('closed');
   useEffect(() => {
     if (!props.Cycle) {

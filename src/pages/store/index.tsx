@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { PageContainerDark } from '../../components/container/PageContainerDark';
 import { PageFooter } from '../../components/footer/PageFooter';
-import { PageHeader } from '../../components/header/PageHeader';
+import { PageHeader } from '../../components/header/PageHeader/PageHeader';
 
 /**
  * @Store_Page
@@ -9,8 +9,9 @@ import { PageHeader } from '../../components/header/PageHeader';
 const Store: NextPage = () => {
   return (
     <PageContainerDark>
-      <PageHeader/>
-      <PageFooter/>
+      <PageHeader />
+      
+      {/* <PageFooter/> */}
     </PageContainerDark>
   );
 };

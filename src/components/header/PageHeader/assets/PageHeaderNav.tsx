@@ -58,10 +58,10 @@ const ActiveContent = (value: string) => {
 
 /**
  * @author
- * @function @TopHeaderNav
+ * @function @PageHeaderNav
  **/
 
-export const TopHeaderNav: FC<IProps> = (props) => {
+export const PageHeaderNav: FC<IProps> = (props) => {
   const [selectedValue, setSelectedValue] = useState('tab1');
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     props.onValueChange(ActiveContent(event.target.value));
