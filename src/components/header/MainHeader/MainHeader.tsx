@@ -1,6 +1,6 @@
 import { useCycle } from 'framer-motion';
 import Router from 'next/router';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Cart_Link, Wishlist_Link } from '../../../routerLinks/RouterLinks';
 import { MainHeaderCartButton } from '../../button/header/MainHeaderCartButton';
 import { MainHeaderSearchButton } from '../../button/header/MainHeaderSearchButton';
@@ -8,7 +8,9 @@ import { MainHeaderWishlistButton } from '../../button/header/MainHeaderWishlist
 import { MainHeaderNav } from './assets/MainHeaderNav';
 import { MainHeaderSlider } from './assets/MainHeaderSlider';
 
-interface IProps {}
+interface IProps {
+  CurrentPage?: string;
+}
 
 /**
  * @author
@@ -18,6 +20,11 @@ interface IProps {}
 export const MainHeader: FC<IProps> = (props) => {
   const [open, setOpen] = useCycle(false, true);
   const [Content, setContent] = useState('Discover');
+  useEffect(() => {
+    if (props.CurrentPage) {
+      setContent(props.CurrentPage);
+    }
+  }, [Content]);
   return (
     <>
       <div className="w-full h-[17px] min-h-[17px]" />

@@ -6,7 +6,9 @@ import { PageHeaderNav } from './assets/PageHeaderNav';
 import { PageHeaderSlider } from './assets/PageHeaderSlider';
 import { PageHeaderLogo } from '../../logo/CompanyLogo';
 
-interface IProps {}
+interface IProps {
+  CurrentPage?: string;
+}
 
 /**
  * @author
@@ -19,6 +21,9 @@ export const PageHeader: FC<IProps> = (props) => {
   const [Content, setContent] = useState('Store');
 
   useEffect(() => {
+    if (props.CurrentPage) {
+      setContent(props.CurrentPage);
+    }
     if (global.window) {
       setHvalue(global.window.innerHeight);
     }
@@ -34,7 +39,7 @@ export const PageHeader: FC<IProps> = (props) => {
         }
       });
     };
-  }, [Hvalue]);
+  }, [Hvalue, Content]);
 
   return (
     <>
