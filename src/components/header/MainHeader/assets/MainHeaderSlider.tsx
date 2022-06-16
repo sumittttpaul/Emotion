@@ -6,6 +6,7 @@ import {
   Discover_Link,
   Offers_Link,
 } from '../../../../routerLinks/RouterLinks';
+import NextLink from 'next/link';
 
 interface IProps {
   open: boolean;
@@ -70,7 +71,7 @@ const DisableButton = (props: string, value: string) => {
 
 const ActiveContent = (props: string, value: string) => {
   if (props === value) {
-    return 'opacity-100 hover:opacity-100';
+    return 'opacity-100 hover:opacity-100 cursor-default';
   } else {
     return 'opacity-50 hover:opacity-75';
   }
@@ -112,30 +113,33 @@ export const MainHeaderSlider: FC<IProps> = (props) => {
           {Links.map((value, idx) => (
             <motion.li key={value.label} variants={LiVariants}>
               <div className="w-full block relative h-[10px] min-h-[10px]" />
-              <Button
-                aria-label="mobile-header-slider-button"
-                disableFocusRipple
-                disabled={Boolean(DisableButton(props.Value, value.label))}
-                onClick={() => {
-                  setTimeout(() => {
-                    if (props.Value != value.label) {
-                      props.onValueChange(value.label);
-                      props.onClose();
-                    }
-                  }, 200);
-                }}
-                sx={{
-                  '.MuiTouchRipple-child': {
-                    backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
-                  },
-                }}
-                className={`${ActiveContent(
-                  props.Value,
-                  value.label
-                )} ${'text-white disabled:cursor-not-allowed disabled:text-white w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center py-2.5 px-14 button-text-lower'}`}
-              >
-                {value.label}
-              </Button>
+              <NextLink href={value.to} passHref>
+                <Button
+                  aria-label="mobile-header-slider-button"
+                  disableFocusRipple
+                  disableRipple={Boolean(DisableButton(props.Value, value.label))}
+                  disableTouchRipple={Boolean(DisableButton(props.Value, value.label))}
+                  onClick={() => {
+                    setTimeout(() => {
+                      if (props.Value != value.label) {
+                        props.onValueChange(value.label);
+                        props.onClose();
+                      }
+                    }, 200);
+                  }}
+                  sx={{
+                    '.MuiTouchRipple-child': {
+                      backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                    },
+                  }}
+                  className={`${ActiveContent(
+                    props.Value,
+                    value.label
+                  )} ${'text-white disabled:cursor-not-allowed disabled:text-white w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center py-2.5 px-14 button-text-lower'}`}
+                >
+                  {value.label}
+                </Button>
+              </NextLink>
               <div className="w-full block relative h-[10px] min-h-[10px]" />
               {idx === 2 ? (
                 <></>
