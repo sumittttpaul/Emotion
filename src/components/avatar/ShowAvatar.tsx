@@ -64,7 +64,7 @@ const ShowAvatar: FC<IProps> = (props) => {
             alt="user photo"
           />
           {props.ShowProgress ? (
-            <div className="absolute cursor-not-allowed h-full w-full flex items-center justify-center rounded-[50%] opacity-[0.85] bg-white">
+            <div className="absolute h-full w-full flex items-center justify-center rounded-[50%] opacity-[0.85] bg-white">
               <CircularProgress
                 size={250}
                 thickness={0.3}
@@ -93,7 +93,7 @@ const ShowAvatar: FC<IProps> = (props) => {
               backgroundColor: 'rgba(26, 115, 232, 0.25) !important',
             },
           }}
-          className="disabled:opacity-50 button-text-lower py-[7px] disabled:text-[#1a73e8] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
+          className="disabled:opacity-50 disabled:cursor-not-allowed button-text-lower py-[7px] disabled:text-[#1a73e8] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
         >
           <div className="flex space-x-2 items-center justify-center">
             <Image
@@ -118,7 +118,7 @@ const ShowAvatar: FC<IProps> = (props) => {
               backgroundColor: 'rgba(26, 115, 232, 0.25) !important',
             },
           }}
-          className="disabled:opacity-50 button-text-lower py-[7px] disabled:text-[#1a73e8] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
+          className="disabled:opacity-50 disabled:cursor-not-allowed button-text-lower py-[7px] disabled:text-[#1a73e8] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
         >
           <div className="flex space-x-2 items-center justify-center">
             <Image

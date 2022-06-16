@@ -120,7 +120,7 @@ export const BottomHeaderSlider: FC<IProps> = (props) => {
               className={`${ActiveContent(
                 props.Value,
                 value.label
-              )} ${'text-white disabled:text-white w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center py-2.5 px-14 button-text-lower'}`}
+              )} ${'text-white disabled:cursor-not-allowed disabled:text-white w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center py-2.5 px-14 button-text-lower'}`}
             >
               {value.label}
             </Button>

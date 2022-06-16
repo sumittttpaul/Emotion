@@ -171,7 +171,7 @@ export class SubscribeButton extends Component<IProps> {
         <button
           disabled={this.props.disabled}
           type="button"
-          className="EmailSubscribebutton disabled:opacity-80"
+          className="EmailSubscribebutton disabled:cursor-not-allowed disabled:opacity-80"
         >
           <span className="default">Subscribe</span>
           <span className="success">
@@ -190,7 +190,7 @@ export class SubscribeButton extends Component<IProps> {
           </div>
         </button>
         {this.state.loading ? (
-          <div className="absolute cursor-not-allowed z-[4] h-full w-full top-0 bg-[rgba(45,45,45)] transition-all ease-in rounded-md flex items-center justify-center">
+          <div className="absolute z-[4] h-full w-full top-0 bg-[rgba(45,45,45)] transition-all ease-in rounded-md flex items-center justify-center">
             <CircularProgress
               className="text-white opacity-75"
               size={20}

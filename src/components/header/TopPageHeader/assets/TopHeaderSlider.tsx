@@ -102,7 +102,7 @@ export const TopHeaderSlider: FC<IProps> = (props) => {
                   backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
                 },
               }}
-              className="text-white disabled:text-white w-full opacity-[0.85] hover:opacity-100 transition-opacity ease-in whitespace-nowrap font-[350] text-sm tracking-[0.075em] h-full justify-start items-center py-4 px-14 button-text-lower"
+              className="text-white disabled:cursor-not-allowed disabled:text-white w-full opacity-[0.85] hover:opacity-100 transition-opacity ease-in whitespace-nowrap font-[350] text-sm tracking-[0.075em] h-full justify-start items-center py-4 px-14 button-text-lower"
             >
               {value.label}
             </Button>

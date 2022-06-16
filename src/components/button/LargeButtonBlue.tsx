@@ -26,12 +26,12 @@ const LargeButtonBlue: FC<IProps> = (props) => {
         }}
         disabled={props.Disabled}
         onClick={props.onClick}
-        className="bg-[#0074E4] hover:bg-[#0074E4] disabled:opacity-50 disabled:text-white rounded-md text-white h-[60px] w-full text-xs transition-all ease-in"
+        className="bg-[#0074E4] hover:bg-[#0074E4] disabled:cursor-not-allowed disabled:opacity-50 disabled:text-white rounded-md text-white h-[60px] w-full text-xs transition-all ease-in"
       >
         {props.content}
       </Button>
       {props.Loading ? (
-        <div className="absolute cursor-not-allowed h-full w-full top-0 bg-[#104A82] transition-all ease-in rounded-md flex items-center justify-center">
+        <div className="absolute h-full w-full top-0 bg-[#104A82] transition-all ease-in rounded-md flex items-center justify-center">
           <CircularProgress
             className="text-white opacity-75"
             size={20}
