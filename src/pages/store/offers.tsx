@@ -3,17 +3,15 @@ import { PageContainerDark } from '../../components/container/PageContainerDark'
 import { PageHeader } from '../../components/header/PageHeader/PageHeader';
 import { PageFooter } from '../../components/footer/PageFooter/PageFooter';
 import { StoreUIOffers } from '../../components/ui/StoreUI';
-import { useEffect, useState } from 'react';
 
 /**
  * @Offers_Page
  **/
 const Offers: NextPage = () => {
-  const [Page, setPage] = useState('Offers');
   return (
     <PageContainerDark>
       <PageHeader />
-      <StoreUIOffers Page={Page} setPage={(value) => setPage(value)} />
+      <StoreUIOffers />
       <PageFooter />
     </PageContainerDark>
   );

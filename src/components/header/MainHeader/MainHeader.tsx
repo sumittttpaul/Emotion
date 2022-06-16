@@ -1,6 +1,6 @@
 import { useCycle } from 'framer-motion';
 import Router from 'next/router';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { Cart_Link, Wishlist_Link } from '../../../routerLinks/RouterLinks';
 import { MainHeaderCartButton } from '../../button/header/MainHeaderCartButton';
 import { MainHeaderSearchButton } from '../../button/header/MainHeaderSearchButton';
