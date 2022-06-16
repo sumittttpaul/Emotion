@@ -10,21 +10,19 @@ import {
   Refund_Policy_Link,
   Return_Order_Link,
   Return_Order_Policy_Link,
-  Terms_Conditions_Link,
   Track_Order_Link,
   Twitter_Link,
   Youtube_Link,
-} from '../../routerLinks/RouterLinks';
-import { FooterLogo } from '../logo/CompanyLogo';
+} from '../../../routerLinks/RouterLinks';
+import { FooterLogo } from '../../logo/CompanyLogo';
 import { PageFooterLinks } from './assets/PageFooterLinks';
 import { PageFooterSocials } from './assets/PageFooterSocials';
 import { PageFooterSubscribe } from './assets/PageFooterSubscribe';
-import Facebook_Logo from '../../../public/images/social/facebook_square.png';
-import Instagram_Logo from '../../../public/images/social/instagram_square.png';
-import Twitter_Logo from '../../../public/images/social/twitter_square.png';
-import Youtube_Logo from '../../../public/images/social/youtube_square.png';
-import { Link } from '@mui/material';
-import { FooterBottomLinks } from './assets/FooterBottomLinks';
+import Facebook_Logo from '../../../../public/images/social/facebook_square.png';
+import Instagram_Logo from '../../../../public/images/social/instagram_square.png';
+import Twitter_Logo from '../../../../public/images/social/twitter_square.png';
+import Youtube_Logo from '../../../../public/images/social/youtube_square.png';
+import { FooterBottom } from './assets/FooterBottom';
 
 interface IProps {}
 
@@ -103,7 +101,7 @@ const Socials = [
 
 export const PageFooter: FC<IProps> = (props) => {
   return (
-    <footer className="w-full h-[620px] relative bg-[#202020] overflow-hidden">
+    <div className="w-full self-end overflow-hidden bg-[#202020]">
       <div className="w-full relative p-8 box-border max-w-[1570px] mx-auto">
         <FooterLogo />
         <div className="flex relative w-full justify-between">
@@ -116,7 +114,7 @@ export const PageFooter: FC<IProps> = (props) => {
           </div>
         </div>
         <div className="h-[1px] w-full my-5 bg-[rgba(255,255,255,0.1)]" />
-        <h6 className="text-[11.5px] py-2 font-[300] leading-[22px] whitespace-normal max-w-[55%] flex text-white opacity-80">
+        <h6 className="text-[11.5px] py-2 font-[300] leading-[22px] whitespace-normal lg:max-w-[70%] xl:max-w-[60%] 2xl:max-w-[55%] flex text-white opacity-80">
           Founded in 2022, Agewear is a lifestyle fashion brand that makes
           creative, distinctive fashion for the trendy, contemporary Indian.
           Agewear-lifestyle was created on the principle of creating impact
@@ -128,33 +126,8 @@ export const PageFooter: FC<IProps> = (props) => {
         <h6 className="text-[11.5px] py-2 font-[300] whitespace-normal flex text-white">
           Discover the new you with Agewear-lifestyle.
         </h6>
-        <div className="w-full flex justify-between">
-          <h6 className="text-[11.5px] py-2 font-[300] whitespace-normal flex text-white opacity-80">
-            Copyright © 2022 Agewear-lifestyle. All rights reserved.
-          </h6>
-          <div className="flex space-x-4 items-center -ml-[17.5%]">
-            <FooterBottomLinks
-              to={Privacy_Policy_Link}
-              label="Privacy Policy"
-            />
-            <div className="h-5 w-[1px] bg-[rgba(255,255,255,0.23)]" />
-            <FooterBottomLinks
-              to={Return_Order_Link}
-              label="Return order Policy"
-            />
-            <div className="h-5 w-[1px] bg-[rgba(255,255,255,0.23)]" />
-            <FooterBottomLinks to={Refund_Policy_Link} label="Refund Policy" />
-            <div className="h-5 w-[1px] bg-[rgba(255,255,255,0.23)]" />
-            <FooterBottomLinks
-              to={Terms_Conditions_Link}
-              label="Terms and Conditions"
-            />
-          </div>
-          <h6 className="text-[11.5px] py-2 font-[300] whitespace-normal flex text-white opacity-80">
-            India
-          </h6>
-        </div>
+        <FooterBottom/>
       </div>
-    </footer>
+    </div>
   );
 };

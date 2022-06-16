@@ -12,47 +12,51 @@ interface IProps {}
 
 /**
  * @author
- * @function @ContentHeader
+ * @function @MainHeader
  **/
 
-export const ContentHeader: FC<IProps> = (props) => {
+export const MainHeader: FC<IProps> = (props) => {
   const [open, setOpen] = useCycle(false, true);
   const [Content, setContent] = useState('Discover');
   return (
-    <div className="flex flex-col sticky-top items-start box-border w-full py-3 sm:py-4 backdrop-blur-sm bg-[rgba(18,18,18,0.85)]">
-      <div className="flex relative box-border w-full max-w-[1440px] mx-auto justify-between items-center sm:px-5 px-3">
-        <div className="flex relative md-900:space-x-6 items-center">
-          <MainHeaderSearchButton />
-          <MainHeaderNav
-            open={open}
-            onOpen={() => setOpen()}
-            Value={Content}
-            onValueChange={(value) => setContent(value)}
-          />
+    <>
+      <div className="w-full h-[17.5px] min-h-[17.5px]" />
+      <div className="flex flex-col z-[999] sticky-top items-start box-border w-full py-3 sm:py-4 backdrop-blur-sm bg-[rgba(18,18,18,0.85)]">
+        <div className="flex relative box-border w-full max-w-[1440px] mx-auto justify-between items-center sm:px-5 px-3">
+          <div className="flex relative md-900:space-x-6 items-center">
+            <MainHeaderSearchButton />
+            <MainHeaderNav
+              open={open}
+              onOpen={() => setOpen()}
+              Value={Content}
+              onValueChange={(value) => setContent(value)}
+            />
+          </div>
+          <div className="flex relative space-x-2.5 sm:space-x-4 items-center">
+            <MainHeaderWishlistButton
+              Click={() => {
+                setTimeout(() => {
+                  Router.push(Wishlist_Link);
+                }, 150);
+              }}
+            />
+            <MainHeaderCartButton
+              Click={() => {
+                setTimeout(() => {
+                  Router.push(Cart_Link);
+                }, 150);
+              }}
+            />
+          </div>
         </div>
-        <div className="flex relative space-x-2.5 sm:space-x-4 items-center">
-          <MainHeaderWishlistButton
-            Click={() => {
-              setTimeout(() => {
-                Router.push(Wishlist_Link);
-              }, 150);
-            }}
-          />
-          <MainHeaderCartButton
-            Click={() => {
-              setTimeout(() => {
-                Router.push(Cart_Link);
-              }, 150);
-            }}
-          />
-        </div>
+        <MainHeaderSlider
+          open={open}
+          onClose={() => setOpen()}
+          Value={Content}
+          onValueChange={(value) => setContent(value)}
+        />
       </div>
-      <MainHeaderSlider
-        open={open}
-        onClose={() => setOpen()}
-        Value={Content}
-        onValueChange={(value) => setContent(value)}
-      />
-    </div>
+      <div className="w-full h-[17.5px] min-h-[17.5px]" />
+    </>
   );
 };
