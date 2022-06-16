@@ -1,24 +1,11 @@
-import {
-  styled,
-  Tooltip,
-  tooltipClasses,
-  TooltipProps,
-} from '@mui/material';
 import React, { FC, useState, ChangeEvent, KeyboardEvent } from 'react';
 import { SubscribeButton } from '../../../button/SubscribeButton';
+import { TooltipDark } from '../../../tooltip/TooltipDark';
 
 interface IProps {}
 
 var emailExpression =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-const TooltipDark = styled(({ className, ...props }: TooltipProps) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: '#353535',
-  },
-}));
 
 /**
  * @author
