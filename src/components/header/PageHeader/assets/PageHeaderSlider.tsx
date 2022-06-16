@@ -1,7 +1,13 @@
 import React, { FC } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { Button, Drawer } from '@mui/material';
-import { About_Us_Link, Fanbook_Link, FAQ_Link, Help_Link, Store_Link } from '../../../../routerLinks/RouterLinks';
+import {
+  About_Us_Link,
+  Fanbook_Link,
+  FAQ_Link,
+  Help_Link,
+  Store_Link,
+} from '../../../../routerLinks/RouterLinks';
 
 interface IProps {
   Cycle: boolean;
@@ -10,7 +16,6 @@ interface IProps {
   Value: string;
   onValueChange: (value: string) => void;
 }
-
 
 const Links = [
   {
@@ -84,7 +89,7 @@ export const PageHeaderSlider: FC<IProps> = (props) => {
     >
       <motion.ul variants={UlVariants}>
         <div className="h-[1px] w-full my-5 bg-[rgba(255,255,255,0.10)]" />
-        {Links.map((value) => (
+        {Links.map((value, idx) => (
           <motion.li key={value.label} variants={LiVariants}>
             <Button
               aria-label="mobile-header-slider-button"
@@ -106,7 +111,11 @@ export const PageHeaderSlider: FC<IProps> = (props) => {
             >
               {value.label}
             </Button>
-            <div className="h-[1px] w-[79%] mx-auto bg-[rgba(255,255,255,0.10)]" />
+            {idx === 4 ? (
+              <></>
+            ) : (
+              <div className="h-[1px] w-[79%] mx-auto bg-[rgba(255,255,255,0.10)]" />
+            )}
           </motion.li>
         ))}
       </motion.ul>

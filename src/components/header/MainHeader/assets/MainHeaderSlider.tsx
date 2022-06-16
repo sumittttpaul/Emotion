@@ -92,12 +92,12 @@ export const MainHeaderSlider: FC<IProps> = (props) => {
   }, [props.open]);
   return (
     <motion.div
-      className="bg-transparent w-full sm:hidden"
+      className="bg-transparent w-full sm:hidden bg-white"
       animate={Slider}
       variants={SliderVariant}
     >
       <motion.ul variants={UlVariants} className="py-5 sm:hidden">
-        {Links.map((value) => (
+        {Links.map((value, idx) => (
           <motion.li key={value.label} variants={LiVariants}>
             <div className="w-full block relative h-[10px] min-h-[10px]" />
             <Button
@@ -125,7 +125,11 @@ export const MainHeaderSlider: FC<IProps> = (props) => {
               {value.label}
             </Button>
             <div className="w-full block relative h-[10px] min-h-[10px]" />
-            <div className="h-[1px] w-[79%] mx-auto bg-[rgba(255,255,255,0.10)]" />
+            {idx === 2 ? (
+              <></>
+            ) : (
+              <div className="h-[1px] w-[79%] mx-auto bg-[rgba(255,255,255,0.10)]" />
+            )}
           </motion.li>
         ))}
       </motion.ul>

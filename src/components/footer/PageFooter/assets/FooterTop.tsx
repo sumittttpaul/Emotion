@@ -57,7 +57,7 @@ const Company = [
 
 const Account = [
   {
-    label: 'Manage your account',
+    label: 'Manage your Account',
     to: Manage_Your_Account_Link,
   },
   {
@@ -65,7 +65,22 @@ const Account = [
     to: Redeem_Gift_Codes_Link,
   },
   {
-    label: 'View all orders',
+    label: 'View all Orders',
+    to: Cart_Link,
+  },
+];
+
+const AccountForSmall = [
+  {
+    label: 'My Account',
+    to: Manage_Your_Account_Link,
+  },
+  {
+    label: 'Redeem Codes',
+    to: Redeem_Gift_Codes_Link,
+  },
+  {
+    label: 'My Orders',
     to: Cart_Link,
   },
 ];
@@ -151,7 +166,7 @@ export const FooterTop: FC<IProps> = (props) => {
         </div>
         <PageFooterLinksFlex heading="Services" Content={Services} />
         <PageFooterLinksFlex heading="Company" Content={Company} />
-        <PageFooterLinksFlex heading="Account" Content={Account} />
+        <PageFooterLinksFlex heading="Account" Content={AccountForSmall} />
         <PageFooterSocials heading="Socials" Content={Socials} />
       </div>
     </>
