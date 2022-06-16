@@ -9,6 +9,9 @@ interface IProps {}
 
 export const OffersUI:FC<IProps> = (props) => {
   return (
-    <div>OffersUI</div>
+    <div className="relative z-10">
+      {/* Content */}
+      <h6 className="text-white p-5 w-full text-center">Offers UI</h6>
+    </div>
    )
  }

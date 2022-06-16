@@ -1,19 +1,47 @@
 import React, { FC } from 'react';
 import { MainHeader } from '../header/MainHeader/MainHeader';
+import { CollectionsUI } from './StoreComponentUI/CollectionsUI';
 import { DiscoverUI } from './StoreComponentUI/DiscoverUI';
+import { OffersUI } from './StoreComponentUI/OffersUI';
 
-interface IProps {}
+interface IPropsCollections {}
+
+interface IPropsDiscover {}
+
+interface IPropsOffers {}
 
 /**
- * @author
- * @function @StoreUI
+ * @Store_UI_Discover
  **/
-
-export const StoreUI: FC<IProps> = (props) => {
+export const StoreUIDiscover: FC<IPropsDiscover> = (props) => {
   return (
     <main className="w-full flex-grow z-auto">
-      <MainHeader CurrentPage="Discover" />
-      <DiscoverUI/>
+      <MainHeader />
+      <DiscoverUI />
+    </main>
+  );
+};
+
+/**
+ * @Store_UI_Offers
+ **/
+export const StoreUIOffers: FC<IPropsOffers> = (props) => {
+  return (
+    <main className="w-full flex-grow z-auto">
+      <MainHeader />
+      <OffersUI />
+    </main>
+  );
+};
+
+/**
+ * @Store_UI_Collections
+ **/
+export const StoreUICollections: FC<IPropsCollections> = (props) => {
+  return (
+    <main className="w-full flex-grow z-auto">
+      <MainHeader />
+      <CollectionsUI />
     </main>
   );
 };

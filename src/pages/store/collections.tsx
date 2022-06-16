@@ -2,19 +2,19 @@ import type { NextPage } from 'next';
 import { PageContainerDark } from '../../components/container/PageContainerDark';
 import { PageHeader } from '../../components/header/PageHeader/PageHeader';
 import { PageFooter } from '../../components/footer/PageFooter/PageFooter';
-import { StoreUIDiscover } from '../../components/ui/StoreUI';
+import { StoreUICollections } from '../../components/ui/StoreUI';
 
 /**
- * @Store_Page
+ * @Offers_Page
  **/
-const Store: NextPage = () => {
+const Offers: NextPage = () => {
   return (
     <PageContainerDark>
       <PageHeader />
-      <StoreUIDiscover />
+      <StoreUICollections />
       <PageFooter />
     </PageContainerDark>
   );
 };
 
-export default Store;
+export default Offers;

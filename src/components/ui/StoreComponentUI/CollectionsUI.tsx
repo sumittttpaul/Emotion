@@ -1,14 +1,17 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
 interface IProps {}
 
 /**
-* @author
-* @function @CollectionsUI
-**/
+ * @author
+ * @function @CollectionsUI
+ **/
 
-export const CollectionsUI:FC<IProps> = (props) => {
+export const CollectionsUI: FC<IProps> = (props) => {
   return (
-    <div>CollectionsUI</div>
-   )
- }
+    <div className="relative z-10">
+      {/* Content */}
+      <h6 className="text-white p-5 w-full text-center">Collections UI</h6>
+    </div>
+  );
+};
