@@ -13,32 +13,8 @@ const Store: NextPage = () => {
       <PageHeader />
       <main className="w-full flex-grow z-auto">
         <MainHeader />
-        <div className="text-[245,245,245] relative z-10">
+        <div className="relative z-10">
           {/* Content */}
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
-          <h6 className="text-white p-5 w-full text-center">I am Content</h6>
           <h6 className="text-white p-5 w-full text-center">I am Content</h6>
         </div>
       </main>

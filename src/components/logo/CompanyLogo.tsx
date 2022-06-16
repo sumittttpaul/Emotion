@@ -33,13 +33,27 @@ export const AuthHeaderLogo = () => {
 
 export const FooterLogo = () => {
   return (
-    <Image
-      height={30}
-      width={125}
-      className="opacity-70"
-      src={Logo_Full}
-      alt="logo-svg"
-      priority
-    />
+    <>
+      <div className="hidden sm:block">
+        <Image
+          height={30}
+          width={125}
+          className="opacity-70"
+          src={Logo_Full}
+          alt="logo-svg"
+          priority
+        />
+      </div>
+      <div className="block sm:hidden">
+        <Image
+          height={25}
+          width={100}
+          className="opacity-70"
+          src={Logo_Full}
+          alt="logo-svg"
+          priority
+        />
+      </div>
+    </>
   );
 };

@@ -15,7 +15,7 @@ export const PageFooter: FC<IProps> = (props) => {
     <div className="w-full self-end overflow-hidden bg-[#202020]">
       <div className="w-full relative p-8 box-border max-w-[1570px] mx-auto">
         <FooterLogo />
-        <FooterTop/>
+        <FooterTop />
         <div className="h-[1px] w-full my-5 bg-[rgba(255,255,255,0.1)]" />
         <h6 className="text-[11.5px] py-2 font-[300] leading-[22px] whitespace-normal lg:max-w-[70%] xl:max-w-[60%] 2xl:max-w-[55%] flex text-white opacity-80">
           Founded in 2022, Agewear is a lifestyle fashion brand that makes
@@ -29,7 +29,7 @@ export const PageFooter: FC<IProps> = (props) => {
         <h6 className="text-[11.5px] py-2 font-[300] whitespace-normal flex text-white">
           Discover the new you with Agewear-lifestyle.
         </h6>
-        <FooterBottom/>
+        <FooterBottom />
       </div>
     </div>
   );
