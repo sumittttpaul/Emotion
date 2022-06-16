@@ -70,7 +70,7 @@ const DisableButton = (props: string, value: string) => {
 
 const ActiveContent = (props: string, value: string) => {
   if (props === value) {
-    return 'opacity-90 hover:opacity-90';
+    return 'opacity-100 hover:opacity-100';
   } else {
     return 'opacity-50 hover:opacity-75';
   }

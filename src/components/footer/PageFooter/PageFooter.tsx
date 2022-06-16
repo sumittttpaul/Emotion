@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { FooterLogo } from '../../logo/CompanyLogo';
 import { FooterBottom } from './assets/FooterBottom';
 import { FooterTop } from './assets/FooterTop';
+import { ScrollToTopButton } from './assets/ScrollToTopButton';
 
 interface IProps {}
 
@@ -13,7 +14,7 @@ interface IProps {}
 export const PageFooter: FC<IProps> = (props) => {
   return (
     <div className="w-full self-end overflow-hidden bg-[#202020]">
-      <div className="w-full relative p-8 box-border max-w-[1570px] mx-auto">
+      <div className="w-full relative p-5 md-900:p-8 box-border max-w-[1570px] mx-auto">
         <FooterLogo />
         <FooterTop />
         <div className="h-[1px] w-full my-5 bg-[rgba(255,255,255,0.1)]" />
@@ -30,6 +31,7 @@ export const PageFooter: FC<IProps> = (props) => {
           Discover the new you with Agewear-lifestyle.
         </h6>
         <FooterBottom />
+        <ScrollToTopButton/>
       </div>
     </div>
   );

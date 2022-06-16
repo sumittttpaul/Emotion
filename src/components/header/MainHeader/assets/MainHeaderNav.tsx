@@ -138,7 +138,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
         disableFocusRipple
         disableTouchRipple
         aria-label="mobile-main-nav-button"
-        className="ml-[20%] flex sm:hidden opacity-90 text-white button-text-lower"
+        className="ml-[20%] flex sm:hidden opacity-100 text-white button-text-lower"
       >
         <div className="flex space-x-2 items-center">
           <h6 className="font-normal text-[13.5px]">{props.Value}</h6>
