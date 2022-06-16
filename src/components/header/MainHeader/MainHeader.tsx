@@ -9,7 +9,8 @@ import { MainHeaderNav } from './assets/MainHeaderNav';
 import { MainHeaderSlider } from './assets/MainHeaderSlider';
 
 interface IProps {
-  CurrentPage?: string;
+  Page: string;
+  setPage: (value: string) => void;
 }
 
 /**
@@ -19,12 +20,6 @@ interface IProps {
 
 export const MainHeader: FC<IProps> = (props) => {
   const [open, setOpen] = useCycle(false, true);
-  const [Content, setContent] = useState('Discover');
-  useEffect(() => {
-    if (props.CurrentPage) {
-      setContent(props.CurrentPage);
-    }
-  }, [Content]);
   return (
     <>
       <div className="w-full h-[17px] min-h-[17px]" />
@@ -39,8 +34,8 @@ export const MainHeader: FC<IProps> = (props) => {
             <MainHeaderNav
               open={open}
               onOpen={() => setOpen()}
-              Value={Content}
-              onValueChange={(value) => setContent(value)}
+              Value={props.Page}
+              onValueChange={props.setPage}
             />
           </div>
           <div className="flex relative space-x-2.5 sm:space-x-4 items-center">
@@ -63,8 +58,8 @@ export const MainHeader: FC<IProps> = (props) => {
         <MainHeaderSlider
           open={open}
           onClose={() => setOpen()}
-          Value={Content}
-          onValueChange={(value) => setContent(value)}
+          Value={props.Page}
+          onValueChange={props.setPage}
         />
       </div>
       <div className="w-full h-[17px] min-h-[17px]" />

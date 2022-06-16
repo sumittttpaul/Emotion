@@ -4,21 +4,18 @@ import { CollectionsUI } from './StoreComponentUI/CollectionsUI';
 import { DiscoverUI } from './StoreComponentUI/DiscoverUI';
 import { OffersUI } from './StoreComponentUI/OffersUI';
 
-interface IPropsCollections {}
-
-interface IPropsDiscover {}
-
-interface IPropsOffers {}
-
-// const [state, setstate] = useState<string>('Discover');
+interface IProps {
+  Page: string;
+  setPage: (value: string) => void;
+}
 
 /**
  * @Store_Discover
  **/
-export const StoreUIDiscover: FC<IPropsDiscover> = (props) => {
+export const StoreUIDiscover: FC<IProps> = (props) => {
   return (
     <main className="w-full flex-grow z-auto">
-      <MainHeader CurrentPage="Discover" />
+      <MainHeader Page={props.Page} setPage={props.setPage} />
       <DiscoverUI />
     </main>
   );
@@ -27,10 +24,10 @@ export const StoreUIDiscover: FC<IPropsDiscover> = (props) => {
 /**
  * @Store_Offers
  **/
-export const StoreUIOffers: FC<IPropsOffers> = (props) => {
+export const StoreUIOffers: FC<IProps> = (props) => {
   return (
     <main className="w-full flex-grow z-auto">
-      <MainHeader CurrentPage="Offers" />
+      <MainHeader Page={props.Page} setPage={props.setPage} />
       <OffersUI />
     </main>
   );
@@ -39,10 +36,10 @@ export const StoreUIOffers: FC<IPropsOffers> = (props) => {
 /**
  * @Store_Collections
  **/
-export const StoreUICollections: FC<IPropsCollections> = (props) => {
+export const StoreUICollections: FC<IProps> = (props) => {
   return (
     <main className="w-full flex-grow z-auto">
-      <MainHeader CurrentPage="Collections" />
+      <MainHeader Page={props.Page} setPage={props.setPage} />
       <CollectionsUI />
     </main>
   );
