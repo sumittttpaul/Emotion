@@ -21,6 +21,7 @@ import Facebook_Logo from '../../../../../public/images/social/facebook_square.p
 import Instagram_Logo from '../../../../../public/images/social/instagram_square.png';
 import Twitter_Logo from '../../../../../public/images/social/twitter_square.png';
 import Youtube_Logo from '../../../../../public/images/social/youtube_square.png';
+import { PageFooterLinksFlex } from './PageFooterLinksFlex';
 
 interface IProps {}
 
@@ -99,14 +100,60 @@ const Socials = [
 
 export const FooterTop: FC<IProps> = (props) => {
   return (
-    <div className="flex relative w-full justify-between">
-      <PageFooterLinks heading="Services" Content={Services} />
-      <PageFooterLinks heading="Company" Content={Company} />
-      <PageFooterLinks heading="Account" Content={Account} />
-      <PageFooterSocials heading="Socials" Content={Socials} />
-      <div className="w-full max-w-[50%] flex justify-center">
-        <PageFooterSubscribe />
+    <>
+      {/* Large Screen */}
+      <div className="hidden xl-1300:flex relative w-full justify-between">
+        <PageFooterLinks heading="Services" Content={Services} />
+        <PageFooterLinks heading="Company" Content={Company} />
+        <PageFooterLinks heading="Account" Content={Account} />
+        <PageFooterSocials heading="Socials" Content={Socials} />
+        <div className="w-full max-w-[50%] flex justify-center">
+          <PageFooterSubscribe />
+        </div>
       </div>
-    </div>
+
+      {/* Large Medium Screen */}
+      <div className="hidden lg-1100:flex xl-1300:hidden flex-col  relative w-full">
+        <div className="flex justify-between w-full">
+          <div className="flex justify-between w-full max-w-[40%]">
+            <PageFooterLinks heading="Services" Content={Services} />
+            <PageFooterLinks heading="Company" Content={Company} />
+            <PageFooterLinks heading="Account" Content={Account} />
+          </div>
+          <div className="w-full max-w-[50%] flex justify-center">
+            <PageFooterSubscribe />
+          </div>
+        </div>
+        <PageFooterSocials heading="Socials" Content={Socials} />
+      </div>
+
+      {/* Small Medium Screen */}
+      <div className="hidden sm-750:flex lg-1100:hidden flex-col  relative w-full">
+        <div className="flex justify-between w-full">
+          <div className="flex justify-between w-full max-w-[40%]">
+            <PageFooterLinks heading="Services" Content={Services} />
+            <PageFooterLinks heading="Company" Content={Company} />
+          </div>
+          <div className="w-full max-w-[50%] flex justify-center">
+            <PageFooterSubscribe />
+          </div>
+        </div>
+        <div className="w-full flex max-w-[40%] justify-between">
+          <PageFooterLinks heading="Account" Content={Account} />
+          <PageFooterSocials heading="Socials" Content={Socials} />
+        </div>
+      </div>
+
+      {/* Small Screen */}
+      <div className="flex sm-750:hidden flex-col  relative w-full">
+        <div className="w-full justify-center flex">
+          <PageFooterSubscribe />
+        </div>
+        <PageFooterLinksFlex heading="Services" Content={Services} />
+        <PageFooterLinksFlex heading="Company" Content={Company} />
+        <PageFooterLinksFlex heading="Account" Content={Account} />
+        <PageFooterSocials heading="Socials" Content={Socials} />
+      </div>
+    </>
   );
 };
