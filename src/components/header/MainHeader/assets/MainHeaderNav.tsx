@@ -18,17 +18,17 @@ interface IProps {
 
 const NavLabel = [
   {
-    name: 'Discover',
+    label: 'Discover',
     to: Discover_Link,
     for: 'MainTab1',
   },
   {
-    name: 'Offers',
+    label: 'Offers',
     to: Offers_Link,
     for: 'MainTab2',
   },
   {
-    name: 'Collections',
+    label: 'Collections',
     to: Collections_Link,
     for: 'MainTab3',
   },
@@ -116,18 +116,26 @@ export const MainHeaderNav: FC<IProps> = (props) => {
         />
         <ul className="flex flex-row space-x-3">
           {NavLabel.map((value) => (
-            <li key={value.name} className="relative box-border">
+            <li key={value.label} className="relative box-border">
               <label htmlFor={value.for} role="button">
                 <NextLink href={value.to} passHref>
                   <Button
-                    onClick={() => props.onValueChange(value.name)}
+                    onClick={() => {
+                      if (props.Value != value.label) {
+                        props.onValueChange(value.label);
+                      }
+                    }}
                     disableRipple
                     disableFocusRipple
                     disableTouchRipple
                     aria-label="main-header-button"
-                    className="opacity-50 text-[13.5px] hover:opacity-75 transition-all duration-200 font-normal text-white button-text-lower"
+                    className={`${
+                      props.Value === value.label
+                        ? 'opacity-100 hover:opacity-100'
+                        : 'opacity-50 hover:opacity-75'
+                    } ${'text-[13.5px] transition-all duration-200 font-normal text-white button-text-lower'}`}
                   >
-                    {value.name}
+                    {value.label}
                   </Button>
                 </NextLink>
               </label>
