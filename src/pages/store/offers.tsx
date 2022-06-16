@@ -3,7 +3,7 @@ import { PageContainerDark } from '../../components/container/PageContainerDark'
 import { PageHeader } from '../../components/header/PageHeader/PageHeader';
 import { PageFooter } from '../../components/footer/PageFooter/PageFooter';
 import { StoreUIOffers } from '../../components/ui/StoreUI';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * @Offers_Page
