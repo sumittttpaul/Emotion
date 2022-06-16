@@ -20,8 +20,12 @@ export const MainHeader: FC<IProps> = (props) => {
   const [Content, setContent] = useState('Discover');
   return (
     <>
-      <div className="w-full h-[17.5px] min-h-[17.5px]" />
-      <div className="flex flex-col z-[999] sticky-top items-start box-border w-full py-3 sm:py-4 backdrop-blur-sm bg-[rgba(18,18,18,0.85)]">
+      <div className="w-full h-[17px] min-h-[17px]" />
+      <div
+        className={`${
+          open ? 'bg-[#121212]' : 'bg-[rgba(18,18,18,0.9)]'
+        } ${'flex flex-col z-[999] sticky-top items-start box-border w-full py-3 sm:py-4 backdrop-blur-sm'}`}
+      >
         <div className="flex relative box-border w-full max-w-[1440px] mx-auto justify-between items-center sm:px-5 px-3">
           <div className="flex relative md-900:space-x-6 items-center">
             <MainHeaderSearchButton />
@@ -56,7 +60,7 @@ export const MainHeader: FC<IProps> = (props) => {
           onValueChange={(value) => setContent(value)}
         />
       </div>
-      <div className="w-full h-[17.5px] min-h-[17.5px]" />
+      <div className="w-full h-[17px] min-h-[17px]" />
     </>
   );
 };

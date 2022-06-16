@@ -91,51 +91,61 @@ export const MainHeaderSlider: FC<IProps> = (props) => {
     }
   }, [props.open]);
   return (
-    <motion.div
-      className="bg-transparent absolute left-0 top-full w-full sm:hidden"
-      animate={Slider}
-      variants={SliderVariant}
-    >
-      <motion.ul
-        variants={UlVariants}
-        className="py-5 sm:hidden bg-[rgba(18,18,18,0.85)]"
+    <>
+      {props.open ? (
+        <div
+          onClick={props.onClose}
+          className="absolute sm:hidden h-screen w-full top-full bg-black backdrop-blur-md opacity-75 left-0"
+        />
+      ) : (
+        <></>
+      )}
+      <motion.div
+        className="bg-transparent absolute left-0 top-full w-full sm:hidden"
+        animate={Slider}
+        variants={SliderVariant}
       >
-        {Links.map((value, idx) => (
-          <motion.li key={value.label} variants={LiVariants}>
-            <div className="w-full block relative h-[10px] min-h-[10px]" />
-            <Button
-              aria-label="mobile-header-slider-button"
-              disableFocusRipple
-              disabled={Boolean(DisableButton(props.Value, value.label))}
-              onClick={() => {
-                setTimeout(() => {
-                  if (props.Value != value.label) {
-                    props.onValueChange(value.label);
-                    props.onClose();
-                  }
-                }, 200);
-              }}
-              sx={{
-                '.MuiTouchRipple-child': {
-                  backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
-                },
-              }}
-              className={`${ActiveContent(
-                props.Value,
-                value.label
-              )} ${'text-white disabled:cursor-not-allowed disabled:text-white w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center py-2.5 px-14 button-text-lower'}`}
-            >
-              {value.label}
-            </Button>
-            <div className="w-full block relative h-[10px] min-h-[10px]" />
-            {idx === 2 ? (
-              <></>
-            ) : (
-              <div className="h-[1px] w-[79%] mx-auto bg-[rgba(255,255,255,0.10)]" />
-            )}
-          </motion.li>
-        ))}
-      </motion.ul>
-    </motion.div>
+        <motion.ul
+          variants={UlVariants}
+          className="py-5 sm:hidden bg-[#121212]"
+        >
+          {Links.map((value, idx) => (
+            <motion.li key={value.label} variants={LiVariants}>
+              <div className="w-full block relative h-[10px] min-h-[10px]" />
+              <Button
+                aria-label="mobile-header-slider-button"
+                disableFocusRipple
+                disabled={Boolean(DisableButton(props.Value, value.label))}
+                onClick={() => {
+                  setTimeout(() => {
+                    if (props.Value != value.label) {
+                      props.onValueChange(value.label);
+                      props.onClose();
+                    }
+                  }, 200);
+                }}
+                sx={{
+                  '.MuiTouchRipple-child': {
+                    backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                  },
+                }}
+                className={`${ActiveContent(
+                  props.Value,
+                  value.label
+                )} ${'text-white disabled:cursor-not-allowed disabled:text-white w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center py-2.5 px-14 button-text-lower'}`}
+              >
+                {value.label}
+              </Button>
+              <div className="w-full block relative h-[10px] min-h-[10px]" />
+              {idx === 2 ? (
+                <></>
+              ) : (
+                <div className="h-[1px] w-[79%] mx-auto bg-[rgba(255,255,255,0.10)]" />
+              )}
+            </motion.li>
+          ))}
+        </motion.ul>
+      </motion.div>
+    </>
   );
 };
