@@ -1,12 +1,12 @@
 .EmailSubscribebutton {
   --primary: #f6f8ff;
-  --bg-color: #3B3B3B;
+  --bg-color: #0074e4;
   --primary-dark: #d1d6ee;
   --primary-darkest: #8a91b4;
   --shadow: #{rgba(#000, 0.3)};
-  --text: #E6E6E6;
+  --text: #e6e6e6;
   --text-opacity: 1;
-  --success: #E6E6E6;
+  --success: #e6e6e6;
   --success-x: -12;
   --success-stroke: 14;
   --success-opacity: 0;

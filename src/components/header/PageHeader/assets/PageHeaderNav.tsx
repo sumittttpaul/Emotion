@@ -165,7 +165,7 @@ export const PageHeaderNav: FC<IProps> = (props) => {
         ))}
       </ul>
       <div className="w-[20%] navIndicator relative">
-        <div className="h-[1px] -mt-[1px] w-[60%] left-[18%] relative opacity-80 bg-white" />
+        <div className="h-[2px] -mt-[1px] w-[60%] left-[18%] relative bg-[#1d8eff]" />
       </div>
     </div>
   );

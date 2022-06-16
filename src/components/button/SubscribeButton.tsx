@@ -192,7 +192,7 @@ export class SubscribeButton extends Component<IProps> {
           </div>
         </button>
         {this.state.loading ? (
-          <div className="absolute z-[4] h-full w-full top-0 bg-[rgba(45,45,45)] transition-all ease-in rounded-md flex items-center justify-center">
+          <div className="absolute z-[4] h-full w-full top-0 bg-[#104A82] transition-all ease-in rounded-r-md flex items-center justify-center">
             <CircularProgress
               className="text-white opacity-75"
               size={20}

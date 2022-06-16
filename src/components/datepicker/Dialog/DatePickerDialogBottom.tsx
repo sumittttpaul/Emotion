@@ -28,7 +28,7 @@ export const DatePickerDialogBottom: FC<IProps> = (props) => {
         disableFocusRipple
         disabled={!props.submitActive}
         onClick={props.submit}
-        className="text-white disabled:opacity-50 disabled:cursor-not-allowed disabled:text-white rounded-md  text-[11px] h-8 w-[calc(100%/3)] bg-[#0074E4] hover:bg-[#0074E4] outline-none button-text-lower"
+        className="text-white disabled:opacity-50 disabled:cursor-not-allowed disabled:text-white rounded-md  text-[11px] h-8 w-[calc(100%/3)] bg-primary-blue hover:bg-primary-blue outline-none button-text-lower"
       >
         Done
       </Button>

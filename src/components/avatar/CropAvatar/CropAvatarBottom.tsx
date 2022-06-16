@@ -30,7 +30,7 @@ export const CropAvatarBottom: FC<IProps> = (props) => {
           aria-label="crop-image-button"
           disableFocusRipple
           onClick={props.submitClick}
-          className="bg-[#0074E4] hover:bg-[#0074E4] h-[40px] rounded-md button-text-lower text-white text-xs transition-colors w-full"
+          className="bg-primary-blue hover:bg-primary-blue h-[40px] rounded-md button-text-lower text-white text-xs transition-colors w-full"
         >
           Set profile picture
         </Button>
