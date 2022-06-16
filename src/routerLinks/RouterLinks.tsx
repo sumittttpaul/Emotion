@@ -1,4 +1,4 @@
-export const Home_Link = '/';
+export const Home_Link = '/store';
 export const Login_Link = '/auth/login';
 export const Register_Link = '/auth/register';
 export const Forgot_Password_Link = '/auth/login/forgot-password';

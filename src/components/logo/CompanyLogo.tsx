@@ -2,6 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import Logo from '../../../public/agewear_white.svg';
 import Logo_Full from '../../../public/agewear_full_white.svg';
+import Router from 'next/router';
+import { Home_Link } from '../../routerLinks/RouterLinks';
 
 export const PageHeaderLogo = () => {
   return (
@@ -9,7 +11,8 @@ export const PageHeaderLogo = () => {
       <Image
         height={32.5}
         width={32.5}
-        className="opacity-70"
+        onClick={() => Router.push(Home_Link)}
+        className="opacity-70 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
         src={Logo}
         alt="logo-svg"
         priority
@@ -38,7 +41,8 @@ export const FooterLogo = () => {
         <Image
           height={30}
           width={125}
-          className="opacity-70"
+          onClick={() => Router.push(Home_Link)}
+          className="opacity-70 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
           src={Logo_Full}
           alt="logo-svg"
           priority
@@ -48,7 +52,8 @@ export const FooterLogo = () => {
         <Image
           height={25}
           width={100}
-          className="opacity-70"
+          onClick={() => Router.push(Home_Link)}
+          className="opacity-70 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
           src={Logo_Full}
           alt="logo-svg"
           priority

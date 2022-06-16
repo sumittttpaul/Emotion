@@ -156,7 +156,7 @@ export const PageHeaderNav: FC<IProps> = (props) => {
                     }
                   }, 200);
                 }}
-                className="text-white disabled:cursor-not-allowed disabled:text-white opacity-70 hover:opacity-100 navLinks transition-opacity ease-out whitespace-nowrap font-[350] text-[12px] tracking-[0.075em] h-full w-[65px] flex text-center justify-center items-center px-[10px] button-text-lower"
+                className="text-white disabled:cursor-not-allowed disabled:text-white opacity-70 hover:opacity-100 navLinks transition-all duration-200 whitespace-nowrap font-[350] text-[12px] tracking-[0.075em] h-full w-[65px] flex text-center justify-center items-center px-[10px] button-text-lower"
               >
                 {value.label}
               </Button>

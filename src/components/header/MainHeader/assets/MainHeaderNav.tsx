@@ -2,7 +2,11 @@ import { ChevronDownIcon } from '@heroicons/react/solid';
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
-import { Collections_Link, Discover_Link, Offers_Link } from '../../../../routerLinks/RouterLinks';
+import {
+  Collections_Link,
+  Discover_Link,
+  Offers_Link,
+} from '../../../../routerLinks/RouterLinks';
 
 interface IProps {
   open: boolean;
@@ -10,7 +14,6 @@ interface IProps {
   onValueChange: (value: string) => void;
   Value: string;
 }
-
 
 const NavLabel = [
   {
@@ -120,7 +123,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
                   disableFocusRipple
                   disableTouchRipple
                   aria-label="main-header-button"
-                  className="opacity-50 text-[13.5px] hover:opacity-75 transition-opacity ease-in font-normal text-white button-text-lower"
+                  className="opacity-50 text-[13.5px] hover:opacity-75 transition-all duration-200 font-normal text-white button-text-lower"
                 >
                   {value.name}
                 </Button>
