@@ -65,6 +65,4 @@ export function LoadingMainheader() {
   );
 }
 
-export function LoadingFooter() {
-  
-}
+export function LoadingFooter() {}

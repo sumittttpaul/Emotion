@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic';
 import React, { FC, ReactNode } from 'react';
 import { PageContainerDark } from '../container/PageContainerDark';
-import { PageFooter } from '../footer/PageFooter/PageFooter';
 import { LoadingPageheader } from '../loader/LoadingHeader';
+// import { PageFooter } from '../footer/PageFooter/PageFooter';
 // import { PageHeader } from '../header/PageHeader/PageHeader';
 
 const PageHeader = dynamic(
@@ -10,6 +10,14 @@ const PageHeader = dynamic(
   () => import('../header/PageHeader/PageHeader').then((x) => x.PageHeader),
   {
     loading: () => <LoadingPageheader />,
+    ssr: false,
+  }
+);
+
+const PageFooter = dynamic(
+  // @ts-ignore: Unreachable code error
+  () => import('../footer/PageFooter/PageFooter').then((x) => x.PageFooter),
+  {
     ssr: false,
   }
 );

@@ -1,7 +1,21 @@
 import { ReactElement, useState } from 'react';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
-import { CollectionsUI } from '../../components/ui/StoreComponentUI/CollectionsUI';
+import dynamic from 'next/dynamic';
+
+const CollectionsUI = dynamic(
+  // @ts-ignore: Unreachable code error
+  () =>
+    import('../../components/ui/StoreComponentUI/CollectionsUI').then(
+      (x) => x.CollectionsUI
+    ),
+  {
+    loading: () => (
+      <h6 className="text-white p-5 w-full text-center">Loading . . . </h6>
+    ),
+    ssr: false,
+  }
+);
 
 /**
  * @Collections_Page

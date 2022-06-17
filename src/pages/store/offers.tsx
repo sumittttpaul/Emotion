@@ -1,7 +1,21 @@
-import { OffersUI } from '../../components/ui/StoreComponentUI/OffersUI';
 import { ReactElement, useState } from 'react';
-import { PageChildLayout } from '../../components/layout/PageChildLayout';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
+import { PageChildLayout } from '../../components/layout/PageChildLayout';
+import dynamic from 'next/dynamic';
+
+const OffersUI = dynamic(
+  // @ts-ignore: Unreachable code error
+  () =>
+    import('../../components/ui/StoreComponentUI/OffersUI').then(
+      (x) => x.OffersUI
+    ),
+  {
+    loading: () => (
+      <h6 className="text-white p-5 w-full text-center">Loading . . . </h6>
+    ),
+    ssr: false,
+  }
+);
 
 /**
  * @Offers_Page
