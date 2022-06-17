@@ -1,10 +1,11 @@
+import dynamic from 'next/dynamic';
 import React, { FC } from 'react';
 import { IAvatarIconReducerState } from '../../../../../redux/reducers/AvatarReducer';
-import { CollectionForAvatar } from '../../../../avatar/CollectionForAvatar';
-import { CropAvatar } from '../../../../avatar/CropAvatar';
-import SelectAvatar from '../../../../avatar/SelectAvatar';
-import ShowAvatar from '../../../../avatar/ShowAvatar';
 import AvatarContainerDialog from '../../../../dialog/AvatarContainerDialog';
+import ShowAvatar from '../../../../avatar/ShowAvatar';
+import SelectAvatar from '../../../../avatar/SelectAvatar';
+import CollectionForAvatar from '../../../../avatar/CollectionForAvatar';
+import CropAvatar from '../../../../avatar/CropAvatar';
 
 interface IProps {
   AvatarDialog: boolean;

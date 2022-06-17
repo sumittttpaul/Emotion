@@ -6,7 +6,7 @@ const MainHeaderColor = 'grey.900';
 export function LoadingPageheader() {
   return (
     <div className="w-full h-[50px] bg-[#2a2a2a]">
-      <div className='w-full h-full max-w-[1540px] mx-auto flex justify-center sm:justify-start'>
+      <div className="w-full h-full max-w-[1540px] mx-auto flex justify-center sm:justify-start">
         <PageHeaderLogo onValueChange={() => {}} />
       </div>
     </div>
@@ -67,4 +67,57 @@ export function LoadingMainheader() {
   );
 }
 
-export function LoadingFooter() {}
+export function LoadingAvatarButton() {
+  return (
+    <Skeleton
+      sx={{ bgcolor: MainHeaderColor }}
+      variant="circular"
+      width={100}
+      height={100}
+    />
+  );
+}
+
+export function LoadingAvatarUI() {
+  return (
+    <Skeleton
+      sx={{ bgcolor: MainHeaderColor }}
+      variant="rectangular"
+      width={350}
+      height={161}
+    />
+  );
+}
+
+export function LoadingDatePickerUI() {
+  return (
+    <Skeleton
+      sx={{ bgcolor: MainHeaderColor }}
+      variant="rectangular"
+      width={350}
+      height={109}
+    />
+  );
+}
+
+export function LoadingGenderUI() {
+  return (
+    <Skeleton
+      sx={{ bgcolor: MainHeaderColor }}
+      variant="rectangular"
+      width={350}
+      height={106}
+    />
+  );
+}
+
+export function LoadingLargeBlueButton() {
+  return (
+    <Skeleton
+      sx={{ bgcolor: MainHeaderColor }}
+      variant="rectangular"
+      width={350}
+      height={60}
+    />
+  );
+}

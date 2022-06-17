@@ -1,12 +1,60 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
 import AuthContainer from '../container/AuthContainer';
 import { motion, AnimatePresence } from 'framer-motion';
-import AvatarUI from './AuthComponentUI/SetupAccountComponentUI/AvatarUI/AvatarUI';
-import { DatePickerUI } from './AuthComponentUI/SetupAccountComponentUI/DatePickerUI/DatePickerUI';
-import { GenderUI } from './AuthComponentUI/SetupAccountComponentUI/GenderUI/GenderUI';
-import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
-import LargeButtonBlue from '../button/LargeButtonBlue';
 import { Link } from '@mui/material';
+import dynamic from 'next/dynamic';
+import {
+  LoadingAvatarUI,
+  LoadingDatePickerUI,
+  LoadingGenderUI,
+  LoadingLargeBlueButton,
+} from '../loader/LoadingHeader';
+import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
+// import LargeButtonBlue from '../button/LargeButtonBlue';
+// import { AvatarUI } from './AuthComponentUI/SetupAccountComponentUI/AvatarUI/AvatarUI';
+// import { DatePickerUI } from './AuthComponentUI/SetupAccountComponentUI/DatePickerUI/DatePickerUI';
+// import { GenderUI } from './AuthComponentUI/SetupAccountComponentUI/GenderUI/GenderUI';
+
+const LargeButtonBlue = dynamic(
+  // @ts-ignore: Unreachable code error
+  () => import('../button/LargeButtonBlue'),
+  {
+    loading: () => <LoadingLargeBlueButton />,
+  }
+);
+
+const AvatarUI = dynamic(
+  // @ts-ignore: Unreachable code error
+  () =>
+    import('./AuthComponentUI/SetupAccountComponentUI/AvatarUI/AvatarUI').then(
+      (x) => x.AvatarUI
+    ),
+  {
+    loading: () => <LoadingAvatarUI />,
+  }
+);
+
+const DatePickerUI = dynamic(
+  // @ts-ignore: Unreachable code error
+  () =>
+    import(
+      './AuthComponentUI/SetupAccountComponentUI/DatePickerUI/DatePickerUI'
+    ).then((x) => x.DatePickerUI),
+  {
+    loading: () => <LoadingDatePickerUI />,
+  }
+);
+
+const GenderUI = dynamic(
+  // @ts-ignore: Unreachable code error
+  () =>
+    import('./AuthComponentUI/SetupAccountComponentUI/GenderUI/GenderUI').then(
+      (x) => x.GenderUI
+    ),
+  {
+    loading: () => <LoadingGenderUI />,
+  }
+);
 
 interface IProps {
   // ------------- Date Of Birth ------------- //

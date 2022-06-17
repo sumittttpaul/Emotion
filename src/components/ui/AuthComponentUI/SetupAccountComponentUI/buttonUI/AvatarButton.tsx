@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import React, { FC, useState } from 'react';
 import {
   UploadAvatar,
@@ -8,7 +9,12 @@ import { IAvatarIconReducerState } from '../../../../../redux/reducers/AvatarRed
 import { useTypedSelector } from '../../../../../redux/useTypeSelector';
 import { AvatarCircularButton } from '../../../../button/AvatarCircularButton';
 import { ToastDark } from '../../../../toast/ToastDark';
-import { AvatarDialogUI } from '../AvatarUI/AvatarDialogUI';
+// import { AvatarDialogUI } from '../AvatarUI/AvatarDialogUI';
+
+const AvatarDialogUI = dynamic(
+  // @ts-ignore: Unreachable code error
+  () => import('../AvatarUI/AvatarDialogUI').then((x) => x.AvatarDialogUI),
+);
 
 interface IProps {}
 

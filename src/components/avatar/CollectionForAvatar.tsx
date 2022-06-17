@@ -17,7 +17,7 @@ interface IProps {
  * @function @CollectionForAvatar
  **/
 
-export const CollectionForAvatar: FC<IProps> = (props) => {
+const CollectionForAvatar: FC<IProps> = (props) => {
   return (
     <div className=" bg-white flex flex-col scroll-smooth overflow-auto items-center h-full w-full">
       {/* Header */}
@@ -46,3 +46,5 @@ export const CollectionForAvatar: FC<IProps> = (props) => {
     </div>
   );
 };
+
+export default CollectionForAvatar;

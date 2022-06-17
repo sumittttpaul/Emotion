@@ -32,7 +32,7 @@ export interface DefaultCropperProps extends CropperProps {
  * @function @CropAvatar
  **/
 
-export const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
+const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
   const [changed, setChanged] = useState(false);
   const [Active, setActive] = useState(false);
   const [RotateValue, setRotateValue] = useState(0);
@@ -310,3 +310,5 @@ export const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
     </div>
   );
 };
+
+export default CropAvatar;
