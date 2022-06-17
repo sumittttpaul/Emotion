@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   UploadAvatar,
   DeleteAvatar,
@@ -13,7 +13,7 @@ import { ToastDark } from '../../../../toast/ToastDark';
 
 const AvatarDialogUI = dynamic(
   // @ts-ignore: Unreachable code error
-  () => import('../AvatarUI/AvatarDialogUI').then((x) => x.AvatarDialogUI),
+  () => import('../AvatarUI/AvatarDialogUI').then((x) => x.AvatarDialogUI)
 );
 
 interface IProps {}
@@ -30,6 +30,7 @@ export const AvatarButton: FC<IProps> = (props) => {
   // State
   const [AvatarDialog, setAvatarDialog] = useState(false);
   const [AvatarURL, setAvatarURL] = useState('/images/user.png');
+  const [ChangeAvatar, setChangeAvatar] = useState(true);
   const [CropAvatarURL, setCropAvatarURL] = useState('');
   const [AvatarContainer, setAvatarContainer] = useState(
     'ShowAvatar-container'
@@ -217,6 +218,7 @@ export const AvatarButton: FC<IProps> = (props) => {
   };
   const AvatarSubmit = (value: File) => {
     if (value) {
+      setChangeAvatar(false);
       RemoveImageDisabled(true);
       ChangeImageDisabled(true);
       setTimeout(() => {
@@ -255,6 +257,14 @@ export const AvatarButton: FC<IProps> = (props) => {
       }, 200);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      if (user.photoURL && ChangeAvatar) {
+        setAvatarURL(user.photoURL);
+      }
+    }
+  }, [AvatarURL, ChangeAvatar, user]);
 
   return (
     <>

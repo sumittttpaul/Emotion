@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Button, CircularProgress, IconButton } from '@mui/material';
 import { XIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
@@ -57,6 +57,13 @@ const ShowAvatar: FC<IProps> = (props) => {
         </div>
         {/* Center */}
         <div className="flex relative justify-center min-h-[96px] min-w-[96px] show-avatar-profile-photo">
+          {/* <Image
+            layout="responsive"
+            onClick={props.forward}
+            className="rounded-[50%] cursor-pointer max-w-[288px] max-h-[288px] h-full transition-all"
+            src={props.URL}
+            alt="user photo"
+          /> */}
           <img
             onClick={props.forward}
             className="rounded-[50%] cursor-pointer max-w-[288px] max-h-[288px] h-full transition-all"

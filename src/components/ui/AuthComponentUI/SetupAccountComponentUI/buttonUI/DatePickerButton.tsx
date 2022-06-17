@@ -22,7 +22,7 @@ export const DatePickerButton: FC<IProps> = (props) => {
           heading="Date of birth"
           subheading="Get special discount and offers on your special day."
         />
-        <DOBbutton label={props.label} onClick={props.onClick} />
+        <DOBbutton theme='dark' label={props.label} onClick={props.onClick} />
       </div>
     </div>
   );

@@ -21,10 +21,10 @@ export const AvatarCircularButton: FC<IProps> = (props) => {
       disableRipple
       disableFocusRipple
       disableTouchRipple
-      className="p-0 flex-grow-0 flex-shrink-0"
+      className="p-0 flex-grow-0 flex-shrink-0 rounded-[50%]"
       sx={{ borderRadius: '50%' }}
     >
-      <div className="relative block rounded-[50%]">
+      <div className="relative flex rounded-[50%] overflow-hidden">
         <Image
           height={100}
           width={100}
@@ -35,8 +35,8 @@ export const AvatarCircularButton: FC<IProps> = (props) => {
           placeholder="blur"
           blurDataURL={Square_BlurDataURL}
         />
-        <div className="absolute bg-[rgb(32,32,32)] opacity-70 flex justify-center items-center h-[35%] left-0 right-0 bottom-0">
-          <CameraIcon className="text-white h-[25px] w-[25px] mb-2.5" />
+        <div className="absolute bg-[rgb(32,32,32)] opacity-70 flex justify-center items-center h-[33%] left-0 right-0 bottom-0">
+          <CameraIcon className="text-white h-[25px] w-[25px] mb-[2px]" />
         </div>
       </div>
     </IconButton>
