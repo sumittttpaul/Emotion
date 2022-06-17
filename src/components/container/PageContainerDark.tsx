@@ -13,7 +13,7 @@ interface IProps {
 export const PageContainerDark: FC<IProps> = (props) => {
   const { ColorState, setColorState } = useColorState();
   useEffect(() => {
-    // setColorState({ bgColor: '#121212' });
+    setColorState({ bgColor: '#121212' });
     document.body.style.backgroundColor = `${ColorState.bgColor}`;
   }, [setColorState, ColorState.bgColor]);
   return (

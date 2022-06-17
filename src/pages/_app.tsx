@@ -35,7 +35,7 @@ function MyApp(props: AppPropsWithLayout, cache: EmotionCacheProps) {
   const { Component, pageProps } = props;
   const { emotionCache = clientSideEmotionCache } = cache;
   const getLayout = Component.getLayout ?? ((page) => page);
-  return getLayout(
+  return (
     <CacheProvider value={emotionCache}>
       <AuthProvider>
         <Provider store={store}>
@@ -48,7 +48,7 @@ function MyApp(props: AppPropsWithLayout, cache: EmotionCacheProps) {
             </Head>
             <ThemeProvider theme={theme}>
               <CssBaseline />
-              <Component {...pageProps} />
+              {getLayout(<Component {...pageProps} />)}
               <Loading />
             </ThemeProvider>
           </StateProvider>
