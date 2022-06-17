@@ -10,7 +10,7 @@ export default function Store() {
   return <DiscoverUI />;
 }
 
-Store.getLayout = function getLayout(Store: ReactElement) {
+Store.getLayout = function GetLayout(Store: ReactElement) {
   const [ChildPage, setChildPage] = useState('Store');
   return (
     <PageParentLayout setChildPage={(value) => setChildPage(value)}>

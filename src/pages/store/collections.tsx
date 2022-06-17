@@ -10,7 +10,7 @@ export default function Collections() {
   return <CollectionsUI />;
 }
 
-Collections.getLayout = function getLayout(Collections: ReactElement) {
+Collections.getLayout = function GetLayout(Collections: ReactElement) {
   const [ChildPage, setChildPage] = useState('Collections');
   return (
     <PageParentLayout setChildPage={(value) => setChildPage(value)}>

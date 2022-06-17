@@ -10,7 +10,7 @@ export default function Offers() {
   return <OffersUI />;
 }
 
-Offers.getLayout = function getLayout(Offers: ReactElement) {
+Offers.getLayout = function GetLayout(Offers: ReactElement) {
   const [ChildPage, setChildPage] = useState('Offers');
   return (
     <PageParentLayout setChildPage={(value) => setChildPage(value)}>
