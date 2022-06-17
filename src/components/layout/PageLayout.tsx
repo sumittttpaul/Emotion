@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useEffect, useState } from 'react';
+import React, { FC, ReactNode, useState } from 'react';
 import { PageContainerDark } from '../container/PageContainerDark';
 import { PageFooter } from '../footer/PageFooter/PageFooter';
 import { MainHeader } from '../header/MainHeader/MainHeader';
@@ -14,15 +14,15 @@ interface IProps {
  **/
 
 export const PageLayout: FC<IProps> = (props) => {
-  const [Page, setPage] = useState('');
+  const [Page, setPage] = useState('Discover');
   return (
     <PageContainerDark>
-      <PageHeader />
+      <PageHeader setPage={(value) => setPage(value)} />
       <main className="w-full flex-grow z-auto">
         <MainHeader Page={Page} setPage={(value) => setPage(value)} />
         {props.children}
       </main>
-      <PageFooter />
+      <PageFooter setPage={(value) => setPage(value)} />
     </PageContainerDark>
   );
 };

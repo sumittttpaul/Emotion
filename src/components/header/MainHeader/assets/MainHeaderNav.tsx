@@ -129,11 +129,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
                     disableFocusRipple
                     disableTouchRipple
                     aria-label="main-header-button"
-                    className={`${
-                      props.Value === value.label
-                        ? 'opacity-100 hover:opacity-100'
-                        : 'opacity-50 hover:opacity-75'
-                    } ${'text-[13.5px] transition-all duration-200 font-normal text-white button-text-lower'}`}
+                    className={`${'text-[13.5px] opacity-50 hover:opacity-75 transition-all duration-200 font-normal text-white button-text-lower'}`}
                   >
                     {value.label}
                   </Button>

@@ -5,13 +5,20 @@ import Logo_Full from '../../../public/agewear_full_white.svg';
 import Router from 'next/router';
 import { Home_Link } from '../../routerLinks/RouterLinks';
 
-export const PageHeaderLogo = () => {
+interface Iprops {
+  onValueChange: (value: string) => void;
+}
+
+export const PageHeaderLogo = (props: Iprops) => {
   return (
     <div className="flex relative py-[8.4px] sm:px-[12px]">
       <Image
         height={32.5}
         width={32.5}
-        onClick={() => Router.push(Home_Link)}
+        onClick={() => {
+          props.onValueChange('Discover');
+          Router.push(Home_Link);
+        }}
         className="opacity-70 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
         src={Logo}
         alt="logo-svg"
@@ -34,14 +41,17 @@ export const AuthHeaderLogo = () => {
   );
 };
 
-export const FooterLogo = () => {
+export const FooterLogo = (props: Iprops) => {
   return (
     <>
       <div className="hidden sm:block">
         <Image
           height={30}
           width={125}
-          onClick={() => Router.push(Home_Link)}
+          onClick={() => {
+            props.onValueChange('Discover');
+            Router.push(Home_Link);
+          }}
           className="opacity-70 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
           src={Logo_Full}
           alt="logo-svg"
@@ -52,7 +62,10 @@ export const FooterLogo = () => {
         <Image
           height={25}
           width={100}
-          onClick={() => Router.push(Home_Link)}
+          onClick={() => {
+            props.onValueChange('Discover');
+            Router.push(Home_Link);
+          }}
           className="opacity-70 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
           src={Logo_Full}
           alt="logo-svg"

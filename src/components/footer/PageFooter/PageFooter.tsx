@@ -4,7 +4,9 @@ import { FooterBottom } from './assets/FooterBottom';
 import { FooterTop } from './assets/FooterTop';
 import { ScrollToTopButton } from './assets/ScrollToTopButton';
 
-interface IProps {}
+interface IProps {
+  setPage: (value: string) => void;
+}
 
 /**
  * @author
@@ -15,7 +17,7 @@ export const PageFooter: FC<IProps> = (props) => {
   return (
     <div className="w-full self-end overflow-hidden bg-[#202020]">
       <div className="w-full relative p-5 md-900:p-8 box-border max-w-[1570px] mx-auto">
-        <FooterLogo />
+        <FooterLogo onValueChange={props.setPage} />
         <FooterTop />
         <div className="h-[1px] w-full my-5 bg-[rgba(255,255,255,0.1)]" />
         <h6 className="text-[11.5px] py-2 font-[300] leading-[22px] whitespace-normal lg:max-w-[70%] xl:max-w-[60%] 2xl:max-w-[55%] flex text-white opacity-80">
@@ -31,7 +33,7 @@ export const PageFooter: FC<IProps> = (props) => {
           Discover the new you with Agewear-lifestyle.
         </h6>
         <FooterBottom />
-        <ScrollToTopButton/>
+        <ScrollToTopButton />
       </div>
     </div>
   );

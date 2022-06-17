@@ -6,7 +6,9 @@ import { PageHeaderNav } from './assets/PageHeaderNav';
 import { PageHeaderSlider } from './assets/PageHeaderSlider';
 import { PageHeaderLogo } from '../../logo/CompanyLogo';
 
-interface IProps {}
+interface IProps {
+  setPage: (value: string) => void;
+}
 
 /**
  * @author
@@ -42,7 +44,7 @@ export const PageHeader: FC<IProps> = (props) => {
         <div className="flex w-full justify-between max-w-[1540px] mx-auto">
           <PageHeaderMenuButton Cycle={Cycle} onClick={() => setCycle()} />
           <div className="flex relative">
-            <PageHeaderLogo />
+            <PageHeaderLogo onValueChange={props.setPage} />
             <PageHeaderNav
               Value={Content}
               onValueChange={(value) => setContent(value)}
