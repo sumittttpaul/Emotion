@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { DatePickerButtonDark } from '../buttonUI/DatePickerButtonDark';
+import { DatePickerButton } from '../buttonUI/DatePickerButton';
 import { DatePickerDialogUI } from './DatePickerDialogUI';
 
 interface IProps {
@@ -31,7 +31,7 @@ interface IProps {
 export const DatePickerUI: FC<IProps> = (props) => {
   return (
     <>
-      <DatePickerButtonDark onClick={props.DOBClick} label={props.DOBLabel} />
+      <DatePickerButton onClick={props.DOBClick} label={props.DOBLabel} />
       <DatePickerDialogUI
         ShowDialog={props.DOBShow}
         CloseDialog={props.setDOBShow}

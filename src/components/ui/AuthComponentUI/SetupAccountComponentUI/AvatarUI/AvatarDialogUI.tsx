@@ -7,39 +7,32 @@ import ShowAvatar from '../../../../avatar/ShowAvatar';
 import AvatarContainerDialog from '../../../../dialog/AvatarContainerDialog';
 
 interface IProps {
-  ShowDialog: boolean;
-  CloseDialog: () => void;
-  Container: string;
-  Screen1: boolean;
-  Screen2: boolean;
-  // Show Avatar
-  ShowAvatarBackward: () => void;
-  ShowAvatarForward: () => void;
-  ShowAvatarImageURL: string;
-  ShowAvatarRemoveClick: () => void;
-  ShowAvatarChangeDisabled: boolean;
-  ShowAvatarRemoveDisabled: boolean;
-  ShowAvatarShowProgress: boolean;
-  ShowAvatarProgress: string;
-  // Select Avatar
-  SelectAvatarBackward: () => void;
-  SelectAvatarFormard: () => void;
-  SelectAvatarGetImageURL: (value: string) => void;
-  AvatarCollectionShow: () => void;
-  AvatarCollectionBackBool: (value:boolean) => void;
-  AvatarCollectionHeading: (value: string) => void;
-  AvatarCollectionShowHeading: string;
-  AvatarCollectionReducerName: (value: string) => void;
-  // Avatar Collection
-  AvatarCollectionBackward: () => void;
-  AvatarCollectionFormard: () => void;
-  AvatarCollectionGetImageURL: (value: string) => void;
-  AvatarCollectionReducer: IAvatarIconReducerState[];
-  // Crop Avatar
-  CropAvatarBackward: () => void;
-  CropAvatarImageURL: string;
-  CropAvatarGetImageURL: (value: string) => void;
-  CropAvatarSubmit: (value: File) => void;
+  AvatarDialog: boolean;
+  setAvatarDialog: () => void;
+  AvatarContainer: string;
+  AvatarScreen1: boolean;
+  AvatarScreen2: boolean;
+  MoveToSelectAvatar: () => void;
+  AvatarURL: string;
+  RemoveClick: () => void;
+  ChangeDisabled: boolean;
+  RemoveDisabled: boolean;
+  UploadLoadingScreen: boolean;
+  UploadProgress: string;
+  BackToShowAvatar: () => void;
+  MoveToCropAvatar: () => void;
+  GetImageURL: (value: string) => void;
+  CollectionBackBool: (value: boolean) => void;
+  CollectionReducerName: (value: string) => void;
+  CollectionHeading: (value: string) => void;
+  CollectionShowHeading: string;
+  CollectionShow: () => void;
+  BackToSelectAvatar: () => void;
+  CollectionReducer: IAvatarIconReducerState[];
+  BackToAvatarCollection: () => void;
+  ImageURLToCrop: string;
+  GetCropImageURL: (value: string) => void;
+  AvatarSubmit: (value: File) => void;
 }
 
 /**
@@ -50,47 +43,47 @@ interface IProps {
 export const AvatarDialogUI: FC<IProps> = (props) => {
   return (
     <AvatarContainerDialog
-      close={props.CloseDialog}
-      show={props.ShowDialog}
-      className={props.Container}
+      close={props.setAvatarDialog}
+      show={props.AvatarDialog}
+      className={props.AvatarContainer}
     >
-      {props.Screen1 ? (
-        props.Screen2 ? (
+      {props.AvatarScreen1 ? (
+        props.AvatarScreen2 ? (
           <CropAvatar
-            back={props.CropAvatarBackward}
-            submit={props.CropAvatarSubmit}
-            URL={props.CropAvatarImageURL}
-            getURL={props.CropAvatarGetImageURL}
+            back={props.BackToAvatarCollection}
+            submit={props.AvatarSubmit}
+            URL={props.ImageURLToCrop}
+            getURL={props.GetCropImageURL}
           />
         ) : (
           <SelectAvatar
-            backward={props.SelectAvatarBackward}
-            forward={props.SelectAvatarFormard}
-            getURL={props.SelectAvatarGetImageURL}
-            backBool={props.AvatarCollectionBackBool}
-            ShowCollection={props.AvatarCollectionShow}
-            CollectionHeading={props.AvatarCollectionHeading}
-            AvatarName={props.AvatarCollectionReducerName}
+            backward={props.BackToShowAvatar}
+            forward={props.MoveToCropAvatar}
+            getURL={props.GetImageURL}
+            backBool={props.CollectionBackBool}
+            ShowCollection={props.CollectionShow}
+            CollectionHeading={props.CollectionHeading}
+            AvatarName={props.CollectionReducerName}
           />
         )
-      ) : props.Screen2 ? (
+      ) : props.AvatarScreen2 ? (
         <CollectionForAvatar
-          heading={props.AvatarCollectionShowHeading}
-          backward={props.AvatarCollectionBackward}
-          forward={props.AvatarCollectionFormard}
-          getURL={props.AvatarCollectionGetImageURL}
-          AvatarReducer={props.AvatarCollectionReducer}
+          heading={props.CollectionShowHeading}
+          backward={props.BackToSelectAvatar}
+          forward={props.MoveToCropAvatar}
+          getURL={props.GetImageURL}
+          AvatarReducer={props.CollectionReducer}
         />
       ) : (
         <ShowAvatar
-          URL={props.ShowAvatarImageURL}
-          remove={props.ShowAvatarRemoveClick}
-          changedisabled={props.ShowAvatarChangeDisabled}
-          removedisabled={props.ShowAvatarRemoveDisabled}
-          backward={props.ShowAvatarBackward}
-          forward={props.ShowAvatarForward}
-          ShowProgress={props.ShowAvatarShowProgress}
-          Progress={props.ShowAvatarProgress}
+          URL={props.AvatarURL}
+          remove={props.RemoveClick}
+          changedisabled={props.ChangeDisabled}
+          removedisabled={props.RemoveDisabled}
+          backward={props.setAvatarDialog}
+          forward={props.MoveToSelectAvatar}
+          ShowProgress={props.UploadLoadingScreen}
+          Progress={props.UploadProgress}
         />
       )}
     </AvatarContainerDialog>

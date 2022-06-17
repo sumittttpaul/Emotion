@@ -1,43 +1,8 @@
-import React, { FC } from 'react';
-import { AvatarDialogUI } from './AvatarDialogUI';
+import React, { FC, useEffect, useState } from 'react';
 import { AvatarButton } from '../buttonUI/AvatarButton';
-import { IAvatarIconReducerState } from '../../../../../redux/reducers/AvatarReducer';
+import Router from 'next/router';
 
-interface IProps {
-  AvatarDialog: boolean;
-  setAvatarDialog: () => void;
-  AvatarContainer: string;
-  AvatarScreen1: boolean;
-  AvatarScreen2: boolean;
-  AvatarURL: string;
-  AvatarClick: () => void;
-  // Show Avatar [ Screen 1 ]
-  MoveToSelectAvatar: () => void;
-  RemoveClick: () => void;
-  RemoveDisabled: boolean;
-  ChangeDisabled: boolean;
-  UploadLoadingScreen: boolean;
-  UploadProgress: string;
-  // Select Avatar [ Screen 2 ]
-  BackToShowAvatar: () => void;
-  MoveToCropAvatar: () => void;
-  GetImageURL: (value: string) => void;
-  // Avatar Collection [ Screen 3 ]
-  BackToAvatarCollection: () => void;
-  CollectionShow: () => void;
-  CollectionBackBool: (value:boolean) => void;
-  CollectionHeading: (value: string) => void;
-  CollectionShowHeading: string;
-  CollectionReducer: IAvatarIconReducerState[];
-  CollectionReducerName: (value: string) => void;
-  CollectionBackward: () => void;
-  CollectionFormard: () => void;
-  // Crop Avatar [ Screen 4 ]
-  GetCropImageURL: (value: string) => void;
-  ImageURLToCrop: string;
-  BackToSelectAvatar: () => void;
-  AvatarSubmit: (value: File) => void;
-}
+interface IProps {}
 
 /**
  * @author
@@ -45,41 +10,24 @@ interface IProps {
  **/
 
 const AvatarUI: FC<IProps> = (props) => {
+  const [FristName, setFirstName] = useState('');
+  const [LastName, setLastName] = useState('');
+  useEffect(() => {
+    const { firstname, lastname } = Router.query;
+    setFirstName(`${firstname}`);
+    setLastName(`${lastname}`);
+  }, [setFirstName, setLastName]);
   return (
-    <>
-      <AvatarButton onClick={props.AvatarClick} ImageURL={props.AvatarURL} />
-      <AvatarDialogUI
-        ShowDialog={props.AvatarDialog}
-        CloseDialog={props.setAvatarDialog}
-        Container={props.AvatarContainer}
-        Screen1={props.AvatarScreen1}
-        Screen2={props.AvatarScreen2}
-        ShowAvatarBackward={props.setAvatarDialog}
-        ShowAvatarForward={props.MoveToSelectAvatar}
-        ShowAvatarImageURL={props.AvatarURL}
-        ShowAvatarRemoveClick={props.RemoveClick}
-        ShowAvatarChangeDisabled={props.ChangeDisabled}
-        ShowAvatarRemoveDisabled={props.RemoveDisabled}
-        ShowAvatarShowProgress={props.UploadLoadingScreen}
-        ShowAvatarProgress={props.UploadProgress}
-        SelectAvatarBackward={props.BackToShowAvatar}
-        SelectAvatarFormard={props.MoveToCropAvatar}
-        SelectAvatarGetImageURL={props.GetImageURL}
-        AvatarCollectionBackBool={props.CollectionBackBool}
-        AvatarCollectionReducerName={props.CollectionReducerName}
-        AvatarCollectionHeading={props.CollectionHeading}
-        AvatarCollectionShowHeading={props.CollectionShowHeading}
-        AvatarCollectionShow={props.CollectionShow}
-        AvatarCollectionBackward={props.BackToSelectAvatar}
-        AvatarCollectionFormard={props.MoveToCropAvatar}
-        AvatarCollectionGetImageURL={props.GetImageURL}
-        AvatarCollectionReducer={props.CollectionReducer}
-        CropAvatarBackward={props.BackToAvatarCollection}
-        CropAvatarImageURL={props.ImageURLToCrop}
-        CropAvatarGetImageURL={props.GetCropImageURL}
-        CropAvatarSubmit={props.AvatarSubmit}
-      />
-    </>
+    <div className="flex flex-col space-y-2 items-center w-full relative">
+      <AvatarButton />
+      <h6 className="text-md font-[300] text-center text-white">
+        {'Welcome, '}
+        {FristName} {LastName}
+      </h6>
+      <h6 className="text-xs opacity-75 font-[300] text-center text-white">
+        Manage your info to make Agewear work better for you
+      </h6>
+    </div>
   );
 };
 

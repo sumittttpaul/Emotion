@@ -10,10 +10,10 @@ interface IProps {
 
 /**
  * @author
- * @function @DOBbuttonDark
+ * @function @DOBbutton
  **/
 
-export const DOBbuttonDark: FC<IProps> = (props) => {
+export const DOBbutton: FC<IProps> = (props) => {
   return (
     <Button
       aria-label="select-dob-button"

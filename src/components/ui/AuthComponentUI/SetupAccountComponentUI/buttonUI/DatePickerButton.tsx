@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
-import { BorderContainerDark } from '../../../../container/BorderContainerDark';
 import { SetupAccountLabel } from '../../../../label/SetupAccountLabel';
-import { DOBbuttonDark } from '../../../../button/DOBbuttonDark';
+import { DOBbutton } from '../../../../button/DOBbutton';
 import { SetupAccountDivider } from '../../../../divider/SetupAccountDivider';
 
 interface IProps {
@@ -11,10 +10,10 @@ interface IProps {
 
 /**
  * @author
- * @function @DatePickerButtonDark
+ * @function @DatePickerButton
  **/
 
-export const DatePickerButtonDark: FC<IProps> = (props) => {
+export const DatePickerButton: FC<IProps> = (props) => {
   return (
     <div className="flex flex-col w-full relative space-y-4">
       <SetupAccountDivider />
@@ -23,7 +22,7 @@ export const DatePickerButtonDark: FC<IProps> = (props) => {
           heading="Date of birth"
           subheading="Get special discount and offers on your special day."
         />
-        <DOBbuttonDark label={props.label} onClick={props.onClick} />
+        <DOBbutton label={props.label} onClick={props.onClick} />
       </div>
     </div>
   );

@@ -5,8 +5,10 @@ const MainHeaderColor = 'grey.900';
 
 export function LoadingPageheader() {
   return (
-    <div className="w-full z-[1201] top-0 self-start relative box-border h-[50px] bg-[#2a2a2a]">
-      <PageHeaderLogo onValueChange={() => {}} />
+    <div className="w-full h-[50px] bg-[#2a2a2a]">
+      <div className='w-full h-full max-w-[1540px] mx-auto flex justify-center sm:justify-start'>
+        <PageHeaderLogo onValueChange={() => {}} />
+      </div>
     </div>
   );
 }

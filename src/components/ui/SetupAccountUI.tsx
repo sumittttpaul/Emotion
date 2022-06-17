@@ -7,41 +7,8 @@ import { GenderUI } from './AuthComponentUI/SetupAccountComponentUI/GenderUI/Gen
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 import LargeButtonBlue from '../button/LargeButtonBlue';
 import { Link } from '@mui/material';
-import { IAvatarIconReducerState } from '../../redux/reducers/AvatarReducer';
 
 interface IProps {
-  // ------------- Avatar ------------- //
-  AvatarDialog: boolean;
-  setAvatarDialog: () => void;
-  AvatarContainer: string;
-  AvatarScreen1: boolean;
-  AvatarScreen2: boolean;
-  AvatarURL: string;
-  AvatarClick: () => void;
-  // Show Avatar [ Screen 1 ]
-  MoveToSelectAvatar: () => void;
-  RemoveClick: () => void;
-  ChangeDisabled: boolean;
-  RemoveDisabled: boolean;
-  UploadLoadingScreen: boolean;
-  UploadProgress: string;
-  // Select Avatar [ Screen 2 ]
-  BackToShowAvatar: () => void;
-  MoveToCropAvatar: () => void;
-  GetImageURL: (value: string) => void;
-  // Avatar Collection [ Screen 3 ]
-  BackToAvatarCollection: () => void;
-  CollectionBackBool: (value:boolean) => void;
-  CollectionShow: () => void;
-  CollectionHeading: (value: string) => void;
-  CollectionShowHeading: string;
-  CollectionReducer: IAvatarIconReducerState[];
-  CollectionReducerName: (value: string) => void;
-  // Crop Avatar [ Screen 4 ]
-  GetCropImageURL: (value: string) => void;
-  ImageURLToCrop: string;
-  BackToSelectAvatar: () => void;
-  AvatarSubmit: (value: File) => void;
   // ------------- Date Of Birth ------------- //
   DOBShow: boolean;
   setDOBShow: () => void;
@@ -90,37 +57,7 @@ export const SetupAccountUI: FC<IProps> = (props) => {
           transition={{ duration: 0.25 }}
         >
           <AuthHeaderLabel label="Setup your Agewear account" />
-          <AvatarUI
-            AvatarDialog={props.AvatarDialog}
-            setAvatarDialog={props.setAvatarDialog}
-            AvatarContainer={props.AvatarContainer}
-            AvatarScreen1={props.AvatarScreen1}
-            AvatarScreen2={props.AvatarScreen2}
-            AvatarURL={props.AvatarURL}
-            AvatarClick={props.AvatarClick}
-            MoveToSelectAvatar={props.MoveToSelectAvatar}
-            RemoveClick={props.RemoveClick}
-            ChangeDisabled={props.ChangeDisabled}
-            RemoveDisabled={props.RemoveDisabled}
-            UploadLoadingScreen={props.UploadLoadingScreen}
-            UploadProgress={props.UploadProgress}
-            BackToShowAvatar={props.BackToShowAvatar}
-            MoveToCropAvatar={props.MoveToCropAvatar}
-            GetImageURL={props.GetImageURL}
-            GetCropImageURL={props.GetCropImageURL}
-            ImageURLToCrop={props.ImageURLToCrop}
-            BackToSelectAvatar={props.BackToSelectAvatar}
-            BackToAvatarCollection={props.BackToAvatarCollection}
-            CollectionShow={props.CollectionShow}
-            CollectionHeading={props.CollectionHeading}
-            CollectionBackBool={props.CollectionBackBool}
-            CollectionShowHeading={props.CollectionShowHeading}
-            CollectionReducer={props.CollectionReducer}
-            CollectionReducerName={props.CollectionReducerName}
-            CollectionFormard={props.MoveToCropAvatar}
-            CollectionBackward={props.BackToSelectAvatar}
-            AvatarSubmit={props.AvatarSubmit}
-          />
+          <AvatarUI />
           <DatePickerUI
             DOBShow={props.DOBShow}
             setDOBShow={props.setDOBShow}
