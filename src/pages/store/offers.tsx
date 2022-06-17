@@ -11,10 +11,13 @@ export default function Offers() {
 }
 
 Offers.getLayout = function getLayout(Offers: ReactElement) {
-  const [Page, setPage] = useState('Offers');
+  const [ChildPage, setChildPage] = useState('Offers');
   return (
-    <PageParentLayout setPage={(value) => setPage(value)}>
-      <PageChildLayout Page={Page} setPage={(value) => setPage(value)}>
+    <PageParentLayout setChildPage={(value) => setChildPage(value)}>
+      <PageChildLayout
+        ChildPage={ChildPage}
+        setChildPage={(value) => setChildPage(value)}
+      >
         {Offers}
       </PageChildLayout>
     </PageParentLayout>

@@ -3,8 +3,8 @@ import { MainHeader } from '../header/MainHeader/MainHeader';
 
 interface IProps {
   children: ReactNode;
-  Page: string;
-  setPage: (value: string) => void;
+  ChildPage: string;
+  setChildPage: (value: string) => void;
 }
 
 /**
@@ -15,7 +15,7 @@ interface IProps {
 export const PageChildLayout: FC<IProps> = (props) => {
   return (
     <main className="w-full flex-grow z-auto">
-      <MainHeader Page={props.Page} setPage={props.setPage} />
+      <MainHeader Page={props.ChildPage} setPage={props.setChildPage} />
       {props.children}
     </main>
   );

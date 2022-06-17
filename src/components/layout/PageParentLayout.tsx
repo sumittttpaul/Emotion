@@ -5,7 +5,7 @@ import { PageHeader } from '../header/PageHeader/PageHeader';
 
 interface IProps {
   children: ReactNode;
-  setPage: (value: string) => void;
+  setChildPage: (value: string) => void;
 }
 
 /**
@@ -16,9 +16,9 @@ interface IProps {
 export const PageParentLayout: FC<IProps> = (props) => {
   return (
     <PageContainerDark>
-      <PageHeader setPage={props.setPage} />
+      <PageHeader setPage={props.setChildPage} />
       {props.children}
-      <PageFooter setPage={props.setPage} />
+      <PageFooter setPage={props.setChildPage} />
     </PageContainerDark>
   );
 };

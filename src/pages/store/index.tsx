@@ -11,10 +11,13 @@ export default function Store() {
 }
 
 Store.getLayout = function getLayout(Store: ReactElement) {
-  const [Page, setPage] = useState('Store');
+  const [ChildPage, setChildPage] = useState('Store');
   return (
-    <PageParentLayout setPage={(value) => setPage(value)}>
-      <PageChildLayout Page={Page} setPage={(value) => setPage(value)}>
+    <PageParentLayout setChildPage={(value) => setChildPage(value)}>
+      <PageChildLayout
+        ChildPage={ChildPage}
+        setChildPage={(value) => setChildPage(value)}
+      >
         {Store}
       </PageChildLayout>
     </PageParentLayout>

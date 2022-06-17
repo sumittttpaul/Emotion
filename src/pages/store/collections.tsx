@@ -11,10 +11,13 @@ export default function Collections() {
 }
 
 Collections.getLayout = function getLayout(Collections: ReactElement) {
-  const [Page, setPage] = useState('Collections');
+  const [ChildPage, setChildPage] = useState('Collections');
   return (
-    <PageParentLayout setPage={(value) => setPage(value)}>
-      <PageChildLayout Page={Page} setPage={(value) => setPage(value)}>
+    <PageParentLayout setChildPage={(value) => setChildPage(value)}>
+      <PageChildLayout
+        ChildPage={ChildPage}
+        setChildPage={(value) => setChildPage(value)}
+      >
         {Collections}
       </PageChildLayout>
     </PageParentLayout>
