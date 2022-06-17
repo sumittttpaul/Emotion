@@ -1,5 +1,6 @@
-import { ReactElement } from 'react';
-import { PageLayout } from '../../components/layout/PageLayout';
+import { ReactElement, useState } from 'react';
+import { PageChildLayout } from '../../components/layout/PageChildLayout';
+import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import { CollectionsUI } from '../../components/ui/StoreComponentUI/CollectionsUI';
 
 /**
@@ -10,5 +11,12 @@ export default function Collections() {
 }
 
 Collections.getLayout = function getLayout(Collections: ReactElement) {
-  return <PageLayout>{Collections}</PageLayout>;
+  const [Page, setPage] = useState('Collections');
+  return (
+    <PageParentLayout setPage={(value) => setPage(value)}>
+      <PageChildLayout Page={Page} setPage={(value) => setPage(value)}>
+        {Collections}
+      </PageChildLayout>
+    </PageParentLayout>
+  );
 };

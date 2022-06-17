@@ -1,5 +1,6 @@
-import { ReactElement } from 'react';
-import { PageLayout } from '../../components/layout/PageLayout';
+import { ReactElement, useState } from 'react';
+import { PageChildLayout } from '../../components/layout/PageChildLayout';
+import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import { DiscoverUI } from '../../components/ui/StoreComponentUI/DiscoverUI';
 
 /**
@@ -10,5 +11,12 @@ export default function Store() {
 }
 
 Store.getLayout = function getLayout(Store: ReactElement) {
-  return <PageLayout>{Store}</PageLayout>;
+  const [Page, setPage] = useState('Store');
+  return (
+    <PageParentLayout setPage={(value) => setPage(value)}>
+      <PageChildLayout Page={Page} setPage={(value) => setPage(value)}>
+        {Store}
+      </PageChildLayout>
+    </PageParentLayout>
+  );
 };

@@ -1,6 +1,7 @@
 import { OffersUI } from '../../components/ui/StoreComponentUI/OffersUI';
-import { ReactElement } from 'react';
-import { PageLayout } from '../../components/layout/PageLayout';
+import { ReactElement, useState } from 'react';
+import { PageChildLayout } from '../../components/layout/PageChildLayout';
+import { PageParentLayout } from '../../components/layout/PageParentLayout';
 
 /**
  * @Offers_Page
@@ -10,5 +11,12 @@ export default function Offers() {
 }
 
 Offers.getLayout = function getLayout(Offers: ReactElement) {
-  return <PageLayout>{Offers}</PageLayout>;
+  const [Page, setPage] = useState('Offers');
+  return (
+    <PageParentLayout setPage={(value) => setPage(value)}>
+      <PageChildLayout Page={Page} setPage={(value) => setPage(value)}>
+        {Offers}
+      </PageChildLayout>
+    </PageParentLayout>
+  );
 };
