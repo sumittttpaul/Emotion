@@ -30,8 +30,8 @@
 }
 
 .show-avatar-profile-photo {
-  height: min(100vw - 38px, 288px);
-  width: min(100vw - 38px, 288px);
+  height: min(100% - 38px, 288px);
+  width: min(100% - 38px, 288px);
 }
 
 .custom-tab-transition-color {

@@ -1,8 +1,8 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { Button, CircularProgress, IconButton } from '@mui/material';
 import { XIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
-import { Square_BlurDataURL } from '../loader/BlurDataURL';
+import { Square_BlurDataURL, Circle_BlurDataURL } from '../loader/BlurDataURL';
 
 interface IProps {
   backward?: () => void;
@@ -57,19 +57,22 @@ const ShowAvatar: FC<IProps> = (props) => {
         </div>
         {/* Center */}
         <div className="flex relative justify-center min-h-[96px] min-w-[96px] show-avatar-profile-photo">
-          {/* <Image
-            layout="responsive"
+          <Image
+            onClick={props.forward}
+            height={288}
+            width={288}
+            className="rounded-[50%] cursor-pointer transition-all"
+            src={props.URL}
+            alt="user photo"
+            placeholder="blur"
+            blurDataURL={Circle_BlurDataURL}
+          />
+          {/* <img
             onClick={props.forward}
             className="rounded-[50%] cursor-pointer max-w-[288px] max-h-[288px] h-full transition-all"
             src={props.URL}
             alt="user photo"
           /> */}
-          <img
-            onClick={props.forward}
-            className="rounded-[50%] cursor-pointer max-w-[288px] max-h-[288px] h-full transition-all"
-            src={props.URL}
-            alt="user photo"
-          />
           {props.ShowProgress ? (
             <div className="absolute h-full w-full flex items-center justify-center rounded-[50%] opacity-[0.85] bg-white">
               <CircularProgress

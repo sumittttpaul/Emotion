@@ -3,7 +3,6 @@ import { IconButton, useTheme } from '@mui/material';
 import { DotsVerticalIcon, ArrowLeftIcon } from '@heroicons/react/solid';
 import { SparklesIcon, DesktopComputerIcon } from '@heroicons/react/outline';
 import SwipeableViews from 'react-swipeable-views';
-import dynamic from 'next/dynamic';
 import FromAvatars from './SelectAvatar/Options/FromAvatars';
 import FromComputer from './SelectAvatar/Options/FromComputer';
 import SelectAvatarTabItem from '../tab/SelectAvatarTabItem';
