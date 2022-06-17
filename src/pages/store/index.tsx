@@ -1,7 +1,21 @@
 import { ReactElement, useState } from 'react';
-import { PageChildLayout } from '../../components/layout/PageChildLayout';
+import dynamic from 'next/dynamic';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
-import { DiscoverUI } from '../../components/ui/StoreComponentUI/DiscoverUI';
+import { PageChildLayout } from '../../components/layout/PageChildLayout';
+
+const DiscoverUI = dynamic(
+  // @ts-ignore: Unreachable code error
+  () =>
+    import('../../components/ui/StoreComponentUI/DiscoverUI').then(
+      (x) => x.DiscoverUI
+    ),
+  {
+    loading: () => (
+      <h6 className="text-white p-5 w-full text-center">Loading . . . </h6>
+    ),
+    ssr: false,
+  }
+);
 
 /**
  * @Store_Page
