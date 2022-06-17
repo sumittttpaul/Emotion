@@ -1,20 +1,14 @@
-import type { NextPage } from 'next';
-import { PageContainerDark } from '../../components/container/PageContainerDark';
-import { PageHeader } from '../../components/header/PageHeader/PageHeader';
-import { PageFooter } from '../../components/footer/PageFooter/PageFooter';
-import { StoreUIDiscover } from '../../components/ui/StoreUI';
+import { ReactElement } from 'react';
+import { PageLayout } from '../../components/layout/PageLayout';
+import { DiscoverUI } from '../../components/ui/StoreComponentUI/DiscoverUI';
 
 /**
  * @Store_Page
  **/
-const Store: NextPage = () => {
-  return (
-    <PageContainerDark>
-      <PageHeader />
-      <StoreUIDiscover />
-      <PageFooter />
-    </PageContainerDark>
-  );
-};
+export default function Store() {
+  return <DiscoverUI />;
+}
 
-export default Store;
+Store.getLayout = function getLayout(Store: ReactElement) {
+  return <PageLayout>{Store}</PageLayout>;
+};

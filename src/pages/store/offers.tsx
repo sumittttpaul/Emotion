@@ -1,20 +1,14 @@
-import type { NextPage } from 'next';
-import { PageContainerDark } from '../../components/container/PageContainerDark';
-import { PageHeader } from '../../components/header/PageHeader/PageHeader';
-import { PageFooter } from '../../components/footer/PageFooter/PageFooter';
-import { StoreUIOffers } from '../../components/ui/StoreUI';
+import { OffersUI } from '../../components/ui/StoreComponentUI/OffersUI';
+import { ReactElement } from 'react';
+import { PageLayout } from '../../components/layout/PageLayout';
 
 /**
  * @Offers_Page
  **/
-const Offers: NextPage = () => {
-  return (
-    <PageContainerDark>
-      <PageHeader />
-      <StoreUIOffers />
-      <PageFooter />
-    </PageContainerDark>
-  );
-};
+export default function Offers() {
+  return <OffersUI />;
+}
 
-export default Offers;
+Offers.getLayout = function getLayout(Offers: ReactElement) {
+  return <PageLayout>{Offers}</PageLayout>;
+};

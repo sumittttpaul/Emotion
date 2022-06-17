@@ -15,16 +15,27 @@ import { Provider } from 'react-redux';
 import store from '../redux/store';
 import { AuthProvider } from '../firebase/AuthProvider';
 import { Loading } from '../components/loader/Loading';
+import { NextPage } from 'next';
 
 const clientSideEmotionCache = createEmotionCache();
 
-interface MyAppProps extends AppProps {
+interface EmotionCacheProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
-function MyApp(props: MyAppProps) {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-  return (
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: React.ReactElement) => React.ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+function MyApp(props: AppPropsWithLayout, cache: EmotionCacheProps) {
+  const { Component, pageProps } = props;
+  const { emotionCache = clientSideEmotionCache } = cache;
+  const getLayout = Component.getLayout ?? ((page) => page);
+  return getLayout(
     <CacheProvider value={emotionCache}>
       <AuthProvider>
         <Provider store={store}>
