@@ -48,7 +48,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
         .then(() => {
           handleClose();
         });
-    }, 150);
+    }, 200);
   };
   return (
     <div className="flex relative box-border">

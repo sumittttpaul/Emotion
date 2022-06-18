@@ -1,10 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
+import Router from 'next/router';
 import { useCycle } from 'framer-motion';
 import { PageHeaderUserButton } from '../../button/header/PageHeaderUserButton';
 import { PageHeaderMenuButton } from '../../button/header/PageHeaderMenuButton';
 import { PageHeaderNav } from './assets/PageHeaderNav';
 import { PageHeaderSlider } from './assets/PageHeaderSlider';
 import { PageHeaderLogo } from '../../logo/CompanyLogo';
+import { useLoaderState } from '../../../providers/state/LoadingState';
+import { Home_Link } from '../../../routerLinks/RouterLinks';
 
 interface IProps {
   setPage: (value: string) => void;
@@ -19,6 +22,11 @@ export const PageHeader: FC<IProps> = (props) => {
   const [Cycle, setCycle] = useCycle(false, true);
   const [Hvalue, setHvalue] = useState(0);
   const [Content, setContent] = useState('Store');
+
+  const { setLoader } = useLoaderState();
+  const LoadingScreen = (value: boolean) => {
+    setLoader({ show: value });
+  };
 
   useEffect(() => {
     if (global.window) {
@@ -44,7 +52,13 @@ export const PageHeader: FC<IProps> = (props) => {
         <div className="flex w-full justify-between max-w-[1540px] mx-auto">
           <PageHeaderMenuButton Cycle={Cycle} onClick={() => setCycle()} />
           <div className="flex relative">
-            <PageHeaderLogo onValueChange={props.setPage} />
+            <PageHeaderLogo
+              onValueChange={(value) => {
+                props.setPage(value);
+                LoadingScreen(true);
+                Router.push(Home_Link);
+              }}
+            />
             <PageHeaderNav
               Value={Content}
               onValueChange={(value) => setContent(value)}
