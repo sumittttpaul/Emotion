@@ -40,7 +40,7 @@ export const MainHeader: FC<IProps> = (props) => {
             />
           </div>
           <div className="flex relative space-x-2.5 sm:space-x-4 items-center">
-            <MainHeaderWishlistButton
+            <MainHeaderWishlistButton value={props.Page}
               Click={() => {
                 setTimeout(() => {
                   props.setPage('Wishlist');
@@ -48,7 +48,7 @@ export const MainHeader: FC<IProps> = (props) => {
                 }, 150);
               }}
             />
-            <MainHeaderCartButton
+            <MainHeaderCartButton value={props.Page}
               Click={() => {
                 setTimeout(() => {
                   props.setPage('Cart');
