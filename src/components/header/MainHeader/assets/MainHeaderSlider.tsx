@@ -71,9 +71,9 @@ const DisableButton = (props: string, value: string) => {
 
 const ActiveContent = (props: string, value: string) => {
   if (props === value) {
-    return 'opacity-100 hover:opacity-100 cursor-default';
+    return 'opacity-100 cursor-default';
   } else {
-    return 'opacity-50 hover:opacity-75';
+    return 'opacity-50';
   }
 };
 
@@ -139,7 +139,7 @@ export const MainHeaderSlider: FC<IProps> = (props) => {
                   className={`${ActiveContent(
                     props.Value,
                     value.label
-                  )} ${'text-white bg-transparent hover:bg-transparent disabled:cursor-not-allowed disabled:text-white w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center py-2.5 px-14 button-text-lower'}`}
+                  )} ${'text-white hover:opacity-100 bg-transparent hover:bg-transparent disabled:cursor-not-allowed disabled:text-white w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center py-2.5 px-14 button-text-lower'}`}
                 >
                   {value.label}
                 </Button>

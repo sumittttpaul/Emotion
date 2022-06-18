@@ -40,17 +40,21 @@ export const MainHeader: FC<IProps> = (props) => {
             />
           </div>
           <div className="flex relative space-x-2.5 sm:space-x-4 items-center">
-            <MainHeaderWishlistButton value={props.Page}
+            <MainHeaderWishlistButton
+              value={props.Page}
               Click={() => {
                 setTimeout(() => {
+                  if (open === true) setOpen();
                   props.setPage('Wishlist');
                   Router.push(Wishlist_Link);
                 }, 150);
               }}
             />
-            <MainHeaderCartButton value={props.Page}
+            <MainHeaderCartButton
+              value={props.Page}
               Click={() => {
                 setTimeout(() => {
+                  if (open === true) setOpen();
                   props.setPage('Cart');
                   Router.push(Cart_Link);
                 }, 150);

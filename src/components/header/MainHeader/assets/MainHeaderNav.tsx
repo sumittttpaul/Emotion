@@ -147,7 +147,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
                     disableFocusRipple
                     disableTouchRipple
                     aria-label="main-header-button"
-                    className="text-[13.5px] opacity-50 hover:opacity-75 transition-all duration-200 font-normal text-white button-text-lower"
+                    className="text-[13.5px] opacity-50 hover:opacity-100 transition-all duration-200 font-normal text-white button-text-lower"
                   >
                     {value.label}
                   </Button>
@@ -164,10 +164,8 @@ export const MainHeaderNav: FC<IProps> = (props) => {
         disableTouchRipple
         aria-label="mobile-main-nav-button"
         className={`${
-          Boolean(NonActiveContent(props.Value))
-            ? 'opacity-50 hover:opacity-75'
-            : 'opacity-100 hover:opacity-100'
-        } ${'flex ml-[58px] w-full sm:hidden text-white button-text-lower'}`}
+          Boolean(NonActiveContent(props.Value)) ? 'opacity-50' : 'opacity-100 '
+        } ${'flex ml-[58px] hover:opacity-100 w-full sm:hidden text-white button-text-lower'}`}
       >
         <div className="flex space-x-2 items-center">
           <h6 className="font-normal text-[13.5px]">

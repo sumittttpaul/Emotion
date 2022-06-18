@@ -31,7 +31,7 @@ export const MainHeaderCartButton: FC<IProps> = (props) => {
         className={`${
           Boolean(ActiveContent(props.value))
             ? 'opacity-100 hover:opacity-100'
-            : 'opacity-80 header-button-hover'
+            : 'opacity-70 header-button-hover'
         } ${'hidden md-900:block transition-all duration-300 text-white py-2.5 px-3 border border-solid border-[rgba(255,255,255,0.23)] rounded-md button-text-lower'}`}
         sx={{
           '.MuiTouchRipple-child': {
@@ -44,7 +44,7 @@ export const MainHeaderCartButton: FC<IProps> = (props) => {
             className={`${
               Boolean(ActiveContent(props.value))
                 ? 'opacity-100 hover:opacity-100'
-                : 'header-icon-hover opacity-80'
+                : 'opacity-80 header-icon-hover'
             } ${'h-4 w-4'}`}
           />
           <h6 className="text-xs font-normal">Cart</h6>
@@ -62,7 +62,7 @@ export const MainHeaderCartButton: FC<IProps> = (props) => {
           className={`${
             Boolean(ActiveContent(props.value))
               ? 'opacity-100 hover:opacity-100'
-              : 'opacity-80 header-button-hover'
+              : 'opacity-70 header-button-hover'
           } ${'block md-900:hidden transition-all duration-300 button-text-lower h-full p-2.5 border border-solid border-[rgba(255,255,255,0.23)]'}`}
           sx={{
             borderRadius: '6px !important',
