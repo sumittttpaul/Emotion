@@ -64,6 +64,7 @@ const ShowAvatar: FC<IProps> = (props) => {
             className="cursor-pointer rounded-[50%] overflow-hidden transition-all"
             src={props.URL}
             alt="user photo"
+            loading="lazy"
             placeholder="blur"
             blurDataURL={Circle_BlurDataURL}
           />

@@ -144,6 +144,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
                 src={illustrationURL}
                 alt="avatar-collection-banner"
                 placeholder="blur"
+                loading='lazy'
                 blurDataURL={blurDataURL}
               />
             </Button>

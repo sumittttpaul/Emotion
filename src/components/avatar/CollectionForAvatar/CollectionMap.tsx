@@ -44,10 +44,11 @@ export const CollectionMap: FC<IProps> = (props) => {
               <Image
                 height={440}
                 width={440}
-                className="rounded-[50%] overflow-hidden"
+                className="rounded-[50%]"
                 src={avatars.iconURL}
                 alt="womens-avatar-collections-image"
                 placeholder="blur"
+                loading='lazy'
                 blurDataURL={Square_BlurDataURL}
               />
             </motion.button>
