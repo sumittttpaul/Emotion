@@ -34,7 +34,7 @@ export const CollectionMap: FC<IProps> = (props) => {
           return (
             <motion.button
               key={avatars.iconURL}
-              className="rounded-[50%] p-0"
+              className="rounded-[50%] p-0 overflow-hidden"
               whileTap={{ scale: 0.9 }}
               onClick={() => {
                 props.getURL(avatars.iconURL);
@@ -44,7 +44,7 @@ export const CollectionMap: FC<IProps> = (props) => {
               <Image
                 height={440}
                 width={440}
-                className="rounded-[50%]"
+                className="rounded-[50%] overflow-hidden"
                 src={avatars.iconURL}
                 alt="womens-avatar-collections-image"
                 placeholder="blur"

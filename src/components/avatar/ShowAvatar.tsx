@@ -22,7 +22,7 @@ interface IProps {
 
 const ShowAvatar: FC<IProps> = (props) => {
   return (
-    <div className="bg-white flex flex-col w-full h-full scroll-smooth overflow-auto items-center">
+    <div className="bg-white flex flex-col w-full h-full scroll-smooth  overflow-y-auto overflow-x-hidden items-center">
       {/* Header */}
       <div className="flex w-full z-10 justify-between items-center p-1">
         <h6 className="text-black font-medium pl-5 pt-1">Profile picture</h6>
@@ -35,7 +35,7 @@ const ShowAvatar: FC<IProps> = (props) => {
         </IconButton>
       </div>
       {/* Main */}
-      <div className="px-6 overflow-auto scroll-smooth h-full pb-6 space-y-5 flex flex-col items-center w-full">
+      <div className="px-6 overflow-y-auto overflow-x-hidden scroll-smooth h-full pb-6 space-y-5 flex flex-col items-center w-full">
         {/* Sub Heading */}
         <h6 className="text-[13px] text-black text-left w-full">
           A picture helps people recognize you and lets you know when you’re
@@ -56,12 +56,12 @@ const ShowAvatar: FC<IProps> = (props) => {
           </h6>
         </div>
         {/* Center */}
-        <div className="flex relative justify-center min-h-[96px] min-w-[96px] show-avatar-profile-photo">
+        <div className="flex box-content rounded-[50%] overflow-hidden relative justify-center min-h-[96px] min-w-[96px] show-avatar-profile-photo">
           <Image
             onClick={props.forward}
-            height={288}
-            width={288}
-            className="rounded-[50%] cursor-pointer transition-all"
+            layout="fill"
+            objectFit="scale-down"
+            className="cursor-pointer rounded-[50%] overflow-hidden transition-all"
             src={props.URL}
             alt="user photo"
             placeholder="blur"
@@ -74,9 +74,10 @@ const ShowAvatar: FC<IProps> = (props) => {
             alt="user photo"
           /> */}
           {props.ShowProgress ? (
-            <div className="absolute h-full w-full flex items-center justify-center rounded-[50%] opacity-[0.85] bg-white">
+            <div className="absolute overflow-hidden h-full w-full flex items-center justify-center rounded-[50%] opacity-90 bg-white">
               <CircularProgress
-                size={250}
+                style={{ padding: '15px' }}
+                size="100%"
                 thickness={0.3}
                 sx={{
                   position: 'relative',
