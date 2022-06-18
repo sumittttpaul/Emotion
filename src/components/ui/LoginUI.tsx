@@ -5,17 +5,28 @@ import React, {
   useState,
   FocusEvent,
 } from 'react';
+import dynamic from 'next/dynamic';
 import AuthContainer from '../container/AuthContainer';
 import { Tab } from '@headlessui/react';
 import { DeviceMobileIcon, MailIcon } from '@heroicons/react/solid';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
-import EmailAuthUI from './AuthComponentUI/LoginComponentUI/EmailAuthUI';
-import PhoneAuthUI from './AuthComponentUI/LoginComponentUI/PhoneAuthUI';
 import { useTheme } from '@mui/material';
 import SwipeableViews from 'react-swipeable-views';
 import TabPanel from '../tab/SelectAvatarTabPanel';
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 import { AuthFooter } from '../footer/AuthFooter';
+// import PhoneAuthUI from './AuthComponentUI/LoginComponentUI/PhoneAuthUI';
+// import EmailAuthUI from './AuthComponentUI/LoginComponentUI/EmailAuthUI';
+
+const PhoneAuthUI = dynamic(
+  // @ts-ignore: Unreachable code error
+  () => import('./AuthComponentUI/LoginComponentUI/PhoneAuthUI')
+);
+
+const EmailAuthUI = dynamic(
+  // @ts-ignore: Unreachable code error
+  () => import('./AuthComponentUI/LoginComponentUI/EmailAuthUI')
+);
 
 interface IProps {
   Phone: string;
@@ -217,7 +228,7 @@ const LoginUI: FC<IProps> = (props) => {
               />
             </TabPanel>
           </SwipeableViews>
-          <AuthFooter/>
+          <AuthFooter />
         </motion.div>
       </AnimatePresence>
     </AuthContainer>

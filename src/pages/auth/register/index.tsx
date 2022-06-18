@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import dynamic from 'next/dynamic';
 import Router from 'next/router';
 import {
   ChangeEvent,
@@ -9,9 +10,14 @@ import {
 } from 'react';
 import { SignUp } from '../../../algorithms/AuthAlgorithms';
 import { ToastDark } from '../../../components/toast/ToastDark';
-import RegisterUI from '../../../components/ui/RegisterUI';
 import { NoAccessToNullUserPages } from '../../../hoc/ProtectedRoutes';
 import { useLoaderState } from '../../../providers/state/LoadingState';
+// import RegisterUI from '../../../components/ui/RegisterUI';
+
+const RegisterUI = dynamic(
+  // @ts-ignore: Unreachable code error
+  () => import('../../../components/ui/RegisterUI')
+);
 
 /**
  * @Signup_Page
