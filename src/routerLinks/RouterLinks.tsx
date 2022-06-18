@@ -18,6 +18,8 @@ export const About_Us_Link = '#';
 export const Discover_Link = '/store';
 export const Offers_Link = '/store/offers';
 export const Collections_Link = '/store/collections';
+export const Wishlist_Link = '/store/wishlist';
+export const Cart_Link = '/store/cart';
 //
 export const Contact_Us_Link = '#';
 export const Track_Order_Link = '#';
@@ -26,9 +28,6 @@ export const Cancel_Order_Link = '#';
 //
 export const Manage_Your_Account_Link = '#';
 export const Redeem_Gift_Codes_Link = '#';
-//
-export const Cart_Link = '#';
-export const Wishlist_Link = '#';
 //
 export const Facebook_Link = '#';
 export const Instagram_Link = '#';

@@ -1,6 +1,6 @@
 import { ShoppingCartIcon } from '@heroicons/react/solid';
 import { Button, IconButton } from '@mui/material';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { TooltipDark } from '../../tooltip/TooltipDark';
 
 interface IProps {

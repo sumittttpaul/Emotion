@@ -20,6 +20,7 @@ interface IProps {
 
 export const MainHeader: FC<IProps> = (props) => {
   const [open, setOpen] = useCycle(false, true);
+
   return (
     <>
       <div className="w-full h-[17px] min-h-[17px]" />
@@ -42,6 +43,7 @@ export const MainHeader: FC<IProps> = (props) => {
             <MainHeaderWishlistButton
               Click={() => {
                 setTimeout(() => {
+                  props.setPage('Wishlist');
                   Router.push(Wishlist_Link);
                 }, 150);
               }}
@@ -49,6 +51,7 @@ export const MainHeader: FC<IProps> = (props) => {
             <MainHeaderCartButton
               Click={() => {
                 setTimeout(() => {
+                  props.setPage('Cart');
                   Router.push(Cart_Link);
                 }, 150);
               }}

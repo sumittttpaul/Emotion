@@ -53,6 +53,17 @@ const ActiveContent = (value: string) => {
   }
 };
 
+const NonActiveContent = (value: string) => {
+  if (value.toLowerCase() === 'wishlist') {
+    return true;
+  }
+  if (value.toLowerCase() === 'cart') {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 /**
  * @author
  * @function @MainHeaderNav
@@ -65,6 +76,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
     props.onValueChange(ActiveContent(event.target.value));
     setSelectedValue(event.target.value);
   };
+
   useEffect(() => {
     if (props.Value === 'Discover') {
       setSelectedValue('MainTab1');
@@ -74,6 +86,12 @@ export const MainHeaderNav: FC<IProps> = (props) => {
     }
     if (props.Value === 'Collections') {
       setSelectedValue('MainTab3');
+    }
+    if (props.Value === 'Wishlist') {
+      setSelectedValue('MainTab4');
+    }
+    if (props.Value === 'Cart') {
+      setSelectedValue('MainTab5');
     }
     if (props.open) {
       setArrow('open');
@@ -139,21 +157,31 @@ export const MainHeaderNav: FC<IProps> = (props) => {
           ))}
         </ul>
       </div>
-      <Button
-        onClick={props.onOpen}
-        disableRipple
-        disableFocusRipple
-        disableTouchRipple
-        aria-label="mobile-main-nav-button"
-        className="ml-[20%] flex sm:hidden opacity-100 text-white button-text-lower"
-      >
-        <div className="flex space-x-2 items-center">
-          <h6 className="font-normal text-[13.5px]">{props.Value}</h6>
-          <motion.div animate={Arrow} variants={ArrowVariant}>
-            <ChevronDownIcon className="h-5 w-5 opacity-90" />
-          </motion.div>
-        </div>
-      </Button>
+      <div className='w-full flex justify-center'>
+        <Button
+          onClick={props.onOpen}
+          disableRipple
+          disableFocusRipple
+          disableTouchRipple
+          aria-label="mobile-main-nav-button"
+          className={`${
+            Boolean(NonActiveContent(props.Value))
+              ? 'opacity-50 hover:opacity-75'
+              : 'opacity-100 hover:opacity-100'
+          } ${'ml-[20%] flex sm:hidden text-white button-text-lower'}`}
+        >
+          <div className="flex space-x-2 items-center">
+            <h6 className="font-normal text-[13.5px]">
+              {Boolean(NonActiveContent(props.Value))
+                ? 'Discover'
+                : props.Value}
+            </h6>
+            <motion.div animate={Arrow} variants={ArrowVariant}>
+              <ChevronDownIcon className="h-5 w-5 opacity-90" />
+            </motion.div>
+          </div>
+        </Button>
+      </div>
     </>
   );
 };
