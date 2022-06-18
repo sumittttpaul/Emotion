@@ -58,24 +58,8 @@ const GenderUI = dynamic(
 
 interface IProps {
   // ------------- Date Of Birth ------------- //
-  DOBShow: boolean;
-  setDOBShow: () => void;
-  DOBScreen1: boolean;
-  DOBScreen2: boolean;
-  DOBDay: number;
-  DOBMonth: number;
-  DOBYear: number;
-  DOBDayValue: string;
-  DOBMonthValue: string;
-  DOBYearValue: string;
-  GetDOBDay: (value: number) => void;
-  GetDOBMonth: (value: number) => void;
-  GetDOBYear: (value: number) => void;
-  DOBCancel: () => void;
-  DOBSubmit: () => void;
-  DOBClick: () => void;
-  DOBLabel: string;
-  DOBSubmitDisabled: boolean;
+  getDOBValue: (value: string) => void;
+  getHandleBoolValue: (value: boolean) => void;
   // ------------- Gender ------------- //
   GenderContent: Array<string>;
   GenderValue?: string;
@@ -107,24 +91,9 @@ export const SetupAccountUI: FC<IProps> = (props) => {
           <AuthHeaderLabel label="Setup your Agewear account" />
           <AvatarUI />
           <DatePickerUI
-            DOBShow={props.DOBShow}
-            setDOBShow={props.setDOBShow}
-            DOBScreen1={props.DOBScreen1}
-            DOBScreen2={props.DOBScreen2}
-            DOBDay={props.DOBDay}
-            DOBMonth={props.DOBMonth}
-            DOBYear={props.DOBYear}
-            DOBDayValue={props.DOBDayValue}
-            DOBMonthValue={props.DOBMonthValue}
-            DOBYearValue={props.DOBYearValue}
-            GetDOBDay={props.GetDOBDay}
-            GetDOBMonth={props.GetDOBMonth}
-            GetDOBYear={props.GetDOBYear}
-            DOBCancel={props.DOBCancel}
-            DOBSubmit={props.DOBSubmit}
-            DOBClick={props.DOBClick}
-            DOBLabel={props.DOBLabel}
-            DOBSubmitDisabled={props.DOBSubmitDisabled}
+            theme="Dark"
+            getDOBValue={props.getDOBValue}
+            getHandleBoolValue={props.getHandleBoolValue}
           />
           <GenderUI
             GenderContent={props.GenderContent}

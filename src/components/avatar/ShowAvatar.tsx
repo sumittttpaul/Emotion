@@ -102,7 +102,7 @@ const ShowAvatar: FC<IProps> = (props) => {
           sx={{
             border: '1px solid rgba(26, 115, 232, 0.5)',
             '.MuiTouchRipple-child': {
-              backgroundColor: 'rgba(26, 115, 232, 0.25) !important',
+              backgroundColor: 'rgba(26, 115, 232, 0.5) !important',
             },
           }}
           className="disabled:opacity-50 disabled:cursor-not-allowed button-text-lower py-[7px] disabled:text-[#1a73e8] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
@@ -127,7 +127,7 @@ const ShowAvatar: FC<IProps> = (props) => {
           sx={{
             border: '1px solid rgba(26, 115, 232, 0.5)',
             '.MuiTouchRipple-child': {
-              backgroundColor: 'rgba(26, 115, 232, 0.25) !important',
+              backgroundColor: 'rgba(26, 115, 232, 0.5) !important',
             },
           }}
           className="disabled:opacity-50 disabled:cursor-not-allowed button-text-lower py-[7px] disabled:text-[#1a73e8] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"

@@ -24,7 +24,7 @@ export const SmallIconButtonDark: FC<IProps> = (props) => {
       sx={{
         border: '1px solid rgba(255,255,255,0)',
         '.MuiTouchRipple-child': {
-          backgroundColor: 'rgba(225, 225, 255, 0.1) !important',
+          backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
         },
       }}
     >

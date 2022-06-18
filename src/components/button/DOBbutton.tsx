@@ -21,10 +21,10 @@ export const DOBbutton: FC<IProps> = (props) => {
         aria-label="select-dob-button"
         disableFocusRipple
         onClick={props.onClick}
-        className="rounded-md py-3 px-4 button-text-lower text-black bg-[rgba(0,0,0,0.1)] hover:bg-[rgba(0,0,0,0.1)]"
+        className="rounded-md py-3 px-4 button-text-lower text-black bg-[rgba(0,0,0,0.075)] hover:bg-[rgba(0,0,0,0.075)]"
         sx={{
           '.MuiTouchRipple-child': {
-            backgroundColor: 'rgba(225, 225, 255, 0.2) !important',
+            backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
           },
         }}
       >
@@ -33,12 +33,12 @@ export const DOBbutton: FC<IProps> = (props) => {
             height={20}
             width={20}
             className="opacity-70"
-            src="/icons/candle.svg"
+            src="/icons/candle-black.svg"
             alt="balloon icon"
             placeholder="blur"
             blurDataURL={Square_BlurDataURL}
           />
-          <h6 className="text-black text-[13px] font-normal">{props.label}</h6>
+          <h6 className="text-black text-[13px] font-medium">{props.label}</h6>
         </div>
       </Button>
     );
@@ -52,7 +52,7 @@ export const DOBbutton: FC<IProps> = (props) => {
         className="rounded-md py-3 px-4 button-text-lower text-white bg-[#121212] hover:bg-[#121212]"
         sx={{
           '.MuiTouchRipple-child': {
-            backgroundColor: 'rgba(225, 225, 255, 0.2) !important',
+            backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
           },
         }}
       >
@@ -61,7 +61,7 @@ export const DOBbutton: FC<IProps> = (props) => {
             height={20}
             width={20}
             className="opacity-70"
-            src="/icons/candle.svg"
+            src="/icons/candle-white.svg"
             alt="balloon icon"
             placeholder="blur"
             blurDataURL={Square_BlurDataURL}

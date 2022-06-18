@@ -110,7 +110,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                   minHeight: 0,
                 },
                 '.MuiTouchRipple-child': {
-                  backgroundColor: 'rgba(0, 0, 0, 0.3) !important',
+                  backgroundColor: 'rgba(0, 0, 0, 0.5) !important',
                 },
               },
             }}

@@ -7,22 +7,22 @@ import { DatePickerDialogHeader } from '../../../../datepicker/Dialog/DatePicker
 import { DatePickerDialogBottom } from '../../../../datepicker/Dialog/DatePickerDialogBottom';
 
 interface IProps {
-  ShowDialog: boolean;
-  CloseDialog: () => void;
-  Screen1: boolean;
-  Screen2: boolean;
-  day: number;
-  month: number;
-  year: number;
-  getYear: string;
-  getMonth: string;
-  getDay: string;
-  setDay: (day: number) => void;
-  setMonth: (month: number) => void;
-  setYear: (year: number) => void;
-  cancel: () => void;
-  submit: () => void;
-  submitActive: boolean;
+  DOBShow: boolean;
+  setDOBShow: () => void;
+  DOBDay: number;
+  DOBMonth: number;
+  DOBYear: number;
+  DOBScreen1: boolean;
+  DOBScreen2: boolean;
+  DOBDayValue: string;
+  DOBMonthValue: string;
+  DOBYearValue: string;
+  GetDOBDay: (day: number) => void;
+  GetDOBMonth: (month: number) => void;
+  GetDOBYear: (year: number) => void;
+  DOBCancel: () => void;
+  DOBSubmit: () => void;
+  DOBSubmitDisabled: boolean;
 }
 
 /**
@@ -32,31 +32,31 @@ interface IProps {
 
 export const DatePickerDialogUI: FC<IProps> = (props) => {
   const setHeaderDates = () => {
-    return props.getYear + ', ' + props.getMonth + ' ' + props.getDay;
+    return props.DOBYearValue + ', ' + props.DOBMonthValue + ' ' + props.DOBDayValue;
   };
 
   return (
-    <DatePickerContainerDialog show={props.ShowDialog} close={props.CloseDialog}>
+    <DatePickerContainerDialog show={props.DOBShow} close={props.setDOBShow}>
       <DatePickerDialogHeader setHeaderDates={setHeaderDates()} />
-      {props.Screen1 ? (
-        props.Screen2 ? (
+      {props.DOBScreen1 ? (
+        props.DOBScreen2 ? (
           <SelectDay
-            day={props.day}
-            month={props.month}
-            year={props.year}
-            setDay={props.setDay}
-            setMonth={props.setMonth}
+            day={props.DOBDay}
+            month={props.DOBMonth}
+            year={props.DOBYear}
+            setDay={props.GetDOBDay}
+            setMonth={props.GetDOBMonth}
           />
         ) : (
-          <SelectMonth setMonth={props.setMonth} />
+          <SelectMonth setMonth={props.GetDOBMonth} />
         )
       ) : (
-        <SelectYear setYear={props.setYear} />
+        <SelectYear setYear={props.GetDOBYear} />
       )}
       <DatePickerDialogBottom
-        cancel={props.cancel}
-        submit={props.submit}
-        submitActive={props.submitActive}
+        cancel={props.DOBCancel}
+        submit={props.DOBSubmit}
+        submitActive={props.DOBSubmitDisabled}
       />
     </DatePickerContainerDialog>
   );
