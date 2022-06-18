@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
-import { LoadingAvatarButton } from '../../../../loader/LoadingHeader';
+import { LoadingAvatarButton } from '../../../../loader/LoadingSkeleton';
 // import { AvatarButton } from '../buttonUI/AvatarButton';
 
 const AvatarButton = dynamic(

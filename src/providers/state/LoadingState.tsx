@@ -33,15 +33,16 @@ const LoaderState = ({
     const HideLoading = () => {
       setLoader({ show: false });
     };
-    router.events.on('routeChangeStart', ShowLoading);
-    router.events.on('routeChangeComplete', HideLoading);
-    router.events.on('routeChangeError', HideLoading);
-
-    return () => {
-      router.events.off('routeChangeStart', ShowLoading);
-      router.events.off('routeChangeComplete', HideLoading);
-      router.events.off('routeChangeError', HideLoading);
-    };
+    if (Loader.show === true) {
+      router.events.on('routeChangeStart', ShowLoading);
+      router.events.on('routeChangeComplete', HideLoading);
+      router.events.on('routeChangeError', HideLoading);
+      return () => {
+        router.events.off('routeChangeStart', ShowLoading);
+        router.events.off('routeChangeComplete', HideLoading);
+        router.events.off('routeChangeError', HideLoading);
+      };
+    }
   }, [setLoader, Loader, router]);
   return (
     <LoaderStateContext.Provider value={{ Loader, setLoader }}>

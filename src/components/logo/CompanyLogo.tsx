@@ -4,10 +4,16 @@ import Logo from '../../../public/agewear_white.svg';
 import Logo_Full from '../../../public/agewear_full_white.svg';
 import Router from 'next/router';
 import { Home_Link } from '../../routerLinks/RouterLinks';
+import { useLoaderState } from '../../providers/state/LoadingState';
 
 interface Iprops {
   onValueChange: (value: string) => void;
 }
+
+const { setLoader } = useLoaderState();
+const LoadingScreen = (value: boolean) => {
+  setLoader({ show: value });
+};
 
 export const PageHeaderLogo = (props: Iprops) => {
   return (
@@ -17,6 +23,7 @@ export const PageHeaderLogo = (props: Iprops) => {
         width={32.5}
         onClick={() => {
           props.onValueChange('Discover');
+          LoadingScreen(true);
           Router.push(Home_Link);
         }}
         className="opacity-70 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
@@ -50,6 +57,7 @@ export const FooterLogo = (props: Iprops) => {
           width={125}
           onClick={() => {
             props.onValueChange('Discover');
+            LoadingScreen(true);
             Router.push(Home_Link);
           }}
           className="opacity-70 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
@@ -64,6 +72,7 @@ export const FooterLogo = (props: Iprops) => {
           width={100}
           onClick={() => {
             props.onValueChange('Discover');
+            LoadingScreen(true);
             Router.push(Home_Link);
           }}
           className="opacity-70 hover:opacity-100 hover:cursor-pointer transition-all duration-300"

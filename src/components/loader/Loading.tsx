@@ -3,7 +3,7 @@ import {
   CircularProgress,
   circularProgressClasses,
 } from '@mui/material';
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useLoaderState } from '../../providers/state/LoadingState';
 
 interface IProps {}
@@ -15,6 +15,7 @@ interface IProps {}
 
 export const Loading: FC<IProps> = (props) => {
   const { Loader } = useLoaderState();
+  const Show: any = Loader.show;
   return (
     <Backdrop
       className="backdrop-blur-sm transition-all ease-out"
@@ -22,7 +23,7 @@ export const Loading: FC<IProps> = (props) => {
         backgroundColor: 'rgba(0, 0, 0, 0.65)',
         zIndex: (theme) => theme.zIndex.drawer + 1,
       }}
-      open={Boolean(`${Loader.show}`)}
+      open={Show}
     >
       <div className="relative text-white flex flex-col opacity-[0.85] items-center justify-center h-[100px] w-[100px]">
         <div className="block relative items-center justify-center">

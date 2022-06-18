@@ -121,3 +121,14 @@ export function LoadingLargeBlueButton() {
     />
   );
 }
+
+export function LoadingLoginUi() {
+  return (
+    <Skeleton
+      sx={{ bgcolor: MainHeaderColor }}
+      variant="rectangular"
+      width={350}
+      height={322}
+    />
+  );
+}

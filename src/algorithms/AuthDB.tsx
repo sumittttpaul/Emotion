@@ -67,6 +67,7 @@ export const CreateUserAuthData = ({
   DOB,
   Gender,
   Loading,
+  LoadingScreen,
   ToastShow,
   ToastMessage,
   ToastType,
@@ -86,6 +87,7 @@ export const CreateUserAuthData = ({
     Gender: Gender,
   })
     .then(() => {
+      LoadingScreen(true);
       Router.push(Home_Link);
       // Loading(false);
     })

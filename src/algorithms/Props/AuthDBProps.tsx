@@ -17,6 +17,7 @@ export interface CreateUserDataProps {
   DOB: string;
   Gender: string;
   Loading: (value: boolean) => void;
+  LoadingScreen: (value: boolean) => void;
   ToastShow: (value: boolean) => void;
   ToastMessage: (value: string) => void;
   ToastType: (value: string) => void;

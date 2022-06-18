@@ -8,7 +8,7 @@ import {
   LoadingDatePickerUI,
   LoadingGenderUI,
   LoadingLargeBlueButton,
-} from '../loader/LoadingHeader';
+} from '../loader/LoadingSkeleton';
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 // import LargeButtonBlue from '../button/LargeButtonBlue';
 // import { AvatarUI } from './AuthComponentUI/SetupAccountComponentUI/AvatarUI/AvatarUI';

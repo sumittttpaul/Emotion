@@ -7,6 +7,7 @@ import IconTextFieldDark from '../textfield/IconTextFieldDark';
 import LargeButtonBlue from '../button/LargeButtonBlue';
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 import { Login_Link } from '../../routerLinks/RouterLinks';
+import { useLoaderState } from '../../providers/state/LoadingState';
 
 interface IProps {
   Email: string;
@@ -33,6 +34,10 @@ const Header =
   'Please fill in the email that you used to register. You will be sent an email with instruction on how to reset your password.';
 
 const ForgotPasswordUI: FC<IProps> = (props) => {
+  const { setLoader } = useLoaderState();
+  const LoadingScreen = (value: boolean) => {
+    setLoader({ show: value });
+  };
   return (
     <AuthContainer>
       <AnimatePresence exitBeforeEnter>
@@ -76,6 +81,7 @@ const ForgotPasswordUI: FC<IProps> = (props) => {
               Remember your password?&#160;
               <Link
                 onClick={() => {
+                  LoadingScreen(true);
                   Router.push(Login_Link);
                 }}
                 className="text-white text-xs"

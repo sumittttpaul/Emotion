@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import React, { FC, ReactNode } from 'react';
-import { LoadingMainheader } from '../loader/LoadingHeader';
+import { LoadingMainheader } from '../loader/LoadingSkeleton';
 // import { MainHeader } from '../header/MainHeader/MainHeader';
 
 const MainHeader = dynamic(

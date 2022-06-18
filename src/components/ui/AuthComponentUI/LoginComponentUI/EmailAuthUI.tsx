@@ -7,6 +7,7 @@ import { EmailPrivacyPolicy } from '../../../terms & policy/EmailPrivacyPolicy';
 import { Link } from '@mui/material';
 import Router from 'next/router';
 import { Forgot_Password_Link } from '../../../../routerLinks/RouterLinks';
+import { useLoaderState } from '../../../../providers/state/LoadingState';
 
 interface IProps {
   Email: string;
@@ -42,6 +43,10 @@ interface IProps {
  **/
 
 const EmailAuthUI: FC<IProps> = (props) => {
+  const { setLoader } = useLoaderState();
+  const LoadingScreen = (value: boolean) => {
+    setLoader({ show: value });
+  };
   return (
     <div className="w-full space-y-7 pb-[6px] pt-[2px] px-[2px] flex flex-col justify-center items-center">
       <IconTextFieldDark
@@ -77,6 +82,7 @@ const EmailAuthUI: FC<IProps> = (props) => {
         <div className="text-right w-full">
           <Link
             onClick={() => {
+              LoadingScreen(true);
               Router.push(Forgot_Password_Link);
             }}
             className="text-white text-xs -mt-5"

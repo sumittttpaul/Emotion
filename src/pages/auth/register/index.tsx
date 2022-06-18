@@ -70,7 +70,6 @@ const Register: NextPage = () => {
 
   // Loading
   const { setLoader } = useLoaderState();
-  /* Loading Screen Defined but not used yet */
   const LoadingScreen = (value: boolean) => {
     setLoader({ show: value });
   };
@@ -258,6 +257,7 @@ const Register: NextPage = () => {
           ToastType: AuthToastType,
           ToastShow: AuthToast,
           Loading: SubmitLoading,
+          LoadingScreen: LoadingScreen,
         });
         ShowToast(ToastMessage, ToastType, Toast);
       } else {

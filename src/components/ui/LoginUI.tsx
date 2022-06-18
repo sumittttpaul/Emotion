@@ -15,17 +15,24 @@ import SwipeableViews from 'react-swipeable-views';
 import TabPanel from '../tab/SelectAvatarTabPanel';
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 import { AuthFooter } from '../footer/AuthFooter';
+import { LoadingLoginUi } from '../loader/LoadingSkeleton';
 // import PhoneAuthUI from './AuthComponentUI/LoginComponentUI/PhoneAuthUI';
 // import EmailAuthUI from './AuthComponentUI/LoginComponentUI/EmailAuthUI';
 
 const PhoneAuthUI = dynamic(
   // @ts-ignore: Unreachable code error
-  () => import('./AuthComponentUI/LoginComponentUI/PhoneAuthUI')
+  () => import('./AuthComponentUI/LoginComponentUI/PhoneAuthUI'),
+  {
+    loading: () => <LoadingLoginUi />,
+  }
 );
 
 const EmailAuthUI = dynamic(
   // @ts-ignore: Unreachable code error
-  () => import('./AuthComponentUI/LoginComponentUI/EmailAuthUI')
+  () => import('./AuthComponentUI/LoginComponentUI/EmailAuthUI'),
+  {
+    loading: () => <LoadingLoginUi />,
+  }
 );
 
 interface IProps {

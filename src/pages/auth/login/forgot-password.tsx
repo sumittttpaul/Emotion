@@ -4,7 +4,6 @@ import { PasswordReset } from '../../../algorithms/AuthAlgorithms';
 import { ToastDark } from '../../../components/toast/ToastDark';
 import ForgotPasswordUI from '../../../components/ui/ForgotPasswordUI';
 import { NoAccessToUserExistPages } from '../../../hoc/ProtectedRoutes';
-import { useLoaderState } from '../../../providers/state/LoadingState';
 
 /**
  * @ForgotPassword_Page
@@ -27,11 +26,6 @@ const ForgotPassword: NextPage = () => {
   };
 
   // Loading
-  const { setLoader } = useLoaderState();
-  /* Loading Screen Defined but not used yet */
-  const LoadingScreen = (value: boolean) => {
-    setLoader({ show: value });
-  };
   const SubmitLoading = (value: boolean) => {
     setLoading(value);
   };

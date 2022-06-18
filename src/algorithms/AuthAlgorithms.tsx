@@ -126,12 +126,14 @@ export const VerifyOTP = ({
       if (IsNewUser) {
         if (firebase.auth().currentUser) {
           const UID = firebase.auth().currentUser?.uid;
+          Loading(true);
           Router.push({
             pathname: Register_Link,
             query: { id: `${UID}`, phone: `${Phone}` },
           });
         }
       } else {
+        Loading(true);
         Router.push(Home_Link);
       }
     })
@@ -222,6 +224,7 @@ export const SignInWithEmailAndPassword = ({
   ToastType,
   ToastShow,
   Loading,
+  LoadingScreen,
 }: SignInWithEmailAndPasswordProps) => {
   const Toast = (message: string, type: string, show: boolean) => {
     ToastMessage(message);
@@ -233,6 +236,7 @@ export const SignInWithEmailAndPassword = ({
     .auth()
     .signInWithEmailAndPassword(Email, Password)
     .then(() => {
+      LoadingScreen(true);
       Router.push(Home_Link);
       console.error('SingIn with Email & Password Successful !');
     })
@@ -251,6 +255,7 @@ export const SignInWithFacebook = ({
   ToastMessage,
   ToastType,
   ToastShow,
+  LoadingScreen,
 }: SignInWithFacebookProps) => {
   const Toast = (message: string, type: string, show: boolean) => {
     ToastMessage(message);
@@ -262,6 +267,7 @@ export const SignInWithFacebook = ({
     .auth()
     .signInWithPopup(facebookProvider)
     .then((result) => {
+      LoadingScreen(true);
       Router.push(Home_Link);
       console.log('SignIn with Facebook Successful !');
     })
@@ -276,6 +282,7 @@ export const SignInWithGoogle = ({
   ToastMessage,
   ToastType,
   ToastShow,
+  LoadingScreen,
 }: SignInWithGoogleProps) => {
   const Toast = (message: string, type: string, show: boolean) => {
     ToastMessage(message);
@@ -287,6 +294,7 @@ export const SignInWithGoogle = ({
     .auth()
     .signInWithPopup(googleProvider)
     .then((result) => {
+      LoadingScreen(true);
       Router.push(Home_Link);
       console.log('SignIn with Google Successful !');
     })
@@ -301,6 +309,7 @@ export const SignInWithApple = ({
   ToastMessage,
   ToastType,
   ToastShow,
+  LoadingScreen,
 }: SignInWithAppleProps) => {
   const Toast = (message: string, type: string, show: boolean) => {
     ToastMessage(message);
@@ -312,6 +321,7 @@ export const SignInWithApple = ({
     .auth()
     .signInWithPopup(appleProvider)
     .then((result) => {
+      LoadingScreen(true);
       Router.push(Home_Link);
       console.log('SignIn with Apple Successful !');
     })
@@ -331,6 +341,7 @@ export const SignUp = ({
   Password,
   EmptyPasswordTextField,
   Loading,
+  LoadingScreen,
   ToastMessage,
   ToastShow,
   ToastType,
@@ -359,6 +370,7 @@ export const SignUp = ({
           const { phone } = Router.query;
           if (firebase.auth().currentUser) {
             const UID = firebase.auth().currentUser?.uid;
+            LoadingScreen(true);
             Router.push({
               pathname: Setup_Account_Link,
               query: {

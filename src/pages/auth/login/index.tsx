@@ -358,6 +358,7 @@ const Login: NextPage = () => {
           ToastType: AuthToastType,
           ToastShow: AuthToast,
           Loading: EmailLoading,
+          LoadingScreen: LoadingScreen,
         });
         ShowToast(ToastMessage, ToastType, Toast);
       } else {
@@ -373,6 +374,7 @@ const Login: NextPage = () => {
         ToastMessage: AuthToastMessage,
         ToastType: AuthToastType,
         ToastShow: AuthToast,
+        LoadingScreen: LoadingScreen,
       });
     }, 150);
   };
@@ -382,6 +384,7 @@ const Login: NextPage = () => {
         ToastMessage: AuthToastMessage,
         ToastType: AuthToastType,
         ToastShow: AuthToast,
+        LoadingScreen: LoadingScreen,
       });
     }, 150);
   };
@@ -391,6 +394,7 @@ const Login: NextPage = () => {
         ToastMessage: AuthToastMessage,
         ToastType: AuthToastType,
         ToastShow: AuthToast,
+        LoadingScreen: LoadingScreen,
       });
     }, 150);
   };

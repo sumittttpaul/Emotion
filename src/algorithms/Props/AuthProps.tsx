@@ -43,6 +43,7 @@ export interface SignInWithEmailAndPasswordProps {
   Email: string;
   Password: string;
   Loading: (value: boolean) => void;
+  LoadingScreen: (value: boolean) => void;
   EmptyPasswordTextField: () => void;
   ToastShow: (value: boolean) => void;
   ToastMessage: (value: string) => void;
@@ -53,18 +54,21 @@ export interface SignInWithFacebookProps {
   ToastShow: (value: boolean) => void;
   ToastMessage: (value: string) => void;
   ToastType: (value: string) => void;
+  LoadingScreen: (value: boolean) => void;
 }
 
 export interface SignInWithGoogleProps {
   ToastShow: (value: boolean) => void;
   ToastMessage: (value: string) => void;
   ToastType: (value: string) => void;
+  LoadingScreen: (value: boolean) => void;
 }
 
 export interface SignInWithAppleProps {
   ToastShow: (value: boolean) => void;
   ToastMessage: (value: string) => void;
   ToastType: (value: string) => void;
+  LoadingScreen: (value: boolean) => void;
 }
 
 export interface SignUpProps {
@@ -74,6 +78,7 @@ export interface SignUpProps {
   Password: string;
   EmptyPasswordTextField: () => void;
   Loading: (value: boolean) => void;
+  LoadingScreen: (value: boolean) => void;
   ToastShow: (value: boolean) => void;
   ToastMessage: (value: string) => void;
   ToastType: (value: string) => void;

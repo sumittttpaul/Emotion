@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import React, { FC, ReactNode } from 'react';
 import { PageContainerDark } from '../container/PageContainerDark';
-import { LoadingPageheader } from '../loader/LoadingHeader';
+import { LoadingPageheader } from '../loader/LoadingSkeleton';
 // import { PageFooter } from '../footer/PageFooter/PageFooter';
 // import { PageHeader } from '../header/PageHeader/PageHeader';
 

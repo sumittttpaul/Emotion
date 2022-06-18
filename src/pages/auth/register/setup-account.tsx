@@ -98,6 +98,7 @@ const SetupAccount: NextPage = () => {
           ToastType: AuthToastType,
           ToastShow: AuthToast,
           Loading: SubmitLoading,
+          LoadingScreen: LoadingScreen,
         });
         ShowToast(ToastMessage, ToastType, Toast);
       }
@@ -132,6 +133,7 @@ const SetupAccount: NextPage = () => {
         ToastType: AuthToastType,
         ToastShow: AuthToast,
         Loading: LoadingScreen,
+        LoadingScreen: LoadingScreen,
       });
       ShowToast(ToastMessage, ToastType, Toast);
     }
