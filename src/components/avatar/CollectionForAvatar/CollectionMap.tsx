@@ -47,7 +47,7 @@ export const CollectionMap: FC<IProps> = (props) => {
                 className="rounded-[50%]"
                 src={avatars.iconURL}
                 alt="avatar-collections-image"
-                loading='lazy'
+                loading="lazy"
                 placeholder="blur"
                 blurDataURL={Square_BlurDataURL}
               />

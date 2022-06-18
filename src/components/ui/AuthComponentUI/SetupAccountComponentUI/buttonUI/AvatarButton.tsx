@@ -25,12 +25,15 @@ interface IProps {}
 
 export const AvatarButton: FC<IProps> = (props) => {
   const user = useAuth();
+  const userPhoto = user?.photoURL?.toString();
   // Handle Collections
   const { Avatar } = useTypedSelector((state) => state);
   // State
   const [AvatarDialog, setAvatarDialog] = useState(false);
-  const [AvatarURL, setAvatarURL] = useState('/images/user.png');
   const [ChangeAvatar, setChangeAvatar] = useState(true);
+  const [AvatarURL, setAvatarURL] = useState(
+    userPhoto && ChangeAvatar ? userPhoto : '/images/user.png'
+  );
   const [CropAvatarURL, setCropAvatarURL] = useState('');
   const [AvatarContainer, setAvatarContainer] = useState(
     'ShowAvatar-container'

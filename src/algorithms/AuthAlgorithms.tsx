@@ -17,7 +17,11 @@ import 'firebase/compat/auth';
 import { AuthError } from '../firebase/AuthError';
 import { getDownloadURL } from 'firebase/storage';
 import Router from 'next/router';
-import { Home_Link, Register_Link, Setup_Account_Link } from '../routerLinks/RouterLinks';
+import {
+  Home_Link,
+  Register_Link,
+  Setup_Account_Link,
+} from '../routerLinks/RouterLinks';
 
 declare global {
   interface Window {
@@ -462,9 +466,16 @@ export const DeleteAvatar = ({
     avatarRef
       .delete()
       .then(() => {
-        Loading(false);
-        Toast('Avatar deleted successfully', 'Success', true);
-        AfterDelete();
+        firebase
+          .auth()
+          .currentUser?.updateProfile({
+            photoURL: '',
+          })
+          .then(() => {
+            Loading(false);
+            Toast('Avatar deleted successfully', 'Success', true);
+            AfterDelete();
+          });
       })
       .catch((error) => {
         Loading(false);

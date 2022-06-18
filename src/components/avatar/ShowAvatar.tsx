@@ -57,17 +57,19 @@ const ShowAvatar: FC<IProps> = (props) => {
         </div>
         {/* Center */}
         <div className="flex box-content rounded-[50%] overflow-hidden relative justify-center min-h-[96px] min-w-[96px] show-avatar-profile-photo">
-          <Image
-            onClick={props.forward}
-            layout="fill"
-            objectFit="scale-down"
-            className="cursor-pointer rounded-[50%] overflow-hidden transition-all"
-            src={props.URL}
-            alt="user photo"
-            placeholder="blur"
-            blurDataURL={Circle_BlurDataURL}
-            priority
-          />
+          <div className='rounded-full scale-[.99] relative w-full h-full'>
+            <Image
+              onClick={props.forward}
+              layout="fill"
+              objectFit="scale-down"
+              className="cursor-pointer rounded-[50%] overflow-hidden transition-all"
+              src={props.URL}
+              alt="user photo"
+              placeholder="blur"
+              blurDataURL={Circle_BlurDataURL}
+              priority
+            />
+          </div>
           {/* <img
             onClick={props.forward}
             className="rounded-[50%] cursor-pointer max-w-[288px] max-h-[288px] h-full transition-all"
