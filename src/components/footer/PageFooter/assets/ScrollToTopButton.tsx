@@ -28,7 +28,7 @@ export class ScrollToTopButton extends Component<IProps> {
 
   render() {
     return (
-      <div className="absolute top-0 right-0 p-5 md-900:p-8">
+      <div className="absolute top-0 right-0 p-2.5 md-900:p-8">
         <IconButton
           id={ScrollButtonID}
           disableFocusRipple
