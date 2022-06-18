@@ -96,6 +96,7 @@ export const SetupAccountUI: FC<IProps> = (props) => {
             getHandleBoolValue={props.getHandleBoolValue}
           />
           <GenderUI
+            theme="Dark"
             GenderContent={props.GenderContent}
             GenderValue={props.GenderValue}
             GenderValueChange={props.GenderValueChange}
