@@ -27,10 +27,10 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  //const { setLoader } = useLoaderState();
-  // const LoadingScreen = (value: boolean) => {
-  //   setLoader({ show: value });
-  // };
+  const { setLoader } = useLoaderState();
+  const LoadingScreen = (value: boolean) => {
+    setLoader({ show: value });
+  };
 
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -167,9 +167,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
               onClick={() => {
                 setTimeout(() => {
                   handleClose();
-                  {
-                    /* LoadingScreen(true) */
-                  }
+                  LoadingScreen(true);
                   Router.push(Manage_Your_Account_Link);
                 }, 150);
               }}
@@ -192,9 +190,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
               onClick={() => {
                 setTimeout(() => {
                   handleClose();
-                  {
-                    /* LoadingScreen(true) */
-                  }
+                  LoadingScreen(true);
                   Router.push(Track_Order_Link);
                 }, 150);
               }}
@@ -217,9 +213,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
               onClick={() => {
                 setTimeout(() => {
                   handleClose();
-                  {
-                    /* LoadingScreen(true) */
-                  }
+                  LoadingScreen(true);
                   Router.push(Cart_Link);
                 }, 150);
               }}
@@ -242,9 +236,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
               onClick={() => {
                 setTimeout(() => {
                   handleClose();
-                  {
-                    /* LoadingScreen(true) */
-                  }
+                  LoadingScreen(true);
                   Router.push(Redeem_Gift_Codes_Link);
                 }, 150);
               }}
@@ -270,6 +262,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
           disableFocusRipple
           onClick={() => {
             setTimeout(() => {
+              LoadingScreen(true);
               Router.push(Login_Link);
             }, 150);
           }}
