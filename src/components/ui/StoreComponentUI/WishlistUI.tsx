@@ -7,7 +7,7 @@ import React from 'react';
 
 export const WishlistUI = () => {
   return (
-    <div className="relative z-10 pb-[34px] px-5">
+    <div className="relative z-10 px-5">
       {/* Content */}
       <h6 className="text-white p-5 w-full text-center">Wishlist UI</h6>
     </div>
