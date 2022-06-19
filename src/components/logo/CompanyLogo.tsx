@@ -14,7 +14,7 @@ export const PageHeaderLogo = (props: Iprops) => {
         height={32.5}
         width={32.5}
         onClick={() => props.onValueChange('Discover')}
-        className="opacity-70 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
+        className="opacity-90 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
         src={Logo}
         alt="logo-svg"
         priority
@@ -28,7 +28,7 @@ export const AuthHeaderLogo = () => {
     <Image
       height={45}
       width={45}
-      className="opacity-70"
+      className="opacity-90"
       src={Logo}
       alt="logo-svg"
       priority
@@ -44,7 +44,7 @@ export const FooterLogo = (props: Iprops) => {
           height={30}
           width={125}
           onClick={() => props.onValueChange('Discover')}
-          className="opacity-70 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
+          className="opacity-90 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
           src={Logo_Full}
           alt="logo-svg"
           priority
@@ -55,7 +55,7 @@ export const FooterLogo = (props: Iprops) => {
           height={25}
           width={100}
           onClick={() => props.onValueChange('Discover')}
-          className="opacity-70 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
+          className="opacity-90 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
           src={Logo_Full}
           alt="logo-svg"
           priority
