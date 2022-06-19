@@ -29,7 +29,7 @@ export class ScrollToTopButton extends Component<IProps> {
 
   render() {
     return (
-      <div className="absolute top-0 right-0 p-2.5 md-900:p-8">
+      <div className="absolute top-0 right-0 p-2.5 sm:px-5 sm:py-5 md-900:py-8">
         <TooltipDark
           arrow
           placement="bottom"
