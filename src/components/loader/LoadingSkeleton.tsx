@@ -17,7 +17,7 @@ export function LoadingMainheader() {
   return (
     <>
       {/* Large Screen */}
-      <div className="hidden md-900:flex w-full max-w-[1440px] mx-auto text-white p-3 my-[13px] sm:p-5 justify-between">
+      <div className="hidden md-900:flex w-full text-white p-3 my-[13px] sm:p-5 justify-between">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
@@ -33,7 +33,7 @@ export function LoadingMainheader() {
       </div>
 
       {/* Medium Screen */}
-      <div className="hidden sm:flex md-900:hidden w-full max-w-[1440px] mx-auto text-white p-3 my-[13px] sm:p-5 justify-between">
+      <div className="hidden sm:flex md-900:hidden w-full text-white p-3 my-[13px] sm:p-5 justify-between">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
@@ -49,7 +49,7 @@ export function LoadingMainheader() {
       </div>
 
       {/* Small Screen */}
-      <div className="flex sm:hidden w-full max-w-[1440px] mx-auto text-white p-3 my-[13px] sm:p-5 justify-between">
+      <div className="flex sm:hidden w-full text-white p-3 my-[13px] sm:p-5 justify-between">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"

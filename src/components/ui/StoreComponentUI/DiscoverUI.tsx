@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { DiscoverCarousel } from '../../carousel/DiscoverCarousel';
 
 interface IProps {}
 
@@ -9,9 +10,9 @@ interface IProps {}
 
 export const DiscoverUI: FC<IProps> = (props) => {
   return (
-    <div className="relative z-10">
+    <div className="relative z-10 pb-[34px] px-5">
       {/* Content */}
-      <h6 className="text-white p-5 w-full text-center">Discover UI</h6>
+      <DiscoverCarousel />
     </div>
   );
 };
