@@ -23,6 +23,12 @@ const Thumbnail = [
   {
     label: 'Thumbnail 6',
   },
+  {
+    label: 'Thumbnail 7',
+  },
+  {
+    label: 'Thumbnail 8',
+  },
 ];
 
 const ThumbnailSizes =
@@ -54,7 +60,7 @@ interface ButtonProps {
 }
 
 const ArrowClasses =
-  'absolute p-0 z-[1] bottom-[25px] md-900:bottom-[32.5px] h-[32px] w-[20px] bg-white bg-opacity-50 hover:bg-white rounded-[4px] transition-colors color-transition Custom-DropShadow';
+  'absolute p-0 z-[1] bottom-[25px] md-900:bottom-[32.5px] h-[32px] w-[20px] bg-white bg-opacity-70 hover:bg-white rounded-[4px] transition-colors color-transition Custom-DropShadow';
 const ArrowIconClasses = 'h-full w-full flex items-center justify-center';
 
 const LeftArrow = (props: ButtonProps) => {
@@ -240,8 +246,9 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         onPointerLeave={() => setExceptionalHover(true)}
         transition={{ type: 'spring', bounce: 0.25 }}
         dragConstraints={constraintsRef}
+        whileDrag={{ cursor: 'grab' }}
         style={{ x }}
-        className="w-auto mx-auto flex space-x-3 px-5 -mt-[50px] active:cursor-grab"
+        className="w-auto mx-auto flex space-x-3 px-5 -mt-[50px]"
       >
         {Thumbnail.map((value, idx) => (
           <div
