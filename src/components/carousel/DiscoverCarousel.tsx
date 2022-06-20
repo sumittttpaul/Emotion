@@ -4,6 +4,7 @@ import {
   motion,
   useAnimation,
   useMotionValue,
+  Variant,
 } from 'framer-motion';
 import Image from 'next/image';
 
@@ -30,8 +31,29 @@ const Thumbnail = [
   },
 ];
 
+const LeftVariants = {
+  open: {
+    x: 0,
+  },
+  closed: {
+    x: -50,
+  },
+};
+
+const RightVariants = {
+  open: {
+    x: 0,
+  },
+  closed: {
+    x: 50,
+  },
+};
+
 interface ButtonProps {
   onClick: () => void;
+  animate: string;
+  onHoverStart: () => void;
+  onHoverEnd: () => void;
 }
 
 const ArrowClasses =
@@ -41,10 +63,12 @@ const ArrowIconClasses = 'h-full w-full flex items-center justify-center';
 const LeftArrow = (props: ButtonProps) => {
   return (
     <motion.button
+      variants={LeftVariants}
       initial={{ x: -50 }}
-      animate={{ x: 0 }}
-      exit={{ x: -50 }}
+      animate={props.animate}
       onClick={props.onClick}
+      onHoverStart={props.onHoverStart}
+      onHoverEnd={props.onHoverEnd}
       className={`left-3 ${ArrowClasses}`}
     >
       <div className={ArrowIconClasses}>
@@ -57,10 +81,12 @@ const LeftArrow = (props: ButtonProps) => {
 const RightArrow = (props: ButtonProps) => {
   return (
     <motion.button
+      variants={RightVariants}
       initial={{ x: 50 }}
-      animate={{ x: 0 }}
-      exit={{ x: 50 }}
+      animate={props.animate}
       onClick={props.onClick}
+      onHoverStart={props.onHoverStart}
+      onHoverEnd={props.onHoverEnd}
       className={`right-3 ${ArrowClasses}`}
     >
       <div className={ArrowIconClasses}>
@@ -81,8 +107,12 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
   const animation = useAnimation();
   const x = useMotionValue(0);
 
+  const [ExceptionalHover, setExceptionalHover] = useState(false);
   const [LeftHide, setLeftHide] = useState(false);
   const [RightHide, setRightHide] = useState(false);
+
+  const [LeftAnimate, setLeftAnimate] = useState('closed');
+  const [RightAnimate, setRightAnimate] = useState('closed');
 
   const LeftClick = () => {
     const xPos = x.get();
@@ -93,6 +123,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         x: newXPosition > 0 ? 0 : newXPosition,
       });
     }
+    HideButton();
   };
 
   const RightClick = () => {
@@ -106,6 +137,30 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         x: newXPosition < -maxScroll ? -maxScroll : newXPosition,
       });
     }
+    HideButton();
+  };
+
+  const DragHoverStart = () => {
+    if (LeftHide) setLeftAnimate('open');
+    if (RightHide) setRightAnimate('open');
+    setExceptionalHover(false);
+  };
+
+  const DragHoverEnd = () => {
+    if (LeftHide) setLeftAnimate('closed');
+    if (RightHide) setRightAnimate('closed');
+    setExceptionalHover(true);
+  };
+
+  const ExceptionalDragHover = () => {
+    if (ExceptionalHover) {
+      if (LeftHide === true && LeftAnimate === 'open') {
+        setLeftAnimate('closed');
+      }
+      if (RightHide === true && RightAnimate === 'open') {
+        setRightAnimate('closed');
+      }
+    }
   };
 
   const HideButton = () => {
@@ -114,14 +169,47 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
     var scrollWidth: any = dragRef.current;
 
     // Hide Left Button
-    if (xPos >= -5) setLeftHide(true);
-    else setLeftHide(false);
+    if (xPos >= -5) {
+      setLeftAnimate('closed');
+      setLeftHide(false);
+    } else {
+      setLeftAnimate('open');
+      setLeftHide(true);
+    }
 
     // Hide Right Button
     if (width && scrollWidth) {
       const maxScroll = scrollWidth.offsetWidth - width.offsetWidth - 5;
-      if (xPos <= -maxScroll) setRightHide(true);
-      else setRightHide(false);
+      if (xPos <= -maxScroll) {
+        setRightAnimate('closed');
+        setRightHide(false);
+      } else {
+        setRightAnimate('open');
+        setRightHide(true);
+      }
+    }
+  };
+
+  const HideButtonInitialState = () => {
+    const xPos = x.get();
+    var width: any = constraintsRef.current;
+    var scrollWidth: any = dragRef.current;
+
+    // Hide Left Button
+    if (xPos >= -5) {
+      setLeftHide(false);
+    } else {
+      setLeftHide(true);
+    }
+
+    // Hide Right Button
+    if (width && scrollWidth) {
+      const maxScroll = scrollWidth.offsetWidth - width.offsetWidth - 5;
+      if (xPos <= -maxScroll) {
+        setRightHide(false);
+      } else {
+        setRightHide(true);
+      }
     }
   };
 
@@ -130,7 +218,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
       HideButton();
       return;
     });
-    HideButton();
+    HideButtonInitialState();
   }, []);
   return (
     <div className="w-full flex flex-col relative box-border p-0 m-0 bg-transparent overflow-y-visible overflow-x-hidden">
@@ -144,6 +232,10 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         drag="x"
         ref={dragRef}
         animate={animation}
+        onHoverStart={DragHoverStart}
+        onHoverEnd={DragHoverEnd}
+        onDragTransitionEnd={ExceptionalDragHover}
+        onPointerLeave={() => setExceptionalHover(true)}
         transition={{ type: 'spring', bounce: 0.25 }}
         dragConstraints={constraintsRef}
         style={{ x }}
@@ -159,8 +251,18 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         ))}
       </motion.div>
       <AnimatePresence>
-        {LeftHide ? <></> : <LeftArrow onClick={() => LeftClick()} />}
-        {RightHide ? <></> : <RightArrow onClick={() => RightClick()} />}
+        <LeftArrow
+          animate={LeftAnimate}
+          onClick={() => LeftClick()}
+          onHoverStart={DragHoverStart}
+          onHoverEnd={DragHoverEnd}
+        />
+        <RightArrow
+          animate={RightAnimate}
+          onClick={() => RightClick()}
+          onHoverStart={DragHoverStart}
+          onHoverEnd={DragHoverEnd}
+        />
       </AnimatePresence>
     </div>
   );
