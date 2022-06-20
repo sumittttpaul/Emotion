@@ -119,37 +119,35 @@ export const IllustrationCollections: FC<IProps> = (props) => {
         innerRef={sliderRef}
         className="px-3 relative box-border h-full w-full space-x-[6px] whitespace-nowrap scroll-smooth overflow-x-scroll scroll scrollbar-hide"
       >
-        {Illustrations.map((illustrationURL) => {
-          return (
-            <Button
-              aria-label="all-illustration-button"
-              disableFocusRipple
-              key={illustrationURL}
-              onClick={() => {
-                props.getURL(illustrationURL);
-                props.show();
-                props.backBool(true);
-              }}
-              className="p-0 inline-block w-[130px] cursor-default rounded-md"
-              sx={{
-                '.MuiTouchRipple-child': {
-                  backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
-                },
-              }}
-            >
-              <Image
-                width={2143}
-                height={3012}
-                className="rounded-md"
-                src={illustrationURL}
-                alt="avatar-collection-banner"
-                placeholder="blur"
-                loading='lazy'
-                blurDataURL={blurDataURL}
-              />
-            </Button>
-          );
-        })}
+        {Illustrations.map((illustrationURL) => (
+          <Button
+            aria-label="all-illustration-button"
+            disableFocusRipple
+            key={illustrationURL}
+            onClick={() => {
+              props.getURL(illustrationURL);
+              props.show();
+              props.backBool(true);
+            }}
+            className="p-0 inline-block w-[130px] cursor-default rounded-md"
+            sx={{
+              '.MuiTouchRipple-child': {
+                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+              },
+            }}
+          >
+            <Image
+              width={2143}
+              height={3012}
+              className="rounded-md"
+              src={illustrationURL}
+              alt="avatar-collection-banner"
+              placeholder="blur"
+              loading="lazy"
+              blurDataURL={blurDataURL}
+            />
+          </Button>
+        ))}
       </ScrollContainer>
       {LeftButton ? (
         <IconButton
