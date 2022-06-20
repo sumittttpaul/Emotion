@@ -4,7 +4,6 @@ import {
   motion,
   useAnimation,
   useMotionValue,
-  Variant,
 } from 'framer-motion';
 import Image from 'next/image';
 
@@ -63,6 +62,7 @@ const ArrowIconClasses = 'h-full w-full flex items-center justify-center';
 const LeftArrow = (props: ButtonProps) => {
   return (
     <motion.button
+      key={1}
       variants={LeftVariants}
       initial={{ x: -50 }}
       whileTap={{ scale: 0.9 }}
@@ -82,6 +82,7 @@ const LeftArrow = (props: ButtonProps) => {
 const RightArrow = (props: ButtonProps) => {
   return (
     <motion.button
+      key={2}
       variants={RightVariants}
       initial={{ x: 50 }}
       whileTap={{ scale: 0.9 }}
@@ -236,6 +237,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         animate={animation}
         onHoverStart={DragHoverStart}
         onHoverEnd={DragHoverEnd}
+        onAnimationComplete={ExceptionalDragHover}
         onDragTransitionEnd={ExceptionalDragHover}
         onPointerLeave={() => setExceptionalHover(true)}
         transition={{ type: 'spring', bounce: 0.25 }}
@@ -243,29 +245,27 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         style={{ x }}
         className="w-auto mx-auto flex space-x-3 px-5 -mt-[50px] active:cursor-grab"
       >
-        {Thumbnail.map((value) => (
+        {Thumbnail.map((value, idx) => (
           <div
-            key={value.label}
+            key={idx}
             className="text-white rounded-lg md-900:rounded-xl p-5 flex items-center justify-center text-xs font-normal bg-[#303030] w-[175px] h-[85px] min-w-[175px] min-h-[85px] md-900:w-[200px] md-900:h-[100px] md-900:min-w-[200px] md-900:min-h-[100px]"
           >
             {value.label}
           </div>
         ))}
       </motion.div>
-      <AnimatePresence>
-        <LeftArrow
-          animate={LeftAnimate}
-          onClick={() => LeftClick()}
-          onHoverStart={DragHoverStart}
-          onHoverEnd={DragHoverEnd}
-        />
-        <RightArrow
-          animate={RightAnimate}
-          onClick={() => RightClick()}
-          onHoverStart={DragHoverStart}
-          onHoverEnd={DragHoverEnd}
-        />
-      </AnimatePresence>
+      <LeftArrow
+        animate={LeftAnimate}
+        onClick={() => LeftClick()}
+        onHoverStart={DragHoverStart}
+        onHoverEnd={DragHoverEnd}
+      />
+      <RightArrow
+        animate={RightAnimate}
+        onClick={() => RightClick()}
+        onHoverStart={DragHoverStart}
+        onHoverEnd={DragHoverEnd}
+      />
     </div>
   );
 };
