@@ -65,6 +65,7 @@ const LeftArrow = (props: ButtonProps) => {
     <motion.button
       variants={LeftVariants}
       initial={{ x: -50 }}
+      whileTap={{ scale: 0.9 }}
       animate={props.animate}
       onClick={props.onClick}
       onHoverStart={props.onHoverStart}
@@ -83,6 +84,7 @@ const RightArrow = (props: ButtonProps) => {
     <motion.button
       variants={RightVariants}
       initial={{ x: 50 }}
+      whileTap={{ scale: 0.9 }}
       animate={props.animate}
       onClick={props.onClick}
       onHoverStart={props.onHoverStart}
