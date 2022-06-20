@@ -1,14 +1,13 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
-import { motion, useAnimation, useMotionValue } from 'framer-motion';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
-import { IconButton } from '@mui/material';
+import {
+  AnimatePresence,
+  motion,
+  useAnimation,
+  useMotionValue,
+} from 'framer-motion';
+import Image from 'next/image';
 
 interface IProps {}
-
-/**
- * @author
- * @function @DiscoverCarousel
- **/
 
 const Thumbnail = [
   {
@@ -29,33 +28,52 @@ const Thumbnail = [
   {
     label: 'Thumbnail 6',
   },
-  {
-    label: 'Thumbnail 7',
-  },
-  {
-    label: 'Thumbnail 8',
-  },
-  {
-    label: 'Thumbnail 9',
-  },
-  {
-    label: 'Thumbnail 10',
-  },
 ];
 
-const translateXForElement = (element: any) => {
-  const transform = element.style.transform;
+interface ButtonProps {
+  onClick: () => void;
+}
 
-  if (!transform || transform.indexOf('translateX(') < 0) {
-    return 0;
-  }
+const ArrowClasses =
+  'absolute p-0 z-[1] bottom-[25px] md-900:bottom-[32.5px] h-[32px] w-[20px] bg-white bg-opacity-50 hover:bg-white rounded-[4px] transition-colors color-transition Custom-DropShadow';
+const ArrowIconClasses = 'h-full w-full flex items-center justify-center';
 
-  const extractTranslateX = transform.match(/translateX\((-?\d+)/);
-
-  return extractTranslateX && extractTranslateX.length === 2
-    ? parseInt(extractTranslateX[1], 10)
-    : 0;
+const LeftArrow = (props: ButtonProps) => {
+  return (
+    <motion.button
+      initial={{ x: -50 }}
+      animate={{ x: 0 }}
+      exit={{ x: -50 }}
+      onClick={props.onClick}
+      className={`left-3 ${ArrowClasses}`}
+    >
+      <div className={ArrowIconClasses}>
+        <Image src="/icons/left-arrow-fill.svg" height={10} width={10} />
+      </div>
+    </motion.button>
+  );
 };
+
+const RightArrow = (props: ButtonProps) => {
+  return (
+    <motion.button
+      initial={{ x: 50 }}
+      animate={{ x: 0 }}
+      exit={{ x: 50 }}
+      onClick={props.onClick}
+      className={`right-3 ${ArrowClasses}`}
+    >
+      <div className={ArrowIconClasses}>
+        <Image src="/icons/right-arrow-fill.svg" height={10} width={10} />
+      </div>
+    </motion.button>
+  );
+};
+
+/**
+ * @author
+ * @function @DiscoverCarousel
+ **/
 
 export const DiscoverCarousel: FC<IProps> = (props) => {
   const constraintsRef = useRef(null);
@@ -63,7 +81,10 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
   const animation = useAnimation();
   const x = useMotionValue(0);
 
-  const onLeftClick = () => {
+  const [LeftHide, setLeftHide] = useState(false);
+  const [RightHide, setRightHide] = useState(false);
+
+  const LeftClick = () => {
     const xPos = x.get();
     var width: any = constraintsRef.current;
     if (width) {
@@ -74,28 +95,45 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
     }
   };
 
-  const onRightClick = () => {
+  const RightClick = () => {
     const xPos = x.get();
     var width: any = constraintsRef.current;
-    var sliderWidth: any = dragRef.current;
-    if (width) {
+    var scrollWidth: any = dragRef.current;
+    if (width && scrollWidth) {
       const newXPosition = xPos - width.offsetWidth;
-      const maxScroll = sliderWidth.offsetWidth;
+      const maxScroll = scrollWidth.offsetWidth - width.offsetWidth;
       animation.start({
         x: newXPosition < -maxScroll ? -maxScroll : newXPosition,
       });
     }
   };
 
-  // useEffect(
-  //   () =>
-  //     x.onChange((latest) => {
-  //       console.log(latest, scrollXProgress.get());
-  //     }),
-  //   []
-  // );
+  const HideButton = () => {
+    const xPos = x.get();
+    var width: any = constraintsRef.current;
+    var scrollWidth: any = dragRef.current;
+
+    // Hide Left Button
+    if (xPos >= -5) setLeftHide(true);
+    else setLeftHide(false);
+
+    // Hide Right Button
+    if (width && scrollWidth) {
+      const maxScroll = scrollWidth.offsetWidth - width.offsetWidth - 5;
+      if (xPos <= -maxScroll) setRightHide(true);
+      else setRightHide(false);
+    }
+  };
+
+  useEffect(() => {
+    x.onChange((latest) => {
+      HideButton();
+      return;
+    });
+    HideButton();
+  }, []);
   return (
-    <div className="w-full flex flex-col relative box-border p-0 m-0 bg-transparent overflow-x-hidden">
+    <div className="w-full flex flex-col relative box-border p-0 m-0 bg-transparent overflow-y-visible overflow-x-hidden">
       <motion.div
         ref={constraintsRef}
         className="text-white text-lg rounded-xl bg-Carousel w-full pb-[45%] md-900:pb-[40%] p-5 flex"
@@ -106,7 +144,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         drag="x"
         ref={dragRef}
         animate={animation}
-        transition={{ type: "spring", bounce: 0.25 }}
+        transition={{ type: 'spring', bounce: 0.25 }}
         dragConstraints={constraintsRef}
         style={{ x }}
         className="w-auto mx-auto flex space-x-3 px-5 -mt-[50px] active:cursor-grab"
@@ -120,34 +158,10 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
           </div>
         ))}
       </motion.div>
-      <IconButton
-        disableFocusRipple
-        onClick={() => onLeftClick()}
-        className="bg-white bg-opacity-75 hover:bg-white rounded-[50%] absolute h-9 w-9 p-0 left-3 z-[1] top-[calc(50%-20px)] Custom-DropShadow"
-        sx={{
-          '.MuiTouchRipple-child': {
-            backgroundColor: 'rgba(0, 0, 0, 0.25) !important',
-          },
-        }}
-      >
-        <div className="h-full w-full flex items-center justify-center">
-          <ChevronLeftIcon className="h-5" />
-        </div>
-      </IconButton>
-      <IconButton
-        disableFocusRipple
-        onClick={() => onRightClick()}
-        className="absolute p-0 right-3 z-[1] top-[calc(50%-20px)] h-9 w-9 bg-white bg-opacity-75 hover:bg-white rounded-[50%] Custom-DropShadow"
-        sx={{
-          '.MuiTouchRipple-child': {
-            backgroundColor: 'rgba(0, 0, 0, 0.25) !important',
-          },
-        }}
-      >
-        <div className="h-full w-full flex items-center justify-center">
-          <ChevronRightIcon className="h-5" />
-        </div>
-      </IconButton>
+      <AnimatePresence>
+        {LeftHide ? <></> : <LeftArrow onClick={() => LeftClick()} />}
+        {RightHide ? <></> : <RightArrow onClick={() => RightClick()} />}
+      </AnimatePresence>
     </div>
   );
 };
