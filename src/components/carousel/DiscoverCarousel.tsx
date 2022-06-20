@@ -25,6 +25,9 @@ const Thumbnail = [
   },
 ];
 
+const ThumbnailSizes =
+  'w-[175px] h-[85px] min-w-[175px] min-h-[85px] md-900:w-[200px] md-900:h-[100px] md-900:min-w-[200px] md-900:min-h-[100px]';
+
 const LeftVariants = {
   open: {
     x: 0,
@@ -243,7 +246,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         {Thumbnail.map((value, idx) => (
           <div
             key={idx}
-            className="text-white rounded-lg md-900:rounded-xl p-5 flex items-center justify-center text-xs font-normal bg-[#303030] w-[175px] h-[85px] min-w-[175px] min-h-[85px] md-900:w-[200px] md-900:h-[100px] md-900:min-w-[200px] md-900:min-h-[100px]"
+            className={`${ThumbnailSizes} ${'text-white rounded-lg md-900:rounded-xl p-5 flex items-center justify-center text-xs font-normal bg-[#303030]'}`}
           >
             {value.label}
           </div>
