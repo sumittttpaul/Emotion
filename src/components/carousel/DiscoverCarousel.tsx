@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
-import { motion, useMotionValue } from 'framer-motion';
+import { motion, useAnimation, useMotionValue } from 'framer-motion';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
 import { IconButton } from '@mui/material';
 
@@ -43,24 +43,49 @@ const Thumbnail = [
   },
 ];
 
+const translateXForElement = (element: any) => {
+  const transform = element.style.transform;
+
+  if (!transform || transform.indexOf('translateX(') < 0) {
+    return 0;
+  }
+
+  const extractTranslateX = transform.match(/translateX\((-?\d+)/);
+
+  return extractTranslateX && extractTranslateX.length === 2
+    ? parseInt(extractTranslateX[1], 10)
+    : 0;
+};
+
 export const DiscoverCarousel: FC<IProps> = (props) => {
   const constraintsRef = useRef(null);
+  const dragRef = useRef(null);
+  const animation = useAnimation();
   const x = useMotionValue(0);
 
-  function onLeftClick() {
+  const onLeftClick = () => {
     const xPos = x.get();
-    if (Math.round(xPos) === 0) {
-      return;
+    var width: any = constraintsRef.current;
+    if (width) {
+      const newXPosition = xPos + width.offsetWidth;
+      animation.start({
+        x: newXPosition > 0 ? 0 : newXPosition,
+      });
     }
-    const newXPosition = xPos + 600;
-    x.set(newXPosition > 0 ? 0 : newXPosition);
-  }
+  };
 
-  function onRightClick() {
+  const onRightClick = () => {
     const xPos = x.get();
-    const newXPosition = xPos - 600;
-    x.set(newXPosition < -2000 ? -2000 : newXPosition);
-  }
+    var width: any = constraintsRef.current;
+    var sliderWidth: any = dragRef.current;
+    if (width) {
+      const newXPosition = xPos - width.offsetWidth;
+      const maxScroll = sliderWidth.offsetWidth;
+      animation.start({
+        x: newXPosition < -maxScroll ? -maxScroll : newXPosition,
+      });
+    }
+  };
 
   // useEffect(
   //   () =>
@@ -79,9 +104,12 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
       </motion.div>
       <motion.div
         drag="x"
+        ref={dragRef}
+        animate={animation}
+        transition={{ type: "spring", bounce: 0.25 }}
         dragConstraints={constraintsRef}
         style={{ x }}
-        className="w-auto mx-auto flex relative space-x-3 px-5 -mt-[50px] active:cursor-grab"
+        className="w-auto mx-auto flex space-x-3 px-5 -mt-[50px] active:cursor-grab"
       >
         {Thumbnail.map((value) => (
           <div
