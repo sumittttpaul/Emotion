@@ -1,10 +1,5 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
-import {
-  AnimatePresence,
-  motion,
-  useAnimation,
-  useMotionValue,
-} from 'framer-motion';
+import { motion, useAnimation, useMotionValue } from 'framer-motion';
 import Image from 'next/image';
 
 interface IProps {}

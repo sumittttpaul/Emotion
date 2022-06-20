@@ -4,6 +4,7 @@ import React, { FC, useEffect, useRef, useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { Poster_BlurDataURL } from '../../../loader/BlurDataURL';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 interface IProps {
@@ -42,17 +43,35 @@ const Illustrations = [
   '/images/avatar/illustration/27.png',
 ];
 
+const blurDataURL = Poster_BlurDataURL;
+
+const LeftVariants = {
+  open: {
+    x: 0,
+  },
+  closed: {
+    x: -50,
+  },
+};
+
+const RightVariants = {
+  open: {
+    x: 0,
+  },
+  closed: {
+    x: 50,
+  },
+};
+
 /**
  * @author
  * @function @IllustrationCollections
  **/
 
-const blurDataURL = Poster_BlurDataURL;
-
 export const IllustrationCollections: FC<IProps> = (props) => {
   const sliderRef = useRef<HTMLElement>(null);
-  const [LeftButton, setLeftButton] = useState(false);
-  const [RightButton, setRightButton] = useState(true);
+  const [LeftAnimate, setLeftAnimate] = useState('closed');
+  const [RightAnimate, setRightAnimate] = useState('closed');
   const slideLeft = () => {
     const slider = sliderRef.current;
     if (slider) {
@@ -69,12 +88,11 @@ export const IllustrationCollections: FC<IProps> = (props) => {
     const slider = sliderRef.current;
     if (slider) {
       if (slider.scrollLeft === 0) {
-        setLeftButton(false);
-        ScrollRight();
+        setLeftAnimate('closed');
       } else {
-        setLeftButton(true);
-        ScrollRight();
+        setLeftAnimate('open');
       }
+      ScrollRight();
     }
   };
   const ScrollRight = () => {
@@ -85,9 +103,9 @@ export const IllustrationCollections: FC<IProps> = (props) => {
         return;
       }
       if (slider.scrollLeft === maxScroll) {
-        setRightButton(false);
+        setRightAnimate('closed');
       } else {
-        setRightButton(true);
+        setRightAnimate('open');
       }
     }
   };
@@ -149,50 +167,30 @@ export const IllustrationCollections: FC<IProps> = (props) => {
           </Button>
         ))}
       </ScrollContainer>
-      {LeftButton ? (
-        <IconButton
-          disableFocusRipple
-          onClick={() => {
-            setTimeout(() => {
-              slideLeft();
-            }, 100);
-          }}
-          className="bg-white hover:bg-white rounded-[50%] absolute h-9 w-9 p-0 left-3 z-[1] top-[calc(50%-20px)] Custom-DropShadow"
-          sx={{
-            '.MuiTouchRipple-child': {
-              backgroundColor: 'rgba(0, 0, 0, 0.25) !important',
-            },
-          }}
-        >
-          <div className="h-full w-full flex items-center justify-center">
-            <ChevronLeftIcon className="h-5" />
-          </div>
-        </IconButton>
-      ) : (
-        <></>
-      )}
-      {RightButton ? (
-        <IconButton
-          disableFocusRipple
-          onClick={() => {
-            setTimeout(() => {
-              slideRight();
-            }, 100);
-          }}
-          className="absolute p-0 right-3 z-[1] top-[calc(50%-20px)] h-9 w-9 bg-white hover:bg-white rounded-[50%] Custom-DropShadow"
-          sx={{
-            '.MuiTouchRipple-child': {
-              backgroundColor: 'rgba(0, 0, 0, 0.25) !important',
-            },
-          }}
-        >
-          <div className="h-full w-full flex items-center justify-center">
-            <ChevronRightIcon className="h-5" />
-          </div>
-        </IconButton>
-      ) : (
-        <></>
-      )}
+      <motion.button
+        onClick={() => slideLeft()}
+        whileTap={{ scale: 0.9 }}
+        variants={LeftVariants}
+        initial={{ x: -50 }}
+        animate={LeftAnimate}
+        className="bg-white hover:bg-white rounded-[50%] absolute h-9 w-9 p-0 left-3 z-[1] top-[calc(50%-20px)] Custom-DropShadow"
+      >
+        <div className="h-full w-full flex items-center justify-center">
+          <ChevronLeftIcon className="h-5" />
+        </div>
+      </motion.button>
+      <motion.button
+        onClick={() => slideRight()}
+        whileTap={{ scale: 0.9 }}
+        variants={RightVariants}
+        initial={{ x: 50 }}
+        animate={RightAnimate}
+        className="bg-white hover:bg-white rounded-[50%] absolute h-9 w-9 p-0 right-3 z-[1] top-[calc(50%-20px)] Custom-DropShadow"
+      >
+        <div className="h-full w-full flex items-center justify-center">
+          <ChevronRightIcon className="h-5" />
+        </div>
+      </motion.button>
     </div>
   );
 };
