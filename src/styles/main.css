@@ -112,10 +112,6 @@
   opacity: 100;
 }
 
-.bg-Carousel {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.15) 75%, transparent);
-}
-
 .color-transition {
   transition-duration: 200ms;
 }

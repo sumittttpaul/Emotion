@@ -1,49 +1,51 @@
 import React, { FC, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { motion, useAnimation, useMotionValue } from 'framer-motion';
 import Image from 'next/image';
+import { Button } from '@mui/material';
+import { HeartIcon } from '@heroicons/react/outline';
 
 interface IProps {}
 
 const Thumbnail = [
   {
     Label: 'Thumbnail 1',
-    URL: '/images/sample1.jpg',
+    URL: '/images/avatar/illustration/1.png',
   },
   {
     Label: 'Thumbnail 2',
-    URL: '/images/sample1.jpg',
+    URL: '/images/avatar/illustration/2.png',
   },
   {
     Label: 'Thumbnail 3',
-    URL: '/images/sample1.jpg',
+    URL: '/images/avatar/illustration/3.png',
   },
   {
     Label: 'Thumbnail 4',
-    URL: '/images/sample1.jpg',
+    URL: '/images/avatar/illustration/4.png',
   },
   {
     Label: 'Thumbnail 5',
-    URL: '/images/sample1.jpg',
+    URL: '/images/avatar/illustration/5.png',
   },
   {
     Label: 'Thumbnail 6',
-    URL: '/images/sample1.jpg',
+    URL: '/images/avatar/illustration/6.png',
   },
   {
     Label: 'Thumbnail 7',
-    URL: '/images/sample1.jpg',
+    URL: '/images/avatar/illustration/7.png',
   },
   {
     Label: 'Thumbnail 8',
-    URL: '/images/sample1.jpg',
+    URL: '/images/avatar/illustration/8.png',
   },
   {
     Label: 'Thumbnail 9',
-    URL: '/images/sample1.jpg',
+    URL: '/images/avatar/illustration/9.png',
   },
   {
     Label: 'Thumbnail 10',
-    URL: '/images/sample1.jpg',
+    URL: '/images/avatar/illustration/10.png',
   },
 ];
 
@@ -82,7 +84,6 @@ const ArrowIconClasses = 'h-full w-full flex items-center justify-center';
 const LeftArrow = (props: ButtonProps) => {
   return (
     <motion.button
-      key={1}
       variants={LeftVariants}
       initial={{ x: -50 }}
       whileTap={{ scale: 0.9 }}
@@ -102,7 +103,6 @@ const LeftArrow = (props: ButtonProps) => {
 const RightArrow = (props: ButtonProps) => {
   return (
     <motion.button
-      key={2}
       variants={RightVariants}
       initial={{ x: 50 }}
       whileTap={{ scale: 0.9 }}
@@ -280,10 +280,51 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
     <div className="w-full flex flex-col relative box-border p-0 m-0 bg-transparent overflow-y-visible overflow-x-hidden">
       <motion.div
         ref={constraintsRef}
-        className="text-white text-lg rounded-xl bg-Carousel w-full pb-[40%] p-5 flex"
+        className="text-white relative items-start justify-end rounded-xl w-full h-[600px] pl-12 pb-[130px] flex flex-col overflow-hidden"
       >
-        Discover
+        <Image
+          layout="fill"
+          loading="lazy"
+          objectFit='cover'
+          objectPosition='top'
+          className='-z-[1]'
+          src="/images/avatar/illustration/8.png"
+        />
+        <div className="space-y-8 box-border z-[1]">
+          <h6 className="text-3xl">Full Sleeves T-shirts</h6>
+          <div className="max-w-[500px] w-full space-y-1.5">
+            <h6 className="uppercase tracking-[0.5px] font-[500] leading-[1.3333] text-[11px]">
+              new winter collection
+            </h6>
+            <h6 className="text-[15px] leading-6">
+              Save up to 50% off on our brand new full sleeve winter collection
+              full printed T-shirts.
+            </h6>
+          </div>
+          <div className="space-y-3 box-border">
+            <div className="text-xs flex items-center space-x-[4px] my-1">
+              <h6 className="bg-primary-blue-rgb text-[11px] py-1 px-2.5 mr-[2px] rounded-[4px]">
+                -75%
+              </h6>
+              <h6>Starting at</h6>
+              <h6 className="line-through opacity-70">₹1499.00</h6>
+              <h6>₹499.00</h6>
+            </div>
+            <div className="flex space-x-3">
+              <Button className="py-4 px-8 text-[11.5px] tracking-[0.075em] bg-white hover:bg-white text-black">
+                order now
+              </Button>
+              <Button className="p-4 tracking-[0.075em] bg-transparent hover:bg-white hover:bg-opacity-10 text-white">
+                <div className="flex space-x-2">
+                  <HeartIcon className="h-4 w-4" />
+                  <h6 className="text-[10px]">add to wishlist</h6>
+                </div>
+              </Button>
+            </div>
+          </div>
+        </div>
       </motion.div>
+      <div className='bg-gradient-to-t from-[#121212] w-full block h-[130px] -mt-[130px]'/>
       <motion.div
         drag={ContentExceed ? 'x' : false}
         ref={dragRef}
@@ -299,13 +340,13 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         style={{ x }}
         className={`${
           ContentExceed ? 'ml-auto' : 'mr-auto'
-        } ${'w-auto flex space-x-3 px-5 pb-1 -mt-[50px]'}`}
+        } ${'w-auto flex space-x-2 px-8 pb-1 -mt-[80px]'}`}
       >
         {Thumbnail.map((value, idx) => (
           <motion.button
             key={idx}
             whileTap={{ scale: 0.9 }}
-            className={`${ThumbnailSizes} ${'relative p-0 m-0 group transition-shadow duration-300 hover:ring-[2.5px] ring-white ring-opacity-30 rounded-lg md-900:rounded-xl flex items-center justify-center overflow-hidden'}`}
+            className={`${ThumbnailSizes} ${'relative p-0 m-0 group transition-shadow duration-300 hover:ring-[2.5px] ring-white ring-opacity-50 rounded-lg md-900:rounded-xl flex items-center justify-center overflow-hidden'}`}
           >
             <Image
               layout="fill"
@@ -313,7 +354,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
               className="transform-gpu ease-out transition-all duration-300 scale-110 -translate-x-3 group-hover:scale-100 group-hover:translate-x-0"
               src={value.URL}
             />
-            <h6 className="text-white z-[1] flex items-center text-left text-xs font-normal backdrop-blur-[1px] ease-out transition-all duration-300 opacity-0 group-hover:opacity-100 p-5 bg-gradient-to-r from-[rgba(0,0,0,0.65)] h-full w-full">
+            <h6 className="text-white z-[1] flex items-center text-left text-xs font-normal backdrop-blur-[2px] ease-out transition-all duration-300 opacity-0 group-hover:opacity-100 p-5 bg-gradient-to-r from-[rgba(0,0,0,0.7)] h-full w-full">
               {value.Label}
             </h6>
           </motion.button>
