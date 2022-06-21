@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { motion, useAnimation, useMotionValue } from 'framer-motion';
 import Image from 'next/image';
 
@@ -20,9 +20,21 @@ const Thumbnail = [
   {
     label: 'Thumbnail 5',
   },
-  {
-    label: 'Thumbnail 6',
-  },
+  // {
+  //   label: 'Thumbnail 6',
+  // },
+  // {
+  //   label: 'Thumbnail 7',
+  // },
+  // {
+  //   label: 'Thumbnail 8',
+  // },
+  // {
+  //   label: 'Thumbnail 9',
+  // },
+  // {
+  //   label: 'Thumbnail 10',
+  // },
 ];
 
 const ThumbnailSizes =
@@ -114,6 +126,8 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
 
   const [LeftAnimate, setLeftAnimate] = useState('closed');
   const [RightAnimate, setRightAnimate] = useState('closed');
+
+  const [ContentExceed, setContentExceed] = useState(false);
 
   const LeftClick = () => {
     const xPos = x.get();
@@ -214,13 +228,43 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
     }
   };
 
+  const IsContentExceed = () => {
+    const xPos = x.get();
+    var width: any = constraintsRef.current;
+    var scrollWidth: any = dragRef.current;
+    if (width && scrollWidth) {
+      if (scrollWidth.offsetWidth > width.offsetWidth) {
+        console.log(
+          'Exceed: ' + scrollWidth.offsetWidth + ' , ' + width.offsetWidth
+        );
+        setContentExceed(true);
+      } else {
+        console.log(
+          'Not Exceed: ' + scrollWidth.offsetWidth + ' , ' + width.offsetWidth
+        );
+        setContentExceed(false);
+        if (xPos < 0) {
+          animation.start({
+            x: 0,
+          });
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     x.onChange((latest) => {
       HideButton();
       return;
     });
-    HideButtonInitialState();
+    HideButtonInitialState(); /* Initial State */
   }, []);
+
+  useLayoutEffect(() => {
+    IsContentExceed(); /* Initial State */
+    window.addEventListener('resize', IsContentExceed);
+    return () => window.removeEventListener('resize', IsContentExceed);
+  }, [ContentExceed]);
   return (
     <div className="w-full flex flex-col relative box-border p-0 m-0 bg-transparent overflow-y-visible overflow-x-hidden">
       <motion.div
@@ -230,7 +274,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         Discover
       </motion.div>
       <motion.div
-        drag="x"
+        drag={ContentExceed ? 'x' : false}
         ref={dragRef}
         animate={animation}
         onHoverStart={DragHoverStart}
@@ -242,7 +286,9 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         dragConstraints={constraintsRef}
         whileDrag={{ cursor: 'grab' }}
         style={{ x }}
-        className="w-auto mx-auto flex space-x-3 px-5 -mt-[50px]"
+        className={`${
+          ContentExceed ? 'ml-auto' : 'mr-auto'
+        } ${'w-auto flex space-x-3 px-5 -mt-[50px]'}`}
       >
         {Thumbnail.map((value, idx) => (
           <div
@@ -253,18 +299,24 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
           </div>
         ))}
       </motion.div>
-      <LeftArrow
-        animate={LeftAnimate}
-        onClick={() => LeftClick()}
-        onHoverStart={DragHoverStart}
-        onHoverEnd={DragHoverEnd}
-      />
-      <RightArrow
-        animate={RightAnimate}
-        onClick={() => RightClick()}
-        onHoverStart={DragHoverStart}
-        onHoverEnd={DragHoverEnd}
-      />
+      {ContentExceed ? (
+        <>
+          <LeftArrow
+            animate={LeftAnimate}
+            onClick={() => LeftClick()}
+            onHoverStart={DragHoverStart}
+            onHoverEnd={DragHoverEnd}
+          />
+          <RightArrow
+            animate={RightAnimate}
+            onClick={() => RightClick()}
+            onHoverStart={DragHoverStart}
+            onHoverEnd={DragHoverEnd}
+          />
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
