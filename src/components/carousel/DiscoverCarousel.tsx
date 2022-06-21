@@ -3,6 +3,7 @@ import { motion, useAnimation, useMotionValue } from 'framer-motion';
 import Image from 'next/image';
 import { Button } from '@mui/material';
 import { HeartIcon } from '@heroicons/react/outline';
+import { Carousel_Thumbnail_BlurDataURL } from '../loader/BlurDataURL';
 
 interface IProps {}
 
@@ -372,6 +373,8 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
                   : 'scale-[1.2] -translate-x-3'
               } ${'transform-gpu ease-out transition-all duration-300'}`}
               src={value.URL}
+              placeholder="blur"
+              blurDataURL={Carousel_Thumbnail_BlurDataURL}
               alt="Casourel-Image-Thumbnail"
             />
             <h6
