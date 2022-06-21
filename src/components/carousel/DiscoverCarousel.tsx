@@ -49,6 +49,20 @@ const Thumbnail = [
   },
 ];
 
+const CarouselActive = (
+  ThumbnailArray: {
+    Label: string;
+    URL: string;
+  }[],
+  PropValue: string
+) => {
+  const ThumbnailValue = ThumbnailArray.find(
+    (label) => label.Label === PropValue
+  );
+  if (ThumbnailValue?.Label === PropValue) return true;
+  else return false;
+};
+
 const ThumbnailSizes =
   'w-[175px] h-[85px] min-w-[175px] min-h-[85px] md-900:w-[200px] md-900:h-[100px] md-900:min-w-[200px] md-900:min-h-[100px]';
 
@@ -139,7 +153,10 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
 
   const [ContentExceed, setContentExceed] = useState(false);
 
-  const [BG, setBG] = useState('/images/avatar/illustration/6.png');
+  const [CarouselImage, setCarouselImage] = useState(
+    '/images/avatar/illustration/6.png'
+  );
+  const [CarouselActiveBool, setCarouselActiveBool] = useState(false);
 
   const LeftClick = () => {
     const xPos = x.get();
@@ -290,7 +307,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
           objectFit="cover"
           objectPosition="center"
           className="-z-[1]"
-          src={BG}
+          src={CarouselImage}
         />
         <div className="space-y-8 box-border z-[1]">
           <h6 className="text-3xl font-[500]">Full Sleeves T-shirts</h6>
@@ -346,18 +363,37 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
       >
         {Thumbnail.map((value, idx) => (
           <motion.button
-            onClick={() => setTimeout(() => setBG(value.URL), 150)}
+            onClick={() => setTimeout(() => setCarouselImage(value.URL), 150)}
             key={idx}
             whileTap={{ scale: 0.9 }}
-            className={`${ThumbnailSizes} ${'relative p-0 m-0 group transition-shadow duration-300 hover:ring-[2.5px] ring-white ring-opacity-50 rounded-lg md-900:rounded-xl flex items-center justify-center overflow-hidden'}`}
+            onHoverStart={() => setCarouselActiveBool(true)}
+            onHoverEnd={() => setCarouselActiveBool(false)}
+            className={`${
+              CarouselActiveBool &&
+              Boolean(CarouselActive(Thumbnail, value.Label))
+                ? 'ring-[2.5px]'
+                : 'ring-0'
+            } ${ThumbnailSizes} ${'relative p-0 m-0 transition-shadow duration-300 ring-white ring-opacity-50 rounded-lg md-900:rounded-xl flex items-center justify-center overflow-hidden'}`}
           >
             <Image
               layout="fill"
               loading="lazy"
-              className="transform-gpu ease-out transition-all duration-300 scale-110 -translate-x-3 group-hover:scale-100 group-hover:translate-x-0"
+              className={`${
+                CarouselActiveBool &&
+                Boolean(CarouselActive(Thumbnail, value.Label))
+                  ? 'scale-100 translate-x-0'
+                  : 'scale-[1.2] -translate-x-3'
+              } ${'transform-gpu ease-out transition-all duration-300'}`}
               src={value.URL}
             />
-            <h6 className="text-white z-[1] flex items-center text-left text-xs font-medium backdrop-blur-[2px] ease-out transition-all duration-300 opacity-0 group-hover:opacity-100 p-5 bg-gradient-to-r from-[rgba(0,0,0,0.7)] h-full w-full">
+            <h6
+              className={`${
+                CarouselActiveBool &&
+                Boolean(CarouselActive(Thumbnail, value.Label))
+                  ? 'opacity-100'
+                  : ' opacity-0'
+              } ${'text-white z-[1] flex items-center text-left text-xs font-medium backdrop-blur-[2px] ease-out transition-all duration-300 p-5 bg-gradient-to-r from-[rgba(0,0,0,0.7)] h-full w-full'}`}
+            >
               {value.Label}
             </h6>
           </motion.button>
