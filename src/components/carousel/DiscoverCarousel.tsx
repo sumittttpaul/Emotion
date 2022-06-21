@@ -265,6 +265,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
     window.addEventListener('resize', IsContentExceed);
     return () => window.removeEventListener('resize', IsContentExceed);
   }, [ContentExceed]);
+
   return (
     <div className="w-full flex flex-col relative box-border p-0 m-0 bg-transparent overflow-y-visible overflow-x-hidden">
       <motion.div
