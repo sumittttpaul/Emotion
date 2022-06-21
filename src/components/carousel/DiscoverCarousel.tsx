@@ -292,7 +292,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
           loading="lazy"
           objectFit="cover"
           objectPosition="center"
-          className="-z-[1]"
+          className="-z-[1] transition-all duration-300"
           src={CarouselImage}
         />
         <div className="space-y-8 box-border z-[1]">
