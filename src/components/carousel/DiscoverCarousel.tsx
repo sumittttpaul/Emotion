@@ -57,7 +57,7 @@ const CarouselActive = (
   PropValue: string
 ) => {
   const ThumbnailValue = ThumbnailArray.find(
-    (label) => label.Label === PropValue
+    (value) => value.Label === PropValue
   );
   if (ThumbnailValue?.Label === PropValue) return true;
   else return false;
