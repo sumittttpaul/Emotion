@@ -139,6 +139,8 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
 
   const [ContentExceed, setContentExceed] = useState(false);
 
+  const [BG, setBG] = useState('/images/avatar/illustration/6.png');
+
   const LeftClick = () => {
     const xPos = x.get();
     var width: any = constraintsRef.current;
@@ -280,18 +282,18 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
     <div className="w-full flex flex-col relative box-border p-0 m-0 bg-transparent overflow-y-visible overflow-x-hidden">
       <motion.div
         ref={constraintsRef}
-        className="text-white relative items-start justify-end rounded-xl w-full h-[600px] pl-12 pb-[130px] flex flex-col overflow-hidden"
+        className="text-white relative items-start justify-end rounded-t-xl w-full h-[600px] pl-12 pb-[130px] flex flex-col overflow-hidden bg-gradient-to-r from-[rgba(0,0,0,0.7)]"
       >
         <Image
           layout="fill"
           loading="lazy"
-          objectFit='cover'
-          objectPosition='top'
-          className='-z-[1]'
-          src="/images/avatar/illustration/8.png"
+          objectFit="cover"
+          objectPosition="center"
+          className="-z-[1]"
+          src={BG}
         />
         <div className="space-y-8 box-border z-[1]">
-          <h6 className="text-3xl">Full Sleeves T-shirts</h6>
+          <h6 className="text-3xl font-[500]">Full Sleeves T-shirts</h6>
           <div className="max-w-[500px] w-full space-y-1.5">
             <h6 className="uppercase tracking-[0.5px] font-[500] leading-[1.3333] text-[11px]">
               new winter collection
@@ -324,7 +326,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
           </div>
         </div>
       </motion.div>
-      <div className='bg-gradient-to-t from-[#121212] w-full block h-[130px] -mt-[130px]'/>
+      <div className="bg-gradient-to-t from-[#121212] w-full block h-[130px] -mt-[130px]" />
       <motion.div
         drag={ContentExceed ? 'x' : false}
         ref={dragRef}
@@ -344,6 +346,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
       >
         {Thumbnail.map((value, idx) => (
           <motion.button
+            onClick={() => setTimeout(() => setBG(value.URL), 150)}
             key={idx}
             whileTap={{ scale: 0.9 }}
             className={`${ThumbnailSizes} ${'relative p-0 m-0 group transition-shadow duration-300 hover:ring-[2.5px] ring-white ring-opacity-50 rounded-lg md-900:rounded-xl flex items-center justify-center overflow-hidden'}`}
@@ -354,7 +357,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
               className="transform-gpu ease-out transition-all duration-300 scale-110 -translate-x-3 group-hover:scale-100 group-hover:translate-x-0"
               src={value.URL}
             />
-            <h6 className="text-white z-[1] flex items-center text-left text-xs font-normal backdrop-blur-[2px] ease-out transition-all duration-300 opacity-0 group-hover:opacity-100 p-5 bg-gradient-to-r from-[rgba(0,0,0,0.7)] h-full w-full">
+            <h6 className="text-white z-[1] flex items-center text-left text-xs font-medium backdrop-blur-[2px] ease-out transition-all duration-300 opacity-0 group-hover:opacity-100 p-5 bg-gradient-to-r from-[rgba(0,0,0,0.7)] h-full w-full">
               {value.Label}
             </h6>
           </motion.button>
