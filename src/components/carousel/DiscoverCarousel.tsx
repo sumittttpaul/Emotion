@@ -6,35 +6,45 @@ interface IProps {}
 
 const Thumbnail = [
   {
-    label: 'Thumbnail 1',
+    Label: 'Thumbnail 1',
+    URL: '/images/sample1.jpg',
   },
   {
-    label: 'Thumbnail 2',
+    Label: 'Thumbnail 2',
+    URL: '/images/sample1.jpg',
   },
   {
-    label: 'Thumbnail 3',
+    Label: 'Thumbnail 3',
+    URL: '/images/sample1.jpg',
   },
   {
-    label: 'Thumbnail 4',
+    Label: 'Thumbnail 4',
+    URL: '/images/sample1.jpg',
   },
   {
-    label: 'Thumbnail 5',
+    Label: 'Thumbnail 5',
+    URL: '/images/sample1.jpg',
   },
-  // {
-  //   label: 'Thumbnail 6',
-  // },
-  // {
-  //   label: 'Thumbnail 7',
-  // },
-  // {
-  //   label: 'Thumbnail 8',
-  // },
-  // {
-  //   label: 'Thumbnail 9',
-  // },
-  // {
-  //   label: 'Thumbnail 10',
-  // },
+  {
+    Label: 'Thumbnail 6',
+    URL: '/images/sample1.jpg',
+  },
+  {
+    Label: 'Thumbnail 7',
+    URL: '/images/sample1.jpg',
+  },
+  {
+    Label: 'Thumbnail 8',
+    URL: '/images/sample1.jpg',
+  },
+  {
+    Label: 'Thumbnail 9',
+    URL: '/images/sample1.jpg',
+  },
+  {
+    Label: 'Thumbnail 10',
+    URL: '/images/sample1.jpg',
+  },
 ];
 
 const ThumbnailSizes =
@@ -289,15 +299,24 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         style={{ x }}
         className={`${
           ContentExceed ? 'ml-auto' : 'mr-auto'
-        } ${'w-auto flex space-x-3 px-5 -mt-[50px]'}`}
+        } ${'w-auto flex space-x-3 px-5 pb-1 -mt-[50px]'}`}
       >
         {Thumbnail.map((value, idx) => (
-          <div
+          <motion.button
             key={idx}
-            className={`${ThumbnailSizes} ${'text-white rounded-lg md-900:rounded-xl p-5 flex items-center justify-center text-xs font-normal bg-[#303030]'}`}
+            whileTap={{ scale: 0.9 }}
+            className={`${ThumbnailSizes} ${'relative p-0 m-0 group transition-shadow duration-300 hover:ring-[2.5px] ring-white ring-opacity-30 rounded-lg md-900:rounded-xl flex items-center justify-center overflow-hidden'}`}
           >
-            {value.label}
-          </div>
+            <Image
+              layout="fill"
+              loading="lazy"
+              className="transform-gpu ease-out transition-all duration-300 scale-110 -translate-x-3 group-hover:scale-100 group-hover:translate-x-0"
+              src={value.URL}
+            />
+            <h6 className="text-white z-[1] flex items-center text-left text-xs font-normal backdrop-blur-[1px] ease-out transition-all duration-300 opacity-0 group-hover:opacity-100 p-5 bg-gradient-to-r from-[rgba(0,0,0,0.65)] h-full w-full">
+              {value.Label}
+            </h6>
+          </motion.button>
         ))}
       </motion.div>
       {ContentExceed ? (
