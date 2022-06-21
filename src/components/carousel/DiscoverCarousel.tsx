@@ -23,12 +23,6 @@ const Thumbnail = [
   {
     label: 'Thumbnail 6',
   },
-  {
-    label: 'Thumbnail 7',
-  },
-  {
-    label: 'Thumbnail 8',
-  },
 ];
 
 const ThumbnailSizes =
@@ -231,7 +225,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
     <div className="w-full flex flex-col relative box-border p-0 m-0 bg-transparent overflow-y-visible overflow-x-hidden">
       <motion.div
         ref={constraintsRef}
-        className="text-white text-lg rounded-xl bg-Carousel w-full pb-[45%] md-900:pb-[40%] p-5 flex"
+        className="text-white text-lg rounded-xl bg-Carousel w-full pb-[40%] p-5 flex"
       >
         Discover
       </motion.div>
