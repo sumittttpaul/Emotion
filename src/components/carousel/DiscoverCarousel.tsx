@@ -73,8 +73,8 @@ const RightVariants = {
 interface ButtonProps {
   onClick: () => void;
   animate: string;
-  onHoverStart: () => void;
-  onHoverEnd: () => void;
+  onHoverStart?: () => void;
+  onHoverEnd?: () => void;
 }
 
 const ArrowClasses =
@@ -94,7 +94,12 @@ const LeftArrow = (props: ButtonProps) => {
       className={`left-3 ${ArrowClasses}`}
     >
       <div className={ArrowIconClasses}>
-        <Image src="/icons/left-arrow-fill.svg" height={10} width={10} />
+        <Image
+          src="/icons/left-arrow-fill.svg"
+          height={10}
+          width={10}
+          alt="left-arrow-icon"
+        />
       </div>
     </motion.button>
   );
@@ -113,7 +118,12 @@ const RightArrow = (props: ButtonProps) => {
       className={`right-3 ${ArrowClasses}`}
     >
       <div className={ArrowIconClasses}>
-        <Image src="/icons/right-arrow-fill.svg" height={10} width={10} />
+        <Image
+          src="/icons/right-arrow-fill.svg"
+          height={10}
+          width={10}
+          alt="right-arrow-icon"
+        />
       </div>
     </motion.button>
   );
@@ -249,15 +259,9 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
     var scrollWidth: any = dragRef.current;
     if (width && scrollWidth) {
       if (scrollWidth.offsetWidth > width.offsetWidth) {
-        console.log(
-          'Exceed: ' + scrollWidth.offsetWidth + ' , ' + width.offsetWidth
-        );
-        setContentExceed(true);
+        if (!ContentExceed) setContentExceed(true);
       } else {
-        console.log(
-          'Not Exceed: ' + scrollWidth.offsetWidth + ' , ' + width.offsetWidth
-        );
-        setContentExceed(false);
+        if (ContentExceed) setContentExceed(false);
         if (xPos < 0) {
           animation.start({
             x: 0,
@@ -273,13 +277,13 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
       return;
     });
     HideButtonInitialState(); /* Initial State */
-  }, []);
+  });
 
   useLayoutEffect(() => {
     IsContentExceed(); /* Initial State */
     window.addEventListener('resize', IsContentExceed);
     return () => window.removeEventListener('resize', IsContentExceed);
-  }, [ContentExceed]);
+  });
 
   return (
     <div className="w-full flex flex-col relative box-border p-0 m-0 bg-transparent overflow-y-visible overflow-x-hidden">
@@ -294,6 +298,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
           objectPosition="center"
           className="-z-[1]"
           src={CarouselImage}
+          alt="Carousel-Image"
         />
         <div className="space-y-8 box-border z-[1]">
           <h6 className="text-3xl font-[500]">Full Sleeves T-shirts</h6>
@@ -345,7 +350,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         style={{ x }}
         className={`${
           ContentExceed ? 'ml-auto' : 'mr-auto'
-        } ${'w-auto flex space-x-2 px-8 pb-1 -mt-[80px]'}`}
+        } ${'w-auto z-[1] flex space-x-2 px-8 pb-1 -mt-[80px]'}`}
       >
         {Thumbnail.map((value, idx) => (
           <motion.button
@@ -367,6 +372,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
                   : 'scale-[1.2] -translate-x-3'
               } ${'transform-gpu ease-out transition-all duration-300'}`}
               src={value.URL}
+              alt="Casourel-Image-Thumbnail"
             />
             <h6
               className={`${
