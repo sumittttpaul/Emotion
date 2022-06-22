@@ -16,7 +16,7 @@ const ThumbnailSizes =
   'w-[175px] h-[85px] min-w-[175px] min-h-[85px] md-900:w-[200px] md-900:h-[100px] md-900:min-w-[200px] md-900:min-h-[100px]';
 
 /**
- * @Thumbnail_Map
+ * @Thumbnail_Button_Map
  **/
 export const ThumbnailMap: FC<IProps> = (props) => {
   return (
