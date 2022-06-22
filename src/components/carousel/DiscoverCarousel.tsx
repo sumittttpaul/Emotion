@@ -233,7 +233,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
   };
 
   useEffect(() => {
-    if (autoScroll) StartCarousel();
+    // if (autoScroll) StartCarousel();
     return () => ClearCarousel();
   }, [CarouselState]);
 
