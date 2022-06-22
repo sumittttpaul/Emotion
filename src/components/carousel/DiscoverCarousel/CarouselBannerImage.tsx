@@ -66,6 +66,7 @@ export class CarouselBannerImage extends Component<IProps> {
             loading="lazy"
             layout="fill"
             className={className}
+            alt={alt}
             style={{
               ...style,
               ...{
