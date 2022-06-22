@@ -14,6 +14,8 @@ import React, {
 } from 'react';
 
 interface IProps {
+  AutoPlay?: boolean;
+  Duration?: number;
   ParentElementRef: MutableRefObject<null>;
   Thumbnail: { Label: string; URL: string }[];
   CarouselState: { Active: number; ImageURL: string };
@@ -40,9 +42,9 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   const [LeftAnimate, setLeftAnimate] = useState('closed');
   const [RightAnimate, setRightAnimate] = useState('closed');
   const [ContentExceed, setContentExceed] = useState(false);
-  const autoScroll = true;
   let CarouselInterval: any;
-  let intervalTime = 5000;
+  let intervalTime =
+    props.Duration && props.AutoPlay ? props.Duration * 1000 : 0;
 
   const NextCarousel = () => {
     const index =
@@ -216,7 +218,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   };
 
   useEffect(() => {
-    if (autoScroll) StartCarousel();
+    if (props.AutoPlay && props.Duration) StartCarousel();
     return () => ClearCarousel();
   }, [props.CarouselState]);
 
