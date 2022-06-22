@@ -26,8 +26,8 @@ export const MainHeader: FC<IProps> = (props) => {
       <div className="w-full h-[17px] min-h-[17px]" />
       <div
         className={`${
-          open ? 'bg-[#121212]' : 'bg-[rgba(18,18,18,0.9)]'
-        } ${'flex flex-col z-[999] sticky-top items-start box-border w-full py-3 sm:py-4 backdrop-blur-sm'}`}
+          open ? 'bg-[#121212]' : 'bg-[rgba(18,18,18,0.85)]'
+        } ${'flex flex-col z-[999] sticky-top items-start box-border w-full py-3 sm:py-4 backdrop-blur-[8px]'}`}
       >
         <div className="flex relative box-border w-full justify-between items-center sm:px-5 px-3">
           <div className="flex relative w-full md-900:space-x-6 items-center">
