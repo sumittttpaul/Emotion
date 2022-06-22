@@ -1,7 +1,6 @@
 import { motion, useAnimation, useMotionValue } from 'framer-motion';
-import { Carousel_Thumbnail_BlurDataURL } from '../../loader/BlurDataURL';
 import { LeftArrowButton, RightArrowButton } from './ThumbnailArrow';
-import Image from 'next/image';
+import { ThumbnailMap } from './ThumbnailMap';
 import React, {
   FC,
   useEffect,
@@ -24,11 +23,8 @@ interface IProps {
   >;
 }
 
-const ThumbnailSizes =
-  'w-[175px] h-[85px] min-w-[175px] min-h-[85px] md-900:w-[200px] md-900:h-[100px] md-900:min-w-[200px] md-900:min-h-[100px]';
-
 /**
- * @ThumbnailSlider
+ * @Thumbnail_Slider
  **/
 export const ThumbnailSlider: FC<IProps> = (props) => {
   const animation = useAnimation();
@@ -182,14 +178,14 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
     var width: any = props.ParentElementRef.current;
     var scrollWidth: any = dragRef.current;
 
-    // Hide Left Button
+    // Hide Arrow Left Button
     if (xPos >= -5) {
       setLeftHide(false);
     } else {
       setLeftHide(true);
     }
 
-    // Hide Right Button
+    // Hide Arrow Right Button
     if (width && scrollWidth) {
       const maxScroll = scrollWidth.offsetWidth - width.offsetWidth - 5;
       if (xPos <= -maxScroll) {
@@ -257,49 +253,12 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
           ContentExceed ? 'ml-auto' : 'mr-auto'
         } ${'w-auto z-[1] flex space-x-2 px-8 pb-1 -mt-[80px]'}`}
       >
-        {props.Thumbnail.map((value, idx) => (
-          <motion.button
-            onClick={() =>
-              setTimeout(() => {
-                props.setCarouselState({
-                  Active: idx,
-                  ImageURL: value.URL,
-                });
-              }, 150)
-            }
-            key={idx}
-            ref={thumbnailRef}
-            whileTap={{ scale: 0.9 }}
-            className={`${
-              props.CarouselState.Active === idx
-                ? 'ring-[2.5px]'
-                : 'ring-0 hover:ring-[2.5px]'
-            } ${ThumbnailSizes} ${'group relative p-0 m-0 transition-shadow duration-300 ring-white ring-opacity-50 rounded-lg md-900:rounded-xl flex items-center justify-center overflow-hidden'}`}
-          >
-            <Image
-              layout="fill"
-              loading="lazy"
-              className={`${
-                props.CarouselState.Active === idx
-                  ? 'scale-100 translate-x-0'
-                  : 'scale-[1.2] -translate-x-3 group-hover:scale-100 group-hover:translate-x-0'
-              } ${' transform-gpu ease-out transition-all duration-300'}`}
-              src={value.URL}
-              placeholder="blur"
-              blurDataURL={Carousel_Thumbnail_BlurDataURL}
-              alt="Casourel-Image-Thumbnail"
-            />
-            <h6
-              className={`${
-                props.CarouselState.Active === idx
-                  ? 'opacity-100'
-                  : 'group-hover:opacity-100 opacity-0'
-              } ${'text-white z-[1] flex items-center text-left text-xs font-medium backdrop-blur-[2px] ease-out transition-all duration-300 p-5 bg-gradient-to-r from-[rgba(0,0,0,0.7)] h-full w-full'}`}
-            >
-              {value.Label}
-            </h6>
-          </motion.button>
-        ))}
+        <ThumbnailMap
+          Thumbnail={props.Thumbnail}
+          ThumbnailRef={thumbnailRef}
+          CarouselState={props.CarouselState}
+          setCarouselState={props.setCarouselState}
+        />
       </motion.div>
       {ContentExceed && DragHover ? (
         <>

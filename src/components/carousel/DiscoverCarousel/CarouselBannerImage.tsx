@@ -10,7 +10,7 @@ interface IProps {
 }
 
 /**
- * @CarouselBannerImage
+ * @Carousel_Banner_Image
  **/
 export class CarouselBannerImage extends Component<IProps> {
   state = {

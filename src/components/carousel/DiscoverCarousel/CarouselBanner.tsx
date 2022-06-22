@@ -10,8 +10,7 @@ interface IProps {
 }
 
 /**
- * @author
- * @function @CarouselBanner
+ * @Carousel_Banner
  **/
 
 export const CarouselBanner: FC<IProps> = (props) => {
