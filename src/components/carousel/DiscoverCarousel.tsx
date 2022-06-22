@@ -403,8 +403,8 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         }}
         onHoverEnd={() => {
           DragHoverEnd();
+          setDragHover(false);
           setTimeout(() => {
-            setDragHover(false);
           }, 150);
         }}
         onAnimationComplete={ExceptionalDragHover}
@@ -467,14 +467,24 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
           <LeftArrow
             animate={LeftAnimate}
             onClick={() => LeftClick()}
-            onHoverStart={DragHoverStart}
-            onHoverEnd={DragHoverEnd}
+            onHoverStart={() => {
+              DragHoverStart();
+              setDragHover(true);
+            }}
+            onHoverEnd={() => {
+              DragHoverEnd();
+            }}
           />
           <RightArrow
             animate={RightAnimate}
             onClick={() => RightClick()}
-            onHoverStart={DragHoverStart}
-            onHoverEnd={DragHoverEnd}
+            onHoverStart={() => {
+              DragHoverStart();
+              setDragHover(true);
+            }}
+            onHoverEnd={() => {
+              DragHoverEnd();
+            }}
           />
         </>
       ) : (
