@@ -144,7 +144,6 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
 
   const [ExceptionalHover, setExceptionalHover] = useState(false);
   const [DragHover, setDragHover] = useState(false);
-  const [ArrowBool, setArrowBool] = useState(false);
 
   const [LeftHide, setLeftHide] = useState(false);
   const [RightHide, setRightHide] = useState(false);
@@ -479,26 +478,14 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
             <LeftArrow
               animate={LeftAnimate}
               onClick={() => LeftClick()}
-              onHoverStart={() => {
-                setArrowBool(true);
-                DragHoverStart();
-              }}
-              onHoverEnd={() => {
-                setArrowBool(false);
-                DragHoverEnd();
-              }}
+              onHoverStart={DragHoverStart}
+              onHoverEnd={DragHoverEnd}
             />
             <RightArrow
               animate={RightAnimate}
               onClick={() => RightClick()}
-              onHoverStart={() => {
-                setArrowBool(true);
-                DragHoverStart();
-              }}
-              onHoverEnd={() => {
-                setArrowBool(false);
-                DragHoverEnd();
-              }}
+              onHoverStart={DragHoverStart}
+              onHoverEnd={DragHoverEnd}
             />
           </>
         ) : (
