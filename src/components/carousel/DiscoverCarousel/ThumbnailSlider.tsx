@@ -44,7 +44,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   const [ContentExceed, setContentExceed] = useState(false);
   let CarouselInterval: any;
   let intervalTime =
-    props.Duration && props.AutoPlay ? props.Duration * 1000 : 0;
+    props.Duration && props.AutoPlay ? props.Duration * 1000 : undefined;
 
   const NextCarousel = () => {
     const index =
@@ -77,11 +77,11 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
     });
   };
 
-  // const PrevCarousel = () => {
-  //   setCarouselActive(
-  //     CarouselActive === 0 ? Thumbnail.length - 1 : CarouselActive - 1
-  //   );
-  // };
+  /* const PrevCarousel = () => {
+    setCarouselActive(
+      CarouselActive === 0 ? Thumbnail.length - 1 : CarouselActive - 1
+    );
+  }; */
 
   const StartCarousel = () => {
     CarouselInterval = setInterval(NextCarousel, intervalTime);
