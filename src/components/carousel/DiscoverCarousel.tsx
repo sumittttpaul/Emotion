@@ -233,7 +233,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
   };
 
   useEffect(() => {
-    if (autoScroll) StartCarousel();
+    // if (autoScroll) StartCarousel();
 
     return () => ClearCarousel();
   }, [CarouselState]);
@@ -241,12 +241,14 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
   const DragHoverStart = () => {
     if (LeftHide) setLeftAnimate('open');
     if (RightHide) setRightAnimate('open');
+    setDragHover(true);
     setExceptionalHover(false);
   };
 
   const DragHoverEnd = () => {
     if (LeftHide) setLeftAnimate('closed');
     if (RightHide) setRightAnimate('closed');
+    setDragHover(false);
     setExceptionalHover(true);
   };
 
@@ -379,10 +381,16 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
               <h6>₹499.00</h6>
             </div>
             <div className="flex space-x-3">
-              <Button className="py-4 px-8 text-[11.5px] tracking-[0.075em] bg-white hover:bg-white text-black">
+              <Button
+                disableFocusRipple
+                className="py-4 px-8 text-[11.5px] tracking-[0.075em] bg-white hover:bg-white text-black"
+              >
                 order now
               </Button>
-              <Button className="p-4 tracking-[0.075em] bg-transparent hover:bg-white hover:bg-opacity-10 text-white">
+              <Button
+                disableFocusRipple
+                className="p-4 tracking-[0.075em] bg-transparent hover:bg-white hover:bg-opacity-10 text-white"
+              >
                 <div className="flex space-x-2">
                   <HeartIcon className="h-4 w-4" />
                   <h6 className="text-[10px]">add to wishlist</h6>
@@ -397,16 +405,8 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         drag={ContentExceed ? 'x' : false}
         ref={dragRef}
         animate={animation}
-        onHoverStart={() => {
-          DragHoverStart();
-          setDragHover(true);
-        }}
-        onHoverEnd={() => {
-          DragHoverEnd();
-          setDragHover(false);
-          setTimeout(() => {
-          }, 150);
-        }}
+        onHoverStart={DragHoverStart}
+        onHoverEnd={DragHoverEnd}
         onAnimationComplete={ExceptionalDragHover}
         onDragTransitionEnd={ExceptionalDragHover}
         onPointerLeave={() => setExceptionalHover(true)}
@@ -467,24 +467,14 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
           <LeftArrow
             animate={LeftAnimate}
             onClick={() => LeftClick()}
-            onHoverStart={() => {
-              DragHoverStart();
-              setDragHover(true);
-            }}
-            onHoverEnd={() => {
-              DragHoverEnd();
-            }}
+            onHoverStart={DragHoverStart}
+            onHoverEnd={DragHoverEnd}
           />
           <RightArrow
             animate={RightAnimate}
             onClick={() => RightClick()}
-            onHoverStart={() => {
-              DragHoverStart();
-              setDragHover(true);
-            }}
-            onHoverEnd={() => {
-              DragHoverEnd();
-            }}
+            onHoverStart={DragHoverStart}
+            onHoverEnd={DragHoverEnd}
           />
         </>
       ) : (
