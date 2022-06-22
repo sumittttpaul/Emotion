@@ -40,9 +40,9 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   const [ContentExceed, setContentExceed] = useState(false);
   const [LeftIndicator, setLeftIndicator] = useState(true);
   const [RightIndicator, setRightIndicator] = useState(false);
+  const [IntervalPause, setIntervalPause] = useState(false);
   const setIntervalTime =
     props.Duration && props.AutoPlay ? props.Duration * 1000 : undefined;
-  let IntervalPause = false;
   let CarouselInterval: any;
   let intervalTime = setIntervalTime;
 
@@ -101,16 +101,14 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   };
 
   const onHoverCarouselStart = () => {
-    IntervalPause = false;
-    intervalTime = 0;
-    setLeftIndicator(false);
-    setRightIndicator(false);
+    // setIntervalPause(true);
+    // setLeftIndicator(false);
+    // setRightIndicator(false);
   };
   const onHoverCarouselEnd = () => {
-    IntervalPause = true;
-    intervalTime = setIntervalTime;
-    setLeftIndicator(true);
-    setRightIndicator(false);
+    // setIntervalPause(false);
+    // setLeftIndicator(true);
+    // setRightIndicator(false);
   };
 
   const LeftClick = () => {
