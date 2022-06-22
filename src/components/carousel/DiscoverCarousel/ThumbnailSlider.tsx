@@ -38,6 +38,8 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   const [LeftAnimate, setLeftAnimate] = useState('closed');
   const [RightAnimate, setRightAnimate] = useState('closed');
   const [ContentExceed, setContentExceed] = useState(false);
+  const [LeftIndicator, setLeftIndicator] = useState(true);
+  const [RightIndicator, setRightIndicator] = useState(false);
   let CarouselInterval: any;
   let intervalTime =
     props.Duration && props.AutoPlay ? props.Duration * 1000 : undefined;
@@ -71,6 +73,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
       Active: index,
       ImageURL: Image.URL,
     });
+    setLeftIndicator(true);
   };
 
   /* const PrevCarousel = () => {
@@ -254,11 +257,15 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
         } ${'w-auto z-[1] flex space-x-2 px-8 pb-1 -mt-[80px]'}`}
       >
         <ThumbnailMap
-          Duration={5}
+          Duration={props.Duration}
           Thumbnail={props.Thumbnail}
           ThumbnailRef={thumbnailRef}
           CarouselState={props.CarouselState}
+          LeftIndicator={LeftIndicator}
+          RightIndicator={RightIndicator}
           setCarouselState={props.setCarouselState}
+          setLeftIndicator={setLeftIndicator}
+          setRightIndicator={setRightIndicator}
         />
       </motion.div>
       {ContentExceed && DragHover && (

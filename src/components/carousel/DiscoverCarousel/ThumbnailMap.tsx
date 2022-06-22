@@ -6,6 +6,7 @@ import React, {
   FC,
   MutableRefObject,
   SetStateAction,
+  useEffect,
   useState,
 } from 'react';
 
@@ -17,29 +18,11 @@ interface IProps {
   setCarouselState: Dispatch<
     SetStateAction<{ Active: number; ImageURL: string }>
   >;
+  LeftIndicator: boolean;
+  RightIndicator: boolean;
+  setLeftIndicator: Dispatch<SetStateAction<boolean>>;
+  setRightIndicator: Dispatch<SetStateAction<boolean>>;
 }
-
-const IndicatorLeft = {
-  start: {
-    width: '100%',
-    opacity: 1,
-  },
-  end: {
-    width: 0,
-    opacity: 0.5,
-  },
-};
-
-const IndicatorRight = {
-  start: {
-    width: '100%',
-    opacity: 1,
-  },
-  end: {
-    width: 0,
-    opacity: 0.5,
-  },
-};
 
 const ThumbnailSizes =
   'w-[175px] h-[85px] min-w-[175px] min-h-[85px] md-900:w-[200px] md-900:h-[100px] md-900:min-w-[200px] md-900:min-h-[100px]';
@@ -48,10 +31,6 @@ const ThumbnailSizes =
  * @Thumbnail_Button_Map
  **/
 export const ThumbnailMap: FC<IProps> = (props) => {
-  const [LeftAnimation, setLeftAnimation] = useState('end');
-  const [RightAnimation, setRightAnimation] = useState('end');
-  const [Left, setLeft] = useState(true);
-  const [Right, setRight] = useState(false);
   return (
     <>
       {props.Thumbnail.map((value, idx) => (
@@ -62,7 +41,8 @@ export const ThumbnailMap: FC<IProps> = (props) => {
                 Active: idx,
                 ImageURL: value.URL,
               });
-              setLeftAnimation('start');
+              props.setRightIndicator(false);
+              props.setLeftIndicator(true);
             }, 150)
           }
           key={idx}
@@ -97,13 +77,12 @@ export const ThumbnailMap: FC<IProps> = (props) => {
             {value.Label}
           </h6>
           <div className="absolute bottom-0 w-full z-[2] p-[2px] h-auto bg-transparent">
-            {Left && (
+            {props.CarouselState.Active === idx && props.LeftIndicator && (
               <motion.div
-                animate={LeftAnimation}
-                variants={IndicatorLeft}
+                animate={{ width: '100%', opacity: 1 }}
                 onAnimationComplete={() => {
-                  setLeft(false);
-                  setRight(true);
+                  if (props.LeftIndicator) props.setLeftIndicator(false);
+                  if (!props.RightIndicator) props.setRightIndicator(true);
                 }}
                 transition={{
                   ease: 'anticipate',
@@ -111,17 +90,15 @@ export const ThumbnailMap: FC<IProps> = (props) => {
                   duration: props.Duration ? props.Duration * 0.5 : 0,
                 }}
                 className={`${
-                  Left ? 'flex' : 'hidden'
-                } ${'w-0 mr-auto opacity-0 h-1 rounded-b-3xl bg-white'}`}
+                  props.LeftIndicator ? 'flex' : 'hidden'
+                } ${'w-0 mr-auto opacity-0 h-[3px] rounded-b-3xl bg-white'}`}
               />
             )}
-            {Right && (
+            {props.CarouselState.Active === idx && props.RightIndicator && (
               <motion.div
-                animate={RightAnimation}
-                variants={IndicatorRight}
+                animate={{ width: 0, opacity: 0.5 }}
                 onAnimationComplete={() => {
-                  setRight(false);
-                  setLeft(true);
+                  if (props.RightIndicator) props.setRightIndicator(false);
                 }}
                 transition={{
                   ease: 'anticipate',
@@ -129,8 +106,8 @@ export const ThumbnailMap: FC<IProps> = (props) => {
                   duration: props.Duration ? props.Duration * 0.5 : 0,
                 }}
                 className={`${
-                  Right ? 'flex' : 'hidden'
-                } ${'w-full ml-auto opacity-100 h-1 rounded-b-3xl bg-white'}`}
+                  props.RightIndicator ? 'flex' : 'hidden'
+                } ${'w-full ml-auto opacity-100 h-[3px] rounded-b-3xl bg-white'}`}
               />
             )}
           </div>
