@@ -138,6 +138,7 @@ const RightArrow = (props: ButtonProps) => {
 export const DiscoverCarousel: FC<IProps> = (props) => {
   const constraintsRef = useRef(null);
   const dragRef = useRef(null);
+  const thumbnailRef = useRef(null);
   const animation = useAnimation();
   const x = useMotionValue(0);
 
@@ -150,10 +151,10 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
 
   const [ContentExceed, setContentExceed] = useState(false);
 
-  const [CarouselImage, setCarouselImage] = useState(
-    '/images/avatar/illustration/6.png'
-  );
-  const [CarouselActive, setCarouselActive] = useState(0);
+  const [CarouselState, setCarouselState] = useState({
+    Active: 0,
+    ImageURL: Thumbnail[0].URL,
+  });
 
   const LeftClick = () => {
     const xPos = x.get();
@@ -181,13 +182,51 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
     HideButton();
   };
 
+  const autoScroll = true;
+  let CarouselInterval: any;
+  let intervalTime = 5000;
+
   const NextCarousel = () => {
-    setCarouselActive(
-      CarouselActive === Thumbnail.length - 1 ? 0 : CarouselActive + 1
-    );
+    const index =
+      CarouselState.Active === Thumbnail.length - 1 ? 0 : CarouselState.Active + 1;
+    const Image = Thumbnail[index];
+    if (!Image) return;
+    setCarouselState({
+      Active: index,
+      ImageURL: Image.URL,
+    });
+    var ThumbnailWidth: any = thumbnailRef.current;
+    var ContainerWidth: any = constraintsRef.current;
+    if (ThumbnailWidth && ContainerWidth) {
+      const IndexValue = index + 1;
+      const ContentExceed = ThumbnailWidth.offsetWidth * IndexValue;
+      if (ContainerWidth.offsetWidth < ContentExceed) {
+        const AnimationValue = ThumbnailWidth.offsetWidth + 15;
+        animation.start({
+          x: -AnimationValue,
+        });
+      }
+    }
   };
 
-  const PrevCarousel = () => {};
+  // const PrevCarousel = () => {
+  //   setCarouselActive(
+  //     CarouselActive === 0 ? Thumbnail.length - 1 : CarouselActive - 1
+  //   );
+  // };
+
+  const StartCarousel = () => {
+    CarouselInterval = setInterval(NextCarousel, intervalTime);
+  };
+  const ClearCarousel = () => {
+    clearInterval(CarouselInterval);
+  };
+
+  useEffect(() => {
+    // if (autoScroll) StartCarousel();
+
+    return () => ClearCarousel();
+  }, [CarouselState]);
 
   const DragHoverStart = () => {
     if (LeftHide) setLeftAnimate('open');
@@ -306,7 +345,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
           objectFit="cover"
           objectPosition="center"
           className="-z-[1]"
-          src={CarouselImage}
+          src={CarouselState.ImageURL}
           alt="Carousel-Image"
         />
         <div className="space-y-8 box-border z-[1]">
@@ -363,20 +402,28 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
       >
         {Thumbnail.map((value, idx) => (
           <motion.button
-            onClick={() => setTimeout(() => setCarouselImage(value.URL), 150)}
+            onClick={() =>
+              setTimeout(() => {
+                setCarouselState({
+                  Active: idx,
+                  ImageURL: value.URL,
+                });
+              }, 150)
+            }
             key={idx}
+            ref={thumbnailRef}
             whileTap={{ scale: 0.9 }}
-            // onHoverStart={() => setCarouselActive(idx)}
-            // onHoverEnd={() => setCarouselActive(-1)}
             className={`${
-              CarouselActive === idx ? 'ring-[2.5px]' : 'ring-0 hover:ring-[2.5px]'
+              CarouselState.Active === idx
+                ? 'ring-[2.5px]'
+                : 'ring-0 hover:ring-[2.5px]'
             } ${ThumbnailSizes} ${'group relative p-0 m-0 transition-shadow duration-300 ring-white ring-opacity-50 rounded-lg md-900:rounded-xl flex items-center justify-center overflow-hidden'}`}
           >
             <Image
               layout="fill"
               loading="lazy"
               className={`${
-                CarouselActive === idx
+                CarouselState.Active === idx
                   ? 'scale-100 translate-x-0'
                   : 'scale-[1.2] -translate-x-3 group-hover:scale-100 group-hover:translate-x-0'
               } ${' transform-gpu ease-out transition-all duration-300'}`}
@@ -387,7 +434,9 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
             />
             <h6
               className={`${
-                CarouselActive === idx ? 'opacity-100' : 'group-hover:opacity-100 opacity-0'
+                CarouselState.Active === idx
+                  ? 'opacity-100'
+                  : 'group-hover:opacity-100 opacity-0'
               } ${'text-white z-[1] flex items-center text-left text-xs font-medium backdrop-blur-[2px] ease-out transition-all duration-300 p-5 bg-gradient-to-r from-[rgba(0,0,0,0.7)] h-full w-full'}`}
             >
               {value.Label}
