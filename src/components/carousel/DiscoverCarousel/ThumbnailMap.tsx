@@ -41,8 +41,6 @@ export const ThumbnailMap: FC<IProps> = (props) => {
                 Active: idx,
                 ImageURL: value.URL,
               });
-              props.setRightIndicator(false);
-              props.setLeftIndicator(true);
             }, 150)
           }
           key={idx}

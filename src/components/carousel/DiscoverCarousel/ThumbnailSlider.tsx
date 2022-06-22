@@ -74,6 +74,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
       ImageURL: Image.URL,
     });
     setLeftIndicator(true);
+    setRightIndicator(false);
   };
 
   /* const PrevCarousel = () => {
