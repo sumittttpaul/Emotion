@@ -153,7 +153,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
   const [CarouselImage, setCarouselImage] = useState(
     '/images/avatar/illustration/6.png'
   );
-  const [CarouselActive, setCarouselActive] = useState(-1);
+  const [CarouselActive, setCarouselActive] = useState(0);
 
   const LeftClick = () => {
     const xPos = x.get();
@@ -180,6 +180,14 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
     }
     HideButton();
   };
+
+  const NextCarousel = () => {
+    setCarouselActive(
+      CarouselActive === Thumbnail.length - 1 ? 0 : CarouselActive + 1
+    );
+  };
+
+  const PrevCarousel = () => {};
 
   const DragHoverStart = () => {
     if (LeftHide) setLeftAnimate('open');
@@ -358,11 +366,11 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
             onClick={() => setTimeout(() => setCarouselImage(value.URL), 150)}
             key={idx}
             whileTap={{ scale: 0.9 }}
-            onHoverStart={() => setCarouselActive(idx)}
-            onHoverEnd={() => setCarouselActive(-1)}
+            // onHoverStart={() => setCarouselActive(idx)}
+            // onHoverEnd={() => setCarouselActive(-1)}
             className={`${
-              CarouselActive === idx ? 'ring-[2.5px]' : 'ring-0'
-            } ${ThumbnailSizes} ${'relative p-0 m-0 transition-shadow duration-300 ring-white ring-opacity-50 rounded-lg md-900:rounded-xl flex items-center justify-center overflow-hidden'}`}
+              CarouselActive === idx ? 'ring-[2.5px]' : 'ring-0 hover:ring-[2.5px]'
+            } ${ThumbnailSizes} ${'group relative p-0 m-0 transition-shadow duration-300 ring-white ring-opacity-50 rounded-lg md-900:rounded-xl flex items-center justify-center overflow-hidden'}`}
           >
             <Image
               layout="fill"
@@ -370,8 +378,8 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
               className={`${
                 CarouselActive === idx
                   ? 'scale-100 translate-x-0'
-                  : 'scale-[1.2] -translate-x-3'
-              } ${'transform-gpu ease-out transition-all duration-300'}`}
+                  : 'scale-[1.2] -translate-x-3 group-hover:scale-100 group-hover:translate-x-0'
+              } ${' transform-gpu ease-out transition-all duration-300'}`}
               src={value.URL}
               placeholder="blur"
               blurDataURL={Carousel_Thumbnail_BlurDataURL}
@@ -379,7 +387,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
             />
             <h6
               className={`${
-                CarouselActive === idx ? 'opacity-100' : ' opacity-0'
+                CarouselActive === idx ? 'opacity-100' : 'group-hover:opacity-100 opacity-0'
               } ${'text-white z-[1] flex items-center text-left text-xs font-medium backdrop-blur-[2px] ease-out transition-all duration-300 p-5 bg-gradient-to-r from-[rgba(0,0,0,0.7)] h-full w-full'}`}
             >
               {value.Label}
