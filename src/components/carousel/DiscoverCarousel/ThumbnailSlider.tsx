@@ -40,15 +40,22 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   const [ContentExceed, setContentExceed] = useState(false);
   const [LeftIndicator, setLeftIndicator] = useState(true);
   const [RightIndicator, setRightIndicator] = useState(false);
-  let CarouselInterval: any;
-  let intervalTime =
+  const setIntervalTime =
     props.Duration && props.AutoPlay ? props.Duration * 1000 : undefined;
+
+  let CarouselInterval: any;
+  let intervalTime = setIntervalTime;
 
   const NextCarousel = () => {
     const index =
       props.CarouselState.Active === props.Thumbnail.length - 1
         ? 0
         : props.CarouselState.Active + 1;
+    //
+    console.log(props.CarouselState.Active);
+    console.log(props.Thumbnail.length - 1);
+
+    //
     const Image = props.Thumbnail[index];
     if (!Image) return;
     var ThumbnailWidth: any = thumbnailRef.current;
@@ -59,7 +66,6 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
       if (ContainerWidth.offsetWidth < ContentExceed) {
         const getThubnailValue = ContainerWidth.offsetWidth - ContentExceed;
         const AnimationValue = getThubnailValue + 40;
-        console.log(getThubnailValue);
         animation.start({
           x: AnimationValue,
         });
@@ -90,6 +96,19 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
     clearInterval(CarouselInterval);
   };
 
+  const StartCarouselInterval = () => {
+    intervalTime = setIntervalTime;
+    setLeftIndicator(false);
+    setRightIndicator(false);
+    StartCarousel();
+  };
+  const ClearCarouselInterval = () => {
+    intervalTime = 0;
+    setLeftIndicator(true);
+    setRightIndicator(false);
+    ClearCarousel();
+  };
+
   const LeftClick = () => {
     const xPos = x.get();
     var width: any = props.ParentElementRef.current;
@@ -101,7 +120,6 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
     }
     HideButton();
   };
-
   const RightClick = () => {
     const xPos = x.get();
     var width: any = props.ParentElementRef.current;
@@ -122,14 +140,12 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
     if (LeftHide) setLeftAnimate('open');
     if (RightHide) setRightAnimate('open');
   };
-
   const DragHoverEnd = () => {
     if (LeftHide) setLeftAnimate('closed');
     if (RightHide) setRightAnimate('closed');
     setExceptionalHover(true);
     setDragHover(false);
   };
-
   const ParentDragHoverEnd = () => {
     if (LeftHide) setLeftAnimate('closed');
     if (RightHide) setRightAnimate('closed');
@@ -154,7 +170,6 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
     const xPos = x.get();
     var width: any = props.ParentElementRef.current;
     var scrollWidth: any = dragRef.current;
-
     // Hide Left Button
     if (xPos >= -5) {
       setLeftAnimate('closed');
@@ -163,7 +178,6 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
       setLeftAnimate('open');
       setLeftHide(true);
     }
-
     // Hide Right Button
     if (width && scrollWidth) {
       const maxScroll = scrollWidth.offsetWidth - width.offsetWidth - 5;
@@ -181,14 +195,12 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
     const xPos = x.get();
     var width: any = props.ParentElementRef.current;
     var scrollWidth: any = dragRef.current;
-
     // Hide Arrow Left Button
     if (xPos >= -5) {
       setLeftHide(false);
     } else {
       setLeftHide(true);
     }
-
     // Hide Arrow Right Button
     if (width && scrollWidth) {
       const maxScroll = scrollWidth.offsetWidth - width.offsetWidth - 5;
@@ -238,14 +250,20 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
 
   return (
     <motion.div
-      onHoverEnd={ParentDragHoverEnd}
+      onHoverEnd={() => {
+        ParentDragHoverEnd();
+        ClearCarouselInterval();
+      }}
       className={`${ContentExceed ? 'ml-auto' : 'mr-auto'} ${'z-[1]'}`}
     >
       <motion.div
         drag={ContentExceed ? 'x' : false}
         ref={dragRef}
         animate={animation}
-        onHoverStart={DragHoverStart}
+        onHoverStart={() => {
+          DragHoverStart();
+          StartCarouselInterval();
+        }}
         onAnimationComplete={ExceptionalDragHover}
         onDragTransitionEnd={ExceptionalDragHover}
         onPointerLeave={() => setExceptionalHover(true)}
