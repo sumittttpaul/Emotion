@@ -254,13 +254,14 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
         } ${'w-auto z-[1] flex space-x-2 px-8 pb-1 -mt-[80px]'}`}
       >
         <ThumbnailMap
+          Duration={5}
           Thumbnail={props.Thumbnail}
           ThumbnailRef={thumbnailRef}
           CarouselState={props.CarouselState}
           setCarouselState={props.setCarouselState}
         />
       </motion.div>
-      {ContentExceed && DragHover ? (
+      {ContentExceed && DragHover && (
         <>
           <LeftArrowButton
             animate={LeftAnimate}
@@ -275,8 +276,6 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
             onHoverEnd={DragHoverEnd}
           />
         </>
-      ) : (
-        <></>
       )}
     </motion.div>
   );
