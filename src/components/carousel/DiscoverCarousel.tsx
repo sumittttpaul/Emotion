@@ -143,6 +143,8 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
   const x = useMotionValue(0);
 
   const [ExceptionalHover, setExceptionalHover] = useState(false);
+  const [DragHover, setDragHover] = useState(false);
+
   const [LeftHide, setLeftHide] = useState(false);
   const [RightHide, setRightHide] = useState(false);
 
@@ -188,25 +190,33 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
 
   const NextCarousel = () => {
     const index =
-      CarouselState.Active === Thumbnail.length - 1 ? 0 : CarouselState.Active + 1;
+      CarouselState.Active === Thumbnail.length - 1
+        ? 0
+        : CarouselState.Active + 1;
     const Image = Thumbnail[index];
     if (!Image) return;
+    var ThumbnailWidth: any = thumbnailRef.current;
+    var ContainerWidth: any = constraintsRef.current;
+    if (ThumbnailWidth && ContainerWidth) {
+      const IndexValue = index + 2;
+      const ContentExceed = ThumbnailWidth.offsetWidth * IndexValue;
+      if (ContainerWidth.offsetWidth < ContentExceed) {
+        const getThubnailValue = ContainerWidth.offsetWidth - ContentExceed;
+        const AnimationValue = getThubnailValue + 40;
+        console.log(getThubnailValue);
+        animation.start({
+          x: AnimationValue,
+        });
+      } else {
+        animation.start({
+          x: 0,
+        });
+      }
+    }
     setCarouselState({
       Active: index,
       ImageURL: Image.URL,
     });
-    var ThumbnailWidth: any = thumbnailRef.current;
-    var ContainerWidth: any = constraintsRef.current;
-    if (ThumbnailWidth && ContainerWidth) {
-      const IndexValue = index + 1;
-      const ContentExceed = ThumbnailWidth.offsetWidth * IndexValue;
-      if (ContainerWidth.offsetWidth < ContentExceed) {
-        const AnimationValue = ThumbnailWidth.offsetWidth + 15;
-        animation.start({
-          x: -AnimationValue,
-        });
-      }
-    }
   };
 
   // const PrevCarousel = () => {
@@ -223,7 +233,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
   };
 
   useEffect(() => {
-    // if (autoScroll) StartCarousel();
+    if (autoScroll) StartCarousel();
 
     return () => ClearCarousel();
   }, [CarouselState]);
@@ -387,8 +397,16 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         drag={ContentExceed ? 'x' : false}
         ref={dragRef}
         animate={animation}
-        onHoverStart={DragHoverStart}
-        onHoverEnd={DragHoverEnd}
+        onHoverStart={() => {
+          DragHoverStart();
+          setDragHover(true);
+        }}
+        onHoverEnd={() => {
+          DragHoverEnd();
+          setTimeout(() => {
+            setDragHover(false);
+          }, 150);
+        }}
         onAnimationComplete={ExceptionalDragHover}
         onDragTransitionEnd={ExceptionalDragHover}
         onPointerLeave={() => setExceptionalHover(true)}
@@ -444,7 +462,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
           </motion.button>
         ))}
       </motion.div>
-      {ContentExceed ? (
+      {ContentExceed && DragHover ? (
         <>
           <LeftArrow
             animate={LeftAnimate}
