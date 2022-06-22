@@ -42,7 +42,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   const [RightIndicator, setRightIndicator] = useState(false);
   const setIntervalTime =
     props.Duration && props.AutoPlay ? props.Duration * 1000 : undefined;
-
+  let IntervalPause = false;
   let CarouselInterval: any;
   let intervalTime = setIntervalTime;
 
@@ -90,23 +90,27 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   }; */
 
   const StartCarousel = () => {
-    CarouselInterval = setInterval(NextCarousel, intervalTime);
+    CarouselInterval = setInterval(() => {
+      if (!IntervalPause) {
+        NextCarousel();
+      }
+    }, intervalTime);
   };
   const ClearCarousel = () => {
     clearInterval(CarouselInterval);
   };
 
-  const StartCarouselInterval = () => {
-    intervalTime = setIntervalTime;
+  const onHoverCarouselStart = () => {
+    IntervalPause = false;
+    intervalTime = 0;
     setLeftIndicator(false);
     setRightIndicator(false);
-    StartCarousel();
   };
-  const ClearCarouselInterval = () => {
-    intervalTime = 0;
+  const onHoverCarouselEnd = () => {
+    IntervalPause = true;
+    intervalTime = setIntervalTime;
     setLeftIndicator(true);
     setRightIndicator(false);
-    ClearCarousel();
   };
 
   const LeftClick = () => {
@@ -252,7 +256,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
     <motion.div
       onHoverEnd={() => {
         ParentDragHoverEnd();
-        ClearCarouselInterval();
+        onHoverCarouselEnd();
       }}
       className={`${ContentExceed ? 'ml-auto' : 'mr-auto'} ${'z-[1]'}`}
     >
@@ -262,7 +266,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
         animate={animation}
         onHoverStart={() => {
           DragHoverStart();
-          StartCarouselInterval();
+          onHoverCarouselStart();
         }}
         onAnimationComplete={ExceptionalDragHover}
         onDragTransitionEnd={ExceptionalDragHover}
