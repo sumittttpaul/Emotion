@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { motion, useAnimation, useMotionValue } from 'framer-motion';
-import Image from 'next/image';
 import { Button } from '@mui/material';
 import { HeartIcon } from '@heroicons/react/outline';
 import { Carousel_Thumbnail_BlurDataURL } from '../loader/BlurDataURL';
+import Image from 'next/image';
 
 interface IProps {}
 
@@ -144,6 +144,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
 
   const [ExceptionalHover, setExceptionalHover] = useState(false);
   const [DragHover, setDragHover] = useState(false);
+  const [ArrowBool, setArrowBool] = useState(false);
 
   const [LeftHide, setLeftHide] = useState(false);
   const [RightHide, setRightHide] = useState(false);
@@ -233,23 +234,31 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
   };
 
   useEffect(() => {
-    // if (autoScroll) StartCarousel();
-
+    if (autoScroll) StartCarousel();
     return () => ClearCarousel();
   }, [CarouselState]);
 
   const DragHoverStart = () => {
-    if (LeftHide) setLeftAnimate('open');
-    if (RightHide) setRightAnimate('open');
     setDragHover(true);
     setExceptionalHover(false);
+    if (LeftHide) setLeftAnimate('open');
+    if (RightHide) setRightAnimate('open');
   };
 
   const DragHoverEnd = () => {
     if (LeftHide) setLeftAnimate('closed');
     if (RightHide) setRightAnimate('closed');
-    setDragHover(false);
     setExceptionalHover(true);
+    setDragHover(false);
+  };
+
+  const ParentDragHoverEnd = () => {
+    if (LeftHide) setLeftAnimate('closed');
+    if (RightHide) setRightAnimate('closed');
+    setExceptionalHover(true);
+    setTimeout(() => {
+      setDragHover(false);
+    }, 50);
   };
 
   const ExceptionalDragHover = () => {
@@ -402,84 +411,100 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
       </motion.div>
       <div className="bg-gradient-to-t from-[#121212] w-full block h-[130px] -mt-[130px]" />
       <motion.div
-        drag={ContentExceed ? 'x' : false}
-        ref={dragRef}
-        animate={animation}
-        onHoverStart={DragHoverStart}
-        onHoverEnd={DragHoverEnd}
-        onAnimationComplete={ExceptionalDragHover}
-        onDragTransitionEnd={ExceptionalDragHover}
-        onPointerLeave={() => setExceptionalHover(true)}
-        transition={{ type: 'spring', bounce: 0.25 }}
-        dragConstraints={constraintsRef}
-        whileDrag={{ cursor: 'grab' }}
-        style={{ x }}
-        className={`${
-          ContentExceed ? 'ml-auto' : 'mr-auto'
-        } ${'w-auto z-[1] flex space-x-2 px-8 pb-1 -mt-[80px]'}`}
+        onHoverEnd={ParentDragHoverEnd}
+        className={`${ContentExceed ? 'ml-auto' : 'mr-auto'} ${'z-[1]'}`}
       >
-        {Thumbnail.map((value, idx) => (
-          <motion.button
-            onClick={() =>
-              setTimeout(() => {
-                setCarouselState({
-                  Active: idx,
-                  ImageURL: value.URL,
-                });
-              }, 150)
-            }
-            key={idx}
-            ref={thumbnailRef}
-            whileTap={{ scale: 0.9 }}
-            className={`${
-              CarouselState.Active === idx
-                ? 'ring-[2.5px]'
-                : 'ring-0 hover:ring-[2.5px]'
-            } ${ThumbnailSizes} ${'group relative p-0 m-0 transition-shadow duration-300 ring-white ring-opacity-50 rounded-lg md-900:rounded-xl flex items-center justify-center overflow-hidden'}`}
-          >
-            <Image
-              layout="fill"
-              loading="lazy"
+        <motion.div
+          drag={ContentExceed ? 'x' : false}
+          ref={dragRef}
+          animate={animation}
+          onHoverStart={DragHoverStart}
+          onAnimationComplete={ExceptionalDragHover}
+          onDragTransitionEnd={ExceptionalDragHover}
+          onPointerLeave={() => setExceptionalHover(true)}
+          transition={{ type: 'spring', bounce: 0.25 }}
+          dragConstraints={constraintsRef}
+          whileDrag={{ cursor: 'grab' }}
+          style={{ x }}
+          className={`${
+            ContentExceed ? 'ml-auto' : 'mr-auto'
+          } ${'w-auto z-[1] flex space-x-2 px-8 pb-1 -mt-[80px]'}`}
+        >
+          {Thumbnail.map((value, idx) => (
+            <motion.button
+              onClick={() =>
+                setTimeout(() => {
+                  setCarouselState({
+                    Active: idx,
+                    ImageURL: value.URL,
+                  });
+                }, 150)
+              }
+              key={idx}
+              ref={thumbnailRef}
+              whileTap={{ scale: 0.9 }}
               className={`${
                 CarouselState.Active === idx
-                  ? 'scale-100 translate-x-0'
-                  : 'scale-[1.2] -translate-x-3 group-hover:scale-100 group-hover:translate-x-0'
-              } ${' transform-gpu ease-out transition-all duration-300'}`}
-              src={value.URL}
-              placeholder="blur"
-              blurDataURL={Carousel_Thumbnail_BlurDataURL}
-              alt="Casourel-Image-Thumbnail"
-            />
-            <h6
-              className={`${
-                CarouselState.Active === idx
-                  ? 'opacity-100'
-                  : 'group-hover:opacity-100 opacity-0'
-              } ${'text-white z-[1] flex items-center text-left text-xs font-medium backdrop-blur-[2px] ease-out transition-all duration-300 p-5 bg-gradient-to-r from-[rgba(0,0,0,0.7)] h-full w-full'}`}
+                  ? 'ring-[2.5px]'
+                  : 'ring-0 hover:ring-[2.5px]'
+              } ${ThumbnailSizes} ${'group relative p-0 m-0 transition-shadow duration-300 ring-white ring-opacity-50 rounded-lg md-900:rounded-xl flex items-center justify-center overflow-hidden'}`}
             >
-              {value.Label}
-            </h6>
-          </motion.button>
-        ))}
+              <Image
+                layout="fill"
+                loading="lazy"
+                className={`${
+                  CarouselState.Active === idx
+                    ? 'scale-100 translate-x-0'
+                    : 'scale-[1.2] -translate-x-3 group-hover:scale-100 group-hover:translate-x-0'
+                } ${' transform-gpu ease-out transition-all duration-300'}`}
+                src={value.URL}
+                placeholder="blur"
+                blurDataURL={Carousel_Thumbnail_BlurDataURL}
+                alt="Casourel-Image-Thumbnail"
+              />
+              <h6
+                className={`${
+                  CarouselState.Active === idx
+                    ? 'opacity-100'
+                    : 'group-hover:opacity-100 opacity-0'
+                } ${'text-white z-[1] flex items-center text-left text-xs font-medium backdrop-blur-[2px] ease-out transition-all duration-300 p-5 bg-gradient-to-r from-[rgba(0,0,0,0.7)] h-full w-full'}`}
+              >
+                {value.Label}
+              </h6>
+            </motion.button>
+          ))}
+        </motion.div>
+        {ContentExceed && DragHover ? (
+          <>
+            <LeftArrow
+              animate={LeftAnimate}
+              onClick={() => LeftClick()}
+              onHoverStart={() => {
+                setArrowBool(true);
+                DragHoverStart();
+              }}
+              onHoverEnd={() => {
+                setArrowBool(false);
+                DragHoverEnd();
+              }}
+            />
+            <RightArrow
+              animate={RightAnimate}
+              onClick={() => RightClick()}
+              onHoverStart={() => {
+                setArrowBool(true);
+                DragHoverStart();
+              }}
+              onHoverEnd={() => {
+                setArrowBool(false);
+                DragHoverEnd();
+              }}
+            />
+          </>
+        ) : (
+          <></>
+        )}
       </motion.div>
-      {ContentExceed && DragHover ? (
-        <>
-          <LeftArrow
-            animate={LeftAnimate}
-            onClick={() => LeftClick()}
-            onHoverStart={DragHoverStart}
-            onHoverEnd={DragHoverEnd}
-          />
-          <RightArrow
-            animate={RightAnimate}
-            onClick={() => RightClick()}
-            onHoverStart={DragHoverStart}
-            onHoverEnd={DragHoverEnd}
-          />
-        </>
-      ) : (
-        <></>
-      )}
     </div>
   );
 };
