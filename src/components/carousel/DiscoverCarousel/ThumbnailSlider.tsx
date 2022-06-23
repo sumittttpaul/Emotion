@@ -42,7 +42,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   const [RightIndicator, setRightIndicator] = useState(false);
   const [IntervalStatus, setIntervalStatus] = useState('running');
   const setIntervalTime =
-    props.Duration && props.AutoPlay ? props.Duration * 1000 : undefined;
+    props.Duration && props.AutoPlay ? props.Duration * 1000 - 150 : undefined;
   let CarouselInterval: ReturnType<typeof setInterval> | undefined;
   let intervalTime = setIntervalTime;
 
@@ -68,10 +68,10 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
         });
       }
     }
-    props.setCarouselState(CarouselIndex);
     props.setBannerTextTransition('closed');
     setLeftIndicator(true);
     setRightIndicator(false);
+    setTimeout(() => props.setCarouselState(CarouselIndex), 150);
   };
 
   /* const PrevCarousel = () => {
