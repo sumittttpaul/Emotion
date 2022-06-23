@@ -10,7 +10,6 @@ import React, {
   useState,
   SetStateAction,
   Dispatch,
-  useCallback,
 } from 'react';
 
 interface IProps {
@@ -22,6 +21,7 @@ interface IProps {
   setCarouselState: Dispatch<
     SetStateAction<{ Active: number; ImageURL: string }>
   >;
+  setBannerTextTransition: Dispatch<SetStateAction<string>>;
 }
 
 /**
@@ -74,6 +74,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
       Active: CarouselIndex,
       ImageURL: Image.URL,
     });
+    props.setBannerTextTransition('closed');
     setLeftIndicator(true);
     setRightIndicator(false);
   };
@@ -291,6 +292,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
           setCarouselState={props.setCarouselState}
           setLeftIndicator={setLeftIndicator}
           setRightIndicator={setRightIndicator}
+          setBannerTextTransition={props.setBannerTextTransition}
         />
       </motion.div>
       {ContentExceed && DragHover && (

@@ -16,6 +16,7 @@ interface IProps {
   RightIndicator: boolean;
   setLeftIndicator: Dispatch<SetStateAction<boolean>>;
   setRightIndicator: Dispatch<SetStateAction<boolean>>;
+  setBannerTextTransition: Dispatch<SetStateAction<string>>;
 }
 
 const ThumbnailSizes =
@@ -29,14 +30,17 @@ export const ThumbnailMap: FC<IProps> = (props) => {
     <>
       {props.Thumbnail.map((value, idx) => (
         <motion.button
-          onClick={() =>
+          onClick={() => {
+            props.CarouselState.Active === idx
+              ? null
+              : props.setBannerTextTransition('closed');
             setTimeout(() => {
               props.setCarouselState({
                 Active: idx,
                 ImageURL: value.URL,
               });
-            }, 150)
-          }
+            }, 150);
+          }}
           key={idx}
           ref={props.ThumbnailRef}
           whileTap={{ scale: 0.9 }}

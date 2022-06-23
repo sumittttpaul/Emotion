@@ -1,5 +1,5 @@
+import React, { FC, Dispatch, SetStateAction, MutableRefObject } from 'react';
 import { motion } from 'framer-motion';
-import React, { FC, MutableRefObject } from 'react';
 import { Button } from '@mui/material';
 import { HeartIcon } from '@heroicons/react/outline';
 import { CarouselBannerImage } from './CarouselBannerImage';
@@ -7,12 +7,33 @@ import { CarouselBannerImage } from './CarouselBannerImage';
 interface IProps {
   ElementRef: MutableRefObject<null>;
   ImageURL: string;
+  BannerTextTransition: string;
+  setBannerTextTransition: Dispatch<SetStateAction<string>>;
 }
+
+const StaggerAnimationVariant = {
+  open: {
+    transition: { staggerChildren: 0.03, delayChildren: 0 },
+  },
+  closed: {
+    transition: { staggerChildren: 0.03, staggerDirection: -1 },
+  },
+};
+
+const ChildAnimationVariant = {
+  open: {
+    y: 0,
+    opacity: 1,
+  },
+  closed: {
+    y: 50,
+    opacity: 0,
+  },
+};
 
 /**
  * @Carousel_Banner
  **/
-
 export const CarouselBanner: FC<IProps> = (props) => {
   return (
     <motion.div
@@ -25,9 +46,23 @@ export const CarouselBanner: FC<IProps> = (props) => {
         alt="Carousel-Image"
         objectPosition="center"
       />
-      <div className="space-y-8 box-border z-[1]">
-        <h6 className="text-3xl font-[500]">Full Sleeves T-shirts</h6>
-        <div className="max-w-[500px] w-full space-y-1.5">
+      <motion.div
+        animate={props.BannerTextTransition}
+        onAnimationComplete={() => props.setBannerTextTransition('open')}
+        variants={StaggerAnimationVariant}
+        className="space-y-8 box-border z-[1]"
+      >
+        <motion.div
+          transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}
+          variants={ChildAnimationVariant}
+        >
+          <h6 className="text-3xl font-[500]">Full Sleeves T-shirts</h6>
+        </motion.div>
+        <motion.div
+          transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}
+          variants={ChildAnimationVariant}
+          className="max-w-[500px] w-full space-y-1.5"
+        >
           <h6 className="uppercase tracking-[0.5px] font-[500] leading-[1.3333] text-[11px]">
             new winter collection
           </h6>
@@ -35,8 +70,12 @@ export const CarouselBanner: FC<IProps> = (props) => {
             Save up to 50% off on our brand new full sleeve winter collection
             full printed T-shirts.
           </h6>
-        </div>
-        <div className="space-y-3 box-border">
+        </motion.div>
+        <motion.div
+          transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}
+          variants={ChildAnimationVariant}
+          className="space-y-3 box-border"
+        >
           <div className="text-xs flex items-center space-x-[4px] my-1">
             <h6 className="bg-primary-blue-rgb text-[11px] py-1 px-2.5 mr-[2px] rounded-[4px]">
               -75%
@@ -62,8 +101,8 @@ export const CarouselBanner: FC<IProps> = (props) => {
               </div>
             </Button>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </motion.div>
   );
 };
