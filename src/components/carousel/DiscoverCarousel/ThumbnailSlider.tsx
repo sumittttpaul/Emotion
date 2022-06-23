@@ -10,6 +10,7 @@ import React, {
   useState,
   SetStateAction,
   Dispatch,
+  useCallback,
 } from 'react';
 
 interface IProps {
@@ -40,7 +41,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   const [ContentExceed, setContentExceed] = useState(false);
   const [LeftIndicator, setLeftIndicator] = useState(true);
   const [RightIndicator, setRightIndicator] = useState(false);
-  const [IntervalChange, setIntervalChange] = useState(false);
+  const [IntervalStatus, setIntervalStatus] = useState('running');
   const setIntervalTime =
     props.Duration && props.AutoPlay ? props.Duration * 1000 : undefined;
   let CarouselInterval: ReturnType<typeof setInterval> | undefined;
@@ -93,14 +94,14 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   const onHoverCarouselStart = () => {
     ClearCarousel();
     CarouselInterval = undefined;
-    setIntervalChange(false);
+    setIntervalStatus('pause');
     setLeftIndicator(false);
     setRightIndicator(false);
   };
   const onHoverCarouselEnd = () => {
-    ClearCarousel();
     StartCarousel();
-    setIntervalChange(true);
+    ClearCarousel();
+    setIntervalStatus('running');
     setLeftIndicator(true);
     setRightIndicator(false);
   };
@@ -226,9 +227,13 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   };
 
   useEffect(() => {
-    if (props.AutoPlay && props.Duration) StartCarousel();
-    return () => ClearCarousel();
-  }, [props.CarouselState]);
+    if (props.AutoPlay && props.Duration) {
+      if (IntervalStatus === 'running') {
+        StartCarousel();
+        return () => ClearCarousel();
+      }
+    }
+  }, [props.CarouselState, IntervalStatus]);
 
   /* Initial State */
   useEffect(() => {
