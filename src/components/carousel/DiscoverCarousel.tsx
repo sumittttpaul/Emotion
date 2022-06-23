@@ -25,9 +25,9 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
       />
       <div className="bg-gradient-to-t from-[#121212] w-full block h-[130px] -mt-[130px]" />
       <ThumbnailSlider
-        AutoPlay={true}
+        AutoPlay={false}
         Duration={5}
-        ParentElementRef={ContainerRef}
+        ConstraintRef={ContainerRef}
         Thumbnail={props.ThumbnailImageArray}
         CarouselState={CarouselState}
         setCarouselState={setCarouselState}

@@ -15,7 +15,7 @@ import React, {
 interface IProps {
   AutoPlay?: boolean;
   Duration?: number;
-  ParentElementRef: MutableRefObject<null>;
+  ConstraintRef: MutableRefObject<null>;
   Thumbnail: { Label: string; URL: string }[];
   CarouselState: { Active: number; ImageURL: string };
   setCarouselState: Dispatch<
@@ -59,7 +59,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
     const Image = props.Thumbnail[index];
     if (!Image) return;
     var ThumbnailWidth: any = thumbnailRef.current;
-    var ContainerWidth: any = props.ParentElementRef.current;
+    var ContainerWidth: any = props.ConstraintRef.current;
     if (ThumbnailWidth && ContainerWidth) {
       const IndexValue = index + 2;
       const ContentExceed = ThumbnailWidth.offsetWidth * IndexValue;
@@ -113,7 +113,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
 
   const LeftClick = () => {
     const xPos = x.get();
-    var width: any = props.ParentElementRef.current;
+    var width: any = props.ConstraintRef.current;
     if (width) {
       const newXPosition = xPos + width.offsetWidth;
       animation.start({
@@ -124,7 +124,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   };
   const RightClick = () => {
     const xPos = x.get();
-    var width: any = props.ParentElementRef.current;
+    var width: any = props.ConstraintRef.current;
     var scrollWidth: any = dragRef.current;
     if (width && scrollWidth) {
       const newXPosition = xPos - width.offsetWidth;
@@ -170,7 +170,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
 
   const HideButton = () => {
     const xPos = x.get();
-    var width: any = props.ParentElementRef.current;
+    var width: any = props.ConstraintRef.current;
     var scrollWidth: any = dragRef.current;
     // Hide Left Button
     if (xPos >= -5) {
@@ -195,7 +195,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
 
   const HideButtonInitialState = () => {
     const xPos = x.get();
-    var width: any = props.ParentElementRef.current;
+    var width: any = props.ConstraintRef.current;
     var scrollWidth: any = dragRef.current;
     // Hide Arrow Left Button
     if (xPos >= -5) {
@@ -215,7 +215,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   };
   const IsContentExceed = () => {
     const xPos = x.get();
-    var width: any = props.ParentElementRef.current;
+    var width: any = props.ConstraintRef.current;
     var scrollWidth: any = dragRef.current;
     if (width && scrollWidth) {
       if (scrollWidth.offsetWidth > width.offsetWidth) {
@@ -270,7 +270,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
         onDragTransitionEnd={ExceptionalDragHover}
         onPointerLeave={() => setExceptionalHover(true)}
         transition={{ type: 'spring', bounce: 0.25 }}
-        dragConstraints={props.ParentElementRef}
+        dragConstraints={props.ConstraintRef}
         whileDrag={{ cursor: 'grab' }}
         style={{ x }}
         className={`${
@@ -278,6 +278,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
         } ${'w-auto z-[1] flex space-x-2 px-8 pb-1 -mt-[80px]'}`}
       >
         <ThumbnailMap
+          AutoPlay={props.AutoPlay}
           Duration={props.Duration}
           Thumbnail={props.Thumbnail}
           ThumbnailRef={thumbnailRef}

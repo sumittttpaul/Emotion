@@ -1,16 +1,10 @@
 import { Carousel_Thumbnail_BlurDataURL } from '../../loader/BlurDataURL';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import React, {
-  Dispatch,
-  FC,
-  MutableRefObject,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
+import React, { Dispatch, FC, MutableRefObject, SetStateAction } from 'react';
 
 interface IProps {
+  AutoPlay?: boolean;
   Duration?: number;
   Thumbnail: { Label: string; URL: string }[];
   ThumbnailRef: MutableRefObject<null>;
@@ -75,39 +69,43 @@ export const ThumbnailMap: FC<IProps> = (props) => {
             {value.Label}
           </h6>
           <div className="absolute bottom-0 w-full z-[2] p-[2px] h-auto bg-transparent">
-            {props.CarouselState.Active === idx && props.LeftIndicator && (
-              <motion.div
-                animate={{ width: '100%', opacity: 1 }}
-                onAnimationComplete={() => {
-                  if (props.LeftIndicator) props.setLeftIndicator(false);
-                  if (!props.RightIndicator) props.setRightIndicator(true);
-                }}
-                transition={{
-                  ease: 'anticipate',
-                  type: 'tween',
-                  duration: props.Duration ? props.Duration * 0.5 : 0,
-                }}
-                className={`${
-                  props.LeftIndicator ? 'flex' : 'hidden'
-                } ${'w-0 mr-auto opacity-0 h-[3px] rounded-b-3xl bg-white'}`}
-              />
-            )}
-            {props.CarouselState.Active === idx && props.RightIndicator && (
-              <motion.div
-                animate={{ width: 0, opacity: 0.5 }}
-                onAnimationComplete={() => {
-                  if (props.RightIndicator) props.setRightIndicator(false);
-                }}
-                transition={{
-                  ease: 'anticipate',
-                  type: 'tween',
-                  duration: props.Duration ? props.Duration * 0.5 : 0,
-                }}
-                className={`${
-                  props.RightIndicator ? 'flex' : 'hidden'
-                } ${'w-full ml-auto opacity-100 h-[3px] rounded-b-3xl bg-white'}`}
-              />
-            )}
+            {props.CarouselState.Active === idx &&
+              props.AutoPlay &&
+              props.LeftIndicator && (
+                <motion.div
+                  animate={{ width: '100%', opacity: 1 }}
+                  onAnimationComplete={() => {
+                    if (props.LeftIndicator) props.setLeftIndicator(false);
+                    if (!props.RightIndicator) props.setRightIndicator(true);
+                  }}
+                  transition={{
+                    ease: 'anticipate',
+                    type: 'tween',
+                    duration: props.Duration ? props.Duration * 0.5 : 0,
+                  }}
+                  className={`${
+                    props.LeftIndicator ? 'flex' : 'hidden'
+                  } ${'w-0 mr-auto opacity-0 h-[3px] rounded-b-3xl bg-white'}`}
+                />
+              )}
+            {props.CarouselState.Active === idx &&
+              props.AutoPlay &&
+              props.RightIndicator && (
+                <motion.div
+                  animate={{ width: 0, opacity: 0.5 }}
+                  onAnimationComplete={() => {
+                    if (props.RightIndicator) props.setRightIndicator(false);
+                  }}
+                  transition={{
+                    ease: 'anticipate',
+                    type: 'tween',
+                    duration: props.Duration ? props.Duration * 0.5 : 0,
+                  }}
+                  className={`${
+                    props.RightIndicator ? 'flex' : 'hidden'
+                  } ${'w-full ml-auto opacity-100 h-[3px] rounded-b-3xl bg-white'}`}
+                />
+              )}
           </div>
         </motion.button>
       ))}
