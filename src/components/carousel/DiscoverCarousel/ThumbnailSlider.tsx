@@ -11,17 +11,18 @@ import React, {
   SetStateAction,
   Dispatch,
 } from 'react';
+import { DiscoverCarouselIProps } from '../../../contents/store/discover/Store.Discover.Carousel';
 
 interface IProps {
   AutoPlay?: boolean;
   Duration?: number;
   ConstraintRef: MutableRefObject<null>;
-  Thumbnail: { Label: string; URL: string }[];
   CarouselState: { Active: number; ImageURL: string };
   setCarouselState: Dispatch<
     SetStateAction<{ Active: number; ImageURL: string }>
   >;
   setBannerTextTransition: Dispatch<SetStateAction<string>>;
+  ThumbnailArray: DiscoverCarouselIProps[];
 }
 
 /**
@@ -49,10 +50,10 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
 
   const NextCarousel = () => {
     let CarouselIndex =
-      props.CarouselState.Active === props.Thumbnail.length - 1
+      props.CarouselState.Active === props.ThumbnailArray.length - 1
         ? 0
         : props.CarouselState.Active + 1;
-    const Image = props.Thumbnail[CarouselIndex];
+    const getImage = props.ThumbnailArray[CarouselIndex];
     const ThumbnailWidth: any = thumbnailRef.current;
     const ContainerWidth: any = props.ConstraintRef.current;
     if (ThumbnailWidth && ContainerWidth) {
@@ -72,7 +73,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
     }
     props.setCarouselState({
       Active: CarouselIndex,
-      ImageURL: Image.URL,
+      ImageURL: getImage.Image,
     });
     props.setBannerTextTransition('closed');
     setLeftIndicator(true);
@@ -284,7 +285,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
         <ThumbnailMap
           AutoPlay={props.AutoPlay}
           Duration={props.Duration}
-          Thumbnail={props.Thumbnail}
+          ThumbnailArray={props.ThumbnailArray}
           ThumbnailRef={thumbnailRef}
           CarouselState={props.CarouselState}
           LeftIndicator={LeftIndicator}

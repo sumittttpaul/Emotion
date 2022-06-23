@@ -2,11 +2,11 @@ import { Carousel_Thumbnail_BlurDataURL } from '../../loader/BlurDataURL';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import React, { Dispatch, FC, MutableRefObject, SetStateAction } from 'react';
+import { DiscoverCarouselIProps } from '../../../contents/store/discover/Store.Discover.Carousel';
 
 interface IProps {
   AutoPlay?: boolean;
   Duration?: number;
-  Thumbnail: { Label: string; URL: string }[];
   ThumbnailRef: MutableRefObject<null>;
   CarouselState: { Active: number; ImageURL: string };
   setCarouselState: Dispatch<
@@ -17,6 +17,7 @@ interface IProps {
   setLeftIndicator: Dispatch<SetStateAction<boolean>>;
   setRightIndicator: Dispatch<SetStateAction<boolean>>;
   setBannerTextTransition: Dispatch<SetStateAction<string>>;
+  ThumbnailArray: DiscoverCarouselIProps[];
 }
 
 const ThumbnailSizes =
@@ -28,7 +29,7 @@ const ThumbnailSizes =
 export const ThumbnailMap: FC<IProps> = (props) => {
   return (
     <>
-      {props.Thumbnail.map((value, idx) => (
+      {props.ThumbnailArray.map((value, idx) => (
         <motion.button
           onClick={() => {
             props.CarouselState.Active === idx
@@ -37,7 +38,7 @@ export const ThumbnailMap: FC<IProps> = (props) => {
             setTimeout(() => {
               props.setCarouselState({
                 Active: idx,
-                ImageURL: value.URL,
+                ImageURL: value.Image,
               });
             }, 150);
           }}
@@ -58,7 +59,7 @@ export const ThumbnailMap: FC<IProps> = (props) => {
                 ? 'scale-100 translate-x-0'
                 : 'scale-[1.2] -translate-x-3 group-hover:scale-100 group-hover:translate-x-0'
             } ${' transform-gpu ease-out transition-all duration-300'}`}
-            src={value.URL}
+            src={value.Image}
             placeholder="blur"
             blurDataURL={Carousel_Thumbnail_BlurDataURL}
             alt="Casourel-Image-Thumbnail"
@@ -70,7 +71,7 @@ export const ThumbnailMap: FC<IProps> = (props) => {
                 : 'group-hover:opacity-100 opacity-0'
             } ${'text-white z-[1] flex items-center text-left text-xs font-medium backdrop-blur-[2px] ease-out transition-all duration-300 p-5 bg-gradient-to-r from-[rgba(0,0,0,0.7)] h-full w-full'}`}
           >
-            {value.Label}
+            {value.ThumbnailHeading}
           </h6>
           <div className="absolute bottom-0 w-full z-[2] p-[2px] h-auto bg-transparent">
             {props.CarouselState.Active === idx &&

@@ -1,9 +1,10 @@
 import React, { FC, useRef, useState } from 'react';
 import { ThumbnailSlider } from './DiscoverCarousel/ThumbnailSlider';
 import { CarouselBanner } from './DiscoverCarousel/CarouselBanner';
+import { DiscoverCarouselIProps } from '../../contents/store/discover/Store.Discover.Carousel';
 
 interface IProps {
-  ThumbnailImageArray: { Label: string; URL: string }[];
+  ContentArray: DiscoverCarouselIProps[];
 }
 
 /**
@@ -15,7 +16,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
   const ContainerRef = useRef(null);
   const [CarouselState, setCarouselState] = useState({
     Active: 0,
-    ImageURL: props.ThumbnailImageArray[0].URL,
+    ImageURL: props.ContentArray[0].Image,
   });
   const [BannerTextTransition, setBannerTextTransition] = useState('open');
   return (
@@ -31,7 +32,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
         AutoPlay={false}
         Duration={5}
         ConstraintRef={ContainerRef}
-        Thumbnail={props.ThumbnailImageArray}
+        ThumbnailArray={props.ContentArray}
         CarouselState={CarouselState}
         setCarouselState={setCarouselState}
         setBannerTextTransition={setBannerTextTransition}
