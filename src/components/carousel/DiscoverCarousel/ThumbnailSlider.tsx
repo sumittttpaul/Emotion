@@ -17,10 +17,8 @@ interface IProps {
   AutoPlay?: boolean;
   Duration?: number;
   ConstraintRef: MutableRefObject<null>;
-  CarouselState: { Active: number; ImageURL: string };
-  setCarouselState: Dispatch<
-    SetStateAction<{ Active: number; ImageURL: string }>
-  >;
+  CarouselState: number;
+  setCarouselState: Dispatch<SetStateAction<number>>;
   setBannerTextTransition: Dispatch<SetStateAction<string>>;
   ThumbnailArray: DiscoverCarouselIProps[];
 }
@@ -50,10 +48,9 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
 
   const NextCarousel = () => {
     let CarouselIndex =
-      props.CarouselState.Active === props.ThumbnailArray.length - 1
+      props.CarouselState === props.ThumbnailArray.length - 1
         ? 0
-        : props.CarouselState.Active + 1;
-    const getImage = props.ThumbnailArray[CarouselIndex];
+        : props.CarouselState + 1;
     const ThumbnailWidth: any = thumbnailRef.current;
     const ContainerWidth: any = props.ConstraintRef.current;
     if (ThumbnailWidth && ContainerWidth) {
@@ -71,10 +68,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
         });
       }
     }
-    props.setCarouselState({
-      Active: CarouselIndex,
-      ImageURL: getImage.Image,
-    });
+    props.setCarouselState(CarouselIndex);
     props.setBannerTextTransition('closed');
     setLeftIndicator(true);
     setRightIndicator(false);

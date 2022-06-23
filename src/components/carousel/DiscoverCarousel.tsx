@@ -14,16 +14,14 @@ interface IProps {
 
 export const DiscoverCarousel: FC<IProps> = (props) => {
   const ContainerRef = useRef(null);
-  const [CarouselState, setCarouselState] = useState({
-    Active: 0,
-    ImageURL: props.ContentArray[0].Image,
-  });
+  const [CarouselState, setCarouselState] = useState(0);
   const [BannerTextTransition, setBannerTextTransition] = useState('open');
   return (
     <div className="w-full flex flex-col relative box-border p-0 m-0 bg-transparent overflow-y-visible overflow-x-hidden">
       <CarouselBanner
+        ContentArray={props.ContentArray}
         ElementRef={ContainerRef}
-        ImageURL={CarouselState.ImageURL}
+        CarouselState={CarouselState}
         BannerTextTransition={BannerTextTransition}
         setBannerTextTransition={setBannerTextTransition}
       />

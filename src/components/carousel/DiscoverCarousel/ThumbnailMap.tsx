@@ -8,10 +8,8 @@ interface IProps {
   AutoPlay?: boolean;
   Duration?: number;
   ThumbnailRef: MutableRefObject<null>;
-  CarouselState: { Active: number; ImageURL: string };
-  setCarouselState: Dispatch<
-    SetStateAction<{ Active: number; ImageURL: string }>
-  >;
+  CarouselState: number;
+  setCarouselState: Dispatch<SetStateAction<number>>;
   LeftIndicator: boolean;
   RightIndicator: boolean;
   setLeftIndicator: Dispatch<SetStateAction<boolean>>;
@@ -32,21 +30,16 @@ export const ThumbnailMap: FC<IProps> = (props) => {
       {props.ThumbnailArray.map((value, idx) => (
         <motion.button
           onClick={() => {
-            props.CarouselState.Active === idx
+            props.CarouselState === idx
               ? null
               : props.setBannerTextTransition('closed');
-            setTimeout(() => {
-              props.setCarouselState({
-                Active: idx,
-                ImageURL: value.Image,
-              });
-            }, 150);
+            setTimeout(() => props.setCarouselState(idx), 150);
           }}
           key={idx}
           ref={props.ThumbnailRef}
           whileTap={{ scale: 0.9 }}
           className={`${
-            props.CarouselState.Active === idx
+            props.CarouselState === idx
               ? 'ring-[3px]'
               : 'ring-0 hover:ring-[3px]'
           } ${ThumbnailSizes} ${'group relative p-0 m-0 transition-shadow duration-300 ring-white ring-opacity-50 rounded-lg md-900:rounded-xl box-border flex items-center justify-center overflow-hidden'}`}
@@ -55,7 +48,7 @@ export const ThumbnailMap: FC<IProps> = (props) => {
             layout="fill"
             loading="lazy"
             className={`${
-              props.CarouselState.Active === idx
+              props.CarouselState === idx
                 ? 'scale-100 translate-x-0'
                 : 'scale-[1.2] -translate-x-3 group-hover:scale-100 group-hover:translate-x-0'
             } ${' transform-gpu ease-out transition-all duration-300'}`}
@@ -66,15 +59,15 @@ export const ThumbnailMap: FC<IProps> = (props) => {
           />
           <h6
             className={`${
-              props.CarouselState.Active === idx
+              props.CarouselState === idx
                 ? 'opacity-100'
                 : 'group-hover:opacity-100 opacity-0'
-            } ${'text-white z-[1] flex items-center text-left text-xs font-medium backdrop-blur-[2px] ease-out transition-all duration-300 p-5 bg-gradient-to-r from-[rgba(0,0,0,0.7)] h-full w-full'}`}
+            } ${'text-white z-[1] flex items-center text-left text-xs font-medium backdrop-blur-[2px] ease-out transition-all duration-300 p-5 bg-gradient-to-r from-[rgba(0,0,0,0.7)] h-full w-full pr-[30%]'}`}
           >
             {value.ThumbnailHeading}
           </h6>
           <div className="absolute bottom-0 w-full z-[2] p-[2px] h-auto bg-transparent">
-            {props.CarouselState.Active === idx &&
+            {props.CarouselState === idx &&
               props.AutoPlay &&
               props.LeftIndicator && (
                 <motion.div
@@ -93,7 +86,7 @@ export const ThumbnailMap: FC<IProps> = (props) => {
                   } ${'w-0 mr-auto opacity-0 h-[3px] rounded-b-3xl bg-white'}`}
                 />
               )}
-            {props.CarouselState.Active === idx &&
+            {props.CarouselState === idx &&
               props.AutoPlay &&
               props.RightIndicator && (
                 <motion.div
