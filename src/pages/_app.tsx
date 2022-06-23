@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import '../styles/main.css';
 import '../styles/NavIndicator.css';
 import '../styles/SubscribeButton.css';
+import '@egjs/flicking/dist/flicking.css';
 import * as React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';

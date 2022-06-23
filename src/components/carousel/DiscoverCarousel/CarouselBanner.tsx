@@ -40,7 +40,7 @@ export const CarouselBanner: FC<IProps> = (props) => {
   return (
     <motion.div
       ref={props.ElementRef}
-      className="text-white relative items-start justify-end rounded-t-xl w-full h-[600px] pl-12 pb-[130px] flex flex-col overflow-hidden bg-gradient-to-r from-[rgba(0,0,0,0.7)]"
+      className="text-white relative items-start justify-end rounded-t-xl w-full h-[500px] md-900:h-[600px] px-12 pb-[130px] flex flex-col overflow-hidden bg-gradient-to-r from-[rgba(0,0,0,0.7)]"
     >
       <CarouselBannerImage
         className="-z-[1]"
