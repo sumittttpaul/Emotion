@@ -40,23 +40,20 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   const [ContentExceed, setContentExceed] = useState(false);
   const [LeftIndicator, setLeftIndicator] = useState(true);
   const [RightIndicator, setRightIndicator] = useState(false);
-  const [IntervalRunning, setIntervalRunning] = useState(true);
+  const [IntervalChange, setIntervalChange] = useState(false);
   const setIntervalTime =
     props.Duration && props.AutoPlay ? props.Duration * 1000 : undefined;
-  let CarouselInterval: any = null;
+  let CarouselInterval: any;
   let intervalTime = setIntervalTime;
 
   const NextCarousel = () => {
-    var CarouselIndex =
+    let CarouselIndex =
       props.CarouselState.Active === props.Thumbnail.length - 1
         ? 0
         : props.CarouselState.Active + 1;
-    //
-    console.log(CarouselIndex);
-    //
     const Image = props.Thumbnail[CarouselIndex];
-    var ThumbnailWidth: any = thumbnailRef.current;
-    var ContainerWidth: any = props.ConstraintRef.current;
+    const ThumbnailWidth: any = thumbnailRef.current;
+    const ContainerWidth: any = props.ConstraintRef.current;
     if (ThumbnailWidth && ContainerWidth) {
       const IndexValue = CarouselIndex + 2;
       const ContentExceed = ThumbnailWidth.offsetWidth * IndexValue;
@@ -87,10 +84,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   }; */
 
   const StartCarousel = () => {
-    if (!CarouselInterval)
-      CarouselInterval = IntervalRunning
-        ? setInterval(() => NextCarousel(), intervalTime)
-        : null;
+    CarouselInterval = setInterval(() => NextCarousel(), intervalTime);
   };
   const ClearCarousel = () => {
     if (CarouselInterval) clearInterval(CarouselInterval);
@@ -99,14 +93,14 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   const onHoverCarouselStart = () => {
     ClearCarousel();
     CarouselInterval = null;
-    setIntervalRunning(false);
+    setIntervalChange(false);
     setLeftIndicator(false);
     setRightIndicator(false);
   };
   const onHoverCarouselEnd = () => {
     ClearCarousel();
     StartCarousel();
-    setIntervalRunning(true);
+    setIntervalChange(true);
     setLeftIndicator(true);
     setRightIndicator(false);
   };
@@ -236,16 +230,19 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
     return () => ClearCarousel();
   }, [props.CarouselState]);
 
+  /* Initial State */
+  useEffect(() => {
+    HideButtonInitialState();
+    IsContentExceed();
+  }, []);
+
   useEffect(() => {
     x.onChange((latest) => {
       HideButton();
-      return;
     });
-    HideButtonInitialState(); /* Initial State */
   });
 
   useLayoutEffect(() => {
-    IsContentExceed(); /* Initial State */
     window.addEventListener('resize', IsContentExceed);
     return () => window.removeEventListener('resize', IsContentExceed);
   });
