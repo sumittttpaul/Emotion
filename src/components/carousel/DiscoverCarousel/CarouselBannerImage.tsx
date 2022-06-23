@@ -19,7 +19,7 @@ export class CarouselBannerImage extends Component<IProps> {
     bottomSrc: this.props.src,
   };
 
-  timeout!: NodeJS.Timeout;
+  timeout: ReturnType<typeof setInterval> | undefined;
 
   componentWillReceiveProps(newProps: IProps) {
     const oldSrc = this.state.topSrc;
