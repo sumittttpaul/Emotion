@@ -96,13 +96,13 @@ export const CarouselBanner: FC<IProps> = (props) => {
             <div className="flex space-x-3">
               <Button
                 disableFocusRipple
-                className="py-4 px-8 text-[11.5px] tracking-[0.075em] bg-white hover:bg-white text-black"
+                className="py-4 cursor-default px-8 text-[11.5px] tracking-[0.075em] bg-white hover:bg-white text-black"
               >
                 order now
               </Button>
               <Button
                 disableFocusRipple
-                className="p-4 tracking-[0.075em] bg-transparent hover:bg-white hover:bg-opacity-10 text-white"
+                className="p-4 cursor-default tracking-[0.075em] bg-transparent hover:bg-white hover:bg-opacity-10 text-white"
               >
                 <div className="flex space-x-2">
                   <HeartIcon className="h-4 w-4" />
@@ -132,7 +132,7 @@ export const CarouselBanner: FC<IProps> = (props) => {
             <div className="flex space-x-3">
               <Button
                 disableFocusRipple
-                className="py-4 px-8 text-[11.5px] tracking-[0.075em] bg-white hover:bg-white text-black"
+                className="py-4 cursor-default px-8 text-[11.5px] tracking-[0.075em] bg-white hover:bg-white text-black"
               >
                 Explore
               </Button>
