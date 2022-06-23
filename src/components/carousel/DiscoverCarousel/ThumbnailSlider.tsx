@@ -40,28 +40,25 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   const [ContentExceed, setContentExceed] = useState(false);
   const [LeftIndicator, setLeftIndicator] = useState(true);
   const [RightIndicator, setRightIndicator] = useState(false);
-  const [IntervalPause, setIntervalPause] = useState(false);
+  const [IntervalRunning, setIntervalRunning] = useState(true);
   const setIntervalTime =
     props.Duration && props.AutoPlay ? props.Duration * 1000 : undefined;
-  let CarouselInterval: any;
+  let CarouselInterval: any = null;
   let intervalTime = setIntervalTime;
 
   const NextCarousel = () => {
-    const index =
+    var CarouselIndex =
       props.CarouselState.Active === props.Thumbnail.length - 1
         ? 0
         : props.CarouselState.Active + 1;
     //
-    console.log(props.CarouselState.Active);
-    console.log(props.Thumbnail.length - 1);
-
+    console.log(CarouselIndex);
     //
-    const Image = props.Thumbnail[index];
-    if (!Image) return;
+    const Image = props.Thumbnail[CarouselIndex];
     var ThumbnailWidth: any = thumbnailRef.current;
     var ContainerWidth: any = props.ConstraintRef.current;
     if (ThumbnailWidth && ContainerWidth) {
-      const IndexValue = index + 2;
+      const IndexValue = CarouselIndex + 2;
       const ContentExceed = ThumbnailWidth.offsetWidth * IndexValue;
       if (ContainerWidth.offsetWidth < ContentExceed) {
         const getThubnailValue = ContainerWidth.offsetWidth - ContentExceed;
@@ -76,7 +73,7 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
       }
     }
     props.setCarouselState({
-      Active: index,
+      Active: CarouselIndex,
       ImageURL: Image.URL,
     });
     setLeftIndicator(true);
@@ -90,25 +87,28 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
   }; */
 
   const StartCarousel = () => {
-    CarouselInterval = setInterval(() => {
-      if (!IntervalPause) {
-        NextCarousel();
-      }
-    }, intervalTime);
+    if (!CarouselInterval)
+      CarouselInterval = IntervalRunning
+        ? setInterval(() => NextCarousel(), intervalTime)
+        : null;
   };
   const ClearCarousel = () => {
-    clearInterval(CarouselInterval);
+    if (CarouselInterval) clearInterval(CarouselInterval);
   };
 
   const onHoverCarouselStart = () => {
-    // setIntervalPause(true);
-    // setLeftIndicator(false);
-    // setRightIndicator(false);
+    ClearCarousel();
+    CarouselInterval = null;
+    setIntervalRunning(false);
+    setLeftIndicator(false);
+    setRightIndicator(false);
   };
   const onHoverCarouselEnd = () => {
-    // setIntervalPause(false);
-    // setLeftIndicator(true);
-    // setRightIndicator(false);
+    ClearCarousel();
+    StartCarousel();
+    setIntervalRunning(true);
+    setLeftIndicator(true);
+    setRightIndicator(false);
   };
 
   const LeftClick = () => {
