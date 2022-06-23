@@ -26,7 +26,7 @@ const ChildAnimationVariant = {
     opacity: 1,
   },
   closed: {
-    y: 50,
+    y: 15,
     opacity: 0,
   },
 };
@@ -53,13 +53,13 @@ export const CarouselBanner: FC<IProps> = (props) => {
         className="space-y-8 box-border z-[1]"
       >
         <motion.div
-          transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}
+          transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
           variants={ChildAnimationVariant}
         >
           <h6 className="text-3xl font-[500]">Full Sleeves T-shirts</h6>
         </motion.div>
         <motion.div
-          transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}
+          transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
           variants={ChildAnimationVariant}
           className="max-w-[500px] w-full space-y-1.5"
         >
@@ -72,7 +72,7 @@ export const CarouselBanner: FC<IProps> = (props) => {
           </h6>
         </motion.div>
         <motion.div
-          transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}
+          transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
           variants={ChildAnimationVariant}
           className="space-y-3 box-border"
         >
