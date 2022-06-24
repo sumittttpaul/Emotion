@@ -34,7 +34,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
   return (
     <>
       {/* Large and Medium screen */}
-      <div className="w-full hidden sm:flex flex-col relative box-border p-0 m-0 bg-transparent overflow-y-visible overflow-x-hidden">
+      <div className="w-full hidden sm:flex flex-col relative box-border py-0 px-5 m-0 bg-transparent overflow-y-visible overflow-x-hidden">
         <CarouselBanner
           ContentArray={props.ContentArray}
           ElementRef={ContainerRef}
