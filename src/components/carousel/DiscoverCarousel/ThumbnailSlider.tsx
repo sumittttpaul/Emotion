@@ -13,7 +13,7 @@ import React, {
 } from 'react';
 import { DiscoverCarouselIProps } from '../../../contents/store/discover/Store.Discover.Carousel';
 
-interface IProps {
+export interface ThumbnailSliderProps {
   AutoPlay?: boolean;
   Duration?: number;
   ConstraintRef: MutableRefObject<null>;
@@ -26,7 +26,7 @@ interface IProps {
 /**
  * @Thumbnail_Slider
  **/
-export const ThumbnailSlider: FC<IProps> = (props) => {
+export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
   const animation = useAnimation();
   const x = useMotionValue(0);
   const dragRef = useRef(null);

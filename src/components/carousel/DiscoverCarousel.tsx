@@ -1,8 +1,24 @@
 import React, { FC, useRef, useState } from 'react';
-import { ThumbnailSlider } from './DiscoverCarousel/ThumbnailSlider';
-import { CarouselBanner } from './DiscoverCarousel/CarouselBanner';
+import dynamic from 'next/dynamic';
 import { DiscoverCarouselIProps } from '../../contents/store/discover/Store.Discover.Carousel';
-import { SliderCarousel } from './DiscoverCarousel/SliderCarousel';
+import { CarouselBannerProps } from './DiscoverCarousel/CarouselBanner';
+import { ThumbnailSliderProps } from './DiscoverCarousel/ThumbnailSlider';
+import { SliderCarouselProps } from './DiscoverCarousel/SliderCarousel';
+// import { CarouselBanner } from './DiscoverCarousel/CarouselBanner';
+// import { ThumbnailSlider } from './DiscoverCarousel/ThumbnailSlider';
+// import { SliderCarousel } from './DiscoverCarousel/SliderCarousel';
+
+const CarouselBanner = dynamic<CarouselBannerProps>(() =>
+  import('./DiscoverCarousel/CarouselBanner').then((x) => x.CarouselBanner)
+);
+
+const ThumbnailSlider = dynamic<ThumbnailSliderProps>(() =>
+  import('./DiscoverCarousel/ThumbnailSlider').then((x) => x.ThumbnailSlider)
+);
+
+const SliderCarousel = dynamic<SliderCarouselProps>(() =>
+  import('./DiscoverCarousel/SliderCarousel').then((x) => x.SliderCarousel)
+);
 
 interface IProps {
   ContentArray: DiscoverCarouselIProps[];

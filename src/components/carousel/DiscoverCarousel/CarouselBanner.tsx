@@ -5,7 +5,7 @@ import { HeartIcon } from '@heroicons/react/outline';
 import { CarouselBannerImage } from './CarouselBannerImage';
 import { DiscoverCarouselIProps } from '../../../contents/store/discover/Store.Discover.Carousel';
 
-interface IProps {
+export interface CarouselBannerProps {
   ElementRef: MutableRefObject<null>;
   ContentArray: DiscoverCarouselIProps[];
   CarouselState: number;
@@ -36,7 +36,7 @@ const ChildAnimationVariant = {
 /**
  * @Carousel_Banner
  **/
-export const CarouselBanner: FC<IProps> = (props) => {
+export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
   return (
     <motion.div
       ref={props.ElementRef}
