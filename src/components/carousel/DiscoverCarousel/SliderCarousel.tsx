@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import React, { FC, useState } from 'react';
-import Swipeable from 'react-swipeable';
+import Slider from 'react-slick';
 import { DiscoverCarouselIProps } from '../../../contents/store/discover/Store.Discover.Carousel';
 
 interface IProps {
@@ -28,29 +28,28 @@ export const SliderCarousel: FC<IProps> = (props) => {
     }
   };
   return (
-    <></>
-    // <Swipeable onSwiped={handleSwipe} className="App">
-    //   <div className="row">
-    //     {props.ContentArray.map((url, index) => (
-    //       <motion.div
-    //         className="container"
-    //         key={index}
-    //         initial={{ scale: 0, rotate: -180 }}
-    //         animate={{
-    //           rotate: 0,
-    //           left: `${(index - position) * 60 - 30}vw`,
-    //           scale: index === position ? 1 : 0.8,
-    //         }}
-    //         transition={{
-    //           type: 'spring',
-    //           stiffness: 260,
-    //           damping: 20,
-    //         }}
-    //       >
-    //         <Image height={500} width="auto" src={url.Image} />
-    //       </motion.div>
-    //     ))}
-    //   </div>
-    // </Swipeable>
+    <Slider onSwipe={handleSwipe} className="App">
+      <div className="row">
+        {props.ContentArray.map((url, index) => (
+          <motion.div
+            className="container"
+            key={index}
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{
+              rotate: 0,
+              left: `${(index - position) * 60 - 30}vw`,
+              scale: index === position ? 1 : 0.8,
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 260,
+              damping: 20,
+            }}
+          >
+            <Image height={500} width="auto" src={url.Image} alt="mobile-carousel"/>
+          </motion.div>
+        ))}
+      </div>
+    </Slider>
   );
 };

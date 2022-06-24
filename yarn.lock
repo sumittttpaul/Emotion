@@ -1173,6 +1173,13 @@
     hoist-non-react-statics "^3.3.0"
     redux "^4.0.0"
 
+"@types/react-slick@^0.23.8":
+  version "0.23.8"
+  resolved "https://registry.yarnpkg.com/@types/react-slick/-/react-slick-0.23.8.tgz#91654e657158da57f082c7b213e20756d3a37502"
+  integrity sha512-SfzSg++/3uyftVZaCgHpW+2fnJFsyJEQ/YdsuqfOWQ5lqUYV/gY/UwAnkw4qksCj5jalto/T5rKXJ8zeFldQeA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-swipeable-views@^0.13.1":
   version "0.13.1"
   resolved "https://registry.npmjs.org/@types/react-swipeable-views/-/react-swipeable-views-0.13.1.tgz"
@@ -4190,11 +4197,6 @@ react-swipeable-views@^0.14.0:
     react-swipeable-views-core "^0.14.0"
     react-swipeable-views-utils "^0.14.0"
     warning "^4.0.1"
-
-react-swipeable@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-7.0.0.tgz#7a12570ee435d35ac700511de338384aa78d12cd"
-  integrity sha512-NI7KGfQ6gwNFN0Hor3vytYW3iRfMMaivGEuxcADOOfBCx/kqwXE8IfHFxEcxSUkxCYf38COLKYd9EMYZghqaUA==
 
 react-transition-group@^4.4.2:
   version "4.4.2"
