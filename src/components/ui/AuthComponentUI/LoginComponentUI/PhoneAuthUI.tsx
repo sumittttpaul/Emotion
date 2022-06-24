@@ -6,7 +6,7 @@ import AuthDivider from '../../../divider/AuthDivider';
 import IconNumberTextFieldDark from '../../../textfield/IconNumberTextFieldDark';
 import { PhonePrivacyPolicy } from '../../../terms & policy/PhonePrivacyPolicy';
 
-interface IProps {
+export interface PhoneAuthUIProps {
   Phone: string;
   PhoneID?: string;
   PhoneChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -35,7 +35,7 @@ interface IProps {
 const container =
   'px-[2px] pt-[2px] w-full flex flex-col justify-center items-center';
 
-const PhoneAuthUI: FC<IProps> = (props) => {
+const PhoneAuthUI: FC<PhoneAuthUIProps> = (props) => {
   return (
     <div className={`${container} ${'space-y-7'}`}>
       <IconNumberTextFieldDark

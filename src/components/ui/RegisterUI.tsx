@@ -10,7 +10,7 @@ import { AuthFooter } from '../footer/AuthFooter';
 import CheckBoxBlue from '../checkbox/CheckBoxBlue';
 import { TermsAndCondition } from '../terms & policy/TermsAndCondition';
 
-interface IProps {
+export interface RegisterUIProps {
   FirstName: string;
   FirstNameID?: string;
   FirstNameChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -76,7 +76,7 @@ interface IProps {
 const PasswordInfo =
   'Your password should contain atleast 8 or more characters with a mix of letters, numbers & symbols.';
 
-const RegisterUI: FC<IProps> = (props) => {
+const RegisterUI: FC<RegisterUIProps> = (props) => {
   return (
     <AuthContainer>
       <AnimatePresence exitBeforeEnter>

@@ -1,10 +1,10 @@
 import { ReactElement, useState } from 'react';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
+import { OffersUIProps } from '../../components/ui/StoreComponentUI/OffersUI';
 import dynamic from 'next/dynamic';
 
-const OffersUI = dynamic(
-  // @ts-ignore: Unreachable code error
+const OffersUI = dynamic<OffersUIProps>(
   () =>
     import('../../components/ui/StoreComponentUI/OffersUI').then(
       (x) => x.OffersUI

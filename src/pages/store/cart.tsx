@@ -2,9 +2,9 @@ import { ReactElement, useState } from 'react';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
 import dynamic from 'next/dynamic';
+import { CartUIProps } from '../../components/ui/StoreComponentUI/CartUI';
 
-const CartUI = dynamic(
-  // @ts-ignore: Unreachable code error
+const CartUI = dynamic<CartUIProps>(
   () =>
     import('../../components/ui/StoreComponentUI/CartUI').then((x) => x.CartUI),
   {

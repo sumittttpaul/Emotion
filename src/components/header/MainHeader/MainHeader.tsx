@@ -8,7 +8,7 @@ import { MainHeaderWishlistButton } from '../../button/header/MainHeaderWishlist
 import { MainHeaderNav } from './assets/MainHeaderNav';
 import { MainHeaderSlider } from './assets/MainHeaderSlider';
 
-interface IProps {
+export interface MainHeaderProps {
   Page: string;
   setPage: (value: string) => void;
 }
@@ -18,7 +18,7 @@ interface IProps {
  * @function @MainHeader
  **/
 
-export const MainHeader: FC<IProps> = (props) => {
+export const MainHeader: FC<MainHeaderProps> = (props) => {
   const [open, setOpen] = useCycle(false, true);
 
   return (

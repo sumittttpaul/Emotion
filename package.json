@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@egjs/react-flicking": "^4.9.0",
     "@emotion/cache": "^11.7.1",
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.9.0",
@@ -39,6 +38,7 @@
     "react-dom": "18.1.0",
     "react-indiana-drag-scroll": "^2.1.0",
     "react-redux": "^8.0.1",
+    "react-swipeable": "^7.0.0",
     "react-swipeable-views": "^0.14.0",
     "sass": "^1.52.2",
     "sharp": "^0.30.4",

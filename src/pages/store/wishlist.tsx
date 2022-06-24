@@ -1,10 +1,10 @@
 import { ReactElement, useState } from 'react';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
+import { WishlistUIProps } from '../../components/ui/StoreComponentUI/WishlistUI';
 import dynamic from 'next/dynamic';
 
-const WishlistUI = dynamic(
-  // @ts-ignore: Unreachable code error
+const WishlistUI = dynamic<WishlistUIProps>(
   () =>
     import('../../components/ui/StoreComponentUI/WishlistUI').then(
       (x) => x.WishlistUI

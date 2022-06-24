@@ -10,12 +10,12 @@ import {
 } from 'react';
 import { SignUp } from '../../../algorithms/AuthAlgorithms';
 import { ToastDark } from '../../../components/toast/ToastDark';
+import { RegisterUIProps } from '../../../components/ui/RegisterUI';
 import { NoAccessToNullUserPages } from '../../../hoc/ProtectedRoutes';
 import { useLoaderState } from '../../../providers/state/LoadingState';
 // import RegisterUI from '../../../components/ui/RegisterUI';
 
-const RegisterUI = dynamic(
-  // @ts-ignore: Unreachable code error
+const RegisterUI = dynamic<RegisterUIProps>(
   () => import('../../../components/ui/RegisterUI')
 );
 

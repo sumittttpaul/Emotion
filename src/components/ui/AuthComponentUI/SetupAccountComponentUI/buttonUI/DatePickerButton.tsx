@@ -2,14 +2,11 @@ import React, { FC, useState } from 'react';
 import moment from 'moment';
 import { DOBbutton } from '../../../../button/DOBbutton';
 import dynamic from 'next/dynamic';
+import { DatePickerDialogUIProps } from '../DatePickerUI/DatePickerDialogUI';
 // import { DatePickerDialogUI } from '../DatePickerUI/DatePickerDialogUI';
 
-const DatePickerDialogUI = dynamic(
-  // @ts-ignore: Unreachable code error
-  () =>
-    import('../DatePickerUI/DatePickerDialogUI').then(
-      (x) => x.DatePickerDialogUI
-    )
+const DatePickerDialogUI = dynamic<DatePickerDialogUIProps>(() =>
+  import('../DatePickerUI/DatePickerDialogUI').then((x) => x.DatePickerDialogUI)
 );
 
 interface IProps {

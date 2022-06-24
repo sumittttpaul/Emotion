@@ -9,21 +9,21 @@ import { IAvatarIconReducerState } from '../../../../../redux/reducers/AvatarRed
 import { useTypedSelector } from '../../../../../redux/useTypeSelector';
 import { AvatarCircularButton } from '../../../../button/AvatarCircularButton';
 import { ToastDark } from '../../../../toast/ToastDark';
+import { AvatarDialogUIProps } from '../AvatarUI/AvatarDialogUI';
 // import { AvatarDialogUI } from '../AvatarUI/AvatarDialogUI';
 
-const AvatarDialogUI = dynamic(
-  // @ts-ignore: Unreachable code error
+const AvatarDialogUI = dynamic<AvatarDialogUIProps>(
   () => import('../AvatarUI/AvatarDialogUI').then((x) => x.AvatarDialogUI)
 );
 
-interface IProps {}
+export interface AvatarButtonProps {}
 
 /**
  * @author
  * @function @AvatarButton
  **/
 
-export const AvatarButton: FC<IProps> = (props) => {
+export const AvatarButton: FC<AvatarButtonProps> = (props) => {
   const user = useAuth();
   const userPhoto = user?.photoURL?.toString();
   // Handle Collections

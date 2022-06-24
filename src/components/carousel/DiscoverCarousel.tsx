@@ -4,6 +4,8 @@ import { CarouselBanner } from './DiscoverCarousel/CarouselBanner';
 import { DiscoverCarouselIProps } from '../../contents/store/discover/Store.Discover.Carousel';
 import { SliderCarousel } from './DiscoverCarousel/SliderCarousel';
 
+
+
 interface IProps {
   ContentArray: DiscoverCarouselIProps[];
 }

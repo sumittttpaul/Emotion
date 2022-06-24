@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import React, { FC } from 'react';
 import { IAvatarIconReducerState } from '../../../../../redux/reducers/AvatarReducer';
 import AvatarContainerDialog from '../../../../dialog/AvatarContainerDialog';
@@ -7,7 +6,7 @@ import SelectAvatar from '../../../../avatar/SelectAvatar';
 import CollectionForAvatar from '../../../../avatar/CollectionForAvatar';
 import CropAvatar from '../../../../avatar/CropAvatar';
 
-interface IProps {
+export interface AvatarDialogUIProps {
   AvatarDialog: boolean;
   setAvatarDialog: () => void;
   AvatarContainer: string;
@@ -41,7 +40,7 @@ interface IProps {
  * @function @AvatarDialogUI
  **/
 
-export const AvatarDialogUI: FC<IProps> = (props) => {
+export const AvatarDialogUI: FC<AvatarDialogUIProps> = (props) => {
   return (
     <AvatarContainerDialog
       close={props.setAvatarDialog}

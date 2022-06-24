@@ -1,7 +1,7 @@
 import { Button, CircularProgress } from '@mui/material';
 import React, { FC, ReactEventHandler } from 'react';
 
-interface IProps {
+export interface LargeButtonBlueProps {
   content: string;
   onClick: ReactEventHandler;
   Disabled: boolean;
@@ -13,7 +13,7 @@ interface IProps {
  * @function @LargeButtonBlue
  **/
 
-const LargeButtonBlue: FC<IProps> = (props) => {
+const LargeButtonBlue: FC<LargeButtonBlueProps> = (props) => {
   return (
     <div className="w-full relative">
       <Button

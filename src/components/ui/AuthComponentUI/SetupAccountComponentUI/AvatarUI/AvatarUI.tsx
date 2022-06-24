@@ -2,10 +2,10 @@ import React, { FC, useEffect, useState } from 'react';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
 import { LoadingAvatarButton } from '../../../../loader/LoadingSkeleton';
+import { AvatarButtonProps } from '../buttonUI/AvatarButton';
 // import { AvatarButton } from '../buttonUI/AvatarButton';
 
-const AvatarButton = dynamic(
-  // @ts-ignore: Unreachable code error
+const AvatarButton = dynamic<AvatarButtonProps>(
   () => import('../buttonUI/AvatarButton').then((x) => x.AvatarButton),
   {
     loading: () => <LoadingAvatarButton />,
@@ -13,14 +13,14 @@ const AvatarButton = dynamic(
   }
 );
 
-interface IProps {}
+export interface AvatartUIProps {}
 
 /**
  * @author
  * @function @AvatarUI
  **/
 
-export const AvatarUI: FC<IProps> = (props) => {
+export const AvatarUI: FC<AvatartUIProps> = (props) => {
   const [FristName, setFirstName] = useState('');
   const [LastName, setLastName] = useState('');
   useEffect(() => {

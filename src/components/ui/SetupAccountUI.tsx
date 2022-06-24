@@ -10,21 +10,23 @@ import {
   LoadingLargeBlueButton,
 } from '../loader/LoadingSkeleton';
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
+import { LargeButtonBlueProps } from '../button/LargeButtonBlue';
+import { AvatartUIProps } from './AuthComponentUI/SetupAccountComponentUI/AvatarUI/AvatarUI';
+import { DatePickerUIProps } from './AuthComponentUI/SetupAccountComponentUI/DatePickerUI/DatePickerUI';
+import { GenderUIProps } from './AuthComponentUI/SetupAccountComponentUI/GenderUI/GenderUI';
 // import LargeButtonBlue from '../button/LargeButtonBlue';
 // import { AvatarUI } from './AuthComponentUI/SetupAccountComponentUI/AvatarUI/AvatarUI';
 // import { DatePickerUI } from './AuthComponentUI/SetupAccountComponentUI/DatePickerUI/DatePickerUI';
 // import { GenderUI } from './AuthComponentUI/SetupAccountComponentUI/GenderUI/GenderUI';
 
-const LargeButtonBlue = dynamic(
-  // @ts-ignore: Unreachable code error
+const LargeButtonBlue = dynamic<LargeButtonBlueProps>(
   () => import('../button/LargeButtonBlue'),
   {
     loading: () => <LoadingLargeBlueButton />,
   }
 );
 
-const AvatarUI = dynamic(
-  // @ts-ignore: Unreachable code error
+const AvatarUI = dynamic<AvatartUIProps>(
   () =>
     import('./AuthComponentUI/SetupAccountComponentUI/AvatarUI/AvatarUI').then(
       (x) => x.AvatarUI
@@ -34,8 +36,7 @@ const AvatarUI = dynamic(
   }
 );
 
-const DatePickerUI = dynamic(
-  // @ts-ignore: Unreachable code error
+const DatePickerUI = dynamic<DatePickerUIProps>(
   () =>
     import(
       './AuthComponentUI/SetupAccountComponentUI/DatePickerUI/DatePickerUI'
@@ -45,8 +46,7 @@ const DatePickerUI = dynamic(
   }
 );
 
-const GenderUI = dynamic(
-  // @ts-ignore: Unreachable code error
+const GenderUI = dynamic<GenderUIProps>(
   () =>
     import('./AuthComponentUI/SetupAccountComponentUI/GenderUI/GenderUI').then(
       (x) => x.GenderUI

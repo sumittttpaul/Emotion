@@ -16,19 +16,19 @@ import TabPanel from '../tab/SelectAvatarTabPanel';
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 import { AuthFooter } from '../footer/AuthFooter';
 import { LoadingLoginUi } from '../loader/LoadingSkeleton';
+import { PhoneAuthUIProps } from './AuthComponentUI/LoginComponentUI/PhoneAuthUI';
+import { EmailAuthUIProps } from './AuthComponentUI/LoginComponentUI/EmailAuthUI';
 // import PhoneAuthUI from './AuthComponentUI/LoginComponentUI/PhoneAuthUI';
 // import EmailAuthUI from './AuthComponentUI/LoginComponentUI/EmailAuthUI';
 
-const PhoneAuthUI = dynamic(
-  // @ts-ignore: Unreachable code error
+const PhoneAuthUI = dynamic<PhoneAuthUIProps>(
   () => import('./AuthComponentUI/LoginComponentUI/PhoneAuthUI'),
   {
     loading: () => <LoadingLoginUi />,
   }
 );
 
-const EmailAuthUI = dynamic(
-  // @ts-ignore: Unreachable code error
+const EmailAuthUI = dynamic<EmailAuthUIProps>(
   () => import('./AuthComponentUI/LoginComponentUI/EmailAuthUI'),
   {
     loading: () => <LoadingLoginUi />,

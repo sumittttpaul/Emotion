@@ -6,7 +6,7 @@ import { SelectMonth } from '../../../../datepicker/SelectMonth';
 import { DatePickerDialogHeader } from '../../../../datepicker/Dialog/DatePickerDialogHeader';
 import { DatePickerDialogBottom } from '../../../../datepicker/Dialog/DatePickerDialogBottom';
 
-interface IProps {
+export interface DatePickerDialogUIProps {
   DOBShow: boolean;
   setDOBShow: () => void;
   DOBDay: number;
@@ -30,7 +30,7 @@ interface IProps {
  * @function @DatePickerDialogUI
  **/
 
-export const DatePickerDialogUI: FC<IProps> = (props) => {
+export const DatePickerDialogUI: FC<DatePickerDialogUIProps> = (props) => {
   const setHeaderDates = () => {
     return props.DOBYearValue + ', ' + props.DOBMonthValue + ' ' + props.DOBDayValue;
   };

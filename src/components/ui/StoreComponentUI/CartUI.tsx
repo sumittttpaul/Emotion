@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
+
+export interface CartUIProps {}
 
 /**
  * @author
  * @function @CartUI
  **/
 
-export const CartUI = () => {
+export const CartUI:FC<CartUIProps> = () => {
   return (
     <div className="relative z-10 px-5">
       {/* Content */}

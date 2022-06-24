@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic';
 import React, { FC, ReactNode } from 'react';
+import { MainHeaderProps } from '../header/MainHeader/MainHeader';
 import { LoadingMainheader } from '../loader/LoadingSkeleton';
 // import { MainHeader } from '../header/MainHeader/MainHeader';
 
-const MainHeader = dynamic(
-  // @ts-ignore: Unreachable code error
+const MainHeader = dynamic<MainHeaderProps>(
   () => import('../header/MainHeader/MainHeader').then((x) => x.MainHeader),
   {
     loading: () => <LoadingMainheader />,

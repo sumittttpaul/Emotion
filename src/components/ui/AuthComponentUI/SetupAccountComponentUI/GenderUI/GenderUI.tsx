@@ -3,7 +3,7 @@ import { SetupAccountDivider } from '../../../../divider/SetupAccountDivider';
 import { SetupAccountLabel } from '../../../../label/SetupAccountLabel';
 import { GenderButton } from '../buttonUI/GenderButton';
 
-interface IProps {
+export interface GenderUIProps {
   theme: string;
   GenderContent: Array<string>;
   GenderValue?: string;
@@ -15,7 +15,7 @@ interface IProps {
  * @function @GenderUI
  **/
 
-export const GenderUI: FC<IProps> = (props) => {
+export const GenderUI: FC<GenderUIProps> = (props) => {
   return (
     <>
       <div className="flex flex-col w-full relative space-y-4 pb-1">

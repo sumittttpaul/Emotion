@@ -9,7 +9,7 @@ import { PageHeaderLogo } from '../../logo/CompanyLogo';
 import { useLoaderState } from '../../../providers/state/LoadingState';
 import { Home_Link } from '../../../routerLinks/RouterLinks';
 
-interface IProps {
+export interface PageHeaderProps {
   setPage: (value: string) => void;
 }
 
@@ -18,7 +18,7 @@ interface IProps {
  * @function @PageHeader
  **/
 
-export const PageHeader: FC<IProps> = (props) => {
+export const PageHeader: FC<PageHeaderProps> = (props) => {
   const [Cycle, setCycle] = useCycle(false, true);
   const [Hvalue, setHvalue] = useState(0);
   const [Content, setContent] = useState('Store');

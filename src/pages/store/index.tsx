@@ -2,9 +2,9 @@ import { ReactElement, useState } from 'react';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
 import dynamic from 'next/dynamic';
+import { DiscoverUIProps } from '../../components/ui/StoreComponentUI/DiscoverUI';
 
-const DiscoverUI = dynamic(
-  // @ts-ignore: Unreachable code error
+const DiscoverUI = dynamic<DiscoverUIProps>(
   () =>
     import('../../components/ui/StoreComponentUI/DiscoverUI').then(
       (x) => x.DiscoverUI

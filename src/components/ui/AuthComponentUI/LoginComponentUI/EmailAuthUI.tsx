@@ -9,7 +9,7 @@ import Router from 'next/router';
 import { Forgot_Password_Link } from '../../../../routerLinks/RouterLinks';
 import { useLoaderState } from '../../../../providers/state/LoadingState';
 
-interface IProps {
+export interface EmailAuthUIProps {
   Email: string;
   EmailID?: string;
   EmailReadOnly?: boolean;
@@ -42,7 +42,7 @@ interface IProps {
  * @function @EmailAuthUI
  **/
 
-const EmailAuthUI: FC<IProps> = (props) => {
+const EmailAuthUI: FC<EmailAuthUIProps> = (props) => {
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => {
     setLoader({ show: value });

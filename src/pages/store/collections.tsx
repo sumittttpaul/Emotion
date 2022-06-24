@@ -2,9 +2,9 @@ import { ReactElement, useState } from 'react';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import dynamic from 'next/dynamic';
+import { CollectionsUIProps } from '../../components/ui/StoreComponentUI/CollectionsUI';
 
-const CollectionsUI = dynamic(
-  // @ts-ignore: Unreachable code error
+const CollectionsUI = dynamic<CollectionsUIProps>(
   () =>
     import('../../components/ui/StoreComponentUI/CollectionsUI').then(
       (x) => x.CollectionsUI

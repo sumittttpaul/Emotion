@@ -1,13 +1,13 @@
 import React, { FC } from 'react'
 
-interface IProps {}
+export interface OffersUIProps {}
 
 /**
 * @author
 * @function @OffersUI
 **/
 
-export const OffersUI:FC<IProps> = (props) => {
+export const OffersUI:FC<OffersUIProps> = (props) => {
   return (
     <div className="relative z-10 px-5">
       {/* Content */}

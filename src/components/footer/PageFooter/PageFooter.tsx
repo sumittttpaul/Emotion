@@ -7,7 +7,7 @@ import { FooterBottom } from './assets/FooterBottom';
 import { FooterTop } from './assets/FooterTop';
 import { ScrollToTopButton } from './assets/ScrollToTopButton';
 
-interface IProps {
+export interface PageFooterProps {
   setPage: (value: string) => void;
 }
 
@@ -16,7 +16,7 @@ interface IProps {
  * @function @PageFooter
  **/
 
-export const PageFooter: FC<IProps> = (props) => {
+export const PageFooter: FC<PageFooterProps> = (props) => {
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => {
     setLoader({ show: value });

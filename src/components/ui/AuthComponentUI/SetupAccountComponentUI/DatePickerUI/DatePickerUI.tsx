@@ -3,7 +3,7 @@ import { SetupAccountDivider } from '../../../../divider/SetupAccountDivider';
 import { SetupAccountLabel } from '../../../../label/SetupAccountLabel';
 import { DatePickerButton } from '../buttonUI/DatePickerButton';
 
-interface IProps {
+export interface DatePickerUIProps {
   theme: string;
   getDOBValue: (value: string) => void;
   getHandleBoolValue: (value: boolean) => void;
@@ -14,7 +14,7 @@ interface IProps {
  * @function @DatePickerUI
  **/
 
-export const DatePickerUI: FC<IProps> = (props) => {
+export const DatePickerUI: FC<DatePickerUIProps> = (props) => {
   return (
     <div className="flex flex-col w-full relative space-y-4">
       <SetupAccountDivider />
