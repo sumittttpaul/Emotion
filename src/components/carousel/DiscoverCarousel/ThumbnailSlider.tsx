@@ -223,13 +223,21 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
   };
 
   useEffect(() => {
-    if (props.AutoPlay && props.Duration) {
-      if (IntervalStatus === 'running') {
-        StartCarousel();
-        return () => ClearCarousel();
+    if (window.innerWidth) {
+      if (props.AutoPlay && props.Duration && window.innerWidth > 640) {
+        if (IntervalStatus === 'running') {
+          StartCarousel();
+          return () => ClearCarousel();
+        }
       }
     }
-  }, [props.CarouselState, IntervalStatus, props.AutoPlay, props.Duration]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [
+    props.CarouselState,
+    IntervalStatus,
+    props.AutoPlay,
+    props.Duration,
+    window.innerWidth,
+  ]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /* Initial State */
   useEffect(() => {

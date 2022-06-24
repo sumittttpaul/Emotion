@@ -96,7 +96,7 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
             <div className="flex space-x-3">
               <Button
                 disableFocusRipple
-                className="py-4 cursor-default px-8 text-[11.5px] tracking-[0.075em] bg-white hover:bg-white text-black"
+                className="py-4 cursor-default px-8 text-[11.5px] font-[600] tracking-[0.075em] bg-white hover:bg-white text-black"
               >
                 order now
               </Button>
@@ -129,14 +129,12 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
                 props.ContentArray[props.CarouselState].DiscountedPrice
               }`}</h6>
             </div>
-            <div className="flex space-x-3">
-              <Button
-                disableFocusRipple
-                className="py-4 cursor-default px-8 text-[11.5px] tracking-[0.075em] bg-white hover:bg-white text-black"
-              >
-                Explore
-              </Button>
-            </div>
+            <Button
+              disableFocusRipple
+              className="py-4 cursor-default px-8 text-[11.5px] font-[600] tracking-[0.075em] bg-white hover:bg-white text-black"
+            >
+              Explore
+            </Button>
           </motion.div>
         )}
       </motion.div>
