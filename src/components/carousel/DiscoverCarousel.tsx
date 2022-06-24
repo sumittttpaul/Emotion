@@ -42,7 +42,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
 
       {/* Small Screen */}
       <div className="w-full sm:hidden flex flex-col relative box-border p-0 m-0 overflow-y-visible overflow-x-hidden">
-        {/* <SliderCarousel ContentArray={props.ContentArray} /> */}
+        <SliderCarousel ContentArray={props.ContentArray} />
       </div>
     </>
   );

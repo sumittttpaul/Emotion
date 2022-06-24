@@ -34,7 +34,6 @@ export const SliderCarousel: FC<IProps> = (props) => {
           <motion.div
             className="container"
             key={index}
-            initial={{ scale: 0, rotate: -180 }}
             animate={{
               rotate: 0,
               left: `${(index - position) * 60 - 30}vw`,
@@ -46,7 +45,7 @@ export const SliderCarousel: FC<IProps> = (props) => {
               damping: 20,
             }}
           >
-            <Image height={500} width="auto" src={url.Image} alt="mobile-carousel"/>
+            <Image height={500} width={400} src={url.Image} alt="mobile-carousel"/>
           </motion.div>
         ))}
       </div>
