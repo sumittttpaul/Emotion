@@ -40,7 +40,7 @@ export const SliderCarousel: FC<SliderCarouselProps> = (props) => {
           tag="li"
           className="p-5 box-border flex items-end justify-start bg-gradient-to-t from-[rgba(0,0,0,0.8)]"
           style={{
-            width: '80%',
+            width: '85%',
             height: 500,
             borderRadius: 15,
             overflow: 'hidden',
