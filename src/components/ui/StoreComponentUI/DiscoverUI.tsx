@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
-import { DiscoverCarousel } from '../../carousel/DiscoverCarousel';
 import { DiscoverCarouselContent } from '../../../contents/store/discover/Store.Discover.Carousel';
+import { DiscoverCarousel } from '../../carousel/DiscoverCarousel';
+import React, { FC } from 'react';
 
 export interface DiscoverUIProps {}
 

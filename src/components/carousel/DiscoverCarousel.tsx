@@ -4,18 +4,31 @@ import { DiscoverCarouselIProps } from '../../contents/store/discover/Store.Disc
 import { CarouselBannerProps } from './DiscoverCarousel/CarouselBanner';
 import { ThumbnailSliderProps } from './DiscoverCarousel/ThumbnailSlider';
 import { SliderCarouselProps } from './DiscoverCarousel/SliderCarousel';
+import { LoadingDiscoverCarousel } from '../loader/LoadingSkeleton';
 // import { CarouselBanner } from './DiscoverCarousel/CarouselBanner';
 // import { ThumbnailSlider } from './DiscoverCarousel/ThumbnailSlider';
 // import { SliderCarousel } from './DiscoverCarousel/SliderCarousel';
 
-const CarouselBanner = dynamic<CarouselBannerProps>(() =>
-  import('./DiscoverCarousel/CarouselBanner').then((x) => x.CarouselBanner)
+const CarouselBanner = dynamic<CarouselBannerProps>(
+  () =>
+    import('./DiscoverCarousel/CarouselBanner').then((x) => x.CarouselBanner),
+  {
+    loading: () => <LoadingDiscoverCarousel />,
+  }
 );
-const ThumbnailSlider = dynamic<ThumbnailSliderProps>(() =>
-  import('./DiscoverCarousel/ThumbnailSlider').then((x) => x.ThumbnailSlider)
+const ThumbnailSlider = dynamic<ThumbnailSliderProps>(
+  () =>
+    import('./DiscoverCarousel/ThumbnailSlider').then((x) => x.ThumbnailSlider),
+  {
+    loading: () => <LoadingDiscoverCarousel />,
+  }
 );
-const SliderCarousel = dynamic<SliderCarouselProps>(() =>
-  import('./DiscoverCarousel/SliderCarousel').then((x) => x.SliderCarousel)
+const SliderCarousel = dynamic<SliderCarouselProps>(
+  () =>
+    import('./DiscoverCarousel/SliderCarousel').then((x) => x.SliderCarousel),
+  {
+    loading: () => <LoadingDiscoverCarousel />,
+  }
 );
 
 interface IProps {

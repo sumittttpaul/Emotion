@@ -132,3 +132,34 @@ export function LoadingLoginUi() {
     />
   );
 }
+
+export function LoadingDiscoverCarousel() {
+  return (
+    <div className="px-5">
+      {/* Large Screen */}
+      <Skeleton
+        sx={{ bgcolor: MainHeaderColor }}
+        variant="rectangular"
+        width="100%"
+        height={600}
+        className="hidden sm:flex"
+      />
+      {/* Medium Screen */}
+      <Skeleton
+        sx={{ bgcolor: MainHeaderColor }}
+        variant="rectangular"
+        width="100%"
+        height={500}
+        className="hidden sm:flex"
+      />
+      {/* Small Screen */}
+      <Skeleton
+        sx={{ bgcolor: MainHeaderColor }}
+        variant="rectangular"
+        width="100%"
+        height={500}
+        className="flex sm:hidden"
+      />
+    </div>
+  );
+}
