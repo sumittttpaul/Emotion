@@ -229,13 +229,13 @@ export const ThumbnailSlider: FC<IProps> = (props) => {
         return () => ClearCarousel();
       }
     }
-  }, [props.CarouselState, IntervalStatus]);
+  }, [props.CarouselState, IntervalStatus, props.AutoPlay, props.Duration]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /* Initial State */
   useEffect(() => {
     HideButtonInitialState();
     IsContentExceed();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     x.onChange((latest) => {

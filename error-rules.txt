@@ -1,1 +1,5 @@
+1) Ignore all errors of typescript :
 @ts-ignore: Unreachable code error
+
+2) Use this line to remove empty dependency array warnings of useEfect :
+// eslint-disable-line react-hooks/exhaustive-deps or // eslint-disable-next-line react-hooks/exhaustive-deps

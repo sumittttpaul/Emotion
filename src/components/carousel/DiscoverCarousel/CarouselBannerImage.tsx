@@ -21,7 +21,7 @@ export class CarouselBannerImage extends Component<IProps> {
 
   timeout: ReturnType<typeof setInterval> | undefined;
 
-  componentWillReceiveProps(newProps: IProps) {
+  UNSAFE_componentWillReceiveProps(newProps: IProps) {
     const oldSrc = this.state.topSrc;
     const newSrc = newProps.src;
     if (newSrc !== oldSrc) {
