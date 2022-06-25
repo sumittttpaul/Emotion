@@ -18,11 +18,11 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
         disableRipple
         disableFocusRipple
         disableTouchRipple
-        className="hidden md-900:block header-button-hover transition-all duration-300 text-white w-[180px] cursor-text justify-start button-text-lower p-[10px] rounded-full bg-[rgba(255,255,255,0.075)] hover:bg-[rgba(255,255,255,0.075)]"
+        className="hidden md-900:block header-button-hover transition-all duration-300 text-white w-[160px] cursor-text justify-start button-text-lower p-[10px] rounded-full bg-[#202020] hover:bg-[#202020]"
       >
         <div className="space-x-3 flex items-center opacity-60 ml-1">
           <SearchIcon className="h-[14px] w-[14px]" />
-          <h6 className="text-[11px] font-normal">Search</h6>
+          <h6 className="text-[11.5px] font-normal">Search</h6>
         </div>
       </Button>
       <TooltipDark

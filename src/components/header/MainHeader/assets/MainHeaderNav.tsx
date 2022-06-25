@@ -147,7 +147,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
                     disableFocusRipple
                     disableTouchRipple
                     aria-label="main-header-button"
-                    className="text-[13.5px] opacity-50 hover:opacity-100 transition-all duration-200 font-normal text-white button-text-lower"
+                    className="text-[13.5px] opacity-50 tracking-[0.6px] hover:opacity-100 transition-all duration-200 font-normal text-white button-text-lower"
                   >
                     {value.label}
                   </Button>
@@ -168,7 +168,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
         } ${'flex ml-[58px] hover:opacity-100 w-full sm:hidden text-white button-text-lower'}`}
       >
         <div className="flex space-x-2 items-center">
-          <h6 className="font-normal text-[13.5px]">
+          <h6 className="font-normal text-[13.5px] tracking-[0.6px]">
             {Boolean(NonActiveContent(props.Value)) ? 'Discover' : props.Value}
           </h6>
           <motion.div animate={Arrow} variants={ArrowVariant}>

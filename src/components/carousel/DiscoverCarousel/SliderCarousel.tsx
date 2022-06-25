@@ -41,7 +41,7 @@ export const SliderCarousel: FC<SliderCarouselProps> = (props) => {
           className="p-5 box-border flex items-end justify-start bg-gradient-to-t from-[rgba(0,0,0,0.8)]"
           style={{
             width: '85%',
-            height: 500,
+            height: 450,
             borderRadius: 15,
             overflow: 'hidden',
           }}
@@ -55,6 +55,7 @@ export const SliderCarousel: FC<SliderCarouselProps> = (props) => {
             className="-z-[1]"
             src={content.Image}
             blurDataURL={Poster_BlurDataURL}
+            alt="mobile carousel image"
           />
           <div className="space-y-5 box-border z-[1] mb-3">
             <div>

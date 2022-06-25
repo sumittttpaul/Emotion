@@ -231,6 +231,7 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
         }
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     props.CarouselState,
     IntervalStatus,
@@ -263,7 +264,7 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
         onHoverCarouselEnd();
       }}
       // onHoverStart={onHoverCarouselStart}
-      className={`${ContentExceed ? 'ml-auto' : 'mr-auto'} ${'z-[1]'}`}
+      className={`${ContentExceed ? 'ml-auto' : 'mr-auto'} ${'z-[1] mb-[3px]'}`}
     >
       <motion.div
         drag={ContentExceed ? 'x' : false}

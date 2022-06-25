@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 import '../styles/main.css';
-import '../styles/NavIndicator.css';
-import '../styles/SubscribeButton.css';
+import '../styles/custom/NavIndicator.css';
+import '../styles/custom/SubscribeButton.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';

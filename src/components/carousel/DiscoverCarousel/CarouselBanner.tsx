@@ -28,7 +28,7 @@ const ChildAnimationVariant = {
     opacity: 1,
   },
   closed: {
-    y: 15,
+    y: 10,
     opacity: 0,
   },
 };
@@ -82,7 +82,7 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
             className="space-y-3 box-border"
           >
             <div className="text-xs flex items-center space-x-[4px] my-1">
-              <h6 className="bg-primary-blue-rgb text-[11px] py-1 px-2.5 mr-[2px] rounded-[4px]">
+              <h6 className="bg-primary-blue-rgb font-[600] text-[11px] py-1 px-2.5 mr-[2px] rounded-[4px]">
                 {props.ContentArray[props.CarouselState].Discount}
               </h6>
               <h6>Starting at</h6>

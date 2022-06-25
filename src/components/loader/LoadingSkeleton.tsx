@@ -53,7 +53,13 @@ export function LoadingMainheader() {
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
-          width={145}
+          width={38}
+          height={38}
+        />
+        <Skeleton
+          sx={{ bgcolor: MainHeaderColor }}
+          variant="rectangular"
+          width={100}
           height={38}
         />
         <Skeleton
@@ -141,7 +147,7 @@ export function LoadingDiscoverCarousel() {
         sx={{ bgcolor: MainHeaderColor }}
         variant="rectangular"
         width="100%"
-        height={624}
+        height={315}
         className="hidden md-900:flex"
       />
       {/* Medium Screen */}
@@ -149,7 +155,7 @@ export function LoadingDiscoverCarousel() {
         sx={{ bgcolor: MainHeaderColor }}
         variant="rectangular"
         width="100%"
-        height={509}
+        height={255}
         className="hidden sm:flex md-900:hidden"
       />
       {/* Small Screen */}
@@ -158,10 +164,14 @@ export function LoadingDiscoverCarousel() {
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
           width="100%"
-          height={500}
+          height={450}
           className="flex sm:hidden"
         />
       </div>
     </>
   );
+}
+
+export function LoadingDiscoverSlider() {
+  return <></>;
 }
