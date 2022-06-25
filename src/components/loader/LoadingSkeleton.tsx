@@ -184,7 +184,7 @@ export function LoadingDiscoverSlider() {
         />
         <div className="flex space-x-4">
           {[...Array(6)].map((value, index) => (
-            <div className="flex flex-col justify-start space-y-2">
+            <div key={index} className="flex flex-col justify-start space-y-2">
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
                 variant="rectangular"
@@ -221,7 +221,7 @@ export function LoadingDiscoverSlider() {
         />
         <div className="hidden sm:flex md-900:hidden space-x-4">
           {[...Array(4)].map((value, index) => (
-            <div className="flex flex-col justify-start space-y-2">
+            <div key={index} className="flex flex-col justify-start space-y-2">
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
                 variant="rectangular"
@@ -258,7 +258,7 @@ export function LoadingDiscoverSlider() {
         />
         <div className="flex space-x-4">
           {[...Array(2)].map((value, index) => (
-            <div className="flex flex-col justify-start space-y-2">
+            <div key={index} className="flex flex-col justify-start space-y-2">
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
                 variant="rectangular"
