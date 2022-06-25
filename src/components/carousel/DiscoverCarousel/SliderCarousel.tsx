@@ -28,8 +28,8 @@ export const SliderCarousel: FC<SliderCarouselProps> = (props) => {
       slidesPerView={'auto'}
       centeredSlides={true}
       spaceBetween={15}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
+      // onSlideChange={() => console.log('slide change')}
+      // onSwiper={(swiper) => console.log(swiper)}
       style={{ color: '#ffffff' }}
       wrapperTag="ul"
       className="w-full h-auto"

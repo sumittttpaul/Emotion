@@ -8,6 +8,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import { motion } from 'framer-motion';
 import { HeartIcon as HeartIconOutline } from '@heroicons/react/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 interface IProps {
   ContentArray: DiscoverSliderIProps[];
@@ -62,9 +63,10 @@ export const DiscoverSlider: FC<IProps> = (props) => {
   });
   return (
     <div className="flex flex-col space-y-5 overflow-x-hidden overflow-y-visible mt-[50px]">
+      {/* Header */}
       <div className="w-full px-5 flex text-white justify-between">
         <h6 className="text-[18px]">Trending winter collections</h6>
-        <div className="flex space-x-2">
+        <div className="hidden sm:flex space-x-2">
           <IconButton
             onClick={slideLeft}
             disabled={LeftDisabled}
@@ -93,13 +95,14 @@ export const DiscoverSlider: FC<IProps> = (props) => {
           </IconButton>
         </div>
       </div>
-      <div className="w-full box-border px-5 flex">
+      {/* Large & Medium Screen */}
+      <div className="hidden sm:flex w-full box-border px-0 sm:px-5">
         <ScrollContainer
           vertical={false}
           hideScrollbars={true}
           innerRef={sliderRef}
           component="div"
-          className="w-full flex space-x-4 box-border scroll-smooth"
+          className="w-full flex px-5 sm:px-0 space-x-4 box-border scroll-smooth"
         >
           {props.ContentArray.map((value, index) => (
             <Button
@@ -114,18 +117,16 @@ export const DiscoverSlider: FC<IProps> = (props) => {
             >
               <div>
                 <div className="relative w-full overflow-hidden">
-                  <div className="opacity-0 flex items-start justify-end group-hover:opacity-100 absolute z-[1] transition-opacity duration-300 rounded-md h-[98%] w-full bg-gradient-to-bl from-[rgba(0,0,0,0.5)]">
+                  <div className="opacity-0 flex items-start justify-end group-hover:opacity-100 absolute z-[1] transition-opacity duration-300 rounded-md h-[98%] w-full bg-gradient-to-bl from-[rgba(0,0,0,0.3)]">
                     <motion.button
-                      onClick={() =>
-                        setWishlist(index)
-                      }
+                      onClick={() => setWishlist(index)}
                       whileTap={{ scale: 0.9 }}
                       className="p-2"
                     >
                       {Wishlist === index ? (
-                        <HeartIconSolid className="h-5 w-5 text-white opacity-100" />
+                        <HeartIconSolid className="h-7 w-7 text-white opacity-100" />
                       ) : (
-                        <HeartIconOutline className="h-5 w-5 text-white opacity-80" />
+                        <HeartIconOutline className="h-7 w-7 text-white opacity-80" />
                       )}
                     </motion.button>
                   </div>
@@ -157,6 +158,80 @@ export const DiscoverSlider: FC<IProps> = (props) => {
             </Button>
           ))}
         </ScrollContainer>
+      </div>
+      {/* Small Screen */}
+      <div className="w-full h-full flex sm:hidden">
+        <Swiper
+          slidesPerView={1.6}
+          spaceBetween={15}
+          loop={true}
+          wrapperTag="ul"
+          className="w-full flex"
+          style={{
+            paddingLeft: 20,
+            paddingRight: 20,
+          }}
+        >
+          {props.ContentArray.map((value, index) => (
+            <SwiperSlide
+              key={index}
+              tag="li"
+              className="flex box-border p-0 m-0 h-full w-full"
+            >
+              <Button
+                disableFocusRipple
+                className="text-white group m-0 p-0 space-y-1 h-full w-full button-text-lower"
+                sx={{
+                  '.MuiTouchRipple-child': {
+                    backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                  },
+                }}
+              >
+                <div className='w-full h-full flex flex-col'>
+                  <div className="relative w-full h-full overflow-hidden">
+                    <div className="opacity-0 flex items-start justify-end group-hover:opacity-100 absolute z-[1] transition-opacity duration-300 rounded-md h-[98%] w-full bg-gradient-to-bl from-[rgba(0,0,0,0.3)]">
+                      <motion.button
+                        onClick={() => setWishlist(index)}
+                        whileTap={{ scale: 0.9 }}
+                        className="p-2"
+                      >
+                        {Wishlist === index ? (
+                          <HeartIconSolid className="h-7 w-7 text-white opacity-100" />
+                        ) : (
+                          <HeartIconOutline className="h-7 w-7 text-white opacity-80" />
+                        )}
+                      </motion.button>
+                    </div>
+                    <Image
+                      height={307}
+                      width={240}
+                      layout="responsive"
+                      objectFit="cover"
+                      objectPosition="center"
+                      placeholder="blur"
+                      className="rounded-md"
+                      blurDataURL={Poster_BlurDataURL}
+                      src={value.Image}
+                      alt="product slider image"
+                    />
+                  </div>
+                  <h6 className="text-[14px] font-normal text-left w-full whitespace-nowrap overflow-hidden text-ellipsis">
+                    {value.Heading}
+                  </h6>
+                  <div className="text-xs flex items-center space-x-2 pt-2">
+                    <h6 className="bg-primary-blue-rgb font-[600] text-[11px] py-[5px] px-[10px] mr-[2px] rounded-[4px]">
+                      {value.Discount}
+                    </h6>
+                    <h6 className="line-through text-[13.5px] opacity-70">
+                      {`₹${value.OriginalPrice}`}
+                    </h6>
+                    <h6 className="text-[14px]">{`₹${value.DiscountedPrice}`}</h6>
+                  </div>
+                </div>
+              </Button>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );

@@ -24,11 +24,11 @@ const StaggerAnimationVariant = {
 
 const ChildAnimationVariant = {
   open: {
-    y: 0,
+    x: 0,
     opacity: 1,
   },
   closed: {
-    y: 15,
+    x: 50,
     opacity: 0,
   },
 };
