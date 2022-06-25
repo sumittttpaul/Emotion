@@ -211,7 +211,7 @@ export function LoadingDiscoverSlider() {
         </div>
       </div>
       {/* Medium Screen */}
-      <div className="flex flex-col justify-start space-y-6 px-5">
+      <div className="hidden sm:flex md-900:hidden flex-col justify-start space-y-6 px-5">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
