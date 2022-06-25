@@ -16,12 +16,8 @@ const CarouselBanner = dynamic<CarouselBannerProps>(
     loading: () => <LoadingDiscoverCarousel />,
   }
 );
-const ThumbnailSlider = dynamic<ThumbnailSliderProps>(
-  () =>
-    import('./DiscoverCarousel/ThumbnailSlider').then((x) => x.ThumbnailSlider),
-  {
-    loading: () => <LoadingDiscoverCarousel />,
-  }
+const ThumbnailSlider = dynamic<ThumbnailSliderProps>(() =>
+  import('./DiscoverCarousel/ThumbnailSlider').then((x) => x.ThumbnailSlider)
 );
 const SliderCarousel = dynamic<SliderCarouselProps>(
   () =>

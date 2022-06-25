@@ -141,13 +141,13 @@ export function LoadingLoginUi() {
 
 export function LoadingDiscoverCarousel() {
   return (
-    <>
+    <div className="px-5">
       {/* Large Screen */}
       <Skeleton
         sx={{ bgcolor: MainHeaderColor }}
         variant="rectangular"
         width="100%"
-        height={315}
+        height={600}
         className="hidden md-900:flex"
       />
       {/* Medium Screen */}
@@ -155,20 +155,18 @@ export function LoadingDiscoverCarousel() {
         sx={{ bgcolor: MainHeaderColor }}
         variant="rectangular"
         width="100%"
-        height={255}
+        height={500}
         className="hidden sm:flex md-900:hidden"
       />
       {/* Small Screen */}
-      <div className="px-5">
-        <Skeleton
-          sx={{ bgcolor: MainHeaderColor }}
-          variant="rectangular"
-          width="100%"
-          height={450}
-          className="flex sm:hidden"
-        />
-      </div>
-    </>
+      <Skeleton
+        sx={{ bgcolor: MainHeaderColor }}
+        variant="rectangular"
+        width="100%"
+        height={450}
+        className="flex sm:hidden"
+      />
+    </div>
   );
 }
 
