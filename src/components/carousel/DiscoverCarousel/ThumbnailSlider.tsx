@@ -71,7 +71,7 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
     props.setBannerTextTransition('closed');
     setLeftIndicator(true);
     setRightIndicator(false);
-    setTimeout(() => props.setCarouselState(CarouselIndex), 150);
+    props.setCarouselState(CarouselIndex);
   };
 
   /* const PrevCarousel = () => {

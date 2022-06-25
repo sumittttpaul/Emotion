@@ -5,6 +5,9 @@ import { DiscoverSliderIProps } from '../../contents/store/discover/Store.Discov
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
 import { Button, IconButton } from '@mui/material';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import { motion } from 'framer-motion';
+import { HeartIcon as HeartIconOutline } from '@heroicons/react/outline';
+import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid';
 
 interface IProps {
   ContentArray: DiscoverSliderIProps[];
@@ -18,6 +21,7 @@ interface IProps {
 export const DiscoverSlider: FC<IProps> = (props) => {
   const [LeftDisabled, setLeftDisabled] = useState(true);
   const [RightDisabled, setRightDisabled] = useState(false);
+  const [Wishlist, setWishlist] = useState(-1);
   const sliderRef = useRef<HTMLElement>(null);
 
   const slideLeft = () => {
@@ -110,7 +114,21 @@ export const DiscoverSlider: FC<IProps> = (props) => {
             >
               <div>
                 <div className="relative w-full overflow-hidden">
-                  <div className="opacity-0 group-hover:opacity-100 absolute z-[1] transition-opacity duration-300 rounded-md h-[98%] w-full backdrop-blur-md bg-black bg-opacity-50"></div>
+                  <div className="opacity-0 flex items-start justify-end group-hover:opacity-100 absolute z-[1] transition-opacity duration-300 rounded-md h-[98%] w-full bg-gradient-to-bl from-[rgba(0,0,0,0.5)]">
+                    <motion.button
+                      onClick={() =>
+                        setWishlist(index)
+                      }
+                      whileTap={{ scale: 0.9 }}
+                      className="p-2"
+                    >
+                      {Wishlist === index ? (
+                        <HeartIconSolid className="h-5 w-5 text-white opacity-100" />
+                      ) : (
+                        <HeartIconOutline className="h-5 w-5 text-white opacity-80" />
+                      )}
+                    </motion.button>
+                  </div>
                   <Image
                     height={307}
                     width={240}
