@@ -173,5 +173,119 @@ export function LoadingDiscoverCarousel() {
 }
 
 export function LoadingDiscoverSlider() {
-  return <></>;
+  return (
+    <>
+      {/* Large Screen */}
+      <div className="hidden md-900:flex flex-col justify-start space-y-6 px-5">
+        <Skeleton
+          sx={{ bgcolor: MainHeaderColor }}
+          variant="rectangular"
+          width={233}
+          height={27}
+          className="flex"
+        />
+        <div className="flex space-x-4">
+          {[...Array(6)].map((value, index) => (
+            <div className="flex flex-col justify-start space-y-2">
+              <Skeleton
+                sx={{ bgcolor: MainHeaderColor }}
+                variant="rectangular"
+                width={220}
+                height={294}
+                className="flex"
+              />
+              <Skeleton
+                sx={{ bgcolor: MainHeaderColor }}
+                variant="rectangular"
+                width={116.5}
+                height={20}
+                className="flex"
+              />
+              <Skeleton
+                sx={{ bgcolor: MainHeaderColor }}
+                variant="rectangular"
+                width={220}
+                height={30}
+                className="flex"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Medium Screen */}
+      <div className="flex flex-col justify-start space-y-6 px-5">
+        <Skeleton
+          sx={{ bgcolor: MainHeaderColor }}
+          variant="rectangular"
+          width={233}
+          height={27}
+          className="flex"
+        />
+        <div className="hidden sm:flex md-900:hidden space-x-4">
+          {[...Array(4)].map((value, index) => (
+            <div className="flex flex-col justify-start space-y-2">
+              <Skeleton
+                sx={{ bgcolor: MainHeaderColor }}
+                variant="rectangular"
+                width={198}
+                height={294}
+                className="flex"
+              />
+              <Skeleton
+                sx={{ bgcolor: MainHeaderColor }}
+                variant="rectangular"
+                width={116.5}
+                height={20}
+                className="flex"
+              />
+              <Skeleton
+                sx={{ bgcolor: MainHeaderColor }}
+                variant="rectangular"
+                width={198}
+                height={30}
+                className="flex"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Small Screen */}
+      <div className="flex sm:hidden flex-col justify-start space-y-6 px-5">
+        <Skeleton
+          sx={{ bgcolor: MainHeaderColor }}
+          variant="rectangular"
+          width={233}
+          height={27}
+          className="flex"
+        />
+        <div className="flex space-x-4">
+          {[...Array(2)].map((value, index) => (
+            <div className="flex flex-col justify-start space-y-2">
+              <Skeleton
+                sx={{ bgcolor: MainHeaderColor }}
+                variant="rectangular"
+                width={227}
+                height={294}
+                className="flex"
+              />
+              <Skeleton
+                sx={{ bgcolor: MainHeaderColor }}
+                variant="rectangular"
+                width={116.5}
+                height={20}
+                className="flex"
+              />
+              <Skeleton
+                sx={{ bgcolor: MainHeaderColor }}
+                variant="rectangular"
+                width={227}
+                height={30}
+                className="flex"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
 }

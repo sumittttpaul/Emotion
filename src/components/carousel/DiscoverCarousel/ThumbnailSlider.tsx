@@ -232,13 +232,7 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    props.CarouselState,
-    IntervalStatus,
-    props.AutoPlay,
-    props.Duration,
-    window.innerWidth,
-  ]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [props.CarouselState, IntervalStatus, props.AutoPlay, props.Duration]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /* Initial State */
   useEffect(() => {
