@@ -34,16 +34,19 @@ export const DiscoverBannerFourMobile: FC<IProps> = (props) => {
             className="text-white relative button-text-lower p-0 m-0 rounded-xl overflow-hidden border border-solid border-[rgba(255,255,255,0.15)]"
           >
             <div className="p-0 m-0">
-              <Image
-                layout="responsive"
-                className="rounded-xl"
-                width={490}
-                height={275}
-                src={value.Image}
-                placeholder="blur"
-                blurDataURL={rectangle_BlurDataURL}
-                alt="slider-Image"
-              />
+              <div className="relative w-full h-full">
+                <div className="absolute z-[1] h-full w-full bg-transparent" />
+                <Image
+                  layout="responsive"
+                  className="rounded-xl"
+                  width={490}
+                  height={275}
+                  src={value.Image}
+                  placeholder="blur"
+                  blurDataURL={rectangle_BlurDataURL}
+                  alt="slider-Image"
+                />
+              </div>
               <div className="px-5 pt-4 pb-[70px] space-y-2">
                 <h6 className="text-[16px] font-normal text-left w-full">
                   {value.Heading}
