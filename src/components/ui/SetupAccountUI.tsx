@@ -23,6 +23,7 @@ const LargeButtonBlue = dynamic<LargeButtonBlueProps>(
   () => import('../button/LargeButtonBlue'),
   {
     loading: () => <LoadingLargeBlueButton />,
+    ssr: false,
   }
 );
 
@@ -33,6 +34,7 @@ const AvatarUI = dynamic<AvatartUIProps>(
     ),
   {
     loading: () => <LoadingAvatarUI />,
+    ssr: false,
   }
 );
 
@@ -43,6 +45,7 @@ const DatePickerUI = dynamic<DatePickerUIProps>(
     ).then((x) => x.DatePickerUI),
   {
     loading: () => <LoadingDatePickerUI />,
+    ssr: false,
   }
 );
 
@@ -53,6 +56,7 @@ const GenderUI = dynamic<GenderUIProps>(
     ),
   {
     loading: () => <LoadingGenderUI />,
+    ssr: false,
   }
 );
 

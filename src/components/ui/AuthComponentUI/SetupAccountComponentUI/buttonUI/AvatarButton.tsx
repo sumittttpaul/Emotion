@@ -13,7 +13,8 @@ import { AvatarDialogUIProps } from '../AvatarUI/AvatarDialogUI';
 // import { AvatarDialogUI } from '../AvatarUI/AvatarDialogUI';
 
 const AvatarDialogUI = dynamic<AvatarDialogUIProps>(
-  () => import('../AvatarUI/AvatarDialogUI').then((x) => x.AvatarDialogUI)
+  () => import('../AvatarUI/AvatarDialogUI').then((x) => x.AvatarDialogUI),
+  { ssr: false }
 );
 
 export interface AvatarButtonProps {}

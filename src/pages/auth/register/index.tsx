@@ -16,7 +16,8 @@ import { useLoaderState } from '../../../providers/state/LoadingState';
 // import RegisterUI from '../../../components/ui/RegisterUI';
 
 const RegisterUI = dynamic<RegisterUIProps>(
-  () => import('../../../components/ui/RegisterUI')
+  () => import('../../../components/ui/RegisterUI'),
+  { ssr: false }
 );
 
 /**

@@ -5,8 +5,12 @@ import dynamic from 'next/dynamic';
 import { DatePickerDialogUIProps } from '../DatePickerUI/DatePickerDialogUI';
 // import { DatePickerDialogUI } from '../DatePickerUI/DatePickerDialogUI';
 
-const DatePickerDialogUI = dynamic<DatePickerDialogUIProps>(() =>
-  import('../DatePickerUI/DatePickerDialogUI').then((x) => x.DatePickerDialogUI)
+const DatePickerDialogUI = dynamic<DatePickerDialogUIProps>(
+  () =>
+    import('../DatePickerUI/DatePickerDialogUI').then(
+      (x) => x.DatePickerDialogUI
+    ),
+  { ssr: false }
 );
 
 interface IProps {

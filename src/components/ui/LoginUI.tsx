@@ -25,6 +25,7 @@ const PhoneAuthUI = dynamic<PhoneAuthUIProps>(
   () => import('./AuthComponentUI/LoginComponentUI/PhoneAuthUI'),
   {
     loading: () => <LoadingLoginUi />,
+    ssr: false,
   }
 );
 
@@ -32,6 +33,7 @@ const EmailAuthUI = dynamic<EmailAuthUIProps>(
   () => import('./AuthComponentUI/LoginComponentUI/EmailAuthUI'),
   {
     loading: () => <LoadingLoginUi />,
+    ssr: false,
   }
 );
 
