@@ -10,9 +10,6 @@ const DiscoverUI = dynamic<DiscoverUIProps>(
       (x) => x.DiscoverUI
     ),
   {
-    loading: () => (
-      <h6 className="text-white p-5 w-full text-center">Loading . . . </h6>
-    ),
     ssr: false,
   }
 );

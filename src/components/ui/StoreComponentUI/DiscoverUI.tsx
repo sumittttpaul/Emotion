@@ -1,12 +1,14 @@
 import { DiscoverCarouselContent } from '../../../contents/store/discover/Store.Discover.Carousel';
 import { DiscoverSliderContent } from '../../../contents/store/discover/Store.Discover.Slider';
-import { DiscoverBannerContent } from '../../../contents/store/discover/Store.Discover.Banner';
+import { DiscoverBannerFourContent } from '../../../contents/store/discover/Store.Discover.Banner';
+import { DiscoverBannerThreeContent } from '../../../contents/store/discover/Store.Discover.Banner';
 
 import { DiscoverCarousel } from '../../carousel/DiscoverCarousel';
 import { DiscoverSlider } from '../../slider/DiscoverSlider';
-import { DiscoverBanner } from '../../banner/DiscoverBanner';
+import { DiscoverBannerFour } from '../../banner/DiscoverBannerFour';
 
 import React, { FC } from 'react';
+import { DiscoverBannerThree } from '../../banner/DiscoverBannerThree';
 
 export interface DiscoverUIProps {}
 
@@ -20,7 +22,8 @@ export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
     <div className="relative z-10 ">
       <DiscoverCarousel ContentArray={DiscoverCarouselContent} />
       <DiscoverSlider ContentArray={DiscoverSliderContent} />
-      <DiscoverBanner ContentArray={DiscoverBannerContent} />
+      <DiscoverBannerThree ContentArray={DiscoverBannerThreeContent} />
+      <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
     </div>
   );
 };

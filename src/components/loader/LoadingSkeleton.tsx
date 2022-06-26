@@ -262,7 +262,7 @@ export function LoadingDiscoverSlider() {
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
                 variant="rectangular"
-                width={227}
+                width={178}
                 height={294}
                 className="flex"
               />
@@ -276,7 +276,7 @@ export function LoadingDiscoverSlider() {
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
                 variant="rectangular"
-                width={227}
+                width={178}
                 height={30}
                 className="flex"
               />

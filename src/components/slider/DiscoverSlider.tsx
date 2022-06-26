@@ -24,7 +24,7 @@ const DiscoverSliderMobile = dynamic<DiscoverSliderMobileProps>(
       (x) => x.DiscoverSliderMobile
     ),
   {
-    loading: () => <LoadingDiscoverSlider />,
+    // loading: () => <LoadingDiscoverSlider />,
   }
 );
 const DiscoverSliderTitle = dynamic<DiscoverSliderTitleProps>(() =>

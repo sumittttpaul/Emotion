@@ -1,4 +1,4 @@
-import { Carousel_Thumbnail_BlurDataURL } from '../../loader/BlurDataURL';
+import { rectangle_BlurDataURL } from '../../loader/BlurDataURL';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import React, { Dispatch, FC, MutableRefObject, SetStateAction } from 'react';
@@ -54,7 +54,7 @@ export const ThumbnailMap: FC<IProps> = (props) => {
             } ${' transform-gpu ease-out transition-all duration-300'}`}
             src={value.Image}
             placeholder="blur"
-            blurDataURL={Carousel_Thumbnail_BlurDataURL}
+            blurDataURL={rectangle_BlurDataURL}
             alt="Casourel-Image-Thumbnail"
           />
           <h6

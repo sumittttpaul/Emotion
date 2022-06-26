@@ -23,7 +23,7 @@ export const DiscoverSliderMobile: FC<DiscoverSliderMobileProps> = (props) => {
   return (
     <div className="w-full h-full flex sm:hidden">
       <Swiper
-        slidesPerView={1.6}
+        slidesPerView={2}
         spaceBetween={15}
         loop={true}
         wrapperTag="ul"
