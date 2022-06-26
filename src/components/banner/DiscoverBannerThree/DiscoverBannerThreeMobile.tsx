@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { DiscoverBannerThreeIProps } from '../../../contents/store/discover/Store.Discover.Banner';
 import { rectangle_BlurDataURL } from '../../loader/BlurDataURL';
+import { BannerUnderlineButtonDark } from '../../button/BannerUnderlineButtonDark';
 
 interface IProps {
   ContentArray: DiscoverBannerThreeIProps[];
@@ -43,7 +44,7 @@ export const DiscoverBannerThreeMobile: FC<IProps> = (props) => {
                   width={490}
                   height={275}
                   src={value.Image}
-                  loading='lazy'
+                  loading="lazy"
                   placeholder="blur"
                   blurDataURL={rectangle_BlurDataURL}
                   alt="slider-Image"
@@ -58,16 +59,7 @@ export const DiscoverBannerThreeMobile: FC<IProps> = (props) => {
                 </h6>
               </div>
             </div>
-            <Button
-              className="text-white absolute bottom-0 block whitespace-nowrap mx-5 mb-4 p-0 text-[14px] hover:underline underline-offset-4 font-sans font-normal button-text-lower"
-              sx={{
-                '.MuiTouchRipple-child': {
-                  backgroundColor: 'rgba(225, 225, 255, 0) !important',
-                },
-              }}
-            >
-              Explore Now
-            </Button>
+            <BannerUnderlineButtonDark label="Explore Now" />
           </SwiperSlide>
         ))}
       </Swiper>
