@@ -16,7 +16,7 @@ export interface DiscoverTilesMobileProps {
 export const DiscoverTilesMobile: FC<DiscoverTilesMobileProps> = (props) => {
   return (
     <div className="w-full flex sm:hidden flex-col space-y-5">
-      <h6 className="text-[18px] mx-5">What's new</h6>
+      <h6 className="text-[18px] mx-5">What&apos;s new</h6>
       <Swiper
         slidesPerView={1.1}
         spaceBetween={15}
