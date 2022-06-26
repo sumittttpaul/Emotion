@@ -13,7 +13,7 @@ export interface DiscoverBannerThreeIProps {
 
 export const DiscoverBannerFourContent = [
   {
-    Heading: 'Explore our new trending collections',
+    Heading: 'Banner Four Heading 1',
     Description:
       'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
     Image: '/images/avatar/illustration/5.png',
@@ -40,16 +40,16 @@ export const DiscoverBannerFourContent = [
 
 export const DiscoverBannerThreeContent = [
   {
-    Heading: 'Explore our new trending collections',
+    Heading: 'Banner Three Heading 1',
     Description:
       'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
-    Image: '/images/avatar/illustration/5.png',
+    Image: '/images/avatar/illustration/9.png',
   },
   {
     Heading: 'Lighting deals are avaialable upto 75% Off',
     Description:
       'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
-    Image: '/images/avatar/illustration/6.png',
+    Image: '/images/avatar/illustration/10.png',
   },
   {
     Heading: 'Upload your images on Agewear Fanbook',

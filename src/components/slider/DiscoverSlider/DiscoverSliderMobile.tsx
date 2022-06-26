@@ -80,8 +80,8 @@ export const DiscoverSliderMobile: FC<DiscoverSliderMobileProps> = (props) => {
                 <h6 className="text-[14px] font-normal text-left w-full whitespace-nowrap overflow-hidden text-ellipsis">
                   {value.Heading}
                 </h6>
-                <div className="text-xs flex items-center space-x-2 pt-2">
-                  <h6 className="bg-primary-blue-rgb font-[600] text-[11px] py-[5px] px-[10px] mr-[2px] rounded-[4px]">
+                <div className="text-xs flex items-center space-x-1 sm-500:space-x-2 pt-2">
+                  <h6 className="hidden xs-400:block bg-primary-blue-rgb font-[600] text-[11px] py-[5px] px-[10px] mr-[2px] rounded-[4px]">
                     {value.Discount}
                   </h6>
                   <h6 className="line-through text-[13.5px] opacity-70">

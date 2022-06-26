@@ -10,6 +10,7 @@ import { DiscoverSlider } from '../../slider/DiscoverSlider';
 import { DiscoverBannerFour } from '../../banner/DiscoverBannerFour';
 import { DiscoverBannerThree } from '../../banner/DiscoverBannerThree';
 import { DiscoverTiles } from '../../tiles/DiscoverTiles';
+import { DiscoverTilesContent } from '../../../contents/store/discover/Store.Discover.Tiles';
 
 export interface DiscoverUIProps {}
 
@@ -21,7 +22,7 @@ export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
   return (
     <div className="relative z-10 ">
       <DiscoverCarousel ContentArray={DiscoverCarouselContent} />
-      <DiscoverTiles/>
+      <DiscoverTiles ContentArray={DiscoverTilesContent}/>
       <DiscoverSlider ContentArray={DiscoverSliderContent} />
       <DiscoverBannerThree ContentArray={DiscoverBannerThreeContent} />
       <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
