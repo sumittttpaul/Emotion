@@ -42,6 +42,7 @@ export const DiscoverBannerFourTablet: FC<IProps> = (props) => {
                   width={490}
                   height={275}
                   src={value.Image}
+                  loading='lazy'
                   placeholder="blur"
                   blurDataURL={rectangle_BlurDataURL}
                   alt="slider-Image"

@@ -70,6 +70,7 @@ export const DiscoverSliderMobile: FC<DiscoverSliderMobileProps> = (props) => {
                     objectFit="cover"
                     objectPosition="center"
                     placeholder="blur"
+                    loading='lazy'
                     className="rounded-md"
                     blurDataURL={Poster_BlurDataURL}
                     src={value.Image}

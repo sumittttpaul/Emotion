@@ -32,6 +32,7 @@ const OtherAccountAuthUI: FC<IProps> = (props) => {
           src="/icons/facebook.svg"
           alt="facebook-logo-svg"
           placeholder="blur"
+          loading='lazy'
           blurDataURL={Square_BlurDataURL}
         />
       </Button>
@@ -47,6 +48,7 @@ const OtherAccountAuthUI: FC<IProps> = (props) => {
           src="/icons/google.svg"
           alt="google-logo-svg"
           placeholder="blur"
+          loading='lazy'
           blurDataURL={Square_BlurDataURL}
         />
       </Button>
@@ -62,6 +64,7 @@ const OtherAccountAuthUI: FC<IProps> = (props) => {
           src="/icons/apple.svg"
           alt="apple-logo-svg"
           placeholder="blur"
+          loading='lazy'
           blurDataURL={Square_BlurDataURL}
         />
       </Button>

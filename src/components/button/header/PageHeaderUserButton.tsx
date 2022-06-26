@@ -71,6 +71,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
               width={35}
               className="rounded-[50%]"
               placeholder="blur"
+              loading="lazy"
               blurDataURL={Square_BlurDataURL}
               src={`${user.photoURL}`}
               alt="user profile small button"
@@ -93,6 +94,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                 width={35}
                 className="rounded-[50%]"
                 placeholder="blur"
+                loading="lazy"
                 blurDataURL={Square_BlurDataURL}
                 src={`${user.photoURL}`}
                 alt="user profile large button"
@@ -140,6 +142,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                     width={50}
                     className="rounded-[50%]"
                     placeholder="blur"
+                    loading="lazy"
                     blurDataURL={Square_BlurDataURL}
                     src={`${user.photoURL}`}
                     alt="user profile"
@@ -177,6 +180,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                 <Image
                   height={17}
                   width={17}
+                  loading="lazy"
                   src="/icons/folder.svg"
                   alt="folder icon"
                 />
@@ -200,6 +204,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                 <Image
                   height={18}
                   width={18}
+                  loading="lazy"
                   src="/icons/truck.svg"
                   alt="truck icon"
                 />
@@ -223,6 +228,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                 <Image
                   height={17}
                   width={17}
+                  loading="lazy"
                   src="/icons/shopping-bag.svg"
                   alt="shopping bag icon"
                 />
@@ -246,6 +252,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                 <Image
                   height={17}
                   width={17}
+                  loading="lazy"
                   src="/icons/gift.svg"
                   alt="gift icon"
                 />

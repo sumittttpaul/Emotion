@@ -34,6 +34,7 @@ export const SmallIconButtonDark: FC<IProps> = (props) => {
           height={15}
           width={15}
           src={props.iconURL}
+          loading='lazy'
           alt="crop-avatar-navigation-button-icon"
           placeholder="blur"
           blurDataURL={Square_BlurDataURL}

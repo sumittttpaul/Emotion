@@ -66,6 +66,7 @@ export const DiscoverSliderDesktop: FC<DiscoverSliderDesktopProps> = (
                   objectFit="cover"
                   objectPosition="center"
                   placeholder="blur"
+                  loading='lazy'
                   className="rounded-md"
                   blurDataURL={Poster_BlurDataURL}
                   src={value.Image}
