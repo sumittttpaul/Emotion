@@ -287,3 +287,181 @@ export function LoadingDiscoverSlider() {
     </>
   );
 }
+
+export function LoadingDiscoverTiles() {
+  return (
+    <>
+      {/* Large Screen */}
+      <div className="hidden md-900:flex flex-col space-y-5 px-5 w-full">
+        <Skeleton
+          sx={{ bgcolor: MainHeaderColor }}
+          variant="rectangular"
+          width={100}
+          height={27}
+          className="flex"
+        />
+        <div className="flex space-x-10">
+          {[...Array(3)].map((value, index) => (
+            <div key={index} className="flex space-x-2">
+              <Skeleton
+                sx={{ bgcolor: MainHeaderColor }}
+                variant="rectangular"
+                width={110}
+                height={123}
+                className="flex"
+              />
+              <div className="flex flex-col justify-between">
+                <div className="flex flex-col space-y-2">
+                  <Skeleton
+                    sx={{ bgcolor: MainHeaderColor }}
+                    variant="rectangular"
+                    width={120}
+                    height={20}
+                    className="flex"
+                  />
+                  <Skeleton
+                    sx={{ bgcolor: MainHeaderColor }}
+                    variant="rectangular"
+                    width={210}
+                    height={15}
+                    className="flex mr-[110px]"
+                  />
+                </div>
+                <div className="flex justify-between">
+                  <Skeleton
+                    sx={{ bgcolor: MainHeaderColor }}
+                    variant="rectangular"
+                    width={100}
+                    height={20}
+                    className="flex"
+                  />
+                  <Skeleton
+                    sx={{ bgcolor: MainHeaderColor }}
+                    variant="rectangular"
+                    width={85}
+                    height={20}
+                    className="flex"
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Medium Screen */}
+      <div className="hidden sm:flex flex-col md-900:hidden space-y-5 px-5 w-full">
+        <Skeleton
+          sx={{ bgcolor: MainHeaderColor }}
+          variant="rectangular"
+          width={100}
+          height={27}
+          className="flex"
+        />
+        <div className="flex space-x-4">
+          {[...Array(3)].map((value, index) => (
+            <div key={index} className="flex space-x-2">
+              <Skeleton
+                sx={{ bgcolor: MainHeaderColor }}
+                variant="rectangular"
+                width={101}
+                height={123}
+                className="flex"
+              />
+              <div className="flex flex-col justify-between">
+                <div className="flex flex-col space-y-2">
+                  <Skeleton
+                    sx={{ bgcolor: MainHeaderColor }}
+                    variant="rectangular"
+                    width={116.5}
+                    height={20}
+                    className="flex"
+                  />
+                  <Skeleton
+                    sx={{ bgcolor: MainHeaderColor }}
+                    variant="rectangular"
+                    width={180}
+                    height={15}
+                    className="flex"
+                  />
+                </div>
+                <div className="flex justify-between">
+                  <Skeleton
+                    sx={{ bgcolor: MainHeaderColor }}
+                    variant="rectangular"
+                    width={100}
+                    height={20}
+                    className="flex"
+                  />
+                  <Skeleton
+                    sx={{ bgcolor: MainHeaderColor }}
+                    variant="rectangular"
+                    width={85}
+                    height={20}
+                    className="flex"
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Small Screen */}
+      <div className="flex flex-col sm:hidden space-y-5 px-5 w-full">
+        <Skeleton
+          sx={{ bgcolor: MainHeaderColor }}
+          variant="rectangular"
+          width={100}
+          height={27}
+          className="flex"
+        />
+        <div className="flex space-x-4">
+          {[...Array(2)].map((value, index) => (
+            <div key={index} className="flex space-x-2">
+              <Skeleton
+                sx={{ bgcolor: MainHeaderColor }}
+                variant="rectangular"
+                width={101}
+                height={123}
+                className="flex"
+              />
+              <div className="flex flex-col justify-between">
+                <div className="flex flex-col space-y-2">
+                  <Skeleton
+                    sx={{ bgcolor: MainHeaderColor }}
+                    variant="rectangular"
+                    width={116.5}
+                    height={20}
+                    className="flex"
+                  />
+                  <Skeleton
+                    sx={{ bgcolor: MainHeaderColor }}
+                    variant="rectangular"
+                    width={225}
+                    height={15}
+                    className="flex"
+                  />
+                </div>
+                <div className="flex justify-between">
+                  <Skeleton
+                    sx={{ bgcolor: MainHeaderColor }}
+                    variant="rectangular"
+                    width={100}
+                    height={20}
+                    className="flex"
+                  />
+                  <Skeleton
+                    sx={{ bgcolor: MainHeaderColor }}
+                    variant="rectangular"
+                    width={85}
+                    height={20}
+                    className="flex"
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
