@@ -43,7 +43,7 @@ interface IProps {
  **/
 
 export const DiscoverSlider: FC<IProps> = (props) => {
-  const [LeftDisabled, setLeftDisabled] = useState(true);
+  const [LeftDisabled, setLeftDisabled] = useState(false);
   const [RightDisabled, setRightDisabled] = useState(false);
   const [Wishlist, setWishlist] = useState(-1);
   const sliderRef = useRef<HTMLElement>(null);
@@ -62,6 +62,21 @@ export const DiscoverSlider: FC<IProps> = (props) => {
     }
   };
 
+  const ScrollRight = () => {
+    const slider = sliderRef.current;
+    if (slider) {
+      let maxScroll = slider.scrollWidth - slider.clientWidth;
+      if (slider.scrollLeft === 0) {
+        return;
+      }
+      if (slider.scrollLeft === maxScroll) {
+        setRightDisabled(true);
+      } else {
+        setRightDisabled(false);
+      }
+    }
+  };
+
   const ListenToScroll = () => {
     const slider = sliderRef.current;
     if (slider) {
@@ -70,6 +85,7 @@ export const DiscoverSlider: FC<IProps> = (props) => {
       else setLeftDisabled(false);
       if (slider.scrollLeft === maxScroll) setRightDisabled(true);
       else setRightDisabled(false);
+      ScrollRight();
     }
   };
 

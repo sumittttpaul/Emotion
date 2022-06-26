@@ -49,7 +49,7 @@ export const DiscoverBannerThreeDesktop:FC<IProps> = (props) => {
                 },
               }}
             >
-              Learn More
+              Explore Now
             </Button>
           </div>
         ))}

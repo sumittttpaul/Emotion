@@ -62,7 +62,7 @@ export const DiscoverBannerThreeMobile: FC<IProps> = (props) => {
                 },
               }}
             >
-              Learn More
+              Explore Now
             </Button>
           </SwiperSlide>
         ))}
