@@ -33,7 +33,12 @@ export const DiscoverTilesTablet: FC<DiscoverTilesTabletProps> = (props) => {
             key={index}
             className="w-full flex relative m-0 text-white overflow-hidden rounded-lg border border-solid border-[rgba(255,255,255,0.23)]"
           >
-            <Image height={100} width={150} src={value.Image} />
+            <Image
+              height={100}
+              width={150}
+              src={value.Image}
+              alt="tiles-image"
+            />
             <div className="flex relative flex-col space-y-5 p-3 h-full w-full justify-between">
               <div className="space-y-1 flex flex-col">
                 <h6>{value.Heading}</h6>

@@ -33,7 +33,12 @@ export const DiscoverTilesMobile: FC<DiscoverTilesMobileProps> = (props) => {
             key={index}
             className="flex h-full w-full relative m-0 text-white overflow-hidden rounded-lg border border-solid border-[rgba(255,255,255,0.23)]"
           >
-            <Image height={100} width={150} src={value.Image} />
+            <Image
+              height={100}
+              width={150}
+              src={value.Image}
+              alt="tiles-image"
+            />
             <div className="flex flex-col relative p-3 h-full w-full justify-between">
               <div className="flex flex-col">
                 <h6>{value.Heading}</h6>
