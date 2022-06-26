@@ -112,7 +112,7 @@ export const SetupAccountUI: FC<IProps> = (props) => {
               Will do it later?&#160;
               <Link
                 onClick={props.HandleSkip}
-                className="text-white text-xs"
+                className="text-white text-xs underline-offset-2"
                 component="button"
                 underline="always"
               >

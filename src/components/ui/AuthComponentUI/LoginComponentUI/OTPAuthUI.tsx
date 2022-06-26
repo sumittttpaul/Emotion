@@ -140,7 +140,7 @@ const OTPAuthUI: FC<IProps> = (props) => {
               </h6>
               <Link
                 onClick={handleResend}
-                className="text-white text-xs"
+                className="text-white underline-offset-2 text-xs"
                 component="button"
                 underline="always"
               >

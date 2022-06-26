@@ -7,6 +7,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { TooltipDark } from '../../tooltip/TooltipDark';
 
 export interface DiscoverSliderDesktopProps {
   ContentArray: DiscoverSliderIProps[];
@@ -20,7 +21,9 @@ export interface DiscoverSliderDesktopProps {
  * @function @DiscoverSliderDesktop
  **/
 
-export const DiscoverSliderDesktop: FC<DiscoverSliderDesktopProps> = (props) => {
+export const DiscoverSliderDesktop: FC<DiscoverSliderDesktopProps> = (
+  props
+) => {
   return (
     <div className="hidden sm:flex w-full box-border px-0 sm:px-5">
       <ScrollContainer
@@ -43,18 +46,19 @@ export const DiscoverSliderDesktop: FC<DiscoverSliderDesktopProps> = (props) => 
           >
             <div>
               <div className="relative w-full overflow-hidden">
-                <div className="opacity-0 flex items-start justify-end group-hover:opacity-100 absolute z-[1] transition-opacity duration-300 rounded-md h-[98%] w-full bg-gradient-to-bl from-[rgba(0,0,0,0.3)]">
-                  <motion.button
-                    onClick={() => props.setWishlist(index)}
-                    whileTap={{ scale: 0.9 }}
-                    className="p-2"
-                  >
-                    {props.Wishlist === index ? (
-                      <HeartIconSolid className="h-7 w-7 text-white opacity-100" />
-                    ) : (
-                      <HeartIconOutline className="h-7 w-7 text-white opacity-80" />
-                    )}
-                  </motion.button>
+                <div className="opacity-0 p-2 flex items-start justify-end group-hover:opacity-100 absolute z-[1] transition-opacity duration-300 rounded-md h-[98%] w-full bg-gradient-to-bl from-[rgba(0,0,0,0.3)]">
+                  <TooltipDark arrow title='Add to Wishlist' placement='top'>
+                    <motion.button
+                      onClick={() => props.setWishlist(index)}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      {props.Wishlist === index ? (
+                        <HeartIconSolid className="h-6 w-6 text-white opacity-100" />
+                      ) : (
+                        <HeartIconOutline className="h-6 w-6 text-white opacity-80" />
+                      )}
+                    </motion.button>
+                  </TooltipDark>
                 </div>
                 <Image
                   height={307}

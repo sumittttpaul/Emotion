@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import Image, { StaticImageData } from 'next/image';
 
 interface IProps {
-  Content: { label: string; to: string; icon: StaticImageData; }[];
+  Content: { label: string; to: string; icon: StaticImageData }[];
   heading: string;
 }
 
@@ -22,9 +22,15 @@ export const PageFooterSocials: FC<IProps> = (props) => {
             <li key={value.label} className="relative flex">
               <Link
                 href={value.to}
-                className="flex whitespace-nowrap space-x-2 button-text-lower"
+                className="flex underline-offset-2 whitespace-nowrap space-x-2 button-text-lower"
               >
-                <Image height={25} width={25} className="flex items-center" src={value.icon} alt="socials icons"/>
+                <Image
+                  height={25}
+                  width={25}
+                  className="flex items-center"
+                  src={value.icon}
+                  alt="socials icons"
+                />
               </Link>
             </li>
           ))}

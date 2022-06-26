@@ -84,7 +84,7 @@ const ForgotPasswordUI: FC<IProps> = (props) => {
                   LoadingScreen(true);
                   Router.push(Login_Link);
                 }}
-                className="text-white text-xs"
+                className="text-white underline-offset-2 text-xs"
                 component="button"
                 underline="always"
               >

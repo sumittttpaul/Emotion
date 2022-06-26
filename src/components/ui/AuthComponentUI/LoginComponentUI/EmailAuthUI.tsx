@@ -85,7 +85,7 @@ const EmailAuthUI: FC<EmailAuthUIProps> = (props) => {
               LoadingScreen(true);
               Router.push(Forgot_Password_Link);
             }}
-            className="text-white text-xs -mt-5"
+            className="text-white underline-offset-2 text-xs -mt-5"
             component="button"
             underline="always"
           >

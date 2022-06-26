@@ -25,7 +25,7 @@ export const PageFooterLinksFlex: FC<IProps> = (props) => {
                 key={value.label}
                 href={value.to}
                 underline="hover"
-                className="text-white flex justify-start items-center p-0 whitespace-nowrap font-[300] text-[12px] button-text-lower"
+                className="text-white underline-offset-2 flex justify-start items-center p-0 whitespace-nowrap font-[300] text-[12px] button-text-lower"
               >
                 {value.label}
               </Link>
