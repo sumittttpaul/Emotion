@@ -10,7 +10,6 @@ export interface DiscoverBannerThreeIProps {
   Image: string;
 }
 
-
 export const DiscoverBannerFourContent = [
   {
     Heading: 'Banner Four Heading 1',
@@ -19,7 +18,7 @@ export const DiscoverBannerFourContent = [
     Image: '/images/avatar/illustration/5.png',
   },
   {
-    Heading: 'Lighting deals are avaialable upto 75% Off',
+    Heading: 'Lighting deals are avialable upto 75% Off',
     Description:
       'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
     Image: '/images/avatar/illustration/6.png',
@@ -58,4 +57,3 @@ export const DiscoverBannerThreeContent = [
     Image: '/images/avatar/illustration/7.png',
   },
 ];
-

@@ -19,60 +19,11 @@ export const DiscoverBannerFourDesktop: FC<DiscoverBannerFourDesktopProps> = (
   props
 ) => {
   return (
-    <ul className="hidden md-900:flex w-full relative box-border space-x-6 p-5">
-      {props.ContentArray.map((value, index) => (
-        <li key={index} className={`rounded-2xl ${ContainerStyle}`}>
-          <div className="p-0 m-0">
-            <div className="relative w-full h-full">
-              <div className="absolute z-[1] h-full w-full bg-transparent" />
-              <Image
-                layout="responsive"
-                className="rounded-2xl"
-                width={490}
-                height={275}
-                src={value.Image}
-                loading="lazy"
-                placeholder="blur"
-                blurDataURL={rectangle_BlurDataURL}
-                alt="slider-Image"
-              />
-            </div>
-            <div className={TextContainerStyle}>
-              <h6 className={`text-[18px] ${HeadingStyle}`}>{value.Heading}</h6>
-              <h6 className={DescriptionStyle}>{value.Description}</h6>
-            </div>
-          </div>
-          <BannerUnderlineButtonDark label="Learn More" />
-        </li>
-      ))}
-    </ul>
-  );
-};
-
-export interface DiscoverBannerFourTabletProps {
-  ContentArray: DiscoverBannerFourIProps[];
-}
-export const DiscoverBannerFourTablet: FC<DiscoverBannerFourTabletProps> = (
-  props
-) => {
-  return (
-    <div className="hidden sm:flex md-900:hidden w-full relative box-border space-x-5">
-      <Swiper
-        slidesPerView={3}
-        spaceBetween={15}
-        wrapperTag="ul"
-        className="w-full flex"
-        style={{
-          paddingLeft: 20,
-          paddingRight: 20,
-        }}
-      >
+    <div className="hidden md-900:flex flex-col w-full relative p-0 m-0 space-y-5">
+      <h6 className="text-[18px] mx-5">Our services</h6>
+      <ul className="w-full flex relative box-border space-x-6 px-5">
         {props.ContentArray.map((value, index) => (
-          <SwiperSlide
-            key={index}
-            tag="li"
-            className={`rounded-2xl ${ContainerStyle}`}
-          >
+          <li key={index} className={`rounded-2xl ${ContainerStyle}`}>
             <div className="p-0 m-0">
               <div className="relative w-full h-full">
                 <div className="absolute z-[1] h-full w-full bg-transparent" />
@@ -89,16 +40,73 @@ export const DiscoverBannerFourTablet: FC<DiscoverBannerFourTabletProps> = (
                 />
               </div>
               <div className={TextContainerStyle}>
-                <h6 className={`text-[16px] ${HeadingStyle}`}>
+                <h6 className={`text-[18px] ${HeadingStyle}`}>
                   {value.Heading}
                 </h6>
                 <h6 className={DescriptionStyle}>{value.Description}</h6>
               </div>
             </div>
             <BannerUnderlineButtonDark label="Learn More" />
-          </SwiperSlide>
+          </li>
         ))}
-      </Swiper>
+      </ul>
+    </div>
+  );
+};
+
+export interface DiscoverBannerFourTabletProps {
+  ContentArray: DiscoverBannerFourIProps[];
+}
+export const DiscoverBannerFourTablet: FC<DiscoverBannerFourTabletProps> = (
+  props
+) => {
+  return (
+    <div className="hidden sm:flex md-900:hidden flex-col w-full relative p-0 m-0 space-y-5">
+      <h6 className="text-[18px] mx-5">Our services</h6>
+      <div className="w-full relative box-border space-x-5">
+        <Swiper
+          slidesPerView={3}
+          spaceBetween={15}
+          wrapperTag="ul"
+          className="w-full flex"
+          style={{
+            paddingLeft: 20,
+            paddingRight: 20,
+          }}
+        >
+          {props.ContentArray.map((value, index) => (
+            <SwiperSlide
+              key={index}
+              tag="li"
+              className={`rounded-2xl ${ContainerStyle}`}
+            >
+              <div className="p-0 m-0">
+                <div className="relative w-full h-full">
+                  <div className="absolute z-[1] h-full w-full bg-transparent" />
+                  <Image
+                    layout="responsive"
+                    className="rounded-2xl"
+                    width={490}
+                    height={275}
+                    src={value.Image}
+                    loading="lazy"
+                    placeholder="blur"
+                    blurDataURL={rectangle_BlurDataURL}
+                    alt="slider-Image"
+                  />
+                </div>
+                <div className={TextContainerStyle}>
+                  <h6 className={`text-[16px] ${HeadingStyle}`}>
+                    {value.Heading}
+                  </h6>
+                  <h6 className={DescriptionStyle}>{value.Description}</h6>
+                </div>
+              </div>
+              <BannerUnderlineButtonDark label="Learn More" />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 };
@@ -110,49 +118,52 @@ export const DiscoverBannerFourMobile: FC<DiscoverBannerFourMobileProps> = (
   props
 ) => {
   return (
-    <div className="flex sm:hidden w-full relative box-border space-x-5">
-      <Swiper
-        slidesPerView={1.5}
-        spaceBetween={15}
-        wrapperTag="ul"
-        className="w-full flex"
-        style={{
-          paddingLeft: 20,
-          paddingRight: 20,
-        }}
-      >
-        {props.ContentArray.map((value, index) => (
-          <SwiperSlide
-            key={index}
-            tag="li"
-            className={`rounded-xl ${ContainerStyle}`}
-          >
-            <div className="p-0 m-0">
-              <div className="relative w-full h-full">
-                <div className="absolute z-[1] h-full w-full bg-transparent" />
-                <Image
-                  layout="responsive"
-                  className="rounded-xl"
-                  width={490}
-                  height={275}
-                  src={value.Image}
-                  loading="lazy"
-                  placeholder="blur"
-                  blurDataURL={rectangle_BlurDataURL}
-                  alt="slider-Image"
-                />
+    <div className="flex sm:hidden flex-col w-full relative p-0 m-0 space-y-5">
+      <h6 className="text-[18px] mx-5">Our services</h6>
+      <div className="w-full relative box-border space-x-5">
+        <Swiper
+          slidesPerView={1.5}
+          spaceBetween={15}
+          wrapperTag="ul"
+          className="w-full flex"
+          style={{
+            paddingLeft: 20,
+            paddingRight: 20,
+          }}
+        >
+          {props.ContentArray.map((value, index) => (
+            <SwiperSlide
+              key={index}
+              tag="li"
+              className={`rounded-xl ${ContainerStyle}`}
+            >
+              <div className="p-0 m-0">
+                <div className="relative w-full h-full">
+                  <div className="absolute z-[1] h-full w-full bg-transparent" />
+                  <Image
+                    layout="responsive"
+                    className="rounded-xl"
+                    width={490}
+                    height={275}
+                    src={value.Image}
+                    loading="lazy"
+                    placeholder="blur"
+                    blurDataURL={rectangle_BlurDataURL}
+                    alt="slider-Image"
+                  />
+                </div>
+                <div className={TextContainerStyle}>
+                  <h6 className={`text-[16px] ${HeadingStyle}`}>
+                    {value.Heading}
+                  </h6>
+                  <h6 className={DescriptionStyle}>{value.Description}</h6>
+                </div>
               </div>
-              <div className={TextContainerStyle}>
-                <h6 className={`text-[16px] ${HeadingStyle}`}>
-                  {value.Heading}
-                </h6>
-                <h6 className={DescriptionStyle}>{value.Description}</h6>
-              </div>
-            </div>
-            <BannerUnderlineButtonDark label="Learn More" />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+              <BannerUnderlineButtonDark label="Learn More" />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 };
