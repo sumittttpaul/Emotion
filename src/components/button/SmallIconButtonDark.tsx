@@ -28,7 +28,7 @@ export const SmallIconButtonDark: FC<IProps> = (props) => {
         },
       }}
     >
-      <div className="flex space-x-2 items-center opacity-80">
+      <div className="flex space-x-2 items-center opacity-90">
         <Image
           layout="fixed"
           height={15}

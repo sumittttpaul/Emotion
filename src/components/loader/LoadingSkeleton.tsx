@@ -174,23 +174,23 @@ export function LoadingDiscoverSlider() {
   return (
     <>
       {/* Large Screen */}
-      <div className="hidden md-900:flex flex-col justify-start space-y-6 px-5">
+      <div className="hidden md-900:flex w-full flex-col justify-start space-y-6 px-5">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
           width={233}
           height={27}
-          className="flex"
+          className="flex w-full"
         />
-        <div className="flex space-x-4">
+        <div className="flex w-full space-x-4">
           {[...Array(6)].map((value, index) => (
-            <div key={index} className="flex flex-col justify-start space-y-2">
+            <div key={index} className="flex w-full flex-col justify-start space-y-2">
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
                 variant="rectangular"
                 width={220}
                 height={294}
-                className="flex"
+                className="flex w-full"
               />
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
@@ -211,7 +211,7 @@ export function LoadingDiscoverSlider() {
         </div>
       </div>
       {/* Medium Screen */}
-      <div className="hidden sm:flex md-900:hidden flex-col justify-start space-y-6 px-5">
+      <div className="hidden sm:flex w-full md-900:hidden flex-col justify-start space-y-6 px-5">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
@@ -219,15 +219,15 @@ export function LoadingDiscoverSlider() {
           height={27}
           className="flex"
         />
-        <div className="hidden sm:flex md-900:hidden space-x-4">
+        <div className="hidden sm:flex w-full md-900:hidden space-x-4">
           {[...Array(4)].map((value, index) => (
-            <div key={index} className="flex flex-col justify-start space-y-2">
+            <div key={index} className="flex flex-col w-full justify-start space-y-2">
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
                 variant="rectangular"
                 width={198}
                 height={294}
-                className="flex"
+                className="flex w-full"
               />
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
@@ -248,23 +248,23 @@ export function LoadingDiscoverSlider() {
         </div>
       </div>
       {/* Small Screen */}
-      <div className="flex sm:hidden flex-col justify-start space-y-6 px-5">
+      <div className="flex sm:hidden w-full flex-col justify-start space-y-6 px-5">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
           width={233}
           height={27}
-          className="flex"
+          className="flex w-full"
         />
-        <div className="flex space-x-4">
+        <div className="flex w-full space-x-4">
           {[...Array(2)].map((value, index) => (
-            <div key={index} className="flex flex-col justify-start space-y-2">
+            <div key={index} className="flex flex-col w-full justify-start space-y-2">
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
                 variant="rectangular"
                 width={178}
                 height={294}
-                className="flex"
+                className="flex w-full"
               />
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
@@ -300,18 +300,18 @@ export function LoadingDiscoverTiles() {
           height={27}
           className="flex"
         />
-        <div className="flex space-x-10">
+        <div className="flex w-full space-x-10">
           {[...Array(3)].map((value, index) => (
-            <div key={index} className="flex space-x-2">
+            <div key={index} className="flex w-full space-x-2">
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
                 variant="rectangular"
-                width={110}
-                height={123}
-                className="flex"
+                width={111}
+                height={113}
+                className="flex w-full"
               />
-              <div className="flex flex-col justify-between">
-                <div className="flex flex-col space-y-2">
+              <div className="flex w-full flex-col justify-between">
+                <div className="flex w-full flex-col space-y-2">
                   <Skeleton
                     sx={{ bgcolor: MainHeaderColor }}
                     variant="rectangular"
@@ -327,7 +327,7 @@ export function LoadingDiscoverTiles() {
                     className="flex mr-[110px]"
                   />
                 </div>
-                <div className="flex justify-between">
+                <div className="flex w-full justify-between">
                   <Skeleton
                     sx={{ bgcolor: MainHeaderColor }}
                     variant="rectangular"
@@ -355,20 +355,20 @@ export function LoadingDiscoverTiles() {
           variant="rectangular"
           width={100}
           height={27}
-          className="flex"
+          className="flex w-full"
         />
-        <div className="flex space-x-4">
-          {[...Array(3)].map((value, index) => (
-            <div key={index} className="flex space-x-2">
+        <div className="flex w-full space-x-4">
+          {[...Array(2)].map((value, index) => (
+            <div key={index} className="flex w-full space-x-2">
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
                 variant="rectangular"
-                width={101}
+                width={104}
                 height={123}
-                className="flex"
+                className="flex w-full"
               />
-              <div className="flex flex-col justify-between">
-                <div className="flex flex-col space-y-2">
+              <div className="flex w-full flex-col justify-between">
+                <div className="flex w-full flex-col space-y-2">
                   <Skeleton
                     sx={{ bgcolor: MainHeaderColor }}
                     variant="rectangular"
@@ -384,7 +384,7 @@ export function LoadingDiscoverTiles() {
                     className="flex"
                   />
                 </div>
-                <div className="flex justify-between">
+                <div className="flex w-full justify-between">
                   <Skeleton
                     sx={{ bgcolor: MainHeaderColor }}
                     variant="rectangular"
@@ -414,18 +414,18 @@ export function LoadingDiscoverTiles() {
           height={27}
           className="flex"
         />
-        <div className="flex space-x-4">
+        <div className="flex w-full space-x-4">
           {[...Array(2)].map((value, index) => (
-            <div key={index} className="flex space-x-2">
+            <div key={index} className="flex w-full space-x-2">
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
                 variant="rectangular"
-                width={101}
+                width={104}
                 height={123}
-                className="flex"
-              />
-              <div className="flex flex-col justify-between">
-                <div className="flex flex-col space-y-2">
+                className="flex w-full"
+              /> 
+              <div className="flex w-full flex-col justify-between">
+                <div className="flex w-full flex-col space-y-2">
                   <Skeleton
                     sx={{ bgcolor: MainHeaderColor }}
                     variant="rectangular"
@@ -441,7 +441,7 @@ export function LoadingDiscoverTiles() {
                     className="flex"
                   />
                 </div>
-                <div className="flex justify-between">
+                <div className="flex w-full justify-between">
                   <Skeleton
                     sx={{ bgcolor: MainHeaderColor }}
                     variant="rectangular"
