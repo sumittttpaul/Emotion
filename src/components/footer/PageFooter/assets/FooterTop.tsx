@@ -108,6 +108,10 @@ const Socials = [
   },
 ];
 
+const LargeScreen = 'xl-1300:grid-cols-4';
+const MediumLargeScreen = 'lg-1100:grid-cols-3 lg-1100:grid-rows-1';
+const MediumSmallScreen = 'sm-750:grid-cols-2 sm-750:grid-rows-2';
+
 /**
  * @author
  * @function @FooterTop
@@ -116,50 +120,21 @@ const Socials = [
 export const FooterTop: FC<IProps> = (props) => {
   return (
     <>
-      {/* Large Screen */}
-      <div className="hidden xl-1300:flex relative w-full justify-between">
-        <PageFooterLinks heading="Services" Content={Services} />
-        <PageFooterLinks heading="Company" Content={Company} />
-        <PageFooterLinks heading="Account" Content={Account} />
-        <PageFooterSocials heading="Socials" Content={Socials} />
+      {/* Desktop View */}
+      <div className="hidden sm-750:flex relative w-full justify-between">
+        <div
+          className={`grid w-full ${LargeScreen} ${MediumLargeScreen} ${MediumSmallScreen}`}
+        >
+          <PageFooterLinks heading="Services" Content={Services} />
+          <PageFooterLinks heading="Company" Content={Company} />
+          <PageFooterLinks heading="Account" Content={Account} />
+          <PageFooterSocials heading="Socials" Content={Socials} />
+        </div>
         <div className="w-full max-w-[50%] flex justify-center">
           <PageFooterSubscribe />
         </div>
       </div>
-
-      {/* Large Medium Screen */}
-      <div className="hidden lg-1100:flex xl-1300:hidden flex-col  relative w-full">
-        <div className="flex justify-between w-full">
-          <div className="flex justify-between w-full max-w-[40%]">
-            <PageFooterLinks heading="Services" Content={Services} />
-            <PageFooterLinks heading="Company" Content={Company} />
-            <PageFooterLinks heading="Account" Content={Account} />
-          </div>
-          <div className="w-full max-w-[50%] flex justify-center">
-            <PageFooterSubscribe />
-          </div>
-        </div>
-        <PageFooterSocials heading="Socials" Content={Socials} />
-      </div>
-
-      {/* Small Medium Screen */}
-      <div className="hidden sm-750:flex lg-1100:hidden flex-col  relative w-full">
-        <div className="flex justify-between w-full">
-          <div className="flex justify-between w-full max-w-[40%]">
-            <PageFooterLinks heading="Services" Content={Services} />
-            <PageFooterLinks heading="Company" Content={Company} />
-          </div>
-          <div className="w-full max-w-[50%] flex justify-center">
-            <PageFooterSubscribe />
-          </div>
-        </div>
-        <div className="w-full flex max-w-[40%] justify-between">
-          <PageFooterLinks heading="Account" Content={Account} />
-          <PageFooterSocials heading="Socials" Content={Socials} />
-        </div>
-      </div>
-
-      {/* Small Screen */}
+      {/* Mobile view */}
       <div className="flex sm-750:hidden flex-col  relative w-full">
         <div className="w-full justify-center flex">
           <PageFooterSubscribe />
