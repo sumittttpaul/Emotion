@@ -16,7 +16,7 @@ interface IProps {}
 
 export const FooterBottom: FC<IProps> = (props) => {
   return (
-    <div className="grid grid-cols-2 grid-rows-2 gap-y-2 w-full mt-2 items-center sm:grid-cols-2 sm:grid-rows-2 md-900:grid-cols-2 md-900:grid-rows-2 lg-1140:grid-cols-3 lg-1140:grid-rows-1">
+    <div className="grid grid-cols-2 grid-rows-2 gap-y-3 sm:gap-y-2 w-full mt-2 items-center sm:grid-cols-2 sm:grid-rows-2 md-900:grid-cols-2 md-900:grid-rows-2 lg-1140:grid-cols-3 lg-1140:grid-rows-1">
       <div className="block sm:hidden col-span-2 row-span-2 h-[1px] w-full bg-[rgba(255,255,255,0.1)]" />
       <h6 className="text-[11.5px] whitespace-normal xs-400:whitespace-nowrap col-span-1 row-span-2 sm:row-span-2 md-900:row-span-1 order-1 md-900:order-1 w-full justify-start font-[300] flex text-white opacity-80">
         Copyright © 2022 Agewear-lifestyle. All rights reserved.
