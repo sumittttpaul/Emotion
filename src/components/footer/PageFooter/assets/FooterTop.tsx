@@ -21,7 +21,6 @@ import Facebook_Logo from '../../../../../public/images/social/facebook_square.p
 import Instagram_Logo from '../../../../../public/images/social/instagram_square.png';
 import Twitter_Logo from '../../../../../public/images/social/twitter_square.png';
 import Youtube_Logo from '../../../../../public/images/social/youtube_square.png';
-import { PageFooterLinksFlex } from './PageFooterLinksFlex';
 
 interface IProps {}
 
@@ -70,21 +69,6 @@ const Account = [
   },
 ];
 
-const AccountForSmall = [
-  {
-    label: 'My Account',
-    to: Manage_Your_Account_Link,
-  },
-  {
-    label: 'Redeem Codes',
-    to: Redeem_Gift_Codes_Link,
-  },
-  {
-    label: 'My Orders',
-    to: Cart_Link,
-  },
-];
-
 const Socials = [
   {
     label: 'Facebook',
@@ -115,30 +99,16 @@ const Socials = [
 
 export const FooterTop: FC<IProps> = (props) => {
   return (
-    <>
-      {/* Desktop View */}
-      <div className="hidden sm-750:flex lg-1100:grid-cols-3 lg-1100:grid-rows-1 xl-1300:grid-cols-4 xl-1300:grid-rows-1 relative w-full justify-between">
-        <div className="grid w-full sm-750:grid-cols-2 sm-750:grid-rows-2">
-          <PageFooterLinks heading="Services" Content={Services} />
-          <PageFooterLinks heading="Company" Content={Company} />
-          <PageFooterLinks heading="Account" Content={Account} />
-          <PageFooterSocials heading="Socials" Content={Socials} />
-        </div>
-        <div className="w-full max-w-[50%] flex justify-center">
-          <PageFooterSubscribe />
-        </div>
-      </div>
-
-      {/* Mobile view */}
-      <div className="flex sm-750:hidden flex-col  relative w-full">
-        <div className="w-full justify-center flex">
-          <PageFooterSubscribe />
-        </div>
-        <PageFooterLinksFlex heading="Services" Content={Services} />
-        <PageFooterLinksFlex heading="Company" Content={Company} />
-        <PageFooterLinksFlex heading="Account" Content={AccountForSmall} />
+    <div className="grid sm-750:flex grid-cols-1 grid-rows-2 sm-750:grid-rows-1 relative w-full justify-between">
+      <div className="grid col-span-1 row-span-1 order-2 sm-750:order-1 w-full sm-750:grid-cols-2 sm-750:grid-rows-2 lg-1100:grid-cols-3 lg-1100:grid-rows-1 xl-1300:grid-cols-4 xl-1300:grid-rows-1">
+        <PageFooterLinks heading="Services" Content={Services} />
+        <PageFooterLinks heading="Company" Content={Company} />
+        <PageFooterLinks heading="Account" Content={Account} />
         <PageFooterSocials heading="Socials" Content={Socials} />
       </div>
-    </>
+      <div className="w-full col-span-1 row-span-2 sm-750:rows-span-1 order-1 sm-750:order-2 sm-750:max-w-[50%] flex justify-center">
+        <PageFooterSubscribe />
+      </div>
+    </div>
   );
 };

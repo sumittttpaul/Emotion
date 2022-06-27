@@ -18,17 +18,22 @@ export const PageFooterLinks: FC<IProps> = (props) => {
         {props.heading}
       </h6>
       <div className="relative flex">
-        <ul className="flex flex-col w-full relative space-y-[2px]">
-          {props.Content.map((value) => (
+        <ul className="flex flex-row sm-750:flex-col relative space-y-[2px]">
+          {props.Content.map((value, idx) => (
             <li key={value.label} className="relative flex">
               <Link
                 key={value.label}
                 href={value.to}
                 underline="hover"
-                className="text-white underline-offset-2 flex justify-start items-center p-0 w-28 whitespace-nowrap font-[300] text-[12px] button-text-lower"
+                className="text-white underline-offset-2 flex justify-start items-center p-0 whitespace-nowrap font-[300] text-[12px] button-text-lower"
               >
                 {value.label}
               </Link>
+              {idx === 2 ? (
+                <></>
+              ) : (
+                <div className="block sm-750:hidden h-5 w-[1px] mx-2 bg-[rgba(255,255,255,0.23)]" />
+              )}
             </li>
           ))}
         </ul>
