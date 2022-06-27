@@ -108,10 +108,6 @@ const Socials = [
   },
 ];
 
-const LargeScreen = 'xl-1300:grid-cols-4';
-const MediumLargeScreen = 'lg-1100:grid-cols-3 lg-1100:grid-rows-1';
-const MediumSmallScreen = 'sm-750:grid-cols-2 sm-750:grid-rows-2';
-
 /**
  * @author
  * @function @FooterTop
@@ -121,10 +117,8 @@ export const FooterTop: FC<IProps> = (props) => {
   return (
     <>
       {/* Desktop View */}
-      <div className="hidden sm-750:flex relative w-full justify-between">
-        <div
-          className={`grid w-full ${LargeScreen} ${MediumLargeScreen} ${MediumSmallScreen}`}
-        >
+      <div className="hidden sm-750:flex lg-1100:grid-cols-3 lg-1100:grid-rows-1 xl-1300:grid-cols-4 xl-1300:grid-rows-1 relative w-full justify-between">
+        <div className="grid w-full sm-750:grid-cols-2 sm-750:grid-rows-2">
           <PageFooterLinks heading="Services" Content={Services} />
           <PageFooterLinks heading="Company" Content={Company} />
           <PageFooterLinks heading="Account" Content={Account} />
@@ -134,6 +128,7 @@ export const FooterTop: FC<IProps> = (props) => {
           <PageFooterSubscribe />
         </div>
       </div>
+
       {/* Mobile view */}
       <div className="flex sm-750:hidden flex-col  relative w-full">
         <div className="w-full justify-center flex">
