@@ -63,7 +63,7 @@ export const DiscoverBannerFourTablet: FC<DiscoverBannerFourTabletProps> = (
   return (
     <div className="hidden sm:flex md-900:hidden flex-col w-full relative p-0 m-0 space-y-5">
       <h6 className="text-[18px] mx-5">Our services</h6>
-      <div className="w-full relative box-border space-x-5">
+      <div className="w-full flex relative box-border space-x-5">
         <Swiper
           slidesPerView={3}
           spaceBetween={15}
@@ -120,7 +120,7 @@ export const DiscoverBannerFourMobile: FC<DiscoverBannerFourMobileProps> = (
   return (
     <div className="flex sm:hidden flex-col w-full relative p-0 m-0 space-y-5">
       <h6 className="text-[18px] mx-5">Our services</h6>
-      <div className="w-full relative box-border space-x-5">
+      <div className="w-full flex relative box-border space-x-5">
         <Swiper
           slidesPerView={1.5}
           spaceBetween={15}
