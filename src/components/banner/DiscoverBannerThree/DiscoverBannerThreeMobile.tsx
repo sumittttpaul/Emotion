@@ -33,7 +33,7 @@ export const DiscoverBannerThreeMobile: FC<IProps> = (props) => {
           <SwiperSlide
             key={index}
             tag="li"
-            className="text-white relative button-text-lower p-0 m-0 rounded-xl overflow-hidden"
+            className="text-white bg-white bg-opacity-[0.023] relative button-text-lower p-0 m-0 rounded-xl overflow-hidden"
           >
             <div className="p-0 m-0">
               <div className="relative w-full h-full">

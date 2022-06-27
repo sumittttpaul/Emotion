@@ -20,7 +20,7 @@ export const DiscoverBannerThreeDesktop: FC<IProps> = (props) => {
       {props.ContentArray.map((value, index) => (
         <div
           key={index}
-          className="text-white relative button-text-lower p-0 m-0 rounded-2xl overflow-hidden"
+          className="text-white relative button-text-lower p-0 m-0 rounded-2xl overflow-hidden bg-white bg-opacity-[0.023]"
         >
           <div className="p-0 m-0">
             <div className="relative w-full h-full">
