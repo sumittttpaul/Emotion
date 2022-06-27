@@ -3,6 +3,7 @@ import { IconButton } from '@mui/material';
 import React, { FC } from 'react';
 
 export interface DiscoverSliderTitleProps {
+  label: string;
   slideLeft: () => void;
   slideRight: () => void;
   LeftDisabled: boolean;
@@ -17,7 +18,7 @@ export interface DiscoverSliderTitleProps {
 export const DiscoverSliderTitle: FC<DiscoverSliderTitleProps> = (props) => {
   return (
     <div className="w-full px-5 flex text-white justify-between">
-      <h6 className="text-[18px]">Trending winter collections</h6>
+      <h6 className="text-[18px]">{props.label}</h6>
       <div className="hidden sm:flex space-x-2">
         <IconButton
           onClick={props.slideLeft}

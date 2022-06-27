@@ -53,7 +53,7 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
           animate={props.BannerTextTransition}
           onAnimationComplete={() => props.setBannerTextTransition('open')}
           variants={StaggerAnimationVariant}
-          className="space-y-8 box-border z-[1]"
+          className="space-y-8 box-border z-[1] sm:h-[253px]"
         >
           <motion.div
             transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
