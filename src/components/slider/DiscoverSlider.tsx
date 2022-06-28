@@ -103,7 +103,7 @@ export const DiscoverSlider: FC<IProps> = (props) => {
   useEffect(() => {
     const slider = sliderRef.current;
     if (slider) {
-      let maxScroll = slider.scrollWidth - slider.clientWidth;
+      let maxScroll = slider.scrollWidth - slider.offsetWidth;
       if (slider.scrollLeft === maxScroll) setRightDisabled(true);
       else setRightDisabled(false);
     }

@@ -44,7 +44,7 @@ const ChildAnimationVariant = {
  * @Carousel_Banner
  **/
 export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
-  const [CarouselState, setCarouselState] = useState(-1);
+  const [CarouselState, setCarouselState] = useState(0);
   useEffect(() => {
     setTimeout(() => {
       setCarouselState(props.CarouselState);
