@@ -48,7 +48,7 @@ export const DiscoverSliderDesktopAndTablet: FC<
               },
             }}
           >
-            <div>
+            <div className='w-full flex flex-col relative'>
               <div className="relative w-full overflow-hidden">
                 <div className="opacity-0 p-2 flex items-start justify-end group-hover:opacity-100 absolute z-[1] transition-opacity duration-300 rounded-md h-[98%] w-full bg-gradient-to-bl from-[rgba(0,0,0,0.3)]">
                   <TooltipDark arrow title="Add to Wishlist" placement="top">

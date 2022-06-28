@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import React, { FC, useEffect, useRef, useState } from 'react';
+import { useSwiper } from 'swiper/react';
 import useScreenSize from '../../algorithms/ScreenSizeDetection';
 import { DiscoverSliderIProps } from '../../contents/store/discover/Store.Discover.Slider';
 import { LoadingDiscoverSlider } from '../loader/LoadingSkeleton';
@@ -92,13 +93,9 @@ export const DiscoverSlider: FC<IProps> = (props) => {
   };
   useEffect(() => {
     const slider = sliderRef.current;
-    if (slider) {
-      slider.addEventListener('scroll', ListenToSliderScroll);
-    }
+    if (slider) slider.addEventListener('scroll', ListenToSliderScroll);
     return () => {
-      if (slider) {
-        slider.removeEventListener('scroll', ListenToSliderScroll);
-      }
+      if (slider) slider.removeEventListener('scroll', ListenToSliderScroll);
     };
   });
   useEffect(() => {
