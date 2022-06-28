@@ -5,7 +5,7 @@ import { UnderlineButtonDark } from '../../button/UnderlineButtonDark';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 const SwiperSlideStyle =
-  'h-full w-full flex relative m-0 p-0 text-white overflow-hidden rounded-lg border border-solid border-[rgba(255,255,255,0.23)]';
+  'h-full w-full flex relative m-0 p-0 text-white overflow-hidden rounded-xl border border-solid border-[rgba(255,255,255,0.23)]';
 const TopHeadingContainerStyle =
   'flex flex-col relative p-3 h-full w-full justify-between';
 const BottomHeadingContainerStyle =

@@ -76,24 +76,23 @@ export const DiscoverSlider: FC<IProps> = (props) => {
     if (slider) {
       if (slider.scrollLeft === 0) {
         setLeftDisabled(true);
-        console.log('Scroll Left : False');
       } else {
-        console.log('Scroll Left : True');
         setLeftDisabled(false);
       }
       let maxScroll = slider.scrollWidth - slider.offsetWidth;
       if (slider.scrollLeft === maxScroll) {
         setRightDisabled(true);
-        console.log('Scroll Right : False');
       } else {
         setRightDisabled(false);
-        console.log('Scroll Right : True');
       }
     }
   };
   useEffect(() => {
     const slider = sliderRef.current;
-    if (slider) slider.addEventListener('scroll', ListenToSliderScroll);
+    if (slider) console.log(slider.scrollLeft);
+    if (slider) {
+      slider.addEventListener('scroll', ListenToSliderScroll);
+    }
     return () => {
       if (slider) slider.removeEventListener('scroll', ListenToSliderScroll);
     };
