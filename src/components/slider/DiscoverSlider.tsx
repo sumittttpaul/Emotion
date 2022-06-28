@@ -70,9 +70,14 @@ export const DiscoverSlider: FC<IProps> = (props) => {
     }
   };
 
-  const ScrollRight = () => {
+  const ListenToSliderScroll = () => {
     const slider = sliderRef.current;
     if (slider) {
+      if (slider.scrollLeft === 0) {
+        setLeftDisabled(true);
+      } else {
+        setLeftDisabled(false);
+      }
       let maxScroll = slider.scrollWidth - slider.clientWidth;
       if (slider.scrollLeft === 0) {
         return;
@@ -84,34 +89,26 @@ export const DiscoverSlider: FC<IProps> = (props) => {
       }
     }
   };
-
-  const ListenToScroll = () => {
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (slider) {
+      slider.addEventListener('scroll', ListenToSliderScroll);
+    }
+    return () => {
+      if (slider) {
+        slider.removeEventListener('scroll', ListenToSliderScroll);
+      }
+    };
+  });
+  useEffect(() => {
     const slider = sliderRef.current;
     if (slider) {
       let maxScroll = slider.scrollWidth - slider.clientWidth;
-      if (slider.scrollLeft === 0) setLeftDisabled(true);
-      else setLeftDisabled(false);
       if (slider.scrollLeft === maxScroll) setRightDisabled(true);
       else setRightDisabled(false);
-      ScrollRight();
     }
-  };
+  }, []);
 
-  useEffect(() => {
-    if (window.innerWidth) {
-      if (window.innerWidth > 640) {
-        const slider = sliderRef.current;
-        if (slider) {
-          slider.addEventListener('scroll', ListenToScroll);
-        }
-        return () => {
-          if (slider) {
-            slider.removeEventListener('scroll', ListenToScroll);
-          }
-        };
-      }
-    }
-  });
   return (
     <div className="flex flex-col space-y-5 overflow-x-hidden overflow-y-visible mt-[50px]">
       <DiscoverSliderTitle

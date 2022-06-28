@@ -41,7 +41,7 @@ interface IProps {
  **/
 
 export const DiscoverCarousel: FC<IProps> = (props) => {
-  const ContainerRef = useRef(null);
+  const ContainerRef = useRef<HTMLDivElement>(null);
   const [CarouselState, setCarouselState] = useState(0);
   const [BannerTextTransition, setBannerTextTransition] = useState('open');
   return (
@@ -56,9 +56,9 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
             BannerTextTransition={BannerTextTransition}
             setBannerTextTransition={setBannerTextTransition}
           />
-          <div className="bg-gradient-to-t from-[#121212] w-full block h-[130px] -mt-[130px]" />
+          <div className="bg-gradient-to-t from-[#121212] w-full h-[130px] -mt-[130px]" />
           <ThumbnailSlider
-            AutoPlay={true}
+            AutoPlay={false}
             Duration={5}
             ConstraintRef={ContainerRef}
             ThumbnailArray={props.ContentArray}

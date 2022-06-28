@@ -1,13 +1,13 @@
 import { rectangle_BlurDataURL } from '../../loader/BlurDataURL';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import React, { Dispatch, FC, MutableRefObject, SetStateAction } from 'react';
+import React, { Dispatch, FC, RefObject, SetStateAction } from 'react';
 import { DiscoverCarouselIProps } from '../../../contents/store/discover/Store.Discover.Carousel';
 
 interface IProps {
   AutoPlay?: boolean;
   Duration?: number;
-  ThumbnailRef: MutableRefObject<null>;
+  ThumbnailRef: RefObject<HTMLButtonElement>;
   CarouselState: number;
   setCarouselState: Dispatch<SetStateAction<number>>;
   LeftIndicator: boolean;

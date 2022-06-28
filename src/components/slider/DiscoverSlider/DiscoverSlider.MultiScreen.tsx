@@ -33,12 +33,13 @@ export const DiscoverSliderDesktopAndTablet: FC<
         vertical={false}
         hideScrollbars={true}
         innerRef={props.sliderRef}
-        component="div"
+        component="ul"
         className="w-full flex px-5 sm:px-0 space-x-4 box-border scroll-smooth"
       >
         {props.ContentArray.map((value, index) => (
           <Button
             key={index}
+            component="li"
             disableFocusRipple
             className="text-white group m-0 p-0 space-y-1 min-w-[197.5px] md-900:min-w-[220px] button-text-lower"
             sx={{

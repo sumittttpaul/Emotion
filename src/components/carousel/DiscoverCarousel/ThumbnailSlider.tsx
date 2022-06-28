@@ -4,9 +4,8 @@ import { ThumbnailMap } from './ThumbnailMap';
 import React, {
   FC,
   useEffect,
-  useLayoutEffect,
   useRef,
-  MutableRefObject,
+  RefObject,
   useState,
   SetStateAction,
   Dispatch,
@@ -16,7 +15,7 @@ import { DiscoverCarouselIProps } from '../../../contents/store/discover/Store.D
 export interface ThumbnailSliderProps {
   AutoPlay?: boolean;
   Duration?: number;
-  ConstraintRef: MutableRefObject<null>;
+  ConstraintRef: RefObject<HTMLDivElement>;
   CarouselState: number;
   setCarouselState: Dispatch<SetStateAction<number>>;
   setBannerTextTransition: Dispatch<SetStateAction<string>>;
@@ -29,9 +28,10 @@ export interface ThumbnailSliderProps {
 export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
   const animation = useAnimation();
   const x = useMotionValue(0);
-  const dragRef = useRef(null);
-  const thumbnailRef = useRef(null);
+  const dragRef = useRef<HTMLDivElement>(null);
+  const thumbnailRef = useRef<HTMLButtonElement>(null);
   const [ExceptionalHover, setExceptionalHover] = useState(false);
+  const [DragValue, setDragValue] = useState(0);
   const [DragHover, setDragHover] = useState(false);
   const [LeftHide, setLeftHide] = useState(false);
   const [RightHide, setRightHide] = useState(false);
@@ -51,8 +51,8 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
       props.CarouselState === props.ThumbnailArray.length - 1
         ? 0
         : props.CarouselState + 1;
-    const ThumbnailWidth: any = thumbnailRef.current;
-    const ContainerWidth: any = props.ConstraintRef.current;
+    const ThumbnailWidth = thumbnailRef.current;
+    const ContainerWidth = props.ConstraintRef.current;
     if (ThumbnailWidth && ContainerWidth) {
       const IndexValue = CarouselIndex + 2;
       const ContentExceed = ThumbnailWidth.offsetWidth * IndexValue;
@@ -104,7 +104,7 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
 
   const LeftClick = () => {
     const xPos = x.get();
-    var width: any = props.ConstraintRef.current;
+    var width = props.ConstraintRef.current;
     if (width) {
       const newXPosition = xPos + width.offsetWidth;
       animation.start({
@@ -115,13 +115,13 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
   };
   const RightClick = () => {
     const xPos = x.get();
-    var width: any = props.ConstraintRef.current;
-    var scrollWidth: any = dragRef.current;
+    var width = props.ConstraintRef.current;
+    var scrollWidth = dragRef.current;
     if (width && scrollWidth) {
       const newXPosition = xPos - width.offsetWidth;
-      const maxScroll = scrollWidth.offsetWidth - width.offsetWidth;
+      const maxScroll = scrollWidth.scrollWidth - scrollWidth.offsetWidth;
       animation.start({
-        x: newXPosition < -maxScroll ? -maxScroll : newXPosition,
+        x: newXPosition < -maxScroll ? -maxScroll - 32 : newXPosition,
       });
     }
     HideButton();
@@ -161,8 +161,8 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
 
   const HideButton = () => {
     const xPos = x.get();
-    var width: any = props.ConstraintRef.current;
-    var scrollWidth: any = dragRef.current;
+    var width = props.ConstraintRef.current;
+    var scrollWidth = dragRef.current;
     // Hide Left Button
     if (xPos >= -5) {
       setLeftAnimate('closed');
@@ -173,7 +173,7 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
     }
     // Hide Right Button
     if (width && scrollWidth) {
-      const maxScroll = scrollWidth.offsetWidth - width.offsetWidth - 5;
+      const maxScroll = scrollWidth.scrollWidth - scrollWidth.offsetWidth - 5;
       if (xPos <= -maxScroll) {
         setRightAnimate('closed');
         setRightHide(false);
@@ -186,8 +186,8 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
 
   const HideButtonInitialState = () => {
     const xPos = x.get();
-    var width: any = props.ConstraintRef.current;
-    var scrollWidth: any = dragRef.current;
+    var width = props.ConstraintRef.current;
+    var scrollWidth = dragRef.current;
     // Hide Arrow Left Button
     if (xPos >= -5) {
       setLeftHide(false);
@@ -196,7 +196,7 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
     }
     // Hide Arrow Right Button
     if (width && scrollWidth) {
-      const maxScroll = scrollWidth.offsetWidth - width.offsetWidth - 5;
+      const maxScroll = scrollWidth.scrollWidth - scrollWidth.offsetWidth - 5;
       if (xPos <= -maxScroll) {
         setRightHide(false);
       } else {
@@ -206,13 +206,13 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
   };
   const IsContentExceed = () => {
     const xPos = x.get();
-    var width: any = props.ConstraintRef.current;
-    var scrollWidth: any = dragRef.current;
-    if (width && scrollWidth) {
-      if (scrollWidth.offsetWidth > width.offsetWidth) {
-        if (!ContentExceed) setContentExceed(true);
+    const scrollWidth = dragRef.current;
+    if (scrollWidth) {
+      if (scrollWidth.scrollWidth - scrollWidth.offsetWidth > 0) {
+        setContentExceed(true);
       } else {
-        if (ContentExceed) setContentExceed(false);
+        console.log(ContentExceed);
+        setContentExceed(false);
         if (xPos < 0) {
           animation.start({
             x: 0,
@@ -223,12 +223,10 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
   };
 
   useEffect(() => {
-    if (window.innerWidth) {
-      if (props.AutoPlay && props.Duration && window.innerWidth > 640) {
-        if (IntervalStatus === 'running') {
-          StartCarousel();
-          return () => ClearCarousel();
-        }
+    if (props.AutoPlay && props.Duration) {
+      if (IntervalStatus === 'running') {
+        StartCarousel();
+        return () => ClearCarousel();
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -236,8 +234,11 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
 
   /* Initial State */
   useEffect(() => {
-    HideButtonInitialState();
     IsContentExceed();
+    HideButtonInitialState();
+    const scrollWidth = dragRef.current;
+    if (scrollWidth)
+      setDragValue(scrollWidth.scrollWidth - scrollWidth.offsetWidth);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -246,7 +247,7 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
     });
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     window.addEventListener('resize', IsContentExceed);
     return () => window.removeEventListener('resize', IsContentExceed);
   });
@@ -257,8 +258,7 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
         ParentDragHoverEnd();
         onHoverCarouselEnd();
       }}
-      // onHoverStart={onHoverCarouselStart}
-      className={`${ContentExceed ? 'ml-auto' : 'mr-auto'} ${'z-[1] mb-[3px]'}`}
+      className={`${ContentExceed ? 'ml-auto' : 'mr-auto'} ${'z-[1] relative'}`}
     >
       <motion.div
         drag={ContentExceed ? 'x' : false}
@@ -272,12 +272,12 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
         onDragTransitionEnd={ExceptionalDragHover}
         onPointerLeave={() => setExceptionalHover(true)}
         transition={{ type: 'spring', bounce: 0.25 }}
-        dragConstraints={props.ConstraintRef}
+        dragConstraints={{ right: 0, left: -DragValue - 32 }}
         whileDrag={{ cursor: 'grab' }}
         style={{ x }}
         className={`${
           ContentExceed ? 'ml-auto' : 'mr-auto'
-        } ${'w-auto z-[1] flex space-x-2 px-8 pb-1 -mt-[80px]'}`}
+        } ${'w-auto flex space-x-2 px-8 pb-1 -mt-[80px]'}`}
       >
         <ThumbnailMap
           AutoPlay={props.AutoPlay}

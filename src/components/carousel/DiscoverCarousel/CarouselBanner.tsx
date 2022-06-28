@@ -1,4 +1,4 @@
-import React, { FC, Dispatch, SetStateAction, MutableRefObject } from 'react';
+import React, { FC, Dispatch, SetStateAction, RefObject } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Button } from '@mui/material';
 import { HeartIcon } from '@heroicons/react/outline';
@@ -6,7 +6,7 @@ import { CarouselBannerImage } from './CarouselBannerImage';
 import { DiscoverCarouselIProps } from '../../../contents/store/discover/Store.Discover.Carousel';
 
 export interface CarouselBannerProps {
-  ElementRef: MutableRefObject<null>;
+  ElementRef: RefObject<HTMLDivElement>;
   ContentArray: DiscoverCarouselIProps[];
   CarouselState: number;
   BannerTextTransition: string;
@@ -41,10 +41,10 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
     <AnimatePresence exitBeforeEnter>
       <motion.div
         ref={props.ElementRef}
-        className="text-white relative box-border items-start justify-end rounded-t-2xl w-full h-[500px] md-900:h-[600px] px-12 pb-[130px] flex flex-col overflow-hidden bg-gradient-to-r from-[rgba(0,0,0,0.7)]"
+        className="text-white -[z-1] relative box-border items-start justify-end rounded-t-2xl w-full h-[500px] md-900:h-[600px] px-12 pb-[130px] flex flex-col overflow-hidden bg-gradient-to-r from-[rgba(0,0,0,0.7)]"
       >
         <CarouselBannerImage
-          className="-z-[1]"
+          className="-z-[2]"
           src={props.ContentArray[props.CarouselState].Image}
           alt="Carousel-Image"
           objectPosition="center"
@@ -53,7 +53,7 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
           animate={props.BannerTextTransition}
           onAnimationComplete={() => props.setBannerTextTransition('open')}
           variants={StaggerAnimationVariant}
-          className="space-y-8 box-border z-[1] sm:h-[253px]"
+          className="space-y-8 box-border sm:h-[253px]"
         >
           <motion.div
             transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}

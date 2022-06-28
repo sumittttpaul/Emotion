@@ -84,7 +84,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
       slider.scrollLeft = slider.scrollLeft + slider.offsetWidth;
     }
   };
-  const ListenToScroll = () => {
+  const ListenToIllustrationScroll = () => {
     const slider = sliderRef.current;
     if (slider) {
       if (slider.scrollLeft === 0) {
@@ -92,12 +92,6 @@ export const IllustrationCollections: FC<IProps> = (props) => {
       } else {
         setLeftAnimate('open');
       }
-      ScrollRight();
-    }
-  };
-  const ScrollRight = () => {
-    const slider = sliderRef.current;
-    if (slider) {
       let maxScroll = slider.scrollWidth - slider.clientWidth;
       if (slider.scrollLeft === 0) {
         return;
@@ -112,14 +106,22 @@ export const IllustrationCollections: FC<IProps> = (props) => {
   useEffect(() => {
     const slider = sliderRef.current;
     if (slider) {
-      slider.addEventListener('scroll', ListenToScroll);
+      slider.addEventListener('scroll', ListenToIllustrationScroll);
     }
     return () => {
       if (slider) {
-        slider.removeEventListener('scroll', ListenToScroll);
+        slider.removeEventListener('scroll', ListenToIllustrationScroll);
       }
     };
   });
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (slider) {
+      let maxScroll = slider.scrollWidth - slider.clientWidth;
+      if (slider.scrollLeft === maxScroll) setRightAnimate('closed');
+      else setRightAnimate('open');
+    }
+  }, []);
   return (
     <div className="relative flex flex-col space-y-2 pb-1 box-border w-full">
       {/* Heading */}
@@ -133,13 +135,14 @@ export const IllustrationCollections: FC<IProps> = (props) => {
       <ScrollContainer
         vertical={false}
         hideScrollbars={true}
-        component="div"
+        component="ul"
         innerRef={sliderRef}
         className="px-3 relative box-border h-full w-full space-x-[6px] whitespace-nowrap scroll-smooth overflow-x-scroll scroll scrollbar-hide"
       >
         {Illustrations.map((illustrationURL) => (
           <Button
             aria-label="all-illustration-button"
+            component="li"
             disableFocusRipple
             key={illustrationURL}
             onClick={() => {
