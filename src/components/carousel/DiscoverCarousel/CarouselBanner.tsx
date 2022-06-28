@@ -48,7 +48,7 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
   useEffect(() => {
     setTimeout(() => {
       setCarouselState(props.CarouselState);
-    }, 150);
+    }, 200);
   }, [props.CarouselState]);
   return (
     <AnimatePresence exitBeforeEnter>
