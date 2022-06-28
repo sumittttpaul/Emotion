@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic';
-import React, { FC, useEffect, useRef, useState } from 'react';
-import { useSwiper } from 'swiper/react';
+import React, { FC, useRef, useState } from 'react';
 import useScreenSize from '../../algorithms/ScreenSizeDetection';
 import { DiscoverSliderIProps } from '../../contents/store/discover/Store.Discover.Slider';
 import { LoadingDiscoverSlider } from '../loader/LoadingSkeleton';
@@ -56,60 +55,11 @@ export const DiscoverSlider: FC<IProps> = (props) => {
   const [RightDisabled, setRightDisabled] = useState(false);
   const [Wishlist, setWishlist] = useState(-1);
   const sliderRef = useRef<HTMLElement>(null);
-
-  const slideLeft = () => {
-    const slider = sliderRef.current;
-    if (slider) {
-      slider.scrollLeft = slider.scrollLeft - slider.offsetWidth;
-    }
-  };
-
-  const slideRight = () => {
-    const slider = sliderRef.current;
-    if (slider) {
-      slider.scrollLeft = slider.scrollLeft + slider.offsetWidth;
-    }
-  };
-
-  const ListenToSliderScroll = () => {
-    const slider = sliderRef.current;
-    if (slider) {
-      if (slider.scrollLeft === 0) {
-        setLeftDisabled(true);
-      } else {
-        setLeftDisabled(false);
-      }
-      let maxScroll = slider.scrollWidth - slider.offsetWidth;
-      if (slider.scrollLeft === maxScroll) {
-        setRightDisabled(true);
-      } else {
-        setRightDisabled(false);
-      }
-    }
-  };
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (slider) {
-      slider.addEventListener('scroll', ListenToSliderScroll);
-    }
-    return () => {
-      if (slider) slider.removeEventListener('scroll', ListenToSliderScroll);
-    };
-  });
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (slider) {
-      if (slider.scrollLeft === 0) setLeftDisabled(true);
-      else setLeftDisabled(false);
-    }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
   return (
     <div className="flex flex-col space-y-5 overflow-x-hidden overflow-y-visible mt-[50px]">
       <DiscoverSliderTitle
         label="Trending winter collections"
-        slideLeft={slideLeft}
-        slideRight={slideRight}
+        sliderRef={sliderRef}
         LeftDisabled={LeftDisabled}
         RightDisabled={RightDisabled}
       />
@@ -119,6 +69,8 @@ export const DiscoverSlider: FC<IProps> = (props) => {
           sliderRef={sliderRef}
           Wishlist={Wishlist}
           setWishlist={setWishlist}
+          setLeftDisabled={setLeftDisabled}
+          setRightDisabled={setRightDisabled}
         />
       ) : (
         <></>

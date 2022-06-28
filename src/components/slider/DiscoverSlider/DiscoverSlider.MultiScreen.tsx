@@ -1,5 +1,5 @@
 import { DiscoverSliderIProps } from '../../../contents/store/discover/Store.Discover.Slider';
-import React, { Dispatch, FC, RefObject, SetStateAction } from 'react';
+import React, { Dispatch, FC, RefObject, SetStateAction, useEffect } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { Swiper } from 'swiper/react';
 import {
@@ -12,10 +12,44 @@ export interface DiscoverSliderDesktopAndTabletProps {
   sliderRef: RefObject<HTMLElement>;
   Wishlist: number;
   setWishlist: Dispatch<SetStateAction<number>>;
+  setLeftDisabled: Dispatch<SetStateAction<boolean>>;
+  setRightDisabled: Dispatch<SetStateAction<boolean>>;
 }
 export const DiscoverSliderDesktopAndTablet: FC<
   DiscoverSliderDesktopAndTabletProps
 > = (props) => {
+  const ListenToSliderScroll = () => {
+    const slider = props.sliderRef.current;
+    if (slider) {
+      if (slider.scrollLeft === 0) {
+        props.setLeftDisabled(true);
+      } else {
+        props.setLeftDisabled(false);
+      }
+      let maxScroll = slider.scrollWidth - slider.offsetWidth;
+      if (slider.scrollLeft === maxScroll) {
+        props.setRightDisabled(true);
+      } else {
+        props.setRightDisabled(false);
+      }
+    }
+  };
+  useEffect(() => {
+    const slider = props.sliderRef.current;
+    if (slider) {
+      slider.addEventListener('scroll', ListenToSliderScroll);
+    }
+    return () => {
+      if (slider) slider.removeEventListener('scroll', ListenToSliderScroll);
+    };
+  });
+  useEffect(() => {
+    const slider = props.sliderRef.current;
+    if (slider) {
+      if (slider.scrollLeft === 0) props.setLeftDisabled(true);
+      else props.setLeftDisabled(false);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div className="hidden sm:flex w-full box-border px-0 sm:px-5">
       <ScrollContainer
