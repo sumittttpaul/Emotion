@@ -89,7 +89,6 @@ export const DiscoverSlider: FC<IProps> = (props) => {
   };
   useEffect(() => {
     const slider = sliderRef.current;
-    if (slider) console.log(slider.scrollLeft);
     if (slider) {
       slider.addEventListener('scroll', ListenToSliderScroll);
     }
