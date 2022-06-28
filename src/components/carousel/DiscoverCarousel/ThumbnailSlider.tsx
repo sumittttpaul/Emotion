@@ -42,7 +42,7 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
   const [RightIndicator, setRightIndicator] = useState(false);
   const [IntervalStatus, setIntervalStatus] = useState('running');
   const setIntervalTime =
-    props.Duration && props.AutoPlay ? props.Duration * 1000 - 150 : undefined;
+    props.Duration && props.AutoPlay ? props.Duration * 1000 : undefined;
   let CarouselInterval: ReturnType<typeof setInterval> | undefined;
   let intervalTime = setIntervalTime;
 
