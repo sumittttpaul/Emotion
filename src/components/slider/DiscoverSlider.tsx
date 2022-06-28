@@ -75,17 +75,18 @@ export const DiscoverSlider: FC<IProps> = (props) => {
     if (slider) {
       if (slider.scrollLeft === 0) {
         setLeftDisabled(true);
+        console.log('Scroll Left : False');
       } else {
+        console.log('Scroll Left : True');
         setLeftDisabled(false);
       }
-      let maxScroll = slider.scrollWidth - slider.clientWidth;
-      if (slider.scrollLeft === 0) {
-        return;
-      }
+      let maxScroll = slider.scrollWidth - slider.offsetWidth;
       if (slider.scrollLeft === maxScroll) {
         setRightDisabled(true);
+        console.log('Scroll Right : False');
       } else {
         setRightDisabled(false);
+        console.log('Scroll Right : True');
       }
     }
   };
@@ -103,11 +104,10 @@ export const DiscoverSlider: FC<IProps> = (props) => {
   useEffect(() => {
     const slider = sliderRef.current;
     if (slider) {
-      let maxScroll = slider.scrollWidth - slider.offsetWidth;
-      if (slider.scrollLeft === maxScroll) setRightDisabled(true);
-      else setRightDisabled(false);
+      if (slider.scrollLeft === 0) setLeftDisabled(true);
+      else setLeftDisabled(false);
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="flex flex-col space-y-5 overflow-x-hidden overflow-y-visible mt-[50px]">

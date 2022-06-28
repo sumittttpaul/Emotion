@@ -45,11 +45,6 @@ const ChildAnimationVariant = {
  **/
 export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
   const [CarouselState, setCarouselState] = useState(0);
-  useEffect(() => {
-    setTimeout(() => {
-      setCarouselState(props.CarouselState);
-    }, 200);
-  }, [props.CarouselState]);
   return (
     <AnimatePresence exitBeforeEnter>
       <motion.div
@@ -65,6 +60,7 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
         <motion.div
           animate={props.BannerTextTransition}
           onAnimationComplete={() => {
+            setCarouselState(props.CarouselState);
             props.setBannerTextTransition('open');
           }}
           variants={StaggerAnimationVariant}
