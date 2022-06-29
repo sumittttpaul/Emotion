@@ -28,6 +28,7 @@ module.exports = {
         'lg-1100': '1100px',
         'lg-1140': '1140px',
         'xl-1300': '1300px',
+        'child-screen': '1440px',
       },
     },
   },
