@@ -48,7 +48,6 @@ interface IProps {
  * @author
  * @function @DiscoverSlider
  **/
-
 export const DiscoverSlider: FC<IProps> = (props) => {
   const { LargeScreen, MediumScreen, SmallScreen } = useScreenSize();
   const [LeftDisabled, setLeftDisabled] = useState(false);
