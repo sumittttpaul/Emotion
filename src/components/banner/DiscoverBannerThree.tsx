@@ -43,20 +43,14 @@ export const DiscoverBannerThree: FC<IProps> = (props) => {
   const { LargeScreen, MediumScreen, SmallScreen } = useScreenSize();
   return (
     <div className="flex w-full overflow-x-hidden overflow-y-visible mt-[50px]">
-      {LargeScreen ? (
+      {LargeScreen && (
         <DiscoverBannerThreeDesktop ContentArray={props.ContentArray} />
-      ) : (
-        <></>
       )}
-      {MediumScreen ? (
+      {MediumScreen && (
         <DiscoverBannerThreeTablet ContentArray={props.ContentArray} />
-      ) : (
-        <></>
       )}
-      {SmallScreen ? (
+      {SmallScreen && (
         <DiscoverBannerThreeMobile ContentArray={props.ContentArray} />
-      ) : (
-        <></>
       )}
     </div>
   );

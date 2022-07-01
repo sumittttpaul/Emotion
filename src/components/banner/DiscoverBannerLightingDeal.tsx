@@ -39,26 +39,20 @@ export const DiscoverBannerLightingDeal: FC<IProps> = (props) => {
             View More
           </Button>
         </div>
-        {LargeScreen ? (
+        {LargeScreen && (
           <DiscoverBannerLightningDealDesktop
             ContentArray={props.ContentArray}
           />
-        ) : (
-          <></>
         )}
-        {MediumScreen ? (
+        {MediumScreen && (
           <DiscoverBannerLightningDealTablet
             ContentArray={props.ContentArray}
           />
-        ) : (
-          <></>
         )}
-        {SmallScreen ? (
+        {SmallScreen && (
           <DiscoverBannerLightningDealMobile
             ContentArray={props.ContentArray}
           />
-        ) : (
-          <></>
         )}
       </div>
     </div>

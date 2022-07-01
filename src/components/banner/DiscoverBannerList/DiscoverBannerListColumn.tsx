@@ -10,6 +10,8 @@ const DiscountedPriceStyle = 'text-[14px]';
 
 interface IProps {
   ContentArray: DiscoverBannerListIProps[];
+  Heading: string;
+  className?: string;
 }
 
 /**
@@ -19,9 +21,13 @@ interface IProps {
 
 export const DiscoverBannerListColumn: FC<IProps> = (props) => {
   return (
-    <div className="text-white flex flex-col w-full space-y-2 relative box-border">
-      <div className="flex w-full h-full justify-between">
-        <h6 className="text-[16px] md-900:text-[18px]">Top Sellers</h6>
+    <div
+      className={`${
+        props.className
+      } ${'text-white flex-col w-full space-y-2 relative box-border'}`}
+    >
+      <div className="flex w-full h-full justify-between items-center">
+        <h6 className="text-[16px] md-900:text-[18px]">{props.Heading}</h6>
         <Button
           className="text-white px-3.5 py-2 text-[10px] md-900:text-[11px] font-normal tracking-[1px] border border-solid border-[rgba(255,255,255,0.35)] hover:border-[rgba(255,255,255,0.75)] bg-transparent transition-colors duration-300 ease-out"
           sx={{
@@ -43,9 +49,9 @@ export const DiscoverBannerListColumn: FC<IProps> = (props) => {
                     backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
                   },
                 }}
-                className="text-white button-text-lower flex w-full h-full p-3 md-900:px-6 md-900:py-4 rounded-xl bg-transparent hover:bg-white hover:bg-opacity-10"
+                className="text-white button-text-lower flex w-full h-full p-3 rounded-xl bg-transparent hover:bg-white hover:bg-opacity-10"
               >
-                <div className="flex h-full w-full relative items-center space-x-3">
+                <div className="flex h-full w-full relative items-center space-x-3 md-900:space-x-5">
                   <div className="flex w-full h-full min-w-[48px] min-h-[64px] max-w-[90px] max-h-[120px]">
                     <Image
                       className="rounded-md w-full h-full"

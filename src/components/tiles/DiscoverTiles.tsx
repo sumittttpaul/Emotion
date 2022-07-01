@@ -56,21 +56,13 @@ export const DiscoverTiles: FC<IProps> = (props) => {
   const { LargeScreen, MediumScreen, SmallScreen } = useScreenSize();
   return (
     <div className="mt-[50px] flex flex-col text-white p-0 m-0 box-border overflow-y-visible overflow-x-hidden">
-      {LargeScreen ? (
+      {LargeScreen && (
         <DiscoverTilesDesktop ContentArray={props.ContentArray} />
-      ) : (
-        <></>
       )}
-      {MediumScreen ? (
+      {MediumScreen && (
         <DiscoverTilesTablet ContentArray={props.ContentArray} />
-      ) : (
-        <></>
       )}
-      {SmallScreen ? (
-        <DiscoverTilesMobile ContentArray={props.ContentArray} />
-      ) : (
-        <></>
-      )}
+      {SmallScreen && <DiscoverTilesMobile ContentArray={props.ContentArray} />}
     </div>
   );
 };

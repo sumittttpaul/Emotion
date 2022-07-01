@@ -74,14 +74,12 @@ export const DiscoverSlider: FC<IProps> = (props) => {
       ) : (
         <></>
       )}
-      {SmallScreen ? (
+      {SmallScreen && (
         <DiscoverSliderMobile
           ContentArray={props.ContentArray}
           Wishlist={Wishlist}
           setWishlist={setWishlist}
         />
-      ) : (
-        <></>
       )}
     </div>
   );
