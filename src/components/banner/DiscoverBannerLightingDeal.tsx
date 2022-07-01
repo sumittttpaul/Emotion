@@ -9,19 +9,6 @@ import {
   DiscoverBannerLightningDealTablet,
 } from './MultiScreen/DiscoverBannerLightningDeal.MultiScreen';
 
-const HeadingStyle =
-  'text-[14px] font-normal text-left whitespace-nowrap overflow-hidden text-ellipsis';
-const DescriptionStyle =
-  'text-[13px] whitespace-normal leading-[18px] font-sans font-normal text-left w-full opacity-70 whitespace-nowrap overflow-hidden text-ellipsis';
-const AvailableStyle =
-  'flex w-full h-full p-1.5 font-semibold uppercase tracking-wide text-center text-[11px] flex-col rounded-b-md';
-const ButtonStyle =
-  'p-0 m-0 w-full h-full flex flex-col relative box-border overflow-hidden button-text-lower';
-const ContainerStyle =
-  'p-0 m-0 w-full h-full flex flex-col relative box-border overflow-hidden';
-const OriginalPriceStyle = 'line-through text-[13.5px] opacity-70';
-const DiscountedPriceStyle = 'text-[15px]';
-
 interface IProps {
   ContentArray: DiscoverBannerLightingDealIProps[];
 }

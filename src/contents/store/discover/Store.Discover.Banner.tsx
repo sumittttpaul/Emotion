@@ -19,6 +19,13 @@ export interface DiscoverBannerLightingDealIProps {
   Available: boolean;
 }
 
+export interface DiscoverBannerListIProps {
+  Heading: string;
+  Image: string;
+  OriginalPrice: string;
+  DiscountedPrice: string;
+}
+
 export const DiscoverBannerFourContent = [
   {
     Heading: 'Banner Four Heading 1',
@@ -107,5 +114,38 @@ export const DiscoverBannerLightingDealContent = [
     DiscountedPrice: '899.00',
     Available: false,
     Image: '/images/avatar/illustration/10.png',
+  },
+];
+
+export const DiscoverBannerListContent = [
+  {
+    Heading: 'List Heading 1',
+    OriginalPrice: '1999.00',
+    DiscountedPrice: '999.00',
+    Image: '/images/avatar/illustration/10.png',
+  },
+  {
+    Heading: 'List Heading 2',
+    OriginalPrice: '1999.00',
+    DiscountedPrice: '999.00',
+    Image: '/images/avatar/illustration/9.png',
+  },
+  {
+    Heading: 'List Heading 3',
+    OriginalPrice: '1999.00',
+    DiscountedPrice: '999.00',
+    Image: '/images/avatar/illustration/8.png',
+  },
+  {
+    Heading: 'List Heading 4',
+    OriginalPrice: '1999.00',
+    DiscountedPrice: '999.00',
+    Image: '/images/avatar/illustration/7.png',
+  },
+  {
+    Heading: 'List Heading 5',
+    OriginalPrice: '1999.00',
+    DiscountedPrice: '999.00',
+    Image: '/images/avatar/illustration/6.png',
   },
 ];

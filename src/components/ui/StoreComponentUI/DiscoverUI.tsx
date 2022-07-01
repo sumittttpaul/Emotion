@@ -5,6 +5,7 @@ import { DiscoverSliderContent } from '../../../contents/store/discover/Store.Di
 import {
   DiscoverBannerFourContent,
   DiscoverBannerLightingDealContent,
+  DiscoverBannerListContent,
 } from '../../../contents/store/discover/Store.Discover.Banner';
 import { DiscoverBannerThreeContent } from '../../../contents/store/discover/Store.Discover.Banner';
 import { DiscoverTilesContent } from '../../../contents/store/discover/Store.Discover.Tiles';
@@ -15,6 +16,7 @@ import { DiscoverBannerFour } from '../../banner/DiscoverBannerFour';
 import { DiscoverBannerThree } from '../../banner/DiscoverBannerThree';
 import { DiscoverTiles } from '../../tiles/DiscoverTiles';
 import { DiscoverBannerLightingDeal } from '../../banner/DiscoverBannerLightingDeal';
+import { DiscoverBannerList } from '../../banner/DiscoverBannerList';
 
 export interface DiscoverUIProps {}
 
@@ -32,6 +34,7 @@ export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
       <DiscoverBannerLightingDeal
         ContentArray={DiscoverBannerLightingDealContent}
       />
+      <DiscoverBannerList ContentArray={DiscoverBannerListContent}/>
       <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
     </div>
   );

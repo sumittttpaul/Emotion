@@ -15,5 +15,10 @@ export const TooltipDark = styled(({ className, ...props }: TooltipProps) => (
   },
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: '#353535',
+    fontSize: 11.5,
+    paddingTop: 8,
+    paddingBottom: 8,
+    paddingLeft: 12,
+    paddingRight: 12,
   },
 }));
