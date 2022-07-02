@@ -40,7 +40,7 @@ export const DiscoverBannerListColumn: FC<IProps> = (props) => {
         </Button>
       </div>
       <div className="flex w-full h-full relative">
-        <ul className="flex flex-col w-full">
+        <ul className="flex flex-col w-full lg-1100:mx-5">
           {props.ContentArray.map((value, index) => (
             <li key={index}>
               <Button
@@ -49,7 +49,7 @@ export const DiscoverBannerListColumn: FC<IProps> = (props) => {
                     backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
                   },
                 }}
-                className="text-white button-text-lower flex w-full h-full p-3 rounded-xl bg-transparent hover:bg-white hover:bg-opacity-10"
+                className="text-white button-text-lower flex w-full h-full p-3 lg-1100:px-5 py-4 rounded-xl bg-transparent hover:bg-white hover:bg-opacity-10"
               >
                 <div className="flex h-full w-full relative items-center space-x-3 md-900:space-x-5">
                   <div className="flex w-full h-full min-w-[48px] min-h-[64px] max-w-[90px] max-h-[120px]">
