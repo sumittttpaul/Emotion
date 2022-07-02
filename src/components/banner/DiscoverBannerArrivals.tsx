@@ -4,10 +4,10 @@ import React, { FC } from 'react';
 import useScreenSize from '../../algorithms/ScreenSizeDetection';
 import { DiscoverBannerLightingDealIProps } from '../../contents/store/discover/Store.Discover.Banner';
 import {
-  DiscoverBannerLightningDealDesktop,
-  DiscoverBannerLightningDealMobile,
-  DiscoverBannerLightningDealTablet,
-} from './MultiScreen/DiscoverBannerLightningDeal.MultiScreen';
+  DiscoverBannerArrivalsMobile,
+  DiscoverBannerArrivalsTablet,
+  DiscoverBannerArrivalsDesktop,
+} from './MultiScreen/DiscoverBannerArrivals.MultiScreen';
 
 interface IProps {
   ContentArray: DiscoverBannerLightingDealIProps[];
@@ -15,18 +15,17 @@ interface IProps {
 
 /**
  * @author
- * @function @DiscoverBannerLightingDeal
+ * @function @DiscoverBannerArrivals
  **/
 
-export const DiscoverBannerLightingDeal: FC<IProps> = (props) => {
+export const DiscoverBannerArrivals: FC<IProps> = (props) => {
   const { LargeScreen, MediumScreen, SmallScreen } = useScreenSize();
   return (
-    <div className="relative flex box-border w-full h-full child-screen:px-5 overflow-hidden">
-      <div className="text-white w-full bg-[#2a2a2a] space-y-7 py-7 px-5 sm:p-10 mt-[50px] sm:mt-[75px]">
+    <div className="relative flex box-border mt-[50px] sm:mt-[75px] w-full h-full child-screen:px-5 overflow-hidden">
+      <div className="text-white w-full bg-transparent space-y-5 px-5">
         <div className="flex items-center justify-between">
           <div className="space-x-3 flex items-center">
-            <Image height={30} width={30} src="/icons/lightning-deal.svg" />
-            <h6 className="text-[18px]">Daily lightning deals</h6>
+            <h6 className="text-[18px]">New Arrivals</h6>
           </div>
           <Button
             className="text-white px-3 py-1.5 text-[11px] font-normal tracking-[1px] border border-solid border-[rgba(255,255,255,0.5)] hover:border-[rgba(255,255,255,0.75)] bg-transparent transition-colors duration-300 ease-out"
@@ -40,19 +39,13 @@ export const DiscoverBannerLightingDeal: FC<IProps> = (props) => {
           </Button>
         </div>
         {LargeScreen && (
-          <DiscoverBannerLightningDealDesktop
-            ContentArray={props.ContentArray}
-          />
+          <DiscoverBannerArrivalsDesktop ContentArray={props.ContentArray} />
         )}
         {MediumScreen && (
-          <DiscoverBannerLightningDealTablet
-            ContentArray={props.ContentArray}
-          />
+          <DiscoverBannerArrivalsTablet ContentArray={props.ContentArray} />
         )}
         {SmallScreen && (
-          <DiscoverBannerLightningDealMobile
-            ContentArray={props.ContentArray}
-          />
+          <DiscoverBannerArrivalsMobile ContentArray={props.ContentArray} />
         )}
       </div>
     </div>

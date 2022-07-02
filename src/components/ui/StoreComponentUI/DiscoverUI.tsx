@@ -17,6 +17,8 @@ import { DiscoverBannerThree } from '../../banner/DiscoverBannerThree';
 import { DiscoverTiles } from '../../tiles/DiscoverTiles';
 import { DiscoverBannerLightingDeal } from '../../banner/DiscoverBannerLightingDeal';
 import { DiscoverBannerList } from '../../banner/DiscoverBannerList';
+import { DiscoverBannerArrivals } from '../../banner/DiscoverBannerArrivals';
+import { DiscoverCatelog } from '../../catelog/DiscoverCatelog';
 
 export interface DiscoverUIProps {}
 
@@ -34,8 +36,17 @@ export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
       <DiscoverBannerLightingDeal
         ContentArray={DiscoverBannerLightingDealContent}
       />
-      <DiscoverBannerList ContentArray={DiscoverBannerListContent}/>
+      <DiscoverBannerList ContentArray={DiscoverBannerListContent} />
+      <DiscoverSlider ContentArray={DiscoverSliderContent} />
+      <DiscoverBannerThree ContentArray={DiscoverBannerThreeContent} />
+      <DiscoverSlider ContentArray={DiscoverSliderContent} />
+      <DiscoverBannerThree ContentArray={DiscoverBannerThreeContent} />
+      <DiscoverBannerArrivals
+        ContentArray={DiscoverBannerLightingDealContent}
+      />
+      <DiscoverBannerThree ContentArray={DiscoverBannerThreeContent} />
       <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
+      <DiscoverCatelog />
     </div>
   );
 };

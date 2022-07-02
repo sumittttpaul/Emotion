@@ -22,7 +22,7 @@ export const PageFooter: FC<PageFooterProps> = (props) => {
     setLoader({ show: value });
   };
   return (
-    <div className="w-full self-end mt-[34px] overflow-hidden bg-[#202020]">
+    <div className="w-full self-end overflow-hidden bg-[#202020]">
       <div className="w-full relative py-5 sm:py-8 px-5 box-border max-w-[1570px] mx-auto">
         <FooterLogo
           onValueChange={(value) => {
