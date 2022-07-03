@@ -22,7 +22,7 @@ export const DiscoverBannerLightingDeal: FC<IProps> = (props) => {
   const { LargeScreen, MediumScreen, SmallScreen } = useScreenSize();
   return (
     <div className="relative flex box-border w-full h-full child-screen:px-5 overflow-hidden">
-      <div className="text-white w-full bg-[#2a2a2a] space-y-7 py-7 px-5 sm:p-10 mt-[50px] sm:mt-[75px]">
+      <div className="text-white w-full bg-[#2a2a2a] space-y-7 py-7 px-5 sm:p-10 mt-[50px]">
         <div className="flex items-center justify-between">
           <div className="space-x-3 flex items-center">
             <Image height={30} width={30} src="/icons/lightning-deal.svg" />

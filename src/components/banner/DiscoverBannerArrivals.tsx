@@ -21,7 +21,7 @@ interface IProps {
 export const DiscoverBannerArrivals: FC<IProps> = (props) => {
   const { LargeScreen, MediumScreen, SmallScreen } = useScreenSize();
   return (
-    <div className="relative flex box-border mt-[50px] sm:mt-[75px] w-full h-full child-screen:px-5 overflow-hidden">
+    <div className="relative flex box-border mt-[50px] w-full h-full child-screen:px-5 overflow-hidden">
       <div className="text-white w-full bg-transparent space-y-5 px-5">
         <div className="flex items-center justify-between">
           <div className="space-x-3 flex items-center">
