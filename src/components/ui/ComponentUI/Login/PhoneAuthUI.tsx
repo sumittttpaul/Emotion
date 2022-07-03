@@ -27,13 +27,13 @@ export interface PhoneAuthUIProps {
   PhoneBlur?: (event: FocusEvent<HTMLInputElement>) => void;
 }
 
-/**
- * @author
- * @function @OtherAccountAuthUI
- **/
-
 const container =
   'px-[2px] pt-[2px] w-full flex flex-col justify-center items-center';
+
+/**
+ * @author
+ * @function @PhoneAuthUI
+ **/
 
 const PhoneAuthUI: FC<PhoneAuthUIProps> = (props) => {
   return (
