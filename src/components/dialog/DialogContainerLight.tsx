@@ -15,7 +15,7 @@ interface IProps {
 export const DialogContainerLight: FC<IProps> = (props) => {
   return (
     <Transition appear show={props.show} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={props.close}>
+      <Dialog as="div" className="relative z-[1300]" onClose={props.close}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -39,7 +39,7 @@ export const DialogContainerLight: FC<IProps> = (props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-150"
             >
-              <Dialog.Panel className="absolute sm:relative h-full w-full sm:w-auto sm:h-auto transform scroll-smooth overflow-auto sm:rounded-lg bg-white text-center align-middle shadow-xl transition-all">
+              <Dialog.Panel className="absolute sm:relative h-full w-full sm:w-auto sm:h-auto transform scroll-smooth overflow-auto sm:rounded-xl bg-white text-center align-middle shadow-xl transition-all">
                 {props.children}
               </Dialog.Panel>
             </Transition.Child>
