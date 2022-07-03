@@ -61,7 +61,7 @@ export const DiscoverBannerListColumn: FC<IProps> = (props) => {
                       objectPosition="center"
                       src={value.Image}
                       loading="lazy"
-                      alt="Lighting-Deal-Image"
+                      alt=""
                     />
                   </div>
                   <div className="space-y-1 text-white">

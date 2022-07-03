@@ -25,7 +25,7 @@ export const DiscoverTilesDesktop: FC<DiscoverTilesDesktopProps> = (props) => {
               height={100}
               width={150}
               src={value.Image}
-              alt="tiles-image"
+              alt=""
             />
             <div className={`space-y-5 ${TopHeadingContainerStyle}`}>
               <div className="space-y-1 flex flex-col">
@@ -74,7 +74,7 @@ export const DiscoverTilesTablet: FC<DiscoverTilesTabletProps> = (props) => {
               height={100}
               width={150}
               src={value.Image}
-              alt="tiles-image"
+              alt=""
             />
             <div className={`space-y-5 ${TopHeadingContainerStyle}`}>
               <div className="space-y-1 flex flex-col">
@@ -123,7 +123,7 @@ export const DiscoverTilesMobile: FC<DiscoverTilesMobileProps> = (props) => {
               height={100}
               width={150}
               src={value.Image}
-              alt="tiles-image"
+              alt=""
             />
             <div className={TopHeadingContainerStyle}>
               <div className="flex flex-col">

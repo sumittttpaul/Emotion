@@ -55,7 +55,7 @@ export const ThumbnailMap: FC<IProps> = (props) => {
             src={value.Image}
             placeholder="blur"
             blurDataURL={rectangle_BlurDataURL}
-            alt="Casourel-Image-Thumbnail"
+            alt=""
           />
           <h6
             className={`${

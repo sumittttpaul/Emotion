@@ -37,7 +37,7 @@ export const DiscoverBannerLightningDealDesktop: FC<IProps> = (props) => {
             objectPosition="center"
             src={value.Image}
             loading="lazy"
-            alt="Lighting-Deal-Image"
+            alt=""
           />
           {value.Available ? (
             <h6 className={`${'bg-primary-blue-rgb'} ${AvailableStyle}`}>
@@ -81,7 +81,7 @@ export const DiscoverBannerLightningDealTablet: FC<IProps> = (props) => {
             objectPosition="center"
             src={value.Image}
             loading="lazy"
-            alt="Lighting-Deal-Image"
+            alt=""
           />
           {value.Available ? (
             <h6 className={`${'bg-primary-blue-rgb'} ${AvailableStyle}`}>
@@ -126,7 +126,7 @@ export const DiscoverBannerLightningDealMobile: FC<IProps> = (props) => {
               objectPosition="center"
               src={value.Image}
               loading="lazy"
-              alt="Lighting-Deal-Image"
+              alt=""
             />
             {value.Available ? (
               <h6 className={`${'bg-primary-blue-rgb'} ${AvailableStyle}`}>
@@ -167,7 +167,7 @@ export const DiscoverBannerLightningDealMobile: FC<IProps> = (props) => {
               objectPosition="center"
               src={value.Image}
               loading="lazy"
-              alt="Lighting-Deal-Image"
+              alt=""
             />
             {value.Available ? (
               <h6 className={`${'bg-primary-blue-rgb'} ${AvailableStyle}`}>

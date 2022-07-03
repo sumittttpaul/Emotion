@@ -74,7 +74,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
               loading="lazy"
               blurDataURL={Square_BlurDataURL}
               src={`${user.photoURL}`}
-              alt="user profile small button"
+              alt=""
             />
           </IconButton>
           <Button
@@ -97,7 +97,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                 loading="lazy"
                 blurDataURL={Square_BlurDataURL}
                 src={`${user.photoURL}`}
-                alt="user profile large button"
+                alt=""
               />
               <h6 className="text-white hidden sm:block whitespace-nowrap font-[300] tracking-[0.075em] text-[12px]">
                 {`${user.displayName}`}
@@ -145,7 +145,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                     loading="lazy"
                     blurDataURL={Square_BlurDataURL}
                     src={`${user.photoURL}`}
-                    alt="user profile"
+                    alt=""
                   />
                 </div>
                 <div className="relative block">
@@ -182,7 +182,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                   width={17}
                   loading="lazy"
                   src="/icons/folder.svg"
-                  alt="folder icon"
+                  alt=""
                 />
                 <h6 className="text-[14px] font-sans font-[400] text-black">
                   Manage your account
@@ -206,7 +206,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                   width={18}
                   loading="lazy"
                   src="/icons/truck.svg"
-                  alt="truck icon"
+                  alt=""
                 />
                 <h6 className="text-[14px] font-sans font-[400] text-black">
                   Track orders
@@ -230,7 +230,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                   width={17}
                   loading="lazy"
                   src="/icons/shopping-bag.svg"
-                  alt="shopping bag icon"
+                  alt=""
                 />
                 <h6 className="text-[14px] font-sans font-[400] text-black">
                   View all orders
@@ -254,7 +254,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                   width={17}
                   loading="lazy"
                   src="/icons/gift.svg"
-                  alt="gift icon"
+                  alt=""
                 />
                 <h6 className="text-[14px] font-sans font-[400] text-black">
                   Redeem code or gift cards
@@ -286,7 +286,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
               width={20}
               className="opacity-70"
               src={UserIcon}
-              alt="user icon"
+              alt=""
               priority
             />
             <h6 className="text-white hidden sm:block whitespace-nowrap font-[350] text-[12px]">

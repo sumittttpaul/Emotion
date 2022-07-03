@@ -35,7 +35,7 @@ export const DiscoverBannerArrivalsDesktop: FC<IProps> = (props) => {
             objectPosition="center"
             src={value.Image}
             loading="lazy"
-            alt="Arrivals-Image"
+            alt=""
           />
           {value.Available ? (
             <h6 className={`${'bg-primary-blue-rgb'} ${AvailableStyle}`}>
@@ -71,7 +71,7 @@ export const DiscoverBannerArrivalsTablet: FC<IProps> = (props) => {
             objectPosition="center"
             src={value.Image}
             loading="lazy"
-            alt="Arrivals-Image"
+            alt=""
           />
           {value.Available ? (
             <h6 className={`${'bg-primary-blue-rgb'} ${AvailableStyle}`}>
@@ -108,7 +108,7 @@ export const DiscoverBannerArrivalsMobile: FC<IProps> = (props) => {
               objectPosition="center"
               src={value.Image}
               loading="lazy"
-              alt="Arrivals-Image"
+              alt=""
             />
             {value.Available ? (
               <h6 className={`${'bg-primary-blue-rgb'} ${AvailableStyle}`}>
@@ -141,7 +141,7 @@ export const DiscoverBannerArrivalsMobile: FC<IProps> = (props) => {
               objectPosition="center"
               src={value.Image}
               loading="lazy"
-              alt="Lighting-Deal-Image"
+              alt=""
             />
             {value.Available ? (
               <h6 className={`${'bg-primary-blue-rgb'} ${AvailableStyle}`}>

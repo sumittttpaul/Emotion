@@ -50,7 +50,7 @@ const CheckBoxBlue: FC<IProps> = (props) => {
           width={18}
           className="opacity-50"
           src="/icons/unChecked.svg"
-          alt="unchecked-svg"
+          alt=""
           placeholder="blur"
           loading='lazy'
           blurDataURL={Square_BlurDataURL}

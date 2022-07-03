@@ -54,7 +54,7 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
         <CarouselBannerImage
           className="-z-[2]"
           src={props.ContentArray[props.CarouselState].Image}
-          alt="Carousel-Image"
+          alt=""
           objectPosition="center"
         />
         <motion.div

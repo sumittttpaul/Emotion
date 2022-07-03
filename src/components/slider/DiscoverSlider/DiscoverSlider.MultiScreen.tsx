@@ -114,7 +114,7 @@ export const DiscoverSliderDesktopAndTablet: FC<
                   className={ImageStyle}
                   blurDataURL={Poster_BlurDataURL}
                   src={value.Image}
-                  alt="product slider image"
+                  alt=""
                 />
               </div>
               <h6 className={HeadingStyle}>{value.Heading}</h6>
@@ -195,7 +195,7 @@ export const DiscoverSliderMobile: FC<DiscoverSliderMobileProps> = (props) => {
                     className={ImageStyle}
                     blurDataURL={Poster_BlurDataURL}
                     src={value.Image}
-                    alt="product slider image"
+                    alt=""
                   />
                 </div>
                 <h6 className={HeadingStyle}>{value.Heading}</h6>

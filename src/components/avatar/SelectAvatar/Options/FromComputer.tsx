@@ -67,7 +67,7 @@ const FromComputer: FC<IProps> = (props) => {
               width={60}
               className="opacity-30"
               src="/icons/upload-cloud.svg"
-              alt="trash icon"
+              alt=""
               loading='lazy'
               placeholder="blur"
               blurDataURL={Square_BlurDataURL}

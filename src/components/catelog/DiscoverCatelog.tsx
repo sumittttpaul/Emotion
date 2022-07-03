@@ -21,7 +21,7 @@ export const DiscoverCatelog: FC<IProps> = (props) => {
           objectPosition="center"
           src="/images/avatar/illustration/5.png"
           loading="lazy"
-          alt="Catelog-Image"
+          alt=""
         />
         <div className="flex w-full h-[300px] relative justify-start items-center sm:max-w-[35%]">
           <div className="text-white flex flex-col w-full space-y-2 md-900:space-y-4">

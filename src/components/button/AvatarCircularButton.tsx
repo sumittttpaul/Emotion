@@ -31,7 +31,7 @@ export const AvatarCircularButton: FC<IProps> = (props) => {
           className="rounded-[50%]"
           src={props.ImageURL}
           priority={true}
-          alt="choose user profile photo"
+          alt=""
           placeholder="blur"
           blurDataURL={Circle_BlurDataURL}
         />

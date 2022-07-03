@@ -55,7 +55,7 @@ export const SliderCarousel: FC<SliderCarouselProps> = (props) => {
             className="-z-[1]"
             src={content.Image}
             blurDataURL={Poster_BlurDataURL}
-            alt="mobile carousel image"
+            alt=""
           />
           <div className="space-y-5 box-border z-[1] mb-3">
             <div>

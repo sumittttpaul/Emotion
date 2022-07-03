@@ -52,7 +52,7 @@ export const LeftArrowButton: FC<IProps> = (props) => {
           height={10}
           width={10}
           loading='lazy'
-          alt="left-arrow-icon"
+          alt=""
         />
       </div>
     </motion.button>
@@ -80,7 +80,7 @@ export const RightArrowButton: FC<IProps> = (props) => {
           height={10}
           width={10}
           loading='lazy'
-          alt="right-arrow-icon"
+          alt=""
         />
       </div>
     </motion.button>

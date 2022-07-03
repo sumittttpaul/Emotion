@@ -30,7 +30,7 @@ export const PageFooterSocials: FC<IProps> = (props) => {
                   className="flex items-center"
                   src={value.icon}
                   loading='lazy'
-                  alt="socials icons"
+                  alt=""
                 />
               </Link>
             </li>

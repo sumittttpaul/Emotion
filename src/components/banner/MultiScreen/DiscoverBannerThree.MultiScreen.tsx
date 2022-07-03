@@ -34,7 +34,7 @@ export const DiscoverBannerThreeDesktop: FC<DiscoverBannerThreeDesktopProps> = (
                 loading="lazy"
                 placeholder="blur"
                 blurDataURL={rectangle_BlurDataURL}
-                alt="slider-Image"
+                alt=""
               />
             </div>
             <div className={TextContainer}>
@@ -85,7 +85,7 @@ export const DiscoverBannerThreeTablet: FC<DiscoverBannerThreeTabletProps> = (
                   loading="lazy"
                   placeholder="blur"
                   blurDataURL={rectangle_BlurDataURL}
-                  alt="slider-Image"
+                  alt=""
                 />
               </div>
               <div className={TextContainer}>
@@ -140,7 +140,7 @@ export const DiscoverBannerThreeMobile: FC<DiscoverBannerThreeMobileProps> = (
                   loading="lazy"
                   placeholder="blur"
                   blurDataURL={rectangle_BlurDataURL}
-                  alt="slider-Image"
+                  alt=""
                 />
               </div>
               <div className={TextContainer}>

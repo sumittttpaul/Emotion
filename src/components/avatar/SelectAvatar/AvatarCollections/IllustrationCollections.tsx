@@ -162,7 +162,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
               height={3012}
               className="rounded-md"
               src={illustrationURL}
-              alt="avatar-collection-banner"
+              alt=""
               placeholder="blur"
               loading="lazy"
               blurDataURL={blurDataURL}

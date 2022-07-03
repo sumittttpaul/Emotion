@@ -106,7 +106,7 @@ const IconTextFieldDark: FC<IconTextFieldProps> = (props) => {
           className="opacity-[0.4]"
           src={props.icon}
           loading='lazy'
-          alt="textfield-icons"
+          alt=""
           placeholder="blur"
           blurDataURL={Square_BlurDataURL}
         />
