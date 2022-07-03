@@ -6,14 +6,9 @@ import { CollectionsUIProps } from '../../components/ui/CollectionsUI';
 
 const CollectionsUI = dynamic<CollectionsUIProps>(
   () =>
-    import('../../components/ui/CollectionsUI').then(
-      (x) => x.CollectionsUI
-    ),
+    import('../../components/ui/CollectionsUI').then((x) => x.CollectionsUI),
   {
-    loading: () => (
-      <h6 className="text-white p-5 w-full text-center">Loading . . . </h6>
-    ),
-    ssr: false,
+    ssr: true,
   }
 );
 

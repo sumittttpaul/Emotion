@@ -5,13 +5,9 @@ import dynamic from 'next/dynamic';
 import { CartUIProps } from '../../components/ui/CartUI';
 
 const CartUI = dynamic<CartUIProps>(
-  () =>
-    import('../../components/ui/CartUI').then((x) => x.CartUI),
+  () => import('../../components/ui/CartUI').then((x) => x.CartUI),
   {
-    loading: () => (
-      <h6 className="text-white p-5 w-full text-center">Loading . . . </h6>
-    ),
-    ssr: false,
+    ssr: true,
   }
 );
 

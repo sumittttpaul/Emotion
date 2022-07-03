@@ -5,15 +5,9 @@ import { WishlistUIProps } from '../../components/ui/WishlistUI';
 import dynamic from 'next/dynamic';
 
 const WishlistUI = dynamic<WishlistUIProps>(
-  () =>
-    import('../../components/ui/WishlistUI').then(
-      (x) => x.WishlistUI
-    ),
+  () => import('../../components/ui/WishlistUI').then((x) => x.WishlistUI),
   {
-    loading: () => (
-      <h6 className="text-white p-5 w-full text-center">Loading . . . </h6>
-    ),
-    ssr: false,
+    ssr: true,
   }
 );
 

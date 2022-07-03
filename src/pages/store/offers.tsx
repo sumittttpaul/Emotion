@@ -5,15 +5,9 @@ import { OffersUIProps } from '../../components/ui/OffersUI';
 import dynamic from 'next/dynamic';
 
 const OffersUI = dynamic<OffersUIProps>(
-  () =>
-    import('../../components/ui/OffersUI').then(
-      (x) => x.OffersUI
-    ),
+  () => import('../../components/ui/OffersUI').then((x) => x.OffersUI),
   {
-    loading: () => (
-      <h6 className="text-white p-5 w-full text-center">Loading . . . </h6>
-    ),
-    ssr: false,
+    ssr: true,
   }
 );
 

@@ -10,7 +10,7 @@ const DiscoverUI = dynamic<DiscoverUIProps>(
       (x) => x.DiscoverUI
     ),
   {
-    ssr: false,
+    ssr: true,
   }
 );
 
