@@ -1,7 +1,7 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
 import { SetupAccountDivider } from '../../../../divider/SetupAccountDivider';
 import { SetupAccountLabel } from '../../../../label/SetupAccountLabel';
-import { GenderButton } from '../buttonUI/GenderButton';
+import { GenderButton } from '../ButtonUI/GenderButton';
 
 export interface GenderUIProps {
   theme: string;

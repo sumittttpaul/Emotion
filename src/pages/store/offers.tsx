@@ -1,12 +1,12 @@
 import { ReactElement, useState } from 'react';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
-import { OffersUIProps } from '../../components/ui/StoreComponentUI/OffersUI';
+import { OffersUIProps } from '../../components/ui/OffersUI';
 import dynamic from 'next/dynamic';
 
 const OffersUI = dynamic<OffersUIProps>(
   () =>
-    import('../../components/ui/StoreComponentUI/OffersUI').then(
+    import('../../components/ui/OffersUI').then(
       (x) => x.OffersUI
     ),
   {

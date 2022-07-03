@@ -2,11 +2,11 @@ import React, { FC, useEffect, useState } from 'react';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
 import { LoadingAvatarButton } from '../../../../loader/LoadingSkeleton';
-import { AvatarButtonProps } from '../buttonUI/AvatarButton';
+import { AvatarButtonProps } from '../ButtonUI/AvatarButton';
 // import { AvatarButton } from '../buttonUI/AvatarButton';
 
 const AvatarButton = dynamic<AvatarButtonProps>(
-  () => import('../buttonUI/AvatarButton').then((x) => x.AvatarButton),
+  () => import('../ButtonUI/AvatarButton').then((x) => x.AvatarButton),
   {
     loading: () => <LoadingAvatarButton />,
     ssr: false,

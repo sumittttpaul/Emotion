@@ -16,13 +16,13 @@ import TabPanel from '../tab/SelectAvatarTabPanel';
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 import { AuthFooter } from '../footer/AuthFooter';
 import { LoadingLoginUi } from '../loader/LoadingSkeleton';
-import { PhoneAuthUIProps } from './AuthComponentUI/LoginComponentUI/PhoneAuthUI';
-import { EmailAuthUIProps } from './AuthComponentUI/LoginComponentUI/EmailAuthUI';
+import { PhoneAuthUIProps } from './ComponentUI/Login/PhoneAuthUI';
+import { EmailAuthUIProps } from './ComponentUI/Login/EmailAuthUI';
 // import PhoneAuthUI from './AuthComponentUI/LoginComponentUI/PhoneAuthUI';
 // import EmailAuthUI from './AuthComponentUI/LoginComponentUI/EmailAuthUI';
 
 const PhoneAuthUI = dynamic<PhoneAuthUIProps>(
-  () => import('./AuthComponentUI/LoginComponentUI/PhoneAuthUI'),
+  () => import('./ComponentUI/Login/PhoneAuthUI'),
   {
     loading: () => <LoadingLoginUi />,
     ssr: false,
@@ -30,7 +30,7 @@ const PhoneAuthUI = dynamic<PhoneAuthUIProps>(
 );
 
 const EmailAuthUI = dynamic<EmailAuthUIProps>(
-  () => import('./AuthComponentUI/LoginComponentUI/EmailAuthUI'),
+  () => import('./ComponentUI/Login/EmailAuthUI'),
   {
     loading: () => <LoadingLoginUi />,
     ssr: false,

@@ -11,9 +11,9 @@ import {
 } from '../loader/LoadingSkeleton';
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 import { LargeButtonBlueProps } from '../button/LargeButtonBlue';
-import { AvatartUIProps } from './AuthComponentUI/SetupAccountComponentUI/AvatarUI/AvatarUI';
-import { DatePickerUIProps } from './AuthComponentUI/SetupAccountComponentUI/DatePickerUI/DatePickerUI';
-import { GenderUIProps } from './AuthComponentUI/SetupAccountComponentUI/GenderUI/GenderUI';
+import { AvatartUIProps } from './ComponentUI/SetupAccount/AvatarUI/AvatarUI';
+import { DatePickerUIProps } from './ComponentUI/SetupAccount/DatePickerUI/DatePickerUI';
+import { GenderUIProps } from './ComponentUI/SetupAccount/GenderUI/GenderUI';
 // import LargeButtonBlue from '../button/LargeButtonBlue';
 // import { AvatarUI } from './AuthComponentUI/SetupAccountComponentUI/AvatarUI/AvatarUI';
 // import { DatePickerUI } from './AuthComponentUI/SetupAccountComponentUI/DatePickerUI/DatePickerUI';
@@ -29,7 +29,7 @@ const LargeButtonBlue = dynamic<LargeButtonBlueProps>(
 
 const AvatarUI = dynamic<AvatartUIProps>(
   () =>
-    import('./AuthComponentUI/SetupAccountComponentUI/AvatarUI/AvatarUI').then(
+    import('./ComponentUI/SetupAccount/AvatarUI/AvatarUI').then(
       (x) => x.AvatarUI
     ),
   {
@@ -41,7 +41,7 @@ const AvatarUI = dynamic<AvatartUIProps>(
 const DatePickerUI = dynamic<DatePickerUIProps>(
   () =>
     import(
-      './AuthComponentUI/SetupAccountComponentUI/DatePickerUI/DatePickerUI'
+      './ComponentUI/SetupAccount/DatePickerUI/DatePickerUI'
     ).then((x) => x.DatePickerUI),
   {
     loading: () => <LoadingDatePickerUI />,
@@ -51,7 +51,7 @@ const DatePickerUI = dynamic<DatePickerUIProps>(
 
 const GenderUI = dynamic<GenderUIProps>(
   () =>
-    import('./AuthComponentUI/SetupAccountComponentUI/GenderUI/GenderUI').then(
+    import('./ComponentUI/SetupAccount/GenderUI/GenderUI').then(
       (x) => x.GenderUI
     ),
   {

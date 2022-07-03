@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { SetupAccountDivider } from '../../../../divider/SetupAccountDivider';
 import { SetupAccountLabel } from '../../../../label/SetupAccountLabel';
-import { DatePickerButton } from '../buttonUI/DatePickerButton';
+import { DatePickerButton } from '../ButtonUI/DatePickerButton';
 
 export interface DatePickerUIProps {
   theme: string;

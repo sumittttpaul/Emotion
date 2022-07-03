@@ -2,11 +2,11 @@ import { ReactElement, useState } from 'react';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
 import dynamic from 'next/dynamic';
-import { CartUIProps } from '../../components/ui/StoreComponentUI/CartUI';
+import { CartUIProps } from '../../components/ui/CartUI';
 
 const CartUI = dynamic<CartUIProps>(
   () =>
-    import('../../components/ui/StoreComponentUI/CartUI').then((x) => x.CartUI),
+    import('../../components/ui/CartUI').then((x) => x.CartUI),
   {
     loading: () => (
       <h6 className="text-white p-5 w-full text-center">Loading . . . </h6>

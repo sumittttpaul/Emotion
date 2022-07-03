@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import LoginUI from '../../../components/ui/LoginUI';
-import OTPAuthUI from '../../../components/ui/AuthComponentUI/LoginComponentUI/OTPAuthUI';
+import OTPAuthUI from '../../../components/ui/ComponentUI/Login/OTPAuthUI';
 import { ToastDark } from '../../../components/toast/ToastDark';
 import { ChangeEvent, KeyboardEvent, useState, FocusEvent } from 'react';
 import {

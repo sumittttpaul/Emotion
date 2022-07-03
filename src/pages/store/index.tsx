@@ -2,11 +2,11 @@ import { ReactElement, useState } from 'react';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
 import dynamic from 'next/dynamic';
-import { DiscoverUIProps } from '../../components/ui/StoreComponentUI/DiscoverUI';
+import { DiscoverUIProps } from '../../components/ui/DiscoverUI';
 
 const DiscoverUI = dynamic<DiscoverUIProps>(
   () =>
-    import('../../components/ui/StoreComponentUI/DiscoverUI').then(
+    import('../../components/ui/DiscoverUI').then(
       (x) => x.DiscoverUI
     ),
   {
