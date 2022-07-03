@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import Router from 'next/router';
 import { useCycle } from 'framer-motion';
-import { PageHeaderUserButton } from '../../button/header/PageHeaderUserButton';
-import { PageHeaderMenuButton } from '../../button/header/PageHeaderMenuButton';
+import { PageHeaderUserButton } from '../../button/header/PageHeader.UserButton';
+import { PageHeaderMenuButton } from '../../button/header/PageHeader.MenuButton';
 import { PageHeaderNav } from './assets/PageHeaderNav';
 import { PageHeaderSlider } from './assets/PageHeaderSlider';
 import { PageHeaderLogo } from '../../logo/CompanyLogo';

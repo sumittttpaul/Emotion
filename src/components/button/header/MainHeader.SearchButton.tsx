@@ -13,6 +13,11 @@ interface IProps {}
 export const MainHeaderSearchButton: FC<IProps> = (props) => {
   return (
     <>
+     <TooltipDark
+        arrow
+        placement="bottom-start"
+        title={<h6 className="font-[400]">Search by product, category or collection</h6>}
+      >
       <Button
         aria-label="desktop-search-button"
         disableRipple
@@ -22,13 +27,14 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
       >
         <div className="space-x-3 flex items-center opacity-60 ml-1">
           <SearchIcon className="h-[14px] w-[14px]" />
-          <h6 className="text-[11.5px] font-normal">Search</h6>
+          <h6 className="text-[12px] font-normal">Search</h6>
         </div>
       </Button>
+      </TooltipDark>
       <TooltipDark
         arrow
         placement="bottom"
-        title={<h6 className="font-[400]">Search</h6>}
+        title={<h6 className="font-[400]">Search by product, category or collection</h6>}
       >
         <IconButton
           disableFocusRipple
