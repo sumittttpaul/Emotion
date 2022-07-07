@@ -22,6 +22,8 @@ import useScreenSize from '../../../algorithms/ScreenSizeDetection';
 
 interface IProps {
   ContainerRef: RefObject<HTMLDivElement>;
+  Open: boolean;
+  onOpen: () => void;
 }
 
 /**
@@ -42,22 +44,27 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
 
   const ButtonVariant = {
     open: {
-      width: SmallScreen ? width - 25 : width - 40,
+      width: SmallScreen ? width - 24 : width - 40,
       height: 50,
       borderRadius: 10,
     },
-    closed: { width: 110, height: 40, borderRadius: 18 },
+    closed: { width: SmallScreen ? 105 : 160, height: 40, borderRadius: 18 },
   };
 
   const SearchFocus = () => {
     if (animate === 'closed') setAnimate('open');
+    props.onOpen();
     SearchRef.current?.focus();
-    // setSearch('');
   };
   const SearchBlur = () => {
     if (animate === 'open') setAnimate('closed');
     setSearch('');
   };
+
+  useEffect(() => {
+    if (props.Open) setAnimate('open');
+    else setAnimate('closed');
+  }, [props.Open]);
 
   useEffect(() => {
     if (props.ContainerRef.current)
@@ -87,10 +94,10 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
         animate={animate}
         variants={ButtonVariant}
         transition={{ duration: 0.2, type: 'tween' }}
-        className="block mr-1 header-button-hover transition-all duration-300 text-white sm:w-[160px] sm:min-w-[160px] cursor-text justify-start items-center button-text-lower p-[10px] rounded-[18px] bg-[#202020] hover:bg-[#202020]"
+        className="block mr-1 header-button-hover transition-all duration-300 text-white w-[105px] min-w-[105px] sm:w-[160px] sm:min-w-[160px] cursor-text justify-start items-center button-text-lower p-[10px] rounded-[18px] bg-[#202020] hover:bg-[#202020]"
       >
         <div className="space-x-3 flex items-center ml-1">
-          <SearchIcon className="h-[14px] w-[14px] min-h-[14px] min-w-[14px] block relative text-white opacity-60" />
+          <Image src="/icons/search-white.svg" height={17} width={17} className="min-h-[17px] min-w-[17px] flex relative text-white opacity-70" />
           <input
             ref={SearchRef}
             aria-label="search-text-field"

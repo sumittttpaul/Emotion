@@ -1,6 +1,6 @@
 import { motion, useCycle, Variants } from 'framer-motion';
 import Router from 'next/router';
-import React, { FC, useRef } from 'react';
+import React, { FC, useRef, useState } from 'react';
 import { Cart_Link, Wishlist_Link } from '../../../routerLinks/RouterLinks';
 import { MainHeaderCartButton } from '../../button/header/MainHeader.CartButton';
 import { MainHeaderSearchButton } from '../../button/header/MainHeader.SearchButton';
@@ -20,27 +20,34 @@ export interface MainHeaderProps {
  **/
 
 export const MainHeader: FC<MainHeaderProps> = (props) => {
-  const [open, setOpen] = useCycle(false, true);
+  const [NavSliderOpen, setNavSliderOpen] = useCycle(false, true);
+  const [SearchSliderOpen, setSearchSliderOpen] = useState(false);
   const ContainerRef = useRef<HTMLDivElement>(null);
 
   return (
     <>
-      <div className="w-full h-[17px] min-h-[17px]" />
+      <div className="w-full h-[12px] min-h-[12px]" />
       <div
         ref={ContainerRef}
         className={`${
-          open ? 'bg-[#121212]' : 'bg-[rgba(18,18,18,0.95)]'
-        } ${'flex flex-col z-[999] sticky-top items-start box-border w-full backdrop-blur-[8px]'}`}
+          NavSliderOpen || SearchSliderOpen
+            ? 'bg-[#121212]'
+            : 'bg-[rgba(18,18,18,0.95)]'
+        } ${'flex flex-col z-[999] sticky-top items-start box-border w-full h-[74px] backdrop-blur-[8px]'}`}
       >
-        <div className="flex relative box-border w-full justify-between items-center sm:px-5 px-3 overflow-x-hidden">
+        <div className="flex relative box-border w-full h-full justify-between items-center py-3 sm:px-5 px-3 overflow-x-hidden">
           <div className="flex relative w-full md-900:space-x-6 items-center">
             <div>
-              <MainHeaderSearchButton ContainerRef={ContainerRef} />
+              <MainHeaderSearchButton
+                ContainerRef={ContainerRef}
+                Open={SearchSliderOpen}
+                onOpen={() => setSearchSliderOpen(true)}
+              />
             </div>
-            <div className="flex w-full justify-between py-3 sm:py-4">
+            <div className="flex w-full justify-between">
               <MainHeaderNav
-                open={open}
-                onOpen={() => setOpen()}
+                open={NavSliderOpen}
+                onOpen={() => setNavSliderOpen()}
                 Value={props.Page}
                 onValueChange={props.setPage}
               />
@@ -49,7 +56,7 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
                   value={props.Page}
                   Click={() => {
                     setTimeout(() => {
-                      if (open === true) setOpen();
+                      if (NavSliderOpen === true) setNavSliderOpen();
                       props.setPage('Wishlist');
                       Router.push(Wishlist_Link);
                     }, 150);
@@ -59,7 +66,7 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
                   value={props.Page}
                   Click={() => {
                     setTimeout(() => {
-                      if (open === true) setOpen();
+                      if (NavSliderOpen === true) setNavSliderOpen();
                       props.setPage('Cart');
                       Router.push(Cart_Link);
                     }, 150);
@@ -70,14 +77,17 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
           </div>
         </div>
         <MainHeaderSlider
-          open={open}
-          onClose={() => setOpen()}
+          open={NavSliderOpen}
+          onClose={() => setNavSliderOpen()}
           Value={props.Page}
           onValueChange={props.setPage}
         />
-        <MainHeaderSearchSlider />
+        <MainHeaderSearchSlider
+          open={SearchSliderOpen}
+          onClose={() => setSearchSliderOpen(false)}
+        />
       </div>
-      <div className="w-full h-[17px] min-h-[17px]" />
+      <div className="w-full h-[12px] min-h-[12px]" />
     </>
   );
 };
