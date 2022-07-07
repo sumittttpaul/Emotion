@@ -1,5 +1,12 @@
-import React, { FC, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, {
+  ChangeEvent,
+  FC,
+  RefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import { motion, useCycle, Variants } from 'framer-motion';
 import { SearchIcon } from '@heroicons/react/solid';
 import { Button, IconButton } from '@mui/material';
 import { TooltipDark } from '../../tooltip/TooltipDark';
@@ -11,8 +18,11 @@ import {
 } from '../../../contents/store/discover/Store.Discover.Search';
 import { SwiperSlide, Swiper } from 'swiper/react';
 import Image from 'next/image';
+import useScreenSize from '../../../algorithms/ScreenSizeDetection';
 
-interface IProps {}
+interface IProps {
+  ContainerRef: RefObject<HTMLDivElement>;
+}
 
 /**
  * @author
@@ -20,63 +30,83 @@ interface IProps {}
  **/
 
 export const MainHeaderSearchButton: FC<IProps> = (props) => {
-  const [open, setOpen] = useState(true);
+  const [animate, setAnimate] = useState('closed');
+  const [width, setWidth] = useState(160);
+  const [Search, setSearch] = useState('');
+  const SearchRef = useRef<HTMLInputElement>(null);
+  const { SmallScreen } = useScreenSize();
+
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
+
+  const ButtonVariant = {
+    open: {
+      width: SmallScreen ? width - 25 : width - 40,
+      height: 50,
+      borderRadius: 10,
+    },
+    closed: { width: 110, height: 40, borderRadius: 18 },
+  };
+
+  const SearchFocus = () => {
+    if (animate === 'closed') setAnimate('open');
+    SearchRef.current?.focus();
+    // setSearch('');
+  };
+  const SearchBlur = () => {
+    if (animate === 'open') setAnimate('closed');
+    setSearch('');
+  };
+
+  useEffect(() => {
+    if (props.ContainerRef.current)
+      setWidth(props.ContainerRef.current.offsetWidth);
+  }, [width]);
+
+  useEffect(() => {
+    if (props.ContainerRef.current)
+      props.ContainerRef.current.addEventListener('resize', () => {
+        if (props.ContainerRef.current)
+          setWidth(props.ContainerRef.current.offsetWidth);
+      });
+    return () => {
+      if (props.ContainerRef.current)
+        props.ContainerRef.current.removeEventListener('resize', () => {
+          if (props.ContainerRef.current)
+            setWidth(props.ContainerRef.current.offsetWidth);
+        });
+    };
+  });
   return (
     <>
-      <TooltipDark
-        arrow
-        placement="bottom-start"
-        title={
-          <h6 className="font-[400]">
-            Search by product, category or collection
-          </h6>
-        }
+      <motion.button
+        aria-label="desktop-search-button"
+        onFocus={SearchFocus}
+        // onBlur={SearchBlur}
+        animate={animate}
+        variants={ButtonVariant}
+        transition={{ duration: 0.2, type: 'tween' }}
+        className="block mr-1 header-button-hover transition-all duration-300 text-white sm:w-[160px] sm:min-w-[160px] cursor-text justify-start items-center button-text-lower p-[10px] rounded-[18px] bg-[#202020] hover:bg-[#202020]"
       >
-        <Button
-          aria-label="desktop-search-button"
-          disableRipple
-          disableFocusRipple
-          disableTouchRipple
-          onClick={() => setOpen(true)}
-          className="hidden md-900:block header-button-hover transition-all duration-300 text-white w-[160px] cursor-text justify-start button-text-lower p-[10px] rounded-full bg-[#202020] hover:bg-[#202020]"
-        >
-          <div className="space-x-3 flex items-center opacity-60 ml-1">
-            <SearchIcon className="h-[14px] w-[14px]" />
-            <h6 className="text-[12px] font-normal">Search</h6>
-          </div>
-        </Button>
-      </TooltipDark>
-      <TooltipDark
-        arrow
-        placement="bottom"
-        title={
-          <h6 className="font-[400]">
-            Search by product, category or collection
-          </h6>
-        }
-      >
-        <IconButton
-          disableFocusRipple
-          onClick={() =>
-            setTimeout(() => {
-              setOpen(true);
-            }, 150)
-          }
-          aria-label="mobile-search-button"
-          className="block md-900:hidden opacity-80 header-button-hover transition-all duration-300 button-text-lower h-full p-2.5 border border-solid border-[rgba(255,255,255,0.23)]"
-          sx={{
-            borderRadius: '6px !important',
-            '.MuiTouchRipple-child': {
-              borderRadius: '0 !important',
-              backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
-            },
-          }}
-        >
-          <SearchIcon className="h-4 w-4 opacity-80 header-icon-hover text-white" />
-        </IconButton>
-      </TooltipDark>
-      <DialogContainerLight show={open} close={() => setOpen(false)}>
-        <div className="text-black flex flex-col w-full h-full relative box-border max-w-3xl max-h-[800px] overflow-x-hidden overflow-y-visible">
+        <div className="space-x-3 flex items-center ml-1">
+          <SearchIcon className="h-[14px] w-[14px] min-h-[14px] min-w-[14px] block relative text-white opacity-60" />
+          <input
+            ref={SearchRef}
+            aria-label="search-text-field"
+            value={Search}
+            onChange={handleSearch}
+            placeholder={
+              animate === 'open'
+                ? 'Search by product, category or collection'
+                : 'Search'
+            }
+            className="flex min-w-20 pb-[2px] pr-2 whitespace-nowrap text-ellipsis w-full h-full bg-transparent text-[14px] text-white placeholder:text-[rgba(255,255,255,0.60)] placeholder:text-[13px] outline-none"
+          />
+        </div>
+      </motion.button>
+      {/* <DialogContainerLight show={open} close={() => setOpen(false)}>
+        <div className="text-black flex flex-col w-full h-full relative box-border max-w-3xl sm:max-h-[800px] overflow-x-hidden overflow-y-visible">
           <div className="flex w-full relative">
             <IconButton
               disableFocusRipple
@@ -272,7 +302,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
             </Swiper>
           </div>
         </div>
-      </DialogContainerLight>
+      </DialogContainerLight> */}
     </>
   );
 };

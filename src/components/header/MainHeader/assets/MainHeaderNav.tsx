@@ -132,7 +132,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
           className="hidden"
           aria-label="MainTab3"
         />
-        <ul className="flex flex-row space-x-3">
+        <ul className="flex flex-row space-x-1 md-900:space-x-3">
           {NavLabel.map((value) => (
             <li key={value.label} className="relative box-border">
               <label htmlFor={value.for} role="button">
@@ -165,7 +165,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
         aria-label="mobile-main-nav-button"
         className={`${
           Boolean(NonActiveContent(props.Value)) ? 'opacity-50' : 'opacity-100 '
-        } ${'flex ml-[58px] hover:opacity-100 w-full sm:hidden text-white button-text-lower'}`}
+        } ${'flex mr-2 hover:opacity-100 w-full sm:hidden text-white button-text-lower'}`}
       >
         <div className="flex space-x-2 items-center">
           <h6 className="font-normal text-[13.5px] tracking-[0.6px]">
