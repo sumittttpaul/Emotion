@@ -58,16 +58,15 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
   }, [width]);
 
   useEffect(() => {
-    if (props.ContainerRef.current)
-      props.ContainerRef.current.addEventListener('resize', () => {
-        if (props.ContainerRef.current)
-          setWidth(props.ContainerRef.current.offsetWidth);
+    const container = props.ContainerRef.current;
+    if (container)
+      container.addEventListener('resize', () => {
+        if (container) setWidth(container.offsetWidth);
       });
     return () => {
-      if (props.ContainerRef.current)
-        props.ContainerRef.current.removeEventListener('resize', () => {
-          if (props.ContainerRef.current)
-            setWidth(props.ContainerRef.current.offsetWidth);
+      if (container)
+        container.removeEventListener('resize', () => {
+          if (container) setWidth(container.offsetWidth);
         });
     };
   });
@@ -86,6 +85,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
           height={17}
           width={17}
           className="min-h-[17px] min-w-[17px] flex relative text-white opacity-70"
+          alt=""
         />
         <input
           ref={SearchRef}
