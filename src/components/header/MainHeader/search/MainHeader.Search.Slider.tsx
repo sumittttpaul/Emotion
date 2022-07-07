@@ -76,29 +76,34 @@ export const MainHeaderSearchSlider: FC<IProps> = (props) => {
         variants={SliderVariant}
       >
         <div className="w-full bg-[#121212] flex">
-          <motion.ul
+          <motion.div
             variants={UlVariants}
             className="space-y-5 pt-3 pb-5 w-full max-w-[1440px] mx-auto overflow-y-auto sm:overflow-y-hidden"
           >
-            <motion.li variants={LiVariants}>
-              <MainHeaderSearchPopular
-                ContentArray={StoreDiscoverPopularSearch}
-              />
-            </motion.li>
-            <motion.li variants={LiVariants}>
-              <MainHeaderSearchCuration
-                ContentArray={StoreDiscoverCurationSearch}
-              />
-            </motion.li>
-            <motion.li
+            <div className="w-full flex sm:justify-between">
+              <div className="order-2 sm:order-1 w-full sm:w-[50%] flex"></div>
+              <div className="order-1 sm:order-2 w-full sm:w-[50%] flex flex-col space-y-5">
+                <motion.div variants={LiVariants}>
+                  <MainHeaderSearchPopular
+                    ContentArray={StoreDiscoverPopularSearch}
+                  />
+                </motion.div>
+                <motion.div variants={LiVariants}>
+                  <MainHeaderSearchCuration
+                    ContentArray={StoreDiscoverCurationSearch}
+                  />
+                </motion.div>
+              </div>
+            </div>
+            <motion.div
               variants={LiVariants}
               className="w-full flex justify-center"
             >
               <MainHeaderSearchExit
                 onClick={() => setTimeout(() => props.onClose(), 100)}
               />
-            </motion.li>
-          </motion.ul>
+            </motion.div>
+          </motion.div>
         </div>
       </motion.div>
     </>

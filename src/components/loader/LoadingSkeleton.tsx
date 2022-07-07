@@ -17,7 +17,7 @@ export function LoadingMainheader() {
   return (
     <>
       {/* Large Screen */}
-      <div className="hidden md-900:flex w-full text-white p-3 my-[13px] sm:p-5 justify-between">
+      <div className="hidden md-900:flex max-w-[1440px] mx-auto w-full text-white p-3 my-[13px] sm:p-5 justify-between">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
@@ -33,7 +33,7 @@ export function LoadingMainheader() {
       </div>
 
       {/* Medium Screen */}
-      <div className="hidden sm:flex md-900:hidden w-full text-white p-3 my-[13px] sm:p-5 justify-between">
+      <div className="hidden sm:flex md-900:hidden max-w-[1440px] mx-auto w-full text-white p-3 my-[13px] sm:p-5 justify-between">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
@@ -49,7 +49,7 @@ export function LoadingMainheader() {
       </div>
 
       {/* Small Screen */}
-      <div className="flex sm:hidden w-full text-white p-3 my-[13px] sm:p-5 justify-between">
+      <div className="flex sm:hidden max-w-[1440px] mx-auto w-full text-white p-3 my-[13px] sm:p-5 justify-between">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
@@ -141,7 +141,7 @@ export function LoadingLoginUi() {
 
 export function LoadingDiscoverCarousel() {
   return (
-    <div className="px-5">
+    <>
       {/* Large Screen */}
       <Skeleton
         sx={{ bgcolor: MainHeaderColor }}
@@ -166,7 +166,7 @@ export function LoadingDiscoverCarousel() {
         height={450}
         className="flex sm:hidden"
       />
-    </div>
+    </>
   );
 }
 

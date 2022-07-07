@@ -119,7 +119,7 @@ export const MainHeaderSearchCuration: FC<IProps> = (props) => {
   }, []);
 
   return (
-    <div className="flex flex-col w-full relative space-y-3.5 overflow-x-hidden">
+    <div className="flex flex-col w-full relative md-900:pr-5 space-y-3.5 overflow-x-hidden">
       <h6 className="font-[400] text-sm px-3 sm:px-5 text-white w-full text-left">
         Top Curations
       </h6>
