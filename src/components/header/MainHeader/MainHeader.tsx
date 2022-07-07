@@ -5,9 +5,9 @@ import { Cart_Link, Wishlist_Link } from '../../../routerLinks/RouterLinks';
 import { MainHeaderCartButton } from '../../button/header/MainHeader.CartButton';
 import { MainHeaderSearchButton } from '../../button/header/MainHeader.SearchButton';
 import { MainHeaderWishlistButton } from '../../button/header/MainHeader.WishlistButton';
-import { MainHeaderNav } from './assets/MainHeaderNav';
-import { MainHeaderSearchSlider } from './assets/MainHeaderSearchSlider';
-import { MainHeaderSlider } from './assets/MainHeaderSlider';
+import { MainHeaderNav } from './assets/MainHeader.Nav';
+import { MainHeaderSearchSlider } from './search/MainHeader.Search.Slider';
+import { MainHeaderSlider } from './assets/MainHeader.Slider';
 
 export interface MainHeaderProps {
   Page: string;
