@@ -1,5 +1,5 @@
 import { FilmIcon } from '@heroicons/react/solid';
-import { Button, IconButton } from '@mui/material';
+import { Button } from '@mui/material';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import ScrollContainer from 'react-indiana-drag-scroll';
@@ -134,6 +134,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
       {/* Main */}
       <ScrollContainer
         vertical={false}
+        horizontal={true}
         hideScrollbars={true}
         component="ul"
         innerRef={sliderRef}

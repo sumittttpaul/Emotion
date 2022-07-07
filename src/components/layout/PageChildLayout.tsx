@@ -26,7 +26,6 @@ interface IProps {
 export const PageChildLayout: FC<IProps> = (props) => {
   return (
     <main className="w-full flex-grow z-auto max-w-[1440px] mx-auto">
-      {/* <LoadingMainheader/> */}
       <MainHeader Page={props.ChildPage} setPage={props.setChildPage} />
       {props.children}
     </main>

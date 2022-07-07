@@ -48,7 +48,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
       height: 50,
       borderRadius: 10,
     },
-    closed: { width: SmallScreen ? 105 : 160, height: 40, borderRadius: 18 },
+    closed: { width: SmallScreen ? 100 : 160, height: 40, borderRadius: 18 },
   };
 
   const SearchFocus = () => {
@@ -94,9 +94,9 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
         animate={animate}
         variants={ButtonVariant}
         transition={{ duration: 0.2, type: 'tween' }}
-        className="block mr-1 header-button-hover transition-all duration-300 text-white w-[105px] min-w-[105px] sm:w-[160px] sm:min-w-[160px] cursor-text justify-start items-center button-text-lower p-[10px] rounded-[18px] bg-[#202020] hover:bg-[#202020]"
+        className="block mr-1 header-button-hover transition-all duration-300 text-white w-[100px] min-w-[100px] sm:w-[160px] sm:min-w-[160px] cursor-text justify-start items-center button-text-lower p-[10px] rounded-[18px] bg-[#202020] hover:bg-[#202020]"
       >
-        <div className="space-x-3 flex items-center ml-1">
+        <div className="flex items-center ml-1">
           <Image src="/icons/search-white.svg" height={17} width={17} className="min-h-[17px] min-w-[17px] flex relative text-white opacity-70" />
           <input
             ref={SearchRef}
@@ -108,7 +108,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
                 ? 'Search by product, category or collection'
                 : 'Search'
             }
-            className="flex min-w-20 pb-[2px] pr-2 whitespace-nowrap text-ellipsis w-full h-full bg-transparent text-[14px] text-white placeholder:text-[rgba(255,255,255,0.60)] placeholder:text-[13px] outline-none"
+            className="flex min-w-20 pb-[2px] pl-[10px] pr-2 whitespace-nowrap text-ellipsis w-full h-full bg-transparent text-[14px] text-white placeholder:text-[rgba(255,255,255,0.60)] placeholder:text-[13px] outline-none"
           />
         </div>
       </motion.button>
