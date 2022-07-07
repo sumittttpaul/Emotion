@@ -31,6 +31,7 @@ export const MainHeaderSearchCuration: FC<IProps> = (props) => {
   const sliderRef = useRef<HTMLElement>(null);
   const [LeftAnimate, setLeftAnimate] = useState('closed');
   const [RightAnimate, setRightAnimate] = useState('closed');
+  const [IsExceeded, setIsExceeded] = useState(false);
 
   const slideLeft = () => {
     const slider = sliderRef.current;
@@ -66,6 +67,22 @@ export const MainHeaderSearchCuration: FC<IProps> = (props) => {
     }
   };
 
+  const IsContentExceeded = () => {
+    const slider = sliderRef.current;
+    if (slider) {
+      if (slider.scrollWidth && slider.clientWidth) {
+        if (slider.scrollWidth > slider.clientWidth) {
+          setIsExceeded(true);
+          setRightAnimate('open');
+        }
+        else {
+          setIsExceeded(false);
+          setRightAnimate('closed');
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     const slider = sliderRef.current;
     if (slider) {
@@ -79,13 +96,24 @@ export const MainHeaderSearchCuration: FC<IProps> = (props) => {
   });
 
   useEffect(() => {
+    if (window) window.addEventListener('resize', IsContentExceeded);
+    return () => {
+      if (window) window.removeEventListener('resize', IsContentExceeded);
+    };
+  });
+
+  useEffect(() => {
     const slider = sliderRef.current;
     if (slider) {
       let maxScroll = slider.scrollWidth - slider.clientWidth;
-      console.log(maxScroll + ' , ' + slider.scrollLeft);
       if (maxScroll != 0) {
-        if (slider.scrollLeft === maxScroll) setRightAnimate('closed');
-        else setRightAnimate('open');
+        if (slider.scrollLeft === maxScroll) {
+          setIsExceeded(false);
+          setRightAnimate('closed');
+        } else {
+          setIsExceeded(true);
+          setRightAnimate('open');
+        }
       }
     }
   }, []);
@@ -129,8 +157,12 @@ export const MainHeaderSearchCuration: FC<IProps> = (props) => {
           </Button>
         ))}
       </ScrollContainer>
-      <LeftButton onClick={() => slideLeft()} animate={LeftAnimate} />
-      <RightButton onClick={() => slideRight()} animate={RightAnimate} />
+      {IsExceeded && (
+        <>
+          <LeftButton onClick={() => slideLeft()} animate={LeftAnimate} />
+          <RightButton onClick={() => slideRight()} animate={RightAnimate} />
+        </>
+      )}
     </div>
   );
 };

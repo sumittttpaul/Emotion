@@ -47,29 +47,30 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
     SearchRef.current?.focus();
   };
 
+  const SearchInputResize = () => {
+    if (window.innerWidth) {
+      if (window.innerWidth < 1440) setWidth(window.innerWidth);
+      else setWidth(1440);
+      console.log('InnerWidth : ' + window.innerWidth);
+      console.log('Width : ' + width);
+    }
+  };
   useEffect(() => {
     if (props.Open) setAnimate('open');
     else setAnimate('closed');
   }, [props.Open]);
 
   useEffect(() => {
-    if (props.ContainerRef.current)
-      setWidth(props.ContainerRef.current.offsetWidth);
-  }, [width]);
+    SearchInputResize();
+  }, []);
 
   useEffect(() => {
-    const container = props.ContainerRef.current;
-    if (container)
-      container.addEventListener('resize', () => {
-        if (container) setWidth(container.offsetWidth);
-      });
+    if (window) window.addEventListener('resize', SearchInputResize);
     return () => {
-      if (container)
-        container.removeEventListener('resize', () => {
-          if (container) setWidth(container.offsetWidth);
-        });
+      if (window) window.removeEventListener('resize', SearchInputResize);
     };
   });
+
   return (
     <motion.button
       aria-label="desktop-search-button"

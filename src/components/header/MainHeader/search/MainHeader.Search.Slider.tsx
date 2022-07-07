@@ -78,7 +78,7 @@ export const MainHeaderSearchSlider: FC<IProps> = (props) => {
         <div className="w-full bg-[#121212] flex">
           <motion.ul
             variants={UlVariants}
-            className="space-y-5 pt-3 pb-5 w-full max-w-[1440px] mx-auto overflow-y-auto"
+            className="space-y-5 pt-3 pb-5 w-full max-w-[1440px] mx-auto overflow-y-auto sm:overflow-y-hidden"
           >
             <motion.li variants={LiVariants}>
               <MainHeaderSearchPopular
