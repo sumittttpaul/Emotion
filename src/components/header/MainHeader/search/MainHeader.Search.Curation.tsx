@@ -74,8 +74,7 @@ export const MainHeaderSearchCuration: FC<IProps> = (props) => {
         if (slider.scrollWidth > slider.clientWidth) {
           setIsExceeded(true);
           setRightAnimate('open');
-        }
-        else {
+        } else {
           setIsExceeded(false);
           setRightAnimate('closed');
         }
@@ -119,8 +118,8 @@ export const MainHeaderSearchCuration: FC<IProps> = (props) => {
   }, []);
 
   return (
-    <div className="flex flex-col w-full relative md-900:pr-5 space-y-3.5 overflow-x-hidden">
-      <h6 className="font-[400] text-sm px-3 sm:px-5 text-white w-full text-left">
+    <div className="flex flex-col w-full relative sm:px-5 space-y-3.5 overflow-x-hidden">
+      <h6 className="font-[400] text-sm px-3 sm:px-0 text-white w-full text-left">
         Top Curations
       </h6>
       <ScrollContainer
@@ -129,7 +128,7 @@ export const MainHeaderSearchCuration: FC<IProps> = (props) => {
         hideScrollbars={true}
         innerRef={sliderRef}
         component="ul"
-        className="px-3 sm:px-5 relative box-border h-full w-full space-x-2 whitespace-nowrap scroll-smooth overflow-x-scroll scroll scrollbar-hide"
+        className="px-3 sm:px-1 relative box-border h-full w-full space-x-2 whitespace-nowrap scroll-smooth overflow-x-scroll scroll scrollbar-hide"
       >
         {props.ContentArray.map((value, index) => (
           <Button

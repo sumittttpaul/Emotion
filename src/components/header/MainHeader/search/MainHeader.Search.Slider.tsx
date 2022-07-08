@@ -1,5 +1,5 @@
 import { motion, Variants } from 'framer-motion';
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   StoreDiscoverCurationSearch,
   StoreDiscoverPopularSearch,
@@ -7,6 +7,7 @@ import {
 import { MainHeaderSearchCuration } from './MainHeader.Search.Curation';
 import { MainHeaderSearchExit } from './MainHeader.Search.Exit';
 import { MainHeaderSearchPopular } from './MainHeader.Search.Popular';
+import { MainHeaderSearchQuickLink } from './MainHeader.Search.QuickLink';
 
 interface IProps {
   open: boolean;
@@ -78,17 +79,21 @@ export const MainHeaderSearchSlider: FC<IProps> = (props) => {
         <div className="w-full bg-[#121212] flex">
           <motion.div
             variants={UlVariants}
-            className="space-y-5 pt-3 pb-5 w-full max-w-[1440px] mx-auto overflow-y-auto sm:overflow-y-hidden"
+            className="space-y-5 pt-3 pb-5 w-full max-w-[1440px] mx-auto overflow-x-hidden overflow-y-auto sm:overflow-y-hidden"
           >
-            <div className="w-full flex sm:justify-between">
-              <div className="order-2 sm:order-1 w-full sm:w-[50%] flex"></div>
-              <div className="order-1 sm:order-2 w-full sm:w-[50%] flex flex-col space-y-5">
-                <motion.div variants={LiVariants}>
+            <div className="w-full flex flex-col sm:flex-row sm:justify-between">
+              <div className="order-2 sm:order-1 w-full sm:w-[50%] flex mt-5 sm:mt-0">
+                <motion.div variants={LiVariants} className="w-full flex">
+                  <MainHeaderSearchQuickLink />
+                </motion.div>
+              </div>
+              <div className="order-1 sm:order-2 w-full sm:w-[50%] space-y-5 flex flex-col">
+                <motion.div variants={LiVariants} className="w-full flex">
                   <MainHeaderSearchPopular
                     ContentArray={StoreDiscoverPopularSearch}
                   />
                 </motion.div>
-                <motion.div variants={LiVariants}>
+                <motion.div variants={LiVariants} className="w-full flex">
                   <MainHeaderSearchCuration
                     ContentArray={StoreDiscoverCurationSearch}
                   />

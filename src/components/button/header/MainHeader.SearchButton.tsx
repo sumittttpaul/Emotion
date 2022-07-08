@@ -14,6 +14,7 @@ interface IProps {
   ContainerRef: RefObject<HTMLDivElement>;
   Open: boolean;
   onOpen: () => void;
+  onAnimationComplete: () => void;
 }
 
 /**
@@ -23,7 +24,6 @@ interface IProps {
 
 export const MainHeaderSearchButton: FC<IProps> = (props) => {
   const [animate, setAnimate] = useState('closed');
-  const [width, setWidth] = useState(160);
   const [Search, setSearch] = useState('');
   const SearchRef = useRef<HTMLInputElement>(null);
   const { SmallScreen } = useScreenSize();
@@ -34,7 +34,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
 
   const ButtonVariant = {
     open: {
-      width: SmallScreen ? width - 24 : width - 40,
+      width: '100%',
       height: 50,
       borderRadius: 10,
     },
@@ -47,29 +47,14 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
     SearchRef.current?.focus();
   };
 
-  const SearchInputResize = () => {
-    if (window.innerWidth) {
-      if (window.innerWidth < 1440) setWidth(window.innerWidth);
-      else setWidth(1440);
-      console.log('InnerWidth : ' + window.innerWidth);
-      console.log('Width : ' + width);
+  useEffect(() => {
+    if (props.Open) {
+      setAnimate('open');
+    } else {
+      setAnimate('closed');
+      setSearch('');
     }
-  };
-  useEffect(() => {
-    if (props.Open) setAnimate('open');
-    else setAnimate('closed');
   }, [props.Open]);
-
-  useEffect(() => {
-    SearchInputResize();
-  }, []);
-
-  useEffect(() => {
-    if (window) window.addEventListener('resize', SearchInputResize);
-    return () => {
-      if (window) window.removeEventListener('resize', SearchInputResize);
-    };
-  });
 
   return (
     <motion.button
@@ -77,6 +62,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
       onFocus={SearchFocus}
       animate={animate}
       variants={ButtonVariant}
+      onAnimationComplete={props.onAnimationComplete}
       transition={{ duration: 0.2, type: 'tween' }}
       className="block mr-1 header-button-hover transition-all duration-300 text-white w-[100px] min-w-[100px] sm:w-[160px] sm:min-w-[160px] cursor-text justify-start items-center button-text-lower p-[10px] rounded-[18px] bg-[#202020] hover:bg-[#202020]"
     >

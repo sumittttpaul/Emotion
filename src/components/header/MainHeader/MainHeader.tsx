@@ -22,6 +22,7 @@ export interface MainHeaderProps {
 export const MainHeader: FC<MainHeaderProps> = (props) => {
   const [NavSliderOpen, setNavSliderOpen] = useCycle(false, true);
   const [SearchSliderOpen, setSearchSliderOpen] = useState(false);
+  const [SearchSliderAnimation, setSearchSliderAnimation] = useState(false);
   const ContainerRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -37,14 +38,24 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
       >
         <div className="flex relative box-border w-full max-w-[1440px] mx-auto h-full justify-between items-center py-3 sm:px-5 px-3 overflow-x-hidden">
           <div className="flex relative w-full md-900:space-x-6 items-center">
-            <div>
+            <div className={`${SearchSliderAnimation ? 'w-full' : 'w-[100px] sm:w-[160px]'}`}>
               <MainHeaderSearchButton
                 ContainerRef={ContainerRef}
                 Open={SearchSliderOpen}
-                onOpen={() => setSearchSliderOpen(true)}
+                onOpen={() => {
+                  setSearchSliderOpen(true);
+                  setSearchSliderAnimation(true);
+                }}
+                onAnimationComplete={() => {
+                  if (!SearchSliderOpen) setSearchSliderAnimation(false);
+                }}
               />
             </div>
-            <div className="flex w-full justify-between">
+            <div
+              className={`${
+                SearchSliderAnimation ? 'hidden w-0' : 'flex w-full'
+              } ${'justify-between'}`}
+            >
               <MainHeaderNav
                 open={NavSliderOpen}
                 onOpen={() => setNavSliderOpen()}
