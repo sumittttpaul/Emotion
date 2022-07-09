@@ -21,7 +21,7 @@ export const MainHeaderSearchExit: FC<IProps> = (props) => {
       <Image
         height={22.5}
         width={22.5}
-        className="block overflow-hidden opacity-75"
+        className="block overflow-hidden opacity-80"
         src="/icons/x-white.svg"
         alt=""
       />

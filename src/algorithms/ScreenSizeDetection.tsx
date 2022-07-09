@@ -4,7 +4,7 @@ export default function useScreenSize() {
   const [LargeScreen, setLargeScreen] = useState(false);
   const [MediumScreen, setMediumScreen] = useState(false);
   const [SmallScreen, setSmallScreen] = useState(false);
-  const getSizes = () => {
+  const getScreenWidth = () => {
     if (window) {
       const LargeSize = window.matchMedia('Screen and (min-width: 900px)');
       const MediumSize = window.matchMedia(
@@ -20,11 +20,11 @@ export default function useScreenSize() {
     }
   };
   useEffect(() => {
-    getSizes();
+    getScreenWidth();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
-    window.addEventListener('resize', getSizes);
-    return () => window.removeEventListener('resize', getSizes);
+    window.addEventListener('resize', getScreenWidth);
+    return () => window.removeEventListener('resize', getScreenWidth);
   }); // eslint-disable-line react-hooks/exhaustive-deps
   return { LargeScreen, MediumScreen, SmallScreen };
 }

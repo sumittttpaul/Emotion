@@ -4,6 +4,12 @@
   top: 0; /* required */
 }
 
+.sticky-bottom {
+  position: sticky;
+  position: -webkit-sticky;
+  bottom: 0; /* required */
+}
+
 .main-auth {
   user-select: none;
   color: #fff;

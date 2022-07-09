@@ -7,6 +7,11 @@ export interface StoreDiscoverCurationSearchIProps {
   Image: string;
 }
 
+export interface StoreDiscoverExploreSearchIProps {
+  LargeBanner: { Label: string; Image: string }[];
+  SmallBanner: { Label: string; Image: string }[];
+}
+
 export const StoreDiscoverPopularSearch = [
   {
     Label: 'T-shirt',
@@ -82,3 +87,42 @@ export const StoreDiscoverCurationSearch = [
     Image: '/images/avatar/illustration/1.png',
   },
 ];
+
+export const StoreDiscoverExploreSearch = {
+  LargeBanner: [
+    {
+      Label: 'Winter Collections',
+      Image: '/images/avatar/illustration/1.png',
+    },
+    {
+      Label: 'Summer Collections',
+      Image: '/images/avatar/illustration/2.png',
+    },
+  ],
+  SmallBanner: [
+    {
+      Label: 'Shirts',
+      Image: '/images/avatar/illustration/4.png',
+    },
+    {
+      Label: 'Hoodies',
+      Image: '/images/avatar/illustration/9.png',
+    },
+    {
+      Label: 'Jeans',
+      Image: '/images/avatar/illustration/8.png',
+    },
+    {
+      Label: 'Trouser',
+      Image: '/images/avatar/illustration/6.png',
+    },
+    {
+      Label: 'Jackets',
+      Image: '/images/avatar/illustration/9.png',
+    },
+    {
+      Label: 'T-shirts',
+      Image: '/images/avatar/illustration/10.png',
+    },
+  ],
+};

@@ -1,13 +1,15 @@
 import { motion, Variants } from 'framer-motion';
 import React, { FC, useEffect, useState } from 'react';
+import useScreenheight from '../../../../algorithms/ScreenHeightDetection';
 import {
   StoreDiscoverCurationSearch,
+  StoreDiscoverExploreSearch,
   StoreDiscoverPopularSearch,
 } from '../../../../contents/store/discover/Store.Discover.Search';
 import { MainHeaderSearchCuration } from './MainHeader.Search.Curation';
 import { MainHeaderSearchExit } from './MainHeader.Search.Exit';
 import { MainHeaderSearchPopular } from './MainHeader.Search.Popular';
-import { MainHeaderSearchQuickLink } from './MainHeader.Search.QuickLink';
+import { MainHeaderSearchExplore } from './MainHeader.Search.QuickLink';
 
 interface IProps {
   open: boolean;
@@ -52,6 +54,7 @@ const LiVariants: Variants = {
 
 export const MainHeaderSearchSlider: FC<IProps> = (props) => {
   const [Slider, setSlider] = useState('closed');
+  const { LargeHeight, MediumHeight, SmallHeight } = useScreenheight();
 
   useEffect(() => {
     if (props.open) {
@@ -79,30 +82,42 @@ export const MainHeaderSearchSlider: FC<IProps> = (props) => {
         <div className="w-full bg-[#121212] flex">
           <motion.div
             variants={UlVariants}
-            className="space-y-5 pt-3 pb-5 w-full max-w-[1440px] mx-auto overflow-x-hidden overflow-y-auto sm:overflow-y-hidden"
+            className="space-y-5 pt-3 flex flex-col w-full h-full max-w-[1440px] mx-auto"
           >
-            <div className="w-full flex flex-col sm:flex-row sm:justify-between">
-              <div className="order-2 sm:order-1 w-full sm:w-[50%] flex mt-5 sm:mt-0">
-                <motion.div variants={LiVariants} className="w-full flex">
-                  <MainHeaderSearchQuickLink />
-                </motion.div>
+            <div className="w-full flex flex-col sm:flex-row sm:justify-between overflow-x-hidden">
+              <div
+                className={`${
+                  LargeHeight ? 'mt-5 sm:mt-0' : ''
+                } order-2 sm:order-1 w-full sm:w-[50%] flex overflow-y-hidden`}
+              >
+                {LargeHeight && (
+                  <motion.div variants={LiVariants} className="w-full flex">
+                    <MainHeaderSearchExplore
+                      ContentArray={StoreDiscoverExploreSearch}
+                    />
+                  </motion.div>
+                )}
               </div>
-              <div className="order-1 sm:order-2 w-full sm:w-[50%] space-y-5 flex flex-col">
-                <motion.div variants={LiVariants} className="w-full flex">
-                  <MainHeaderSearchPopular
-                    ContentArray={StoreDiscoverPopularSearch}
-                  />
-                </motion.div>
-                <motion.div variants={LiVariants} className="w-full flex">
-                  <MainHeaderSearchCuration
-                    ContentArray={StoreDiscoverCurationSearch}
-                  />
-                </motion.div>
+              <div className="order-1 sm:order-2 w-full sm:w-[50%] space-y-5 flex flex-col overflow-y-hidden">
+                {SmallHeight && (
+                  <motion.div variants={LiVariants} className="w-full flex">
+                    <MainHeaderSearchPopular
+                      ContentArray={StoreDiscoverPopularSearch}
+                    />
+                  </motion.div>
+                )}
+                {MediumHeight && (
+                  <motion.div variants={LiVariants} className="w-full flex">
+                    <MainHeaderSearchCuration
+                      ContentArray={StoreDiscoverCurationSearch}
+                    />
+                  </motion.div>
+                )}
               </div>
             </div>
             <motion.div
               variants={LiVariants}
-              className="w-full flex justify-center"
+              className="w-full flex justify-center pb-5 bg-gradient-to-t from-[#121212] sticky-bottom"
             >
               <MainHeaderSearchExit
                 onClick={() => setTimeout(() => props.onClose(), 100)}
