@@ -31,7 +31,7 @@ export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (prop
   const sliderRef = useRef<HTMLElement>(null);
   const [LeftAnimate, setLeftAnimate] = useState('closed');
   const [RightAnimate, setRightAnimate] = useState('open');
-  const [IsExceeded, setIsExceeded] = useState(false);
+  const [IsExceeded, setIsExceeded] = useState(true);
 
   const slideLeft = () => {
     const slider = sliderRef.current;
@@ -66,22 +66,7 @@ export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (prop
       }
     }
   };
-
-  const IsContentExceeded = () => {
-    const slider = sliderRef.current;
-    if (slider) {
-      if (slider.scrollWidth && slider.clientWidth) {
-        if (slider.scrollWidth > slider.clientWidth) {
-          setIsExceeded(true);
-          setRightAnimate('open');
-        } else {
-          setIsExceeded(false);
-          setRightAnimate('closed');
-        }
-      }
-    }
-  };
-
+  
   useEffect(() => {
     const slider = sliderRef.current;
     if (slider) {
@@ -94,29 +79,44 @@ export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (prop
     };
   });
 
-  useEffect(() => {
-    if (window) window.addEventListener('resize', IsContentExceeded);
-    return () => {
-      if (window) window.removeEventListener('resize', IsContentExceeded);
-    };
-  });
+  // const IsContentExceeded = () => {
+  //   const slider = sliderRef.current;
+  //   if (slider) {
+  //     if (slider.scrollWidth && slider.clientWidth) {
+  //       if (slider.scrollWidth > slider.clientWidth) {
+  //         setIsExceeded(true);
+  //         setRightAnimate('open');
+  //       } else {
+  //         setIsExceeded(false);
+  //         setRightAnimate('closed');
+  //       }
+  //     }
+  //   }
+  // };
 
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (slider) {
-      let maxScroll = slider.scrollWidth - slider.clientWidth;
-      console.log(maxScroll)
-      if (maxScroll != 0) {
-        if (slider.scrollLeft === maxScroll) {
-          setIsExceeded(false);
-          setRightAnimate('closed');
-        } else {
-          setIsExceeded(true);
-          setRightAnimate('open');
-        }
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (window) window.addEventListener('resize', IsContentExceeded);
+  //   return () => {
+  //     if (window) window.removeEventListener('resize', IsContentExceeded);
+  //   };
+  // });
+
+  // useEffect(() => {
+  //   const slider = sliderRef.current;
+  //   if (slider) {
+  //     let maxScroll = slider.scrollWidth - slider.clientWidth;
+  //     console.log(maxScroll)
+  //     if (maxScroll != 0) {
+  //       if (slider.scrollLeft === maxScroll) {
+  //         setIsExceeded(false);
+  //         setRightAnimate('closed');
+  //       } else {
+  //         setIsExceeded(true);
+  //         setRightAnimate('open');
+  //       }
+  //     }
+  //   }
+  // }, []);
 
   return (
     <div className="flex flex-col w-full relative sm:px-5 space-y-3.5 overflow-x-hidden">
