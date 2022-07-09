@@ -121,7 +121,7 @@ export const StoreDiscoverExploreSearch = {
       Image: '/images/avatar/illustration/9.png',
     },
     {
-      Label: 'T-shirts',
+      Label: 'T-Shirts',
       Image: '/images/avatar/illustration/10.png',
     },
   ],
