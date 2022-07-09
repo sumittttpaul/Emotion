@@ -53,6 +53,7 @@ export const MainHeaderSearchExplore: FC<MainHeaderSearchExploreProps> = (
                     layout="fill"
                     loading="lazy"
                     src={value.Image}
+                    alt=""
                   />
                 </div>
                 <div className="w-full h-full absolute bg-gradient-to-t from-[rgba(0,0,0,0.7)] transition-colors duration-300 ease-linear">

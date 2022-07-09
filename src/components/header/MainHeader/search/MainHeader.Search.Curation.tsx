@@ -27,7 +27,9 @@ const RightVariants = {
   },
 };
 
-export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (props) => {
+export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (
+  props
+) => {
   const sliderRef = useRef<HTMLElement>(null);
   const [LeftAnimate, setLeftAnimate] = useState('closed');
   const [RightAnimate, setRightAnimate] = useState('open');
@@ -66,7 +68,7 @@ export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (prop
       }
     }
   };
-  
+
   useEffect(() => {
     const slider = sliderRef.current;
     if (slider) {
@@ -149,7 +151,9 @@ export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (prop
               height={60}
               width={60}
               src={value.Image}
+              loading="lazy"
               className="rounded-md"
+              alt=""
             />
             <h6 className="text-[13px] w-full text-center text-[rgba(255,255,255,0.7)] font-[300] whitespace-nowrap overflow-hidden text-ellipsis">
               {value.Label}

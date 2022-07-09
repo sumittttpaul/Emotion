@@ -55,6 +55,7 @@ export const MainHeaderSearchQuickLinkSmallBannerMobile: FC<
                 objectPosition="center"
                 layout="fill"
                 loading="lazy"
+                alt=""
                 src={value.Image}
               />
             </div>
@@ -110,6 +111,7 @@ export const MainHeaderSearchQuickLinkSmallBannerDesktop: FC<
                 layout="fill"
                 loading="lazy"
                 src={value.Image}
+                alt=""
               />
             </div>
             <div className={LabelContainerParentStyle}>
