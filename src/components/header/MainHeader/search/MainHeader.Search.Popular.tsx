@@ -2,11 +2,11 @@ import { Button } from '@mui/material';
 import React, { FC } from 'react';
 import { StoreDiscoverPopularSearchIProps } from '../../../../contents/store/discover/Store.Discover.Search';
 
-interface IProps {
+export interface MainHeaderSearchPopularProps {
   ContentArray: StoreDiscoverPopularSearchIProps[];
 }
 
-export const MainHeaderSearchPopular: FC<IProps> = (props) => {
+export const MainHeaderSearchPopular: FC<MainHeaderSearchPopularProps> = (props) => {
   return (
     <div className="flex flex-col w-full px-3 sm:px-5 space-y-3.5">
       <h6 className="font-[400] text-sm text-white w-full text-left">

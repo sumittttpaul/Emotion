@@ -1,11 +1,29 @@
-import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { FC } from 'react';
 import useScreenSize from '../../../../algorithms/ScreenSizeDetection';
 import { StoreDiscoverExploreSearchIProps } from '../../../../contents/store/discover/Store.Discover.Search';
+import { MainHeaderSearchQuickLinkSmallBannerProps } from './MainHeader.Search.QuickLink.SmallBanner';
 
-interface IProps {
+const MainHeaderSearchQuickLinkSmallBannerMobile =
+  dynamic<MainHeaderSearchQuickLinkSmallBannerProps>(
+    () =>
+      import('./MainHeader.Search.QuickLink.SmallBanner').then(
+        (x) => x.MainHeaderSearchQuickLinkSmallBannerMobile
+      ),
+    { ssr: false }
+  );
+const MainHeaderSearchQuickLinkSmallBannerDesktop =
+  dynamic<MainHeaderSearchQuickLinkSmallBannerProps>(
+    () =>
+      import('./MainHeader.Search.QuickLink.SmallBanner').then(
+        (x) => x.MainHeaderSearchQuickLinkSmallBannerDesktop
+      ),
+    { ssr: false }
+  );
+
+export interface MainHeaderSearchExploreProps {
   ContentArray: StoreDiscoverExploreSearchIProps;
 }
 
@@ -14,7 +32,9 @@ interface IProps {
  * @function @MainHeaderSearchExplore
  **/
 
-export const MainHeaderSearchExplore: FC<IProps> = (props) => {
+export const MainHeaderSearchExplore: FC<MainHeaderSearchExploreProps> = (
+  props
+) => {
   const { SmallScreen } = useScreenSize();
   return (
     <div className="flex flex-col w-full px-3 sm:px-5 space-y-3.5">
@@ -54,103 +74,13 @@ export const MainHeaderSearchExplore: FC<IProps> = (props) => {
         ))}
       </ul>
       {SmallScreen ? (
-        <div className="w-auto h-full overflow-hidden whitespace-nowrap static flex flex-col flex-nowrap float-none justify-end">
-          <div className="flex w-full h-full space-x-3">
-            {props.ContentArray.SmallBanner.map((value, index) => (
-              <Button
-                key={index}
-                disableFocusRipple
-                disableTouchRipple
-                disableRipple
-                sx={{
-                  '.MuiTouchRipple-child': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.5) !important',
-                  },
-                }}
-                className={`${
-                  index === 0
-                    ? 'inline-flex'
-                    : index === 1
-                    ? 'hidden xs-200:inline-flex'
-                    : index === 2
-                    ? 'hidden xs-300:inline-flex'
-                    : index === 3
-                    ? 'hidden xs-400:inline-flex'
-                    : 'hidden'
-                } ${'rounded-xl relative overflow-hidden h-full w-full flex-col button-text-lower p-0 m-0 bg-[rgba(255,255,255,0.05)]'}`}
-              >
-                <div className="w-full h-full min-h-[100px] flex relative">
-                  <Image
-                    objectFit="cover"
-                    objectPosition="center"
-                    layout="fill"
-                    loading="lazy"
-                    src={value.Image}
-                  />
-                </div>
-                <div className="w-full h-full absolute bg-gradient-to-t from-[rgba(0,0,0,0.7)] transition-colors duration-300 ease-linear">
-                  <div className="flex w-full h-full items-end justify-between">
-                    <h6 className="text-[12px] w-full p-2 text-center text-white font-[400] tracking-[0.4px] whitespace-nowrap overflow-hidden text-ellipsis">
-                      {value.Label}
-                    </h6>
-                  </div>
-                </div>
-                <div className="absolute w-full h-full bg-[rgba(255,255,255,0)] hover:bg-[rgba(255,255,255,0.1)] transition-colors duration-300 ease-linear" />
-              </Button>
-            ))}
-          </div>
-        </div>
+        <MainHeaderSearchQuickLinkSmallBannerMobile
+          ContentArray={props.ContentArray}
+        />
       ) : (
-        <div className="w-auto h-full overflow-hidden whitespace-nowrap static flex flex-col flex-nowrap float-none justify-end">
-          <div className="flex w-full h-full space-x-3">
-            {props.ContentArray.SmallBanner.map((value, index) => (
-              <Button
-                key={index}
-                disableFocusRipple
-                disableTouchRipple
-                disableRipple
-                sx={{
-                  '.MuiTouchRipple-child': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.5) !important',
-                  },
-                }}
-                className={`${
-                  index === 0
-                    ? 'inline-flex'
-                    : index === 1
-                    ? 'inline-flex'
-                    : index === 2
-                    ? 'sm:hidden sm-700:inline-flex'
-                    : index === 3
-                    ? 'sm:hidden sm-800:inline-flex'
-                    : index === 4
-                    ? 'hidden lg-1200:inline-flex'
-                    : index === 5
-                    ? 'hidden xl-1300:inline-flex'
-                    : 'hidden'
-                } ${'rounded-xl relative overflow-hidden h-full w-full flex-col button-text-lower p-0 m-0 bg-[rgba(255,255,255,0.05)]'}`}
-              >
-                <div className="w-full h-full flex relative">
-                  <Image
-                    objectFit="cover"
-                    objectPosition="center"
-                    layout="fill"
-                    loading="lazy"
-                    src={value.Image}
-                  />
-                </div>
-                <div className="w-full h-full absolute bg-gradient-to-t from-[rgba(0,0,0,0.7)] transition-colors duration-300 ease-linear">
-                  <div className="flex w-full h-full items-end justify-between">
-                    <h6 className="text-[12px] w-full p-2 text-center text-white font-[400] tracking-[0.4px] whitespace-nowrap overflow-hidden text-ellipsis">
-                      {value.Label}
-                    </h6>
-                  </div>
-                </div>
-                <div className="absolute w-full h-full bg-[rgba(255,255,255,0)] hover:bg-[rgba(255,255,255,0.1)] transition-colors duration-300 ease-linear" />
-              </Button>
-            ))}
-          </div>
-        </div>
+        <MainHeaderSearchQuickLinkSmallBannerDesktop
+          ContentArray={props.ContentArray}
+        />
       )}
     </div>
   );

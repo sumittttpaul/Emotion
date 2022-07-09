@@ -1,4 +1,5 @@
 import { motion, Variants } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import React, { FC, useEffect, useState } from 'react';
 import useScreenheight from '../../../../algorithms/ScreenHeightDetection';
 import {
@@ -6,10 +7,32 @@ import {
   StoreDiscoverExploreSearch,
   StoreDiscoverPopularSearch,
 } from '../../../../contents/store/discover/Store.Discover.Search';
-import { MainHeaderSearchCuration } from './MainHeader.Search.Curation';
+import { MainHeaderSearchCurationProps } from './MainHeader.Search.Curation';
+import { MainHeaderSearchPopularProps } from './MainHeader.Search.Popular';
+import { MainHeaderSearchExploreProps } from './MainHeader.Search.QuickLink';
 import { MainHeaderSearchExit } from './MainHeader.Search.Exit';
-import { MainHeaderSearchPopular } from './MainHeader.Search.Popular';
-import { MainHeaderSearchExplore } from './MainHeader.Search.QuickLink';
+
+const MainHeaderSearchExplore = dynamic<MainHeaderSearchExploreProps>(
+  () =>
+    import('./MainHeader.Search.QuickLink').then(
+      (x) => x.MainHeaderSearchExplore
+    ),
+  { ssr: false }
+);
+const MainHeaderSearchPopular = dynamic<MainHeaderSearchPopularProps>(
+  () =>
+    import('./MainHeader.Search.Popular').then(
+      (x) => x.MainHeaderSearchPopular
+    ),
+  { ssr: false }
+);
+const MainHeaderSearchCuration = dynamic<MainHeaderSearchCurationProps>(
+  () =>
+    import('./MainHeader.Search.Curation').then(
+      (x) => x.MainHeaderSearchCuration
+    ),
+  { ssr: false }
+);
 
 interface IProps {
   open: boolean;

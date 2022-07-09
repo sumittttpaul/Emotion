@@ -5,7 +5,7 @@ import React, { FC, useEffect, useRef, useState } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { StoreDiscoverCurationSearchIProps } from '../../../../contents/store/discover/Store.Discover.Search';
 
-interface IProps {
+export interface MainHeaderSearchCurationProps {
   ContentArray: StoreDiscoverCurationSearchIProps[];
 }
 
@@ -27,10 +27,10 @@ const RightVariants = {
   },
 };
 
-export const MainHeaderSearchCuration: FC<IProps> = (props) => {
+export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (props) => {
   const sliderRef = useRef<HTMLElement>(null);
   const [LeftAnimate, setLeftAnimate] = useState('closed');
-  const [RightAnimate, setRightAnimate] = useState('closed');
+  const [RightAnimate, setRightAnimate] = useState('open');
   const [IsExceeded, setIsExceeded] = useState(false);
 
   const slideLeft = () => {
@@ -105,6 +105,7 @@ export const MainHeaderSearchCuration: FC<IProps> = (props) => {
     const slider = sliderRef.current;
     if (slider) {
       let maxScroll = slider.scrollWidth - slider.clientWidth;
+      console.log(maxScroll)
       if (maxScroll != 0) {
         if (slider.scrollLeft === maxScroll) {
           setIsExceeded(false);
