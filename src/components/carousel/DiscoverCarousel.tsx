@@ -15,20 +15,20 @@ const CarouselBanner = dynamic<CarouselBannerProps>(
     import('./DiscoverCarousel/CarouselBanner').then((x) => x.CarouselBanner),
   {
     loading: () => <LoadingDiscoverCarousel />,
-    ssr: false,
+    ssr: true,
   }
 );
 const ThumbnailSlider = dynamic<ThumbnailSliderProps>(
   () =>
     import('./DiscoverCarousel/ThumbnailSlider').then((x) => x.ThumbnailSlider),
-  { ssr: false }
+  { ssr: true }
 );
 const SliderCarousel = dynamic<SliderCarouselProps>(
   () =>
     import('./DiscoverCarousel/SliderCarousel').then((x) => x.SliderCarousel),
   {
     loading: () => <LoadingDiscoverCarousel />,
-    ssr: false,
+    ssr: true,
   }
 );
 

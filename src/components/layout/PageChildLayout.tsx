@@ -8,7 +8,7 @@ const MainHeader = dynamic<MainHeaderProps>(
   () => import('../header/MainHeader/MainHeader').then((x) => x.MainHeader),
   {
     loading: () => <LoadingMainheader />,
-    ssr: false,
+    ssr: true,
   }
 );
 

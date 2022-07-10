@@ -5,7 +5,6 @@ import React, {
   useState,
   FocusEvent,
 } from 'react';
-import dynamic from 'next/dynamic';
 import AuthContainer from '../container/AuthContainer';
 import { Tab } from '@headlessui/react';
 import { DeviceMobileIcon, MailIcon } from '@heroicons/react/solid';
@@ -15,25 +14,8 @@ import SwipeableViews from 'react-swipeable-views';
 import TabPanel from '../tab/SelectAvatarTabPanel';
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
 import { AuthFooter } from '../footer/AuthFooter';
-import { LoadingLoginUi } from '../loader/LoadingSkeleton';
-import { PhoneAuthUIProps } from './ComponentUI/Login/PhoneAuthUI';
-import { EmailAuthUIProps } from './ComponentUI/Login/EmailAuthUI';
-
-const PhoneAuthUI = dynamic<PhoneAuthUIProps>(
-  () => import('./ComponentUI/Login/PhoneAuthUI'),
-  {
-    loading: () => <LoadingLoginUi />,
-    ssr: false,
-  }
-);
-
-const EmailAuthUI = dynamic<EmailAuthUIProps>(
-  () => import('./ComponentUI/Login/EmailAuthUI'),
-  {
-    loading: () => <LoadingLoginUi />,
-    ssr: false,
-  }
-);
+import EmailAuthUI from './ComponentUI/Login/EmailAuthUI';
+import PhoneAuthUI from './ComponentUI/Login/PhoneAuthUI';
 
 interface IProps {
   Phone: string;

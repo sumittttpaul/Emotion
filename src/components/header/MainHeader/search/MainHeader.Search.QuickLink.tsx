@@ -13,7 +13,7 @@ const MainHeaderSearchQuickLinkSmallBannerMobile =
       import('./MainHeader.Search.QuickLink.SmallBanner').then(
         (x) => x.MainHeaderSearchQuickLinkSmallBannerMobile
       ),
-    { ssr: false }
+    { ssr: true }
   );
 const MainHeaderSearchQuickLinkSmallBannerDesktop =
   dynamic<MainHeaderSearchQuickLinkSmallBannerProps>(
@@ -21,7 +21,7 @@ const MainHeaderSearchQuickLinkSmallBannerDesktop =
       import('./MainHeader.Search.QuickLink.SmallBanner').then(
         (x) => x.MainHeaderSearchQuickLinkSmallBannerDesktop
       ),
-    { ssr: false }
+    { ssr: true }
   );
 
 export interface MainHeaderSearchExploreProps {

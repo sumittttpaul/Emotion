@@ -1,17 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import Router from 'next/router';
-import dynamic from 'next/dynamic';
-import { LoadingAvatarButton } from '../../../../loader/LoadingSkeleton';
-import { AvatarButtonProps } from '../ButtonUI/AvatarButton';
-// import { AvatarButton } from '../buttonUI/AvatarButton';
-
-const AvatarButton = dynamic<AvatarButtonProps>(
-  () => import('../ButtonUI/AvatarButton').then((x) => x.AvatarButton),
-  {
-    loading: () => <LoadingAvatarButton />,
-    ssr: false,
-  }
-);
+import { AvatarButton } from '../ButtonUI/AvatarButton';
 
 export interface AvatartUIProps {}
 

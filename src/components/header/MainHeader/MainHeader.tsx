@@ -15,14 +15,11 @@ const MainHeaderSearchSlider = dynamic<MainHeaderSearchSliderProps>(
     import('./search/MainHeader.Search.Slider').then(
       (x) => x.MainHeaderSearchSlider
     ),
-  { ssr: false }
+  { ssr: true }
 );
 const MainHeaderSlider = dynamic<MainHeaderSliderProps>(
-  () =>
-    import('./assets/MainHeader.Slider').then(
-      (x) => x.MainHeaderSlider
-    ),
-  { ssr: false }
+  () => import('./assets/MainHeader.Slider').then((x) => x.MainHeaderSlider),
+  { ssr: true }
 );
 
 export interface MainHeaderProps {

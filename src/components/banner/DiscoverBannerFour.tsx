@@ -13,21 +13,21 @@ const DiscoverBannerFourDesktop = dynamic<DiscoverBannerFourDesktopProps>(
     import('./MultiScreen/DiscoverBannerFour.MultiScreen').then(
       (x) => x.DiscoverBannerFourDesktop
     ),
-  { ssr: false }
+  { ssr: true }
 );
 const DiscoverBannerFourTablet = dynamic<DiscoverBannerFourTabletProps>(
   () =>
     import('./MultiScreen/DiscoverBannerFour.MultiScreen').then(
       (x) => x.DiscoverBannerFourTablet
     ),
-  { ssr: false }
+  { ssr: true }
 );
 const DiscoverBannerFourMobile = dynamic<DiscoverBannerFourMobileProps>(
   () =>
     import('./MultiScreen/DiscoverBannerFour.MultiScreen').then(
       (x) => x.DiscoverBannerFourMobile
     ),
-  { ssr: false }
+  { ssr: true }
 );
 
 interface IProps {

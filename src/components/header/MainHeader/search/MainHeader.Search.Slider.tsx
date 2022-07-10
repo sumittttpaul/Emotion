@@ -17,21 +17,21 @@ const MainHeaderSearchExplore = dynamic<MainHeaderSearchExploreProps>(
     import('./MainHeader.Search.QuickLink').then(
       (x) => x.MainHeaderSearchExplore
     ),
-  { ssr: false }
+  { ssr: true }
 );
 const MainHeaderSearchPopular = dynamic<MainHeaderSearchPopularProps>(
   () =>
     import('./MainHeader.Search.Popular').then(
       (x) => x.MainHeaderSearchPopular
     ),
-  { ssr: false }
+  { ssr: true }
 );
 const MainHeaderSearchCuration = dynamic<MainHeaderSearchCurationProps>(
   () =>
     import('./MainHeader.Search.Curation').then(
       (x) => x.MainHeaderSearchCuration
     ),
-  { ssr: false }
+  { ssr: true }
 );
 
 export interface MainHeaderSearchSliderProps {
@@ -75,7 +75,9 @@ const LiVariants: Variants = {
  * @function @MainHeaderSearchSlider
  **/
 
-export const MainHeaderSearchSlider: FC<MainHeaderSearchSliderProps> = (props) => {
+export const MainHeaderSearchSlider: FC<MainHeaderSearchSliderProps> = (
+  props
+) => {
   const [Slider, setSlider] = useState('closed');
   const { LargeHeight, MediumHeight, SmallHeight } = useScreenheight();
 

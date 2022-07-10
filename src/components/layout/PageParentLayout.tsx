@@ -11,15 +11,13 @@ const PageHeader = dynamic<PageHeaderProps>(
   () => import('../header/PageHeader/PageHeader').then((x) => x.PageHeader),
   {
     loading: () => <LoadingPageheader />,
-    ssr: false,
+    ssr: true,
   }
 );
 
 const PageFooter = dynamic<PageFooterProps>(
   () => import('../footer/PageFooter/PageFooter').then((x) => x.PageFooter),
-  {
-    ssr: false,
-  }
+  { ssr: true }
 );
 
 interface IProps {

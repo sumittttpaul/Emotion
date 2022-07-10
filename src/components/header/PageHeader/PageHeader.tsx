@@ -4,10 +4,16 @@ import { useCycle } from 'framer-motion';
 import { PageHeaderUserButton } from '../../button/header/PageHeader.UserButton';
 import { PageHeaderMenuButton } from '../../button/header/PageHeader.MenuButton';
 import { PageHeaderNav } from './assets/PageHeaderNav';
-import { PageHeaderSlider } from './assets/PageHeaderSlider';
 import { PageHeaderLogo } from '../../logo/CompanyLogo';
 import { useLoaderState } from '../../../providers/state/LoadingState';
 import { Home_Link } from '../../../routerLinks/RouterLinks';
+import { PageHeaderSliderProps } from './assets/PageHeaderSlider';
+import dynamic from 'next/dynamic';
+
+const PageHeaderSlider = dynamic<PageHeaderSliderProps>(
+  () => import('./assets/PageHeaderSlider').then((x) => x.PageHeaderSlider),
+  { ssr: true }
+);
 
 export interface PageHeaderProps {
   setPage: (value: string) => void;

@@ -1,18 +1,7 @@
 import { ReactElement, useState } from 'react';
 import { PageChildLayout } from '../../../components/layout/PageChildLayout';
 import { PageParentLayout } from '../../../components/layout/PageParentLayout';
-import dynamic from 'next/dynamic';
-import { ProductDetailProps } from '../../../components/ui/ProductDetailUI';
-
-const ProductDetailUI = dynamic<ProductDetailProps>(
-  () =>
-    import('../../../components/ui/ProductDetailUI').then(
-      (x) => x.ProductDetailUI
-    ),
-  {
-    ssr: true,
-  }
-);
+import { ProductDetailUI } from '../../../components/ui/ProductDetailUI';
 
 /**
  * @Product_Detail_Page

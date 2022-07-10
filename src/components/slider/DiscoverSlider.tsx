@@ -19,7 +19,7 @@ const DiscoverSliderDesktop = dynamic<DiscoverSliderDesktopAndTabletProps>(
     ),
   {
     loading: () => <LoadingDiscoverSlider />,
-    ssr: false,
+    ssr: true,
   }
 );
 const DiscoverSliderMobile = dynamic<DiscoverSliderMobileProps>(
@@ -29,7 +29,7 @@ const DiscoverSliderMobile = dynamic<DiscoverSliderMobileProps>(
     ),
   {
     loading: () => <LoadingDiscoverSlider />,
-    ssr: false,
+    ssr: true,
   }
 );
 const DiscoverSliderTitle = dynamic<DiscoverSliderTitleProps>(
@@ -37,7 +37,7 @@ const DiscoverSliderTitle = dynamic<DiscoverSliderTitleProps>(
     import('./DiscoverSlider/DiscoverSliderTitle').then(
       (x) => x.DiscoverSliderTitle
     ),
-  { ssr: false }
+  { ssr: true }
 );
 
 interface IProps {

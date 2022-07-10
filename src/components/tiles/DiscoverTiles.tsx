@@ -8,9 +8,6 @@ import {
 } from './MultiScreen/DiscoverTiles.MultiScreen';
 import { LoadingDiscoverTiles } from '../loader/LoadingSkeleton';
 import useScreenSize from '../../algorithms/ScreenSizeDetection';
-// import { DiscoverTilesDesktop } from './DiscoverTiles/DiscoverTilesDesktop';
-// import { DiscoverTilesTablet } from './DiscoverTiles/DiscoverTilesTablet';
-// import { DiscoverTilesMobile } from './DiscoverTiles/DiscoverTilesMobile';
 
 const DiscoverTilesDesktop = dynamic<DiscoverTilesDesktopProps>(
   () =>
@@ -19,7 +16,7 @@ const DiscoverTilesDesktop = dynamic<DiscoverTilesDesktopProps>(
     ),
   {
     loading: () => <LoadingDiscoverTiles />,
-    ssr: false,
+    ssr: true,
   }
 );
 const DiscoverTilesTablet = dynamic<DiscoverTilesTabletProps>(
@@ -29,7 +26,7 @@ const DiscoverTilesTablet = dynamic<DiscoverTilesTabletProps>(
     ),
   {
     loading: () => <LoadingDiscoverTiles />,
-    ssr: false,
+    ssr: true,
   }
 );
 const DiscoverTilesMobile = dynamic<DiscoverTilesMobileProps>(
@@ -39,7 +36,7 @@ const DiscoverTilesMobile = dynamic<DiscoverTilesMobileProps>(
     ),
   {
     loading: () => <LoadingDiscoverTiles />,
-    ssr: false,
+    ssr: true,
   }
 );
 

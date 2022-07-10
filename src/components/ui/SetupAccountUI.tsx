@@ -2,63 +2,11 @@ import React, { Dispatch, FC, SetStateAction } from 'react';
 import AuthContainer from '../container/AuthContainer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@mui/material';
-import dynamic from 'next/dynamic';
-import {
-  LoadingAvatarUI,
-  LoadingDatePickerUI,
-  LoadingGenderUI,
-  LoadingLargeBlueButton,
-} from '../loader/LoadingSkeleton';
 import { AuthHeaderLabel } from '../label/AuthHeaderLabel';
-import { LargeButtonBlueProps } from '../button/LargeButtonBlue';
-import { AvatartUIProps } from './ComponentUI/SetupAccount/AvatarUI/AvatarUI';
-import { DatePickerUIProps } from './ComponentUI/SetupAccount/DatePickerUI/DatePickerUI';
-import { GenderUIProps } from './ComponentUI/SetupAccount/GenderUI/GenderUI';
-// import LargeButtonBlue from '../button/LargeButtonBlue';
-// import { AvatarUI } from './AuthComponentUI/SetupAccountComponentUI/AvatarUI/AvatarUI';
-// import { DatePickerUI } from './AuthComponentUI/SetupAccountComponentUI/DatePickerUI/DatePickerUI';
-// import { GenderUI } from './AuthComponentUI/SetupAccountComponentUI/GenderUI/GenderUI';
-
-const LargeButtonBlue = dynamic<LargeButtonBlueProps>(
-  () => import('../button/LargeButtonBlue'),
-  {
-    loading: () => <LoadingLargeBlueButton />,
-    ssr: false,
-  }
-);
-
-const AvatarUI = dynamic<AvatartUIProps>(
-  () =>
-    import('./ComponentUI/SetupAccount/AvatarUI/AvatarUI').then(
-      (x) => x.AvatarUI
-    ),
-  {
-    loading: () => <LoadingAvatarUI />,
-    ssr: false,
-  }
-);
-
-const DatePickerUI = dynamic<DatePickerUIProps>(
-  () =>
-    import('./ComponentUI/SetupAccount/DatePickerUI/DatePickerUI').then(
-      (x) => x.DatePickerUI
-    ),
-  {
-    loading: () => <LoadingDatePickerUI />,
-    ssr: false,
-  }
-);
-
-const GenderUI = dynamic<GenderUIProps>(
-  () =>
-    import('./ComponentUI/SetupAccount/GenderUI/GenderUI').then(
-      (x) => x.GenderUI
-    ),
-  {
-    loading: () => <LoadingGenderUI />,
-    ssr: false,
-  }
-);
+import { AvatarUI } from './ComponentUI/SetupAccount/AvatarUI/AvatarUI';
+import { DatePickerUI } from './ComponentUI/SetupAccount/DatePickerUI/DatePickerUI';
+import { GenderUI } from './ComponentUI/SetupAccount/GenderUI/GenderUI';
+import LargeButtonBlue from '../button/LargeButtonBlue';
 
 interface IProps {
   // ------------- Date Of Birth ------------- //

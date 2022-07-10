@@ -1,15 +1,7 @@
 import { ReactElement, useState } from 'react';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
-import dynamic from 'next/dynamic';
-import { CartUIProps } from '../../components/ui/CartUI';
-
-const CartUI = dynamic<CartUIProps>(
-  () => import('../../components/ui/CartUI').then((x) => x.CartUI),
-  {
-    ssr: true,
-  }
-);
+import { CartUI } from '../../components/ui/CartUI';
 
 /**
  * @Cart_Page

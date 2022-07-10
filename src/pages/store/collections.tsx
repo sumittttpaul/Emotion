@@ -1,16 +1,7 @@
 import { ReactElement, useState } from 'react';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
-import dynamic from 'next/dynamic';
-import { CollectionsUIProps } from '../../components/ui/CollectionsUI';
-
-const CollectionsUI = dynamic<CollectionsUIProps>(
-  () =>
-    import('../../components/ui/CollectionsUI').then((x) => x.CollectionsUI),
-  {
-    ssr: true,
-  }
-);
+import { CollectionsUI } from '../../components/ui/CollectionsUI';
 
 /**
  * @Collections_Page

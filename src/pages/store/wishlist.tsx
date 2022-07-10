@@ -1,15 +1,7 @@
 import { ReactElement, useState } from 'react';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
-import { WishlistUIProps } from '../../components/ui/WishlistUI';
-import dynamic from 'next/dynamic';
-
-const WishlistUI = dynamic<WishlistUIProps>(
-  () => import('../../components/ui/WishlistUI').then((x) => x.WishlistUI),
-  {
-    ssr: true,
-  }
-);
+import { WishlistUI } from '../../components/ui/WishlistUI';
 
 /**
  * @Wishlist_Page

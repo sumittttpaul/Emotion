@@ -9,7 +9,7 @@ import {
   Store_Link,
 } from '../../../../routerLinks/RouterLinks';
 
-interface IProps {
+export interface PageHeaderSliderProps {
   Cycle: boolean;
   onClose: () => void;
   Hvalue: number;
@@ -45,7 +45,7 @@ const Links = [
  * @function @PageHeaderSlider
  **/
 
-export const PageHeaderSlider: FC<IProps> = (props) => {
+export const PageHeaderSlider: FC<PageHeaderSliderProps> = (props) => {
   const UlVariants: Variants = {
     open: {
       transition: { staggerChildren: 0.07, delayChildren: 0 },
