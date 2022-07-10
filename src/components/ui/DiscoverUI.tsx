@@ -9,7 +9,6 @@ import {
 } from '../../contents/store/discover/Store.Discover.Banner';
 import { DiscoverBannerThreeContent } from '../../contents/store/discover/Store.Discover.Banner';
 import { DiscoverTilesContent } from '../../contents/store/discover/Store.Discover.Tiles';
-
 import { DiscoverCarousel } from '../carousel/DiscoverCarousel';
 import { DiscoverSlider } from '../slider/DiscoverSlider';
 import { DiscoverBannerFour } from '../banner/DiscoverBannerFour';
