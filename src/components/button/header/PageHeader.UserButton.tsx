@@ -269,8 +269,8 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
           disableFocusRipple
           onClick={() => {
             setTimeout(() => {
-              LoadingScreen(true);
               Router.push(Login_Link);
+              LoadingScreen(true);
             }, 150);
           }}
           className="flex items-center button-text-lower h-full px-4 bg-[#ffffff0d] hover:bg-[#ffffff0d]"

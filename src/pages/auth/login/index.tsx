@@ -401,6 +401,7 @@ const Login: NextPage = () => {
 
   const recaptchaContainer =
     'h-full sm:h-screen w-full absolute flex flex-col text-center items-center justify-center';
+
   return (
     <>
       <div className={recaptchaContainer} id="verify-sign-in-recaptcha" />

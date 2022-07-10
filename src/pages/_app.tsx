@@ -39,13 +39,6 @@ function MyApp(props: AppPropsWithLayout, cache: EmotionCacheProps) {
   const { Component, pageProps } = props;
   const { emotionCache = clientSideEmotionCache } = cache;
   const getLayout = Component.getLayout ?? ((page) => page);
-  React.useEffect(() => {
-    if (window) {
-      window.onunload = function () {
-        window.scrollTo(0, 0);
-      };
-    }
-  });
   return (
     <CacheProvider value={emotionCache}>
       <AuthProvider>

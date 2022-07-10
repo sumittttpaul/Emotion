@@ -18,8 +18,6 @@ import { AuthFooter } from '../footer/AuthFooter';
 import { LoadingLoginUi } from '../loader/LoadingSkeleton';
 import { PhoneAuthUIProps } from './ComponentUI/Login/PhoneAuthUI';
 import { EmailAuthUIProps } from './ComponentUI/Login/EmailAuthUI';
-// import PhoneAuthUI from './AuthComponentUI/LoginComponentUI/PhoneAuthUI';
-// import EmailAuthUI from './AuthComponentUI/LoginComponentUI/EmailAuthUI';
 
 const PhoneAuthUI = dynamic<PhoneAuthUIProps>(
   () => import('./ComponentUI/Login/PhoneAuthUI'),
