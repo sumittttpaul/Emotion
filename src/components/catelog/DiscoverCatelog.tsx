@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
 import { Button } from '@mui/material';
+import { Rectangle_BlurDataURL } from '../loader/BlurDataURL';
 
 interface IProps {}
 
@@ -21,6 +22,7 @@ export const DiscoverCatelog: FC<IProps> = (props) => {
           objectPosition="center"
           src="/images/avatar/illustration/5.png"
           loading="lazy"
+          blurDataURL={Rectangle_BlurDataURL}
           alt=""
         />
         <div className="flex w-full h-[300px] relative justify-start items-center sm:max-w-[35%]">

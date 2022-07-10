@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React, { FC } from 'react';
 import useScreenSize from '../../algorithms/ScreenSizeDetection';
 import { DiscoverBannerLightingDealIProps } from '../../contents/store/discover/Store.Discover.Banner';
+import { Square_BlurDataURL } from '../loader/BlurDataURL';
 import {
   DiscoverBannerLightningDealDesktop,
   DiscoverBannerLightningDealMobile,
@@ -30,6 +31,9 @@ export const DiscoverBannerLightingDeal: FC<IProps> = (props) => {
               width={30}
               src="/icons/lightning-deal.svg"
               alt=""
+              loading='lazy'
+              placeholder='blur'
+              blurDataURL={Square_BlurDataURL}
             />
             <h6 className="text-[18px]">Daily lightning deals</h6>
           </div>

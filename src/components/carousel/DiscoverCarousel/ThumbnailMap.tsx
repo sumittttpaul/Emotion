@@ -1,4 +1,4 @@
-import { rectangle_BlurDataURL } from '../../loader/BlurDataURL';
+import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import React, { Dispatch, FC, RefObject, SetStateAction } from 'react';
@@ -54,7 +54,7 @@ export const ThumbnailMap: FC<IProps> = (props) => {
             } ${' transform-gpu ease-out transition-all duration-300'}`}
             src={value.Image}
             placeholder="blur"
-            blurDataURL={rectangle_BlurDataURL}
+            blurDataURL={Rectangle_BlurDataURL}
             alt=""
           />
           <h6

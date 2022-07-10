@@ -2,6 +2,7 @@ import { Button } from '@mui/material';
 import React, { FC } from 'react';
 import Image from 'next/image';
 import { StoreDiscoverExploreSearchIProps } from '../../../../contents/store/discover/Store.Discover.Search';
+import { Poster_BlurDataURL } from '../../../loader/BlurDataURL';
 
 const MainContainerStyle =
   'w-auto h-full overflow-hidden whitespace-nowrap static flex flex-col flex-nowrap float-none justify-end';
@@ -55,6 +56,8 @@ export const MainHeaderSearchQuickLinkSmallBannerMobile: FC<
                 objectPosition="center"
                 layout="fill"
                 loading="lazy"
+                placeholder="blur"
+                blurDataURL={Poster_BlurDataURL}
                 alt=""
                 src={value.Image}
               />
@@ -110,6 +113,8 @@ export const MainHeaderSearchQuickLinkSmallBannerDesktop: FC<
                 objectPosition="center"
                 layout="fill"
                 loading="lazy"
+                placeholder="blur"
+                blurDataURL={Poster_BlurDataURL}
                 src={value.Image}
                 alt=""
               />

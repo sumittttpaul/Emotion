@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { DiscoverBannerLightingDealIProps } from '../../../contents/store/discover/Store.Discover.Banner';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { Poster_BlurDataURL } from '../../loader/BlurDataURL';
 
 const HeadingStyle =
   'text-[14px] w-full font-normal text-left overflow-hidden whitespace-nowrap text-ellipsis';
@@ -35,6 +36,8 @@ export const DiscoverBannerArrivalsDesktop: FC<IProps> = (props) => {
             objectPosition="center"
             src={value.Image}
             loading="lazy"
+            placeholder="blur"
+            blurDataURL={Poster_BlurDataURL}
             alt=""
           />
           {value.Available ? (
@@ -71,6 +74,8 @@ export const DiscoverBannerArrivalsTablet: FC<IProps> = (props) => {
             objectPosition="center"
             src={value.Image}
             loading="lazy"
+            placeholder="blur"
+            blurDataURL={Poster_BlurDataURL}
             alt=""
           />
           {value.Available ? (
@@ -108,6 +113,8 @@ export const DiscoverBannerArrivalsMobile: FC<IProps> = (props) => {
               objectPosition="center"
               src={value.Image}
               loading="lazy"
+              placeholder="blur"
+              blurDataURL={Poster_BlurDataURL}
               alt=""
             />
             {value.Available ? (
@@ -141,6 +148,8 @@ export const DiscoverBannerArrivalsMobile: FC<IProps> = (props) => {
               objectPosition="center"
               src={value.Image}
               loading="lazy"
+              placeholder="blur"
+              blurDataURL={Poster_BlurDataURL}
               alt=""
             />
             {value.Available ? (

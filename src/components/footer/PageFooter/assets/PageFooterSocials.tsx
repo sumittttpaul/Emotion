@@ -1,6 +1,7 @@
 import { Link } from '@mui/material';
 import React, { FC } from 'react';
 import Image, { StaticImageData } from 'next/image';
+import { Square_BlurDataURL } from '../../../loader/BlurDataURL';
 
 interface IProps {
   Content: { label: string; to: string; icon: StaticImageData }[];
@@ -30,6 +31,8 @@ export const PageFooterSocials: FC<IProps> = (props) => {
                   className="flex items-center"
                   src={value.icon}
                   loading='lazy'
+                  placeholder='blur'
+                  blurDataURL={Square_BlurDataURL}
                   alt=""
                 />
               </Link>

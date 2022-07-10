@@ -2,6 +2,7 @@ import { Button } from '@mui/material';
 import Image from 'next/image';
 import React, { FC } from 'react';
 import { DiscoverBannerListIProps } from '../../../contents/store/discover/Store.Discover.Banner';
+import { Poster_BlurDataURL } from '../../loader/BlurDataURL';
 
 const HeadingStyle =
   'text-[14px] md-900:text-[15px] w-full font-normal leading-[16px] text-left';
@@ -61,6 +62,8 @@ export const DiscoverBannerListColumn: FC<IProps> = (props) => {
                       objectPosition="center"
                       src={value.Image}
                       loading="lazy"
+                      placeholder="blur"
+                      blurDataURL={Poster_BlurDataURL}
                       alt=""
                     />
                   </div>

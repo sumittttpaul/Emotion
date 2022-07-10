@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { StoreDiscoverCurationSearchIProps } from '../../../../contents/store/discover/Store.Discover.Search';
+import { Square_BlurDataURL } from '../../../loader/BlurDataURL';
 
 export interface MainHeaderSearchCurationProps {
   ContentArray: StoreDiscoverCurationSearchIProps[];
@@ -153,6 +154,8 @@ export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (
               src={value.Image}
               loading="lazy"
               className="rounded-md"
+              placeholder='blur'
+              blurDataURL={Square_BlurDataURL}
               alt=""
             />
             <h6 className="text-[13px] w-full text-center text-[#ffffffb3] font-[300] whitespace-nowrap overflow-hidden text-ellipsis">

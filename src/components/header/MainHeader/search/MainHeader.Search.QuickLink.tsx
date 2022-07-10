@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React, { FC } from 'react';
 import useScreenSize from '../../../../algorithms/ScreenSizeDetection';
 import { StoreDiscoverExploreSearchIProps } from '../../../../contents/store/discover/Store.Discover.Search';
+import { Rectangle_BlurDataURL } from '../../../loader/BlurDataURL';
 import { MainHeaderSearchQuickLinkSmallBannerProps } from './MainHeader.Search.QuickLink.SmallBanner';
 
 const MainHeaderSearchQuickLinkSmallBannerMobile =
@@ -52,6 +53,8 @@ export const MainHeaderSearchExplore: FC<MainHeaderSearchExploreProps> = (
                     objectPosition="center"
                     layout="fill"
                     loading="lazy"
+                    placeholder="blur"
+                    blurDataURL={Rectangle_BlurDataURL}
                     src={value.Image}
                     alt=""
                   />

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { DiscoverBannerThreeIProps } from '../../../contents/store/discover/Store.Discover.Banner';
-import { rectangle_BlurDataURL } from '../../loader/BlurDataURL';
+import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
 import { BannerUnderlineButtonDark } from '../../button/BannerUnderlineButtonDark';
 
 const ContainerStyle =
@@ -33,7 +33,7 @@ export const DiscoverBannerThreeDesktop: FC<DiscoverBannerThreeDesktopProps> = (
                 src={value.Image}
                 loading="lazy"
                 placeholder="blur"
-                blurDataURL={rectangle_BlurDataURL}
+                blurDataURL={Rectangle_BlurDataURL}
                 alt=""
               />
             </div>
@@ -84,7 +84,7 @@ export const DiscoverBannerThreeTablet: FC<DiscoverBannerThreeTabletProps> = (
                   src={value.Image}
                   loading="lazy"
                   placeholder="blur"
-                  blurDataURL={rectangle_BlurDataURL}
+                  blurDataURL={Rectangle_BlurDataURL}
                   alt=""
                 />
               </div>
@@ -139,7 +139,7 @@ export const DiscoverBannerThreeMobile: FC<DiscoverBannerThreeMobileProps> = (
                   src={value.Image}
                   loading="lazy"
                   placeholder="blur"
-                  blurDataURL={rectangle_BlurDataURL}
+                  blurDataURL={Rectangle_BlurDataURL}
                   alt=""
                 />
               </div>
