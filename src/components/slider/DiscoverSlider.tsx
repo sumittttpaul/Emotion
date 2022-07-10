@@ -7,10 +7,9 @@ import {
   DiscoverSliderDesktopAndTabletProps,
   DiscoverSliderMobileProps,
 } from './DiscoverSlider/DiscoverSlider.MultiScreen';
-import { DiscoverSliderTitleProps } from './DiscoverSlider/DiscoverSliderTitle';
 // import { DiscoverSliderDesktop } from './DiscoverSlider/DiscoverSliderDesktop';
 // import { DiscoverSliderMobile } from './DiscoverSlider/DiscoverSliderMobile';
-// import { DiscoverSliderTitle } from './DiscoverSlider/DiscoverSliderTitle';
+import { DiscoverSliderTitle } from './DiscoverSlider/DiscoverSliderTitle';
 
 const DiscoverSliderDesktop = dynamic<DiscoverSliderDesktopAndTabletProps>(
   () =>
@@ -31,13 +30,6 @@ const DiscoverSliderMobile = dynamic<DiscoverSliderMobileProps>(
     loading: () => <LoadingDiscoverSlider />,
     ssr: true,
   }
-);
-const DiscoverSliderTitle = dynamic<DiscoverSliderTitleProps>(
-  () =>
-    import('./DiscoverSlider/DiscoverSliderTitle').then(
-      (x) => x.DiscoverSliderTitle
-    ),
-  { ssr: true }
 );
 
 interface IProps {

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import useScreenSize from '../../../../algorithms/ScreenSizeDetection';
 import { StoreDiscoverCurationSearchIProps } from '../../../../contents/store/discover/Store.Discover.Search';
 import { Square_BlurDataURL } from '../../../loader/BlurDataURL';
 
@@ -35,6 +36,7 @@ export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (
   const [LeftAnimate, setLeftAnimate] = useState('closed');
   const [RightAnimate, setRightAnimate] = useState('open');
   const [IsExceeded, setIsExceeded] = useState(true);
+  const { SmallScreen } = useScreenSize();
 
   const slideLeft = () => {
     const slider = sliderRef.current;
@@ -154,7 +156,7 @@ export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (
               src={value.Image}
               loading="lazy"
               className="rounded-md"
-              placeholder='blur'
+              placeholder="blur"
               blurDataURL={Square_BlurDataURL}
               alt=""
             />
@@ -164,7 +166,7 @@ export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (
           </Button>
         ))}
       </ScrollContainer>
-      {IsExceeded && (
+      {!SmallScreen && (
         <>
           <LeftButton onClick={() => slideLeft()} animate={LeftAnimate} />
           <RightButton onClick={() => slideRight()} animate={RightAnimate} />
@@ -192,7 +194,7 @@ const LeftButton: FC<LeftButtonProps> = (props) => {
       variants={LeftVariants}
       initial={{ x: -50 }}
       animate={props.animate}
-      className="left-3 hidden sm:absolute p-0 z-[1] bottom-[50px] h-[32px] w-[20px] bg-white bg-opacity-80 hover:bg-white rounded-[4px] transition-colors color-transition Custom-DropShadow"
+      className="left-3 absolute p-0 z-[1] bottom-[50px] h-[32px] w-[20px] bg-white bg-opacity-80 hover:bg-white rounded-[4px] transition-colors color-transition Custom-DropShadow"
     >
       <div className="h-full w-full flex items-center justify-center">
         <Image
@@ -215,7 +217,7 @@ const RightButton: FC<RightButtonProps> = (props) => {
       variants={RightVariants}
       initial={{ x: 50 }}
       animate={props.animate}
-      className="right-3 hidden sm:absolute p-0 z-[1] bottom-[50px] h-[32px] w-[20px] bg-white bg-opacity-80 hover:bg-white rounded-[4px] transition-colors color-transition Custom-DropShadow"
+      className="right-3 absolute p-0 z-[1] bottom-[50px] h-[32px] w-[20px] bg-white bg-opacity-80 hover:bg-white rounded-[4px] transition-colors color-transition Custom-DropShadow"
     >
       <div className="h-full w-full flex items-center justify-center">
         <Image

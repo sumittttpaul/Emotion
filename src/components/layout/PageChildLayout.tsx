@@ -1,5 +1,16 @@
+import dynamic from 'next/dynamic';
 import React, { FC, ReactNode } from 'react';
-import { MainHeader } from '../header/MainHeader/MainHeader';
+import { MainHeaderProps } from '../header/MainHeader/MainHeader';
+import { LoadingMainheader } from '../loader/LoadingSkeleton';
+// import { MainHeader } from '../header/MainHeader/MainHeader';
+
+const MainHeader = dynamic<MainHeaderProps>(
+  () => import('../header/MainHeader/MainHeader').then((x) => x.MainHeader),
+  {
+    loading: () => <LoadingMainheader />,
+    ssr: false,
+  }
+);
 
 interface IProps {
   children: ReactNode;
