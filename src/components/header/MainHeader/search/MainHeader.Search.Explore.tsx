@@ -5,21 +5,21 @@ import React, { FC } from 'react';
 import useScreenSize from '../../../../algorithms/ScreenSizeDetection';
 import { StoreDiscoverExploreSearchIProps } from '../../../../contents/store/discover/Store.Discover.Search';
 import { Rectangle_BlurDataURL } from '../../../loader/BlurDataURL';
-import { MainHeaderSearchQuickLinkSmallBannerProps } from './MainHeader.Search.QuickLink.SmallBanner';
+import { MainHeaderSearchExploreSmallProps } from './MainHeader.Search.Explore.SmallBanner';
 
-const MainHeaderSearchQuickLinkSmallBannerMobile =
-  dynamic<MainHeaderSearchQuickLinkSmallBannerProps>(
+const MainHeaderSearchExploreSmallMobile =
+  dynamic<MainHeaderSearchExploreSmallProps>(
     () =>
-      import('./MainHeader.Search.QuickLink.SmallBanner').then(
-        (x) => x.MainHeaderSearchQuickLinkSmallBannerMobile
+      import('./MainHeader.Search.Explore.SmallBanner').then(
+        (x) => x.MainHeaderSearchExploreSmallMobile
       ),
     { ssr: true }
   );
-const MainHeaderSearchQuickLinkSmallBannerDesktop =
-  dynamic<MainHeaderSearchQuickLinkSmallBannerProps>(
+const MainHeaderSearchExploreSmallDesktop =
+  dynamic<MainHeaderSearchExploreSmallProps>(
     () =>
-      import('./MainHeader.Search.QuickLink.SmallBanner').then(
-        (x) => x.MainHeaderSearchQuickLinkSmallBannerDesktop
+      import('./MainHeader.Search.Explore.SmallBanner').then(
+        (x) => x.MainHeaderSearchExploreSmallDesktop
       ),
     { ssr: true }
   );
@@ -66,9 +66,9 @@ export const MainHeaderSearchExplore: FC<MainHeaderSearchExploreProps> = (
                     </h6>
                     <motion.button
                       whileTap={{ scale: 0.9 }}
-                      className="m-1.5  p-2 group bg-white rounded-md bg-opacity-[0.15] text-[10px] text-white font-normal whitespace-nowrap"
+                      className="hidden sm:block m-1.5 p-2 group bg-white rounded-md bg-opacity-[0.15] text-[10px] text-white font-normal whitespace-nowrap"
                     >
-                      {SmallScreen ? 'More' : 'Learn More'}
+                      Learn More
                     </motion.button>
                   </div>
                 </div>
@@ -78,11 +78,9 @@ export const MainHeaderSearchExplore: FC<MainHeaderSearchExploreProps> = (
         ))}
       </ul>
       {SmallScreen ? (
-        <MainHeaderSearchQuickLinkSmallBannerMobile
-          ContentArray={props.ContentArray}
-        />
+        <MainHeaderSearchExploreSmallMobile ContentArray={props.ContentArray} />
       ) : (
-        <MainHeaderSearchQuickLinkSmallBannerDesktop
+        <MainHeaderSearchExploreSmallDesktop
           ContentArray={props.ContentArray}
         />
       )}

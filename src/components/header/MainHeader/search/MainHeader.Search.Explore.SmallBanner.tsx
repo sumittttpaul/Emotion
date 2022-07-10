@@ -18,11 +18,11 @@ const LabelContainerParentStyle =
 const OverlayStyle =
   'absolute w-full h-full bg-[#ffffff00] hover:bg-[#ffffff1a] transition-colors duration-300 ease-linear';
 
-export interface MainHeaderSearchQuickLinkSmallBannerProps {
+export interface MainHeaderSearchExploreSmallProps {
   ContentArray: StoreDiscoverExploreSearchIProps;
 }
-export const MainHeaderSearchQuickLinkSmallBannerMobile: FC<
-  MainHeaderSearchQuickLinkSmallBannerProps
+export const MainHeaderSearchExploreSmallMobile: FC<
+  MainHeaderSearchExploreSmallProps
 > = (props) => {
   return (
     <div className={MainContainerStyle}>
@@ -74,8 +74,8 @@ export const MainHeaderSearchQuickLinkSmallBannerMobile: FC<
     </div>
   );
 };
-export const MainHeaderSearchQuickLinkSmallBannerDesktop: FC<
-  MainHeaderSearchQuickLinkSmallBannerProps
+export const MainHeaderSearchExploreSmallDesktop: FC<
+  MainHeaderSearchExploreSmallProps
 > = (props) => {
   return (
     <div className={MainContainerStyle}>

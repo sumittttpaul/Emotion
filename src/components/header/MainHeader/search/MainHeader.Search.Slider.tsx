@@ -9,12 +9,12 @@ import {
 } from '../../../../contents/store/discover/Store.Discover.Search';
 import { MainHeaderSearchCurationProps } from './MainHeader.Search.Curation';
 import { MainHeaderSearchPopularProps } from './MainHeader.Search.Popular';
-import { MainHeaderSearchExploreProps } from './MainHeader.Search.QuickLink';
+import { MainHeaderSearchExploreProps } from './MainHeader.Search.Explore';
 import { MainHeaderSearchExit } from './MainHeader.Search.Exit';
 
 const MainHeaderSearchExplore = dynamic<MainHeaderSearchExploreProps>(
   () =>
-    import('./MainHeader.Search.QuickLink').then(
+    import('./MainHeader.Search.Explore').then(
       (x) => x.MainHeaderSearchExplore
     ),
   { ssr: true }

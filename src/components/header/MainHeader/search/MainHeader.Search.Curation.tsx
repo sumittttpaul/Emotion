@@ -192,7 +192,7 @@ const LeftButton: FC<LeftButtonProps> = (props) => {
       variants={LeftVariants}
       initial={{ x: -50 }}
       animate={props.animate}
-      className="left-3 absolute p-0 z-[1] bottom-[50px] h-[32px] w-[20px] bg-white bg-opacity-80 hover:bg-white rounded-[4px] transition-colors color-transition Custom-DropShadow"
+      className="left-3 hidden sm:absolute p-0 z-[1] bottom-[50px] h-[32px] w-[20px] bg-white bg-opacity-80 hover:bg-white rounded-[4px] transition-colors color-transition Custom-DropShadow"
     >
       <div className="h-full w-full flex items-center justify-center">
         <Image
@@ -215,7 +215,7 @@ const RightButton: FC<RightButtonProps> = (props) => {
       variants={RightVariants}
       initial={{ x: 50 }}
       animate={props.animate}
-      className="right-3 absolute p-0 z-[1] bottom-[50px] h-[32px] w-[20px] bg-white bg-opacity-80 hover:bg-white rounded-[4px] transition-colors color-transition Custom-DropShadow"
+      className="right-3 hidden sm:absolute p-0 z-[1] bottom-[50px] h-[32px] w-[20px] bg-white bg-opacity-80 hover:bg-white rounded-[4px] transition-colors color-transition Custom-DropShadow"
     >
       <div className="h-full w-full flex items-center justify-center">
         <Image
