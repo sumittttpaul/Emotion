@@ -7,7 +7,7 @@ import { PageHeader } from '../header/PageHeader/PageHeader';
 
 const PageFooter = dynamic<PageFooterProps>(
   () => import('../footer/PageFooter/PageFooter').then((x) => x.PageFooter),
-  { ssr: false }
+  { ssr: true }
 );
 
 interface IProps {
