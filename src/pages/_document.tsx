@@ -11,7 +11,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <meta name="theme-color" content={theme.palette.primary.main} />
+          <meta name="theme-color" content="#2a2a2a" />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link
             rel="stylesheet"
