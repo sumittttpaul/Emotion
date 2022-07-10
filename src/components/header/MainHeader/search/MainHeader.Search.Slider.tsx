@@ -34,7 +34,7 @@ const MainHeaderSearchCuration = dynamic<MainHeaderSearchCurationProps>(
   { ssr: false }
 );
 
-interface IProps {
+export interface MainHeaderSearchSliderProps {
   open: boolean;
   onClose: () => void;
 }
@@ -75,7 +75,7 @@ const LiVariants: Variants = {
  * @function @MainHeaderSearchSlider
  **/
 
-export const MainHeaderSearchSlider: FC<IProps> = (props) => {
+export const MainHeaderSearchSlider: FC<MainHeaderSearchSliderProps> = (props) => {
   const [Slider, setSlider] = useState('closed');
   const { LargeHeight, MediumHeight, SmallHeight } = useScreenheight();
 

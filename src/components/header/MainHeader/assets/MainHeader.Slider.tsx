@@ -8,7 +8,7 @@ import {
 } from '../../../../routerLinks/RouterLinks';
 import NextLink from 'next/link';
 
-interface IProps {
+export interface MainHeaderSliderProps {
   open: boolean;
   onClose: () => void;
   onValueChange: (value: string) => void;
@@ -82,7 +82,7 @@ const ActiveContent = (props: string, value: string) => {
  * @function @MainHeaderSlider
  **/
 
-export const MainHeaderSlider: FC<IProps> = (props) => {
+export const MainHeaderSlider: FC<MainHeaderSliderProps> = (props) => {
   const [Slider, setSlider] = useState('closed');
   useEffect(() => {
     if (props.open) {

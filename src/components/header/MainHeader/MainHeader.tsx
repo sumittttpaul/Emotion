@@ -1,13 +1,29 @@
 import { useCycle } from 'framer-motion';
 import Router from 'next/router';
+import dynamic from 'next/dynamic';
 import React, { FC, useRef, useState } from 'react';
 import { Cart_Link, Wishlist_Link } from '../../../routerLinks/RouterLinks';
 import { MainHeaderCartButton } from '../../button/header/MainHeader.CartButton';
 import { MainHeaderSearchButton } from '../../button/header/MainHeader.SearchButton';
 import { MainHeaderWishlistButton } from '../../button/header/MainHeader.WishlistButton';
 import { MainHeaderNav } from './assets/MainHeader.Nav';
-import { MainHeaderSearchSlider } from './search/MainHeader.Search.Slider';
-import { MainHeaderSlider } from './assets/MainHeader.Slider';
+import { MainHeaderSearchSliderProps } from './search/MainHeader.Search.Slider';
+import { MainHeaderSliderProps } from './assets/MainHeader.Slider';
+
+const MainHeaderSearchSlider = dynamic<MainHeaderSearchSliderProps>(
+  () =>
+    import('./search/MainHeader.Search.Slider').then(
+      (x) => x.MainHeaderSearchSlider
+    ),
+  { ssr: false }
+);
+const MainHeaderSlider = dynamic<MainHeaderSliderProps>(
+  () =>
+    import('./assets/MainHeader.Slider').then(
+      (x) => x.MainHeaderSlider
+    ),
+  { ssr: false }
+);
 
 export interface MainHeaderProps {
   Page: string;
@@ -31,14 +47,16 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
       <div
         ref={ContainerRef}
         className={`${
-          NavSliderOpen || SearchSliderOpen
-            ? 'bg-[#121212]'
-            : 'bg-[#121212f2]'
+          NavSliderOpen || SearchSliderOpen ? 'bg-[#121212]' : 'bg-[#121212f2]'
         } ${'flex flex-col z-[999] sticky-top items-center box-border w-full h-[78px] backdrop-blur-[8px]'}`}
       >
         <div className="flex relative box-border w-full max-w-[1440px] mx-auto h-full justify-between items-center py-3 sm:px-5 px-3 overflow-x-hidden">
           <div className="flex relative w-full md-900:space-x-6 items-center">
-            <div className={`${SearchSliderAnimation ? 'w-full' : 'w-[100px] sm:w-[160px]'}`}>
+            <div
+              className={`${
+                SearchSliderAnimation ? 'w-full' : 'w-[100px] sm:w-[160px]'
+              }`}
+            >
               <MainHeaderSearchButton
                 ContainerRef={ContainerRef}
                 Open={SearchSliderOpen}
