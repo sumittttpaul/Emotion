@@ -48,7 +48,7 @@ export const PageHeader: FC<PageHeaderProps> = (props) => {
 
   return (
     <>
-      <div className="w-full z-[1201] top-0 self-start relative box-border h-[50px] bg-[#2a2a2a]">
+      <div className="w-full z-[1201] -top-[1px] self-start relative box-border h-[50px] bg-[#2a2a2a]">
         <div className="flex w-full justify-between max-w-[1540px] mx-auto">
           <PageHeaderMenuButton Cycle={Cycle} onClick={() => setCycle()} />
           <div className="flex relative">
