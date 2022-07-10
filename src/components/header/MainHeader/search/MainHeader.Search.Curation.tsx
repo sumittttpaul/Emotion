@@ -32,11 +32,11 @@ const RightVariants = {
 export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (
   props
 ) => {
+  const { SmallScreen } = useScreenSize();
   const sliderRef = useRef<HTMLElement>(null);
   const [LeftAnimate, setLeftAnimate] = useState('closed');
   const [RightAnimate, setRightAnimate] = useState('open');
-  const [IsExceeded, setIsExceeded] = useState(true);
-  const { SmallScreen } = useScreenSize();
+  // const [IsExceeded, setIsExceeded] = useState(true);
 
   const slideLeft = () => {
     const slider = sliderRef.current;
