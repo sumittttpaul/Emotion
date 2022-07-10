@@ -62,7 +62,7 @@ export const ThumbnailMap: FC<IProps> = (props) => {
               props.CarouselState === idx
                 ? 'opacity-100'
                 : 'group-hover:opacity-100 opacity-0'
-            } ${'text-white z-[1] flex items-center text-left text-xs font-medium backdrop-blur-[2px] ease-out transition-all duration-300 p-5 bg-gradient-to-r from-[rgba(0,0,0,0.7)] h-full w-full pr-[30%]'}`}
+            } ${'text-white z-[1] flex items-center text-left text-xs font-medium backdrop-blur-[2px] ease-out transition-all duration-300 p-5 bg-gradient-to-r from-[#000000b3] h-full w-full pr-[30%]'}`}
           >
             {value.ThumbnailHeading}
           </h6>

@@ -11,8 +11,8 @@ module.exports = {
     extend: {
       colors: {
         'primary-blue': '#0076E4',
-        'primary-blue-rgb': 'rgb(0,116,228)',
-        'color-dark': 'rgba(255, 255, 255, 0.23)',
+        'primary-blue-rgb': '#0074e4',
+        'color-dark': '#FFFFFF3B',
       },
       screens: {
         'xs-200': '200px',

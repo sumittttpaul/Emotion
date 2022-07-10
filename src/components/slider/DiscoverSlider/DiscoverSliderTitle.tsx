@@ -38,7 +38,7 @@ export const DiscoverSliderTitle: FC<DiscoverSliderTitleProps> = (props) => {
           className="block disabled:opacity-40 opacity-100 transition-all duration-300 button-text-lower h-full p-2 bg-[#202020] hover:bg-[#303030] disabled:bg-white disabled:bg-opacity-10"
           sx={{
             '.MuiTouchRipple-child': {
-              backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+              backgroundColor: '#ffffff80 !important',
             },
           }}
         >
@@ -51,7 +51,7 @@ export const DiscoverSliderTitle: FC<DiscoverSliderTitleProps> = (props) => {
           className="block disabled:opacity-40 opacity-100 transition-all duration-300 button-text-lower h-full p-2 bg-[#202020] hover:bg-[#303030] disabled:bg-white disabled:bg-opacity-10"
           sx={{
             '.MuiTouchRipple-child': {
-              backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+              backgroundColor: '#ffffff80 !important',
             },
           }}
         >

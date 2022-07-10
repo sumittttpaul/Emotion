@@ -33,7 +33,7 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
         className={`${
           NavSliderOpen || SearchSliderOpen
             ? 'bg-[#121212]'
-            : 'bg-[rgba(18,18,18,0.95)]'
+            : 'bg-[#121212f2]'
         } ${'flex flex-col z-[999] sticky-top items-center box-border w-full h-[78px] backdrop-blur-[8px]'}`}
       >
         <div className="flex relative box-border w-full max-w-[1440px] mx-auto h-full justify-between items-center py-3 sm:px-5 px-3 overflow-x-hidden">

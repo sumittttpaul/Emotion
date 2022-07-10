@@ -15,7 +15,7 @@ interface IProps {
  **/
 
 const buttonDesign =
-  'bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] text-white h-[50px] justify-center items-center flex w-full rounded-md focus:outline-none';
+  'bg-[#ffffff1a] hover:bg-[#ffffff1a] text-white h-[50px] justify-center items-center flex w-full rounded-md focus:outline-none';
 
 const OtherAccountAuthUI: FC<IProps> = (props) => {
   return (

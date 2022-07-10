@@ -77,7 +77,7 @@ const ForgotPasswordUI: FC<IProps> = (props) => {
             />
           </div>
           <div className="flex">
-            <h6 className="text-xs font-light text-[rgba(255,255,255,0.75)] flex items-center">
+            <h6 className="text-xs font-light text-[#ffffffbf] flex items-center">
               Remember your password?&#160;
               <Link
                 onClick={() => {

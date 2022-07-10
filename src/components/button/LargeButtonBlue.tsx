@@ -21,7 +21,7 @@ const LargeButtonBlue: FC<LargeButtonBlueProps> = (props) => {
         disableFocusRipple
         sx={{
           '.MuiTouchRipple-child': {
-            backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+            backgroundColor: '#ffffff80 !important',
           },
         }}
         disabled={props.Disabled}

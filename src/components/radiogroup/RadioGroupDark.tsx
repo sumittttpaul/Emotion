@@ -49,7 +49,7 @@ export const RadioGroupDark: FC<IProps> = (props) => {
                 ${
                   checked
                     ? 'bg-[#121212] text-black border-0'
-                    : 'bg-[rgba(0,0,0,0.075)] text-black'
+                    : 'bg-[#00000013] text-black'
                 }
                   relative rounded-md px-3 xs-300:px-4 xs-350:px-5 py-2.5 w-full cursor-pointer custom-webkit-focus flex outline-none transition-all ease-in-out duration-300`
               }
@@ -118,9 +118,7 @@ export const RadioGroupDark: FC<IProps> = (props) => {
                         <RadioGroup.Label
                           as="p"
                           className={`font-normal text-[12.5px] text-center ${
-                            checked
-                              ? 'text-white'
-                              : 'text-[rgba(255,255,255,0.7)]'
+                            checked ? 'text-white' : 'text-[#ffffffb3]'
                           }`}
                         >
                           {content}

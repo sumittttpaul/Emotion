@@ -32,7 +32,7 @@ export const PageFooter: FC<PageFooterProps> = (props) => {
           }}
         />
         <FooterTop />
-        <div className="h-[1px] w-full my-5 bg-[rgba(255,255,255,0.1)]" />
+        <div className="h-[1px] w-full my-5 bg-[#ffffff1a]" />
         <h6 className="text-[11.5px] py-2 font-[300] leading-[22px] whitespace-normal lg:max-w-[70%] xl:max-w-[60%] 2xl:max-w-[55%] flex text-white opacity-80">
           Founded in 2022, Agewear is a lifestyle fashion brand that makes
           creative, distinctive fashion for the trendy, contemporary Indian.

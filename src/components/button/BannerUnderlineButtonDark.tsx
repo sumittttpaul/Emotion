@@ -16,7 +16,7 @@ export const BannerUnderlineButtonDark: FC<IProps> = (props) => {
       className="text-white absolute bottom-0 block whitespace-nowrap mx-5 mb-4 p-0 text-[14px] hover:underline underline-offset-4 font-sans font-normal button-text-lower"
       sx={{
         '.MuiTouchRipple-child': {
-          backgroundColor: 'rgba(225, 225, 255, 0) !important',
+          backgroundColor: '#ffffff00 !important',
         },
       }}
     >

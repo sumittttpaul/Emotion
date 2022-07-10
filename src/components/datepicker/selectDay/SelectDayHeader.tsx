@@ -29,7 +29,7 @@ export const SelectDayHeader: FC<IProps> = (props) => {
           <motion.button
             onClick={props.prevMonthClick}
             whileTap={{ scale: 0.9 }}
-            className="text-white p-[4px] rounded-md bg-[rgba(255,255,255,0.1)] relative block"
+            className="text-white p-[4px] rounded-md bg-[#ffffff1a] relative block"
           >
             <ChevronUpIcon className="text-white h-[16px] opacity-60" />
           </motion.button>
@@ -39,7 +39,7 @@ export const SelectDayHeader: FC<IProps> = (props) => {
             <motion.button
               onClick={props.nextMonthClick}
               whileTap={{ scale: 0.9 }}
-              className="text-white p-[4px] rounded-md bg-[rgba(255,255,255,0.1)] relative block"
+              className="text-white p-[4px] rounded-md bg-[#ffffff1a] relative block"
             >
               <ChevronDownIcon className="text-white h-[16px] opacity-60" />
             </motion.button>

@@ -12,7 +12,7 @@ interface IProps {}
 export const EmailPrivacyPolicy: FC<IProps> = (props) => {
   return (
     <div className="flex items-center">
-      <h6 className="ml-3 text-xs font-light text-[rgba(255,255,255,0.75)]">
+      <h6 className="ml-3 text-xs font-light text-[#ffffffbf]">
         I agree with&#160;
         <Link
           className="text-white underline-offset-2 text-xs"

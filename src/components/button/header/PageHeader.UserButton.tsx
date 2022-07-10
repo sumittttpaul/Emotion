@@ -62,7 +62,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
               borderRadius: '0 !important',
               '.MuiTouchRipple-child': {
                 borderRadius: '0 !important',
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
           >
@@ -81,10 +81,10 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
             aria-label="user-popup-button"
             disableFocusRipple
             onClick={handleClick}
-            className="hidden sm:flex items-center button-text-lower h-full pl-2 pr-3 bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.05)]"
+            className="hidden sm:flex items-center button-text-lower h-full pl-2 pr-3 bg-[#ffffff0d] hover:bg-[#ffffff0d]"
             sx={{
               '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
           >
@@ -111,10 +111,10 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
             PaperProps={{
               elevation: 0,
               sx: {
-                background: 'rgba(255,255,255,1)',
+                background: '#ffffff',
                 mt: 0.6,
                 overflow: 'visible',
-                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                filter: 'drop-shadow(0px 2px 8px #00000052)',
                 '.MuiMenu-list': {
                   padding: '1px 0',
                 },
@@ -122,7 +122,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                   minHeight: 0,
                 },
                 '.MuiTouchRipple-child': {
-                  backgroundColor: 'rgba(0, 0, 0, 0.5) !important',
+                  backgroundColor: '#00000080 !important',
                 },
               },
             }}
@@ -156,7 +156,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                       aria-label="user-sign-out-button"
                       disableFocusRipple
                       onClick={SignOutUser}
-                      className="mt-[8px] p-[2px] relative block bg-[rgba(0,0,0,0.05)] hover:bg-[rgba(0,0,0,0.1)] button-text-lower font-normal text-black text-[11px]"
+                      className="mt-[8px] p-[2px] relative block bg-[#0000000d] hover:bg-[#0000001a] button-text-lower font-normal text-black text-[11px]"
                     >
                       Sign out
                     </Button>
@@ -164,7 +164,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                 </div>
               </div>
             </MenuItem>
-            <div className="h-[1px] w-full bg-[rgba(0,0,0,0.05)]" />
+            <div className="h-[1px] w-full bg-[#0000000d]" />
             <MenuItem
               key={2}
               onClick={() => {
@@ -174,7 +174,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                   Router.push(Manage_Your_Account_Link);
                 }, 150);
               }}
-              className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
+              className="m-1 rounded-md hover:bg-[#0000000d]"
             >
               <div className="flex relative space-x-[10px]">
                 <Image
@@ -198,7 +198,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                   Router.push(Track_Order_Link);
                 }, 150);
               }}
-              className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
+              className="m-1 rounded-md hover:bg-[#0000000d]"
             >
               <div className="flex relative space-x-[10px]">
                 <Image
@@ -222,7 +222,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                   Router.push(Cart_Link);
                 }, 150);
               }}
-              className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
+              className="m-1 rounded-md hover:bg-[#0000000d]"
             >
               <div className="flex relative space-x-[10px]">
                 <Image
@@ -246,7 +246,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
                   Router.push(Redeem_Gift_Codes_Link);
                 }, 150);
               }}
-              className="m-1 rounded-md hover:bg-[rgba(0,0,0,0.05)]"
+              className="m-1 rounded-md hover:bg-[#0000000d]"
             >
               <div className="flex relative space-x-[10px]">
                 <Image
@@ -273,10 +273,10 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
               Router.push(Login_Link);
             }, 150);
           }}
-          className="flex items-center button-text-lower h-full px-4 bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.05)]"
+          className="flex items-center button-text-lower h-full px-4 bg-[#ffffff0d] hover:bg-[#ffffff0d]"
           sx={{
             '.MuiTouchRipple-child': {
-              backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+              backgroundColor: '#ffffff80 !important',
             },
           }}
         >

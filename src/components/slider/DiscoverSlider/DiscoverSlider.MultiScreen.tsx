@@ -84,13 +84,13 @@ export const DiscoverSliderDesktopAndTablet: FC<
             className="text-white group m-0 p-0 space-y-1 min-w-[197.5px] md-900:min-w-[220px] button-text-lower"
             sx={{
               '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
           >
             <div className="w-full flex flex-col relative">
               <div className="relative w-full overflow-hidden">
-                <div className="opacity-0 p-2 flex items-start justify-end group-hover:opacity-100 absolute z-[1] transition-opacity duration-300 rounded-md h-[98%] w-full bg-gradient-to-bl from-[rgba(0,0,0,0.3)]">
+                <div className="opacity-0 p-2 flex items-start justify-end group-hover:opacity-100 absolute z-[1] transition-opacity duration-300 rounded-md h-[98%] w-full bg-gradient-to-bl from-[#0000004d]">
                   <TooltipDark arrow title="Add to Wishlist" placement="top">
                     <motion.button
                       onClick={() => props.setWishlist(index)}
@@ -165,13 +165,13 @@ export const DiscoverSliderMobile: FC<DiscoverSliderMobileProps> = (props) => {
               className="text-white group h-full w-full flex m-0 p-0 space-y-1 button-text-lower"
               sx={{
                 '.MuiTouchRipple-child': {
-                  backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                  backgroundColor: '#ffffff80 !important',
                 },
               }}
             >
               <div className="w-full flex flex-col">
                 <div className="relative w-full overflow-hidden">
-                  <div className="opacity-0 flex items-start justify-end group-hover:opacity-100 absolute z-[1] transition-opacity duration-300 rounded-md h-[98%] w-full bg-gradient-to-bl from-[rgba(0,0,0,0.3)]">
+                  <div className="opacity-0 flex items-start justify-end group-hover:opacity-100 absolute z-[1] transition-opacity duration-300 rounded-md h-[98%] w-full bg-gradient-to-bl from-[#0000004d]">
                     <motion.button
                       onClick={() => props.setWishlist(index)}
                       whileTap={{ scale: 0.9 }}

@@ -58,17 +58,17 @@ export const CropAvatarSlider: FC<IProps> = (props) => {
               sx={{
                 height: 2,
                 '& .MuiSlider-thumb': {
-                  color: 'rgba(255,255,255,1)',
+                  color: '#ffffff',
                   width: 8,
                   height: 8,
-                  boxShadow: '0px 0px 0px 12px rgb(255 255 255 / 16%)',
+                  boxShadow: '0px 0px 0px 12px rgb(#ffffff / 16%)',
                   transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
                   '&:before': {
-                    boxShadow: '0 2px 12px 0 rgba(255,255,255,0.4)',
+                    boxShadow: '0 2px 12px 0 #ffffff66',
                   },
                   '&:hover, &.Mui-focusVisible': {
                     borderRadius: '50%',
-                    boxShadow: '0px 0px 0px 12px rgb(255 255 255 / 16%)',
+                    boxShadow: '0px 0px 0px 12px rgb(#ffffff / 16%)',
                   },
                   '&.Mui-active': {
                     width: 15,
@@ -123,17 +123,17 @@ export const CropAvatarSlider: FC<IProps> = (props) => {
               sx={{
                 height: 2,
                 '& .MuiSlider-thumb': {
-                  color: 'rgba(255,255,255,1)',
+                  color: '#ffffff',
                   width: 8,
                   height: 8,
-                  boxShadow: '0px 0px 0px 12px rgb(255 255 255 / 16%)',
+                  boxShadow: '0px 0px 0px 12px rgb(#ffffff / 16%)',
                   transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
                   '&:before': {
-                    boxShadow: '0 2px 12px 0 rgba(255,255,255,0.4)',
+                    boxShadow: '0 2px 12px 0 #ffffff66',
                   },
                   '&:hover, &.Mui-focusVisible': {
                     borderRadius: '50%',
-                    boxShadow: '0px 0px 0px 12px rgb(255 255 255 / 16%)',
+                    boxShadow: '0px 0px 0px 12px rgb(#ffffff / 16%)',
                   },
                   '&.Mui-active': {
                     width: 15,

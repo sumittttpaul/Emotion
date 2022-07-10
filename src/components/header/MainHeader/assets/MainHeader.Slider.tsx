@@ -133,7 +133,7 @@ export const MainHeaderSlider: FC<IProps> = (props) => {
                   }}
                   sx={{
                     '.MuiTouchRipple-child': {
-                      backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                      backgroundColor: '#ffffff80 !important',
                     },
                   }}
                   className={`${ActiveContent(
@@ -148,7 +148,7 @@ export const MainHeaderSlider: FC<IProps> = (props) => {
               {idx === 2 ? (
                 <></>
               ) : (
-                <div className="h-[1px] w-[79%] mx-auto bg-[rgba(255,255,255,0.10)]" />
+                <div className="h-[1px] w-[79%] mx-auto bg-[#ffffff1a]" />
               )}
             </motion.li>
           ))}

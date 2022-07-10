@@ -39,7 +39,7 @@ const WarningIconColor = 'text-[#ffae00ea]';
 /**
  * @author
  * @function @ToastDark
- **/ 
+ **/
 
 export const ToastDark: FC<IProps> = (props) => {
   const bgColor = props.bgColor;
@@ -88,7 +88,7 @@ export const ToastDark: FC<IProps> = (props) => {
       ...state,
       open: props.open,
     });
-  },[props.open, state]);
+  }, [props.open, state]);
 
   if (props.type.toLowerCase() === 'error') {
     return (
@@ -115,7 +115,7 @@ export const ToastDark: FC<IProps> = (props) => {
             <motion.button
               onClick={handleCloseClick}
               whileTap={{ scale: 0.8 }}
-              className="bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] cursor-default p-[6px] rounded-md"
+              className="bg-[#ffffff1a] hover:bg-[#ffffff1a] cursor-default p-[6px] rounded-md"
             >
               <XIcon className="text-white h-[14px] w-[14px] opacity-70" />
             </motion.button>
@@ -149,7 +149,7 @@ export const ToastDark: FC<IProps> = (props) => {
             <motion.button
               onClick={handleCloseClick}
               whileTap={{ scale: 0.8 }}
-              className="bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] cursor-default p-[6px] relative block rounded-md"
+              className="bg-[#ffffff1a] hover:bg-[#ffffff1a] cursor-default p-[6px] relative block rounded-md"
             >
               <XIcon className="text-white h-[14px] w-[14px] opacity-70" />
             </motion.button>
@@ -185,7 +185,7 @@ export const ToastDark: FC<IProps> = (props) => {
             <motion.button
               onClick={handleCloseClick}
               whileTap={{ scale: 0.8 }}
-              className="bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] cursor-default p-[6px] rounded-md"
+              className="bg-[#ffffff1a] hover:bg-[#ffffff1a] cursor-default p-[6px] rounded-md"
             >
               <XIcon className="text-white h-[14px] w-[14px] opacity-70" />
             </motion.button>
@@ -221,7 +221,7 @@ export const ToastDark: FC<IProps> = (props) => {
             <motion.button
               onClick={handleCloseClick}
               whileTap={{ scale: 0.8 }}
-              className="bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.1)] cursor-default p-[6px] rounded-md"
+              className="bg-[#ffffff1a] hover:bg-[#ffffff1a] cursor-default p-[6px] rounded-md"
             >
               <XIcon className="text-white h-[14px] w-[14px] opacity-70" />
             </motion.button>

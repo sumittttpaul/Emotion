@@ -47,7 +47,7 @@ export const PageHeaderMenuButton: FC<IProps> = (props) => {
         borderRadius: '0 !important',
         '.MuiTouchRipple-child': {
           borderRadius: '0 !important',
-          backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+          backgroundColor: '#ffffff80 !important',
         },
       }}
     >

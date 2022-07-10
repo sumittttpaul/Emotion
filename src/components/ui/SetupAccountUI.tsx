@@ -40,9 +40,9 @@ const AvatarUI = dynamic<AvatartUIProps>(
 
 const DatePickerUI = dynamic<DatePickerUIProps>(
   () =>
-    import(
-      './ComponentUI/SetupAccount/DatePickerUI/DatePickerUI'
-    ).then((x) => x.DatePickerUI),
+    import('./ComponentUI/SetupAccount/DatePickerUI/DatePickerUI').then(
+      (x) => x.DatePickerUI
+    ),
   {
     loading: () => <LoadingDatePickerUI />,
     ssr: false,
@@ -112,7 +112,7 @@ export const SetupAccountUI: FC<IProps> = (props) => {
             content="Continue"
           />
           <div className="flex">
-            <h6 className="text-xs font-light text-[rgba(255,255,255,0.75)] flex items-center">
+            <h6 className="text-xs font-light text-[#ffffffbf] flex items-center">
               Will do it later?&#160;
               <Link
                 onClick={props.HandleSkip}

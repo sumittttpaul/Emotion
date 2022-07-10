@@ -15,13 +15,13 @@ export const DiscoverBannerListDesktopAndTablet: FC<IProps> = (props) => {
         ContentArray={props.ContentArray}
         className="flex"
       />
-      <div className="h-[100] px-[0.5px] bg-[rgba(255,255,255,0.15)] flex relative" />
+      <div className="h-[100] px-[0.5px] bg-[#ffffff26] flex relative" />
       <DiscoverBannerListColumn
         Heading="Winter beast"
         ContentArray={props.ContentArray}
         className="flex"
       />
-      <div className="h-[100] px-[0.5px] bg-[rgba(255,255,255,0.15)] flex relative" />
+      <div className="h-[100] px-[0.5px] bg-[#ffffff26] flex relative" />
       <DiscoverBannerListColumn
         Heading="Quick sale"
         ContentArray={props.ContentArray}
@@ -50,7 +50,7 @@ export const DiscoverBannerListMobile: FC<IProps> = (props) => {
             ContentArray={props.ContentArray}
             className="flex relative"
           />
-          <div className="h-[100] px-[0.5px] bg-[rgba(255,255,255,0.15)] flex relative" />
+          <div className="h-[100] px-[0.5px] bg-[#ffffff26] flex relative" />
         </div>
       </SwiperSlide>
       <SwiperSlide tag="div">
@@ -60,7 +60,7 @@ export const DiscoverBannerListMobile: FC<IProps> = (props) => {
             ContentArray={props.ContentArray}
             className="flex relative"
           />
-          <div className="h-[100] px-[0.5px] bg-[rgba(255,255,255,0.15)] flex relative" />
+          <div className="h-[100] px-[0.5px] bg-[#ffffff26] flex relative" />
         </div>
       </SwiperSlide>
       <SwiperSlide tag="div">
@@ -70,7 +70,7 @@ export const DiscoverBannerListMobile: FC<IProps> = (props) => {
             ContentArray={props.ContentArray}
             className="flex relative"
           />
-          <div className="h-[100%] px-[0.5px] bg-[rgba(255,255,255,0.15)] flex relative" />
+          <div className="h-[100%] px-[0.5px] bg-[#ffffff26] flex relative" />
         </div>
       </SwiperSlide>
     </Swiper>

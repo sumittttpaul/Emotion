@@ -88,7 +88,7 @@ export const PageHeaderSlider: FC<IProps> = (props) => {
       }}
     >
       <motion.ul variants={UlVariants}>
-        <div className="h-[1px] w-full my-5 bg-[rgba(255,255,255,0.10)]" />
+        <div className="h-[1px] w-full my-5 bg-[#ffffff1a]" />
         {Links.map((value, idx) => (
           <motion.li key={value.label} variants={LiVariants}>
             <Button
@@ -104,7 +104,7 @@ export const PageHeaderSlider: FC<IProps> = (props) => {
               }}
               sx={{
                 '.MuiTouchRipple-child': {
-                  backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                  backgroundColor: '#ffffff80 !important',
                 },
               }}
               className="text-white bg-transparent hover:bg-transparent disabled:cursor-not-allowed disabled:text-white w-full opacity-[0.75] hover:opacity-100 transition-opacity ease-in whitespace-nowrap font-[350] text-sm tracking-[0.075em] h-full justify-start items-center py-4 px-14 button-text-lower"
@@ -114,7 +114,7 @@ export const PageHeaderSlider: FC<IProps> = (props) => {
             {idx === 4 ? (
               <></>
             ) : (
-              <div className="h-[1px] w-[79%] mx-auto bg-[rgba(255,255,255,0.10)]" />
+              <div className="h-[1px] w-[79%] mx-auto bg-[#ffffff1a]" />
             )}
           </motion.li>
         ))}

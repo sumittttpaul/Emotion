@@ -32,10 +32,10 @@ export const MainHeaderWishlistButton: FC<IProps> = (props) => {
           Boolean(ActiveContent(props.value))
             ? 'opacity-100 hover:opacity-100'
             : 'opacity-70 header-button-hover'
-        } ${'hidden md-900:block transition-all duration-300 text-white py-2.5 px-3 border border-solid border-[rgba(255,255,255,0.23)] rounded-md button-text-lower'}`}
+        } ${'hidden md-900:block transition-all duration-300 text-white py-2.5 px-3 border border-solid border-[#ffffff3b] rounded-md button-text-lower'}`}
         sx={{
           '.MuiTouchRipple-child': {
-            backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+            backgroundColor: '#ffffff80 !important',
           },
         }}
       >
@@ -63,12 +63,12 @@ export const MainHeaderWishlistButton: FC<IProps> = (props) => {
             Boolean(ActiveContent(props.value))
               ? 'opacity-100 hover:opacity-100'
               : 'opacity-70 header-button-hover'
-          } ${'block md-900:hidden transition-all duration-300 button-text-lower h-full p-2.5 border border-solid border-[rgba(255,255,255,0.23)]'}`}
+          } ${'block md-900:hidden transition-all duration-300 button-text-lower h-full p-2.5 border border-solid border-[#ffffff3b]'}`}
           sx={{
             borderRadius: '6px !important',
             '.MuiTouchRipple-child': {
               borderRadius: '0 !important',
-              backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+              backgroundColor: '#ffffff80 !important',
             },
           }}
         >

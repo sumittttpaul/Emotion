@@ -29,7 +29,7 @@ const ShowAvatar: FC<IProps> = (props) => {
         <IconButton
           disableFocusRipple
           onClick={props.backward}
-          className="hover:bg-[rgba(0,0,0,0.07)] p-3"
+          className="hover:bg-[#00000012] p-3"
         >
           <XIcon className="h-5" />
         </IconButton>
@@ -103,9 +103,9 @@ const ShowAvatar: FC<IProps> = (props) => {
           onClick={props.forward}
           disabled={props.changedisabled}
           sx={{
-            border: '1px solid rgba(26, 115, 232, 0.5)',
+            border: '1px solid #1a73e880',
             '.MuiTouchRipple-child': {
-              backgroundColor: 'rgba(26, 115, 232, 0.5) !important',
+              backgroundColor: '#1a73e880 !important',
             },
           }}
           className="disabled:opacity-50 disabled:cursor-not-allowed button-text-lower py-[7px] disabled:text-[#1a73e8] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"
@@ -129,9 +129,9 @@ const ShowAvatar: FC<IProps> = (props) => {
           onClick={props.remove}
           disabled={props.removedisabled}
           sx={{
-            border: '1px solid rgba(26, 115, 232, 0.5)',
+            border: '1px solid #1a73e880',
             '.MuiTouchRipple-child': {
-              backgroundColor: 'rgba(26, 115, 232, 0.5) !important',
+              backgroundColor: '#1a73e880 !important',
             },
           }}
           className="disabled:opacity-50 disabled:cursor-not-allowed button-text-lower py-[7px] disabled:text-[#1a73e8] text-[#1a73e8] w-full rounded-md hover:bg-transparent active:bg-transparent"

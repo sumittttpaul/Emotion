@@ -5,7 +5,7 @@ import { UnderlineButtonDark } from '../../button/UnderlineButtonDark';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 const SwiperSlideStyle =
-  'h-full w-full flex relative m-0 p-0 text-white overflow-hidden rounded-xl border border-solid border-[rgba(255,255,255,0.23)]';
+  'h-full w-full flex relative m-0 p-0 text-white overflow-hidden rounded-xl border border-solid border-[#ffffff3b]';
 const TopHeadingContainerStyle =
   'flex flex-col relative p-3 h-full w-full justify-between';
 const BottomHeadingContainerStyle =
@@ -21,12 +21,7 @@ export const DiscoverTilesDesktop: FC<DiscoverTilesDesktopProps> = (props) => {
       <ul className="w-full hidden px-5 md-900:grid grid-cols-3 gap-5 relative">
         {props.ContentArray.map((value, index) => (
           <li key={index} className={SwiperSlideStyle}>
-            <Image
-              height={100}
-              width={150}
-              src={value.Image}
-              alt=""
-            />
+            <Image height={100} width={150} src={value.Image} alt="" />
             <div className={`space-y-5 ${TopHeadingContainerStyle}`}>
               <div className="space-y-1 flex flex-col">
                 <h6>{value.Heading}</h6>
@@ -70,12 +65,7 @@ export const DiscoverTilesTablet: FC<DiscoverTilesTabletProps> = (props) => {
       >
         {props.ContentArray.map((value, index) => (
           <SwiperSlide tag="li" key={index} className={SwiperSlideStyle}>
-            <Image
-              height={100}
-              width={150}
-              src={value.Image}
-              alt=""
-            />
+            <Image height={100} width={150} src={value.Image} alt="" loading="lazy"/>
             <div className={`space-y-5 ${TopHeadingContainerStyle}`}>
               <div className="space-y-1 flex flex-col">
                 <h6>{value.Heading}</h6>
@@ -119,12 +109,7 @@ export const DiscoverTilesMobile: FC<DiscoverTilesMobileProps> = (props) => {
       >
         {props.ContentArray.map((value, index) => (
           <SwiperSlide tag="li" key={index} className={SwiperSlideStyle}>
-            <Image
-              height={100}
-              width={150}
-              src={value.Image}
-              alt=""
-            />
+            <Image height={100} width={150} src={value.Image} alt="" loading="lazy"/>
             <div className={TopHeadingContainerStyle}>
               <div className="flex flex-col">
                 <h6>{value.Heading}</h6>

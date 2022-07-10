@@ -39,7 +39,7 @@ export const SelectMonth: FC<IProps> = (props) => {
   };
 
   const dayStyles = (month: any) => {
-    if (selected == month) return 'bg-[rgba(255,255,255,0.1)]';
+    if (selected == month) return 'bg-[#ffffff1a]';
   };
 
   return (

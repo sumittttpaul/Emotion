@@ -13,7 +13,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
   />
 ))(({ theme }) => ({
   '& .MuiInputLabel-root': {
-    color: 'rgba(255, 255, 255, 0.70)',
+    color: '#ffffffb3',
     display: 'block',
     fontFamily: ['Poppins', 'sans-serif'].join(','),
     fontSize: '13px',
@@ -21,11 +21,11 @@ const CustomTextField = styled((props: TextFieldProps) => (
     letterSpacing: 0.5,
     transform: 'translate(67px, 23px) scale(1)',
     '&.Mui-error': {
-      color: 'rgba(255, 255, 255, 0.70)',
+      color: '#ffffffb3',
     },
   },
   '& label.Mui-focused': {
-    color: 'rgba(255, 255, 255, 0.70)',
+    color: '#ffffffb3',
     transform: 'translate(67px, 12px) scale(0.90)',
   },
   '& .MuiInputLabel-shrink': {
@@ -39,7 +39,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
     letterSpacing: 0.5,
     fontFamily: ['Poppins', 'sans-serif'].join(','),
     color: '#ffffff',
-    border: '1px solid rgba(255, 255, 255, 0.23)',
+    border: '1px solid #ffffff3b',
     overflow: 'hidden',
     paddingLeft: 54,
     paddingTop: 4,
@@ -56,7 +56,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
     '&.Mui-focused': {
       backgroundColor: 'transparent',
       boxShadow: `${alpha('#ffffff', 0.25)} 0 0 0 2px`,
-      borderColor: 'rgba(255, 255, 255, 0.7)',
+      borderColor: '#ffffffb3',
       color: '#ffffff',
     },
     '&.Mui-error': {
@@ -109,7 +109,7 @@ const IconNumberTextFieldDark: FC<IconNumberTextFieldProps> = (props) => {
           width={30}
           className="opacity-[0.4]"
           src={props.icon}
-          loading='lazy'
+          loading="lazy"
           alt=""
           placeholder="blur"
           blurDataURL={Square_BlurDataURL}

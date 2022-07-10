@@ -84,7 +84,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
               ? 'Search by product, category or collection'
               : 'Search'
           }
-          className="flex min-w-20 pb-[2px] pl-[10px] pr-2 whitespace-nowrap text-ellipsis w-full h-full bg-transparent text-[14px] text-white placeholder:text-[rgba(255,255,255,0.60)] placeholder:text-[13px] outline-none"
+          className="flex min-w-20 pb-[2px] pl-[10px] pr-2 whitespace-nowrap text-ellipsis w-full h-full bg-transparent text-[14px] text-white placeholder:text-[#ffffff99] placeholder:text-[13px] outline-none"
         />
       </div>
     </motion.button>

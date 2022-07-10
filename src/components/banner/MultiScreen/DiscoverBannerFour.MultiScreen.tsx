@@ -6,7 +6,7 @@ import { rectangle_BlurDataURL } from '../../loader/BlurDataURL';
 import { BannerUnderlineButtonDark } from '../../button/BannerUnderlineButtonDark';
 
 const ContainerStyle =
-  'text-white group relative p-0 m-0 overflow-hidden border border-solid border-[rgba(255,255,255,0.15)]';
+  'text-white group relative p-0 m-0 overflow-hidden border border-solid border-[#ffffff26]';
 const TextContainerStyle = 'px-5 pt-4 pb-[70px] space-y-2';
 const HeadingStyle = 'font-normal text-left w-full';
 const DescriptionStyle =

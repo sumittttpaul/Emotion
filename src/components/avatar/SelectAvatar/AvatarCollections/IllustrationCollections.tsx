@@ -154,7 +154,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
             className="p-0 inline-block w-[130px] cursor-default rounded-md"
             sx={{
               '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
           >

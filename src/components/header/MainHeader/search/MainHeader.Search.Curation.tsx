@@ -142,10 +142,10 @@ export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (
             disableRipple
             sx={{
               '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(255, 255, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
-            className="rounded-xl inline-flex flex-col button-text-lower p-5 w-[120px] space-y-2 bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)] transition-colors duration-300 ease-linear"
+            className="rounded-xl inline-flex flex-col button-text-lower p-5 w-[120px] space-y-2 bg-[#ffffff0d] hover:bg-[#ffffff1a] transition-colors duration-300 ease-linear"
           >
             <Image
               height={60}
@@ -155,7 +155,7 @@ export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (
               className="rounded-md"
               alt=""
             />
-            <h6 className="text-[13px] w-full text-center text-[rgba(255,255,255,0.7)] font-[300] whitespace-nowrap overflow-hidden text-ellipsis">
+            <h6 className="text-[13px] w-full text-center text-[#ffffffb3] font-[300] whitespace-nowrap overflow-hidden text-ellipsis">
               {value.Label}
             </h6>
           </Button>

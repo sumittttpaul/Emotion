@@ -7,15 +7,15 @@ const MainContainerStyle =
   'w-auto h-full overflow-hidden whitespace-nowrap static flex flex-col flex-nowrap float-none justify-end';
 const ButtonContainerStyle = 'flex w-full h-full space-x-3';
 const ButtonStyle =
-  'rounded-xl relative overflow-hidden h-full w-full flex-col button-text-lower p-0 m-0 bg-[rgba(255,255,255,0.05)]';
+  'rounded-xl relative overflow-hidden h-full w-full flex-col button-text-lower p-0 m-0 bg-[#ffffff0d]';
 const ImageContainerStyle = 'w-full h-full flex relative';
 const LabelStyle =
   'text-[12px] w-full p-2 text-center text-white font-[400] tracking-[0.4px] whitespace-nowrap overflow-hidden text-ellipsis';
 const LabelContainerStyle = 'flex w-full h-full items-end justify-between';
 const LabelContainerParentStyle =
-  'w-full h-full absolute bg-gradient-to-t from-[rgba(0,0,0,0.7)] transition-colors duration-300 ease-linear';
+  'w-full h-full absolute bg-gradient-to-t from-[#000000b3] transition-colors duration-300 ease-linear';
 const OverlayStyle =
-  'absolute w-full h-full bg-[rgba(255,255,255,0)] hover:bg-[rgba(255,255,255,0.1)] transition-colors duration-300 ease-linear';
+  'absolute w-full h-full bg-[#ffffff00] hover:bg-[#ffffff1a] transition-colors duration-300 ease-linear';
 
 export interface MainHeaderSearchQuickLinkSmallBannerProps {
   ContentArray: StoreDiscoverExploreSearchIProps;
@@ -34,7 +34,7 @@ export const MainHeaderSearchQuickLinkSmallBannerMobile: FC<
             disableRipple
             sx={{
               '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(255, 255, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
             className={`${
@@ -85,7 +85,7 @@ export const MainHeaderSearchQuickLinkSmallBannerDesktop: FC<
             disableRipple
             sx={{
               '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(255, 255, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
             className={`${

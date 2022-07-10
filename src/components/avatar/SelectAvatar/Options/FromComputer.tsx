@@ -55,11 +55,11 @@ const FromComputer: FC<IProps> = (props) => {
           disableTouchRipple
           sx={{
             '&': {
-              border: '2px dashed rgba(0,0,0,0.2)',
+              border: '2px dashed #00000033',
             },
           }}
           component="span"
-          className="button-text-lower p-6 bg-transparent text-[rgba(0,0,0,0.5)] w-full max-w-[350px] rounded-md hover:bg-transparent active:bg-transparent"
+          className="button-text-lower p-6 bg-transparent text-[#00000080] w-full max-w-[350px] rounded-md hover:bg-transparent active:bg-transparent"
         >
           <div className="flex flex-col space-y-2 items-center justify-center">
             <Image

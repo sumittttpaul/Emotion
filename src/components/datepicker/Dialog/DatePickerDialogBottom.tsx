@@ -19,7 +19,7 @@ export const DatePickerDialogBottom: FC<IProps> = (props) => {
         aria-label="dob-cancel-button"
         disableFocusRipple
         onClick={props.cancel}
-        className="text-[rgba(255,255,255,0.8)] rounded-md font-normal text-[11px] h-8 w-[calc(100%/3)] border border-solid border-[rgba(255,255,255,0.2)] outline-none button-text-lower"
+        className="text-[#ffffffcc] rounded-md font-normal text-[11px] h-8 w-[calc(100%/3)] border border-solid border-[#ffffff33] outline-none button-text-lower"
       >
         Cancel
       </Button>

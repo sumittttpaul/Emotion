@@ -56,7 +56,7 @@ export const MainHeaderSearchExplore: FC<MainHeaderSearchExploreProps> = (
                     alt=""
                   />
                 </div>
-                <div className="w-full h-full absolute bg-gradient-to-t from-[rgba(0,0,0,0.7)] transition-colors duration-300 ease-linear">
+                <div className="w-full h-full absolute bg-gradient-to-t from-[#000000b3] transition-colors duration-300 ease-linear">
                   <div className="flex w-full h-full items-end justify-between">
                     <h6 className="group-hover:underline underline-offset-2 text-[14px] p-3.5 text-center text-white font-[400] tracking-[0.3px] whitespace-nowrap overflow-hidden text-ellipsis">
                       {value.Label}

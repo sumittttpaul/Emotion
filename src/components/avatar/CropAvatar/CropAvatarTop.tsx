@@ -18,7 +18,7 @@ export const CropAvatarTop: FC<IProps> = (props) => {
       <IconButton
         disableFocusRipple
         onClick={props.back}
-        className="hover:bg-[rgba(255,255,255,0.1)] p-3"
+        className="hover:bg-[#ffffff1a] p-3"
       >
         <ArrowLeftIcon className="h-5 text-white" />
       </IconButton>
@@ -26,7 +26,7 @@ export const CropAvatarTop: FC<IProps> = (props) => {
       <IconButton
         disableFocusRipple
         onClick={props.moreInfo}
-        className="hover:bg-[rgba(255,255,255,0.1)] p-3"
+        className="hover:bg-[#ffffff1a] p-3"
       >
         <DotsVerticalIcon className="h-5 text-white" />
       </IconButton>

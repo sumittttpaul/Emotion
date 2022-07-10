@@ -6,7 +6,9 @@ export interface MainHeaderSearchPopularProps {
   ContentArray: StoreDiscoverPopularSearchIProps[];
 }
 
-export const MainHeaderSearchPopular: FC<MainHeaderSearchPopularProps> = (props) => {
+export const MainHeaderSearchPopular: FC<MainHeaderSearchPopularProps> = (
+  props
+) => {
   return (
     <div className="flex flex-col w-full px-3 sm:px-5 space-y-3.5">
       <h6 className="font-[400] text-sm text-white w-full text-left">
@@ -19,10 +21,10 @@ export const MainHeaderSearchPopular: FC<MainHeaderSearchPopularProps> = (props)
               disableFocusRipple
               sx={{
                 '.MuiTouchRipple-child': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.5) !important',
+                  backgroundColor: '#ffffff80 !important',
                 },
               }}
-              className="text-xs font-[300] tracking-[0.7px] border m-1 py-2 px-3.5 border-solid border-[rgba(255,255,255,0.15)] hover:border-[rgba(255,255,255,0.5)] transition-all duration-300 ease-linear rounded-full button-text-lower text-[rgba(255,255,255,0.7)] hover:text-white bg-transparent hover:bg-transparent"
+              className="text-xs font-[300] tracking-[0.7px] border m-1 py-2 px-3.5 border-solid border-[#ffffff26] hover:border-[#ffffff80] transition-all duration-300 ease-linear rounded-full button-text-lower text-[#ffffffb3] hover:text-white bg-transparent hover:bg-transparent"
             >
               {value.Label}
             </Button>

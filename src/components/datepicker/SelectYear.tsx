@@ -26,7 +26,7 @@ export const SelectYear: FC<IProps> = (props) => {
   const Years = yearRange(1900, new Date().getFullYear());
 
   const dayStyles = (Year: any) => {
-    if (selected == Year) return 'bg-[rgba(255,255,255,0.1)]';
+    if (selected == Year) return 'bg-[#ffffff1a]';
   };
 
   return (

@@ -35,7 +35,7 @@ export const AvatarCircularButton: FC<IProps> = (props) => {
           placeholder="blur"
           blurDataURL={Circle_BlurDataURL}
         />
-        <div className="absolute bg-[rgba(32,32,32,0.6)] flex justify-center items-center h-[33%] left-0 right-0 bottom-0">
+        <div className="absolute bg-[#20202099] flex justify-center items-center h-[33%] left-0 right-0 bottom-0">
           <CameraIcon className="text-white opacity-90 h-[25px] w-[25px] mb-[2px]" />
         </div>
       </div>

@@ -29,10 +29,10 @@ export const DiscoverBannerListColumn: FC<IProps> = (props) => {
       <div className="flex w-full h-full justify-between items-center">
         <h6 className="text-[16px] md-900:text-[18px]">{props.Heading}</h6>
         <Button
-          className="text-white px-3.5 py-2 text-[10px] md-900:text-[11px] font-normal tracking-[1px] border border-solid border-[rgba(255,255,255,0.35)] hover:border-[rgba(255,255,255,0.75)] bg-transparent transition-colors duration-300 ease-out"
+          className="text-white px-3.5 py-2 text-[10px] md-900:text-[11px] font-normal tracking-[1px] border border-solid border-[#ffffff59] hover:border-[#ffffffbf] bg-transparent transition-colors duration-300 ease-out"
           sx={{
             '.MuiTouchRipple-child': {
-              backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+              backgroundColor: '#ffffff80 !important',
             },
           }}
         >
@@ -46,7 +46,7 @@ export const DiscoverBannerListColumn: FC<IProps> = (props) => {
               <Button
                 sx={{
                   '.MuiTouchRipple-child': {
-                    backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                    backgroundColor: '#ffffff80 !important',
                   },
                 }}
                 className="text-white button-text-lower flex w-full h-full p-3 lg-1100:px-5 py-4 rounded-xl bg-transparent hover:bg-white hover:bg-opacity-10"

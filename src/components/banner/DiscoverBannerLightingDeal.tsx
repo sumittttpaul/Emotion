@@ -34,10 +34,10 @@ export const DiscoverBannerLightingDeal: FC<IProps> = (props) => {
             <h6 className="text-[18px]">Daily lightning deals</h6>
           </div>
           <Button
-            className="text-white px-3 py-1.5 text-[11px] font-normal tracking-[1px] border border-solid border-[rgba(255,255,255,0.5)] hover:border-[rgba(255,255,255,0.75)] bg-transparent transition-colors duration-300 ease-out"
+            className="text-white px-3 py-1.5 text-[11px] font-normal tracking-[1px] border border-solid border-[#ffffff80] hover:border-[#ffffffbf] bg-transparent transition-colors duration-300 ease-out"
             sx={{
               '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
           >

@@ -39,12 +39,12 @@ export class ScrollToTopButton extends Component<IProps> {
             id={ScrollButtonID}
             disableFocusRipple
             aria-label="scroll-to-top-button"
-            className="block opacity-80 header-button-hover transition-all duration-300 button-text-lower h-full p-2 border border-solid border-[rgba(255,255,255,0.23)]"
+            className="block opacity-80 header-button-hover transition-all duration-300 button-text-lower h-full p-2 border border-solid border-[#ffffff3b]"
             sx={{
               borderRadius: '6px !important',
               '.MuiTouchRipple-child': {
                 borderRadius: '0 !important',
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
           >

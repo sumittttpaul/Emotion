@@ -25,14 +25,14 @@ const CollectionForAvatar: FC<IProps> = (props) => {
         <IconButton
           disableFocusRipple
           onClick={props.backward}
-          className="hover:bg-[rgba(0,0,0,0.07)] p-3"
+          className="hover:bg-[#00000012] p-3"
         >
           <ArrowLeftIcon className="h-5" />
         </IconButton>
         <h6 className="text-black font-medium pt-1">{props.heading}</h6>
         <IconButton
           disableFocusRipple
-          className="hover:bg-[rgba(0,0,0,0.07)] p-3"
+          className="hover:bg-[#00000012] p-3"
         >
           <DotsVerticalIcon className="h-5" />
         </IconButton>

@@ -111,7 +111,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
               '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
           >
@@ -133,7 +133,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
               '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
           >
@@ -157,7 +157,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
               '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
           >
@@ -179,7 +179,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
               '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
           >
@@ -203,7 +203,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
               '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
           >
@@ -225,7 +225,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
               '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
           >
@@ -249,7 +249,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
               '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
           >
@@ -271,7 +271,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
               '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
           >
@@ -295,7 +295,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
             className="p-0 relative w-full flex cursor-default rounded-md"
             sx={{
               '.MuiTouchRipple-child': {
-                backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                backgroundColor: '#ffffff80 !important',
               },
             }}
           >
@@ -318,7 +318,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               className="p-0 relative w-full flex cursor-default rounded-md"
               sx={{
                 '.MuiTouchRipple-child': {
-                  backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                  backgroundColor: '#ffffff80 !important',
                 },
               }}
             >
@@ -340,7 +340,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               className="p-0 relative w-full flex cursor-default rounded-md"
               sx={{
                 '.MuiTouchRipple-child': {
-                  backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                  backgroundColor: '#ffffff80 !important',
                 },
               }}
             >
@@ -362,7 +362,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               className="p-0 relative w-full flex cursor-default rounded-md"
               sx={{
                 '.MuiTouchRipple-child': {
-                  backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                  backgroundColor: '#ffffff80 !important',
                 },
               }}
             >
@@ -384,7 +384,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               className="p-0 relative w-full flex cursor-default rounded-md"
               sx={{
                 '.MuiTouchRipple-child': {
-                  backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                  backgroundColor: '#ffffff80 !important',
                 },
               }}
             >

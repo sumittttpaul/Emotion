@@ -3,7 +3,7 @@
   --bg-color: #0074e4;
   --primary-dark: #d1d6ee;
   --primary-darkest: #8a91b4;
-  --shadow: #{rgba(#000, 0.3)};
+  --shadow: #{rgba(#000000, 0.3)};
   --text: #e6e6e6;
   --text-opacity: 1;
   --success: #e6e6e6;
@@ -18,7 +18,7 @@
   --plane-x: 0;
   --plane-y: 0;
   --plane-opacity: 1;
-  --trails: #{rgba(#fff, 0.15)};
+  --trails: #{rgba(#ffffff, 0.15)};
   --trails-stroke: 57;
   --left-wing-background: var(--bg-color);
   --left-wing-first-x: 0;

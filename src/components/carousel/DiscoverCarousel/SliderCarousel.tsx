@@ -38,7 +38,7 @@ export const SliderCarousel: FC<SliderCarouselProps> = (props) => {
         <SwiperSlide
           key={index}
           tag="li"
-          className="p-5 box-border flex items-end justify-start bg-gradient-to-t from-[rgba(0,0,0,0.8)]"
+          className="p-5 box-border flex items-end justify-start bg-gradient-to-t from-[#000000cc]"
           style={{
             width: '85%',
             height: 450,

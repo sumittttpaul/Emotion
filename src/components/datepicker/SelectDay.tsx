@@ -93,7 +93,7 @@ export const SelectDay: FC<IProps> = (props) => {
   const disableDay = 'opacity-30 select-none pointer-events-none touch-none';
 
   const dayStyles = (day: any) => {
-    if (isSelected(day)) return 'bg-[rgba(255,255,255,0.1)]';
+    if (isSelected(day)) return 'bg-[#ffffff1a]';
     if (afterTaday(day)) return disableDay;
     if (isBefore1(day)) return disableDay;
     if (isBefore2(day)) return disableDay;

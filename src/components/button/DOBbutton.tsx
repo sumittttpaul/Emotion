@@ -21,10 +21,10 @@ export const DOBbutton: FC<IProps> = (props) => {
         aria-label="select-dob-button"
         disableFocusRipple
         onClick={props.onClick}
-        className="rounded-md py-3 px-4 button-text-lower text-black bg-[rgba(0,0,0,0.075)] hover:bg-[rgba(0,0,0,0.075)]"
+        className="rounded-md py-3 px-4 button-text-lower text-black bg-[#00000013] hover:bg-[#00000013]"
         sx={{
           '.MuiTouchRipple-child': {
-            backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+            backgroundColor: '#ffffff80 !important',
           },
         }}
       >
@@ -53,7 +53,7 @@ export const DOBbutton: FC<IProps> = (props) => {
         className="rounded-md py-3 px-4 button-text-lower text-white bg-[#121212] hover:bg-[#121212]"
         sx={{
           '.MuiTouchRipple-child': {
-            backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+            backgroundColor: '#ffffff80 !important',
           },
         }}
       >

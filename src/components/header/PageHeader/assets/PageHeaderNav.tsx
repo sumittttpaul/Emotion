@@ -1,12 +1,17 @@
 import { Button } from '@mui/material';
 import React, { FC, ChangeEvent, useState, useEffect } from 'react';
-import { About_Us_Link, Fanbook_Link, FAQ_Link, Help_Link, Store_Link } from '../../../../routerLinks/RouterLinks';
+import {
+  About_Us_Link,
+  Fanbook_Link,
+  FAQ_Link,
+  Help_Link,
+  Store_Link,
+} from '../../../../routerLinks/RouterLinks';
 
 interface IProps {
   Value: string;
   onValueChange: (value: string) => void;
 }
-
 
 const NavLabel = [
   {
@@ -146,7 +151,7 @@ export const PageHeaderNav: FC<IProps> = (props) => {
                 disableFocusRipple
                 sx={{
                   '.MuiTouchRipple-child': {
-                    backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
+                    backgroundColor: '#ffffff80 !important',
                   },
                 }}
                 onClick={() => {

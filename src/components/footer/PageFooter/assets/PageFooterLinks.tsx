@@ -32,7 +32,7 @@ export const PageFooterLinks: FC<IProps> = (props) => {
               {idx === 2 ? (
                 <></>
               ) : (
-                <div className="block sm-750:hidden h-5 w-[1px] mx-2 bg-[rgba(255,255,255,0.23)]" />
+                <div className="block sm-750:hidden h-5 w-[1px] mx-2 bg-[#ffffff3b]" />
               )}
             </li>
           ))}
