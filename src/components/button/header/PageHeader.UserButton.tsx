@@ -273,7 +273,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
               Router.push(Login_Link);
             }, 150);
           }}
-          className="flex items-center button-text-lower h-full px-4 bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.05)]"
+          className="flex items-center button-text-lower h-full px-4 bg-transparent hover:bg-transparent sm:bg-[rgba(255,255,255,0.05)] sm:hover:bg-[rgba(255,255,255,0.05)]"
           sx={{
             '.MuiTouchRipple-child': {
               backgroundColor: 'rgba(225, 225, 255, 0.5) !important',
