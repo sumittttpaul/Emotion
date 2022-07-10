@@ -159,13 +159,15 @@ export function LoadingDiscoverCarousel() {
         className="hidden sm:flex md-900:hidden"
       />
       {/* Small Screen */}
-      <Skeleton
-        sx={{ bgcolor: MainHeaderColor }}
-        variant="rectangular"
-        width="100%"
-        height={450}
-        className="flex sm:hidden"
-      />
+      <div className="flex w-full px-5">
+        <Skeleton
+          sx={{ bgcolor: MainHeaderColor }}
+          variant="rectangular"
+          width="100%"
+          height={450}
+          className="flex sm:hidden"
+        />
+      </div>
     </>
   );
 }
@@ -184,7 +186,10 @@ export function LoadingDiscoverSlider() {
         />
         <div className="flex w-full space-x-4">
           {[...Array(6)].map((value, index) => (
-            <div key={index} className="flex w-full flex-col justify-start space-y-2">
+            <div
+              key={index}
+              className="flex w-full flex-col justify-start space-y-2"
+            >
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
                 variant="rectangular"
@@ -221,7 +226,10 @@ export function LoadingDiscoverSlider() {
         />
         <div className="hidden sm:flex w-full md-900:hidden space-x-4">
           {[...Array(4)].map((value, index) => (
-            <div key={index} className="flex flex-col w-full justify-start space-y-2">
+            <div
+              key={index}
+              className="flex flex-col w-full justify-start space-y-2"
+            >
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
                 variant="rectangular"
@@ -258,7 +266,10 @@ export function LoadingDiscoverSlider() {
         />
         <div className="flex w-full space-x-4">
           {[...Array(2)].map((value, index) => (
-            <div key={index} className="flex flex-col w-full justify-start space-y-2">
+            <div
+              key={index}
+              className="flex flex-col w-full justify-start space-y-2"
+            >
               <Skeleton
                 sx={{ bgcolor: MainHeaderColor }}
                 variant="rectangular"
@@ -423,7 +434,7 @@ export function LoadingDiscoverTiles() {
                 width={104}
                 height={123}
                 className="flex w-full"
-              /> 
+              />
               <div className="flex w-full flex-col justify-between">
                 <div className="flex w-full flex-col space-y-2">
                   <Skeleton
