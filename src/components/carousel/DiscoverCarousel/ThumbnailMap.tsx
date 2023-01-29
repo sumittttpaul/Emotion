@@ -19,7 +19,7 @@ interface IProps {
 }
 
 const ThumbnailSizes =
-  'w-[175px] h-[85px] min-w-[175px] min-h-[85px] md-900:w-[200px] md-900:h-[100px] md-900:min-w-[200px] md-900:min-h-[100px]';
+  'w-[175px] h-[85px] min-w-[175px] min-h-[85px] md-900:w-[220px] md-900:h-[120px] md-900:min-w-[220px] md-900:min-h-[120px]';
 
 /**
  * @Thumbnail_Button_Map
@@ -40,8 +40,8 @@ export const ThumbnailMap: FC<IProps> = (props) => {
           whileTap={{ scale: 0.9 }}
           className={`${
             props.CarouselState === idx
-              ? 'ring-[3px]'
-              : 'ring-0 hover:ring-[3px]'
+              ? 'ring-[3.5px]'
+              : 'ring-0 hover:ring-[3.5px]'
           } ${ThumbnailSizes} ${'group relative p-0 m-0 transition-shadow duration-300 ring-white ring-opacity-50 rounded-lg md-900:rounded-xl box-border flex items-center justify-center overflow-hidden'}`}
         >
           <Image

@@ -8,20 +8,26 @@ export interface DiscoverTilesIProps {
 export const DiscoverTilesContent = [
   {
     Heading: 'Tiles Heading 1',
-    Description: 'Plain t-shirt from different category',
+    Description: 'Sub Tiles Heading 1',
     Price: '499.00',
-    Image: '/images/avatar/illustration/4.png',
+    Image: '/images/avatar/hipster/4.png',
   },
   {
-    Heading: 'Plain T-Shirt from Daily deals',
-    Description: 'Plain t-shirt from different category',
+    Heading: 'Tiles Heading 2',
+    Description: 'Sub Tiles Heading 2',
     Price: '499.00',
-    Image: '/images/avatar/illustration/5.png',
+    Image: '/images/avatar/hipster/5.png',
   },
   {
-    Heading: 'Full sleeves printed from weekly offers',
-    Description: 'Plain t-shirt from different category',
+    Heading: 'Tiles Heading 3',
+    Description: 'Sub Tiles Heading 3',
     Price: '499.00',
-    Image: '/images/avatar/illustration/6.png',
+    Image: '/images/avatar/hipster/6.png',
+  },
+  {
+    Heading: 'Tiles Heading 4',
+    Description: 'Sub Tiles Heading 4',
+    Price: '499.00',
+    Image: '/images/avatar/hipster/8.png',
   },
 ];

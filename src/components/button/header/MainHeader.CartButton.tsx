@@ -32,7 +32,7 @@ export const MainHeaderCartButton: FC<IProps> = (props) => {
           Boolean(ActiveContent(props.value))
             ? 'opacity-100 hover:opacity-100'
             : 'opacity-70 header-button-hover'
-        } ${'hidden md-900:block transition-all duration-300 text-white py-2.5 px-3 border border-solid border-[#ffffff3b] rounded-md button-text-lower'}`}
+        } ${'hidden md-900:block transition-all duration-300 text-white py-2.5 pr-3 border border-solid border-[#ffffff3b] rounded-md button-text-lower'}`}
         sx={{
           '.MuiTouchRipple-child': {
             backgroundColor: '#ffffff80 !important',

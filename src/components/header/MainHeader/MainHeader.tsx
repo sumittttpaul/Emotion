@@ -2,13 +2,21 @@ import { useCycle } from 'framer-motion';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
 import React, { FC, useRef, useState } from 'react';
-import { Cart_Link, Wishlist_Link } from '../../../routerLinks/RouterLinks';
+import {
+  Cart_Link,
+  Home_Link,
+  Wishlist_Link,
+} from '../../../routerLinks/RouterLinks';
 import { MainHeaderCartButton } from '../../button/header/MainHeader.CartButton';
 import { MainHeaderSearchButton } from '../../button/header/MainHeader.SearchButton';
 import { MainHeaderWishlistButton } from '../../button/header/MainHeader.WishlistButton';
 import { MainHeaderNav } from './assets/MainHeader.Nav';
 import { MainHeaderSearchSliderProps } from './search/MainHeader.Search.Slider';
 import { MainHeaderSliderProps } from './assets/MainHeader.Slider';
+import { PageHeaderUserButton } from '../../button/header/PageHeader.UserButton';
+import { MainHeaderNotificationButton } from '../../button/header/MainHeader.NotificationButton';
+import { useLoaderState } from '../../../providers/state/LoadingState';
+import { PageHeaderLogo } from '../../logo/CompanyLogo';
 
 const MainHeaderSearchSlider = dynamic<MainHeaderSearchSliderProps>(
   () =>
@@ -24,7 +32,7 @@ const MainHeaderSlider = dynamic<MainHeaderSliderProps>(
 
 export interface MainHeaderProps {
   Page: string;
-  setPage: (value: string) => void;
+  setChildPage: (value: string) => void;
 }
 
 /**
@@ -37,23 +45,28 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
   const [SearchSliderOpen, setSearchSliderOpen] = useState(false);
   const [SearchSliderAnimation, setSearchSliderAnimation] = useState(false);
   const ContainerRef = useRef<HTMLDivElement>(null);
-
   return (
     <>
-      <div className="w-full h-[12px] min-h-[12px]" />
+      {/* <div className="w-full h-[12px] min-h-[12px]" /> */}
       <div
         ref={ContainerRef}
         className={`${
-          NavSliderOpen || SearchSliderOpen ? 'bg-[#121212]' : 'bg-[#121212f2]'
+          NavSliderOpen || SearchSliderOpen ? 'bg-[#0f0f0f]' : 'bg-[#0f0f0ff2]'
         } ${'flex flex-col z-[999] sticky-top items-center box-border w-full h-[78px] backdrop-blur-[8px]'}`}
       >
-        <div className="flex relative box-border w-full max-w-[1440px] mx-auto h-full justify-between items-center py-3 sm:px-5 px-3 overflow-x-hidden">
-          <div className="flex relative w-full md-900:space-x-6 items-center">
-            <div
-              className={`${
-                SearchSliderAnimation ? 'w-full' : 'w-[100px] sm:w-[160px]'
-              }`}
-            >
+        <div className="flex relative box-border w-full h-full pl-3 justify-between items-center overflow-x-hidden">
+          <div className="flex relative w-full p-3 md-900:space-x-6 items-center justify-between">
+            {/* Nav Bar [ Discover, Offers, Collections] */}
+            <div className="flex items-center">
+              <MainHeaderNav
+                open={NavSliderOpen}
+                onOpen={() => setNavSliderOpen()}
+                Value={props.Page}
+                onValueChange={props.setChildPage}
+              />
+            </div>
+            {/* Search Button */}
+            <div className="">
               <MainHeaderSearchButton
                 ContainerRef={ContainerRef}
                 Open={SearchSliderOpen}
@@ -66,29 +79,20 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
                 }}
               />
             </div>
-            <div
-              className={`${
-                SearchSliderAnimation ? 'hidden w-0' : 'flex w-full'
-              } ${'justify-between'}`}
-            >
-              <MainHeaderNav
-                open={NavSliderOpen}
-                onOpen={() => setNavSliderOpen()}
-                Value={props.Page}
-                onValueChange={props.setPage}
+            {/* Wishlist, Notification, user Button */}
+            <div className="flex relative space-x-2.5 items-center">
+              <MainHeaderWishlistButton
+                value={props.Page}
+                Click={() => {
+                  setTimeout(() => {
+                    if (NavSliderOpen === true) setNavSliderOpen();
+                    props.setChildPage('Wishlist');
+                    Router.push(Wishlist_Link);
+                  }, 150);
+                }}
               />
-              <div className="flex relative space-x-2.5 sm:space-x-4 items-center">
-                <MainHeaderWishlistButton
-                  value={props.Page}
-                  Click={() => {
-                    setTimeout(() => {
-                      if (NavSliderOpen === true) setNavSliderOpen();
-                      props.setPage('Wishlist');
-                      Router.push(Wishlist_Link);
-                    }, 150);
-                  }}
-                />
-                <MainHeaderCartButton
+              <MainHeaderNotificationButton />
+              {/* <MainHeaderCartButton
                   value={props.Page}
                   Click={() => {
                     setTimeout(() => {
@@ -97,8 +101,8 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
                       Router.push(Cart_Link);
                     }, 150);
                   }}
-                />
-              </div>
+                /> */}
+              <PageHeaderUserButton />
             </div>
           </div>
         </div>
@@ -106,14 +110,14 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
           open={NavSliderOpen}
           onClose={() => setNavSliderOpen()}
           Value={props.Page}
-          onValueChange={props.setPage}
+          onValueChange={props.setChildPage}
         />
         <MainHeaderSearchSlider
           open={SearchSliderOpen}
           onClose={() => setSearchSliderOpen(false)}
         />
       </div>
-      <div className="w-full h-[12px] min-h-[12px]" />
+      {/* <div className="w-full h-[12px] min-h-[12px]" /> */}
     </>
   );
 };

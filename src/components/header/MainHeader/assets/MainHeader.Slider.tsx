@@ -108,7 +108,7 @@ export const MainHeaderSlider: FC<MainHeaderSliderProps> = (props) => {
       >
         <motion.ul
           variants={UlVariants}
-          className="py-5 sm:hidden bg-[#121212]"
+          className="py-5 sm:hidden bg-[#0f0f0f]"
         >
           {Links.map((value, idx) => (
             <motion.li key={value.label} variants={LiVariants}>

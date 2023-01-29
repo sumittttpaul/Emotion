@@ -1,12 +1,13 @@
 .sticky-top {
-  position: sticky;
   position: -webkit-sticky;
+  position: sticky;
   top: 0; /* required */
+  margin-top: -1px;
 }
 
 .sticky-bottom {
-  position: sticky;
   position: -webkit-sticky;
+  position: sticky;
   bottom: 0; /* required */
 }
 

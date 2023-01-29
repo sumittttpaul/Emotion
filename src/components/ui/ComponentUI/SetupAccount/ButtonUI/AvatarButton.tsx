@@ -310,7 +310,7 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
         slideDirection="down"
         positionVertical="top"
         positionHorizontal="center"
-        bgColor="bg-[#121212] sm:bg-[#202020]"
+        bgColor="bg-[#0f0f0f] sm:bg-[#202020]"
       />
     </>
   );

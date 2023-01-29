@@ -46,51 +46,25 @@ const Links = [
  **/
 
 export const PageHeaderSlider: FC<PageHeaderSliderProps> = (props) => {
-  const UlVariants: Variants = {
-    open: {
-      transition: { staggerChildren: 0.07, delayChildren: 0 },
-    },
-    closed: {
-      transition: { staggerChildren: 0.07, staggerDirection: -1 },
-    },
-  };
-  const LiVariants: Variants = {
-    open: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.4,
-        ease: [0.6, 0.05, -0.01, 0.9],
-      },
-    },
-    closed: {
-      y: 50,
-      opacity: 0,
-      transition: {
-        duration: 0.05,
-        ease: [0.6, 0.05, -0.01, 0.9],
-      },
-    },
-  };
-
   return (
     <Drawer
       open={props.Cycle}
       anchor={'top'}
       variant="temporary"
-      className="sm:hidden w-full relative box-border overflow-y-auto scroll-smooth"
+      className="sm:hidden z-[1300] w-full relative box-border overflow-y-auto scroll-smooth"
       sx={{
         '.MuiDrawer-paper': {
-          background: '#2a2a2a',
+          background: '#1a1a1a',
           height: '100%',
           paddingTop: '45px',
+          zIndex: 1300,
         },
       }}
     >
-      <motion.ul variants={UlVariants}>
+      <motion.ul>
         <div className="h-[1px] w-full my-5 bg-[#ffffff1a]" />
         {Links.map((value, idx) => (
-          <motion.li key={value.label} variants={LiVariants}>
+          <motion.li key={value.label}>
             <Button
               aria-label="mobile-header-slider-button"
               disableFocusRipple

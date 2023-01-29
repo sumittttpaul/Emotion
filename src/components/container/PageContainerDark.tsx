@@ -13,11 +13,11 @@ interface IProps {
 export const PageContainerDark: FC<IProps> = (props) => {
   const { ColorState, setColorState } = useColorState();
   useEffect(() => {
-    setColorState({ bgColor: '#121212' });
+    setColorState({ bgColor: '#0f0f0f' });
     document.body.style.backgroundColor = `${ColorState.bgColor}`;
   }, [setColorState, ColorState.bgColor]);
   return (
-    <div className="p-0 m-0 flex flex-col flex-grow relative w-full bg-[#121212]">
+    <div className="p-0 m-0 flex flex-grow relative w-full bg-[#0f0f0f]">
       {props.children}
     </div>
   );

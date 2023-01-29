@@ -35,10 +35,10 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
   const ButtonVariant = {
     open: {
       width: '100%',
-      height: 50,
-      borderRadius: 10,
     },
-    closed: { width: SmallScreen ? 100 : 160, height: 40, borderRadius: 18 },
+    closed: {
+      width: SmallScreen ? 100 : 300,
+    },
   };
 
   const SearchFocus = () => {
@@ -64,7 +64,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
       variants={ButtonVariant}
       onAnimationComplete={props.onAnimationComplete}
       transition={{ duration: 0.2, type: 'tween' }}
-      className="block mr-1 header-button-hover transition-all duration-300 text-white w-[100px] min-w-[100px] sm:w-[160px] sm:min-w-[160px] cursor-text justify-start items-center button-text-lower p-[10px] rounded-[18px] bg-[#202020] hover:bg-[#202020]"
+      className="block mx-1 header-button-hover transition-all duration-300 text-white w-[100px] min-w-[100px] sm:h-[47px] sm:min-h-[47x] sm:w-[300px] sm:min-w-[300px] sm:max-w-[600px] cursor-text justify-start items-center button-text-lower p-[10px] rounded-[22px] bg-[#202020] hover:bg-[#202020]"
     >
       <div className="flex items-center ml-1">
         <Image

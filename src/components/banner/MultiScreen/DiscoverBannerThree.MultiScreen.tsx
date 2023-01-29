@@ -7,7 +7,7 @@ import { BannerUnderlineButtonDark } from '../../button/BannerUnderlineButtonDar
 
 const ContainerStyle =
   'text-white bg-white bg-opacity-[0.023] relative button-text-lower p-0 m-0 overflow-hidden';
-const TextContainer = 'px-5 pt-4 pb-[70px] space-y-2';
+const TextContainer = 'pr-3 pt-4 pb-[70px] space-y-2';
 const HeadingStyle = 'font-normal text-left w-full';
 const DescriptionStyle =
   'text-[14px] whitespace-normal leading-[18px] font-sans font-normal text-left w-full opacity-70';

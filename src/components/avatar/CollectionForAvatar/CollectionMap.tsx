@@ -17,24 +17,21 @@ interface IProps {
 
 export const CollectionMap: FC<IProps> = (props) => {
   return (
-    <div className="w-full items-center justify-center px-6 pt-2 pb-6">
+    <div className="h-full w-full items-center justify-center px-6 pt-2 pb-6">
       <div
-        className="
-          grid 
+        className="h-auto w-full
+          inline-grid 
+          grid-flow-row-dense
           grid-cols-4 
           xs-350:grid-cols-5 
-          sm-500:grid-cols-8 
-          grid-rows-6 
-          xs-350:grid-rows-5
-          sm-500:grid-rows-3 
-          gap-x-2 
-          gap-y-[2px]"
+          sm-500:grid-cols-8
+          gap-2"
       >
         {props.AvatarReducer.map((avatars) => {
           return (
             <motion.button
               key={avatars.iconURL}
-              className="rounded-[50%] p-0 overflow-hidden"
+              className="rounded-[50%] relative overflow-hidden"
               whileTap={{ scale: 0.9 }}
               onClick={() => {
                 props.getURL(avatars.iconURL);
@@ -44,7 +41,7 @@ export const CollectionMap: FC<IProps> = (props) => {
               <Image
                 height={440}
                 width={440}
-                className="rounded-[50%]"
+                layout="responsive"
                 src={avatars.iconURL}
                 alt=""
                 loading="lazy"

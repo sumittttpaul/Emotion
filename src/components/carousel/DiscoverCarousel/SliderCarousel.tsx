@@ -84,7 +84,7 @@ export const SliderCarousel: FC<SliderCarouselProps> = (props) => {
                 <div className="flex space-x-2">
                   <Button
                     disableFocusRipple
-                    className="py-3 px-5 cursor-default text-[11.5px] font-[600] tracking-[0.075em] bg-white hover:bg-white text-black"
+                    className="py-3 px-3 cursor-default text-[11.5px] font-[600] tracking-[0.075em] bg-white hover:bg-white text-black"
                   >
                     order now
                   </Button>
@@ -111,7 +111,7 @@ export const SliderCarousel: FC<SliderCarouselProps> = (props) => {
                 </div>
                 <Button
                   disableFocusRipple
-                  className="py-3 px-5 cursor-default text-[11.5px] font-[600] tracking-[0.075em] bg-white hover:bg-white text-black"
+                  className="py-3 px-3 cursor-default text-[11.5px] font-[600] tracking-[0.075em] bg-white hover:bg-white text-black"
                 >
                   Explore
                 </Button>

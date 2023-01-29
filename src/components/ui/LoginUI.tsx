@@ -102,11 +102,11 @@ const LoginUI: FC<IProps> = (props) => {
           exit={{ opacity: 0, y: -50 }}
           transition={{ duration: 0.25 }}
         >
-          <AuthHeaderLabel label="Sign in with an Agewear Account" />
+          <AuthHeaderLabel label="Sign in with an Emotion Account" />
           <div className="w-full px-[2px]">
             <LayoutGroup>
               <Tab.Group>
-                <Tab.List className="flex space-x-2 rounded-md bg-[#121212] p-[5px]">
+                <Tab.List className="flex space-x-2 rounded-md bg-[#0f0f0f] p-[5px]">
                   <Tab
                     onClick={handlePhoneClick}
                     className={({ selected }) =>

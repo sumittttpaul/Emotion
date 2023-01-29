@@ -1,5 +1,5 @@
 {
-  "name": "agewear-lifestyle",
+  "name": "emotion-outfit",
   "version": "22.H2.1",
   "private": true,
   "scripts": {
@@ -23,6 +23,8 @@
     "@mui/material": "^5.6.4",
     "@reduxjs/toolkit": "^1.8.1",
     "atob": "^2.1.2",
+    "browserslist": "^4.21.4",
+    "caniuse-lite": "^1.0.30001442",
     "crypto-js": "^4.1.1",
     "date-fns": "^2.28.0",
     "firebase": "^9.8.2",
@@ -33,9 +35,9 @@
     "next": "12.1.6",
     "nookies": "^2.5.2",
     "notistack": "^2.0.5",
-    "react": "18.1.0",
+    "react": "^18.2.0",
     "react-advanced-cropper": "^0.6.2",
-    "react-dom": "18.1.0",
+    "react-dom": "^18.2.0",
     "react-indiana-drag-scroll": "^2.1.0",
     "react-redux": "^8.0.1",
     "react-swipeable-views": "^0.14.0",

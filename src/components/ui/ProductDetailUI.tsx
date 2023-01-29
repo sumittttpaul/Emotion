@@ -12,7 +12,7 @@ export interface ProductDetailProps {}
 export const ProductDetailUI: FC<ProductDetailProps> = (props) => {
   return (
     <div className="relative z-10">
-      <div className="flex px-5 items-center justify-between w-full h-full relative overflow-x-hidden overflow-y-visible">
+      <div className="flex pr-3 items-center justify-between w-full h-full relative overflow-x-hidden overflow-y-visible">
         <div>
           <Image
             height={1080}

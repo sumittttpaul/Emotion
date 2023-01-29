@@ -36,10 +36,11 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
       PaperProps={{
         elevation: 0,
         sx: {
-          background: '#ffffff',
-          mt: 0.6,
+          background: '#282828',
+          mt: 1.2,
+          borderRadius: 3,
           overflow: 'visible',
-          filter: 'drop-shadow(0px 2px 8px #00000052)',
+          // filter: 'drop-shadow(0px 0px 0px #ffffff12)',
           '.MuiMenu-list': {
             padding: '1px 0',
           },
@@ -47,7 +48,7 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
             minHeight: 0,
           },
           '.MuiTouchRipple-child': {
-            backgroundColor: '#00000080 !important',
+            backgroundColor: '#ffffff30 !important',
           },
         },
       }}
@@ -74,14 +75,14 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
             />
           </div>
           <div className="relative block">
-            <h6 className="text-[15px] whitespace-nowrap font-sans text-black">{`${props.user.displayName}`}</h6>
-            <h6 className="text-[11px] mr-1 whitespace-nowrap text-black opacity-[0.85]">{`${props.user.email}`}</h6>
+            <h6 className="text-[15px] whitespace-nowrap font-sans text-white">{`${props.user.displayName}`}</h6>
+            <h6 className="text-[11px] mr-8 whitespace-nowrap text-white opacity-[0.85]">{`${props.user.email}`}</h6>
             <div className="relative block">
               <Button
                 aria-label="user-sign-out-button"
                 disableFocusRipple
                 onClick={props.SignOutUser}
-                className="mt-[8px] p-[2px] relative block bg-[#0000000d] hover:bg-[#0000001a] button-text-lower font-normal text-black text-[11px]"
+                className="mt-[8px] p-[2px] relative block bg-[#ffffff20] hover:bg-[#ffffff30] button-text-lower font-normal text-white text-[11px]"
               >
                 Sign out
               </Button>
@@ -89,7 +90,7 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
           </div>
         </div>
       </MenuItem>
-      <div className="h-[1px] w-full bg-[#0000000d]" />
+      <div className="h-[1px] w-full bg-[#ffffff20]" />
       <MenuItem
         key={2}
         onClick={() => {
@@ -99,9 +100,9 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
             Router.push(Manage_Your_Account_Link);
           }, 150);
         }}
-        className="m-1 rounded-md hover:bg-[#0000000d]"
+        className="m-1 rounded-md hover:bg-[#ffffff20]"
       >
-        <div className="flex relative space-x-[10px]">
+        <div className="flex relative space-x-[10px] opacity-90">
           <Image
             height={17}
             width={17}
@@ -109,7 +110,7 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
             src="/icons/folder.svg"
             alt=""
           />
-          <h6 className="text-[14px] font-sans font-[400] text-black">
+          <h6 className="text-[14px] font-sans font-[400] text-white">
             Manage your account
           </h6>
         </div>
@@ -123,9 +124,9 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
             Router.push(Track_Order_Link);
           }, 150);
         }}
-        className="m-1 rounded-md hover:bg-[#0000000d]"
+        className="m-1 rounded-md hover:bg-[#ffffff20]"
       >
-        <div className="flex relative space-x-[10px]">
+        <div className="flex relative space-x-[10px] opacity-90">
           <Image
             height={18}
             width={18}
@@ -133,7 +134,7 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
             src="/icons/truck.svg"
             alt=""
           />
-          <h6 className="text-[14px] font-sans font-[400] text-black">
+          <h6 className="text-[14px] font-sans font-[400] text-white">
             Track orders
           </h6>
         </div>
@@ -147,9 +148,9 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
             Router.push(Cart_Link);
           }, 150);
         }}
-        className="m-1 rounded-md hover:bg-[#0000000d]"
+        className="m-1 rounded-md hover:bg-[#ffffff20]"
       >
-        <div className="flex relative space-x-[10px]">
+        <div className="flex relative space-x-[10px] opacity-90">
           <Image
             height={17}
             width={17}
@@ -157,7 +158,7 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
             src="/icons/shopping-bag.svg"
             alt=""
           />
-          <h6 className="text-[14px] font-sans font-[400] text-black">
+          <h6 className="text-[14px] font-sans font-[400] text-white">
             View all orders
           </h6>
         </div>
@@ -171,9 +172,9 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
             Router.push(Redeem_Gift_Codes_Link);
           }, 150);
         }}
-        className="m-1 rounded-md hover:bg-[#0000000d]"
+        className="m-1 rounded-md hover:bg-[#ffffff20]"
       >
-        <div className="flex relative space-x-[10px]">
+        <div className="flex relative space-x-[10px] opacity-90">
           <Image
             height={17}
             width={17}
@@ -181,7 +182,7 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
             src="/icons/gift.svg"
             alt=""
           />
-          <h6 className="text-[14px] font-sans font-[400] text-black">
+          <h6 className="text-[14px] font-sans font-[400] text-white">
             Redeem code or gift cards
           </h6>
         </div>

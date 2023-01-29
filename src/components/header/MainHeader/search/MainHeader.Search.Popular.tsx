@@ -10,7 +10,7 @@ export const MainHeaderSearchPopular: FC<MainHeaderSearchPopularProps> = (
   props
 ) => {
   return (
-    <div className="flex flex-col w-full px-3 sm:px-5 space-y-3.5">
+    <div className="flex flex-col w-full px-3 sm:px-3 space-y-3.5">
       <h6 className="font-[400] text-sm text-white w-full text-left">
         Popular Searches
       </h6>

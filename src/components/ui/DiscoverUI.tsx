@@ -27,7 +27,7 @@ export interface DiscoverUIProps {}
  **/
 export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
   return (
-    <div className="relative z-10 ">
+    <div className="relative z-10">
       <DiscoverCarousel ContentArray={DiscoverCarouselContent} />
       <DiscoverTiles ContentArray={DiscoverTilesContent} />
       <DiscoverSlider ContentArray={DiscoverSliderContent} />
@@ -35,7 +35,7 @@ export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
       <DiscoverBannerLightingDeal
         ContentArray={DiscoverBannerLightingDealContent}
       />
-      <DiscoverBannerList ContentArray={DiscoverBannerListContent} />
+      {/* <DiscoverBannerList ContentArray={DiscoverBannerListContent} /> */}
       <DiscoverSlider ContentArray={DiscoverSliderContent} />
       <DiscoverBannerThree ContentArray={DiscoverBannerThreeContent} />
       <DiscoverSlider ContentArray={DiscoverSliderContent} />

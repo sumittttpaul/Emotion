@@ -49,7 +49,7 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
     <AnimatePresence exitBeforeEnter>
       <motion.div
         ref={props.ElementRef}
-        className="text-white -[z-1] relative box-border items-start justify-end rounded-t-2xl w-full h-[500px] md-900:h-[600px] px-12 pb-[130px] flex flex-col overflow-hidden bg-gradient-to-r from-[#000000b3]"
+        className="text-white -[z-1] relative box-border items-start justify-end w-full h-[500px] md-900:h-[620px] px-12 pb-[130px] flex flex-col overflow-hidden rounded-tl-3xl bg-gradient-to-r from-[#000000b3]"
       >
         <CarouselBannerImage
           className="-z-[2]"

@@ -9,7 +9,7 @@ interface IProps {
 
 export const DiscoverBannerListDesktopAndTablet: FC<IProps> = (props) => {
   return (
-    <div className="text-white space-x-5 px-5 flex w-full h-full relative box-border">
+    <div className="text-white space-x-5 pr-3 flex w-full h-full relative box-border">
       <DiscoverBannerListColumn
         Heading="Top sellers"
         ContentArray={props.ContentArray}

@@ -53,7 +53,7 @@ const ShowAvatar: FC<IProps> = (props) => {
             blurDataURL={Square_BlurDataURL}
           />
           <h6 className="text-[13px] text-black text-left w-full">
-            Visible across Agewear services.
+            Visible across Emotion services.
           </h6>
         </div>
         {/* Center */}

@@ -17,7 +17,7 @@ const AuthContainer: FC<IProps> = (props) => {
     document.body.style.backgroundColor = `${ColorState.bgColor}`;
   }, [setColorState, ColorState.bgColor]);
   return (
-    <div className="bg-[#121212] flex sm:p-[32px] items-center justify-center h-full sm:h-screen w-screen main-auth overflow-x-hidden">
+    <div className="bg-[#0f0f0f] flex sm:p-[32px] items-center justify-center h-full sm:h-screen w-screen main-auth overflow-x-hidden">
       <div className="bg-[#202020] sm:rounded-md w-full h-full px-5 py-14 sm:px-0 sm:h-auto sm:max-w-[470px] flex flex-col justify-center items-center">
         {props.children}
       </div>

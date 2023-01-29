@@ -19,7 +19,7 @@ export const DiscoverTilesDesktop: FC<DiscoverTilesDesktopProps> = (props) => {
   return (
     <div className="w-full hidden md-900:flex flex-col space-y-5">
       <h6 className="text-[18px] mx-5">What&apos;s new</h6>
-      <ul className="w-full hidden px-5 md-900:grid grid-cols-3 gap-5 relative">
+      <ul className="w-full hidden pr-3 md-900:grid grid-cols-4 gap-5 relative">
         {props.ContentArray.map((value, index) => (
           <li key={index} className={SwiperSlideStyle}>
             <Image

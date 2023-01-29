@@ -30,7 +30,7 @@ export const DiscoverBannerListColumn: FC<IProps> = (props) => {
       <div className="flex w-full h-full justify-between items-center">
         <h6 className="text-[16px] md-900:text-[18px]">{props.Heading}</h6>
         <Button
-          className="text-white px-3.5 py-2 text-[10px] md-900:text-[11px] font-normal tracking-[1px] border border-solid border-[#ffffff59] hover:border-[#ffffffbf] bg-transparent transition-colors duration-300 ease-out"
+          className="text-white pr-3.5 py-2 text-[10px] md-900:text-[11px] font-normal tracking-[1px] border border-solid border-[#ffffff59] hover:border-[#ffffffbf] bg-transparent transition-colors duration-300 ease-out"
           sx={{
             '.MuiTouchRipple-child': {
               backgroundColor: '#ffffff80 !important',
@@ -50,7 +50,7 @@ export const DiscoverBannerListColumn: FC<IProps> = (props) => {
                     backgroundColor: '#ffffff80 !important',
                   },
                 }}
-                className="text-white button-text-lower flex w-full h-full p-3 lg-1100:px-5 py-4 rounded-xl bg-transparent hover:bg-white hover:bg-opacity-10"
+                className="text-white button-text-lower flex w-full h-full p-3 lg-1100:pr-3 py-4 rounded-xl bg-transparent hover:bg-white hover:bg-opacity-10"
               >
                 <div className="flex h-full w-full relative items-center space-x-3 md-900:space-x-5">
                   <div className="flex w-full h-full min-w-[48px] min-h-[64px] max-w-[90px] max-h-[120px]">

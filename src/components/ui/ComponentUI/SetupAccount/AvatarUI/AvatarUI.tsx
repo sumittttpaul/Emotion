@@ -25,7 +25,7 @@ export const AvatarUI: FC<AvatartUIProps> = (props) => {
         {FristName} {LastName}
       </h6>
       <h6 className="text-xs opacity-75 font-[300] text-center text-white">
-        Manage your info to make Agewear work better for you
+        Manage your info to make Emotion work better for you
       </h6>
     </div>
   );

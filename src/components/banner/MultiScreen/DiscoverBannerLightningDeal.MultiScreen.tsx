@@ -47,7 +47,7 @@ export const DiscoverBannerLightningDealDesktop: FC<IProps> = (props) => {
               Order Now
             </h6>
           ) : (
-            <h6 className={`${'bg-[#121212]'} ${AvailableStyle}`}>Sold Out</h6>
+            <h6 className={`${'bg-[#0f0f0f]'} ${AvailableStyle}`}>Sold Out</h6>
           )}
           <div className="mt-6 space-y-1 overflow-hidden text-white">
             <h6 className={HeadingStyle}>{value.Heading}</h6>
@@ -93,7 +93,7 @@ export const DiscoverBannerLightningDealTablet: FC<IProps> = (props) => {
               Order Now
             </h6>
           ) : (
-            <h6 className={`${'bg-[#121212]'} ${AvailableStyle}`}>Sold Out</h6>
+            <h6 className={`${'bg-[#0f0f0f]'} ${AvailableStyle}`}>Sold Out</h6>
           )}
           <div className="mt-6 space-y-1 overflow-hidden text-white">
             <h6 className={HeadingStyle}>{value.Heading}</h6>
@@ -140,7 +140,7 @@ export const DiscoverBannerLightningDealMobile: FC<IProps> = (props) => {
                 Order Now
               </h6>
             ) : (
-              <h6 className={`${'bg-[#121212]'} ${AvailableStyle}`}>
+              <h6 className={`${'bg-[#0f0f0f]'} ${AvailableStyle}`}>
                 Sold Out
               </h6>
             )}
@@ -183,7 +183,7 @@ export const DiscoverBannerLightningDealMobile: FC<IProps> = (props) => {
                 Order Now
               </h6>
             ) : (
-              <h6 className={`${'bg-[#121212]'} ${AvailableStyle}`}>
+              <h6 className={`${'bg-[#0f0f0f]'} ${AvailableStyle}`}>
                 Sold Out
               </h6>
             )}

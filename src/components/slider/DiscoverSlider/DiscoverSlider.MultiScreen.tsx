@@ -68,13 +68,13 @@ export const DiscoverSliderDesktopAndTablet: FC<
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
-    <div className="hidden sm:flex w-full box-border px-0 sm:px-5">
+    <div className="hidden sm:flex w-full box-border px-0 sm:pr-3">
       <ScrollContainer
         vertical={false}
         hideScrollbars={true}
         innerRef={props.sliderRef}
         component="ul"
-        className="w-full flex px-5 sm:px-0 space-x-4 box-border scroll-smooth"
+        className="w-full flex pr-3 sm:px-0 space-x-4 box-border scroll-smooth"
       >
         {props.ContentArray.map((value, index) => (
           <Button

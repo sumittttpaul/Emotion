@@ -28,7 +28,7 @@ export const DiscoverSliderTitle: FC<DiscoverSliderTitleProps> = (props) => {
     }
   };
   return (
-    <div className="w-full px-5 flex text-white justify-between">
+    <div className="w-full pr-3 flex text-white justify-between">
       <h6 className="text-[18px]">{props.label}</h6>
       <div className="hidden sm:flex space-x-2">
         <IconButton

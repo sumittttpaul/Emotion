@@ -58,7 +58,7 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
       const ContentExceed = ThumbnailWidth.offsetWidth * IndexValue;
       if (ContainerWidth.offsetWidth < ContentExceed) {
         const getThubnailValue = ContainerWidth.offsetWidth - ContentExceed;
-        const AnimationValue = getThubnailValue + 40;
+        const AnimationValue = getThubnailValue + 0; //40
         animation.start({
           x: AnimationValue,
         });
@@ -211,7 +211,7 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
       if (scrollWidth.scrollWidth - scrollWidth.offsetWidth > 0) {
         setContentExceed(true);
       } else {
-        console.log(ContentExceed);
+        // console.log(ContentExceed);
         setContentExceed(false);
         if (xPos < 0) {
           animation.start({
@@ -229,17 +229,19 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
         return () => ClearCarousel();
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.CarouselState, IntervalStatus, props.AutoPlay, props.Duration]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /* Initial State */
   useEffect(() => {
     IsContentExceed();
     HideButtonInitialState();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
     const scrollWidth = dragRef.current;
     if (scrollWidth)
       setDragValue(scrollWidth.scrollWidth - scrollWidth.offsetWidth);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     x.onChange((latest) => {
@@ -254,11 +256,19 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
 
   return (
     <motion.div
+      onPointerMove={() => {
+        DragHoverStart();
+      }}
+      onHoverStart={() => {
+        DragHoverStart();
+      }}
       onHoverEnd={() => {
         ParentDragHoverEnd();
         onHoverCarouselEnd();
       }}
-      className={`${ContentExceed ? 'ml-auto' : 'mr-auto'} ${'z-[1] relative'}`}
+      className={`${
+        ContentExceed ? 'ml-auto' : 'mr-auto'
+      } ${'z-[1] relative box-content'}`}
     >
       <motion.div
         drag={ContentExceed ? 'x' : false}
@@ -277,7 +287,7 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
         style={{ x }}
         className={`${
           ContentExceed ? 'ml-auto' : 'mr-auto'
-        } ${'w-auto flex space-x-2 px-8 pb-1 -mt-[80px]'}`}
+        } ${'w-auto space-x-4 flex px-8 pb-1 -mt-[80px]'}`}
       >
         <ThumbnailMap
           AutoPlay={props.AutoPlay}

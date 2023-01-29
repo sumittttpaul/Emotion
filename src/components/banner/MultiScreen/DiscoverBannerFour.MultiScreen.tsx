@@ -7,7 +7,7 @@ import { BannerUnderlineButtonDark } from '../../button/BannerUnderlineButtonDar
 
 const ContainerStyle =
   'text-white group relative p-0 m-0 overflow-hidden border border-solid border-[#ffffff26]';
-const TextContainerStyle = 'px-5 pt-4 pb-[70px] space-y-2';
+const TextContainerStyle = 'pr-3 pt-4 pb-[70px] space-y-2';
 const HeadingStyle = 'font-normal text-left w-full';
 const DescriptionStyle =
   'text-[14px] whitespace-normal leading-[18px] font-sans font-normal text-left w-full opacity-70';
@@ -21,7 +21,7 @@ export const DiscoverBannerFourDesktop: FC<DiscoverBannerFourDesktopProps> = (
   return (
     <div className="hidden md-900:flex flex-col w-full relative p-0 m-0 space-y-5">
       <h6 className="text-[18px] mx-5">Our services</h6>
-      <ul className="w-full flex relative box-border space-x-6 px-5">
+      <ul className="w-full flex relative box-border space-x-6 pr-3">
         {props.ContentArray.map((value, index) => (
           <li key={index} className={`rounded-2xl ${ContainerStyle}`}>
             <div className="p-0 m-0">

@@ -40,7 +40,7 @@ export const SetupAccountUI: FC<IProps> = (props) => {
           exit={{ opacity: 0, y: -50 }}
           transition={{ duration: 0.25 }}
         >
-          <AuthHeaderLabel label="Setup your Agewear account" />
+          <AuthHeaderLabel label="Setup your Emotion account" />
           <AvatarUI />
           <DatePickerUI
             theme="Dark"

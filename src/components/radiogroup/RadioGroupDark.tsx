@@ -48,10 +48,10 @@ export const RadioGroupDark: FC<IProps> = (props) => {
                 `${active ? 'ring-0 ring-offset-0' : ''}
                 ${
                   checked
-                    ? 'bg-[#121212] text-black border-0'
+                    ? 'bg-[#0f0f0f] text-black border-0'
                     : 'bg-[#00000013] text-black'
                 }
-                  relative rounded-md px-3 xs-300:px-4 xs-350:px-5 py-2.5 w-full cursor-pointer custom-webkit-focus flex outline-none transition-all ease-in-out duration-300`
+                  relative rounded-md px-3 xs-300:px-4 xs-350:px-3 py-2.5 w-full cursor-pointer custom-webkit-focus flex outline-none transition-all ease-in-out duration-300`
               }
             >
               {({ active, checked }) => (
@@ -104,10 +104,10 @@ export const RadioGroupDark: FC<IProps> = (props) => {
                 `${active ? 'ring-0 ring-offset-0' : ''}
                 ${
                   checked
-                    ? 'bg-[#121212] text-white border-0'
+                    ? 'bg-[#0f0f0f] text-white border-0'
                     : 'bg-[#191919] text-white'
                 }
-                  relative rounded-md px-3 xs-300:px-4 xs-350:px-5 py-2.5 w-full cursor-pointer custom-webkit-focus flex outline-none transition-all ease-in`
+                  relative rounded-md px-3 xs-300:px-4 xs-350:px-3 py-2.5 w-full cursor-pointer custom-webkit-focus flex outline-none transition-all ease-in`
               }
             >
               {({ active, checked }) => (

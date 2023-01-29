@@ -5,7 +5,7 @@ const MainHeaderColor = 'grey.900';
 
 export function LoadingPageheader() {
   return (
-    <div className="w-full h-[50px] bg-[#2a2a2a]">
+    <div className="w-full h-[50px] bg-[#1a1a1a]">
       <div className="w-full h-full max-w-[1540px] mx-auto flex justify-center sm:justify-start">
         <PageHeaderLogo onValueChange={() => {}} />
       </div>
@@ -159,7 +159,7 @@ export function LoadingDiscoverCarousel() {
         className="hidden sm:flex md-900:hidden"
       />
       {/* Small Screen */}
-      <div className="flex w-full px-5">
+      <div className="flex w-full pr-3">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
@@ -176,7 +176,7 @@ export function LoadingDiscoverSlider() {
   return (
     <>
       {/* Large Screen */}
-      <div className="hidden md-900:flex w-full flex-col justify-start space-y-6 px-5">
+      <div className="hidden md-900:flex w-full flex-col justify-start space-y-6 pr-3">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
@@ -216,7 +216,7 @@ export function LoadingDiscoverSlider() {
         </div>
       </div>
       {/* Medium Screen */}
-      <div className="hidden sm:flex w-full md-900:hidden flex-col justify-start space-y-6 px-5">
+      <div className="hidden sm:flex w-full md-900:hidden flex-col justify-start space-y-6 pr-3">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
@@ -256,7 +256,7 @@ export function LoadingDiscoverSlider() {
         </div>
       </div>
       {/* Small Screen */}
-      <div className="flex sm:hidden w-full flex-col justify-start space-y-6 px-5">
+      <div className="flex sm:hidden w-full flex-col justify-start space-y-6 pr-3">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
@@ -303,7 +303,7 @@ export function LoadingDiscoverTiles() {
   return (
     <>
       {/* Large Screen */}
-      <div className="hidden md-900:flex flex-col space-y-5 px-5 w-full">
+      <div className="hidden md-900:flex flex-col space-y-5 pr-3 w-full">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
@@ -360,7 +360,7 @@ export function LoadingDiscoverTiles() {
         </div>
       </div>
       {/* Medium Screen */}
-      <div className="hidden sm:flex flex-col md-900:hidden space-y-5 px-5 w-full">
+      <div className="hidden sm:flex flex-col md-900:hidden space-y-5 pr-3 w-full">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"
@@ -417,7 +417,7 @@ export function LoadingDiscoverTiles() {
         </div>
       </div>
       {/* Small Screen */}
-      <div className="flex flex-col sm:hidden space-y-5 px-5 w-full">
+      <div className="flex flex-col sm:hidden space-y-5 pr-3 w-full">
         <Skeleton
           sx={{ bgcolor: MainHeaderColor }}
           variant="rectangular"

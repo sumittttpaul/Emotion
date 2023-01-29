@@ -49,7 +49,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
   return (
     <>
       {LargeScreen || MediumScreen ? (
-        <div className="relative px-5">
+        <div className="relative">
           <div className="w-full hidden sm:block relative box-border p-0 m-0 bg-transparent overflow-y-visible overflow-x-hidden">
             <CarouselBanner
               ContentArray={props.ContentArray}
@@ -58,7 +58,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
               BannerTextTransition={BannerTextTransition}
               setBannerTextTransition={setBannerTextTransition}
             />
-            <div className="bg-gradient-to-t from-[#121212] w-full h-[130px] -mt-[130px]" />
+            <div className="bg-gradient-to-t from-[#0f0f0f] w-full h-[130px] -mt-[130px]" />
             <ThumbnailSlider
               AutoPlay={true}
               Duration={5}

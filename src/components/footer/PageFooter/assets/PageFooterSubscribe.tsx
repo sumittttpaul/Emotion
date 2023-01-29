@@ -37,7 +37,7 @@ export const PageFooterSubscribe: FC<IProps> = (props) => {
   };
   return (
     <div className="overscroll-none h-full flex py-2 items-start relative">
-      <div className="flex relative bg-[#121212] rounded-lg p-0">
+      <div className="flex relative bg-[#0f0f0f] rounded-lg p-0">
         <TooltipDark
           placement="bottom-start"
           title={
@@ -53,7 +53,7 @@ export const PageFooterSubscribe: FC<IProps> = (props) => {
             placeholder="Email Address"
             type="text"
             autoComplete="email"
-            className="text-[13px] whitespace-nowrap rounded-l-lg w-[220px] p-[10px] font-normal text-[#ffffffe6] bg-[#121212] border-0 ring-0 outline-none"
+            className="text-[13px] whitespace-nowrap rounded-l-lg w-[220px] p-[10px] font-normal text-[#ffffffe6] bg-[#0f0f0f] border-0 ring-0 outline-none"
           />
         </TooltipDark>
         <SubscribeButton

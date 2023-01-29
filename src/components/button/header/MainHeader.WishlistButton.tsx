@@ -24,32 +24,38 @@ const ActiveContent = (value: string) => {
 export const MainHeaderWishlistButton: FC<IProps> = (props) => {
   return (
     <>
-      <Button
-        onClick={props.Click}
-        disableFocusRipple
-        aria-label="desktop-wishlist-button"
-        className={`${
-          Boolean(ActiveContent(props.value))
-            ? 'opacity-100 hover:opacity-100'
-            : 'opacity-70 header-button-hover'
-        } ${'hidden md-900:block transition-all duration-300 text-white py-2.5 px-3 border border-solid border-[#ffffff3b] rounded-md button-text-lower'}`}
-        sx={{
-          '.MuiTouchRipple-child': {
-            backgroundColor: '#ffffff80 !important',
-          },
-        }}
+      <TooltipDark
+        arrow
+        placement="bottom"
+        title={<h6 className="font-[400]">Wishlist</h6>}
       >
-        <div className="flex space-x-2">
+        <IconButton
+          onClick={props.Click}
+          disableFocusRipple
+          aria-label="desktop-wishlist-button"
+          className={`${
+            Boolean(ActiveContent(props.value))
+              ? 'opacity-100 hover:opacity-100'
+              : 'opacity-70 header-button-hover'
+          } ${'hidden md-900:flex transition-all duration-300 text-white h-[47px] w-[47px] items-center justify-center rounded-lg button-text-lower bg-[#202020] hover:bg-[#202020]'}`}
+          sx={{
+            '.MuiTouchRipple-child': {
+              backgroundColor: '#ffffff50 !important',
+            },
+          }}
+        >
+          {/* <div className="flex h-full w-full items-center"> */}
           <HeartIcon
             className={`${
               Boolean(ActiveContent(props.value))
                 ? 'opacity-100 hover:opacity-100'
                 : 'opacity-80 header-icon-hover'
-            } ${'h-4 w-4'}`}
+            } ${'h-5 w-5'}`}
           />
-          <h6 className="text-xs font-normal">Wishlist</h6>
-        </div>
-      </Button>
+          {/* <h6 className="text-xs font-normal">Wishlist</h6> */}
+          {/* </div> */}
+        </IconButton>
+      </TooltipDark>
       <TooltipDark
         arrow
         placement="bottom"
@@ -68,7 +74,7 @@ export const MainHeaderWishlistButton: FC<IProps> = (props) => {
             borderRadius: '6px !important',
             '.MuiTouchRipple-child': {
               borderRadius: '0 !important',
-              backgroundColor: '#ffffff80 !important',
+              backgroundColor: '#ffffff50 !important',
             },
           }}
         >
