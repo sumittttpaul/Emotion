@@ -76,7 +76,8 @@
   > li:nth-child(1)
   > label
   a {
-  opacity: 1;
+  color: #ffffff;
+  background-color: #202020;
 }
 .mainNav
   input[name='main-tab-control']:nth-of-type(2):checked
@@ -84,7 +85,8 @@
   > li:nth-child(2)
   > label
   a {
-  opacity: 1;
+  color: #ffffff;
+  background-color: #202020;
 }
 .mainNav
   input[name='main-tab-control']:nth-of-type(3):checked
@@ -92,5 +94,6 @@
   > li:nth-child(3)
   > label
   a {
-  opacity: 1;
+  color: #ffffff;
+  background-color: #202020;
 }

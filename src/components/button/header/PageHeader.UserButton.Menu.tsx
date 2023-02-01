@@ -10,6 +10,7 @@ import {
 import { Square_BlurDataURL } from '../../loader/BlurDataURL';
 import Image from 'next/image';
 import firebase from 'firebase/compat';
+import UserIcon from '../../../../public/icons/user-fill.svg';
 
 export interface PageHeaderUserButtonMenuProps {
   anchorEl: null | HTMLElement;
@@ -63,20 +64,40 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
       >
         <div className="flex relative space-x-3">
           <div className="relative block">
-            <Image
-              height={50}
-              width={50}
-              className="rounded-[50%]"
-              placeholder="blur"
-              loading="lazy"
-              blurDataURL={Square_BlurDataURL}
-              src={`${props.user.photoURL}`}
-              alt=""
-            />
+            {props.user.photoURL ? (
+              <Image
+                height={50}
+                width={50}
+                layout="fixed"
+                className="rounded-[50%]"
+                placeholder="blur"
+                loading="lazy"
+                blurDataURL={Square_BlurDataURL}
+                src={`${props.user.photoURL}`}
+                alt=""
+              />
+            ) : (
+              <Image
+                height={50}
+                width={50}
+                className="rounded-[50%] opacity-70"
+                placeholder="blur"
+                loading="lazy"
+                blurDataURL={Square_BlurDataURL}
+                src={UserIcon}
+                alt=""
+              />
+            )}
           </div>
           <div className="relative block">
-            <h6 className="text-[15px] whitespace-nowrap font-sans text-white">{`${props.user.displayName}`}</h6>
-            <h6 className="text-[11px] mr-8 whitespace-nowrap text-white opacity-[0.85]">{`${props.user.email}`}</h6>
+            <h6 className="text-[15px] whitespace-nowrap font-sans text-white">{`${
+              props.user.displayName ? props.user.displayName : 'User'
+            }`}</h6>
+            <h6 className="text-[11px] mr-8 whitespace-nowrap text-white opacity-[0.85]">{`${
+              props.user.email
+                ? props.user.email
+                : 'No email address has been added'
+            }`}</h6>
             <div className="relative block">
               <Button
                 aria-label="user-sign-out-button"

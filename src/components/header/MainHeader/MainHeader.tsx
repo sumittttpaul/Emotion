@@ -52,32 +52,38 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
         ref={ContainerRef}
         className={`${
           NavSliderOpen || SearchSliderOpen ? 'bg-[#0f0f0f]' : 'bg-[#0f0f0ff2]'
-        } ${'flex flex-col z-[999] sticky-top items-center box-border w-full h-[78px] backdrop-blur-[8px]'}`}
+        } ${'flex flex-col z-[999] sticky-top items-center box-border w-full h-[70px] backdrop-blur-[8px]'}`}
       >
-        <div className="flex relative box-border w-full h-full pl-3 justify-between items-center overflow-x-hidden">
-          <div className="flex relative w-full p-3 md-900:space-x-6 items-center justify-between">
-            {/* Nav Bar [ Discover, Offers, Collections] */}
-            <div className="flex items-center">
-              <MainHeaderNav
-                open={NavSliderOpen}
-                onOpen={() => setNavSliderOpen()}
-                Value={props.Page}
-                onValueChange={props.setChildPage}
-              />
-            </div>
-            {/* Search Button */}
-            <div className="">
-              <MainHeaderSearchButton
-                ContainerRef={ContainerRef}
-                Open={SearchSliderOpen}
-                onOpen={() => {
-                  setSearchSliderOpen(true);
-                  setSearchSliderAnimation(true);
-                }}
-                onAnimationComplete={() => {
-                  if (!SearchSliderOpen) setSearchSliderAnimation(false);
-                }}
-              />
+        <div className="flex relative box-border w-full h-full justify-between items-center overflow-x-hidden">
+          <div className="flex relative w-full pr-2 md-900:space-x-6 items-center justify-between">
+            <div className="flex relative w-full">
+              {/* Nav Bar [ Discover, Offers, Collections] */}
+              <div className="flex items-center">
+                <MainHeaderNav
+                  open={NavSliderOpen}
+                  onOpen={() => setNavSliderOpen()}
+                  Value={props.Page}
+                  onValueChange={props.setChildPage}
+                />
+              </div>
+              {/* Search Button */}
+              <div
+                className={`${
+                  SearchSliderAnimation ? 'w-full' : 'w-[200px]'
+                } flex ml-2`}
+              >
+                <MainHeaderSearchButton
+                  ContainerRef={ContainerRef}
+                  Open={SearchSliderOpen}
+                  onOpen={() => {
+                    setSearchSliderOpen(true);
+                    setSearchSliderAnimation(true);
+                  }}
+                  onAnimationComplete={() => {
+                    if (!SearchSliderOpen) setSearchSliderAnimation(false);
+                  }}
+                />
+              </div>
             </div>
             {/* Wishlist, Notification, user Button */}
             <div className="flex relative space-x-2.5 items-center">

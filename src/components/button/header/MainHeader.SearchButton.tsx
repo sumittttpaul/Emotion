@@ -37,7 +37,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
       width: '100%',
     },
     closed: {
-      width: SmallScreen ? 100 : 300,
+      width: SmallScreen ? 100 : 200,
     },
   };
 
@@ -64,7 +64,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
       variants={ButtonVariant}
       onAnimationComplete={props.onAnimationComplete}
       transition={{ duration: 0.2, type: 'tween' }}
-      className="block mx-1 header-button-hover transition-all duration-300 text-white w-[100px] min-w-[100px] sm:h-[47px] sm:min-h-[47x] sm:w-[300px] sm:min-w-[300px] sm:max-w-[600px] cursor-text justify-start items-center button-text-lower p-[10px] rounded-[22px] bg-[#202020] hover:bg-[#202020]"
+      className="block header-button-hover transition-all duration-300 text-white w-[100px] min-w-[100px] sm:h-[40px] sm:min-h-[40x] sm:w-[200px] sm:min-w-[200px] sm:max-w-[800px] cursor-text justify-start items-center button-text-lower p-[10px] rounded-full bg-[#202020] hover:bg-[#202020]"
     >
       <div className="flex items-center ml-1">
         <Image
@@ -84,7 +84,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
               ? 'Search by product, category or collection'
               : 'Search'
           }
-          className="flex min-w-20 pb-[2px] pl-[10px] pr-2 whitespace-nowrap text-ellipsis w-full h-full bg-transparent text-[14px] text-white placeholder:text-[#ffffff99] placeholder:text-[13px] outline-none"
+          className="flex min-w-20 pb-[2px] pl-[10px] pr-2 whitespace-nowrap text-ellipsis placeholder:text-ellipsis w-full h-full bg-transparent text-[14px] text-white placeholder:text-[#ffffff99] placeholder:text-[13px] outline-none"
         />
       </div>
     </motion.button>

@@ -90,9 +90,6 @@ export const MainHeaderNav: FC<IProps> = (props) => {
     if (props.Value === 'Wishlist') {
       setSelectedValue('MainTab4');
     }
-    if (props.Value === 'Cart') {
-      setSelectedValue('MainTab5');
-    }
     if (props.open) {
       setArrow('open');
     } else {
@@ -132,7 +129,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
           className="hidden"
           aria-label="MainTab3"
         />
-        <ul className="flex flex-row space-x-1 md-900:space-x-3">
+        <ul className="flex flex-row space-x-2">
           {NavLabel.map((value) => (
             <li key={value.label} className="relative box-border">
               <label htmlFor={value.for} role="button">
@@ -147,7 +144,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
                     disableFocusRipple
                     disableTouchRipple
                     aria-label="main-header-button"
-                    className="text-[14px] opacity-50 tracking-[0.6px] hover:opacity-100 transition-all duration-200 font-normal text-white button-text-lower"
+                    className="cursor-default text-[12px] h-[40px] px-6 border-solid border-[2px] rounded-full border-[#1f1f1f] tracking-[0.6px] transition-all duration-300 font-normal bg-transparent text-[#ffffff75] hover:text-[#ffffff] button-text-lower"
                   >
                     {value.label}
                   </Button>

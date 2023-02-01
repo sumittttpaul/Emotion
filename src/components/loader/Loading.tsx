@@ -12,7 +12,6 @@ interface IProps {}
  * @author
  * @function @Loading
  **/
-
 export const Loading: FC<IProps> = (props) => {
   const { Loader } = useLoaderState();
   const Show: any = Loader.show;

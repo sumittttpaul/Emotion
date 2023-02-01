@@ -27,7 +27,7 @@ export const MainSidePanel: FC<MainSidePanelProps> = (props) => {
   return (
     <div className="flex flex-col py-1.5 w-20 fixed left-0 h-screen text-white bg-[#0f0f0f]">
       {/* Logo */}
-      <div className="flex py-3 h-[75px] items-center justify-center">
+      <div className="flex py-3 h-[65px] items-center justify-center">
         <PageHeaderLogo
           onValueChange={(value) => {
             props.setChildPage(value);

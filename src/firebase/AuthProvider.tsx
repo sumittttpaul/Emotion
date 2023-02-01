@@ -34,4 +34,4 @@ export const AuthProvider: FC<IProps> = ({ children }) => {
   return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
 };
 
-export const useAuth = () =>  useContext(AuthContext);
+export const useAuth = () => useContext(AuthContext);

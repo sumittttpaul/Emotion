@@ -22,10 +22,10 @@ export interface CarouselBannerProps {
 
 const StaggerAnimationVariant = {
   open: {
-    transition: { staggerChildren: 0.03, delayChildren: 0 },
+    transition: { staggerChildren: 0.05, delayChildren: 0 },
   },
   closed: {
-    transition: { staggerChildren: 0.03, staggerDirection: -1 },
+    transition: { staggerChildren: 0.05, staggerDirection: -3 },
   },
 };
 
@@ -49,7 +49,7 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
     <AnimatePresence exitBeforeEnter>
       <motion.div
         ref={props.ElementRef}
-        className="text-white -[z-1] relative box-border items-start justify-end w-full h-[500px] md-900:h-[620px] px-12 pb-[130px] flex flex-col overflow-hidden rounded-tl-3xl bg-gradient-to-r from-[#000000b3]"
+        className="text-white -[z-1] relative box-border items-start justify-end w-full h-[500px] md-900:h-[700px] px-8 pb-[130px] flex flex-col overflow-hidden rounded-tl-3xl bg-gradient-to-r from-[#000000b3]"
       >
         <CarouselBannerImage
           className="-z-[2]"
@@ -57,114 +57,68 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
           alt=""
           objectPosition="center"
         />
+        <p className="-ml-2 mt-5 text-lg font-semibold">Home</p>
         <motion.div
           animate={props.BannerTextTransition}
           onAnimationComplete={() => {
-            setCarouselState(props.CarouselState);
             props.setBannerTextTransition('open');
+            setTimeout(() => {
+              setCarouselState(props.CarouselState);
+            }, 20);
           }}
           variants={StaggerAnimationVariant}
-          className="space-y-8 box-border h-[253px]"
+          className="box-border flex flex-col h-full justify-center"
         >
-          {props.ContentArray[props.CarouselState].Type.toLowerCase() ===
-          'order' ? (
-            <>
-              <motion.div
-                transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
-                variants={ChildAnimationVariant}
+          <div className="flex flex-col mt-20">
+            <motion.div
+              transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
+              variants={ChildAnimationVariant}
+              className={`${
+                props.ContentArray[CarouselState].Button == 'Order now'
+                  ? 'flex'
+                  : 'hidden'
+              }`}
+            >
+              <div className="text-[14px] flex items-center space-x-[4px]">
+                <h6 className="line-through opacity-70">{`₹${props.ContentArray[CarouselState].OriginalPrice}`}</h6>
+                <h6>{`₹${props.ContentArray[CarouselState].DiscountedPrice}`}</h6>
+              </div>
+            </motion.div>
+            <motion.div
+              transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
+              variants={ChildAnimationVariant}
+            >
+              <h6 className="text-[35px] font-[600] mt-3">
+                {props.ContentArray[CarouselState].Heading}
+              </h6>
+            </motion.div>
+            <motion.div
+              transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
+              variants={ChildAnimationVariant}
+              className="max-w-[500px] w-full"
+            >
+              <h6 className="text-[15px] leading-6 opacity-80 mt-2">
+                {props.ContentArray[CarouselState].Description}
+              </h6>
+            </motion.div>
+            <motion.div
+              transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
+              variants={ChildAnimationVariant}
+              className="mt-8 box-border"
+            >
+              <Button
+                disableFocusRipple
+                className="rounded-lg py-3 cursor-default px-12 text-[13px] font-[500] tracking-[0.075em] button-text-lower hover:ring-1 ring-[#ffffff30] bg-gradient-to-l from-[#ffffff30] bg-[#ffffff00] text-white transition-all"
+                sx={{
+                  '.MuiTouchRipple-child': {
+                    backgroundColor: '#ffffff20 !important',
+                  },
+                }}
               >
-                <h6 className="text-3xl font-[500]">
-                  {props.ContentArray[CarouselState].Heading}
-                </h6>
-              </motion.div>
-              <motion.div
-                transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
-                variants={ChildAnimationVariant}
-                className="max-w-[500px] w-full space-y-1.5"
-              >
-                <h6 className="uppercase tracking-[0.5px] font-[500] leading-[1.3333] text-[11px]">
-                  {props.ContentArray[CarouselState].Category}
-                </h6>
-                <h6 className="text-[15px] leading-6">
-                  {props.ContentArray[CarouselState].Description}
-                </h6>
-              </motion.div>
-              <motion.div
-                transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
-                variants={ChildAnimationVariant}
-                className="space-y-3 box-border"
-              >
-                <div className="text-xs flex items-center space-x-[4px] my-1">
-                  <h6 className="bg-primary-blue-rgb font-[600] text-[11px] py-1 px-2.5 mr-[2px] rounded-[4px]">
-                    {props.ContentArray[CarouselState].Discount}
-                  </h6>
-                  <h6>Starting at</h6>
-                  <h6 className="line-through opacity-70">{`₹${props.ContentArray[CarouselState].OriginalPrice}`}</h6>
-                  <h6>{`₹${props.ContentArray[CarouselState].DiscountedPrice}`}</h6>
-                </div>
-                <div className="flex space-x-3">
-                  <Button
-                    disableFocusRipple
-                    className="py-4 cursor-default px-8 text-[11.5px] font-[600] tracking-[0.075em] bg-white hover:bg-white text-black"
-                  >
-                    order now
-                  </Button>
-                  <Button
-                    disableFocusRipple
-                    className="p-4 cursor-default tracking-[0.075em] bg-transparent hover:bg-white hover:bg-opacity-10 text-white"
-                  >
-                    <div className="flex space-x-2">
-                      <HeartIcon className="h-4 w-4" />
-                      <h6 className="text-[10px]">add to wishlist</h6>
-                    </div>
-                  </Button>
-                </div>
-              </motion.div>
-            </>
-          ) : (
-            <>
-              <motion.div
-                transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
-                variants={ChildAnimationVariant}
-              >
-                <h6 className="text-3xl font-[500]">
-                  {props.ContentArray[CarouselState].Heading}
-                </h6>
-              </motion.div>
-              <motion.div
-                transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
-                variants={ChildAnimationVariant}
-                className="max-w-[500px] w-full space-y-1.5"
-              >
-                <h6 className="uppercase tracking-[0.5px] font-[500] leading-[1.3333] text-[11px]">
-                  {props.ContentArray[CarouselState].Category}
-                </h6>
-                <h6 className="text-[15px] leading-6">
-                  {props.ContentArray[CarouselState].Description}
-                </h6>
-              </motion.div>
-              <motion.div
-                transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
-                variants={ChildAnimationVariant}
-                className="space-y-3 box-border"
-              >
-                <div className="text-xs flex items-center space-x-[4px] my-1">
-                  {/* <h6 className="bg-primary-blue-rgb text-[11px] py-1 px-2.5 mr-[2px] rounded-[4px]">
-                {props.ContentArray[props.CarouselState].Discount}
-              </h6> */}
-                  <h6>Starting from</h6>
-                  <h6 className="line-through opacity-70">{`₹${props.ContentArray[CarouselState].OriginalPrice}`}</h6>
-                  <h6>{`₹${props.ContentArray[CarouselState].DiscountedPrice}`}</h6>
-                </div>
-                <Button
-                  disableFocusRipple
-                  className="py-4 cursor-default px-8 text-[11.5px] font-[600] tracking-[0.075em] bg-white hover:bg-white text-black"
-                >
-                  Explore
-                </Button>
-              </motion.div>
-            </>
-          )}
+                {props.ContentArray[props.CarouselState].Button}
+              </Button>
+            </motion.div>
+          </div>
         </motion.div>
       </motion.div>
     </AnimatePresence>
