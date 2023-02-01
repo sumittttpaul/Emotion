@@ -4,6 +4,7 @@ import { StoreDiscoverPopularSearchIProps } from '../../../../contents/store/dis
 
 export interface MainHeaderSearchPopularProps {
   ContentArray: StoreDiscoverPopularSearchIProps[];
+  onClick: () => void;
 }
 
 export const MainHeaderSearchPopular: FC<MainHeaderSearchPopularProps> = (
@@ -18,7 +19,10 @@ export const MainHeaderSearchPopular: FC<MainHeaderSearchPopularProps> = (
         {props.ContentArray.map((value, index) => (
           <li key={index}>
             <Button
+              onClick={props.onClick}
               disableFocusRipple
+              disableTouchRipple
+              disableRipple
               sx={{
                 '.MuiTouchRipple-child': {
                   backgroundColor: '#ffffff80 !important',

@@ -9,6 +9,7 @@ import { Square_BlurDataURL } from '../../../loader/BlurDataURL';
 
 export interface MainHeaderSearchCurationProps {
   ContentArray: StoreDiscoverCurationSearchIProps[];
+  onClick: () => void;
 }
 
 const LeftVariants = {
@@ -140,6 +141,7 @@ export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (
           <Button
             key={index}
             component="li"
+            onClick={props.onClick}
             disableFocusRipple
             disableTouchRipple
             disableRipple
@@ -166,12 +168,12 @@ export const MainHeaderSearchCuration: FC<MainHeaderSearchCurationProps> = (
           </Button>
         ))}
       </ScrollContainer>
-      {!SmallScreen && (
+      {/* {!SmallScreen && (
         <>
           <LeftButton onClick={() => slideLeft()} animate={LeftAnimate} />
           <RightButton onClick={() => slideRight()} animate={RightAnimate} />
         </>
-      )}
+      )} */}
     </div>
   );
 };

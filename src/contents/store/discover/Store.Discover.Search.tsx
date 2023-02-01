@@ -17,6 +17,21 @@ export const StoreDiscoverPopularSearch = [
     Label: 'T-shirt',
   },
   {
+    Label: 'Half slevees shirt',
+  },
+  {
+    Label: 'Full Printed paint',
+  },
+  {
+    Label: 'Plain T-shirt',
+  },
+  {
+    Label: 'Half slevees t-shirt',
+  },
+  {
+    Label: 'ABC T-shirt',
+  },
+  {
     Label: 'Full slevees shirt',
   },
   {
@@ -26,22 +41,16 @@ export const StoreDiscoverPopularSearch = [
     Label: 'Plain T-shirt',
   },
   {
-    Label: 'Half slevees t-shirt',
+    Label: 'Zara T-shirt',
   },
   {
-    Label: 'T-shirt',
+    Label: 'Zudio T-shirt',
   },
   {
-    Label: 'Full slevees shirt',
+    Label: 'slevees shirt',
   },
   {
-    Label: 'Printed paint',
-  },
-  {
-    Label: 'Plain T-shirt',
-  },
-  {
-    Label: 'Half slevees t-shirt',
+    Label: 'Querky T-shirt',
   },
 ];
 
@@ -66,26 +75,26 @@ export const StoreDiscoverCurationSearch = [
     Label: 'Half slevees t-shirt',
     Image: '/images/avatar/illustration/5.png',
   },
-  {
-    Label: 'T-shirt',
-    Image: '/images/avatar/illustration/6.png',
-  },
-  {
-    Label: 'Full slevees shirt',
-    Image: '/images/avatar/illustration/7.png',
-  },
-  {
-    Label: 'Printed paint',
-    Image: '/images/avatar/illustration/8.png',
-  },
-  {
-    Label: 'Plain T-shirt',
-    Image: '/images/avatar/illustration/9.png',
-  },
-  {
-    Label: 'Half slevees t-shirt',
-    Image: '/images/avatar/illustration/1.png',
-  },
+  // {
+  //   Label: 'T-shirt',
+  //   Image: '/images/avatar/illustration/6.png',
+  // },
+  // {
+  //   Label: 'Full slevees shirt',
+  //   Image: '/images/avatar/illustration/7.png',
+  // },
+  // {
+  //   Label: 'Printed paint',
+  //   Image: '/images/avatar/illustration/8.png',
+  // },
+  // {
+  //   Label: 'Plain T-shirt',
+  //   Image: '/images/avatar/illustration/9.png',
+  // },
+  // {
+  //   Label: 'Half slevees t-shirt',
+  //   Image: '/images/avatar/illustration/1.png',
+  // },
 ];
 
 export const StoreDiscoverExploreSearch = {

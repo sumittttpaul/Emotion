@@ -8,13 +8,12 @@ import React, {
 } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import useScreenSize from '../../../algorithms/ScreenSizeDetection';
 
 interface IProps {
   ContainerRef: RefObject<HTMLDivElement>;
   Open: boolean;
   onOpen: () => void;
-  onAnimationComplete: () => void;
+  onClosed: () => void;
 }
 
 /**
@@ -26,7 +25,6 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
   const [animate, setAnimate] = useState('closed');
   const [Search, setSearch] = useState('');
   const SearchRef = useRef<HTMLInputElement>(null);
-  const { SmallScreen } = useScreenSize();
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
@@ -37,7 +35,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
       width: '100%',
     },
     closed: {
-      width: SmallScreen ? 100 : 200,
+      width: 200,
     },
   };
 
@@ -45,6 +43,12 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
     if (animate === 'closed') setAnimate('open');
     props.onOpen();
     SearchRef.current?.focus();
+  };
+
+  const SearchBlur = () => {
+    if (animate === 'open') setAnimate('closed');
+    props.onClosed();
+    SearchRef.current?.blur();
   };
 
   useEffect(() => {
@@ -60,11 +64,11 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
     <motion.button
       aria-label="desktop-search-button"
       onFocus={SearchFocus}
+      onBlur={SearchBlur}
       animate={animate}
       variants={ButtonVariant}
-      onAnimationComplete={props.onAnimationComplete}
       transition={{ duration: 0.2, type: 'tween' }}
-      className="block header-button-hover transition-all duration-300 text-white w-[100px] min-w-[100px] sm:h-[40px] sm:min-h-[40x] sm:w-[200px] sm:min-w-[200px] sm:max-w-[800px] cursor-text justify-start items-center button-text-lower p-[10px] rounded-full bg-[#202020] hover:bg-[#202020]"
+      className="block header-button-hover text-white w-[100px] min-w-[100px] sm:h-[40px] sm:min-h-[40x] sm:w-[200px] sm:min-w-[200px] sm:max-w-[664px] cursor-text justify-start items-center button-text-lower p-[10px] rounded-full bg-[#202020] hover:bg-[#202020]"
     >
       <div className="flex items-center ml-1">
         <Image

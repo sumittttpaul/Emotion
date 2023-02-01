@@ -11,17 +11,17 @@ import { MainHeaderCartButton } from '../../button/header/MainHeader.CartButton'
 import { MainHeaderSearchButton } from '../../button/header/MainHeader.SearchButton';
 import { MainHeaderWishlistButton } from '../../button/header/MainHeader.WishlistButton';
 import { MainHeaderNav } from './assets/MainHeader.Nav';
-import { MainHeaderSearchSliderProps } from './search/MainHeader.Search.Slider';
+import { MainHeaderSearchMenuProps } from './search/MainHeader.Search.Menu';
 import { MainHeaderSliderProps } from './assets/MainHeader.Slider';
 import { PageHeaderUserButton } from '../../button/header/PageHeader.UserButton';
 import { MainHeaderNotificationButton } from '../../button/header/MainHeader.NotificationButton';
 import { useLoaderState } from '../../../providers/state/LoadingState';
 import { PageHeaderLogo } from '../../logo/CompanyLogo';
 
-const MainHeaderSearchSlider = dynamic<MainHeaderSearchSliderProps>(
+const MainHeaderSearchMenu = dynamic<MainHeaderSearchMenuProps>(
   () =>
-    import('./search/MainHeader.Search.Slider').then(
-      (x) => x.MainHeaderSearchSlider
+    import('./search/MainHeader.Search.Menu').then(
+      (x) => x.MainHeaderSearchMenu
     ),
   { ssr: true }
 );
@@ -43,7 +43,6 @@ export interface MainHeaderProps {
 export const MainHeader: FC<MainHeaderProps> = (props) => {
   const [NavSliderOpen, setNavSliderOpen] = useCycle(false, true);
   const [SearchSliderOpen, setSearchSliderOpen] = useState(false);
-  const [SearchSliderAnimation, setSearchSliderAnimation] = useState(false);
   const ContainerRef = useRef<HTMLDivElement>(null);
   return (
     <>
@@ -67,21 +66,12 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
                 />
               </div>
               {/* Search Button */}
-              <div
-                className={`${
-                  SearchSliderAnimation ? 'w-full' : 'w-[200px]'
-                } flex ml-2`}
-              >
+              <div className="w-full flex ml-2">
                 <MainHeaderSearchButton
                   ContainerRef={ContainerRef}
                   Open={SearchSliderOpen}
-                  onOpen={() => {
-                    setSearchSliderOpen(true);
-                    setSearchSliderAnimation(true);
-                  }}
-                  onAnimationComplete={() => {
-                    if (!SearchSliderOpen) setSearchSliderAnimation(false);
-                  }}
+                  onOpen={() => setSearchSliderOpen(true)}
+                  onClosed={() => setSearchSliderOpen(false)}
                 />
               </div>
             </div>
@@ -118,7 +108,7 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
           Value={props.Page}
           onValueChange={props.setChildPage}
         />
-        <MainHeaderSearchSlider
+        <MainHeaderSearchMenu
           open={SearchSliderOpen}
           onClose={() => setSearchSliderOpen(false)}
         />
