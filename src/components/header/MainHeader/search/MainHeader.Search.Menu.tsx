@@ -73,7 +73,7 @@ export const MainHeaderSearchMenu: FC<MainHeaderSearchMenuProps> = (
       <div className="ml-[335px] w-[664px] bg-[#0f0f0f] flex rounded-b-3xl">
         <motion.div
           variants={UlVariants}
-          className="space-y-5 pb-5 pt-3 flex flex-col w-full h-full mx-auto"
+          className="space-y-5 pb-5 flex flex-col w-full h-full mx-auto"
         >
           <div className="w-full flex flex-col sm:flex-row sm:justify-between overflow-x-hidden">
             <div className="w-full space-y-5 flex flex-col overflow-y-hidden">
