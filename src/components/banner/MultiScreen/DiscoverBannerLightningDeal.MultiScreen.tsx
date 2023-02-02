@@ -9,11 +9,11 @@ const HeadingStyle =
 const DescriptionStyle =
   'text-[13px] whitespace-normal leading-[18px] font-sans font-normal text-left w-full opacity-70 whitespace-nowrap overflow-hidden text-ellipsis';
 const AvailableStyle =
-  'flex w-full h-full p-1.5 font-semibold uppercase tracking-wide text-center text-[11px] text-white flex-col rounded-b-md';
+  'flex w-full p-1.5 font-semibold uppercase tracking-wide text-center text-[11px] text-white flex-col rounded-b-xl';
 const ButtonStyle =
   'p-0 m-0 w-full h-full text-white text-left flex flex-col relative box-border button-text-lower';
 const ContainerStyle =
-  'p-0 m-0 w-full h-full flex flex-col relative box-border overflow-hidden';
+  'p-0 m-0 w-full h-full flex flex-col relative box-border overflow-hidden rounded-xl hover:outline hover:outline-[#ffffff20] hover:outline-2 hover:outline-offset-[13px]';
 const OriginalPriceStyle = 'line-through text-[13.5px] opacity-70';
 const DiscountedPriceStyle = 'text-[15px]';
 
@@ -31,7 +31,7 @@ export const DiscoverBannerLightningDealDesktop: FC<IProps> = (props) => {
           className={ContainerStyle}
         >
           <Image
-            className="rounded-t-md absolute h-full w-full"
+            className="rounded-t-xl absolute h-full w-full"
             height={320}
             width={240}
             objectFit="cover"

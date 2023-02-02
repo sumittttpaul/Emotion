@@ -18,7 +18,7 @@ interface IProps {
 export const DiscoverBannerList: FC<IProps> = (props) => {
   const { LargeScreen, MediumScreen, SmallScreen } = useScreenSize();
   return (
-    <div className="text-white mt-[50px] flex w-full h-full relative box-border overflow-x-hidden overflow-y-hidden">
+    <div className="text-white mt-[30px] flex w-full h-full relative box-border overflow-x-hidden overflow-y-hidden">
       {LargeScreen || MediumScreen ? (
         <DiscoverBannerListDesktopAndTablet ContentArray={props.ContentArray} />
       ) : (

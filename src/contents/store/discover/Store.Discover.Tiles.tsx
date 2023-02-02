@@ -1,9 +1,9 @@
 export interface DiscoverTilesIProps {
-    Heading: string;
-    Description: string;
-    Price: string;
-    Image: string;
-  }
+  Heading: string;
+  Description: string;
+  Price: string;
+  Image: string;
+}
 
 export const DiscoverTilesContent = [
   {

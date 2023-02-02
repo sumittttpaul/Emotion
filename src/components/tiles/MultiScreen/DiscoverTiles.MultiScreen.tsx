@@ -6,11 +6,19 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
 
 const SwiperSlideStyle =
-  'h-full w-full flex relative m-0 p-0 text-white overflow-hidden rounded-xl border border-solid border-[#ffffff3b]';
+  'h-full w-full flex relative m-0 p-0 text-white overflow-hidden rounded-xl bg-gradient-to-r';
 const TopHeadingContainerStyle =
-  'flex flex-col relative p-3 h-full w-full justify-between';
+  'flex flex-col relative px-3.5 py-3 h-full w-full justify-between';
 const BottomHeadingContainerStyle =
   'flex absolute left-0 right-0 bottom-0 pb-3 pl-3 pr-3 w-full items-center justify-between';
+const GetColor = (index: number) => {
+  if (index === 0) return 'from-[#4B0000]';
+  if (index === 1) return 'from-[#45004B]';
+  if (index === 2) return 'from-[#003C4B]';
+  if (index === 3) return 'from-[#4B4600]';
+  if (index === 4) return 'from-[#464B00]';
+  if (index === 5) return 'from-[#004B47]';
+};
 
 export interface DiscoverTilesDesktopProps {
   ContentArray: DiscoverTilesIProps[];
@@ -18,19 +26,10 @@ export interface DiscoverTilesDesktopProps {
 export const DiscoverTilesDesktop: FC<DiscoverTilesDesktopProps> = (props) => {
   return (
     <div className="w-full hidden md-900:flex flex-col space-y-5">
-      <h6 className="text-[18px] mx-5">What&apos;s new</h6>
-      <ul className="w-full hidden pr-3 md-900:grid grid-cols-4 gap-5 relative">
+      <h6 className="text-[18px]">What&apos;s new</h6>
+      <ul className="w-full hidden md-900:grid grid-cols-4 gap-5 relative">
         {props.ContentArray.map((value, index) => (
-          <li key={index} className={SwiperSlideStyle}>
-            <Image
-              height={100}
-              width={150}
-              src={value.Image}
-              alt=""
-              loading="lazy"
-              placeholder="blur"
-              blurDataURL={Rectangle_BlurDataURL}
-            />
+          <li key={index} className={`${SwiperSlideStyle} ${GetColor(index)}`}>
             <div className={`space-y-5 ${TopHeadingContainerStyle}`}>
               <div className="space-y-1 flex flex-col">
                 <h6>{value.Heading}</h6>

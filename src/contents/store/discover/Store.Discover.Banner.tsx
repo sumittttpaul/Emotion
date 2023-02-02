@@ -83,6 +83,13 @@ export const DiscoverBannerThreeContent = [
     Image: '/images/avatar/illustration/7.png',
     slug: 'banner-three-heading-3',
   },
+  {
+    Heading: 'Upload your images on Emotion Fanbook',
+    Description:
+      'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
+    Image: '/images/avatar/illustration/7.png',
+    slug: 'banner-three-heading-3',
+  },
 ];
 
 export const DiscoverBannerLightingDealContent = [

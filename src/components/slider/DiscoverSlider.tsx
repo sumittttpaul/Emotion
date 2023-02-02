@@ -47,7 +47,7 @@ export const DiscoverSlider: FC<IProps> = (props) => {
   const [Wishlist, setWishlist] = useState(-1);
   const sliderRef = useRef<HTMLElement>(null);
   return (
-    <div className="flex flex-col space-y-5 overflow-x-hidden overflow-y-visible mt-[50px]">
+    <div className="flex flex-col space-y-5 overflow-x-hidden overflow-y-visible mt-[30px]">
       <DiscoverSliderTitle
         label="Trending winter collections"
         sliderRef={sliderRef}
