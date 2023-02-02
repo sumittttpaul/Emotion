@@ -23,7 +23,7 @@ export const DiscoverBannerLightingDeal: FC<IProps> = (props) => {
   const { LargeScreen, MediumScreen, SmallScreen } = useScreenSize();
   return (
     <div className="relative flex box-border w-full h-full pr-3 overflow-hidden">
-      <div className="flex text-white w-full bg-gradient-to-l from-[#202020] space-x-7 px-7 pr-3 sm:p-10 mt-[30px]">
+      <div className="flex text-white w-full bg-gradient-to-l from-dark-orange rounded-3xl space-x-7 px-7 pr-3 sm:p-10 mt-[30px]">
         <div className="flex flex-col items-center justify-center w-[50%]">
           <div className="flex flex-col space-y-3 items-start justify-center">
             <div className="space-x-3 flex items-center justify-center">

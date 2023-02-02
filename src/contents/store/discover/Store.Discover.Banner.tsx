@@ -1,11 +1,11 @@
-export interface DiscoverBannerFourIProps {
+export interface DiscoverBannerFiveIProps {
   Heading: string;
   Description: string;
   Image: string;
   slug: string;
 }
 
-export interface DiscoverBannerThreeIProps {
+export interface DiscoverBannerFourIProps {
   Heading: string;
   Description: string;
   Image: string;
@@ -30,19 +30,57 @@ export interface DiscoverBannerListIProps {
   slug: string;
 }
 
-export const DiscoverBannerFourContent = [
+export const DiscoverBannerFiveContent = [
   {
-    Heading: 'Banner Four Heading 1',
+    Heading: 'Banner Five Heading 1',
     Description:
       'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
     Image: '/images/avatar/illustration/5.png',
-    slug: 'banner-four-heading-1',
+    slug: 'banner-five-heading-1',
   },
   {
     Heading: 'Lighting deals are avialable upto 75% Off',
     Description:
       'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
     Image: '/images/avatar/illustration/6.png',
+    slug: 'banner-five-heading-2',
+  },
+  {
+    Heading: 'Upload your images on Emotion Fanbook',
+    Description:
+      'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
+    Image: '/images/avatar/illustration/7.png',
+    slug: 'banner-five-heading-3',
+  },
+  {
+    Heading: 'Banner Five Heading 4',
+    Description:
+      'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
+    Image: '/images/avatar/illustration/4.png',
+    slug: 'banner-five-heading-4',
+  },
+  {
+    Heading: 'Banner Five Heading 5',
+    Description:
+      'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
+    Image: '/images/avatar/illustration/10.png',
+    slug: 'banner-five-heading-5',
+  },
+];
+
+export const DiscoverBannerFourContent = [
+  {
+    Heading: 'Banner Four Heading 1',
+    Description:
+      'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
+    Image: '/images/avatar/illustration/9.png',
+    slug: 'banner-four-heading-1',
+  },
+  {
+    Heading: 'Lighting deals are avaialable upto 75% Off',
+    Description:
+      'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
+    Image: '/images/avatar/illustration/10.png',
     slug: 'banner-four-heading-2',
   },
   {
@@ -53,42 +91,11 @@ export const DiscoverBannerFourContent = [
     slug: 'banner-four-heading-3',
   },
   {
-    Heading: 'New collections arrials',
+    Heading: 'Banner Four Heading 4',
     Description:
       'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
-    Image: '/images/avatar/illustration/4.png',
+    Image: '/images/avatar/illustration/8.png',
     slug: 'banner-four-heading-4',
-  },
-];
-
-export const DiscoverBannerThreeContent = [
-  {
-    Heading: 'Banner Three Heading 1',
-    Description:
-      'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
-    Image: '/images/avatar/illustration/9.png',
-    slug: 'banner-three-heading-1',
-  },
-  {
-    Heading: 'Lighting deals are avaialable upto 75% Off',
-    Description:
-      'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
-    Image: '/images/avatar/illustration/10.png',
-    slug: 'banner-three-heading-2',
-  },
-  {
-    Heading: 'Upload your images on Emotion Fanbook',
-    Description:
-      'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
-    Image: '/images/avatar/illustration/7.png',
-    slug: 'banner-three-heading-3',
-  },
-  {
-    Heading: 'Upload your images on Emotion Fanbook',
-    Description:
-      'Fashion is a form of self-expression and autonomy at a particular period and all the time.',
-    Image: '/images/avatar/illustration/7.png',
-    slug: 'banner-three-heading-3',
   },
 ];
 

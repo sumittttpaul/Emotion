@@ -12,10 +12,11 @@ interface IProps {}
 
 export const DiscoverCatelog: FC<IProps> = (props) => {
   return (
-    <div className="flex w-full h-full pr-3 my-[75px] sm:my-[100px] relative box-border overflow-x-hidden overflow-y-visible">
+    <div className="flex w-full h-full pr-3 my-[75px] sm:my-[50px] relative box-border overflow-x-hidden overflow-y-visible">
       <div className="flex flex-col sm:flex-row w-full h-[300px] space-y-5 sm:space-y-0 sm:space-x-7 md-900:space-x-14 box-border relative">
+        <div className='z-[1] absolute w-full h-full bg-transparent'/>
         <Image
-          className="rounded-xl"
+          className="rounded-3xl"
           width={1920}
           height={1080}
           objectFit="cover"

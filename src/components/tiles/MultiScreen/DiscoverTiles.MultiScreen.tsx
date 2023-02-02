@@ -16,8 +16,6 @@ const GetColor = (index: number) => {
   if (index === 1) return 'from-dark-pink';
   if (index === 2) return 'from-dark-blue';
   if (index === 3) return 'from-dark-yellow';
-  if (index === 4) return 'from-dark-green';
-  if (index === 5) return 'from-dark-purpe';
 };
 
 export interface DiscoverTilesDesktopProps {

@@ -18,8 +18,9 @@ module.exports = {
         'dark-pink': '#45004B',
         'dark-blue': '#003C4B',
         'dark-yellow': '#464B00',
-        'dark-green': '#024B00',
+        'dark-green': '#004B0C',
         'dark-purple': '#320161',
+        'dark-orange': '#613B01',
       },
       screens: {
         'xs-200': '200px',

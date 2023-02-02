@@ -9,11 +9,11 @@ const HeadingStyle =
 const DescriptionStyle =
   'text-[13px] whitespace-normal leading-[18px] font-sans font-normal text-left w-full opacity-70 whitespace-nowrap overflow-hidden text-ellipsis';
 const AvailableStyle =
-  'flex w-full h-full p-1.5 font-semibold uppercase tracking-wide text-center text-[11px] text-white flex-col rounded-b-md';
+  'flex w-full p-1.5 font-semibold uppercase tracking-wide text-center text-[11px] text-white flex-col rounded-b-xl';
 const ButtonStyle =
   'p-0 m-0 w-full h-full text-white text-left flex flex-col relative box-border button-text-lower';
 const ContainerStyle =
-  'p-0 m-0 w-full h-full flex flex-col relative box-border overflow-hidden';
+  'p-0 m-0 w-full h-full flex flex-col relative box-border overflow-hidden rounded-xl hover:outline hover:outline-[#ffffff30] hover:outline-2 hover:outline-offset-[13px]';
 
 interface IProps {
   ContentArray: DiscoverBannerLightingDealIProps[];
@@ -29,7 +29,7 @@ export const DiscoverBannerArrivalsDesktop: FC<IProps> = (props) => {
           className={ContainerStyle}
         >
           <Image
-            className="rounded-t-md absolute h-full w-full"
+            className="rounded-xl absolute h-full w-full"
             height={320}
             width={240}
             objectFit="cover"
@@ -40,14 +40,14 @@ export const DiscoverBannerArrivalsDesktop: FC<IProps> = (props) => {
             blurDataURL={Poster_BlurDataURL}
             alt=""
           />
-          {value.Available ? (
+          {/* {value.Available ? (
             <h6 className={`${'bg-primary-blue-rgb'} ${AvailableStyle}`}>
               Order Now
             </h6>
           ) : (
             <h6 className={`${'bg-[#0f0f0f]'} ${AvailableStyle}`}>Sold Out</h6>
-          )}
-          <div className="mt-6 space-y-1 overflow-hidden text-white">
+          )} */}
+          <div className="mt-3 space-y-1 overflow-hidden text-white">
             <h6 className={HeadingStyle}>{value.Heading}</h6>
             <h6 className={DescriptionStyle}>{value.Description}</h6>
           </div>
