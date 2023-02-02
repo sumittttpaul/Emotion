@@ -102,6 +102,7 @@ export const VerifyOTP = ({
   Phone,
   OTP,
   Loading,
+  ReOpenOTPDialog,
   ToastMessage,
   ToastType,
   ToastShow,
@@ -140,6 +141,7 @@ export const VerifyOTP = ({
     .catch((error) => {
       Loading(false);
       const message = AuthError(error.code);
+      if (message == 'Invalid verification code') ReOpenOTPDialog(true);
       Toast(`${message}`, 'Error', true);
       console.error('OTP verification failed beacuse ' + error.code);
     });

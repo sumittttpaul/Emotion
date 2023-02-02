@@ -2,8 +2,15 @@ import type { NextPage } from 'next';
 import LoginUI from '../../../components/ui/LoginUI';
 import OTPAuthUI from '../../../components/ui/ComponentUI/Login/OTPAuthUI';
 import { ToastDark } from '../../../components/toast/ToastDark';
-import { ChangeEvent, KeyboardEvent, useState, FocusEvent } from 'react';
 import {
+  ChangeEvent,
+  MouseEvent,
+  KeyboardEvent,
+  useState,
+  FocusEvent,
+} from 'react';
+import {
+  ClickToFocus,
   InputChangeFocus,
   InputNumberOnly,
 } from '../../../algorithms/UIAlgorithms';
@@ -49,6 +56,7 @@ const Login: NextPage = () => {
   const [PasswordError, setPasswordError] = useState(false);
   const [PhoneLoader, setPhoneLoader] = useState(false);
   const [EmailLoader, setEmailLoader] = useState(false);
+  const [ReOpenOTPDialog, setReOpenOTPDialog] = useState(false);
 
   // Handle State
   const PhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -110,6 +118,11 @@ const Login: NextPage = () => {
   var ValidatePassword =
     passwordExpression.test(Password) && Password.length > 8;
   var ValidatePhone = Phone.length == 10;
+
+  // Handle Click
+  const OTPClick = (event: MouseEvent<HTMLInputElement>) => {
+    ClickToFocus(event);
+  };
 
   // Handle Keys
   const NumberOnly = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -251,6 +264,10 @@ const Login: NextPage = () => {
     setOTP5('');
     setOTP6('');
   };
+  const CloseOTPDialogByButton = (value: boolean) => {
+    PhoneLoading(value);
+    setReOpenOTPDialog(true);
+  };
 
   // Toast
   const ShowToast = (message: string, type: string, show: boolean) => {
@@ -285,16 +302,21 @@ const Login: NextPage = () => {
   const PhoneSubmitClick = () => {
     setTimeout(() => {
       if (ValidatePhone) {
-        SignInWithPhoneNumber({
-          Phone: parseInt(Phone),
-          EmptyPhone: EmptyPhone,
-          Loading: PhoneLoading,
-          ShowOTPDialog: ShowOTPDialog,
-          ToastMessage: AuthToastMessage,
-          ToastType: AuthToastType,
-          ToastShow: AuthToast,
-        });
-        ShowToast(ToastMessage, ToastType, Toast);
+        if (!ReOpenOTPDialog) {
+          SignInWithPhoneNumber({
+            Phone: parseInt(Phone),
+            EmptyPhone: EmptyPhone,
+            Loading: PhoneLoading,
+            ShowOTPDialog: ShowOTPDialog,
+            ToastMessage: AuthToastMessage,
+            ToastType: AuthToastType,
+            ToastShow: AuthToast,
+          });
+          ShowToast(ToastMessage, ToastType, Toast);
+        } else {
+          ShowOTPDialog();
+          PhoneLoading(true);
+        }
       } else {
         ShowToast('Incorrect phone number', 'Error', true);
       }
@@ -321,7 +343,11 @@ const Login: NextPage = () => {
         VerifyOTP({
           Phone: parseInt(Phone),
           OTP: parseInt(OTP1 + OTP2 + OTP3 + OTP4 + OTP5 + OTP6),
-          Loading: LoadingScreen,
+          ReOpenOTPDialog: (e) => setReOpenOTPDialog(e),
+          Loading: (e) => {
+            LoadingScreen(e);
+            PhoneLoading(e);
+          },
           ToastMessage: AuthToastMessage,
           ToastType: AuthToastType,
           ToastShow: AuthToast,
@@ -448,27 +474,34 @@ const Login: NextPage = () => {
         close={CloseOTPDialog}
         phone={Phone}
         resend={OTPResend}
+        PhoneLoading={CloseOTPDialogByButton}
         OTP1={OTP1}
+        OTP1Click={OTPClick}
         OTP1Change={OTP1Change}
         OTP1KeyPress={NumberOnly}
         OTP1KeyUp={ChangeFocus}
         OTP2={OTP2}
+        OTP2Click={OTPClick}
         OTP2Change={OTP2Change}
         OTP2KeyPress={NumberOnly}
         OTP2KeyUp={ChangeFocus}
         OTP3={OTP3}
+        OTP3Click={OTPClick}
         OTP3Change={OTP3Change}
         OTP3KeyPress={NumberOnly}
         OTP3KeyUp={ChangeFocus}
         OTP4={OTP4}
+        OTP4Click={OTPClick}
         OTP4Change={OTP4Change}
         OTP4KeyPress={NumberOnly}
         OTP4KeyUp={ChangeFocus}
         OTP5={OTP5}
+        OTP5Click={OTPClick}
         OTP5Change={OTP5Change}
         OTP5KeyPress={NumberOnly}
         OTP5KeyUp={ChangeFocus}
         OTP6={OTP6}
+        OTP6Click={OTPClick}
         OTP6Change={OTP6Change}
         OTP6KeyPress={NumberOnly}
         OTP6KeyUp={ChangeFocus}

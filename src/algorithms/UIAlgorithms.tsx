@@ -1,3 +1,13 @@
+import { KeyboardEvent } from 'react';
+
+const FROM0 = 48;
+const TO9 = 57;
+const BACKSPACE = 8;
+const LEFT_ARROW = 37;
+const RIGHT_ARROW = 39;
+const DELETE = 46;
+const SPACEBAR = 32;
+
 export const InputNumberOnly = (evt: any) => {
   var ch = String.fromCharCode(evt.which);
   if (!/[0-9]/.test(ch)) {
@@ -6,21 +16,41 @@ export const InputNumberOnly = (evt: any) => {
 };
 
 export const InputChangeFocus = (e: any) => {
-  e.preventDefault();
-  var target = e.srcElement || e.target;
-  var maxLength = parseInt(target.attributes['maxlength'].value, 10);
-  var myLength = target.value.length;
-  if (myLength >= maxLength) {
-    var next = target;
-    while ((next = next.nextElementSibling)) {
-      if (next == null) break;
-      if (next.tagName.toLowerCase() === 'input') {
-        next.focus();
-        next.select();
-        break;
+  if (e.keyCode >= FROM0 && e.keyCode <= TO9) {
+    var target = e.srcElement || e.target;
+    var maxLength = parseInt(target.attributes['maxlength'].value, 10);
+    var myLength = target.value.length;
+    if (myLength >= maxLength) {
+      var next = target;
+      while ((next = next.nextElementSibling)) {
+        if (next == null) break;
+        if (next.tagName.toLowerCase() === 'input') {
+          next.focus();
+          next.select();
+          break;
+        }
+      }
+    }
+  } else if (e.keyCode === BACKSPACE || e.key === 'Backspace') {
+    if (myLength === 0) {
+      var previous = target;
+      while ((previous = previous.previousElementSibling)) {
+        if (previous == null) break;
+        if (previous.tagName.toLowerCase() === 'input') {
+          previous.focus();
+          previous.select();
+          break;
+        }
       }
     }
   }
+};
+
+export const ClickToFocus = (e: any) => {
+  e.preventDefault();
+  var target = e.srcElement || e.target;
+  target.focus();
+  target.select();
 };
 
 export const CalculateAge = (DOB: string) => {

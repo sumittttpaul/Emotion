@@ -1,4 +1,4 @@
-import { KeyboardEvent, ChangeEvent, FocusEvent } from 'react';
+import { MouseEvent, KeyboardEvent, ChangeEvent, FocusEvent } from 'react';
 
 export interface IconNumberTextFieldProps {
   id?:string
@@ -96,6 +96,7 @@ export interface PasswordTextFieldProps {
 export interface OTPTextFieldProps {
   id?:string
   value: string;
+  onClick: (event: MouseEvent<HTMLInputElement>) => void;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;

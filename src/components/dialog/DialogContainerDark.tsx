@@ -39,7 +39,7 @@ export const DialogContainerDark: FC<IProps> = (props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-150"
             >
-              <Dialog.Panel className="absolute sm:relative h-full w-full sm:w-auto sm:h-auto transform scroll-smooth overflow-auto sm:rounded-lg bg-[#202020] text-center align-middle shadow-xl transition-all">
+              <Dialog.Panel className="absolute sm:relative h-full w-full sm:w-auto sm:h-auto transform scroll-smooth overflow-auto sm:rounded-2xl bg-[#202020] text-center align-middle shadow-xl transition-all">
                 {props.children}
               </Dialog.Panel>
             </Transition.Child>

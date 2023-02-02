@@ -18,8 +18,9 @@ const OTPTextFieldDark: FC<OTPTextFieldProps> = (props) => {
       onKeyUp={props.onkeyUp}
       onKeyDown={props.onkeyDown}
       onKeyPress={props.onKeyPress}
+      onClick={props.onClick}
       value={props.value}
-      className={`${'text-white rounded-md focus:outline-none bg-[#0f0f0f] h-[50px] w-[40px] text-center items-center'} ${
+      className={`${'text-white rounded-lg focus:outline-none bg-[#0f0f0f] h-[50px] w-[40px] text-center items-center'} ${
         props.className
       }`}
       aria-label="otp box"

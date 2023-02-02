@@ -1,4 +1,5 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC } from 'react';
+import { useTimer } from 'react-timer-hook';
 
 interface IProps {
   min: number;
@@ -12,28 +13,39 @@ interface IProps {
  **/
 
 export const OTPTimer: FC<IProps> = (props) => {
-  const { min, sec } = props;
-  const [minutes, setMinutes] = useState(min);
-  const [seconds, setSeconds] = useState(sec);
-  useEffect(() => {
-    let myInterval = setInterval(() => {
-      if (seconds > 0) {
-        setSeconds(seconds - 1);
-      }
-      if (seconds === 0) {
-        if (minutes === 0) {
-          props.resend();
-          clearInterval(myInterval);
-        } else {
-          setMinutes(minutes - 1);
-          setSeconds(59);
-        }
-      }
-    }, 1000);
-    return () => {
-      clearInterval(myInterval);
-    };
+  const time = new Date();
+  const GetMin = props.min * 60;
+  const GetSec = props.sec;
+  const SetTime = GetMin + GetSec;
+  time.setSeconds(time.getSeconds() + SetTime);
+  const { seconds, minutes } = useTimer({
+    expiryTimestamp: time,
+    onExpire: () => props.resend(),
+    autoStart: true,
   });
+
+  // const { min, sec } = props;
+  // const [minutes, setMinutes] = useState(min);
+  // const [seconds, setSeconds] = useState(sec);
+  // useEffect(() => {
+  //   let myInterval = setInterval(() => {
+  //     if (seconds > 0) {
+  //       setSeconds(seconds - 1);
+  //     }
+  //     if (seconds === 0) {
+  //       if (minutes === 0) {
+  //         props.resend();
+  //         clearInterval(myInterval);
+  //       } else {
+  //         setMinutes(minutes - 1);
+  //         setSeconds(59);
+  //       }
+  //     }
+  //   }, 1000);
+  //   return () => {
+  //     clearInterval(myInterval);
+  //   };
+  // });
 
   return (
     <div>

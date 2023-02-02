@@ -88,7 +88,7 @@ const RegisterUI: FC<RegisterUIProps> = (props) => {
           exit={{ opacity: 0, y: -50 }}
           transition={{ duration: 0.25 }}
         >
-          <AuthHeaderLabel label="Create your Agewear account" />
+          <AuthHeaderLabel label="Create your Emotion account" />
           <div className="w-full flex space-x-[20px]">
             <TextFieldDark
               placeholder="First Name"

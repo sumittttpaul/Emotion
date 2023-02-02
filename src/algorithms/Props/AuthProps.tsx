@@ -15,6 +15,7 @@ export interface ResendOTPProps {
 export interface VerifyOTPProps {
   Phone: number;
   OTP: number;
+  ReOpenOTPDialog: (value: boolean) => void;
   Loading: (value: boolean) => void;
   ToastShow: (value: boolean) => void;
   ToastMessage: (value: string) => void;

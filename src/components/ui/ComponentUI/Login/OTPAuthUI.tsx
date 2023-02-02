@@ -1,40 +1,53 @@
-import React, { ChangeEvent, KeyboardEvent, FC, useState } from 'react';
+import React, {
+  MouseEvent,
+  ChangeEvent,
+  KeyboardEvent,
+  FC,
+  useState,
+} from 'react';
 import { Link } from '@mui/material';
-import OTPTextFieldDark from '../../../textfield/OTPTextFieldDark';
 import { DialogContainerDark } from '../../../dialog/DialogContainerDark';
 import { OTPTimer } from '../../../timer/OTPTimer';
+import OTPTextFieldDark from '../../../textfield/OTPTextFieldDark';
 
 interface IProps {
   open: boolean;
   close: () => void;
   phone: string;
   resend: () => void;
+  PhoneLoading: (value: boolean) => void;
   OTP1: string;
+  OTP1Click: (event: MouseEvent<HTMLInputElement>) => void;
   OTP1Change: (events: ChangeEvent<HTMLInputElement>) => void;
   OTP1KeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   OTP1KeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   OTP1KeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   OTP2: string;
+  OTP2Click: (event: MouseEvent<HTMLInputElement>) => void;
   OTP2Change: (events: ChangeEvent<HTMLInputElement>) => void;
   OTP2KeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   OTP2KeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   OTP2KeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   OTP3: string;
+  OTP3Click: (event: MouseEvent<HTMLInputElement>) => void;
   OTP3Change: (events: ChangeEvent<HTMLInputElement>) => void;
   OTP3KeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   OTP3KeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   OTP3KeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   OTP4: string;
+  OTP4Click: (event: MouseEvent<HTMLInputElement>) => void;
   OTP4Change: (events: ChangeEvent<HTMLInputElement>) => void;
   OTP4KeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   OTP4KeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   OTP4KeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   OTP5: string;
+  OTP5Click: (event: MouseEvent<HTMLInputElement>) => void;
   OTP5Change: (events: ChangeEvent<HTMLInputElement>) => void;
   OTP5KeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   OTP5KeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   OTP5KeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   OTP6: string;
+  OTP6Click: (event: MouseEvent<HTMLInputElement>) => void;
   OTP6Change: (events: ChangeEvent<HTMLInputElement>) => void;
   OTP6KeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   OTP6KeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
@@ -51,6 +64,7 @@ const OTPAuthUI: FC<IProps> = (props) => {
 
   const closeModal = () => {
     props.close();
+    props.PhoneLoading(false);
     setTimeout(() => {
       setBool(false);
     }, 200);
@@ -79,6 +93,8 @@ const OTPAuthUI: FC<IProps> = (props) => {
         </h6>
         <div className="flex justify-center items-center">
           <OTPTextFieldDark
+            id="OTPInputField1"
+            onClick={props.OTP1Click}
             area-label="OTP1"
             value={props.OTP1}
             onChange={props.OTP1Change}
@@ -87,6 +103,8 @@ const OTPAuthUI: FC<IProps> = (props) => {
             onkeyUp={props.OTP1KeyUp}
           />
           <OTPTextFieldDark
+            id="OTPInputField2"
+            onClick={props.OTP2Click}
             className={spaceBetween}
             area-label="OTP2"
             value={props.OTP2}
@@ -96,6 +114,8 @@ const OTPAuthUI: FC<IProps> = (props) => {
             onkeyUp={props.OTP2KeyUp}
           />
           <OTPTextFieldDark
+            id="OTPInputField3"
+            onClick={props.OTP3Click}
             className={spaceBetween}
             area-label="OTP3"
             value={props.OTP3}
@@ -105,6 +125,8 @@ const OTPAuthUI: FC<IProps> = (props) => {
             onkeyUp={props.OTP3KeyUp}
           />
           <OTPTextFieldDark
+            id="OTPInputField4"
+            onClick={props.OTP4Click}
             className="ml-8"
             area-label="OTP4"
             value={props.OTP4}
@@ -114,6 +136,8 @@ const OTPAuthUI: FC<IProps> = (props) => {
             onkeyUp={props.OTP4KeyUp}
           />
           <OTPTextFieldDark
+            id="OTPInputField5"
+            onClick={props.OTP5Click}
             className={spaceBetween}
             area-label="OTP5"
             value={props.OTP5}
@@ -123,6 +147,8 @@ const OTPAuthUI: FC<IProps> = (props) => {
             onkeyUp={props.OTP5KeyUp}
           />
           <OTPTextFieldDark
+            id="OTPInputField6"
+            onClick={props.OTP6Click}
             className={spaceBetween}
             area-label="OTP6"
             value={props.OTP6}
@@ -149,7 +175,7 @@ const OTPAuthUI: FC<IProps> = (props) => {
             </>
           ) : (
             <>
-              <OTPTimer min={0} sec={30} resend={showResend} />
+              <OTPTimer min={1} sec={30} resend={showResend} />
             </>
           )}
         </div>
@@ -159,7 +185,7 @@ const OTPAuthUI: FC<IProps> = (props) => {
           component="button"
           underline="always"
         >
-          Cancel
+          Close
         </Link>
       </div>
     </DialogContainerDark>
