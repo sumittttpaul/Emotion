@@ -2,26 +2,23 @@ import { motion, Variants } from 'framer-motion';
 import React, { FC, useEffect, useState } from 'react';
 import {
   StoreDiscoverCurationSearch,
-  StoreDiscoverExploreSearch,
   StoreDiscoverPopularSearch,
 } from '../../../../contents/store/discover/Store.Discover.Search';
 import { MainHeaderSearchCuration } from './MainHeader.Search.Curation';
 import { MainHeaderSearchPopular } from './MainHeader.Search.Popular';
-import { MainHeaderSearchExplore } from './MainHeader.Search.Explore';
-import { MainHeaderSearchExit } from './MainHeader.Search.Exit';
 
 export interface MainHeaderSearchMenuProps {
-  open: boolean;
-  onClose: () => void;
+  SearchMenu: string;
+  setSearchMenu: (value: string) => void;
 }
 
-const SliderVariant = {
+const SearchMenuVariant = {
   open: { height: 250, display: 'block' },
   closed: { height: 0, display: 'none' },
 };
 const UlVariants: Variants = {
   open: {
-    transition: { staggerChildren: 0.03, delayChildren: 0 },
+    transition: { staggerChildren: 0.05, delayChildren: 0 },
   },
   closed: {
     transition: { staggerChildren: 0.02, staggerDirection: -1 },
@@ -51,24 +48,12 @@ const LiVariants: Variants = {
  * @function @MainHeaderSearchMenu
  **/
 
-export const MainHeaderSearchMenu: FC<MainHeaderSearchMenuProps> = (
-  props
-) => {
-  const [Slider, setSlider] = useState('closed');
-
-  useEffect(() => {
-    if (props.open) {
-      setSlider('open');
-    } else {
-      setSlider('closed');
-    }
-  }, [props.open]);
-
+export const MainHeaderSearchMenu: FC<MainHeaderSearchMenuProps> = (props) => {
   return (
     <motion.div
       className="bg-transparent absolute left-0 top-full w-full"
-      animate={Slider}
-      variants={SliderVariant}
+      animate={props.SearchMenu}
+      variants={SearchMenuVariant}
     >
       <div className="ml-[335px] w-[664px] bg-[#0f0f0f] flex rounded-b-3xl">
         <motion.div
@@ -79,13 +64,13 @@ export const MainHeaderSearchMenu: FC<MainHeaderSearchMenuProps> = (
             <div className="w-full space-y-5 flex flex-col overflow-y-hidden">
               <motion.div variants={LiVariants} className="w-full flex">
                 <MainHeaderSearchPopular
-                  onClick={props.onClose}
+                  onClick={() => props.setSearchMenu('closed')}
                   ContentArray={StoreDiscoverPopularSearch}
                 />
               </motion.div>
               <motion.div variants={LiVariants} className="w-full flex">
                 <MainHeaderSearchCuration
-                  onClick={props.onClose}
+                  onClick={() => props.setSearchMenu('closed')}
                   ContentArray={StoreDiscoverCurationSearch}
                 />
               </motion.div>
