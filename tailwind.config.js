@@ -13,6 +13,13 @@ module.exports = {
         'primary-blue': '#0076E4',
         'primary-blue-rgb': '#0074e4',
         'color-dark': '#FFFFFF3B',
+        // Dark Colors
+        'dark-red': '#4B0000',
+        'dark-pink': '#45004B',
+        'dark-blue': '#003C4B',
+        'dark-yellow': '#464B00',
+        'dark-green': '#024B00',
+        'dark-purple': '#320161',
       },
       screens: {
         'xs-200': '200px',
@@ -35,7 +42,6 @@ module.exports = {
         'lg-1200': '1200px',
         'xl-1300': '1300px',
         'xl-1400': '1400px',
-        'child-screen': '1440px',
       },
     },
   },

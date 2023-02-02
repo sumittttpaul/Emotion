@@ -12,12 +12,12 @@ const TopHeadingContainerStyle =
 const BottomHeadingContainerStyle =
   'flex absolute left-0 right-0 bottom-0 pb-3 pl-3 pr-3 w-full items-center justify-between';
 const GetColor = (index: number) => {
-  if (index === 0) return 'from-[#4B0000]';
-  if (index === 1) return 'from-[#45004B]';
-  if (index === 2) return 'from-[#003C4B]';
-  if (index === 3) return 'from-[#4B4600]';
-  if (index === 4) return 'from-[#464B00]';
-  if (index === 5) return 'from-[#004B47]';
+  if (index === 0) return 'from-dark-red';
+  if (index === 1) return 'from-dark-pink';
+  if (index === 2) return 'from-dark-blue';
+  if (index === 3) return 'from-dark-yellow';
+  if (index === 4) return 'from-dark-green';
+  if (index === 5) return 'from-dark-purpe';
 };
 
 export interface DiscoverTilesDesktopProps {
