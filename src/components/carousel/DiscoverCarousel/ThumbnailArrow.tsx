@@ -28,7 +28,7 @@ const RightVariants = {
 };
 
 const ArrowClasses =
-  'absolute p-0 z-[1] bottom-[30px] md-900:bottom-[35px] h-[32px] w-[20px] bg-white bg-opacity-70 hover:bg-white rounded-[4px] transition-colors color-transition Custom-DropShadow';
+  'absolute p-0 z-[1] bottom-[48px] h-[32px] w-[20px] bg-white bg-opacity-70 hover:bg-white rounded-[4px] transition-colors color-transition Custom-DropShadow';
 const ArrowIconClasses = 'h-full w-full flex items-center justify-center';
 
 /**

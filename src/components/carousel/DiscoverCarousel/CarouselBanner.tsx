@@ -49,7 +49,7 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
     <AnimatePresence exitBeforeEnter>
       <motion.div
         ref={props.ElementRef}
-        className="text-white -[z-1] relative box-border items-start justify-end w-full h-[500px] md-900:h-[640px] px-8 pb-[130px] flex flex-col overflow-hidden rounded-tl-3xl bg-gradient-to-r from-[#000000b3]"
+        className="text-white -[z-1] relative box-border items-start justify-end w-full h-[350px] small-screen:h-[500px] medium-screen:h-[620px] px-8 pb-[130px] flex flex-col overflow-hidden rounded-tl-3xl bg-gradient-to-r from-[#000000b3]"
       >
         <CarouselBannerImage
           className="-z-[2]"
@@ -73,9 +73,9 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
             <motion.div
               transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
               variants={ChildAnimationVariant}
-              className={`${
+              className={` ${
                 props.ContentArray[CarouselState].Button == 'Order now'
-                  ? 'flex'
+                  ? 'hidden small-screen:flex'
                   : 'hidden'
               }`}
             >
@@ -88,14 +88,14 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
               transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
               variants={ChildAnimationVariant}
             >
-              <h6 className="text-[35px] font-[600] mt-3">
+              <h6 className="text-[25px] small-screen:text-[35px] font-[600] mt-3">
                 {props.ContentArray[CarouselState].Heading}
               </h6>
             </motion.div>
             <motion.div
               transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
               variants={ChildAnimationVariant}
-              className="max-w-[500px] w-full"
+              className="max-w-[500px] w-full hidden small-screen:flex"
             >
               <h6 className="text-[15px] leading-6 opacity-80 mt-2">
                 {props.ContentArray[CarouselState].Description}
@@ -104,7 +104,7 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
             <motion.div
               transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
               variants={ChildAnimationVariant}
-              className="mt-8 box-border"
+              className="mt-8 box-border hidden small-screen:flex"
             >
               <Button
                 disableFocusRipple

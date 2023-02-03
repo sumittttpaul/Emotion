@@ -24,7 +24,7 @@ const OriginalPriceStyle = 'line-through text-[13.5px] opacity-70';
 const DiscountedPriceStyle = 'text-[14px]';
 const ImageStyle = 'rounded-xl';
 
-export interface DiscoverSliderDesktopAndTabletProps {
+export interface DiscoverSliderBrowserProps {
   ContentArray: DiscoverSliderIProps[];
   sliderRef: RefObject<HTMLElement>;
   Wishlist: number;
@@ -32,9 +32,9 @@ export interface DiscoverSliderDesktopAndTabletProps {
   setLeftDisabled: Dispatch<SetStateAction<boolean>>;
   setRightDisabled: Dispatch<SetStateAction<boolean>>;
 }
-export const DiscoverSliderDesktopAndTablet: FC<
-  DiscoverSliderDesktopAndTabletProps
-> = (props) => {
+export const DiscoverSliderBrowser: FC<DiscoverSliderBrowserProps> = (
+  props
+) => {
   const ListenToSliderScroll = () => {
     const slider = props.sliderRef.current;
     if (slider) {
@@ -68,20 +68,23 @@ export const DiscoverSliderDesktopAndTablet: FC<
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
-    <div className="hidden sm:flex w-full box-border px-0 sm:pr-3">
+    <div className="flex w-full box-border">
       <ScrollContainer
         vertical={false}
         hideScrollbars={true}
         innerRef={props.sliderRef}
         component="ul"
-        className="w-full flex pr-3 sm:px-0 space-x-4 box-border scroll-smooth"
+        className="w-full flex px-0 space-x-4 box-border scroll-smooth"
+        style={{
+          paddingRight: 12,
+        }}
       >
         {props.ContentArray.map((value, index) => (
           <Button
             key={index}
             component="li"
             disableFocusRipple
-            className="text-white group m-0 p-0 space-y-1 min-w-[197.5px] md-900:min-w-[220px] button-text-lower"
+            className="text-white group m-0 p-0 space-y-1 min-w-[220px] button-text-lower"
             sx={{
               '.MuiTouchRipple-child': {
                 backgroundColor: '#ffffff80 !important',

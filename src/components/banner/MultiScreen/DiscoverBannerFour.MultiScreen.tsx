@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { DiscoverBannerFourIProps } from '../../../contents/store/discover/Store.Discover.Banner';
 import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
 import { BannerUnderlineButtonDark } from '../../button/BannerUnderlineButtonDark';
+import useScreenSize from '../../../algorithms/ScreenSizeDetection';
 
 const ContainerStyle =
   'text-white bg-[#151515] relative button-text-lower p-0 m-0 overflow-hidden';
@@ -12,59 +13,31 @@ const HeadingStyle = 'font-normal text-left w-full';
 const DescriptionStyle =
   'text-[14px] whitespace-normal leading-[18px] font-sans font-normal text-left w-full opacity-70';
 
-export interface DiscoverBannerFourDesktopProps {
+export interface DiscoverBannerFourBrowserProps {
   ContentArray: DiscoverBannerFourIProps[];
 }
-export const DiscoverBannerFourDesktop: FC<DiscoverBannerFourDesktopProps> = (
+export const DiscoverBannerFourBrowser: FC<DiscoverBannerFourBrowserProps> = (
   props
 ) => {
+  const { LargeScreen, MediumLargeScreen, MediumScreen, SmallScreen } =
+    useScreenSize();
   return (
-    <ul className="hidden md-900:flex w-full relative box-border space-x-6 p-5">
-      {props.ContentArray.map((value, index) => (
-        <li key={index} className={`rounded-2xl ${ContainerStyle}`}>
-          <div className="p-0 m-0">
-            <div className="relative w-full h-full">
-              <div className="absolute z-[1] h-full w-full bg-gradient-to-t from-[#151515]" />
-              <Image
-                layout="responsive"
-                className="rounded-2xl"
-                width={490}
-                height={275}
-                src={value.Image}
-                loading="lazy"
-                placeholder="blur"
-                blurDataURL={Rectangle_BlurDataURL}
-                alt=""
-              />
-            </div>
-            <div className={TextContainer}>
-              <h6 className={`text-[18px] ${HeadingStyle}`}>{value.Heading}</h6>
-              <h6 className={DescriptionStyle}>{value.Description}</h6>
-            </div>
-          </div>
-          <BannerUnderlineButtonDark label="Explore Now" />
-        </li>
-      ))}
-    </ul>
-  );
-};
-
-export interface DiscoverBannerFourTabletProps {
-  ContentArray: DiscoverBannerFourIProps[];
-}
-export const DiscoverBannerFourTablet: FC<DiscoverBannerFourTabletProps> = (
-  props
-) => {
-  return (
-    <div className="hidden sm:flex md-900:hidden w-full relative box-border space-x-5">
+    <div className="w-full relative box-border">
       <Swiper
-        slidesPerView={2}
-        spaceBetween={15}
+        slidesPerView={
+          LargeScreen || MediumLargeScreen
+            ? 4
+            : MediumScreen
+            ? 3
+            : SmallScreen
+            ? 1
+            : 2
+        }
+        spaceBetween={MediumLargeScreen ? 24 : 15}
         wrapperTag="ul"
-        className="w-full flex"
+        className="w-full h-full flex"
         style={{
-          paddingLeft: 20,
-          paddingRight: 20,
+          paddingRight: 12,
         }}
       >
         {props.ContentArray.map((value, index) => (
@@ -75,7 +48,7 @@ export const DiscoverBannerFourTablet: FC<DiscoverBannerFourTabletProps> = (
           >
             <div className="p-0 m-0">
               <div className="relative w-full h-full">
-                <div className="absolute z-[1] h-full w-full bg-transparent" />
+                <div className="absolute z-[1] h-full w-full bg-gradient-to-t from-[#151515]" />
                 <Image
                   layout="responsive"
                   className="rounded-2xl"
@@ -110,7 +83,7 @@ export const DiscoverBannerFourMobile: FC<DiscoverBannerFourMobileProps> = (
   props
 ) => {
   return (
-    <div className="flex sm:hidden w-full relative box-border space-x-5">
+    <div className="flex w-full relative box-border space-x-5">
       <Swiper
         slidesPerView={1.2}
         spaceBetween={15}

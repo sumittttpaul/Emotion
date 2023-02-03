@@ -4,6 +4,7 @@ import { DiscoverTilesIProps } from '../../../contents/store/discover/Store.Disc
 import { UnderlineButtonDark } from '../../button/UnderlineButtonDark';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
+import useScreenSize from '../../../algorithms/ScreenSizeDetection';
 
 const SwiperSlideStyle =
   'h-full w-full flex relative m-0 p-0 text-white overflow-hidden rounded-xl bg-gradient-to-r';
@@ -18,68 +19,43 @@ const GetColor = (index: number) => {
   if (index === 3) return 'from-dark-yellow';
 };
 
-export interface DiscoverTilesDesktopProps {
+export interface DiscoverTilesBrowserProps {
   ContentArray: DiscoverTilesIProps[];
 }
-export const DiscoverTilesDesktop: FC<DiscoverTilesDesktopProps> = (props) => {
+export const DiscoverTilesBrowser: FC<DiscoverTilesBrowserProps> = (props) => {
+  const {
+    LargeScreen,
+    MediumLargeScreen,
+    MediumScreen,
+    SmallMediumScreen,
+    SmallScreen,
+  } = useScreenSize();
   return (
-    <div className="w-full hidden md-900:flex flex-col space-y-5">
+    <div className="w-full flex flex-col space-y-5">
       <h6 className="text-[18px]">What&apos;s new</h6>
-      <ul className="w-full hidden md-900:grid grid-cols-4 gap-5 relative">
-        {props.ContentArray.map((value, index) => (
-          <li key={index} className={`${SwiperSlideStyle} ${GetColor(index)}`}>
-            <div className={`space-y-5 ${TopHeadingContainerStyle}`}>
-              <div className="space-y-1 flex flex-col">
-                <h6>{value.Heading}</h6>
-                <h6 className="text-xs opacity-70">
-                  Plain t-shirt from different category
-                </h6>
-              </div>
-              <div className="flex w-full items-center justify-between">
-                <div className="text-xs flex space-x-1">
-                  <h6 className="hidden lg-1100:block whitespace-nowrap">
-                    Starts at
-                  </h6>
-                  <h6 className="whitespace-nowrap">{`₹${value.Price}`}</h6>
-                </div>
-                <UnderlineButtonDark label="View More" />
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-export interface DiscoverTilesTabletProps {
-  ContentArray: DiscoverTilesIProps[];
-}
-export const DiscoverTilesTablet: FC<DiscoverTilesTabletProps> = (props) => {
-  return (
-    <div className="w-full hidden sm:flex md-900:hidden flex-col space-y-5">
-      <h6 className="text-[18px] mx-5">What&apos;s new</h6>
       <Swiper
-        slidesPerView={2}
-        spaceBetween={15}
+        slidesPerView={
+          LargeScreen || MediumLargeScreen || MediumScreen
+            ? 4
+            : SmallMediumScreen
+            ? 3
+            : SmallScreen
+            ? 1
+            : 2
+        }
+        spaceBetween={20}
         wrapperTag="ul"
         className="w-full h-[140px]"
         style={{
-          paddingLeft: 20,
-          paddingRight: 20,
+          paddingRight: 12,
         }}
       >
         {props.ContentArray.map((value, index) => (
-          <SwiperSlide tag="li" key={index} className={SwiperSlideStyle}>
-            <Image
-              height={100}
-              width={150}
-              src={value.Image}
-              alt=""
-              loading="lazy"
-              placeholder="blur"
-              blurDataURL={Rectangle_BlurDataURL}
-            />
+          <SwiperSlide
+            tag="li"
+            key={index}
+            className={`${SwiperSlideStyle} ${GetColor(index)}`}
+          >
             <div className={`space-y-5 ${TopHeadingContainerStyle}`}>
               <div className="space-y-1 flex flex-col">
                 <h6>{value.Heading}</h6>
@@ -89,9 +65,7 @@ export const DiscoverTilesTablet: FC<DiscoverTilesTabletProps> = (props) => {
               </div>
               <div className={BottomHeadingContainerStyle}>
                 <div className="text-xs flex space-x-1">
-                  <h6 className="hidden sm-670:block whitespace-nowrap">
-                    Starts at
-                  </h6>
+                  <h6 className="block whitespace-nowrap">Starts at</h6>
                   <h6 className="whitespace-nowrap">{`₹${value.Price}`}</h6>
                 </div>
                 <UnderlineButtonDark label="View More" />

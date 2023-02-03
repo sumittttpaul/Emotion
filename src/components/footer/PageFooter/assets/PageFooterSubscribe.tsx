@@ -53,7 +53,7 @@ export const PageFooterSubscribe: FC<IProps> = (props) => {
             placeholder="Email Address"
             type="text"
             autoComplete="email"
-            className="text-[13px] whitespace-nowrap rounded-l-lg w-[220px] p-[10px] font-normal text-[#ffffffe6] bg-[#0f0f0f] border-0 ring-0 outline-none"
+            className="text-[13px] whitespace-nowrap rounded-l-lg w-[220px] p-[10px] font-normal text-[#ffffffe6] bg-[#191919] border-0 ring-0 outline-none"
           />
         </TooltipDark>
         <SubscribeButton

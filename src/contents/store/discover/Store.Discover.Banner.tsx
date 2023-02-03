@@ -22,14 +22,6 @@ export interface DiscoverBannerLightingDealIProps {
   slug: string;
 }
 
-export interface DiscoverBannerListIProps {
-  Heading: string;
-  Image: string;
-  OriginalPrice: string;
-  DiscountedPrice: string;
-  slug: string;
-}
-
 export const DiscoverBannerFiveContent = [
   {
     Heading: 'Banner Five Heading 1',
@@ -144,43 +136,5 @@ export const DiscoverBannerLightingDealContent = [
     Available: false,
     Image: '/images/avatar/illustration/10.png',
     slug: 'lightning-deal-heading-5',
-  },
-];
-
-export const DiscoverBannerListContent = [
-  {
-    Heading: 'List Heading 1',
-    OriginalPrice: '1999.00',
-    DiscountedPrice: '999.00',
-    Image: '/images/avatar/illustration/10.png',
-    slug: 'list-heading-1',
-  },
-  {
-    Heading: 'List Heading 2',
-    OriginalPrice: '1999.00',
-    DiscountedPrice: '999.00',
-    Image: '/images/avatar/illustration/9.png',
-    slug: 'list-heading-2',
-  },
-  {
-    Heading: 'List Heading 3',
-    OriginalPrice: '1999.00',
-    DiscountedPrice: '999.00',
-    Image: '/images/avatar/illustration/8.png',
-    slug: 'list-heading-3',
-  },
-  {
-    Heading: 'List Heading 4',
-    OriginalPrice: '1999.00',
-    DiscountedPrice: '999.00',
-    Image: '/images/avatar/illustration/7.png',
-    slug: 'list-heading-4',
-  },
-  {
-    Heading: 'List Heading 5',
-    OriginalPrice: '1999.00',
-    DiscountedPrice: '999.00',
-    Image: '/images/avatar/illustration/6.png',
-    slug: 'list-heading-5',
   },
 ];

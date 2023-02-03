@@ -5,7 +5,6 @@ import { DiscoverSliderContent } from '../../contents/store/discover/Store.Disco
 import {
   DiscoverBannerFiveContent,
   DiscoverBannerLightingDealContent,
-  DiscoverBannerListContent,
 } from '../../contents/store/discover/Store.Discover.Banner';
 import { DiscoverBannerFourContent } from '../../contents/store/discover/Store.Discover.Banner';
 import { DiscoverTilesContent } from '../../contents/store/discover/Store.Discover.Tiles';
@@ -18,6 +17,7 @@ import { DiscoverBannerLightingDeal } from '../banner/DiscoverBannerLightingDeal
 import { DiscoverBannerList } from '../banner/DiscoverBannerList';
 import { DiscoverBannerArrivals } from '../banner/DiscoverBannerArrivals';
 import { DiscoverCatelog } from '../catelog/DiscoverCatelog';
+import { PageFooter } from '../footer/PageFooter/PageFooter';
 
 export interface DiscoverUIProps {}
 
@@ -35,7 +35,6 @@ export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
       <DiscoverBannerLightingDeal
         ContentArray={DiscoverBannerLightingDealContent}
       />
-      {/* <DiscoverBannerList ContentArray={DiscoverBannerListContent} /> */}
       <DiscoverSlider ContentArray={DiscoverSliderContent} />
       <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
       <DiscoverBannerArrivals
@@ -44,6 +43,7 @@ export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
       <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
       <DiscoverBannerFive ContentArray={DiscoverBannerFiveContent} />
       <DiscoverCatelog />
+      <PageFooter setPage={() => {}} />
     </div>
   );
 };

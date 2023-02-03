@@ -12,35 +12,39 @@ interface IProps {}
 
 export const DiscoverCatelog: FC<IProps> = (props) => {
   return (
-    <div className="flex w-full h-full pr-3 my-[75px] sm:my-[50px] relative box-border overflow-x-hidden overflow-y-visible">
-      <div className="flex flex-col sm:flex-row w-full h-[300px] space-y-5 sm:space-y-0 sm:space-x-7 md-900:space-x-14 box-border relative">
-        <div className='z-[1] absolute w-full h-full bg-transparent'/>
-        <Image
-          className="rounded-3xl"
-          width={1920}
-          height={1080}
-          objectFit="cover"
-          objectPosition="center"
-          src="/images/avatar/illustration/5.png"
-          loading="lazy"
-          blurDataURL={Rectangle_BlurDataURL}
-          alt=""
-        />
-        <div className="flex w-full h-[300px] relative justify-start items-center sm:max-w-[35%]">
-          <div className="text-white flex flex-col w-full space-y-2 md-900:space-y-4">
-            <h6 className="text-[18px] md-900:text-[20px] w-full">
-              Explore our fanbook
-            </h6>
-            <h6 className="text-[14px] md-900:text-[16px] whitespace-normal leading-[18px] font-sans font-normal text-left w-full opacity-70">
+    <div className="flex w-full h-full pr-3 my-[50px] relative box-border overflow-x-hidden overflow-y-visible bg-[#101010]">
+      <div className="flex flex-row w-full h-[250px] small-medium-screen:h-[300px] space-x-14 box-border relative">
+        <div className="medium-screen:max-w-[65%] small-medium-screen:max-w-[50%] max-w-[0%] w-full h-full flex">
+          <div className="z-[1] absolute w-full h-full bg-gradient-to-l from-[#0f0f0f]" />
+          <Image
+            className="rounded-3xl"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+            src="/images/avatar/illustration/5.png"
+            loading="lazy"
+            blurDataURL={Rectangle_BlurDataURL}
+            alt=""
+          />
+        </div>
+        <div className="medium-screen:max-w-[35%] small-medium-screen:max-w-[50%] max-w-[65%] h-full w-full z-[2] flex relative justify-start items-center">
+          <div className="text-white flex flex-col w-full space-y-4">
+            <h6 className="text-[18px] small-screen:text-[20px] w-full">Explore our fanbook</h6>
+            <h6 className="text-[14px] small-screen:text-[16px] whitespace-normal leading-[18px] font-sans font-normal text-left w-full opacity-70">
               Browse by genre, features, price and more to find your next
               favorite look.
             </h6>
             <div className="w-full justify-start flex">
               <Button
                 disableFocusRipple
-                className="sm:py-4 py-3 sm:px-6 px-4 mt-4 md-900:mt-10 text-[10.5px] md-900:text-[11px] font-[500] tracking-[0.075em] bg-white hover:bg-white text-black"
+                className="rounded-lg py-2 small-screen:py-3 px-8 small-screen:px-10 small-screen:mt-3 small-medium-screen:mt-10 text-[11px] font-[500] tracking-[0.075em] button-text-lower bg-gradient-to-r from-[#ffffff30] bg-[#ffffff00] text-white transition-all cursor-default"
+                sx={{
+                  '.MuiTouchRipple-child': {
+                    backgroundColor: '#ffffff20 !important',
+                  },
+                }}
               >
-                Learn More
+                See details
               </Button>
             </div>
           </div>

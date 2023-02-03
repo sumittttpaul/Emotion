@@ -29,26 +29,24 @@ export class ScrollToTopButton extends Component<IProps> {
 
   render() {
     return (
-      <div className="absolute top-0 right-0 p-2.5 sm:px-3 sm:py-5 md-900:py-8">
+      <div className="absolute top-0 right-0 -mt-6">
         <TooltipDark
           arrow
-          placement="bottom"
+          placement="top"
           title={<h6 className="font-[400]">Back to Top</h6>}
         >
           <IconButton
             id={ScrollButtonID}
-            disableFocusRipple
             aria-label="scroll-to-top-button"
-            className="block opacity-80 header-button-hover transition-all duration-300 button-text-lower h-full p-2 border border-solid border-[#ffffff3b]"
+            disableFocusRipple
+            className="flex group opacity-80 hover:opacity-100 transition-all duration-300 text-white h-[47px] w-[47px] items-center justify-center rounded-lg button-text-lower bg-[#202020] hover:bg-[#202020]"
             sx={{
-              borderRadius: '6px !important',
               '.MuiTouchRipple-child': {
-                borderRadius: '0 !important',
-                backgroundColor: '#ffffff80 !important',
+                backgroundColor: '#ffffff50 !important',
               },
             }}
           >
-            <ChevronUpIcon className="h-5 w-5 opacity-80 header-icon-hover text-white" />
+            <ChevronUpIcon className="h-5 w-5 opacity-80 group-hover:opacity-100" />
           </IconButton>
         </TooltipDark>
       </div>
