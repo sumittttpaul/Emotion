@@ -13,7 +13,6 @@ const MainHeaderSearchExploreSmallMobile =
       import('./MainHeader.Search.Explore.SmallBanner').then(
         (x) => x.MainHeaderSearchExploreSmallMobile
       ),
-    { ssr: true }
   );
 const MainHeaderSearchExploreSmallDesktop =
   dynamic<MainHeaderSearchExploreSmallProps>(
@@ -21,7 +20,6 @@ const MainHeaderSearchExploreSmallDesktop =
       import('./MainHeader.Search.Explore.SmallBanner').then(
         (x) => x.MainHeaderSearchExploreSmallDesktop
       ),
-    { ssr: true }
   );
 
 export interface MainHeaderSearchExploreProps {

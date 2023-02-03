@@ -14,7 +14,6 @@ import { DiscoverBannerFive } from '../banner/DiscoverBannerFive';
 import { DiscoverBannerFour } from '../banner/DiscoverBannerFour';
 import { DiscoverTiles } from '../tiles/DiscoverTiles';
 import { DiscoverBannerLightingDeal } from '../banner/DiscoverBannerLightingDeal';
-import { DiscoverBannerList } from '../banner/DiscoverBannerList';
 import { DiscoverBannerArrivals } from '../banner/DiscoverBannerArrivals';
 import { DiscoverCatelog } from '../catelog/DiscoverCatelog';
 import { PageFooter } from '../footer/PageFooter/PageFooter';

@@ -11,16 +11,11 @@ import { MainHeaderSliderProps } from './assets/MainHeader.Slider';
 import { PageHeaderUserButton } from '../../button/header/PageHeader.UserButton';
 import { MainHeaderNotificationButton } from '../../button/header/MainHeader.NotificationButton';
 
-const MainHeaderSearchMenu = dynamic<MainHeaderSearchMenuProps>(
-  () =>
-    import('./search/MainHeader.Search.Menu').then(
-      (x) => x.MainHeaderSearchMenu
-    ),
-  { ssr: false }
+const MainHeaderSearchMenu = dynamic<MainHeaderSearchMenuProps>(() =>
+  import('./search/MainHeader.Search.Menu').then((x) => x.MainHeaderSearchMenu)
 );
-const MainHeaderSlider = dynamic<MainHeaderSliderProps>(
-  () => import('./assets/MainHeader.Slider').then((x) => x.MainHeaderSlider),
-  { ssr: true }
+const MainHeaderSlider = dynamic<MainHeaderSliderProps>(() =>
+  import('./assets/MainHeader.Slider').then((x) => x.MainHeaderSlider)
 );
 
 export interface MainHeaderProps {
@@ -35,12 +30,7 @@ export interface MainHeaderProps {
 export const MainHeader: FC<MainHeaderProps> = (props) => {
   const [NavSliderOpen, setNavSliderOpen] = useCycle(false, true);
   const [SearchMenuOpen, setSearchMenuOpen] = useState('closed');
-  const [RenderSearchMenu, setRenderSearchMenu] = useState(false);
   const ContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (typeof window === 'object') setRenderSearchMenu(true);
-  }, []);
 
   return (
     <div
@@ -86,18 +76,16 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
           </div>
         </div>
       </div>
-      <MainHeaderSlider
+      {/* <MainHeaderSlider
         open={NavSliderOpen}
         onClose={() => setNavSliderOpen()}
         Value={props.Page}
         onValueChange={props.setChildPage}
-      />
-      {RenderSearchMenu && (
+      /> */}
         <MainHeaderSearchMenu
           SearchMenu={SearchMenuOpen}
           setSearchMenu={(value) => setSearchMenuOpen(value)}
         />
-      )}
     </div>
   );
 };

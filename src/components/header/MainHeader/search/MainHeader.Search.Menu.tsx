@@ -1,5 +1,5 @@
 import { motion, Variants } from 'framer-motion';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import {
   StoreDiscoverCurationSearch,
   StoreDiscoverPopularSearch,
