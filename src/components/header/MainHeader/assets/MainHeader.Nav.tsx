@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from '@heroicons/react/solid';
-import React, { ChangeEvent, FC, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useState, MouseEvent } from 'react';
 import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import {
@@ -11,7 +11,7 @@ import NextLink from 'next/link';
 
 interface IProps {
   open: boolean;
-  onOpen: () => void;
+  onOpen: (event: MouseEvent<HTMLElement>) => void;
   onValueChange: (value: string) => void;
   Value: string;
 }
@@ -98,7 +98,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
   }, [props.open, props.Value]);
   return (
     <>
-      <div className="mainNav hidden sm:flex sm:ml-6 md-900:ml-0 flex-col">
+      <div className="mainNav hidden medium-screen:flex flex-col">
         <input
           value="MainTab1"
           checked={selectedValue === 'MainTab1'}
@@ -161,11 +161,11 @@ export const MainHeaderNav: FC<IProps> = (props) => {
         disableTouchRipple
         aria-label="mobile-main-nav-button"
         className={`${
-          Boolean(NonActiveContent(props.Value)) ? 'opacity-50' : 'opacity-100 '
-        } ${'flex mr-2 hover:opacity-100 w-full sm:hidden text-white button-text-lower'}`}
+          Boolean(NonActiveContent(props.Value)) ? 'opacity-50 ' : 'opacity-100'
+        } ${'flex hover:opacity-100 bg-[#202020] hover:bg-[#202020] cursor-default h-[40px] pl-4 pr-3 small-medium-screen:px-6 w-full medium-screen:hidden text-white rounded-full button-text-lower'}`}
       >
-        <div className="flex space-x-2 items-center">
-          <h6 className="font-normal text-[13.5px] tracking-[0.6px]">
+        <div className="flex space-x-1 items-center">
+          <h6 className="font-normal text-[12px] tracking-[0.6px]">
             {Boolean(NonActiveContent(props.Value)) ? 'Discover' : props.Value}
           </h6>
           <motion.div animate={Arrow} variants={ArrowVariant}>

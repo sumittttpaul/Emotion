@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import useScreenSize from '../../../algorithms/ScreenSizeDetection';
 
 interface IProps {
   ContainerRef: RefObject<HTMLDivElement>;
@@ -22,6 +23,7 @@ interface IProps {
  **/
 
 export const MainHeaderSearchButton: FC<IProps> = (props) => {
+  const { SmallMediumScreen } = useScreenSize();
   const [animate, setAnimate] = useState('closed');
   const [Search, setSearch] = useState('');
   const SearchRef = useRef<HTMLInputElement>(null);
@@ -33,9 +35,11 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
   const ButtonVariant = {
     open: {
       width: '100%',
+      maxWidth: 600,
     },
     closed: {
-      width: 200,
+      width: '100%',
+      maxWidth: SmallMediumScreen ? 100 : 200,
     },
   };
 
@@ -68,14 +72,14 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
       animate={animate}
       variants={ButtonVariant}
       transition={{ duration: 0.2, type: 'tween' }}
-      className="block header-button-hover text-white w-[100px] min-w-[100px] sm:h-[40px] sm:min-h-[40x] sm:w-[200px] sm:min-w-[200px] sm:max-w-[664px] cursor-text justify-start items-center button-text-lower p-[10px] rounded-full bg-[#202020] hover:bg-[#202020]"
+      className="block text-white cursor-text justify-start items-center button-text-lower p-[10px] rounded-full bg-[#202020] hover:bg-[#202020]"
     >
       <div className="flex items-center ml-1">
         <Image
           src="/icons/search-white.svg"
-          height={17}
-          width={17}
-          className="min-h-[17px] min-w-[17px] flex relative text-white opacity-70"
+          height={18}
+          width={18}
+          className="min-h-[18px] min-w-[18px] flex relative text-white opacity-70"
           alt=""
         />
         <input

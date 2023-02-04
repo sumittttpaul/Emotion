@@ -18,11 +18,8 @@ import { TooltipDark } from '../../tooltip/TooltipDark';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 
-const PageHeaderUserButtonMenu = dynamic<PageHeaderUserButtonMenuProps>(
-  () =>
-    import('./PageHeader.UserButton.Menu').then(
-      (x) => x.PageHeaderUserButtonMenu
-    ),
+const PageHeaderUserButtonMenu = dynamic<PageHeaderUserButtonMenuProps>(() =>
+  import('./PageHeader.UserButton.Menu').then((x) => x.PageHeaderUserButtonMenu)
 );
 
 interface IProps {}
@@ -31,7 +28,6 @@ interface IProps {}
  * @author
  * @function @PageHeaderUserButton
  **/
-
 export const PageHeaderUserButton: FC<IProps> = (props) => {
   const FirebaseUser = useAuth();
   const FirebaseAuth = getAuth(firebase.app());
@@ -119,8 +115,9 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
           backgroundColor: '#ffffff50 !important',
         },
       }}
+      style={{ minWidth: 0 }}
     >
-      <div className="relative flex sm:space-x-2 items-center">
+      <div className="relative flex medium-screen:space-x-2 items-center">
         <Image
           height={20}
           width={20}
@@ -130,7 +127,7 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
           alt=""
           priority
         />
-        <h6 className="text-white hidden sm:block whitespace-nowrap font-[350] text-[12px]">
+        <h6 className="text-white hidden medium-screen:block whitespace-nowrap font-[350] text-[12px]">
           Login
         </h6>
       </div>
@@ -145,12 +142,13 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
         disabled
         aria-label="user-button-loading"
         disableFocusRipple
-        className="flex items-center button-text-lower h-full pl-2 pr-3 bg-[#202020] hover:bg-[#202020]"
+        className="flex items-center button-text-lower h-full px-1 bg-[#202020] hover:bg-[#202020]"
         sx={{
           '.MuiTouchRipple-child': {
             backgroundColor: '#ffffff50 !important',
           },
         }}
+        style={{ minWidth: 0 }}
       >
         <CircularProgress className="text-white p-2.5" />
       </Button>
@@ -188,46 +186,6 @@ const UserButton: FC<UserButtonProps> = (props) => {
 
   return (
     <Fragment>
-      {/* Mobile */}
-      <IconButton
-        onClick={handleClick}
-        disableFocusRipple
-        className="sm:hidden items-center h-full px-2 sm:mr-2"
-        sx={{
-          borderRadius: '0 !important',
-          '.MuiTouchRipple-child': {
-            borderRadius: '0 !important',
-            backgroundColor: '#ffffff50 !important',
-          },
-        }}
-      >
-        {props.user.photoURL ? (
-          <Image
-            height={35}
-            width={35}
-            layout="fixed"
-            className="rounded-[50%]"
-            placeholder="blur"
-            loading="lazy"
-            blurDataURL={Square_BlurDataURL}
-            src={`${props.user.photoURL}`}
-            alt=""
-          />
-        ) : (
-          <Image
-            height={35}
-            width={35}
-            layout="fixed"
-            className="rounded-[50%]"
-            placeholder="blur"
-            loading="lazy"
-            blurDataURL={Square_BlurDataURL}
-            src={UserIcon}
-            alt=""
-          />
-        )}
-      </IconButton>
-      {/* Desktop */}
       <TooltipDark
         arrow
         placement="bottom"
@@ -237,33 +195,31 @@ const UserButton: FC<UserButtonProps> = (props) => {
           aria-label="user-popup-button"
           disableFocusRipple
           onClick={handleClick}
-          className="hidden sm:flex items-center button-text-lower h-full pl-2 pr-3 bg-[#202020] hover:bg-[#202020]"
+          className="flex items-center button-text-lower h-full px-1.5 medium-screen:pl-2 medium-screen:pr-3 bg-[#202020] hover:bg-[#202020]"
           sx={{
             '.MuiTouchRipple-child': {
               backgroundColor: '#ffffff50 !important',
             },
           }}
+          style={{ minWidth: 47 }}
         >
           {props.user.photoURL ? (
-            <div className="relative flex items-center space-x-2.5">
+            <div className="relative flex items-center medium-screen:space-x-2.5">
               <Image
                 height={35}
                 width={35}
                 layout="fixed"
                 className="rounded-[50%]"
-                placeholder="blur"
-                loading="lazy"
-                blurDataURL={Square_BlurDataURL}
                 src={`${props.user.photoURL}`}
                 alt=""
               />
-              <h6 className="text-white hidden sm:block whitespace-nowrap font-[300] tracking-[0.075em] text-[12px]">
+              <h6 className="text-white hidden medium-screen:block whitespace-nowrap font-[300] tracking-[0.075em] text-[12px]">
                 {props.UserName}
               </h6>
             </div>
           ) : (
             <div className="pl-1.5 relative flex items-center">
-              <h6 className="text-white hidden sm:block whitespace-nowrap font-[300] tracking-[0.075em] text-[12px]">
+              <h6 className="text-white block whitespace-nowrap font-[300] tracking-[0.075em] text-[12px]">
                 {props.UserName}
               </h6>
             </div>

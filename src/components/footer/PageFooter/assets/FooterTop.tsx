@@ -100,7 +100,7 @@ const Socials = [
 export const FooterTop: FC<IProps> = (props) => {
   return (
     <div className="grid sm-750:flex grid-cols-1 grid-rows-2 sm-750:grid-rows-1 relative w-full justify-between">
-      <div className="grid col-span-1 row-span-1 order-2 sm-750:order-1 w-full sm-750:grid-cols-2 sm-750:grid-rows-2 lg-1100:grid-cols-3 lg-1100:grid-rows-1 xl-1300:grid-cols-4 xl-1300:grid-rows-1">
+      <div className="grid col-span-1 row-span-1 order-2 sm-750:order-1 w-full sm-750:grid-cols-2 sm-750:grid-rows-2 lg-1100:grid-cols-3 lg-1100:grid-rows-1 medium-large-screen:grid-cols-4 medium-large-screen:grid-rows-1">
         <PageFooterLinks heading="Services" Content={Services} />
         <PageFooterLinks heading="Company" Content={Company} />
         <PageFooterLinks heading="Account" Content={Account} />

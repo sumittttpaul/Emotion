@@ -26,7 +26,7 @@ export interface DiscoverUIProps {}
  **/
 export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
   return (
-    <div className="relative z-10">
+    <div className="relative z-10 max-w-[2000px] mx-auto">
       <DiscoverCarousel ContentArray={DiscoverCarouselContent} />
       <DiscoverTiles ContentArray={DiscoverTilesContent} />
       <DiscoverSlider ContentArray={DiscoverSliderContent} />

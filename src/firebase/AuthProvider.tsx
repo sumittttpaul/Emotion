@@ -27,7 +27,10 @@ export const AuthProvider: FC<IProps> = ({ children }) => {
       }
       const token = await user.getIdToken();
       setUser(user);
-      nookies.set(undefined, 'token', token, {});
+      nookies.set(undefined, 'token', token, {
+        sameSite: 'None',
+        secure: true,
+      });
     });
   }, []);
 

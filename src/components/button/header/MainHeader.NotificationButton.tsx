@@ -9,7 +9,6 @@ interface IProps {}
  * @author
  * @function @MainHeaderNotificationButton
  **/
-
 export const MainHeaderNotificationButton: FC<IProps> = (props) => {
   return (
     <TooltipDark
@@ -20,9 +19,10 @@ export const MainHeaderNotificationButton: FC<IProps> = (props) => {
       <IconButton
         disableFocusRipple
         aria-label="desktop-wishlist-button"
-        className="hidden md-900:flex group opacity-80 hover:opacity-100 transition-all duration-300 text-white h-[47px] w-[47px] items-center justify-center rounded-lg button-text-lower bg-[#202020] hover:bg-[#202020]"
+        className="flex group opacity-80 hover:opacity-100 transition-all duration-300 text-white h-[47px] w-[47px] items-center justify-center rounded-lg button-text-lower bg-[#202020] hover:bg-[#202020]"
         sx={{
           '.MuiTouchRipple-child': {
+            borderRadius: '8px',
             backgroundColor: '#ffffff50 !important',
           },
         }}

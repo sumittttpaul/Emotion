@@ -55,7 +55,7 @@ export const MainHeaderSearchMenu: FC<MainHeaderSearchMenuProps> = (props) => {
       animate={props.SearchMenu}
       variants={SearchMenuVariant}
     >
-      <div className="ml-[335px] w-[664px] bg-[#0f0f0f] flex rounded-b-3xl">
+      <div className="w-[664px] bg-[#0f0f0f] flex rounded-b-3xl">
         <motion.div
           variants={UlVariants}
           className="space-y-5 pb-5 flex flex-col w-full h-full mx-auto"

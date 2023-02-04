@@ -103,7 +103,7 @@ export const MainHeaderSearchExploreSmallDesktop: FC<
                 : index === 4
                 ? 'hidden lg-1200:inline-flex'
                 : index === 5
-                ? 'hidden xl-1300:inline-flex'
+                ? 'hidden medium-large-screen:inline-flex'
                 : 'hidden'
             } ${ButtonStyle}`}
           >
