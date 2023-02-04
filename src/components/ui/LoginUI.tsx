@@ -64,14 +64,14 @@ interface IProps {
   PasswordBlur?: (event: FocusEvent<HTMLInputElement>) => void;
 }
 
+function classNames(...classes: any) {
+  return classes.filter(Boolean).join(' ');
+}
+
 /**
  * @author
  * @function @LoginUI
  **/
-
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ');
-}
 
 const LoginUI: FC<IProps> = (props) => {
   const [Tabvalue, setTabValue] = useState(0);
@@ -89,6 +89,10 @@ const LoginUI: FC<IProps> = (props) => {
   const handleEmailClick = () => {
     setTabValue(1);
     props.TabClick(false);
+  };
+
+  const handleKeyDown = (value: KeyboardEvent<HTMLElement>) => {
+    if (value.key === 'LeftArrow') setTabValue(0);
   };
 
   return (
@@ -159,6 +163,7 @@ const LoginUI: FC<IProps> = (props) => {
             axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
             index={Tabvalue}
             onChangeIndex={handleChangeIndex}
+            onKeyDown={handleKeyDown}
             className="w-full"
             id="SwipeableViews"
             containerStyle={{

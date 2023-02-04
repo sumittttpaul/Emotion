@@ -2,6 +2,7 @@ export interface RecaptchaProps {
   ToastShow: (value: boolean) => void;
   ToastMessage: (value: string) => void;
   ToastType: (value: string) => void;
+  ResetCaptcha: boolean;
 }
 
 export interface ResendOTPProps {
@@ -15,7 +16,7 @@ export interface ResendOTPProps {
 export interface VerifyOTPProps {
   Phone: number;
   OTP: number;
-  ReOpenOTPDialog: (value: boolean) => void;
+  EmptyOTPBox: () => void;
   Loading: (value: boolean) => void;
   ToastShow: (value: boolean) => void;
   ToastMessage: (value: string) => void;
@@ -38,6 +39,8 @@ export interface SignInWithPhoneNumberProps {
   ToastShow: (value: boolean) => void;
   ToastMessage: (value: string) => void;
   ToastType: (value: string) => void;
+  ResetCaptcha: boolean;
+  setResetCaptcha: (value: boolean) => void;
 }
 
 export interface SignInWithEmailAndPasswordProps {

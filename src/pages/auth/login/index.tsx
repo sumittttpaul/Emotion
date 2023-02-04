@@ -56,7 +56,8 @@ const Login: NextPage = () => {
   const [PasswordError, setPasswordError] = useState(false);
   const [PhoneLoader, setPhoneLoader] = useState(false);
   const [EmailLoader, setEmailLoader] = useState(false);
-  const [ReOpenOTPDialog, setReOpenOTPDialog] = useState(false);
+  const [EmptyOTPBox, setEmptyOTPBox] = useState(false);
+  const [ResetCaptcha, setResetCaptcha] = useState(false);
 
   // Handle State
   const PhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -256,6 +257,15 @@ const Login: NextPage = () => {
       clearOTP();
     }, 250);
   };
+  const CancelOTPVerification = () => {
+    setOTPDialog(false);
+    HideToast();
+    setTimeout(() => {
+      clearOTP();
+      setResetCaptcha(true);
+      ShowToast('Verification process failed', 'Error', true);
+    }, 250);
+  };
   const clearOTP = () => {
     setOTP1('');
     setOTP2('');
@@ -266,7 +276,6 @@ const Login: NextPage = () => {
   };
   const CloseOTPDialogByButton = (value: boolean) => {
     PhoneLoading(value);
-    setReOpenOTPDialog(true);
   };
 
   // Toast
@@ -297,26 +306,28 @@ const Login: NextPage = () => {
   const EmptyPassword = () => {
     setPassword('');
   };
+  const EmptyOTP = () => {
+    clearOTP();
+    if (typeof window === 'object')
+      document.getElementById('OTPInputField1')?.focus();
+  };
 
   // signIn with phone number
   const PhoneSubmitClick = () => {
     setTimeout(() => {
       if (ValidatePhone) {
-        if (!ReOpenOTPDialog) {
-          SignInWithPhoneNumber({
-            Phone: parseInt(Phone),
-            EmptyPhone: EmptyPhone,
-            Loading: PhoneLoading,
-            ShowOTPDialog: ShowOTPDialog,
-            ToastMessage: AuthToastMessage,
-            ToastType: AuthToastType,
-            ToastShow: AuthToast,
-          });
-          ShowToast(ToastMessage, ToastType, Toast);
-        } else {
-          ShowOTPDialog();
-          PhoneLoading(true);
-        }
+        SignInWithPhoneNumber({
+          Phone: parseInt(Phone),
+          EmptyPhone: EmptyPhone,
+          Loading: PhoneLoading,
+          ShowOTPDialog: ShowOTPDialog,
+          ToastMessage: AuthToastMessage,
+          ToastType: AuthToastType,
+          ToastShow: AuthToast,
+          ResetCaptcha: ResetCaptcha,
+          setResetCaptcha: (e) => setResetCaptcha(e),
+        });
+        ShowToast(ToastMessage, ToastType, Toast);
       } else {
         ShowToast('Incorrect phone number', 'Error', true);
       }
@@ -343,17 +354,13 @@ const Login: NextPage = () => {
         VerifyOTP({
           Phone: parseInt(Phone),
           OTP: parseInt(OTP1 + OTP2 + OTP3 + OTP4 + OTP5 + OTP6),
-          ReOpenOTPDialog: (e) => setReOpenOTPDialog(e),
-          Loading: (e) => {
-            LoadingScreen(e);
-            PhoneLoading(e);
-          },
+          EmptyOTPBox: EmptyOTP,
+          Loading: LoadingScreen,
           ToastMessage: AuthToastMessage,
           ToastType: AuthToastType,
           ToastShow: AuthToast,
         });
         ShowToast(ToastMessage, ToastType, Toast);
-        CloseOTPDialog();
       }, 200);
     }
   };
@@ -426,7 +433,7 @@ const Login: NextPage = () => {
   };
 
   const recaptchaContainer =
-    'h-full sm:h-screen w-full absolute flex flex-col text-center items-center justify-center';
+    'h-full sm:h-screen w-full absolute flex text-center items-center justify-center';
 
   return (
     <>
@@ -471,7 +478,7 @@ const Login: NextPage = () => {
       />
       <OTPAuthUI
         open={OTPDialog}
-        close={CloseOTPDialog}
+        close={CancelOTPVerification}
         phone={Phone}
         resend={OTPResend}
         PhoneLoading={CloseOTPDialogByButton}

@@ -27,9 +27,9 @@ declare global {
   interface Window {
     recaptchaVerifier: any;
     confirmationResult: any;
+    grecaptcha: any;
   }
 }
-var grecaptcha: any;
 
 // Captcha
 
@@ -37,6 +37,7 @@ export const configureCaptcha = ({
   ToastMessage,
   ToastType,
   ToastShow,
+  ResetCaptcha,
 }: RecaptchaProps) => {
   if (typeof window === 'object') {
     const Toast = (message: string, type: string, show: boolean) => {
@@ -44,20 +45,30 @@ export const configureCaptcha = ({
       ToastType(type);
       ToastShow(show);
     };
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-      'verify-sign-in-recaptcha',
-      {
-        size: 'invisible',
-        callback: (response: any) => {
-          // reCAPTCHA solved, allow signInWithPhoneNumber.
-          console.log('Recaptca Verified');
-        },
-        'expired-callback': () => {
-          Toast('Recaptcha token expired, please try again', 'Error', true);
-        },
-        defaultCountry: 'IN',
-      }
-    );
+    if (ResetCaptcha) {
+      window.recaptchaVerifier.render().then(function (widgetId: any) {
+        window.grecaptcha.reset(widgetId);
+      });
+    } else {
+      window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+        'verify-sign-in-recaptcha',
+        {
+          size: 'invisible',
+          callback: (response: any) => {
+            // reCAPTCHA solved, allow signInWithPhoneNumber.
+            console.log('Recaptca Verified');
+          },
+          'expired-callback': () => {
+            Toast(
+              'Recaptcha token expired, please refresh the page',
+              'Error',
+              true
+            );
+          },
+          defaultCountry: 'IN',
+        }
+      );
+    }
   }
 };
 
@@ -77,7 +88,7 @@ export const ResentOTP = ({
   };
   Loading(true);
   window.recaptchaVerifier.render().then(function (widgetId: any) {
-    grecaptcha.reset(widgetId);
+    window.grecaptcha.reset(widgetId);
   });
   const number = '+91' + Phone;
   const appVerifier = window.recaptchaVerifier;
@@ -102,7 +113,7 @@ export const VerifyOTP = ({
   Phone,
   OTP,
   Loading,
-  ReOpenOTPDialog,
+  EmptyOTPBox,
   ToastMessage,
   ToastType,
   ToastShow,
@@ -141,7 +152,7 @@ export const VerifyOTP = ({
     .catch((error) => {
       Loading(false);
       const message = AuthError(error.code);
-      if (message == 'Invalid verification code') ReOpenOTPDialog(true);
+      if (message == 'Invalid verification code') EmptyOTPBox();
       Toast(`${message}`, 'Error', true);
       console.error('OTP verification failed beacuse ' + error.code);
     });
@@ -183,6 +194,8 @@ export const SignInWithPhoneNumber = ({
   ToastShow,
   ToastMessage,
   ToastType,
+  ResetCaptcha,
+  setResetCaptcha,
   ShowOTPDialog,
   Loading,
 }: SignInWithPhoneNumberProps) => {
@@ -196,6 +209,7 @@ export const SignInWithPhoneNumber = ({
     ToastShow: ToastShow,
     ToastMessage: ToastMessage,
     ToastType: ToastType,
+    ResetCaptcha: ResetCaptcha,
   });
   const number = '+91' + Phone;
   const appVerifier = window.recaptchaVerifier;
@@ -214,6 +228,7 @@ export const SignInWithPhoneNumber = ({
       const message = AuthError(error.code);
       Toast(`${message}`, 'Error', true);
       EmptyPhone();
+      setResetCaptcha(true);
       console.error('OTP not sent beacuse' + error.code);
     });
 };

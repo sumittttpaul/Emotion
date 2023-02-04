@@ -185,7 +185,7 @@ const OTPAuthUI: FC<IProps> = (props) => {
           component="button"
           underline="always"
         >
-          Close
+          Cancel
         </Link>
       </div>
     </DialogContainerDark>
