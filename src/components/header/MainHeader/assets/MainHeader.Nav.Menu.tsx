@@ -81,7 +81,7 @@ export const MainHeaderNavMenu: FC<MainHeaderNavMenuProps> = (props) => {
       anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
     >
       {Links.map((value, idx) => (
-        <NextLink href={value.to} passHref>
+        <NextLink key={idx} href={value.to} passHref>
           <MenuItem
             key={idx}
             aria-label="browser-header-NavMenu-button"

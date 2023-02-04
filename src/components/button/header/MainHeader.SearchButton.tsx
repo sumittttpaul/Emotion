@@ -9,6 +9,7 @@ import React, {
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import useScreenSize from '../../../algorithms/ScreenSizeDetection';
+import { Autocomplete, TextField } from '@mui/material';
 
 interface IProps {
   ContainerRef: RefObject<HTMLDivElement>;
@@ -66,6 +67,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
 
   return (
     <motion.button
+      id="main-header-search-button"
       aria-label="desktop-search-button"
       onFocus={SearchFocus}
       onBlur={SearchBlur}
@@ -98,3 +100,4 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
     </motion.button>
   );
 };
+

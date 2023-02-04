@@ -1,23 +1,20 @@
 import { useCycle } from 'framer-motion';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
-import React, { FC, MouseEvent, useRef, useState } from 'react';
+import React, { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 import { Wishlist_Link } from '../../../routerLinks/RouterLinks';
 import { MainHeaderSearchButton } from '../../button/header/MainHeader.SearchButton';
 import { MainHeaderWishlistButton } from '../../button/header/MainHeader.WishlistButton';
 import { MainHeaderNav } from './assets/MainHeader.Nav';
 import { MainHeaderSearchMenuProps } from './search/MainHeader.Search.Menu';
-import {
-  MainHeaderNavMenu,
-  MainHeaderNavMenuProps,
-} from './assets/MainHeader.Nav.Menu';
+import { MainHeaderNavMenuProps } from './assets/MainHeader.Nav.Menu';
 import { PageHeaderUserButton } from '../../button/header/PageHeader.UserButton';
 import { MainHeaderNotificationButton } from '../../button/header/MainHeader.NotificationButton';
 
 const MainHeaderSearchMenu = dynamic<MainHeaderSearchMenuProps>(() =>
   import('./search/MainHeader.Search.Menu').then((x) => x.MainHeaderSearchMenu)
 );
-const MainHeaderSlider = dynamic<MainHeaderNavMenuProps>(() =>
+const MainHeaderNavMenu = dynamic<MainHeaderNavMenuProps>(() =>
   import('./assets/MainHeader.Nav.Menu').then((x) => x.MainHeaderNavMenu)
 );
 
@@ -32,7 +29,7 @@ export interface MainHeaderProps {
  **/
 export const MainHeader: FC<MainHeaderProps> = (props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [SearchMenuOpen, setSearchMenuOpen] = useState('closed');
+  const [SearchMenuOpen, setSearchMenuOpen] = useState(false);
   const ContainerRef = useRef<HTMLDivElement>(null);
   const NavMenuOpen = Boolean(anchorEl);
 
@@ -65,9 +62,9 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
             <div className="flex w-full">
               <MainHeaderSearchButton
                 ContainerRef={ContainerRef}
-                Open={SearchMenuOpen === 'open' ? true : false}
-                onOpen={() => setSearchMenuOpen('open')}
-                onClosed={() => setSearchMenuOpen('closed')}
+                Open={SearchMenuOpen}
+                onOpen={() => setSearchMenuOpen(true)}
+                onClosed={() => setSearchMenuOpen(false)}
               />
             </div>
           </div>
@@ -95,12 +92,10 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
         Value={props.Page}
         onValueChange={props.setChildPage}
       />
-      {typeof window === null && (
-        <MainHeaderSearchMenu
-          SearchMenu={SearchMenuOpen}
-          setSearchMenu={(value) => setSearchMenuOpen(value)}
-        />
-      )}
+      {/* <MainHeaderSearchMenu
+        SearchMenu={true}
+        setSearchMenu={(value) => setSearchMenuOpen(value)}
+      /> */}
     </div>
   );
 };

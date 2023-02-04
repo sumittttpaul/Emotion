@@ -12,7 +12,6 @@ interface IProps {
  * @author
  * @function @DiscoverCarousel
  **/
-
 export const DiscoverCarousel: FC<IProps> = (props) => {
   const ContainerRef = useRef<HTMLDivElement>(null);
   const [CarouselState, setCarouselState] = useState(0);
