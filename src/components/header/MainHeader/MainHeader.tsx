@@ -1,19 +1,16 @@
-import { useCycle } from 'framer-motion';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
-import React, { FC, MouseEvent, useEffect, useRef, useState } from 'react';
+import React, { FC, MouseEvent, useRef, useState } from 'react';
 import { Wishlist_Link } from '../../../routerLinks/RouterLinks';
 import { MainHeaderSearchButton } from '../../button/header/MainHeader.SearchButton';
 import { MainHeaderWishlistButton } from '../../button/header/MainHeader.WishlistButton';
 import { MainHeaderNav } from './assets/MainHeader.Nav';
-import { MainHeaderSearchMenuProps } from './search/MainHeader.Search.Menu';
 import { MainHeaderNavMenuProps } from './assets/MainHeader.Nav.Menu';
 import { PageHeaderUserButton } from '../../button/header/PageHeader.UserButton';
 import { MainHeaderNotificationButton } from '../../button/header/MainHeader.NotificationButton';
+import { SearchContent } from '../../../contents/store/search/Store.Search';
+import useScreenSize from '../../../algorithms/ScreenSizeDetection';
 
-const MainHeaderSearchMenu = dynamic<MainHeaderSearchMenuProps>(() =>
-  import('./search/MainHeader.Search.Menu').then((x) => x.MainHeaderSearchMenu)
-);
 const MainHeaderNavMenu = dynamic<MainHeaderNavMenuProps>(() =>
   import('./assets/MainHeader.Nav.Menu').then((x) => x.MainHeaderNavMenu)
 );
@@ -28,6 +25,7 @@ export interface MainHeaderProps {
  * @function @MainHeader
  **/
 export const MainHeader: FC<MainHeaderProps> = (props) => {
+  const { MediumScreen, SmallMediumScreen, SmallScreen } = useScreenSize();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [SearchMenuOpen, setSearchMenuOpen] = useState(false);
   const ContainerRef = useRef<HTMLDivElement>(null);
@@ -46,9 +44,9 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
       ref={ContainerRef}
       className="bg-[#0f0f0f] flex flex-col z-[999] sticky-top items-center box-border w-full h-[70px]"
     >
-      <div className="flex relative box-border w-full h-full justify-between items-center overflow-x-hidden">
-        <div className="flex relative w-full pr-2 space-x-2.5 items-center justify-between">
-          <div className="flex relative w-full space-x-2">
+      <div className="flex box-border w-full h-full justify-between items-center">
+        <div className="flex w-full pr-2 space-x-2.5 items-center justify-between">
+          <div className="flex w-full space-x-2">
             {/* Nav Bar [ Discover, Offers, Collections] */}
             <div className="flex items-center">
               <MainHeaderNav
@@ -62,9 +60,9 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
             <div className="flex w-full">
               <MainHeaderSearchButton
                 ContainerRef={ContainerRef}
-                Open={SearchMenuOpen}
-                onOpen={() => setSearchMenuOpen(true)}
-                onClosed={() => setSearchMenuOpen(false)}
+                SearchMenuContent={SearchContent}
+                SearchMenuOpen={SearchMenuOpen}
+                setSearchMenuOpen={(value) => setSearchMenuOpen(value)}
               />
             </div>
           </div>
@@ -85,17 +83,15 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
           </div>
         </div>
       </div>
-      <MainHeaderNavMenu
-        anchorEl={anchorEl}
-        open={NavMenuOpen}
-        onClose={handleNavMenuClose}
-        Value={props.Page}
-        onValueChange={props.setChildPage}
-      />
-      {/* <MainHeaderSearchMenu
-        SearchMenu={true}
-        setSearchMenu={(value) => setSearchMenuOpen(value)}
-      /> */}
+      {MediumScreen || SmallMediumScreen || SmallScreen && (
+        <MainHeaderNavMenu
+          anchorEl={anchorEl}
+          open={NavMenuOpen}
+          onClose={handleNavMenuClose}
+          Value={props.Page}
+          onValueChange={props.setChildPage}
+        />
+      )}
     </div>
   );
 };

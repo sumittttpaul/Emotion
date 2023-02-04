@@ -61,8 +61,8 @@ export const MainSidePanel: FC<MainSidePanelProps> = (props) => {
                 width={`${props.Active == data.Name ? 20 : 22}`}
                 className={`${
                   props.Active == data.Name
-                    ? 'opacity-80'
-                    : 'opacity-50 group-hover:opacity-80 hover:transition-opacity'
+                    ? 'opacity-90'
+                    : 'opacity-50 group-hover:opacity-90 hover:transition-opacity'
                 }`}
                 src={`${
                   props.Active == data.Name ? data.IconActive : data.Icon
@@ -107,8 +107,8 @@ export const MainSidePanel: FC<MainSidePanelProps> = (props) => {
                 width={`${props.Active == data.Name ? 20 : 22}`}
                 className={`${
                   props.Active == data.Name
-                    ? 'opacity-80'
-                    : 'opacity-50 group-hover:opacity-80 hover:transition-opacity'
+                    ? 'opacity-90'
+                    : 'opacity-50 group-hover:opacity-90 hover:transition-opacity'
                 }`}
                 src={`${
                   props.Active == data.Name ? data.IconActive : data.Icon
