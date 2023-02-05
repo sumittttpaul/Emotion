@@ -36,6 +36,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
   const [animate, setAnimate] = useState('closed');
   const [Search, setSearch] = useState('');
   const SearchRef = useRef<HTMLInputElement>(null);
+  const ContainerRef = useRef<HTMLDivElement>(null);
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
@@ -78,8 +79,9 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
       <motion.div
         id="main-header-search-button"
         aria-label="desktop-search-button"
+        ref={ContainerRef}
         onFocus={SearchFocus}
-        // onBlur={SearchBlur}
+        onBlur={SearchBlur}
         animate={animate}
         variants={ButtonVariant}
         transition={{ duration: 0.2, type: 'tween' }}
@@ -141,7 +143,8 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
         </div>
       </motion.div>
       <MainHeaderSearchMenu
-        ContainerRef={SearchRef}
+        SearchRef={SearchRef}
+        ContainerRef={ContainerRef}
         SearchMenu={props.SearchMenuOpen}
         GetEmptySearch={Search === '' ? true : false}
         setSearchMenu={props.setSearchMenuOpen}

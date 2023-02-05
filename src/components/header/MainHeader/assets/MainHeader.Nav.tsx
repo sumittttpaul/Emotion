@@ -144,7 +144,7 @@ export const MainHeaderNav: FC<IProps> = (props) => {
                     disableFocusRipple
                     disableTouchRipple
                     aria-label="main-header-button"
-                    className="cursor-default text-[12px] h-[40px] px-6 border-solid border-[2px] rounded-full border-[#1f1f1f] tracking-[0.6px] transition-all duration-300 font-normal bg-transparent text-[#ffffff75] hover:text-[#ffffff] button-text-lower"
+                    className="cursor-default text-[12px] h-[40px] py-2 px-6 border-solid border-[2px] rounded-full border-[#1f1f1f] tracking-[0.6px] transition-all duration-300 font-normal bg-transparent text-[#ffffff75] hover:text-[#ffffff] button-text-lower"
                   >
                     {value.label}
                   </Button>

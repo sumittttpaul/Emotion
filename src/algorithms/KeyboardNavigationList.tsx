@@ -61,6 +61,7 @@ const useNavigateList = <T extends object, K extends keyof T>({
         const value = cursor < list.length - 1 ? cursor + 1 : 0;
         onSelect(list[value] as T);
         setCursor(value);
+        CursorPositionLast();
       } else if (key === 'Enter') {
         onSelect(list[cursor] as T);
         // Proceed Search
