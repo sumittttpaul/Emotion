@@ -103,7 +103,7 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
                 aria-label="user-sign-out-button"
                 disableFocusRipple
                 onClick={props.SignOutUser}
-                className="mt-[8px] p-[2px] relative block bg-[#ffffff20] hover:bg-[#ffffff30] button-text-lower font-normal text-white text-[11px]"
+                className="mt-[8px] p-[2px] relative block bg-[#ffffff15] hover:bg-[#ffffff30] button-text-lower font-normal text-white text-[11px]"
               >
                 Sign out
               </Button>
@@ -121,7 +121,7 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
             Router.push(Manage_Your_Account_Link);
           }, 150);
         }}
-        className="m-1 rounded-md hover:bg-[#ffffff20]"
+        className="m-1 rounded-md hover:bg-[#ffffff15]"
       >
         <div className="flex relative space-x-[10px] opacity-90">
           <Image
@@ -145,7 +145,7 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
             Router.push(Track_Order_Link);
           }, 150);
         }}
-        className="m-1 rounded-md hover:bg-[#ffffff20]"
+        className="m-1 rounded-md hover:bg-[#ffffff15]"
       >
         <div className="flex relative space-x-[10px] opacity-90">
           <Image
@@ -169,7 +169,7 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
             Router.push(Cart_Link);
           }, 150);
         }}
-        className="m-1 rounded-md hover:bg-[#ffffff20]"
+        className="m-1 rounded-md hover:bg-[#ffffff15]"
       >
         <div className="flex relative space-x-[10px] opacity-90">
           <Image
@@ -193,7 +193,7 @@ export const PageHeaderUserButtonMenu: FC<PageHeaderUserButtonMenuProps> = (
             Router.push(Redeem_Gift_Codes_Link);
           }, 150);
         }}
-        className="m-1 rounded-md hover:bg-[#ffffff20]"
+        className="m-1 rounded-md hover:bg-[#ffffff15]"
       >
         <div className="flex relative space-x-[10px] opacity-90">
           <Image

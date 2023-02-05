@@ -33,11 +33,11 @@ export default function useScreenSize() {
   };
   useEffect(() => {
     getScreenWidth();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     window.addEventListener('resize', getScreenWidth);
     return () => window.removeEventListener('resize', getScreenWidth);
-  }); // eslint-disable-line react-hooks/exhaustive-deps
+  });
   return {
     LargeScreen,
     MediumLargeScreen,

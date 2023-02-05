@@ -28,7 +28,6 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
   const { MediumScreen, SmallMediumScreen, SmallScreen } = useScreenSize();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [SearchMenuOpen, setSearchMenuOpen] = useState(false);
-  const ContainerRef = useRef<HTMLDivElement>(null);
   const NavMenuOpen = Boolean(anchorEl);
 
   const handleNavMenuClick = (event: MouseEvent<HTMLElement>) => {
@@ -40,10 +39,7 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
   };
 
   return (
-    <div
-      ref={ContainerRef}
-      className="bg-[#0f0f0f] flex flex-col z-[999] sticky-top items-center box-border w-full h-[70px]"
-    >
+    <div className="bg-[#0f0f0f] flex flex-col z-[999] sticky-top items-center box-border w-full h-[70px]">
       <div className="flex box-border w-full h-full justify-between items-center">
         <div className="flex w-full pr-2 space-x-2.5 items-center justify-between">
           <div className="flex w-full space-x-2">
@@ -59,10 +55,9 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
             {/* Search Button */}
             <div className="flex w-full">
               <MainHeaderSearchButton
-                ContainerRef={ContainerRef}
                 SearchMenuContent={SearchContent}
                 SearchMenuOpen={SearchMenuOpen}
-                setSearchMenuOpen={(value) => setSearchMenuOpen(value)}
+                setSearchMenuOpen={setSearchMenuOpen}
               />
             </div>
           </div>
@@ -83,15 +78,17 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
           </div>
         </div>
       </div>
-      {MediumScreen || SmallMediumScreen || SmallScreen && (
-        <MainHeaderNavMenu
-          anchorEl={anchorEl}
-          open={NavMenuOpen}
-          onClose={handleNavMenuClose}
-          Value={props.Page}
-          onValueChange={props.setChildPage}
-        />
-      )}
+      {MediumScreen ||
+        SmallMediumScreen ||
+        (SmallScreen && (
+          <MainHeaderNavMenu
+            anchorEl={anchorEl}
+            open={NavMenuOpen}
+            onClose={handleNavMenuClose}
+            Value={props.Page}
+            onValueChange={props.setChildPage}
+          />
+        ))}
     </div>
   );
 };

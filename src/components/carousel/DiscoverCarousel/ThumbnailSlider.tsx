@@ -246,6 +246,8 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
   useEffect(() => {
     x.onChange((latest) => {
       HideButton();
+      
+      
     });
   });
 
