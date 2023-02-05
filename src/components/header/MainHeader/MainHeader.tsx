@@ -39,56 +39,50 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
   };
 
   return (
-    <div className="bg-[#0f0f0f] flex flex-col z-[999] sticky-top items-center box-border w-full h-[70px]">
-      <div className="flex box-border w-full h-full justify-between items-center">
-        <div className="flex w-full pr-2 space-x-2.5 items-center justify-between">
-          <div className="flex w-full space-x-2">
-            {/* Nav Bar [ Discover, Offers, Collections] */}
-            <div className="flex items-center">
-              <MainHeaderNav
-                open={NavMenuOpen}
-                onOpen={handleNavMenuClick}
-                Value={props.Page}
-                onValueChange={props.setChildPage}
-              />
-            </div>
-            {/* Search Button */}
-            <div className="flex w-full">
-              <MainHeaderSearchButton
-                SearchMenuContent={SearchContent}
-                SearchMenuOpen={SearchMenuOpen}
-                setSearchMenuOpen={setSearchMenuOpen}
-              />
-            </div>
-          </div>
-          {/* Wishlist, Notification, User Button */}
-          <div className="flex relative space-x-2.5 items-center">
-            <MainHeaderWishlistButton
-              value={props.Page}
-              Click={() => {
-                setTimeout(() => {
-                  if (NavMenuOpen === true) handleNavMenuClose();
-                  props.setChildPage('Wishlist');
-                  Router.push(Wishlist_Link);
-                }, 150);
-              }}
+    <div className="bg-[#0f0f0f] pr-2 flex flex-col z-[999] sticky-top justify-center items-center w-full h-[70px]">
+      <div className="flex w-full space-x-2.5 items-center justify-between">
+        <div className="flex w-full space-x-2.5">
+          {/* Nav Bar [ Discover, Offers, Collections] */}
+          <div className="flex items-center">
+            <MainHeaderNav
+              open={NavMenuOpen}
+              onOpen={handleNavMenuClick}
+              Value={props.Page}
+              onValueChange={props.setChildPage}
             />
-            <MainHeaderNotificationButton />
-            <PageHeaderUserButton />
+          </div>
+          {/* Search Button */}
+          <div className="flex w-full">
+            <MainHeaderSearchButton
+              SearchMenuContent={SearchContent}
+              SearchMenuOpen={SearchMenuOpen}
+              setSearchMenuOpen={setSearchMenuOpen}
+            />
           </div>
         </div>
-      </div>
-      {MediumScreen ||
-        SmallMediumScreen ||
-        (SmallScreen && (
-          <MainHeaderNavMenu
-            anchorEl={anchorEl}
-            open={NavMenuOpen}
-            onClose={handleNavMenuClose}
-            Value={props.Page}
-            onValueChange={props.setChildPage}
+        {/* Wishlist, Notification, User Button */}
+        <div className="flex space-x-2.5 items-center">
+          <MainHeaderWishlistButton
+            value={props.Page}
+            Click={() => {
+              setTimeout(() => {
+                if (NavMenuOpen === true) handleNavMenuClose();
+                props.setChildPage('Wishlist');
+                Router.push(Wishlist_Link);
+              }, 150);
+            }}
           />
-        ))}
+          <MainHeaderNotificationButton />
+          <PageHeaderUserButton />
+        </div>
+      </div>
+      <MainHeaderNavMenu
+        anchorEl={anchorEl}
+        open={NavMenuOpen}
+        onClose={handleNavMenuClose}
+        Value={props.Page}
+        onValueChange={props.setChildPage}
+      />
     </div>
   );
 };

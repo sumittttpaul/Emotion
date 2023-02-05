@@ -6,6 +6,7 @@ import {
   Offers_Link,
 } from '../../../../routerLinks/RouterLinks';
 import NextLink from 'next/link';
+import Image from 'next/image';
 
 export interface MainHeaderNavMenuProps {
   anchorEl: null | HTMLElement;
@@ -92,7 +93,7 @@ export const MainHeaderNavMenu: FC<MainHeaderNavMenuProps> = (props) => {
             className={`${ActiveContent(
               props.Value,
               value.label
-            )} ${'text-white hover:opacity-100 bg-transparent rounded-xl disabled:cursor-not-allowed disabled:text-white w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center py-3 px-14 button-text-lower'}`}
+            )} ${'text-white p-0 m-0 hover:opacity-100 bg-transparent rounded-xl disabled:cursor-not-allowed disabled:text-white w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center button-text-lower'}`}
             onClick={() => {
               setTimeout(() => {
                 if (props.Value != value.label) {
@@ -102,7 +103,20 @@ export const MainHeaderNavMenu: FC<MainHeaderNavMenuProps> = (props) => {
               }, 200);
             }}
           >
-            {value.label}
+            <div className="flex text-left w-[180px] justify-start items-center p-3">
+              <p className="block w-full">{value.label}</p>
+              {Boolean(DisableButton(props.Value, value.label)) && (
+                <div className="block h-5 w-5 opacity-70">
+                  <Image
+                    layout="fixed"
+                    height={18}
+                    width={18}
+                    src="/icons/check-white-2.svg"
+                    alt=""
+                  />
+                </div>
+              )}
+            </div>
           </MenuItem>
         </NextLink>
       ))}

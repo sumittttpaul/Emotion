@@ -85,15 +85,16 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
         transition={{ duration: 0.2, type: 'tween' }}
         className="block text-white w-full max-w-[100px] medium-screen:max-w-[200px] cursor-text justify-start items-center button-text-lower pl-[10px] rounded-full bg-[#202020] hover:bg-[#202020]"
       >
-        <div className="flex items-center ml-1">
-          <Image
-            src="/icons/search-white.svg"
-            height={18}
-            width={18}
-            layout="fixed"
-            className="min-h-[18px] min-w-[18px] block text-white opacity-70"
-            alt=""
-          />
+        <div className="flex items-center">
+          <div className="flex ml-[1px] justify-center h-[16px] w-[16px] opacity-60">
+            <Image
+              src="/icons/search-white-2.svg"
+              height={16}
+              width={16}
+              layout="fixed"
+              alt=""
+            />
+          </div>
           <input
             ref={SearchRef}
             aria-label="search-text-field"
@@ -104,20 +105,36 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
                 ? 'Search by product, category or collection'
                 : 'Search'
             }
-            className="flex min-w-20 pt-[10px] pb-[12px] pl-[10px] mr-2 whitespace-nowrap text-ellipsis placeholder:text-ellipsis w-full h-full bg-transparent text-[14px] text-white placeholder:text-[#ffffff99] placeholder:text-[13px] outline-none"
+            className="flex min-w-20 pt-[10px] pb-[12px] pl-[10px] mr-2 truncate w-full h-full bg-transparent text-[14px] text-white placeholder:text-[#ffffffad] placeholder:text-[13px] outline-none"
           />
           <IconButton
             aria-label="desktop-search-clear-button"
             onClick={() => setSearch('')}
             className={`${
               Search === '' ? 'hidden' : ''
-            } cursor-default p-2 mr-1 bg-transparent hover:bg-[#ffffff15]`}
+            } cursor-default group p-2 bg-transparent hover:bg-[#ffffff15]`}
           >
             <Image
               height={18}
               width={18}
               layout="fixed"
-              src="/icons/x-white.svg"
+              src="/icons/x-white-2.svg"
+              className="group-hover:opacity-100 opacity-70"
+              alt=""
+            />
+          </IconButton>
+          <IconButton
+            aria-label="desktop-search-right-arrow-button"
+            className={`${
+              props.SearchMenuOpen ? '' : 'hidden'
+            } cursor-default group p-2 mr-1 bg-transparent hover:bg-[#ffffff15]`}
+          >
+            <Image
+              height={18}
+              width={18}
+              layout="fixed"
+              src="/icons/arrow-right.svg"
+              className="group-hover:opacity-100 opacity-70"
               alt=""
             />
           </IconButton>

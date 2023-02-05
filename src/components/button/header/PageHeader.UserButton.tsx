@@ -1,7 +1,6 @@
 import React, { FC, Fragment, MouseEvent, ReactNode, useState } from 'react';
-import { IconButton, Button, CircularProgress } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 import Image from 'next/image';
-import { Square_BlurDataURL } from '../../loader/BlurDataURL';
 import { useAuth } from '../../../firebase/AuthProvider';
 import firebase from 'firebase/compat/app';
 import firebaseUser from 'firebase/compat';
@@ -32,6 +31,7 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
   const FirebaseUser = useAuth();
   const FirebaseAuth = getAuth(firebase.app());
   const [user, loading] = useAuthState(FirebaseAuth);
+  const [UserNameLoading, setUserNameLoading] = useState(false);
   const [UserName, setUserName] = useState<string>('');
 
   const { setLoader } = useLoaderState();
@@ -40,42 +40,40 @@ export const PageHeaderUserButton: FC<IProps> = (props) => {
   };
 
   const getUserName = (UID: string) => {
-    GetUserAuthData(UID).then((e) => {
-      if (e) {
-        setUserName(
-          'Hi, ' + DecryptData(e.FirstName, FirstNameEncrytionKey(UID))
-        );
-      } else {
-        setUserName('Hi, User');
-      }
-    });
+    GetUserAuthData(UID)
+      .then((e) => {
+        if (e) {
+          setUserName(
+            'Hi, ' + DecryptData(e.FirstName, FirstNameEncrytionKey(UID))
+          );
+        } else {
+          setUserName('Hi, User');
+        }
+      })
+      .then(() => setUserNameLoading(false));
   };
 
-  if (loading) {
+  if (loading || UserNameLoading)
     return (
       <ContainerButton>
         <LoadingButton />
       </ContainerButton>
     );
-  }
 
-  if (user && FirebaseUser) {
-    if (UserName) {
+  if (user && FirebaseUser)
+    if (!UserName) {
+      setUserNameLoading(true);
+      getUserName(FirebaseUser.uid);
+      return null;
+    }
+
+  if (user && FirebaseUser)
+    if (UserName)
       return (
         <ContainerButton>
           <UserButton user={FirebaseUser} UserName={UserName} />
         </ContainerButton>
       );
-    } else {
-      return (
-        <ContainerButton>
-          <>
-            <LoadingButton />;{getUserName(FirebaseUser.uid)}
-          </>
-        </ContainerButton>
-      );
-    }
-  }
 
   return (
     <ContainerButton>
@@ -95,6 +93,7 @@ interface LoginButtonProps {
   onClick: () => void;
 }
 interface LoadingButtonProps {}
+
 interface ContainerButtonProps {
   children: ReactNode;
 }
@@ -204,7 +203,7 @@ const UserButton: FC<UserButtonProps> = (props) => {
           style={{ minWidth: 47 }}
         >
           {props.user.photoURL ? (
-            <div className="relative flex items-center medium-screen:space-x-2.5">
+            <div className="relative flex items-center pr-[1px] medium-screen:space-x-2.5">
               <Image
                 height={35}
                 width={35}
