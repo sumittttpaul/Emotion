@@ -1,8 +1,7 @@
 import React, {
   ChangeEvent,
-  Dispatch,
+  KeyboardEvent,
   FC,
-  SetStateAction,
   useEffect,
   useRef,
   useState,
@@ -12,8 +11,8 @@ import Image from 'next/image';
 import useScreenSize from '../../../algorithms/ScreenSizeDetection';
 import { MainHeaderSearchMenuProps } from '../../header/MainHeader/search/MainHeader.Search.Menu';
 import dynamic from 'next/dynamic';
-import { SearchContentProps } from '../../../contents/store/search/Store.Search';
 import { IconButton } from '@mui/material';
+import { SearchContent } from '../../../contents/store/search/Store.Search';
 
 const MainHeaderSearchMenu = dynamic<MainHeaderSearchMenuProps>(() =>
   import('../../header/MainHeader/search/MainHeader.Search.Menu').then(
@@ -21,11 +20,7 @@ const MainHeaderSearchMenu = dynamic<MainHeaderSearchMenuProps>(() =>
   )
 );
 
-interface IProps {
-  SearchMenuContent: SearchContentProps[];
-  SearchMenuOpen: boolean;
-  setSearchMenuOpen: Dispatch<SetStateAction<boolean>>;
-}
+interface IProps {}
 
 /**
  * @author
@@ -33,6 +28,7 @@ interface IProps {
  **/
 export const MainHeaderSearchButton: FC<IProps> = (props) => {
   const { MediumScreen, MediumLargeScreen, LargeScreen } = useScreenSize();
+  const [SearchMenuOpen, setSearchMenuOpen] = useState(false);
   const [animate, setAnimate] = useState('closed');
   const [Search, setSearch] = useState('');
   const SearchRef = useRef<HTMLInputElement>(null);
@@ -40,6 +36,15 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
+  };
+
+  const handleSearchKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    if (event.key === 'ArrowUp')
+      event.currentTarget.setSelectionRange(
+        event.currentTarget.value.length,
+        event.currentTarget.value.length
+      );
   };
 
   const ButtonVariant = {
@@ -51,37 +56,51 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
     },
   };
 
-  const SearchFocus = () => {
-    if (animate === 'closed' && props.SearchMenuOpen == false)
+  const SearchClick = () => {
+    if (animate === 'closed' && SearchMenuOpen == false) {
       setAnimate('open');
-    props.setSearchMenuOpen(true);
-    SearchRef.current?.focus();
-  };
-
-  const SearchBlur = () => {
-    if (animate === 'open' && props.SearchMenuOpen == true)
-      setAnimate('closed');
-    props.setSearchMenuOpen(false);
-    SearchRef.current?.blur();
+      setSearchMenuOpen(true);
+      SearchRef.current?.focus();
+    }
   };
 
   useEffect(() => {
-    if (props.SearchMenuOpen) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        ContainerRef.current &&
+        !ContainerRef.current.contains(event.target as Node)
+      ) {
+        if (animate === 'open' && SearchMenuOpen == true) {
+          setAnimate('closed');
+          setSearchMenuOpen(false);
+          setSearch('');
+        }
+      }
+    };
+    window.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      window.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [ContainerRef, SearchMenuOpen, animate]);
+
+  useEffect(() => {
+    if (SearchMenuOpen) {
       setAnimate('open');
     } else {
       setAnimate('closed');
       setSearch('');
     }
-  }, [props.SearchMenuOpen]);
+  }, [SearchMenuOpen]);
 
   return (
-    <div className="relative flex flex-col w-full max-w-[600px]">
+    <motion.div
+      ref={ContainerRef}
+      className="relative flex flex-col w-full max-w-[600px]"
+    >
       <motion.div
         id="main-header-search-button"
         aria-label="desktop-search-button"
-        ref={ContainerRef}
-        onFocus={SearchFocus}
-        onBlur={SearchBlur}
+        onClick={SearchClick}
         animate={animate}
         variants={ButtonVariant}
         transition={{ duration: 0.2, type: 'tween' }}
@@ -102,6 +121,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
             aria-label="search-text-field"
             value={Search}
             onChange={handleSearch}
+            onKeyDown={handleSearchKeyDown}
             placeholder={
               animate === 'open'
                 ? 'Search by product, category or collection'
@@ -128,7 +148,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
           <IconButton
             aria-label="desktop-search-right-arrow-button"
             className={`${
-              props.SearchMenuOpen ? '' : 'hidden'
+              SearchMenuOpen ? '' : 'hidden'
             } cursor-default group p-2 mr-1 bg-transparent hover:bg-[#ffffff15]`}
           >
             <Image
@@ -145,12 +165,12 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
       <MainHeaderSearchMenu
         SearchRef={SearchRef}
         ContainerRef={ContainerRef}
-        SearchMenu={props.SearchMenuOpen}
+        SearchMenu={SearchMenuOpen}
         GetEmptySearch={Search === '' ? true : false}
-        setSearchMenu={props.setSearchMenuOpen}
+        setSearchMenu={setSearchMenuOpen}
         setSearch={setSearch}
-        ContentArray={props.SearchMenuContent}
+        ContentArray={SearchContent}
       />
-    </div>
+    </motion.div>
   );
 };

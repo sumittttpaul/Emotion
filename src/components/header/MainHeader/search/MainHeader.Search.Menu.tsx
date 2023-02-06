@@ -29,20 +29,11 @@ export const MainHeaderSearchMenu: FC<MainHeaderSearchMenuProps> = (props) => {
 
   const removeItem = (index: number) => {
     if (index !== -1) setData(Data.filter((o, i) => index !== i));
-    // if (index !== -1) {
-    //   let items = [...Data];
-    //   let item = { ...items[index] };
-    //   item.Name = '';
-    //   items[index] = item;
-    //   setData(items);
-    // }
   };
 
   const { activeIndex, itemProps } = useNavigateList({
     vertical: true,
-    isOpen: props.SearchMenu,
     list: Data,
-    SearchRef: props.SearchRef,
     GetEmptySearch: props.GetEmptySearch,
     EmptySearch: (value) => props.setSearch(value),
     onSelect: (value) => props.setSearch(value.Name),
@@ -56,10 +47,6 @@ export const MainHeaderSearchMenu: FC<MainHeaderSearchMenuProps> = (props) => {
       {Data.map((value, idx) => (
         <div
           {...itemProps(value)}
-          onPointerDown={() => {
-            props.ContainerRef.current?.focus();
-            props.setSearchMenu(true);
-          }}
           key={value.id}
           className={` ${
             activeIndex === idx ? 'bg-[#00000017]' : 'bg-transparent'
@@ -82,10 +69,7 @@ export const MainHeaderSearchMenu: FC<MainHeaderSearchMenuProps> = (props) => {
           </div>
           {value.type == 'previous-search' && (
             <IconButton
-              onPointerDown={() => {
-                removeItem(idx);
-                props.ContainerRef.current?.focus();
-              }}
+              onPointerDown={() => removeItem(idx)}
               className={`${activeIndex === idx ? 'flex' : 'hidden'} 
                   items-center justify-center w-[30px] h-[30px] p-0 m-0 cursor-pointer hover:bg-transparent`}
               style={{
