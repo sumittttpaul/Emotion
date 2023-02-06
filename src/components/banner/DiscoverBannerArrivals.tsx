@@ -2,11 +2,11 @@ import { Button } from '@mui/material';
 import Image from 'next/image';
 import React, { FC } from 'react';
 import { DiscoverBannerLightingDealIProps } from '../../contents/store/discover/Store.Discover.Banner';
-import { Square_BlurDataURL } from '../loader/BlurDataURL';
 import {
   DiscoverBannerArrivalsMobile,
   DiscoverBannerArrivalsBrowser,
 } from './MultiScreen/DiscoverBannerArrivals.MultiScreen';
+import { BrowserView, MobileView } from 'react-device-detect';
 
 interface IProps {
   ContentArray: DiscoverBannerLightingDealIProps[];

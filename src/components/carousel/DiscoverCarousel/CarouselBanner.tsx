@@ -74,7 +74,7 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
               transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
               variants={ChildAnimationVariant}
               className={` ${
-                props.ContentArray[CarouselState].Button == 'Order now'
+                props.ContentArray[CarouselState].Button.toLowerCase() == 'order now'
                   ? 'hidden small-screen:flex'
                   : 'hidden'
               }`}

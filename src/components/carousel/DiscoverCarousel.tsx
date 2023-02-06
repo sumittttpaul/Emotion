@@ -3,6 +3,7 @@ import { DiscoverCarouselIProps } from '../../contents/store/discover/Store.Disc
 import { CarouselBanner } from './DiscoverCarousel/CarouselBanner';
 import { ThumbnailSlider } from './DiscoverCarousel/ThumbnailSlider';
 import { SliderCarousel } from './DiscoverCarousel/SliderCarousel';
+import { BrowserView, MobileView } from 'react-device-detect';
 
 interface IProps {
   ContentArray: DiscoverCarouselIProps[];
