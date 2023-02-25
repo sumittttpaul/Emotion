@@ -24,7 +24,7 @@ const OTPTextFieldDark: FC<OTPTextFieldProps> = (props) => {
         props.className
       }`}
       aria-label="otp box"
-      type="otp"
+      type="tel"
     />
   );
 };

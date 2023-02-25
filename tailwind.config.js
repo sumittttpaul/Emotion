@@ -29,6 +29,7 @@ module.exports = {
         'xs-350': '350px',
         'xs-400': '400px',
         'xs-435': '435px',
+        'xs-470': '470px',
         'sm-500': '500px',
         'small-screen': '555px',
         'sm-600': '600px',

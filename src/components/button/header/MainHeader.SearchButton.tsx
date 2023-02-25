@@ -39,12 +39,13 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
   };
 
   const handleSearchKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    if (event.key === 'ArrowUp')
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
       event.currentTarget.setSelectionRange(
         event.currentTarget.value.length,
         event.currentTarget.value.length
       );
+    }
   };
 
   const ButtonVariant = {
@@ -95,7 +96,7 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
   return (
     <motion.div
       ref={ContainerRef}
-      className="relative flex flex-col w-full max-w-[600px]"
+      className="relative hidden small-screen:flex flex-col w-full max-w-[600px]"
     >
       <motion.div
         id="main-header-search-button"
@@ -122,6 +123,8 @@ export const MainHeaderSearchButton: FC<IProps> = (props) => {
             value={Search}
             onChange={handleSearch}
             onKeyDown={handleSearchKeyDown}
+            autoCorrect="off"
+            autoComplete="off"
             placeholder={
               animate === 'open'
                 ? 'Search by product, category or collection'

@@ -1,4 +1,5 @@
 import React, { FC, ReactNode, useState } from 'react';
+import { BrowserView } from 'react-device-detect';
 import { PageContainerDark } from '../container/PageContainerDark';
 import { MainSidePanel } from '../sidepanel/MainSidePanel';
 
@@ -46,13 +47,15 @@ export const PageParentLayout: FC<IProps> = (props) => {
   const [Active, setActive] = useState('Home');
   return (
     <PageContainerDark>
-      <MainSidePanel
-        TopPanelData={TopSidePanelItems}
-        BottomPanelData={BottomSidePanelItems}
-        Active={Active}
-        setActive={(value) => setActive(value)}
-        setChildPage={props.setChildPage}
-      />
+      <BrowserView>
+        <MainSidePanel
+          TopPanelData={TopSidePanelItems}
+          BottomPanelData={BottomSidePanelItems}
+          Active={Active}
+          setActive={(value) => setActive(value)}
+          setChildPage={props.setChildPage}
+        />
+      </BrowserView>
       {/* <PageHeader setPage={props.setChildPage} /> */}
       {props.children}
       {/* <PageFooter setPage={props.setChildPage} /> */}

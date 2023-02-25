@@ -62,8 +62,8 @@ export const MainHeaderSearchMenu: FC<MainHeaderSearchMenuProps> = (props) => {
               alt=""
             />
           </div>
-          <div className="items-center pr-1 w-full">
-            <p className="block text-[14px] font-medium truncate text-left">
+          <div className="items-center pr-1 w-full overflow-hidden">
+            <p className="block text-[14px] truncate font-medium text-left">
               {value.Name}
             </p>
           </div>

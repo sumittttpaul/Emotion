@@ -1,5 +1,6 @@
 import React, { FC, Fragment, ReactNode } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
+import { isBrowser, isMobile } from 'react-device-detect';
 
 interface IProps {
   children: ReactNode;
@@ -11,7 +12,6 @@ interface IProps {
  * @author
  * @function @DialogContainerDark
  **/
-
 export const DialogContainerDark: FC<IProps> = (props) => {
   return (
     <Transition appear show={props.show} as={Fragment}>
@@ -39,7 +39,13 @@ export const DialogContainerDark: FC<IProps> = (props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-150"
             >
-              <Dialog.Panel className="absolute sm:relative h-full w-full sm:w-auto sm:h-auto transform scroll-smooth overflow-auto sm:rounded-2xl bg-[#202020] text-center align-middle shadow-xl transition-all">
+              <Dialog.Panel
+                className={`${
+                  isBrowser ? 'relative w-auto h-auto rounded-2xl' : ''
+                } ${
+                  isMobile ? 'absolute h-full w-full' : ''
+                } transform scroll-smooth overflow-auto bg-[#202020] text-center align-middle shadow-xl transition-all`}
+              >
                 {props.children}
               </Dialog.Panel>
             </Transition.Child>

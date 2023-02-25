@@ -35,7 +35,7 @@ export const MainHeader: FC<MainHeaderProps> = (props) => {
   };
 
   return (
-    <div className="bg-[#0f0f0f] pr-2 flex flex-col z-[999] sticky-top justify-center items-center w-full h-[70px]">
+    <div className="bg-[#0f0f0f] flex flex-col z-[999] fixed-top justify-center items-center w-full h-[70px] pr-[90px]">
       <div className="flex w-full space-x-2.5 items-center justify-between">
         <div className="flex w-full space-x-2.5">
           {/* Nav Bar [ Discover, Offers, Collections] */}

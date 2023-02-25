@@ -157,10 +157,7 @@ const IconPasswordTextFieldDark: FC<IconPasswordTextFieldProps> = (props) => {
           width={30}
           className="opacity-[0.4]"
           src={props.icon}
-          loading="lazy"
           alt=""
-          placeholder="blur"
-          blurDataURL={Square_BlurDataURL}
         />
       </div>
     </div>
