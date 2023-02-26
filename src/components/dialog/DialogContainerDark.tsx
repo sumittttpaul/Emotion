@@ -1,6 +1,6 @@
 import React, { FC, Fragment, ReactNode } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { isBrowser, isMobile } from 'react-device-detect';
+import { useTypedSelector } from '../../redux/useTypeSelector';
 
 interface IProps {
   children: ReactNode;
@@ -13,6 +13,8 @@ interface IProps {
  * @function @DialogContainerDark
  **/
 export const DialogContainerDark: FC<IProps> = (props) => {
+  const { isMobile } = useTypedSelector((state) => state.Device);
+
   return (
     <Transition appear show={props.show} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={props.close}>
@@ -41,9 +43,9 @@ export const DialogContainerDark: FC<IProps> = (props) => {
             >
               <Dialog.Panel
                 className={`${
-                  isBrowser ? 'relative w-auto h-auto rounded-2xl' : ''
-                } ${
-                  isMobile ? 'absolute h-full w-full' : ''
+                  isMobile
+                    ? 'absolute h-full w-full'
+                    : 'relative w-auto h-auto rounded-2xl'
                 } transform scroll-smooth overflow-auto bg-[#202020] text-center align-middle shadow-xl transition-all`}
               >
                 {props.children}

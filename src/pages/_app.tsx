@@ -14,12 +14,14 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import theme from '../../src/theme';
 import createEmotionCache from '../../src/createEmotionCache';
-import { StateProvider } from '../providers/StateProvider';
+import StateProvider from '../providers/StateProvider';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 import { AuthProvider } from '../firebase/AuthProvider';
 import { Loading } from '../components/loader/Loading';
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
+import { getSelectorsByUserAgent } from 'react-device-detect';
+import { setDevice } from '../redux/actions';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -27,18 +29,30 @@ interface EmotionCacheProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
+interface ServerSideProps {
+  userAgent: string;
+  isMobile: boolean;
+}
+
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
 };
 
-type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
-};
+type AppPropsAndServerSidePropsWithLayout = AppProps &
+  ServerSideProps & {
+    Component: NextPageWithLayout;
+  };
 
-function MyApp(props: AppPropsWithLayout, cache: EmotionCacheProps) {
+function MyApp(
+  props: AppPropsAndServerSidePropsWithLayout,
+  cache: EmotionCacheProps
+) {
   const { Component, pageProps } = props;
   const { emotionCache = clientSideEmotionCache } = cache;
   const getLayout = Component.getLayout ?? ((page) => page);
+  if (props.isMobile) store.dispatch(setDevice(true));
+  else store.dispatch(setDevice(false));
+
   return (
     <CacheProvider value={emotionCache}>
       <AuthProvider>
@@ -62,5 +76,19 @@ function MyApp(props: AppPropsWithLayout, cache: EmotionCacheProps) {
     </CacheProvider>
   );
 }
+
+export const getServerSideProps: GetServerSideProps<ServerSideProps> = async (
+  context
+) => {
+  const { req } = context;
+  const userAgent = req.headers['user-agent'] ?? '';
+  const { isMobile } = getSelectorsByUserAgent(userAgent);
+  return {
+    props: {
+      userAgent,
+      isMobile,
+    },
+  };
+};
 
 export default MyApp;

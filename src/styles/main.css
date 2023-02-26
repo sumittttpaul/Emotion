@@ -24,15 +24,15 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#00d4ff",GradientType=1);
 }
 
-.fixed-top {
-  position: -webkit-fixed;
-  position: fixed;
+.sticky-top {
+  position: -webkit-sticky;
+  position: sticky;
   top: 0; /* required */
 }
 
-.fixed-bottom {
-  position: -webkit-fixed;
-  position: fixed;
+.sticky-bottom {
+  position: -webkit-sticky;
+  position: sticky;
   bottom: 0; /* required */
 }
 

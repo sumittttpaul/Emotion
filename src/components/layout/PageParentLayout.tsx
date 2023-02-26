@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useState } from 'react';
-import { BrowserView } from 'react-device-detect';
+import { useTypedSelector } from '../../redux/useTypeSelector';
 import { PageContainerDark } from '../container/PageContainerDark';
 import { MainSidePanel } from '../sidepanel/MainSidePanel';
 
@@ -45,20 +45,21 @@ const BottomSidePanelItems = [
  **/
 export const PageParentLayout: FC<IProps> = (props) => {
   const [Active, setActive] = useState('Home');
+  const { isMobile } = useTypedSelector((state) => state.Device);
+
+  if (isMobile)
+    return <PageContainerDark>{props.children}</PageContainerDark>;
+
   return (
     <PageContainerDark>
-      <BrowserView>
-        <MainSidePanel
-          TopPanelData={TopSidePanelItems}
-          BottomPanelData={BottomSidePanelItems}
-          Active={Active}
-          setActive={(value) => setActive(value)}
-          setChildPage={props.setChildPage}
-        />
-      </BrowserView>
-      {/* <PageHeader setPage={props.setChildPage} /> */}
+      <MainSidePanel
+        TopPanelData={TopSidePanelItems}
+        BottomPanelData={BottomSidePanelItems}
+        Active={Active}
+        setActive={(value) => setActive(value)}
+        setChildPage={props.setChildPage}
+      />
       {props.children}
-      {/* <PageFooter setPage={props.setChildPage} /> */}
     </PageContainerDark>
   );
 };

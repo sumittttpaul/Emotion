@@ -6,7 +6,7 @@ import {
   DiscoverBannerArrivalsMobile,
   DiscoverBannerArrivalsBrowser,
 } from './MultiScreen/DiscoverBannerArrivals.MultiScreen';
-import { BrowserView, MobileView } from 'react-device-detect';
+
 
 interface IProps {
   ContentArray: DiscoverBannerLightingDealIProps[];

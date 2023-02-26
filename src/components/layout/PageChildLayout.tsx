@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useState } from 'react';
-import { BrowserView, isBrowser, MobileView } from 'react-device-detect';
+import { useTypedSelector } from '../../redux/useTypeSelector';
 import { MainFooterMobile } from '../footer/MainFooter/MainFooter.Mobile';
 import { MainHeader } from '../header/MainHeader/MainHeader';
 import { MainHeaderMobile } from '../header/MainHeader/MainHeader.Mobile';
@@ -34,26 +34,29 @@ const TopSidePanelItems = [
  **/
 export const PageChildLayout: FC<IProps> = (props) => {
   const [Active, setActive] = useState('Home');
-  return (
-    <main
-      className={` ${
-        isBrowser ? 'pl-[82px] pt-[70px]' : ''
-      } w-full flex-grow z-auto mx-auto`}
-    >
-      <BrowserView>
-        <MainHeader Page={props.ChildPage} setChildPage={props.setChildPage} />
-      </BrowserView>
-      <MobileView>
+  const { isMobile } = useTypedSelector((state) => state.Device);
+
+  const Children = () => {
+    return <div className="w-full flex-grow z-auto">{props.children}</div>;
+  };
+
+  if (isMobile)
+    return (
+      <main className="w-full flex-grow z-auto mx-auto">
         <MainHeaderMobile />
-      </MobileView>
-      <div className="w-full flex-grow z-auto">{props.children}</div>
-      <MobileView>
+        <Children />
         <MainFooterMobile
           TopPanelData={TopSidePanelItems}
           Active={Active}
           setActive={(value) => setActive(value)}
         />
-      </MobileView>
+      </main>
+    );
+
+  return (
+    <main className="pl-[82px] w-full flex-grow z-auto mx-auto">
+      <MainHeader Page={props.ChildPage} setChildPage={props.setChildPage} />
+      <Children />
     </main>
   );
 };

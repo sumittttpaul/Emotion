@@ -38,7 +38,7 @@ export const MainHeaderMobile: FC<IProps> = (props) => {
           <MainHeaderMobileUserButton />
         </div>
       </div>
-      <div className="flex w-full fixed-top p-3 space-x-2 z-[999] bg-[#0f0f0f]">
+      <div className="flex w-full sticky-top p-3 space-x-2 z-[999] bg-[#0f0f0f]">
         <Button className="text-white px-4 py-[6px] text-[12px] font-normal rounded-full button-text-lower bg-[#ffffff20] hover:bg-[#ffffff20]">
           Discover
         </Button>

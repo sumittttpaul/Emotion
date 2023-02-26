@@ -8,10 +8,10 @@ const Home: NextPage = () => {
   return null;
 };
 
-export default Home;
-
 export const getServerSideProps = NoAccessToIndexPages(() => {
   return {
     props: {},
   };
 });
+
+export default Home;

@@ -15,7 +15,7 @@ interface IProps {
 
 export const MainFooterMobile: FC<IProps> = (props) => {
   return (
-    <div className="flex w-full fixed-bottom p-3 space-x-2 z-[999] footer-gradient">
+    <div className="flex w-full sticky-bottom p-3 space-x-2 z-[999] footer-gradient">
       <div className="flex w-full h-full justify-between mx-10">
         {props.TopPanelData.map((data, i) => (
           <motion.button

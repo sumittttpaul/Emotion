@@ -1,51 +1,35 @@
-import { NextPage } from 'next';
-import { useState } from 'react';
-import { MainSidePanel } from '../components/sidepanel/MainSidePanel';
+import { GetServerSideProps, NextPage } from 'next';
+import { getSelectorsByUserAgent } from 'react-device-detect';
+import { useTypedSelector } from '../redux/useTypeSelector';
 
-const TopSidePanelItems = [
-  {
-    Name: 'Home',
-    Icon: '/icons/home.svg',
-    IconActive: '/icons/home-fill.svg',
-  },
-  {
-    Name: 'Fanbook',
-    Icon: '/icons/blog.svg',
-    IconActive: '/icons/blog-fill.svg',
-  },
-  {
-    Name: 'Basket',
-    Icon: '/icons/basket.svg',
-    IconActive: '/icons/basket-fill.svg',
-  },
-];
-
-const BottomSidePanelItems = [
-  {
-    Name: 'FAQ',
-    Icon: '/icons/faq.svg',
-    IconActive: '/icons/faq-fill.svg',
-  },
-  {
-    Name: 'Help',
-    Icon: '/icons/help.svg',
-    IconActive: '/icons/help-fill.svg',
-  },
-];
+interface IProps {
+  userAgent: string;
+  isMobile: boolean;
+}
 
 /**
- * @SidePanel
+ * @Test_Page
  **/
-const SidePanel: NextPage = () => {
-  const [Active, setActive] = useState('Home');
-  return (
-    <MainSidePanel
-      TopPanelData={TopSidePanelItems}
-      BottomPanelData={BottomSidePanelItems}
-      Active={Active}
-      setActive={(value) => setActive(value)}
-    />
-  );
+
+const TestPage: NextPage<IProps> = (props) => {
+  const { isMobile } = useTypedSelector((state) => state.Device);
+
+  if (isMobile) return <h1>Mobile : {props.userAgent}</h1>;
+  return <h1>Desktop : {props.userAgent}</h1>;
 };
 
-export default SidePanel;
+export const getServerSideProps: GetServerSideProps<IProps> = async (
+  context
+) => {
+  const { req } = context;
+  const userAgent = req.headers['user-agent'] ?? '';
+  const { isMobile } = getSelectorsByUserAgent(userAgent);
+  return {
+    props: {
+      userAgent,
+      isMobile
+    },
+  };
+};
+
+export default TestPage;

@@ -5,7 +5,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '../createEmotionCache';
 
-export default class MyDocument extends Document {
+class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
@@ -30,7 +30,6 @@ MyDocument.getInitialProps = async (ctx) => {
   const originalRenderPage = ctx.renderPage;
   const cache = createEmotionCache();
   const { extractCriticalToChunks } = createEmotionServer(cache);
-
   ctx.renderPage = () =>
     originalRenderPage({
       enhanceApp: (App: any) =>
@@ -38,7 +37,6 @@ MyDocument.getInitialProps = async (ctx) => {
           return <App emotionCache={cache} {...props} />;
         },
     });
-
   const initialProps = await Document.getInitialProps(ctx);
   const emotionStyles = extractCriticalToChunks(initialProps.html);
   const emotionStyleTags = emotionStyles.styles.map((style) => (
@@ -55,3 +53,5 @@ MyDocument.getInitialProps = async (ctx) => {
     emotionStyleTags,
   };
 };
+
+export default MyDocument;

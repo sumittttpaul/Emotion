@@ -18,3 +18,5 @@ export const StateProvider: FC<IProps> = (props) => {
     </ColorState>
   );
 };
+
+export default StateProvider;
