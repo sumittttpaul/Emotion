@@ -20,7 +20,6 @@ import store from '../redux/store';
 import { AuthProvider } from '../firebase/AuthProvider';
 import { Loading } from '../components/loader/Loading';
 import { NextPage } from 'next';
-import { setDevice } from '../redux/actions';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -34,15 +33,12 @@ type NextPageWithLayout = NextPage & {
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
-  isMobile: boolean;
-  userAgent: string;
 };
 
 function MyApp(props: AppPropsWithLayout, cache: EmotionCacheProps) {
   const { Component, pageProps } = props;
   const { emotionCache = clientSideEmotionCache } = cache;
   const getLayout = Component.getLayout ?? ((page) => page);
-  store.dispatch(setDevice(props.isMobile));
   return (
     <CacheProvider value={emotionCache}>
       <Provider store={store}>
