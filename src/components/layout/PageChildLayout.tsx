@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useState } from 'react';
-import { useTypedSelector } from '../../redux/useTypeSelector';
+import { useAppSelector } from '../../redux/useAppSelector';
 import { MainFooterMobile } from '../footer/MainFooter/MainFooter.Mobile';
 import { MainHeader } from '../header/MainHeader/MainHeader';
 import { MainHeaderMobile } from '../header/MainHeader/MainHeader.Mobile';
@@ -34,7 +34,7 @@ const TopSidePanelItems = [
  **/
 export const PageChildLayout: FC<IProps> = (props) => {
   const [Active, setActive] = useState('Home');
-  const { isMobile } = useTypedSelector((state) => state.Device);
+  const { isMobile } = useAppSelector((state) => state.Device);
 
   const Children = () => {
     return <div className="w-full flex-grow z-auto">{props.children}</div>;

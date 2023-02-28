@@ -8,10 +8,10 @@ const Auth: NextPage = () => {
   return null;
 };
 
-export default Auth;
-
 export const getServerSideProps = NoAccessToNullPages(() => {
   return {
     props: {},
   };
 });
+
+export default Auth;

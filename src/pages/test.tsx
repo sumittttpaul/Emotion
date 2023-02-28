@@ -1,9 +1,10 @@
 import { GetServerSideProps, NextPage } from 'next';
 import { getSelectorsByUserAgent } from 'react-device-detect';
-import { useTypedSelector } from '../redux/useTypeSelector';
+import { setDevice } from '../redux/actions';
+import store from '../redux/store';
+import { useAppSelector } from '../redux/useAppSelector';
 
 interface IProps {
-  userAgent: string;
   isMobile: boolean;
 }
 
@@ -12,10 +13,22 @@ interface IProps {
  **/
 
 const TestPage: NextPage<IProps> = (props) => {
-  const { isMobile } = useTypedSelector((state) => state.Device);
+  store.dispatch(setDevice(props.isMobile));
 
-  if (isMobile) return <h1>Mobile : {props.userAgent}</h1>;
-  return <h1>Desktop : {props.userAgent}</h1>;
+  const { isMobile } = useAppSelector((state) => state.Device);
+
+  if (isMobile)
+    return (
+      <h1 className="flex w-full p-10 text-4xl font-bold justify-center">
+        Mobile
+      </h1>
+    );
+
+  return (
+    <h1 className="flex w-full p-10 text-4xl font-bold justify-center">
+      Desktop
+    </h1>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps<IProps> = async (
@@ -26,8 +39,7 @@ export const getServerSideProps: GetServerSideProps<IProps> = async (
   const { isMobile } = getSelectorsByUserAgent(userAgent);
   return {
     props: {
-      userAgent,
-      isMobile
+      isMobile,
     },
   };
 };

@@ -139,10 +139,10 @@ const ForgotPassword: NextPage = () => {
   );
 };
 
-export default ForgotPassword;
-
 export const getServerSideProps = NoAccessToUserExistPages(() => {
   return {
     props: {},
   };
 });
+
+export default ForgotPassword;

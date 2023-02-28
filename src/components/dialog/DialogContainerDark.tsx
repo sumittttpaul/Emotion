@@ -1,6 +1,6 @@
 import React, { FC, Fragment, ReactNode } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { useTypedSelector } from '../../redux/useTypeSelector';
+import { useAppSelector } from '../../redux/useAppSelector';
 
 interface IProps {
   children: ReactNode;
@@ -13,7 +13,7 @@ interface IProps {
  * @function @DialogContainerDark
  **/
 export const DialogContainerDark: FC<IProps> = (props) => {
-  const { isMobile } = useTypedSelector((state) => state.Device);
+  const { isMobile } = useAppSelector((state) => state.Device);
 
   return (
     <Transition appear show={props.show} as={Fragment}>

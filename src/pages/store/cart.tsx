@@ -6,7 +6,7 @@ import { CartUI } from '../../components/ui/CartUI';
 /**
  * @Cart_Page
  **/
-export default function Cart() {
+function Cart() {
   return <CartUI />;
 }
 
@@ -23,3 +23,5 @@ Cart.getLayout = function GetLayout(Cart: ReactElement) {
     </PageParentLayout>
   );
 };
+
+export default Cart;

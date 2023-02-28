@@ -6,7 +6,7 @@ import { WishlistUI } from '../../components/ui/WishlistUI';
 /**
  * @Wishlist_Page
  **/
-export default function Wishlist() {
+function Wishlist() {
   return <WishlistUI />;
 }
 
@@ -23,3 +23,5 @@ Wishlist.getLayout = function GetLayout(Wishlist: ReactElement) {
     </PageParentLayout>
   );
 };
+
+export default Wishlist;

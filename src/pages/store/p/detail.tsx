@@ -6,7 +6,7 @@ import { ProductDetailUI } from '../../../components/ui/ProductDetailUI';
 /**
  * @Product_Detail_Page
  **/
-export default function ProductDetail() {
+function ProductDetail() {
   return <ProductDetailUI />;
 }
 
@@ -23,3 +23,5 @@ ProductDetail.getLayout = function GetLayout(ProductDetail: ReactElement) {
     </PageParentLayout>
   );
 };
+
+export default ProductDetail;

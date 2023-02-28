@@ -321,10 +321,10 @@ const Register: NextPage = () => {
   );
 };
 
-export default Register;
-
 export const getServerSideProps = NoAccessToNullUserPages(() => {
   return {
     props: {},
   };
 });
+
+export default Register;

@@ -6,14 +6,14 @@ import {
 } from '../../../../../algorithms/AuthAlgorithms';
 import { useAuth } from '../../../../../firebase/AuthProvider';
 import { IAvatarIconReducerState } from '../../../../../redux/reducers/AvatarReducer';
-import { useTypedSelector } from '../../../../../redux/useTypeSelector';
+import { useAppSelector } from '../../../../../redux/useAppSelector';
 import { AvatarCircularButton } from '../../../../button/AvatarCircularButton';
 import { ToastDark } from '../../../../toast/ToastDark';
 import { AvatarDialogUIProps } from '../AvatarUI/AvatarDialogUI';
 // import { AvatarDialogUI } from '../AvatarUI/AvatarDialogUI';
 
-const AvatarDialogUI = dynamic<AvatarDialogUIProps>(
-  () => import('../AvatarUI/AvatarDialogUI').then((x) => x.AvatarDialogUI),
+const AvatarDialogUI = dynamic<AvatarDialogUIProps>(() =>
+  import('../AvatarUI/AvatarDialogUI').then((x) => x.AvatarDialogUI)
 );
 
 export interface AvatarButtonProps {}
@@ -27,7 +27,7 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
   const user = useAuth();
   const userPhoto = user?.photoURL?.toString();
   // Handle Collections
-  const { Avatar } = useTypedSelector((state) => state);
+  const { Avatar } = useAppSelector((state) => state);
   // State
   const [AvatarDialog, setAvatarDialog] = useState(false);
   const [ChangeAvatar, setChangeAvatar] = useState(true);

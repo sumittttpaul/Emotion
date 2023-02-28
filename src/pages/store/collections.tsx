@@ -6,7 +6,7 @@ import { CollectionsUI } from '../../components/ui/CollectionsUI';
 /**
  * @Collections_Page
  **/
-export default function Collections() {
+function Collections() {
   return <CollectionsUI />;
 }
 
@@ -23,3 +23,5 @@ Collections.getLayout = function GetLayout(Collections: ReactElement) {
     </PageParentLayout>
   );
 };
+
+export default Collections;

@@ -6,7 +6,7 @@ import { OffersUI } from '../../components/ui/OffersUI';
 /**
  * @Offers_Page
  **/
-export default function Offers() {
+function Offers() {
   return <OffersUI />;
 }
 
@@ -23,3 +23,5 @@ Offers.getLayout = function GetLayout(Offers: ReactElement) {
     </PageParentLayout>
   );
 };
+
+export default Offers;

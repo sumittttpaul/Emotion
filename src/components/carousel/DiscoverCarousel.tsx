@@ -3,7 +3,7 @@ import { DiscoverCarouselIProps } from '../../contents/store/discover/Store.Disc
 import { CarouselBanner } from './DiscoverCarousel/CarouselBanner';
 import { ThumbnailSlider } from './DiscoverCarousel/ThumbnailSlider';
 import { SliderCarousel } from './DiscoverCarousel/SliderCarousel';
-import { useTypedSelector } from '../../redux/useTypeSelector';
+import { useAppSelector } from '../../redux/useAppSelector';
 
 interface IProps {
   ContentArray: DiscoverCarouselIProps[];
@@ -17,7 +17,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
   const ContainerRef = useRef<HTMLDivElement>(null);
   const [CarouselState, setCarouselState] = useState(0);
   const [BannerTextTransition, setBannerTextTransition] = useState('open');
-  const { isMobile } = useTypedSelector((state) => state.Device);
+  const { isMobile } = useAppSelector((state) => state.Device);
 
   if (isMobile)
     return (

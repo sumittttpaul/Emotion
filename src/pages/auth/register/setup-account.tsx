@@ -172,10 +172,10 @@ const SetupAccount: NextPage = () => {
   );
 };
 
-export default SetupAccount;
-
 export const getServerSideProps = NoAccessToNullUserPages(() => {
   return {
     props: {},
   };
 });
+
+export default SetupAccount;

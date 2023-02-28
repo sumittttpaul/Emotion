@@ -6,7 +6,8 @@ import { DiscoverUI } from '../../components/ui/DiscoverUI';
 /**
  * @Store_Page
  **/
-export default function Store() {
+
+function Store() {
   return <DiscoverUI />;
 }
 
@@ -23,3 +24,5 @@ Store.getLayout = function GetLayout(Store: ReactElement) {
     </PageParentLayout>
   );
 };
+
+export default Store;

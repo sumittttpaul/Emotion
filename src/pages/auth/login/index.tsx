@@ -528,10 +528,10 @@ const Login: NextPage = () => {
   );
 };
 
-export default Login;
-
 export const getServerSideProps = NoAccessToUserExistPages(() => {
   return {
     props: {},
   };
 });
+
+export default Login;
