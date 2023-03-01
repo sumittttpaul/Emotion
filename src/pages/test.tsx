@@ -5,7 +5,7 @@ import store from '../redux/store';
 import { useAppSelector } from '../redux/useAppSelector';
 
 interface IProps {
-  isMobile: boolean;
+  userAgent: string;
 }
 
 /**
@@ -13,11 +13,12 @@ interface IProps {
  **/
 
 const TestPage: NextPage<IProps> = (props) => {
-  store.dispatch(setDevice(props.isMobile));
+  // const { isMobile } = getSelectorsByUserAgent(props.userAgent);
+  // store.dispatch(setDevice(isMobile));
 
-  const { isMobile } = useAppSelector((state) => state.Device);
+  const { Device } = useAppSelector((state) => state);
 
-  if (isMobile)
+  if (Device.isMobile)
     return (
       <h1 className="flex w-full p-10 text-4xl font-bold justify-center">
         Mobile
@@ -36,10 +37,9 @@ export const getServerSideProps: GetServerSideProps<IProps> = async (
 ) => {
   const { req } = context;
   const userAgent = req.headers['user-agent'] ?? '';
-  const { isMobile } = getSelectorsByUserAgent(userAgent);
   return {
     props: {
-      isMobile,
+      userAgent,
     },
   };
 };

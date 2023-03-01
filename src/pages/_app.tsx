@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/bundle';
 import * as React from 'react';
 import Head from 'next/head';
-import { AppProps } from 'next/app';
+import { AppContext, AppProps } from 'next/app';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
@@ -20,6 +20,8 @@ import store from '../redux/store';
 import { AuthProvider } from '../firebase/AuthProvider';
 import { Loading } from '../components/loader/Loading';
 import { NextPage } from 'next';
+import { setDevice } from '../redux/actions';
+import { parse } from 'next-useragent';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -35,8 +37,12 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-function MyApp(props: AppPropsWithLayout, cache: EmotionCacheProps) {
-  const { Component, pageProps } = props;
+function MyApp(
+  props: AppPropsWithLayout & { isMobile: boolean },
+  cache: EmotionCacheProps
+) {
+  const { Component, pageProps, isMobile } = props;
+  store.dispatch(setDevice(isMobile));
   const { emotionCache = clientSideEmotionCache } = cache;
   const getLayout = Component.getLayout ?? ((page) => page);
   return (
@@ -62,5 +68,11 @@ function MyApp(props: AppPropsWithLayout, cache: EmotionCacheProps) {
     </CacheProvider>
   );
 }
+
+MyApp.getInitialProps = async ({ ctx }: AppContext) => {
+  const userAgent = ctx.req?.headers['user-agent'] ?? '';
+  const isMobile = parse(userAgent).isMobile;
+  return { isMobile };
+};
 
 export default MyApp;
