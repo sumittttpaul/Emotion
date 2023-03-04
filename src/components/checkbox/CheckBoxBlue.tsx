@@ -51,9 +51,6 @@ const CheckBoxBlue: FC<IProps> = (props) => {
           className="opacity-50"
           src="/icons/unChecked.svg"
           alt=""
-          placeholder="blur"
-          loading='lazy'
-          blurDataURL={Square_BlurDataURL}
         />
       }
       inputProps={{ 'aria-label': 'Privary Policy Checkbox' }}

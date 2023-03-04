@@ -26,15 +26,7 @@ const OtherAccountAuthUI: FC<IProps> = (props) => {
         onClick={props.FacebookSignInButton}
         className={buttonDesign}
       >
-        <Image
-          height={18}
-          width={9}
-          src="/icons/facebook.svg"
-          alt=""
-          placeholder="blur"
-          loading="lazy"
-          blurDataURL={Square_BlurDataURL}
-        />
+        <Image height={18} width={9} src="/icons/facebook.svg" alt="" />
       </Button>
       <Button
         aria-label="google-sign-in-button"
@@ -42,15 +34,7 @@ const OtherAccountAuthUI: FC<IProps> = (props) => {
         onClick={props.GoogleSignInButton}
         className={buttonDesign}
       >
-        <Image
-          height={17}
-          width={17}
-          src="/icons/google.svg"
-          alt=""
-          placeholder="blur"
-          loading="lazy"
-          blurDataURL={Square_BlurDataURL}
-        />
+        <Image height={17} width={17} src="/icons/google.svg" alt="" />
       </Button>
       <Button
         aria-label="apple-sign-in-button"
@@ -58,15 +42,7 @@ const OtherAccountAuthUI: FC<IProps> = (props) => {
         onClick={props.AppleSignInButton}
         className={buttonDesign}
       >
-        <Image
-          height={18}
-          width={18}
-          src="/icons/apple.svg"
-          alt=""
-          placeholder="blur"
-          loading="lazy"
-          blurDataURL={Square_BlurDataURL}
-        />
+        <Image height={18} width={18} src="/icons/apple.svg" alt="" />
       </Button>
     </div>
   );
