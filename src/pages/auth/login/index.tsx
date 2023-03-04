@@ -56,7 +56,6 @@ const Login: NextPage = () => {
   const [PasswordError, setPasswordError] = useState(false);
   const [PhoneLoader, setPhoneLoader] = useState(false);
   const [EmailLoader, setEmailLoader] = useState(false);
-  const [EmptyOTPBox, setEmptyOTPBox] = useState(false);
   const [ResetCaptcha, setResetCaptcha] = useState(false);
 
   // Handle State
