@@ -7,7 +7,7 @@ interface Iprops {
   onValueChange: (value: string) => void;
 }
 
-export const PageHeaderLogo = (props: Iprops) => {
+export const HeaderLogo = (props: Iprops) => {
   return (
     <div className="flex relative py-[8.4px] sm:px-[12px]">
       <Image

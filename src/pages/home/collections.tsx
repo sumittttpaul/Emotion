@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react';
-import { PageChildLayout } from '../../components/layout/PageChildLayout';
-import { PageParentLayout } from '../../components/layout/PageParentLayout';
+import { ChildLayout } from '../../components/layout/ChildLayout';
+import { ParentLayout } from '../../components/layout/ParentLayout';
 import { CollectionsUI } from '../../components/ui/CollectionsUI';
 import { getServerSideProps } from '../../algorithms/DeviceDetectSSR';
 
@@ -14,14 +14,14 @@ function Collections() {
 Collections.getLayout = function GetLayout(Collections: ReactElement) {
   const [ChildPage, setChildPage] = useState('Collections');
   return (
-    <PageParentLayout setChildPage={(value) => setChildPage(value)}>
-      <PageChildLayout
+    <ParentLayout setChildPage={(value) => setChildPage(value)}>
+      <ChildLayout
         ChildPage={ChildPage}
         setChildPage={(value) => setChildPage(value)}
       >
         {Collections}
-      </PageChildLayout>
-    </PageParentLayout>
+      </ChildLayout>
+    </ParentLayout>
   );
 };
 

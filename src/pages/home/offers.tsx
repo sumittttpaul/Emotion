@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react';
-import { PageParentLayout } from '../../components/layout/PageParentLayout';
-import { PageChildLayout } from '../../components/layout/PageChildLayout';
+import { ParentLayout } from '../../components/layout/ParentLayout';
+import { ChildLayout } from '../../components/layout/ChildLayout';
 import { OffersUI } from '../../components/ui/OffersUI';
 import { getServerSideProps } from '../../algorithms/DeviceDetectSSR';
 
@@ -14,14 +14,14 @@ function Offers() {
 Offers.getLayout = function GetLayout(Offers: ReactElement) {
   const [ChildPage, setChildPage] = useState('Offers');
   return (
-    <PageParentLayout setChildPage={(value) => setChildPage(value)}>
-      <PageChildLayout
+    <ParentLayout setChildPage={(value) => setChildPage(value)}>
+      <ChildLayout
         ChildPage={ChildPage}
         setChildPage={(value) => setChildPage(value)}
       >
         {Offers}
-      </PageChildLayout>
-    </PageParentLayout>
+      </ChildLayout>
+    </ParentLayout>
   );
 };
 

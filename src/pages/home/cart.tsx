@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react';
-import { PageParentLayout } from '../../components/layout/PageParentLayout';
-import { PageChildLayout } from '../../components/layout/PageChildLayout';
+import { ParentLayout } from '../../components/layout/ParentLayout';
+import { ChildLayout } from '../../components/layout/ChildLayout';
 import { CartUI } from '../../components/ui/CartUI';
 import { getServerSideProps } from '../../algorithms/DeviceDetectSSR';
 
@@ -14,14 +14,14 @@ function Cart() {
 Cart.getLayout = function GetLayout(Cart: ReactElement) {
   const [ChildPage, setChildPage] = useState('Cart');
   return (
-    <PageParentLayout setChildPage={(value) => setChildPage(value)}>
-      <PageChildLayout
+    <ParentLayout setChildPage={(value) => setChildPage(value)}>
+      <ChildLayout
         ChildPage={ChildPage}
         setChildPage={(value) => setChildPage(value)}
       >
         {Cart}
-      </PageChildLayout>
-    </PageParentLayout>
+      </ChildLayout>
+    </ParentLayout>
   );
 };
 

@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react';
-import { PageParentLayout } from '../../components/layout/PageParentLayout';
-import { PageChildLayout } from '../../components/layout/PageChildLayout';
+import { ParentLayout } from '../../components/layout/ParentLayout';
+import { ChildLayout } from '../../components/layout/ChildLayout';
 import { DiscoverUI } from '../../components/ui/DiscoverUI';
 import { getServerSideProps } from '../../algorithms/DeviceDetectSSR';
 
@@ -15,14 +15,14 @@ function Store() {
 Store.getLayout = function GetLayout(Store: ReactElement) {
   const [ChildPage, setChildPage] = useState('Discover');
   return (
-    <PageParentLayout setChildPage={(value) => setChildPage(value)}>
-      <PageChildLayout
+    <ParentLayout setChildPage={(value) => setChildPage(value)}>
+      <ChildLayout
         ChildPage={ChildPage}
         setChildPage={(value) => setChildPage(value)}
       >
         {Store}
-      </PageChildLayout>
-    </PageParentLayout>
+      </ChildLayout>
+    </ParentLayout>
   );
 };
 
