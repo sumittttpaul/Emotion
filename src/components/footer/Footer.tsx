@@ -4,7 +4,6 @@ import { useLoaderState } from '../../providers/state/LoadingState';
 import { Home_Link } from '../../routerLinks/RouterLinks';
 import { FooterLogo } from '../logo/CompanyLogo';
 import { FooterBottom } from './assets/FooterBottom';
-import { FooterTop } from './assets/FooterTop';
 import { ScrollToTopButton } from './assets/ScrollToTopButton';
 
 export interface FooterProps {
@@ -31,8 +30,6 @@ export const Footer: FC<FooterProps> = (props) => {
               Router.push(Home_Link);
             }}
           />
-          {/* <FooterTop /> */}
-          {/* <div className="h-[1px] w-full my-5 bg-[#ffffff1a]" /> */}
           <h6 className="text-[11.5px] text-center py-2 font-[300] leading-[22px] whitespace-normal lg:max-w-[70%] xl:max-w-[60%] 2xl:max-w-[55%] flex text-white opacity-80">
             Founded in 2023, Emotion is a outfit fashion brand that makes
             creative, distinctive fashion for the trendy, contemporary Indian.

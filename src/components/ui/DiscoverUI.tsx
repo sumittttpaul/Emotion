@@ -42,7 +42,6 @@ export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
       <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
       <DiscoverBannerFive ContentArray={DiscoverBannerFiveContent} />
       <DiscoverCatelog />
-      <Footer setPage={() => {}} />
     </div>
   );
 };

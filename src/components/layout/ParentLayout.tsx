@@ -43,6 +43,7 @@ const BottomSidePanelItems = [
  * @author
  * @function @ParentLayout
  **/
+
 export const ParentLayout: FC<IProps> = (props) => {
   const [Active, setActive] = useState('Home');
   const { isMobile } = useReduxSelector((state) => state.Device);
