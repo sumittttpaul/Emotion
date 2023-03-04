@@ -69,7 +69,7 @@ function MyApp(
   );
 }
 
-MyApp.getInitialProps = async ({ ctx }: AppContext) => {
+MyApp.getStaticProps = async ({ ctx }: AppContext) => {
   const userAgent = ctx.req?.headers['user-agent'] ?? '';
   const isMobile = parse(userAgent).isMobile;
   return { isMobile };
