@@ -1,4 +1,4 @@
-import { AnyAction } from 'redux';
+import { createSlice } from '@reduxjs/toolkit';
 
 export interface IAvatarState {
   Animal: IAvatarIconReducerState[];
@@ -844,14 +844,10 @@ const initialState = {
   ],
 };
 
-const AvatarReducer = (
-  state: IAvatarState = initialState,
-  action: AnyAction
-): IAvatarState => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+export const AvatarSlice = createSlice({
+  name: 'Avatar',
+  initialState: initialState,
+  reducers: {},
+});
 
-export default AvatarReducer;
+export const AvatarReducer = AvatarSlice.reducer;

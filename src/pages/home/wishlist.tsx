@@ -1,27 +1,30 @@
 import { ReactElement, useState } from 'react';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
-import { OffersUI } from '../../components/ui/OffersUI';
+import { WishlistUI } from '../../components/ui/WishlistUI';
+import { getServerSideProps } from '../../algorithms/DeviceDetectSSR';
 
 /**
- * @Offers_Page
+ * @Wishlist_Page
  **/
-function Offers() {
-  return <OffersUI />;
+function Wishlist() {
+  return <WishlistUI />;
 }
 
-Offers.getLayout = function GetLayout(Offers: ReactElement) {
-  const [ChildPage, setChildPage] = useState('Offers');
+Wishlist.getLayout = function GetLayout(Wishlist: ReactElement) {
+  const [ChildPage, setChildPage] = useState('Wishlist');
   return (
     <PageParentLayout setChildPage={(value) => setChildPage(value)}>
       <PageChildLayout
         ChildPage={ChildPage}
         setChildPage={(value) => setChildPage(value)}
       >
-        {Offers}
+        {Wishlist}
       </PageChildLayout>
     </PageParentLayout>
   );
 };
 
-export default Offers;
+export { getServerSideProps };
+
+export default Wishlist;

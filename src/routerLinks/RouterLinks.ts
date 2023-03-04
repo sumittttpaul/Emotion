@@ -1,4 +1,4 @@
-export const Home_Link = '/store';
+export const Home_Link = '/home';
 export const Login_Link = '/auth/login';
 export const Register_Link = '/auth/register';
 export const Forgot_Password_Link = '/auth/login/forgot-password';
@@ -15,11 +15,11 @@ export const FAQ_Link = '';
 export const Help_Link = '';
 export const About_Us_Link = '';
 //
-export const Discover_Link = '/store';
-export const Offers_Link = '/store/offers';
-export const Collections_Link = '/store/collections';
-export const Wishlist_Link = '/store/wishlist';
-export const Cart_Link = '/store/cart';
+export const Discover_Link = '/home';
+export const Offers_Link = '/home/offers';
+export const Collections_Link = '/home/collections';
+export const Wishlist_Link = '/home/wishlist';
+export const Cart_Link = '/home/cart';
 //
 export const Contact_Us_Link = '';
 export const Track_Order_Link = '';

@@ -15,13 +15,13 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 import theme from '../../src/theme';
 import createEmotionCache from '../../src/createEmotionCache';
 import StateProvider from '../providers/StateProvider';
-import { Provider } from 'react-redux';
-import store from '../redux/store';
 import { AuthProvider } from '../firebase/AuthProvider';
 import { Loading } from '../components/loader/Loading';
-import { NextPage } from 'next';
-import { setDevice } from '../redux/actions';
+import { GetServerSideProps, NextPage } from 'next';
+import { wrapper } from '../redux/store';
+import { setDevice } from '../redux/reducers/DeviceReducer';
 import { parse } from 'next-useragent';
+import { Provider } from 'react-redux';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -37,12 +37,9 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-function MyApp(
-  props: AppPropsWithLayout & { isMobile: boolean },
-  cache: EmotionCacheProps
-) {
-  const { Component, pageProps, isMobile } = props;
-  store.dispatch(setDevice(isMobile));
+function MyApp(AppProps: AppPropsWithLayout, cache: EmotionCacheProps) {
+  const { Component, pageProps } = AppProps;
+  const { store, props } = wrapper.useWrappedStore(pageProps);
   const { emotionCache = clientSideEmotionCache } = cache;
   const getLayout = Component.getLayout ?? ((page) => page);
   return (
@@ -59,7 +56,7 @@ function MyApp(
             </Head>
             <ThemeProvider theme={theme}>
               <CssBaseline />
-              {getLayout(<Component {...pageProps} />)}
+              {getLayout(<Component {...props.pageProps} />)}
               <Loading />
             </ThemeProvider>
           </StateProvider>
@@ -68,11 +65,5 @@ function MyApp(
     </CacheProvider>
   );
 }
-
-MyApp.getStaticProps = async ({ ctx }: AppContext) => {
-  const userAgent = ctx.req?.headers['user-agent'] ?? '';
-  const isMobile = parse(userAgent).isMobile;
-  return { isMobile };
-};
 
 export default MyApp;

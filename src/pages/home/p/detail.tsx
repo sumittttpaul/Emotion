@@ -2,6 +2,7 @@ import { ReactElement, useState } from 'react';
 import { PageChildLayout } from '../../../components/layout/PageChildLayout';
 import { PageParentLayout } from '../../../components/layout/PageParentLayout';
 import { ProductDetailUI } from '../../../components/ui/ProductDetailUI';
+import { getServerSideProps } from '../../../algorithms/DeviceDetectSSR';
 
 /**
  * @Product_Detail_Page
@@ -23,5 +24,7 @@ ProductDetail.getLayout = function GetLayout(ProductDetail: ReactElement) {
     </PageParentLayout>
   );
 };
+
+export { getServerSideProps };
 
 export default ProductDetail;

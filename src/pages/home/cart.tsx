@@ -1,27 +1,30 @@
 import { ReactElement, useState } from 'react';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
-import { WishlistUI } from '../../components/ui/WishlistUI';
+import { CartUI } from '../../components/ui/CartUI';
+import { getServerSideProps } from '../../algorithms/DeviceDetectSSR';
 
 /**
- * @Wishlist_Page
+ * @Cart_Page
  **/
-function Wishlist() {
-  return <WishlistUI />;
+function Cart() {
+  return <CartUI />;
 }
 
-Wishlist.getLayout = function GetLayout(Wishlist: ReactElement) {
-  const [ChildPage, setChildPage] = useState('Wishlist');
+Cart.getLayout = function GetLayout(Cart: ReactElement) {
+  const [ChildPage, setChildPage] = useState('Cart');
   return (
     <PageParentLayout setChildPage={(value) => setChildPage(value)}>
       <PageChildLayout
         ChildPage={ChildPage}
         setChildPage={(value) => setChildPage(value)}
       >
-        {Wishlist}
+        {Cart}
       </PageChildLayout>
     </PageParentLayout>
   );
 };
 
-export default Wishlist;
+export { getServerSideProps };
+
+export default Cart;

@@ -2,6 +2,7 @@ import { ReactElement, useState } from 'react';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import { CollectionsUI } from '../../components/ui/CollectionsUI';
+import { getServerSideProps } from '../../algorithms/DeviceDetectSSR';
 
 /**
  * @Collections_Page
@@ -23,5 +24,7 @@ Collections.getLayout = function GetLayout(Collections: ReactElement) {
     </PageParentLayout>
   );
 };
+
+export { getServerSideProps };
 
 export default Collections;

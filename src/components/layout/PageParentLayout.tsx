@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useState } from 'react';
-import { useAppSelector } from '../../redux/useAppSelector';
+import { useReduxSelector } from '../../redux/useReduxSelector';
 import { PageContainerDark } from '../container/PageContainerDark';
 import { MainSidePanel } from '../sidepanel/MainSidePanel';
 
@@ -45,7 +45,7 @@ const BottomSidePanelItems = [
  **/
 export const PageParentLayout: FC<IProps> = (props) => {
   const [Active, setActive] = useState('Home');
-  const { isMobile } = useAppSelector((state) => state.Device);
+  const { isMobile } = useReduxSelector((state) => state.Device);
 
   if (isMobile) return <PageContainerDark>{props.children}</PageContainerDark>;
 

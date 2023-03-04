@@ -1,28 +1,30 @@
 import { ReactElement, useState } from 'react';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
-import { DiscoverUI } from '../../components/ui/DiscoverUI';
+import { OffersUI } from '../../components/ui/OffersUI';
+import { getServerSideProps } from '../../algorithms/DeviceDetectSSR';
 
 /**
- * @Store_Page
+ * @Offers_Page
  **/
-
-function Store() {
-  return <DiscoverUI />;
+function Offers() {
+  return <OffersUI />;
 }
 
-Store.getLayout = function GetLayout(Store: ReactElement) {
-  const [ChildPage, setChildPage] = useState('Discover');
+Offers.getLayout = function GetLayout(Offers: ReactElement) {
+  const [ChildPage, setChildPage] = useState('Offers');
   return (
     <PageParentLayout setChildPage={(value) => setChildPage(value)}>
       <PageChildLayout
         ChildPage={ChildPage}
         setChildPage={(value) => setChildPage(value)}
       >
-        {Store}
+        {Offers}
       </PageChildLayout>
     </PageParentLayout>
   );
 };
 
-export default Store;
+export { getServerSideProps };
+
+export default Offers;

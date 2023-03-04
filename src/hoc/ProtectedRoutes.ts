@@ -57,7 +57,7 @@ export const NoAccessToIndexPages = (gssp: any) => {
   return async () => {
     return {
       redirect: {
-        destination: '/store',
+        destination: '/home',
         statusCode: 302,
       },
     };

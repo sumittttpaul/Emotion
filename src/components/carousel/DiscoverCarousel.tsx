@@ -1,6 +1,6 @@
 import React, { FC, useRef, useState } from 'react';
 import { DiscoverCarouselIProps } from '../../contents/store/discover/Store.Discover.Carousel';
-import { useAppSelector } from '../../redux/useAppSelector';
+import { useReduxSelector } from '../../redux/useReduxSelector';
 import dynamic from 'next/dynamic';
 import {
   DiscoverCarouselDesktopProps,
@@ -31,7 +31,7 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
   const ContainerRef = useRef<HTMLDivElement>(null);
   const [CarouselState, setCarouselState] = useState(0);
   const [BannerTextTransition, setBannerTextTransition] = useState('open');
-  const { isMobile } = useAppSelector((state) => state.Device);
+  const { isMobile } = useReduxSelector((state) => state.Device);
 
   if (isMobile)
     return <DiscoverCarouselMobile ContentArray={props.ContentArray} />;

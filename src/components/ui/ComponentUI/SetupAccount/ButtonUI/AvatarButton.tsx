@@ -5,8 +5,7 @@ import {
   DeleteAvatar,
 } from '../../../../../algorithms/AuthAlgorithms';
 import { useAuth } from '../../../../../firebase/AuthProvider';
-import { IAvatarIconReducerState } from '../../../../../redux/reducers/AvatarReducer';
-import { useAppSelector } from '../../../../../redux/useAppSelector';
+import { useReduxSelector } from '../../../../../redux/useReduxSelector';
 import { AvatarCircularButton } from '../../../../button/AvatarCircularButton';
 import { ToastDark } from '../../../../toast/ToastDark';
 import { AvatarDialogUIProps } from '../AvatarUI/AvatarDialogUI';
@@ -27,7 +26,7 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
   const user = useAuth();
   const userPhoto = user?.photoURL?.toString();
   // Handle Collections
-  const { Avatar } = useAppSelector((state) => state);
+  const { Avatar } = useReduxSelector((state) => state);
   // State
   const [AvatarDialog, setAvatarDialog] = useState(false);
   const [ChangeAvatar, setChangeAvatar] = useState(true);
@@ -38,9 +37,7 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
   const [AvatarContainer, setAvatarContainer] = useState(
     'ShowAvatar-container'
   );
-  const [Collection, setCollection] = useState<IAvatarIconReducerState[]>(
-    Avatar.Animal
-  );
+  const [Collection, setCollection] = useState(Avatar.Animal);
   const [Collectionheading, setCollectionHeading] = useState('');
   const [CollectionBackBool, setCollectionBackBool] = useState(false);
   const [AvatarScreen1, setAvatarScreen1] = useState(false);

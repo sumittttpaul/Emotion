@@ -1,27 +1,31 @@
 import { ReactElement, useState } from 'react';
 import { PageParentLayout } from '../../components/layout/PageParentLayout';
 import { PageChildLayout } from '../../components/layout/PageChildLayout';
-import { CartUI } from '../../components/ui/CartUI';
+import { DiscoverUI } from '../../components/ui/DiscoverUI';
+import { getServerSideProps } from '../../algorithms/DeviceDetectSSR';
 
 /**
- * @Cart_Page
+ * @Store_Page
  **/
-function Cart() {
-  return <CartUI />;
+
+function Store() {
+  return <DiscoverUI />;
 }
 
-Cart.getLayout = function GetLayout(Cart: ReactElement) {
-  const [ChildPage, setChildPage] = useState('Cart');
+Store.getLayout = function GetLayout(Store: ReactElement) {
+  const [ChildPage, setChildPage] = useState('Discover');
   return (
     <PageParentLayout setChildPage={(value) => setChildPage(value)}>
       <PageChildLayout
         ChildPage={ChildPage}
         setChildPage={(value) => setChildPage(value)}
       >
-        {Cart}
+        {Store}
       </PageChildLayout>
     </PageParentLayout>
   );
 };
 
-export default Cart;
+export { getServerSideProps };
+
+export default Store;
