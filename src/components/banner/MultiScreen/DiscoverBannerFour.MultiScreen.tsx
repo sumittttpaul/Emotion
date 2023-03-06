@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { DiscoverBannerFourIProps } from '../../../contents/store/discover/Store.Discover.Banner';
 import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';

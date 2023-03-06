@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { DiscoverBannerLightingDealIProps } from '../../../contents/store/discover/Store.Discover.Banner';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { motion } from 'framer-motion';
 import { Poster_BlurDataURL } from '../../loader/BlurDataURL';
 import useScreenSize from '../../../algorithms/ScreenSizeDetection';

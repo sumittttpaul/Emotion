@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { IAvatarIconReducerState } from '../../../redux/reducers/AvatarReducer';
 import { Square_BlurDataURL } from '../../loader/BlurDataURL';
 

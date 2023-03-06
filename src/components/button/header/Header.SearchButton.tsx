@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import useScreenSize from '../../../algorithms/ScreenSizeDetection';
 import { HeaderSearchMenuProps } from '../../header/search/Header.Search.Menu';
 import dynamic from 'next/dynamic';

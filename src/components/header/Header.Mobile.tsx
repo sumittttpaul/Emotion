@@ -1,5 +1,5 @@
 import { Button, IconButton } from '@mui/material';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import React, { FC, useEffect, useState } from 'react';
 import { HeaderMobileUserButton } from './mobile/Header.Mobile.UserButton';
 

@@ -6,7 +6,7 @@ import {
   Offers_Link,
 } from '../../../routerLinks/RouterLinks';
 import NextLink from 'next/link';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 
 export interface HeaderNavMenuProps {
   anchorEl: null | HTMLElement;

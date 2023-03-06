@@ -25,6 +25,6 @@ ProductDetail.getLayout = function GetLayout(ProductDetail: ReactElement) {
   );
 };
 
-export { getServerSideProps };
+// export { getServerSideProps };
 
 export default ProductDetail;

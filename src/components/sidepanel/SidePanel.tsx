@@ -1,6 +1,6 @@
 import { HeaderLogo } from '../logo/CompanyLogo';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Router from 'next/router';
 import { FC } from 'react';
 import { useLoaderState } from '../../providers/state/LoadingState';

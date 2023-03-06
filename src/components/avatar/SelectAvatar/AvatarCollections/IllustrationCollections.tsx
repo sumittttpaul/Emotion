@@ -5,7 +5,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { Poster_BlurDataURL } from '../../../loader/BlurDataURL';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 
 interface IProps {
   show: () => void;

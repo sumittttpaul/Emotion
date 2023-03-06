@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import React, { FC } from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { StoreDiscoverExploreSearchIProps } from '../../../contents/store/discover/Store.Discover.Search';
 import { Poster_BlurDataURL } from '../../loader/BlurDataURL';
 

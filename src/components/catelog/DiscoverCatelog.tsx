@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { Button } from '@mui/material';
 import { Rectangle_BlurDataURL } from '../loader/BlurDataURL';
 
@@ -29,7 +29,9 @@ export const DiscoverCatelog: FC<IProps> = (props) => {
         </div>
         <div className="medium-screen:max-w-[35%] small-medium-screen:max-w-[50%] max-w-[65%] h-full w-full z-[2] flex relative justify-start items-center">
           <div className="text-white flex flex-col w-full space-y-4">
-            <h6 className="text-[18px] small-screen:text-[20px] w-full">Explore our fanbook</h6>
+            <h6 className="text-[18px] small-screen:text-[20px] w-full">
+              Explore our fanbook
+            </h6>
             <h6 className="text-[14px] small-screen:text-[16px] whitespace-normal leading-[18px] font-sans font-normal text-left w-full opacity-70">
               Browse by genre, features, price and more to find your next
               favorite look.

@@ -1,6 +1,6 @@
 import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import React, { Dispatch, FC, RefObject, SetStateAction } from 'react';
 import { DiscoverCarouselIProps } from '../../../contents/store/discover/Store.Discover.Carousel';
 
@@ -18,8 +18,7 @@ interface IProps {
   ThumbnailArray: DiscoverCarouselIProps[];
 }
 
-const ThumbnailSizes =
-  'w-[220px] h-[120px] min-w-[220px] min-h-[120px]';
+const ThumbnailSizes = 'w-[220px] h-[120px] min-w-[220px] min-h-[120px]';
 
 /**
  * @Thumbnail_Button_Map

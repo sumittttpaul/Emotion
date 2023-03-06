@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Button } from '@mui/material';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { Square_BlurDataURL } from '../../../loader/BlurDataURL';
 
 interface IProps {

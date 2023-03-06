@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { IconTextFieldProps } from './AllTextFieldProps';
 import { Square_BlurDataURL } from '../loader/BlurDataURL';
 

@@ -1,6 +1,6 @@
 import { Link } from '@mui/material';
 import React, { FC } from 'react';
-import Image, { StaticImageData } from 'next/image';
+import Image, { StaticImageData } from 'next/legacy/image';
 import { Square_BlurDataURL } from '../../loader/BlurDataURL';
 
 interface IProps {

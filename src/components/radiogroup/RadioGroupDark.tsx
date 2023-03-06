@@ -40,9 +40,9 @@ export const RadioGroupDark: FC<IProps> = (props) => {
           Radio Group Dark
         </RadioGroup.Label>
         <div className="space-x-1 mx-auto w-full flex custom-webkit-focus">
-          {props.content.map((content) => (
+          {props.content.map((content,i) => (
             <RadioGroup.Option
-              key={content.toString()}
+              key={i}
               value={content}
               className={({ active, checked }) =>
                 `${active ? 'ring-0 ring-offset-0' : ''}
@@ -96,9 +96,9 @@ export const RadioGroupDark: FC<IProps> = (props) => {
           Radio Group Dark
         </RadioGroup.Label>
         <div className="space-x-1 mx-auto w-full flex custom-webkit-focus">
-          {props.content.map((content) => (
+          {props.content.map((content,i) => (
             <RadioGroup.Option
-              key={content.toString()}
+              key={i}
               value={content}
               className={({ active, checked }) =>
                 `${active ? 'ring-0 ring-offset-0' : ''}

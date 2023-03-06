@@ -1,6 +1,6 @@
 import { Button, styled } from '@mui/material';
 import React, { FC } from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { Square_BlurDataURL } from '../../../loader/BlurDataURL';
 
 interface IProps {
@@ -68,7 +68,7 @@ const FromComputer: FC<IProps> = (props) => {
               className="opacity-30"
               src="/icons/upload-cloud.svg"
               alt=""
-              loading='lazy'
+              loading="lazy"
               placeholder="blur"
               blurDataURL={Square_BlurDataURL}
             />

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { DiscoverBannerLightingDealIProps } from '../../../contents/store/discover/Store.Discover.Banner';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { motion } from 'framer-motion';
 import { Poster_BlurDataURL } from '../../loader/BlurDataURL';
 import useScreenSize from '../../../algorithms/ScreenSizeDetection';
@@ -53,13 +53,6 @@ export const DiscoverBannerArrivalsBrowser: FC<IProps> = (props) => {
             blurDataURL={Poster_BlurDataURL}
             alt=""
           />
-          {/* {value.Available ? (
-            <h6 className={`${'bg-primary-blue-rgb'} ${AvailableStyle}`}>
-              Order Now
-            </h6>
-          ) : (
-            <h6 className={`${'bg-[#0f0f0f]'} ${AvailableStyle}`}>Sold Out</h6>
-          )} */}
           <div className="mt-3 space-y-1 overflow-hidden text-white">
             <h6 className={HeadingStyle}>{value.Heading}</h6>
             <h6 className={DescriptionStyle}>{value.Description}</h6>

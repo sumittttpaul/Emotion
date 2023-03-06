@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import useScreenSize from '../../../algorithms/ScreenSizeDetection';

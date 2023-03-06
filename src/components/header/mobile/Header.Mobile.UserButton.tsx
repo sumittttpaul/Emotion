@@ -12,7 +12,7 @@ import { useAuth } from '../../../firebase/AuthProvider';
 import { useLoaderState } from '../../../providers/state/LoadingState';
 import { Login_Link } from '../../../routerLinks/RouterLinks';
 import Router from 'next/router';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import dynamic from 'next/dynamic';
 import { HeaderUserButtonMenuProps } from '../../button/header/Header.UserButton.Menu';
 

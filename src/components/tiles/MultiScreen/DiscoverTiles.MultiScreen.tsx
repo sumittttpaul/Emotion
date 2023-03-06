@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { DiscoverTilesIProps } from '../../../contents/store/discover/Store.Discover.Tiles';
 import { UnderlineButtonDark } from '../../button/UnderlineButtonDark';
 import { Swiper, SwiperSlide } from 'swiper/react';

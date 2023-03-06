@@ -1,6 +1,6 @@
 import React, { FC, Fragment, MouseEvent, ReactNode, useState } from 'react';
 import { Button, CircularProgress } from '@mui/material';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { useAuth } from '../../../firebase/AuthProvider';
 import firebase from 'firebase/compat/app';
 import firebaseUser from 'firebase/compat';

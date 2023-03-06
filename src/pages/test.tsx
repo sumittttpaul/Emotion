@@ -27,6 +27,6 @@ const TestPage: NextPage<IProps> = (props) => {
   );
 };
 
-export { getServerSideProps };
+// export { getServerSideProps };
 
 export default TestPage;

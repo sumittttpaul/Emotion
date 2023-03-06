@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import React, { FC } from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 
 interface IProps {
   onClick: () => void;
@@ -51,7 +51,7 @@ export const LeftArrowButton: FC<IProps> = (props) => {
           src="/icons/left-arrow-fill.svg"
           height={10}
           width={10}
-          loading='lazy'
+          loading="lazy"
           alt=""
         />
       </div>
@@ -79,7 +79,7 @@ export const RightArrowButton: FC<IProps> = (props) => {
           src="/icons/right-arrow-fill.svg"
           height={10}
           width={10}
-          loading='lazy'
+          loading="lazy"
           alt=""
         />
       </div>

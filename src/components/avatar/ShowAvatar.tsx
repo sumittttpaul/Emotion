@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Button, CircularProgress, IconButton } from '@mui/material';
 import { XIcon } from '@heroicons/react/solid';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { Square_BlurDataURL, Circle_BlurDataURL } from '../loader/BlurDataURL';
 
 interface IProps {
@@ -43,15 +43,7 @@ const ShowAvatar: FC<IProps> = (props) => {
         </h6>
         {/* Info Heading */}
         <div className="flex w-full space-x-2 pb-2">
-          <Image
-            height={18}
-            width={18}
-            src="/icons/users.svg"
-            alt=""
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL={Square_BlurDataURL}
-          />
+          <Image height={18} width={18} src="/icons/users.svg" alt="" />
           <h6 className="text-[13px] text-black text-left w-full">
             Visible across Emotion services.
           </h6>

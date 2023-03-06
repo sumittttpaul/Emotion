@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import { Poster_BlurDataURL } from '../../loader/BlurDataURL';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { HeartIcon as HeartIconOutline } from '@heroicons/react/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid';
 import { TooltipDark } from '../../tooltip/TooltipDark';

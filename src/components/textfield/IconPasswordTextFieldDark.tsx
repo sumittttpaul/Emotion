@@ -2,7 +2,7 @@ import React, { FC, useState, MouseEvent } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { IconButton, InputAdornment } from '@mui/material';
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
 import { IconPasswordTextFieldProps } from './AllTextFieldProps';

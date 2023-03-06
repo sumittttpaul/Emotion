@@ -8,7 +8,7 @@ import {
   Redeem_Gift_Codes_Link,
 } from '../../../routerLinks/RouterLinks';
 import { Square_BlurDataURL } from '../../loader/BlurDataURL';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import firebase from 'firebase/compat';
 import UserIcon from '../../../../public/icons/user-fill.svg';
 

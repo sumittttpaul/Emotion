@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import React, { FC } from 'react';
 import useScreenSize from '../../../algorithms/ScreenSizeDetection';
 import { StoreDiscoverExploreSearchIProps } from '../../../contents/store/discover/Store.Discover.Search';

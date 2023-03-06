@@ -1,11 +1,10 @@
-// pages/_document.tsx
-
 import * as React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '../createEmotionCache';
+import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
 
-class MyDocument extends Document {
+class MyDocument extends Document<{ emotionStyleTags: EmotionJSX.Element[] }> {
   render() {
     return (
       <Html lang="en">
@@ -15,7 +14,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
           />
-          {(this.props as any).emotionStyleTags}
+          {this.props.emotionStyleTags}
         </Head>
         <body>
           <Main />

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { PhotographIcon } from '@heroicons/react/solid';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { Button } from '@mui/material';
 import {
   Banner_BlurDataURL,

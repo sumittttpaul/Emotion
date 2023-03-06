@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
 const initialState = {
-  isMobile: null,
+  isMobile: false,
 };
 
 export const DeviceSlice = createSlice({
