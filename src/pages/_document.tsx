@@ -1,31 +1,39 @@
 import * as React from 'react';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentProps,
+  DocumentContext,
+} from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '../createEmotionCache';
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
+import { noto_sans } from '../theme';
 
-class MyDocument extends Document<{ emotionStyleTags: EmotionJSX.Element[] }> {
-  render() {
-    return (
-      <Html lang="en">
-        <Head>
-          <link rel="shortcut icon" href="/static/favicon.ico" />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
-          />
-          {this.props.emotionStyleTags}
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
+interface MyDocumentProps extends DocumentProps {
+  emotionStyleTags: EmotionJSX.Element[];
 }
 
-MyDocument.getInitialProps = async (ctx) => {
+function MyDocument({ emotionStyleTags }: MyDocumentProps) {
+  return (
+    <Html lang="en" className={noto_sans.className}>
+      <Head>
+        <meta name="theme-color" content="#0f0f0f" />
+        <link rel="shortcut icon" href="/static/favicon.ico" />
+        <meta name="emotion-insertion-point" content="" />
+        {emotionStyleTags}
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
+}
+
+MyDocument.getInitialProps = async (ctx: DocumentContext) => {
   const originalRenderPage = ctx.renderPage;
   const cache = createEmotionCache();
   const { extractCriticalToChunks } = createEmotionServer(cache);

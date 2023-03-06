@@ -50,7 +50,6 @@ function MyApp(AppProps: AppPropsWithLayout, cache: EmotionCacheProps) {
                 name="viewport"
                 content="initial-scale=1, width=device-width"
               />
-              <meta name="theme-color" content="#0f0f0f" />
             </Head>
             <ThemeProvider theme={theme}>
               <CssBaseline />
