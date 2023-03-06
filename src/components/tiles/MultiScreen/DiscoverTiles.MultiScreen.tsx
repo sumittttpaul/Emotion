@@ -98,11 +98,11 @@ export const DiscoverTilesMobile: FC<DiscoverTilesMobileProps> = (props) => {
         {props.ContentArray.map((value, index) => (
           <SwiperSlide tag="li" key={index} className={SwiperSlideStyle}>
             <Image
+              priority
               height={100}
               width={150}
               src={value.Image}
               alt=""
-              loading="lazy"
               placeholder="blur"
               blurDataURL={Rectangle_BlurDataURL}
             />

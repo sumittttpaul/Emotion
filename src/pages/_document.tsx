@@ -20,8 +20,7 @@ function MyDocument({ emotionStyleTags }: MyDocumentProps) {
   return (
     <Html lang="en" className={noto_sans.className}>
       <Head>
-        <meta name="theme-color" content="#0f0f0f" />
-        <link rel="shortcut icon" href="/static/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="emotion-insertion-point" content="" />
         {emotionStyleTags}
       </Head>

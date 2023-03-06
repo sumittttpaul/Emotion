@@ -52,10 +52,10 @@ export const HeaderSearchExploreSmallMobile: FC<
           >
             <div className={`${ImageContainerStyle} min-h-[100px]`}>
               <Image
+                priority
                 objectFit="cover"
                 objectPosition="center"
                 layout="fill"
-                loading="lazy"
                 placeholder="blur"
                 blurDataURL={Poster_BlurDataURL}
                 alt=""
@@ -109,10 +109,10 @@ export const HeaderSearchExploreSmallDesktop: FC<
           >
             <div className={ImageContainerStyle}>
               <Image
+                priority
                 objectFit="cover"
                 objectPosition="center"
                 layout="fill"
-                loading="lazy"
                 placeholder="blur"
                 blurDataURL={Poster_BlurDataURL}
                 src={value.Image}

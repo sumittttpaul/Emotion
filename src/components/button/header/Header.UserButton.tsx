@@ -124,7 +124,6 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
           className="opacity-70"
           src={UserIcon}
           alt=""
-          priority
         />
         <h6 className="text-white hidden medium-screen:block whitespace-nowrap font-[350] text-[12px]">
           Login

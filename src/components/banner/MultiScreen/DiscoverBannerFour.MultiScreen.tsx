@@ -55,7 +55,7 @@ export const DiscoverBannerFourBrowser: FC<DiscoverBannerFourBrowserProps> = (
                   width={490}
                   height={275}
                   src={value.Image}
-                  loading="lazy"
+                  priority
                   placeholder="blur"
                   blurDataURL={Rectangle_BlurDataURL}
                   alt=""
@@ -110,7 +110,7 @@ export const DiscoverBannerFourMobile: FC<DiscoverBannerFourMobileProps> = (
                   width={490}
                   height={275}
                   src={value.Image}
-                  loading="lazy"
+                  priority
                   placeholder="blur"
                   blurDataURL={Rectangle_BlurDataURL}
                   alt=""

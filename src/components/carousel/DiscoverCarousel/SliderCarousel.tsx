@@ -47,7 +47,7 @@ export const SliderCarousel: FC<SliderCarouselProps> = (props) => {
           }}
         >
           <Image
-            loading="lazy"
+            priority
             layout="fill"
             objectFit="cover"
             objectPosition="center"

@@ -35,7 +35,7 @@ export const DOBbutton: FC<IProps> = (props) => {
             className="opacity-70"
             src="/icons/candle-black.svg"
             alt=""
-            loading="lazy"
+            priority
             placeholder="blur"
             blurDataURL={Square_BlurDataURL}
           />
@@ -64,7 +64,7 @@ export const DOBbutton: FC<IProps> = (props) => {
             className="opacity-70"
             src="/icons/candle-white.svg"
             alt=""
-            loading="lazy"
+            priority
             placeholder="blur"
             blurDataURL={Square_BlurDataURL}
           />

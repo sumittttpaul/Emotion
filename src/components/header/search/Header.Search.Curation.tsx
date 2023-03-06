@@ -154,10 +154,7 @@ export const HeaderSearchCuration: FC<HeaderSearchCurationProps> = (props) => {
               height={60}
               width={60}
               src={value.Image}
-              loading="lazy"
               className="rounded-md"
-              placeholder="blur"
-              blurDataURL={Square_BlurDataURL}
               alt=""
             />
             <h6 className="text-[13px] w-full text-center text-[#ffffffb3] font-[300] whitespace-nowrap overflow-hidden text-ellipsis">
@@ -201,7 +198,6 @@ const LeftButton: FC<LeftButtonProps> = (props) => {
           src="/icons/left-arrow-fill.svg"
           height={10}
           width={10}
-          loading="lazy"
           alt=""
         />
       </div>
@@ -224,7 +220,6 @@ const RightButton: FC<RightButtonProps> = (props) => {
           src="/icons/right-arrow-fill.svg"
           height={10}
           width={10}
-          loading="lazy"
           alt=""
         />
       </div>

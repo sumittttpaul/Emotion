@@ -108,12 +108,12 @@ export const DiscoverSliderBrowser: FC<DiscoverSliderBrowserProps> = (
                   </TooltipDark>
                 </div>
                 <Image
+                  priority
                   height={307}
                   width={240}
                   objectFit="cover"
                   objectPosition="center"
                   placeholder="blur"
-                  loading="lazy"
                   className={ImageStyle}
                   blurDataURL={Poster_BlurDataURL}
                   src={value.Image}
@@ -188,13 +188,13 @@ export const DiscoverSliderMobile: FC<DiscoverSliderMobileProps> = (props) => {
                     </motion.button>
                   </div>
                   <Image
+                    priority
                     height={307}
                     width={240}
                     layout="responsive"
                     objectFit="cover"
                     objectPosition="center"
                     placeholder="blur"
-                    loading="lazy"
                     className={ImageStyle}
                     blurDataURL={Poster_BlurDataURL}
                     src={value.Image}

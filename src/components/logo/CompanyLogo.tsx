@@ -17,7 +17,6 @@ export const HeaderLogo = (props: Iprops) => {
         className="opacity-90 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
         src={Logo}
         alt=""
-        priority
       />
     </div>
   );
@@ -31,7 +30,6 @@ export const AuthHeaderLogo = () => {
       className="opacity-90"
       src={Logo}
       alt=""
-      priority
     />
   );
 };
@@ -47,7 +45,6 @@ export const FooterLogo = (props: Iprops) => {
           className="opacity-90 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
           src={Logo_Full}
           alt=""
-          priority
         />
       </div>
       <div className="block sm:hidden">
@@ -58,7 +55,6 @@ export const FooterLogo = (props: Iprops) => {
           className="opacity-90 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
           src={Logo_Full}
           alt=""
-          priority
         />
       </div>
     </>

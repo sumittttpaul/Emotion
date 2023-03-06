@@ -51,7 +51,7 @@ export class CarouselBannerImage extends Component<IProps> {
           <Image
             objectFit="cover"
             objectPosition={objectPosition}
-            loading="lazy"
+            priority
             layout="fill"
             className={className}
             style={{ ...style }}
@@ -63,7 +63,7 @@ export class CarouselBannerImage extends Component<IProps> {
           <Image
             objectFit="cover"
             objectPosition="center"
-            loading="lazy"
+            priority
             layout="fill"
             className={className}
             alt={alt}

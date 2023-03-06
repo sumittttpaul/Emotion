@@ -30,9 +30,6 @@ export const FooterSocials: FC<IProps> = (props) => {
                   width={25}
                   className="flex items-center"
                   src={value.icon}
-                  loading="lazy"
-                  placeholder="blur"
-                  blurDataURL={Square_BlurDataURL}
                   alt=""
                 />
               </Link>

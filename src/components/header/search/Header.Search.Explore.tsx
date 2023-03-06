@@ -43,10 +43,10 @@ export const HeaderSearchExplore: FC<HeaderSearchExploreProps> = (props) => {
               <div className="w-full h-full flex flex-col relative">
                 <div className="w-full h-[100px] flex relative">
                   <Image
+                    priority
                     objectFit="cover"
                     objectPosition="center"
                     layout="fill"
-                    loading="lazy"
                     placeholder="blur"
                     blurDataURL={Rectangle_BlurDataURL}
                     src={value.Image}

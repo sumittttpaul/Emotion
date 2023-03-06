@@ -1,7 +1,5 @@
 import '../styles/globals.css';
 import '../styles/main.css';
-import '../styles/custom/NavIndicator.css';
-import '../styles/custom/SubscribeButton.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -46,6 +44,17 @@ function MyApp(AppProps: AppPropsWithLayout, cache: EmotionCacheProps) {
         <AuthProvider>
           <StateProvider>
             <Head>
+              <title>Emotion | Outfit</title>
+              <meta
+                property="og:title"
+                content="Emotion | Outfit"
+                key="title"
+              />
+              <meta
+                name="description"
+                content="Welcome to emotion-outfit.com"
+              />
+              <meta name="theme-color" content="#0f0f0f" />
               <meta
                 name="viewport"
                 content="initial-scale=1, width=device-width"

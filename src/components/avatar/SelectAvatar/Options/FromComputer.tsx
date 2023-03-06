@@ -68,9 +68,6 @@ const FromComputer: FC<IProps> = (props) => {
               className="opacity-30"
               src="/icons/upload-cloud.svg"
               alt=""
-              loading="lazy"
-              placeholder="blur"
-              blurDataURL={Square_BlurDataURL}
             />
             <h6 className="text-[13px]">Choose a file to upload</h6>
           </div>

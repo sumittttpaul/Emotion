@@ -121,7 +121,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               className="rounded-md"
               src="/images/avatar/banner/animal.png"
               alt=""
-              loading="lazy"
+              priority
               placeholder="blur"
               blurDataURL={BlurDataUrl}
             />
@@ -143,7 +143,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               className="rounded-md"
               src="/images/avatar/banner/emoji.png"
               alt=""
-              loading="lazy"
+              priority
               placeholder="blur"
               blurDataURL={BlurDataUrl}
             />
@@ -167,7 +167,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               className="rounded-md"
               src="/images/avatar/banner/festival.png"
               alt=""
-              loading="lazy"
+              priority
               placeholder="blur"
               blurDataURL={BlurDataUrl}
             />
@@ -189,7 +189,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               className="rounded-md"
               src="/images/avatar/banner/hand-drawing.png"
               alt=""
-              loading="lazy"
+              priority
               placeholder="blur"
               blurDataURL={BlurDataUrl}
             />
@@ -213,7 +213,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               className="rounded-md"
               src="/images/avatar/banner/flat.png"
               alt=""
-              loading="lazy"
+              priority
               placeholder="blur"
               blurDataURL={BlurDataUrl}
             />
@@ -235,7 +235,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               className="rounded-md"
               src="/images/avatar/banner/hipster.png"
               alt=""
-              loading="lazy"
+              priority
               placeholder="blur"
               blurDataURL={BlurDataUrl}
             />
@@ -259,7 +259,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               className="rounded-md"
               src="/images/avatar/banner/paint.png"
               alt=""
-              loading="lazy"
+              priority
               placeholder="blur"
               blurDataURL={BlurDataUrl}
             />
@@ -281,7 +281,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               className="rounded-md"
               src="/images/avatar/banner/minimal.png"
               alt=""
-              loading="lazy"
+              priority
               placeholder="blur"
               blurDataURL={BlurDataUrl}
             />
@@ -305,7 +305,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
               className="rounded-md"
               src="/images/avatar/banner/plain.png"
               alt=""
-              loading="lazy"
+              priority
               placeholder="blur"
               blurDataURL={BlurDataUrl}
             />
@@ -328,7 +328,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
                 className="rounded-md"
                 src={PopularImage1}
                 alt=""
-                loading="lazy"
+                priority
                 placeholder="blur"
                 blurDataURL={BlurDataUrlSquare}
               />
@@ -350,7 +350,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
                 className="rounded-md"
                 src={PopularImage2}
                 alt=""
-                loading="lazy"
+                priority
                 placeholder="blur"
                 blurDataURL={BlurDataUrlSquare}
               />
@@ -372,7 +372,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
                 className="rounded-md"
                 src={PopularImage3}
                 alt=""
-                loading="lazy"
+                priority
                 placeholder="blur"
                 blurDataURL={BlurDataUrlSquare}
               />
@@ -394,7 +394,7 @@ export const AvatarCollections: FC<IProps> = (props) => {
                 className="rounded-md"
                 src={PopularImage4}
                 alt=""
-                loading="lazy"
+                priority
                 placeholder="blur"
                 blurDataURL={BlurDataUrlSquare}
               />

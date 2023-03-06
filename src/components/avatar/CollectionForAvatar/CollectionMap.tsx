@@ -44,7 +44,7 @@ export const CollectionMap: FC<IProps> = (props) => {
                 layout="responsive"
                 src={avatars.iconURL}
                 alt=""
-                loading="lazy"
+                priority
                 placeholder="blur"
                 blurDataURL={Square_BlurDataURL}
               />

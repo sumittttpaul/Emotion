@@ -27,7 +27,6 @@ export const DiscoverBannerArrivals: FC<IProps> = (props) => {
                 width={30}
                 src="/icons/arrivals.svg"
                 alt=""
-                loading="lazy"
               />
               <h6 className="text-[18px]">New arrivals</h6>
             </div>

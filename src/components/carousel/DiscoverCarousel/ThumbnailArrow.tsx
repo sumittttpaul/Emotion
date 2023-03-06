@@ -51,7 +51,6 @@ export const LeftArrowButton: FC<IProps> = (props) => {
           src="/icons/left-arrow-fill.svg"
           height={10}
           width={10}
-          loading="lazy"
           alt=""
         />
       </div>
@@ -79,7 +78,6 @@ export const RightArrowButton: FC<IProps> = (props) => {
           src="/icons/right-arrow-fill.svg"
           height={10}
           width={10}
-          loading="lazy"
           alt=""
         />
       </div>

@@ -124,7 +124,6 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
         className="opacity-70"
         src={UserIcon}
         alt=""
-        priority
       />
     </IconButton>
   );

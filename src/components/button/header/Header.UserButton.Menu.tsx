@@ -68,9 +68,6 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
                 width={50}
                 layout="fixed"
                 className="rounded-[50%]"
-                placeholder="blur"
-                loading="lazy"
-                blurDataURL={Square_BlurDataURL}
                 src={`${props.user.photoURL}`}
                 alt=""
               />
@@ -79,9 +76,6 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
                 height={50}
                 width={50}
                 className="rounded-[50%] opacity-70"
-                placeholder="blur"
-                loading="lazy"
-                blurDataURL={Square_BlurDataURL}
                 src={UserIcon}
                 alt=""
               />
@@ -125,7 +119,6 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
           <Image
             height={17}
             width={17}
-            loading="lazy"
             src="/icons/folder.svg"
             alt=""
           />
@@ -149,7 +142,6 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
           <Image
             height={18}
             width={18}
-            loading="lazy"
             src="/icons/truck.svg"
             alt=""
           />
@@ -173,7 +165,6 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
           <Image
             height={17}
             width={17}
-            loading="lazy"
             src="/icons/shopping-bag.svg"
             alt=""
           />
@@ -197,7 +188,6 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
           <Image
             height={17}
             width={17}
-            loading="lazy"
             src="/icons/gift.svg"
             alt=""
           />

@@ -28,7 +28,6 @@ export const DiscoverBannerLightingDeal: FC<IProps> = (props) => {
                 width={30}
                 src="/icons/lightning-deal.svg"
                 alt=""
-                loading="lazy"
               />
               <h6 className="text-[18px]">Daily lightning deals</h6>
             </div>

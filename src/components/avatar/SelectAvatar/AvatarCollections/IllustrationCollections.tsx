@@ -164,8 +164,8 @@ export const IllustrationCollections: FC<IProps> = (props) => {
               className="rounded-md"
               src={illustrationURL}
               alt=""
+              priority
               placeholder="blur"
-              loading="lazy"
               blurDataURL={blurDataURL}
             />
           </Button>
