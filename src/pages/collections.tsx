@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
-import { ChildLayout } from '../../components/layout/ChildLayout';
-import { ParentLayout } from '../../components/layout/ParentLayout';
-import { CollectionsUI } from '../../components/ui/CollectionsUI';
-import { getServerSideProps } from '../../algorithms/DeviceDetectSSR';
+import { ChildLayout } from '../components/layout/ChildLayout';
+import { ParentLayout } from '../components/layout/ParentLayout';
+import { CollectionsUI } from '../components/ui/CollectionsUI';
+import { getServerSideProps } from '../algorithms/DeviceDetectSSR';
 
 /**
  * @Collections_Page

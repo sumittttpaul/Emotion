@@ -2,9 +2,7 @@ import { NextPage } from 'next';
 import { useReduxSelector } from '../redux/useReduxSelector';
 import { getServerSideProps } from '../algorithms/DeviceDetectSSR';
 
-interface IProps {
-  userAgent: string;
-}
+interface IProps {}
 
 /**
  * @Test_Page
@@ -27,6 +25,6 @@ const TestPage: NextPage<IProps> = (props) => {
   );
 };
 
-// export { getServerSideProps };
+export { getServerSideProps };
 
 export default TestPage;

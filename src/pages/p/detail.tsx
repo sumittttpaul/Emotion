@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
-import { ChildLayout } from '../../../components/layout/ChildLayout';
-import { ParentLayout } from '../../../components/layout/ParentLayout';
-import { ProductDetailUI } from '../../../components/ui/ProductDetailUI';
-import { getServerSideProps } from '../../../algorithms/DeviceDetectSSR';
+import { ChildLayout } from '../../components/layout/ChildLayout';
+import { ParentLayout } from '../../components/layout/ParentLayout';
+import { ProductDetailUI } from '../../components/ui/ProductDetailUI';
+import { getServerSideProps } from '../../algorithms/DeviceDetectSSR';
 
 /**
  * @Product_Detail_Page
