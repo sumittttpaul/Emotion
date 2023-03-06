@@ -1,25 +1,23 @@
-import UserIcon from '../../../../public/icons/user-fill.svg';
+import UserIcon from '../../../../../public/icons/user-fill.svg';
 import { CircularProgress, IconButton } from '@mui/material';
 import { getAuth } from 'firebase/auth';
 import firebase from 'firebase/compat/app';
 import firebaseUser from 'firebase/compat';
 import React, { FC, Fragment, ReactNode, useState, MouseEvent } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { GetUserAuthData } from '../../../algorithms/AuthDB';
-import { FirstNameEncrytionKey } from '../../../algorithms/security/CryptionKey';
-import { DecryptData } from '../../../algorithms/security/CryptionSecurity';
-import { useAuth } from '../../../firebase/AuthProvider';
-import { useLoaderState } from '../../../providers/state/LoadingState';
-import { Login_Link } from '../../../routerLinks/RouterLinks';
+import { GetUserAuthData } from '../../../../algorithms/AuthDB';
+import { FirstNameEncrytionKey } from '../../../../algorithms/security/CryptionKey';
+import { DecryptData } from '../../../../algorithms/security/CryptionSecurity';
+import { useAuth } from '../../../../firebase/AuthProvider';
+import { useLoaderState } from '../../../../providers/state/LoadingState';
+import { Login_Link } from '../../../../routerLinks/RouterLinks';
 import Router from 'next/router';
 import Image from 'next/legacy/image';
 import dynamic from 'next/dynamic';
-import { HeaderUserButtonMenuProps } from '../../button/header/Header.UserButton.Menu';
+import { HeaderUserButtonMenuProps } from '../Header.UserButton.Menu';
 
 const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(() =>
-  import('../../button/header/Header.UserButton.Menu').then(
-    (x) => x.HeaderUserButtonMenu
-  )
+  import('../Header.UserButton.Menu').then((x) => x.HeaderUserButtonMenu)
 );
 
 interface IProps {}

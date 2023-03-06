@@ -13,6 +13,8 @@ module.exports = {
         'primary-blue': '#0076E4',
         'primary-blue-rgb': '#0074e4',
         'color-dark': '#FFFFFF3B',
+        'primary-theme': '#0f0f0f',
+        'secondary-theme': '#202020',
         // Dark Colors
         'dark-red': '#4B0000',
         'dark-pink': '#45004B',

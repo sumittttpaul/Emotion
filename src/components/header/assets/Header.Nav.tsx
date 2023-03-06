@@ -64,7 +64,7 @@ export const HeaderNav: FC<IProps> = (props) => {
   }, [props.open]);
   return (
     <>
-      <div className="mainNav hidden medium-screen:flex flex-col">
+      <div className="hidden medium-screen:flex flex-col">
         <ul className="flex flex-row space-x-2">
           {NavLabel.map((value) => (
             <li key={value.label} className="relative box-border">
@@ -78,7 +78,7 @@ export const HeaderNav: FC<IProps> = (props) => {
                 disableRipple
                 disableFocusRipple
                 disableTouchRipple
-                aria-label="main-header-button"
+                aria-label="desktop-main-header-nav-button"
                 className={`${
                   props.Value == value.label
                     ? 'text-[#ffffff] bg-[#202020] hover:bg-[#202020]'

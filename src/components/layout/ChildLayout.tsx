@@ -1,6 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import { useReduxSelector } from '../../redux/useReduxSelector';
 import { Footer } from '../footer/Footer';
+import { FooterMobile } from '../footer/Footer.Mobile';
 import { Header } from '../header/Header';
 import { HeaderMobile } from '../header/Header.Mobile';
 
@@ -24,8 +25,8 @@ export const ChildLayout: FC<IProps> = (props) => {
     return (
       <main className="w-full flex-grow z-auto mx-auto">
         <HeaderMobile />
-        <Children />
-        <Footer />
+        {/* <Children /> */}
+        {/* <FooterMobile /> */}
       </main>
     );
 

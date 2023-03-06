@@ -3,13 +3,13 @@ import Image from 'next/legacy/image';
 import Logo from '../../../public/agewear_white.svg';
 import Logo_Full from '../../../public/agewear_full_white.svg';
 
-interface Iprops {
+interface IProps {
   onValueChange: (value: string) => void;
 }
 
-export const HeaderLogo = (props: Iprops) => {
+export const HeaderLogo = (props: IProps) => {
   return (
-    <div className="flex relative py-[8.4px] sm:px-[12px]">
+    <div className="flex relative">
       <Image
         height={32.5}
         width={32.5}
@@ -24,17 +24,25 @@ export const HeaderLogo = (props: Iprops) => {
 
 export const AuthHeaderLogo = () => {
   return (
+    <Image height={45} width={45} className="opacity-90" src={Logo} alt="" />
+  );
+};
+
+export const MobileLogo = (props: IProps) => {
+  return (
     <Image
-      height={45}
-      width={45}
-      className="opacity-90"
-      src={Logo}
+      height={25}
+      width={100}
+      layout="fixed"
+      onClick={() => props.onValueChange('Discover')}
+      className="opacity-90 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
+      src={Logo_Full}
       alt=""
     />
   );
 };
 
-export const FooterLogo = (props: Iprops) => {
+export const FooterLogo = (props: IProps) => {
   return (
     <>
       <div className="hidden sm:block">

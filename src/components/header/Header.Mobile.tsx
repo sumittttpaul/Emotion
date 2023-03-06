@@ -1,7 +1,11 @@
-import { Button, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
 import Image from 'next/legacy/image';
-import React, { FC, useEffect, useState } from 'react';
-import { HeaderMobileUserButton } from './mobile/Header.Mobile.UserButton';
+import React, { FC, useState } from 'react';
+import { useHomePageState } from '../../providers/state/HomePageState';
+import { HeaderMobileSearchButton } from '../button/header/mobile/Header.Mobile.SearchButton';
+import { HeaderMobileUserButton } from '../button/header/mobile/Header.Mobile.UserButton';
+import { HeaderLogo } from '../logo/CompanyLogo';
+import { HeaderNavMobile } from './assets/Header.Nav.Mobile';
 
 interface IProps {}
 
@@ -10,45 +14,31 @@ interface IProps {}
  * @function @HeaderMobile
  **/
 export const HeaderMobile: FC<IProps> = (props) => {
-  const [Greeting, setGreeting] = useState('');
-
-  useEffect(() => {
-    var today = new Date();
-    var curHr = today.getHours();
-
-    if (curHr < 12) {
-      setGreeting('Good morning');
-    } else if (curHr < 18) {
-      setGreeting('Good afternoon');
-    } else {
-      setGreeting('Good evening');
-    }
-  }, [Greeting]);
-
+  const { HomePageState, setHomePageState } = useHomePageState();
+  const [OpenSearch, setOpenSearch] = useState(false);
   return (
     <>
-      <div className="flex w-full relative box-border text-white items-center p-3 mt-5">
-        <div className="flex w-full">
-          <p className="text-[21px] font-semibold">{Greeting}</p>
+      <div className="flex w-full relative box-border text-white items-center px-3 pt-5 pb-2">
+        <div className={`${OpenSearch ? 'hidden' : 'flex '} w-full`}>
+          <HeaderLogo
+            onValueChange={(value) => setHomePageState({ Page: value })}
+          />
         </div>
-        <div className="flex w-[100px] items-center">
-          <IconButton className="p-0 mr-5">
-            <Image height={22} width={22} src="/icons/bell-2.svg" alt="" />
-          </IconButton>
+        <HeaderMobileSearchButton
+          OpenSearch={OpenSearch}
+          setOpenSearch={setOpenSearch}
+        />
+        <IconButton className={`${OpenSearch ? 'hidden' : 'flex'} p-0 mx-5`}>
+          <Image height={22} width={22} src="/icons/bell-2.svg" alt="" />
+        </IconButton>
+        <div className={`${OpenSearch ? 'hidden' : 'flex'}`}>
           <HeaderMobileUserButton />
         </div>
       </div>
-      <div className="flex w-full sticky-top p-3 space-x-2 z-[999] bg-[#0f0f0f]">
-        <Button className="text-white px-4 py-[6px] text-[12px] font-normal rounded-full button-text-lower bg-[#ffffff20] hover:bg-[#ffffff20]">
-          Discover
-        </Button>
-        <Button className="text-white px-4 py-[6px] text-[12px] font-normal rounded-full button-text-lower bg-[#ffffff20] hover:bg-[#ffffff20]">
-          Offers
-        </Button>
-        <Button className="text-white px-4 py-[6px] text-[12px] font-normal rounded-full button-text-lower bg-[#ffffff20] hover:bg-[#ffffff20]">
-          Collections
-        </Button>
-      </div>
+      <HeaderNavMobile
+        Value={`${HomePageState.Page}`}
+        onValueChange={(value) => setHomePageState({ Page: value })}
+      />
     </>
   );
 };
