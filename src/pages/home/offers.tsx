@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import { ParentLayout } from '../../components/layout/ParentLayout';
 import { ChildLayout } from '../../components/layout/ChildLayout';
 import { OffersUI } from '../../components/ui/OffersUI';
@@ -12,15 +12,9 @@ function Offers() {
 }
 
 Offers.getLayout = function GetLayout(Offers: ReactElement) {
-  const [ChildPage, setChildPage] = useState('Offers');
   return (
-    <ParentLayout setChildPage={(value) => setChildPage(value)}>
-      <ChildLayout
-        ChildPage={ChildPage}
-        setChildPage={(value) => setChildPage(value)}
-      >
-        {Offers}
-      </ChildLayout>
+    <ParentLayout>
+      <ChildLayout>{Offers}</ChildLayout>
     </ParentLayout>
   );
 };

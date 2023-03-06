@@ -1,20 +1,20 @@
 import Router from 'next/router';
 import React, { FC } from 'react';
+import { useHomePageState } from '../../providers/state/HomePageState';
 import { useLoaderState } from '../../providers/state/LoadingState';
 import { Home_Link } from '../../routerLinks/RouterLinks';
 import { FooterLogo } from '../logo/CompanyLogo';
 import { FooterBottom } from './assets/FooterBottom';
 import { ScrollToTopButton } from './assets/ScrollToTopButton';
 
-export interface FooterProps {
-  setPage: (value: string) => void;
-}
+interface FooterProps {}
 
 /**
  * @author
  * @function @Footer
  **/
 export const Footer: FC<FooterProps> = (props) => {
+  const { HomePageState, setHomePageState } = useHomePageState();
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => {
     setLoader({ show: value });
@@ -25,7 +25,7 @@ export const Footer: FC<FooterProps> = (props) => {
         <div className="flex flex-col items-center justify-center">
           <FooterLogo
             onValueChange={(value) => {
-              props.setPage(value);
+              setHomePageState({ Page: value });
               LoadingScreen(true);
               Router.push(Home_Link);
             }}

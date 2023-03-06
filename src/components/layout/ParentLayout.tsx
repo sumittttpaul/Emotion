@@ -5,7 +5,6 @@ import { SidePanel } from '../sidepanel/SidePanel';
 
 interface IProps {
   children: ReactNode;
-  setChildPage: (value: string) => void;
 }
 
 const TopSidePanelItems = [
@@ -56,8 +55,7 @@ export const ParentLayout: FC<IProps> = (props) => {
         TopPanelData={TopSidePanelItems}
         BottomPanelData={BottomSidePanelItems}
         Active={Active}
-        setActive={(value) => setActive(value)}
-        setChildPage={props.setChildPage}
+        setActive={setActive}
       />
       {props.children}
     </ContainerDark>

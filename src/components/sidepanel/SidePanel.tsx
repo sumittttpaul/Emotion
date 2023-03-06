@@ -2,16 +2,16 @@ import { HeaderLogo } from '../logo/CompanyLogo';
 import { motion } from 'framer-motion';
 import Image from 'next/legacy/image';
 import Router from 'next/router';
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { useLoaderState } from '../../providers/state/LoadingState';
 import { Home_Link } from '../../routerLinks/RouterLinks';
+import { useHomePageState } from '../../providers/state/HomePageState';
 
 interface SidePanelProps {
   TopPanelData: { Name: string; Icon: string; IconActive: string }[];
   BottomPanelData: { Name: string; Icon: string; IconActive: string }[];
   Active: string;
-  setActive: (value: string) => void;
-  setChildPage: (value: string) => void;
+  setActive: Dispatch<SetStateAction<string>>;
 }
 
 /**
@@ -20,6 +20,7 @@ interface SidePanelProps {
  **/
 
 export const SidePanel: FC<SidePanelProps> = (props) => {
+  const { setHomePageState } = useHomePageState();
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => {
     setLoader({ show: value });
@@ -30,7 +31,7 @@ export const SidePanel: FC<SidePanelProps> = (props) => {
       <div className="flex py-3 h-[65px] items-center justify-center">
         <HeaderLogo
           onValueChange={(value) => {
-            props.setChildPage(value);
+            setHomePageState({ Page: value });
             LoadingScreen(true);
             Router.push(Home_Link);
           }}

@@ -8,21 +8,21 @@ import { HeaderNav } from './assets/Header.Nav';
 import { HeaderNavMenuProps } from './assets/Header.Nav.Menu';
 import { HeaderUserButton } from '../button/header/Header.UserButton';
 import { HeaderNotificationButton } from '../button/header/Header.NotificationButton';
+import { useHomePageState } from '../../providers/state/HomePageState';
 
 const HeaderNavMenu = dynamic<HeaderNavMenuProps>(() =>
   import('./assets/Header.Nav.Menu').then((x) => x.HeaderNavMenu)
 );
 
-export interface HeaderProps {
-  Page: string;
-  setChildPage: (value: string) => void;
-}
+interface HeaderProps {}
 
 /**
  * @author
  * @function @Header
  **/
 export const Header: FC<HeaderProps> = (props) => {
+  const { HomePageState, setHomePageState } = useHomePageState();
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const NavMenuOpen = Boolean(anchorEl);
 
@@ -43,8 +43,8 @@ export const Header: FC<HeaderProps> = (props) => {
             <HeaderNav
               open={NavMenuOpen}
               onOpen={handleNavMenuClick}
-              Value={props.Page}
-              onValueChange={props.setChildPage}
+              Value={`${HomePageState.Page}`}
+              onValueChange={(value) => setHomePageState({ Page: value })}
             />
           </div>
           {/* Search Button */}
@@ -55,11 +55,11 @@ export const Header: FC<HeaderProps> = (props) => {
         {/* Wishlist, Notification, User Button */}
         <div className="flex space-x-2.5 items-center">
           <HeaderWishlistButton
-            value={props.Page}
+            value={`${HomePageState.Page}`}
             Click={() => {
               setTimeout(() => {
                 if (NavMenuOpen === true) handleNavMenuClose();
-                props.setChildPage('Wishlist');
+                setHomePageState({ Page: 'Wishlist' });
                 Router.push(Wishlist_Link);
               }, 150);
             }}
@@ -72,8 +72,8 @@ export const Header: FC<HeaderProps> = (props) => {
         anchorEl={anchorEl}
         open={NavMenuOpen}
         onClose={handleNavMenuClose}
-        Value={props.Page}
-        onValueChange={props.setChildPage}
+        Value={`${HomePageState.Page}`}
+        onValueChange={(value) => setHomePageState({ Page: value })}
       />
     </div>
   );

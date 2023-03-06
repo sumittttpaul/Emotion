@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import { ChildLayout } from '../../../components/layout/ChildLayout';
 import { ParentLayout } from '../../../components/layout/ParentLayout';
 import { ProductDetailUI } from '../../../components/ui/ProductDetailUI';
@@ -12,19 +12,13 @@ function ProductDetail() {
 }
 
 ProductDetail.getLayout = function GetLayout(ProductDetail: ReactElement) {
-  const [ChildPage, setChildPage] = useState('ProductDetail');
   return (
-    <ParentLayout setChildPage={(value) => setChildPage(value)}>
-      <ChildLayout
-        ChildPage={ChildPage}
-        setChildPage={(value) => setChildPage(value)}
-      >
-        {ProductDetail}
-      </ChildLayout>
+    <ParentLayout>
+      <ChildLayout>{ProductDetail}</ChildLayout>
     </ParentLayout>
   );
 };
 
-// export { getServerSideProps };
+export { getServerSideProps };
 
 export default ProductDetail;

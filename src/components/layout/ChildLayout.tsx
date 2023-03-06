@@ -6,8 +6,6 @@ import { HeaderMobile } from '../header/Header.Mobile';
 
 interface IProps {
   children: ReactNode;
-  ChildPage: string;
-  setChildPage: (value: string) => void;
 }
 
 /**
@@ -27,15 +25,15 @@ export const ChildLayout: FC<IProps> = (props) => {
       <main className="w-full flex-grow z-auto mx-auto">
         <HeaderMobile />
         <Children />
-        <Footer setPage={props.setChildPage} />
+        <Footer />
       </main>
     );
 
   return (
     <main className="pl-[82px] w-full flex-grow z-auto mx-auto">
-      <Header Page={props.ChildPage} setChildPage={props.setChildPage} />
+      <Header />
       <Children />
-      <Footer setPage={props.setChildPage} />
+      <Footer />
     </main>
   );
 };

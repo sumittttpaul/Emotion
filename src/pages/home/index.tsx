@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import { ParentLayout } from '../../components/layout/ParentLayout';
 import { ChildLayout } from '../../components/layout/ChildLayout';
 import { DiscoverUI } from '../../components/ui/DiscoverUI';
@@ -13,15 +13,9 @@ function Store() {
 }
 
 Store.getLayout = function GetLayout(Store: ReactElement) {
-  const [ChildPage, setChildPage] = useState('Discover');
   return (
-    <ParentLayout setChildPage={(value) => setChildPage(value)}>
-      <ChildLayout
-        ChildPage={ChildPage}
-        setChildPage={(value) => setChildPage(value)}
-      >
-        {Store}
-      </ChildLayout>
+    <ParentLayout>
+      <ChildLayout>{Store}</ChildLayout>
     </ParentLayout>
   );
 };

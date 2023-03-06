@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import { ChildLayout } from '../../components/layout/ChildLayout';
 import { ParentLayout } from '../../components/layout/ParentLayout';
 import { CollectionsUI } from '../../components/ui/CollectionsUI';
@@ -12,15 +12,9 @@ function Collections() {
 }
 
 Collections.getLayout = function GetLayout(Collections: ReactElement) {
-  const [ChildPage, setChildPage] = useState('Collections');
   return (
-    <ParentLayout setChildPage={(value) => setChildPage(value)}>
-      <ChildLayout
-        ChildPage={ChildPage}
-        setChildPage={(value) => setChildPage(value)}
-      >
-        {Collections}
-      </ChildLayout>
+    <ParentLayout>
+      <ChildLayout>{Collections}</ChildLayout>
     </ParentLayout>
   );
 };
