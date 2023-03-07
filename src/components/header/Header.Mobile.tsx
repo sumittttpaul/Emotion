@@ -7,6 +7,16 @@ import { HeaderMobileSearchButton } from '../button/header/mobile/Header.Mobile.
 import { HeaderMobileUserButton } from '../button/header/mobile/Header.Mobile.UserButton';
 import { MobileLogo } from '../logo/CompanyLogo';
 import { HeaderNavMobile } from './assets/Header.Nav.Mobile';
+import dynamic from 'next/dynamic';
+import { SearchMobileContent } from '../../contents/store/search/Store.Search';
+import { HeaderMobileSearchButtonMenuProps } from '../button/header/mobile/Header.Mobile.SearchButton.Menu';
+
+const HeaderMobileSearchButtonMenu = dynamic<HeaderMobileSearchButtonMenuProps>(
+  () =>
+    import('../button/header/mobile/Header.Mobile.SearchButton.Menu').then(
+      (x) => x.HeaderMobileSearchButtonMenu
+    )
+);
 
 interface IProps {}
 
@@ -21,10 +31,12 @@ export const HeaderMobile: FC<IProps> = (props) => {
 
   const LogoDivVariant = {
     open: {
-      width: 0,
+      marginLeft: -42,
+      marginRight: 12,
     },
     closed: {
-      width: '100%',
+      marginLeft: 0,
+      marginRight: 0,
     },
   };
 
@@ -39,15 +51,15 @@ export const HeaderMobile: FC<IProps> = (props) => {
 
   return (
     <>
-      <div className="overflow-hidden flex w-full relative box-border text-white items-center px-3 pt-5 pb-2">
+      <div className="overflow-hidden flex w-full box-border text-white items-center px-3 pt-5 pb-2">
         <motion.div
           animate={animate}
           variants={LogoDivVariant}
           transition={{
-            duration: OpenSearch ? 0.3 : 0.3,
+            duration: 0.3,
             type: 'tween',
           }}
-          className="w-full flex"
+          className="flex"
         >
           <MobileLogo
             onValueChange={(value) => setHomePageState({ Page: value })}
@@ -62,9 +74,8 @@ export const HeaderMobile: FC<IProps> = (props) => {
           animate={animate}
           variants={ButtonDivVariant}
           transition={{
-            duration: OpenSearch ? 0.2 : 0.2,
+            duration: 0.2,
             type: 'tween',
-            delay: OpenSearch ? 0.05 : 0,
           }}
           className="flex"
         >
@@ -76,6 +87,10 @@ export const HeaderMobile: FC<IProps> = (props) => {
           </div>
         </motion.div>
       </div>
+      <HeaderMobileSearchButtonMenu
+        SearchMenu={OpenSearch}
+        ContentArray={SearchMobileContent}
+      />
       <HeaderNavMobile
         Value={`${HomePageState.Page}`}
         onValueChange={(value) => setHomePageState({ Page: value })}

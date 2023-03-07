@@ -30,29 +30,13 @@ export const HeaderMobileUserButton: FC<IProps> = (props) => {
   const FirebaseUser = useAuth();
   const FirebaseAuth = getAuth(firebase.app());
   const [user, loading] = useAuthState(FirebaseAuth);
-  const [UserNameLoading, setUserNameLoading] = useState(false);
-  const [UserName, setUserName] = useState<string>('');
 
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => {
     setLoader({ show: value });
   };
 
-  const getUserName = (UID: string) => {
-    GetUserAuthData(UID)
-      .then((e) => {
-        if (e) {
-          setUserName(
-            'Hi, ' + DecryptData(e.FirstName, FirstNameEncrytionKey(UID))
-          );
-        } else {
-          setUserName('Hi, User');
-        }
-      })
-      .then(() => setUserNameLoading(false));
-  };
-
-  if (loading || UserNameLoading)
+  if (loading)
     return (
       <ContainerButton>
         <LoadingButton />
@@ -60,19 +44,11 @@ export const HeaderMobileUserButton: FC<IProps> = (props) => {
     );
 
   if (user && FirebaseUser)
-    if (!UserName) {
-      setUserNameLoading(true);
-      getUserName(FirebaseUser.uid);
-      return null;
-    }
-
-  if (user && FirebaseUser)
-    if (UserName)
-      return (
-        <ContainerButton>
-          <UserButton user={FirebaseUser} UserName={UserName} />
-        </ContainerButton>
-      );
+    return (
+      <ContainerButton>
+        <UserButton user={FirebaseUser} />
+      </ContainerButton>
+    );
 
   return (
     <ContainerButton>
@@ -98,7 +74,6 @@ interface ContainerButtonProps {
 }
 interface UserButtonProps {
   user: firebaseUser.User;
-  UserName: string;
 }
 
 const LoginButton: FC<LoginButtonProps> = (props) => {
@@ -107,19 +82,19 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
       aria-label="user-login-button"
       disableFocusRipple
       onClick={props.onClick}
-      className="flex items-center h-full px-4"
+      className="flex items-center justify-center h-[35px] w-[35px] p-0"
       sx={{
         '.MuiTouchRipple-child': {
           backgroundColor: 'transparent !important',
         },
       }}
-      style={{ minWidth: 0 }}
+      style={{ minWidth: 35, width: 35, maxWidth: 35 }}
     >
       <Image
-        height={20}
-        width={20}
+        height={25}
+        width={25}
         layout="fixed"
-        className="opacity-70"
+        className="opacity-70 rounded-[50%]"
         src={UserIcon}
         alt=""
       />
@@ -134,13 +109,13 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
         disabled
         aria-label="user-button-loading"
         disableFocusRipple
-        className="flex items-center h-[35px] p-0"
+        className="flex items-center justify-center h-[35px] w-[35px] p-0"
         sx={{
           '.MuiTouchRipple-child': {
             backgroundColor: 'transparent !important',
           },
         }}
-        style={{ minWidth: 0 }}
+        style={{ minWidth: 35, width: 35, maxWidth: 35 }}
       >
         <CircularProgress className="text-white p-2.5 -ml-[5px]" />
       </IconButton>
@@ -182,13 +157,13 @@ const UserButton: FC<UserButtonProps> = (props) => {
         aria-label="user-popup-button"
         disableFocusRipple
         onClick={handleClick}
-        className="flex items-center h-[35px] p-0"
+        className="flex items-center justify-center h-[35px] w-[35px] p-0"
         sx={{
           '.MuiTouchRipple-child': {
             backgroundColor: 'transparent !important',
           },
         }}
-        style={{ minWidth: 35 }}
+        style={{ minWidth: 35, width: 35, maxWidth: 35 }}
       >
         {props.user.photoURL ? (
           <Image
@@ -201,10 +176,10 @@ const UserButton: FC<UserButtonProps> = (props) => {
           />
         ) : (
           <Image
-            height={35}
-            width={35}
+            height={25}
+            width={25}
             layout="fixed"
-            className="rounded-[50%]"
+            className="opacity-70 rounded-[50%]"
             src={UserIcon}
             alt=""
           />

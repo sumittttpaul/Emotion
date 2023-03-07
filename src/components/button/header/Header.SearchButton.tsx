@@ -9,14 +9,14 @@ import React, {
 import { motion } from 'framer-motion';
 import Image from 'next/legacy/image';
 import useScreenSize from '../../../algorithms/ScreenSizeDetection';
-import { HeaderSearchMenuProps } from '../../header/search/Header.Search.Menu';
+import { HeaderSearchButtonMenuProps } from './Header.SearchButton.Menu';
 import dynamic from 'next/dynamic';
 import { IconButton } from '@mui/material';
 import { SearchContent } from '../../../contents/store/search/Store.Search';
 
-const HeaderSearchMenu = dynamic<HeaderSearchMenuProps>(() =>
-  import('../../header/search/Header.Search.Menu').then(
-    (x) => x.HeaderSearchMenu
+const HeaderSearchButtonMenu = dynamic<HeaderSearchButtonMenuProps>(() =>
+  import('./Header.SearchButton.Menu').then(
+    (x) => x.HeaderSearchButtonMenu
   )
 );
 
@@ -99,7 +99,7 @@ export const HeaderSearchButton: FC<IProps> = (props) => {
       className="relative hidden small-screen:flex flex-col w-full max-w-[600px]"
     >
       <motion.div
-        id="main-header-search-button"
+        id="desktop-header-search-button"
         aria-label="desktop-search-button"
         onClick={SearchClick}
         animate={animate}
@@ -165,7 +165,7 @@ export const HeaderSearchButton: FC<IProps> = (props) => {
           </IconButton>
         </div>
       </motion.div>
-      <HeaderSearchMenu
+      <HeaderSearchButtonMenu
         SearchRef={SearchRef}
         ContainerRef={ContainerRef}
         SearchMenu={SearchMenuOpen}

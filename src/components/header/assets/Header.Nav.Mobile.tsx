@@ -34,7 +34,7 @@ const NavLabel = [
 
 export const HeaderNavMobile: FC<IProps> = (props) => {
   return (
-    <div className="flex w-full sticky-top p-3 space-x-2 z-[999] bg-[#0f0f0f]">
+    <div className="flex w-full sticky-top p-3 space-x-2 z-[998] bg-[#0f0f0f]">
       <ul className="flex flex-row space-x-2">
         {NavLabel.map((value) => (
           <li key={value.label} className="relative box-border">

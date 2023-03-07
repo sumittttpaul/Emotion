@@ -10,7 +10,7 @@ import React, {
 import useNavigateList from '../../../algorithms/KeyboardNavigationList';
 import { SearchContentProps } from '../../../contents/store/search/Store.Search';
 
-export interface HeaderSearchMenuProps {
+export interface HeaderSearchButtonMenuProps {
   SearchRef: RefObject<HTMLInputElement>;
   ContainerRef: RefObject<HTMLDivElement>;
   SearchMenu: boolean;
@@ -22,9 +22,12 @@ export interface HeaderSearchMenuProps {
 
 /**
  * @author
- * @function @HeaderSearchMenu
+ * @function @HeaderSearchButtonMenu
  **/
-export const HeaderSearchMenu: FC<HeaderSearchMenuProps> = (props) => {
+
+export const HeaderSearchButtonMenu: FC<HeaderSearchButtonMenuProps> = (
+  props
+) => {
   const [Data, setData] = useState(props.ContentArray);
 
   const removeItem = (index: number) => {
@@ -38,6 +41,7 @@ export const HeaderSearchMenu: FC<HeaderSearchMenuProps> = (props) => {
     EmptySearch: (value) => props.setSearch(value),
     onSelect: (value) => props.setSearch(value.Name),
   });
+  
   return (
     <div
       className={`${
