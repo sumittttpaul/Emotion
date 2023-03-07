@@ -13,6 +13,7 @@ export const HeaderLogo = (props: IProps) => {
       <Image
         height={32.5}
         width={32.5}
+        layout="fixed"
         onClick={() => props.onValueChange('Discover')}
         className="opacity-90 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
         src={Logo}
@@ -31,12 +32,12 @@ export const AuthHeaderLogo = () => {
 export const MobileLogo = (props: IProps) => {
   return (
     <Image
-      height={25}
-      width={100}
+      height={30}
+      width={30}
       layout="fixed"
       onClick={() => props.onValueChange('Discover')}
       className="opacity-90 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
-      src={Logo_Full}
+      src={Logo}
       alt=""
     />
   );

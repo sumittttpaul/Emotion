@@ -7,6 +7,7 @@ import { getServerSideProps } from '../algorithms/DeviceDetectSSR';
 /**
  * @Offers_Page
  **/
+
 function Offers() {
   return <OffersUI />;
 }

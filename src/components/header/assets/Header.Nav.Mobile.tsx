@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import Router from 'next/router';
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import {
   Discover_Link,
   Offers_Link,

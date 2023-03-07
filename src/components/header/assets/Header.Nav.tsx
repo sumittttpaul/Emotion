@@ -62,6 +62,7 @@ export const HeaderNav: FC<IProps> = (props) => {
       setArrow('closed');
     }
   }, [props.open]);
+
   return (
     <>
       <div className="hidden medium-screen:flex flex-col">

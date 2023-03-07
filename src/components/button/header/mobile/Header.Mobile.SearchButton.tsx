@@ -14,6 +14,7 @@ import { IconButton } from '@mui/material';
 interface IProps {
   OpenSearch: boolean;
   setOpenSearch: Dispatch<SetStateAction<boolean>>;
+  setDivAnimate: Dispatch<SetStateAction<string>>;
 }
 
 /**
@@ -43,8 +44,18 @@ export const HeaderMobileSearchButton: FC<IProps> = (props) => {
   const SearchClick = () => {
     if (animate === 'closed') {
       props.setOpenSearch(true);
+      props.setDivAnimate('open');
       setAnimate('open');
       SearchRef.current?.focus();
+    }
+  };
+
+  const BackClick = () => {
+    if (animate === 'open') {
+      props.setOpenSearch(false);
+      props.setDivAnimate('closed');
+      setAnimate('closed');
+      SearchRef.current?.blur();
     }
   };
 
@@ -57,6 +68,7 @@ export const HeaderMobileSearchButton: FC<IProps> = (props) => {
         if (animate === 'open') {
           setAnimate('closed');
           props.setOpenSearch(false);
+          props.setDivAnimate('closed');
           setSearch('');
         }
       }
@@ -67,27 +79,63 @@ export const HeaderMobileSearchButton: FC<IProps> = (props) => {
     };
   }, [animate, ContainerRef]);
 
+  useEffect(() => {
+    function handleBackButtonPressed(event: PopStateEvent) {
+      if (animate === 'open') {
+        event.preventDefault();
+        setAnimate('closed');
+        props.setOpenSearch(false);
+        SearchRef.current?.blur();
+        setSearch('');
+        history.pushState(null, '', window.location.pathname);
+      }
+    }
+    window.addEventListener('popstate', handleBackButtonPressed);
+    return () => {
+      window.removeEventListener('popstate', handleBackButtonPressed);
+    };
+  });
+
   return (
     <motion.div
       aria-label="mobile-search-button"
       ref={ContainerRef}
       animate={animate}
       onClick={SearchClick}
+      onTouchMove={SearchClick}
       variants={ButtonVariant}
-      transition={{ duration: 0.3, type: 'tween' }}
-      className="min-w-[92px] rounded-full pl-[10px] block cursor-text justify-start items-center button-text-lower text-white bg-[#202020] hover:bg-[#202020]"
+      transition={{ duration: props.OpenSearch ? 0.1 : 0.3, type: 'tween' }}
+      className="min-w-[92px] w-[92px] z-10 rounded-full block cursor-text justify-start items-center button-text-lower text-white bg-[#202020] hover:bg-[#202020]"
     >
       <div className="flex items-center">
-        <div className="flex ml-[1px] justify-center h-[16px] w-[16px] opacity-60">
-          <Image
-            onClick={() => SearchRef.current?.focus()}
-            src="/icons/search-white-2.svg"
-            height={16}
-            width={16}
-            layout="fixed"
-            alt=""
-          />
-        </div>
+        {animate === 'open' ? (
+          <IconButton
+            onClick={BackClick}
+            aria-label="mobile-search-left-arrow-button"
+            className={`${
+              animate === 'open' ? '' : 'hidden'
+            } cursor-default group ml-1 p-2 bg-transparent hover:bg-[#ffffff15] transition-all`}
+          >
+            <Image
+              height={18}
+              width={18}
+              layout="fixed"
+              src="/icons/arrow-left.svg"
+              className="group-hover:opacity-100 opacity-70"
+              alt=""
+            />
+          </IconButton>
+        ) : (
+          <div className="flex ml-[11px] justify-center h-[16px] w-[16px] opacity-60">
+            <Image
+              src="/icons/search-white-2.svg"
+              height={16}
+              width={16}
+              layout="fixed"
+              alt=""
+            />
+          </div>
+        )}
         <input
           ref={SearchRef}
           aria-label="search-text-field"
@@ -100,7 +148,9 @@ export const HeaderMobileSearchButton: FC<IProps> = (props) => {
               ? 'Search by product, category or collection'
               : 'Search'
           }
-          className="flex pt-[10px] pl-[10px] pb-[12px] mr-2 truncate w-full h-full bg-transparent text-[14px] placeholder:text-[13px] text-white placeholder:text-[#ffffffad] outline-none"
+          className={`${
+            animate === 'open' ? 'mx-1' : 'mx-2'
+          } flex pt-[10px] pb-[12px] truncate w-full h-full bg-transparent text-[14px] placeholder:text-[13px] text-white placeholder:text-[#ffffffad] outline-none`}
         />
         <IconButton
           aria-label="mobile-search-clear-button"
@@ -110,7 +160,7 @@ export const HeaderMobileSearchButton: FC<IProps> = (props) => {
           }}
           className={`${
             Search === '' ? 'hidden' : ''
-          } cursor-default group p-2 bg-transparent hover:bg-[#ffffff15]`}
+          } cursor-default group p-2 bg-transparent hover:bg-[#ffffff15] transition-all`}
         >
           <Image
             height={18}
@@ -122,11 +172,10 @@ export const HeaderMobileSearchButton: FC<IProps> = (props) => {
           />
         </IconButton>
         <IconButton
-          onClick={() => SearchRef.current?.focus()}
           aria-label="mobile-search-right-arrow-button"
           className={`${
             animate === 'open' ? '' : 'hidden'
-          } cursor-default group p-2 mr-1 bg-transparent hover:bg-[#ffffff15]`}
+          } cursor-default group p-2 mr-1 bg-transparent hover:bg-[#ffffff15] transition-all`}
         >
           <Image
             height={18}
