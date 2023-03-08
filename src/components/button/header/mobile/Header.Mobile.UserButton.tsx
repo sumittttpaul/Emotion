@@ -126,7 +126,7 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
 const UserButton: FC<UserButtonProps> = (props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-
+  const photoURL = props.user.photoURL;
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => {
     setLoader({ show: value });
@@ -165,13 +165,13 @@ const UserButton: FC<UserButtonProps> = (props) => {
         }}
         style={{ minWidth: 35, width: 35, maxWidth: 35 }}
       >
-        {props.user.photoURL ? (
+        {photoURL ? (
           <Image
             height={35}
             width={35}
             layout="fixed"
             className="rounded-[50%]"
-            src={`${props.user.photoURL}`}
+            src={`${photoURL}`}
             alt=""
           />
         ) : (

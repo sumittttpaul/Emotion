@@ -1,6 +1,6 @@
 import Image from 'next/legacy/image';
 import { Button } from '@mui/material';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { SearchContentProps } from '../../../../contents/store/search/Store.Search';
 
 export interface HeaderMobileSearchButtonMenuProps {
@@ -22,11 +22,28 @@ export const HeaderMobileSearchButtonMenu: FC<
     if (index !== -1) setData(Data.filter((o, i) => index !== i));
   };
 
+  useEffect(() => {
+    function disableScroll() {
+      if (props.openSearch === 'open') {
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+        const scrollLeft =
+          window.pageXOffset || document.documentElement.scrollLeft;
+        window.scrollTo(scrollLeft, scrollTop);
+      }
+    }
+
+    window.addEventListener('scroll', disableScroll);
+    return () => {
+      window.removeEventListener('scroll', disableScroll);
+    };
+  }, [props.openSearch]);
+
   return (
     <div
       className={`${
         props.openSearch === 'open' ? 'block' : 'hidden'
-      } absolute top-[65px] p-3 z-[999] w-full bg-primary-theme overflow-scroll`}
+      } absolute top-[65px] p-3 z-[999] h-full w-full bg-primary-theme overflow-scroll`}
     >
       {Data.map((value, idx) => (
         <Button

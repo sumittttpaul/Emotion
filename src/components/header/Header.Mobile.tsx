@@ -1,15 +1,23 @@
-import { IconButton } from '@mui/material';
+import React, { FC } from 'react';
 import Image from 'next/legacy/image';
+import dynamic from 'next/dynamic';
+import { IconButton } from '@mui/material';
 import { motion } from 'framer-motion';
-import React, { FC, useState } from 'react';
 import { useHomePageState } from '../../providers/state/HomePageState';
 import { HeaderMobileSearchButton } from '../button/header/mobile/Header.Mobile.SearchButton';
 import { HeaderMobileUserButton } from '../button/header/mobile/Header.Mobile.UserButton';
 import { MobileLogo } from '../logo/CompanyLogo';
 import { HeaderNavMobile } from './assets/Header.Nav.Mobile';
 import { useSearchButtonState } from '../../providers/state/SearchButtonState';
-import { HeaderMobileSearchButtonMenu } from '../button/header/mobile/Header.Mobile.SearchButton.Menu';
+import { HeaderMobileSearchButtonMenu, HeaderMobileSearchButtonMenuProps } from '../button/header/mobile/Header.Mobile.SearchButton.Menu';
 import { SearchMobileContent } from '../../contents/store/search/Store.Search';
+
+// const HeaderMobileSearchButtonMenu = dynamic<HeaderMobileSearchButtonMenuProps>(
+//   () =>
+//     import('../button/header/mobile/Header.Mobile.SearchButton.Menu').then(
+//       (x) => x.HeaderMobileSearchButtonMenu
+//     )
+// );
 
 interface IProps {}
 
@@ -21,7 +29,6 @@ interface IProps {}
 export const HeaderMobile: FC<IProps> = (props) => {
   const { HomePageState, setHomePageState } = useHomePageState();
   const { SearchButtonState, setSearchButtonState } = useSearchButtonState();
-  // const [animate, setAnimate] = useState('closed');
 
   const LogoDivVariant = {
     open: {
@@ -45,7 +52,10 @@ export const HeaderMobile: FC<IProps> = (props) => {
 
   return (
     <>
-      <div id="search" className="overflow-hidden bg-primary-theme flex w-full box-border text-white items-center px-3 pt-5 pb-2">
+      <div
+        id="search"
+        className="overflow-hidden bg-primary-theme flex w-full box-border text-white items-center px-3 pt-5 pb-2"
+      >
         <motion.div
           animate={SearchButtonState.state}
           variants={LogoDivVariant}

@@ -25,7 +25,7 @@ export const ChildLayout: FC<IProps> = (props) => {
     return (
       <main className="w-full flex-grow z-auto mx-auto">
         <HeaderMobile />
-        {/* <Children /> */}
+        <Children />
         {/* <FooterMobile /> */}
       </main>
     );

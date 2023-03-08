@@ -43,16 +43,24 @@ export const HeaderMobileSearchButton: FC<IProps> = (props) => {
 
   const SearchClick = () => {
     if (SearchButtonState.state === 'closed') {
-      router.push('/#search');
+      router.push({ hash: 'search' });
       props.setDivAnimate('open');
       setSearchButtonState({ state: 'open' });
       SearchRef.current?.focus();
     }
   };
 
+  const removeHash = () => {
+    history.pushState(
+      '',
+      document.title,
+      window.location.pathname
+    );
+  };
+
   const BackClick = () => {
     if (SearchButtonState.state === 'open') {
-      router.push('/');
+      removeHash();
       SearchRef.current?.blur();
       props.setDivAnimate('closed');
       setSearchButtonState({ state: 'closed' });
@@ -63,7 +71,7 @@ export const HeaderMobileSearchButton: FC<IProps> = (props) => {
     function handleBackButtonPressed(event: PopStateEvent) {
       event.preventDefault();
       if (SearchButtonState.state === 'open') {
-        // router.push('/');
+        removeHash();
         SearchRef.current?.blur();
         props.setDivAnimate('closed');
         setSearchButtonState({ state: 'closed' });
