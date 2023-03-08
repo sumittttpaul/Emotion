@@ -7,16 +7,9 @@ import { HeaderMobileSearchButton } from '../button/header/mobile/Header.Mobile.
 import { HeaderMobileUserButton } from '../button/header/mobile/Header.Mobile.UserButton';
 import { MobileLogo } from '../logo/CompanyLogo';
 import { HeaderNavMobile } from './assets/Header.Nav.Mobile';
-import dynamic from 'next/dynamic';
+import { useSearchButtonState } from '../../providers/state/SearchButtonState';
+import { HeaderMobileSearchButtonMenu } from '../button/header/mobile/Header.Mobile.SearchButton.Menu';
 import { SearchMobileContent } from '../../contents/store/search/Store.Search';
-import { HeaderMobileSearchButtonMenuProps } from '../button/header/mobile/Header.Mobile.SearchButton.Menu';
-
-const HeaderMobileSearchButtonMenu = dynamic<HeaderMobileSearchButtonMenuProps>(
-  () =>
-    import('../button/header/mobile/Header.Mobile.SearchButton.Menu').then(
-      (x) => x.HeaderMobileSearchButtonMenu
-    )
-);
 
 interface IProps {}
 
@@ -24,10 +17,11 @@ interface IProps {}
  * @author
  * @function @HeaderMobile
  **/
+
 export const HeaderMobile: FC<IProps> = (props) => {
   const { HomePageState, setHomePageState } = useHomePageState();
-  const [OpenSearch, setOpenSearch] = useState(false);
-  const [animate, setAnimate] = useState('closed');
+  const { SearchButtonState, setSearchButtonState } = useSearchButtonState();
+  // const [animate, setAnimate] = useState('closed');
 
   const LogoDivVariant = {
     open: {
@@ -51,9 +45,9 @@ export const HeaderMobile: FC<IProps> = (props) => {
 
   return (
     <>
-      <div className="overflow-hidden flex w-full box-border text-white items-center px-3 pt-5 pb-2">
+      <div id="search" className="overflow-hidden bg-primary-theme flex w-full box-border text-white items-center px-3 pt-5 pb-2">
         <motion.div
-          animate={animate}
+          animate={SearchButtonState.state}
           variants={LogoDivVariant}
           transition={{
             duration: 0.3,
@@ -66,12 +60,10 @@ export const HeaderMobile: FC<IProps> = (props) => {
           />
         </motion.div>
         <HeaderMobileSearchButton
-          OpenSearch={OpenSearch}
-          setOpenSearch={setOpenSearch}
-          setDivAnimate={setAnimate}
+          setDivAnimate={(value) => setSearchButtonState({ state: value })}
         />
         <motion.div
-          animate={animate}
+          animate={SearchButtonState.state}
           variants={ButtonDivVariant}
           transition={{
             duration: 0.2,
@@ -88,7 +80,7 @@ export const HeaderMobile: FC<IProps> = (props) => {
         </motion.div>
       </div>
       <HeaderMobileSearchButtonMenu
-        SearchMenu={OpenSearch}
+        openSearch={SearchButtonState.state}
         ContentArray={SearchMobileContent}
       />
       <HeaderNavMobile

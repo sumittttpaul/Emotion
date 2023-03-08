@@ -10,11 +10,11 @@ import React, {
 } from 'react';
 import Image from 'next/legacy/image';
 import { IconButton } from '@mui/material';
+import { useRouter } from 'next/router';
+import { useSearchButtonState } from '../../../../providers/state/SearchButtonState';
 
 interface IProps {
-  OpenSearch: boolean;
-  setOpenSearch: Dispatch<SetStateAction<boolean>>;
-  setDivAnimate: Dispatch<SetStateAction<string>>;
+  setDivAnimate: (value: string) => void;
 }
 
 /**
@@ -24,8 +24,9 @@ interface IProps {
 
 export const HeaderMobileSearchButton: FC<IProps> = (props) => {
   const [Search, setSearch] = useState('');
-  const [animate, setAnimate] = useState('closed');
+  const { SearchButtonState, setSearchButtonState } = useSearchButtonState();
   const SearchRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
@@ -41,60 +42,62 @@ export const HeaderMobileSearchButton: FC<IProps> = (props) => {
   };
 
   const SearchClick = () => {
-    if (animate === 'closed') {
-      props.setOpenSearch(true);
+    if (SearchButtonState.state === 'closed') {
+      router.push('/#search');
       props.setDivAnimate('open');
-      setAnimate('open');
+      setSearchButtonState({ state: 'open' });
       SearchRef.current?.focus();
     }
   };
 
   const BackClick = () => {
-    if (animate === 'open') {
-      props.setOpenSearch(false);
-      props.setDivAnimate('closed');
-      setAnimate('closed');
+    if (SearchButtonState.state === 'open') {
+      router.push('/');
       SearchRef.current?.blur();
+      props.setDivAnimate('closed');
+      setSearchButtonState({ state: 'closed' });
     }
   };
 
   useEffect(() => {
     function handleBackButtonPressed(event: PopStateEvent) {
-      if (animate === 'open') {
-        event.preventDefault();
-        props.setOpenSearch(false);
-        props.setDivAnimate('closed');
-        setAnimate('closed');
-        setSearch('');
+      event.preventDefault();
+      if (SearchButtonState.state === 'open') {
+        // router.push('/');
         SearchRef.current?.blur();
-        history.pushState(null, '', window.location.pathname);
+        props.setDivAnimate('closed');
+        setSearchButtonState({ state: 'closed' });
+        setSearch('');
       }
     }
     window.addEventListener('popstate', handleBackButtonPressed);
     return () => {
       window.removeEventListener('popstate', handleBackButtonPressed);
     };
-  });
+  }, [SearchButtonState.state]);
 
   return (
     <div className="flex w-full justify-end">
       <motion.div
         id="mobile-header-search-button"
         aria-label="mobile-search-button"
-        animate={animate}
+        animate={SearchButtonState.state}
         onClick={SearchClick}
         onTouchMove={SearchClick}
         variants={ButtonVariant}
-        transition={{ duration: props.OpenSearch ? 0.1 : 0.3, type: 'tween' }}
+        transition={{
+          duration: SearchButtonState.state === 'open' ? 0.1 : 0.3,
+          type: 'tween',
+        }}
         className="min-w-[92px] w-[92px] z-10 rounded-full block cursor-text justify-start items-center button-text-lower text-white bg-[#202020] hover:bg-[#202020]"
       >
         <div className="flex items-center">
-          {animate === 'open' ? (
+          {SearchButtonState.state === 'open' ? (
             <IconButton
               onClick={BackClick}
               aria-label="mobile-search-left-arrow-button"
               className={`${
-                animate === 'open' ? '' : 'hidden'
+                SearchButtonState.state === 'open' ? '' : 'hidden'
               } cursor-default group ml-1 p-2 bg-transparent hover:bg-[#ffffff15] transition-all`}
             >
               <Image
@@ -125,12 +128,12 @@ export const HeaderMobileSearchButton: FC<IProps> = (props) => {
             autoCorrect="off"
             autoComplete="off"
             placeholder={
-              animate === 'open'
+              SearchButtonState.state === 'open'
                 ? 'Search by product, category or collection'
                 : 'Search'
             }
             className={`${
-              animate === 'open' ? 'mx-1' : 'mx-2'
+              SearchButtonState.state === 'open' ? 'mx-1' : 'mx-2'
             } flex pt-[10px] pb-[12px] truncate w-full h-full bg-transparent text-[14px] placeholder:text-[13px] text-white placeholder:text-[#ffffffad] outline-none`}
           />
           <IconButton
@@ -155,7 +158,7 @@ export const HeaderMobileSearchButton: FC<IProps> = (props) => {
           <IconButton
             aria-label="mobile-search-right-arrow-button"
             className={`${
-              animate === 'open' ? '' : 'hidden'
+              SearchButtonState.state === 'open' ? '' : 'hidden'
             } cursor-default group p-2 mr-1 bg-transparent hover:bg-[#ffffff15] transition-all`}
           >
             <Image

@@ -5,7 +5,7 @@ import { SearchContentProps } from '../../../../contents/store/search/Store.Sear
 
 export interface HeaderMobileSearchButtonMenuProps {
   ContentArray: SearchContentProps[];
-  SearchMenu: boolean;
+  openSearch: string | undefined;
 }
 
 /**
@@ -25,8 +25,8 @@ export const HeaderMobileSearchButtonMenu: FC<
   return (
     <div
       className={`${
-        props.SearchMenu ? 'block' : 'hidden'
-      } z-[999] p-3 w-full absolute top-[65px] bg-primary-theme`}
+        props.openSearch === 'open' ? 'block' : 'hidden'
+      } absolute top-[65px] p-3 z-[999] w-full bg-primary-theme overflow-scroll`}
     >
       {Data.map((value, idx) => (
         <Button
@@ -34,7 +34,7 @@ export const HeaderMobileSearchButtonMenu: FC<
           className="
           rounded-xl px-2 py-7 h-[35px] w-full flex cursor-default items-center text-white bg-transparent button-text-lower"
         >
-          <div className="block h-5 ml-2 pr-4 opacity-70">
+          <div className="block h-5 ml-1 pr-3.5 opacity-70">
             <Image
               layout="fixed"
               height={18}
