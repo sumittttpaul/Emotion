@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 
 export interface SearchButtonStateInterface {
-  state: string;
+  show: boolean;
 }
 
 const SearchButtonStateContext = createContext({

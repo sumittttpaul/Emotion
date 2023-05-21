@@ -16,7 +16,7 @@ interface IProps {
 export const StateProvider: FC<IProps> = (props) => {
   return (
     <HomePageState value={{ Page: 'Discover' }}>
-      <SearchButtonState value={{ state: 'closed' }}>
+      <SearchButtonState value={{ show: false }}>
         <ColorState>
           <LoaderState value={{ show: false }}>{props.children}</LoaderState>
         </ColorState>

@@ -18,20 +18,20 @@ export const ChildLayout: FC<IProps> = (props) => {
   const { isMobile } = useReduxSelector((state) => state.Device);
 
   const Children = () => {
-    return <div className="w-full flex-grow z-auto">{props.children}</div>;
+    return <div className="w-full z-auto">{props.children}</div>;
   };
 
   if (isMobile)
     return (
-      <main className="w-full flex-grow z-auto mx-auto">
+      <main className="w-full z-auto mx-auto">
         <HeaderMobile />
-        <Children />
+        {/* <Children /> */}
         {/* <FooterMobile /> */}
       </main>
     );
 
   return (
-    <main className="pl-[82px] w-full flex-grow z-auto mx-auto">
+    <main className="pl-[268px] w-full flex-grow z-auto mx-auto">
       <Header />
       <Children />
       <Footer />

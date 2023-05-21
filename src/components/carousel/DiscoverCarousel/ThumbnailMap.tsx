@@ -1,5 +1,5 @@
 import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
-import { motion } from 'framer-motion';
+import { AnimationControls, motion } from 'framer-motion';
 import Image from 'next/legacy/image';
 import React, { Dispatch, FC, RefObject, SetStateAction } from 'react';
 import { DiscoverCarouselIProps } from '../../../contents/store/discover/Store.Discover.Carousel';
@@ -7,7 +7,9 @@ import { DiscoverCarouselIProps } from '../../../contents/store/discover/Store.D
 interface IProps {
   AutoPlay?: boolean;
   Duration?: number;
+  Animation: AnimationControls;
   ThumbnailRef: RefObject<HTMLButtonElement>;
+  ConstraintRef: RefObject<HTMLDivElement>;
   CarouselState: number;
   setCarouselState: Dispatch<SetStateAction<number>>;
   LeftIndicator: boolean;
@@ -24,16 +26,35 @@ const ThumbnailSizes = 'w-[220px] h-[120px] min-w-[220px] min-h-[120px]';
  * @Thumbnail_Button_Map
  **/
 export const ThumbnailMap: FC<IProps> = (props) => {
+  const CorouselClick = (idx: number) => {
+    if (props.CarouselState !== idx) {
+      const ThumbnailWidth = props.ThumbnailRef.current;
+      const ContainerWidth = props.ConstraintRef.current;
+      if (ThumbnailWidth && ContainerWidth) {
+        const IndexValue = idx + 2;
+        const ContentExceed = ThumbnailWidth.offsetWidth * IndexValue;
+        if (ContainerWidth.offsetWidth < ContentExceed) {
+          const getThubnailValue = ContainerWidth.offsetWidth - ContentExceed;
+          const AnimationValue = getThubnailValue + 0; //40
+          props.Animation.start({
+            x: AnimationValue,
+          });
+        } else {
+          props.Animation.start({
+            x: 0,
+          });
+        }
+      }
+    }
+    props.setBannerTextTransition('closed');
+    setTimeout(() => props.setCarouselState(idx), 150);
+  };
+
   return (
     <>
       {props.ThumbnailArray.map((value, idx) => (
         <motion.button
-          onClick={() => {
-            props.CarouselState === idx
-              ? null
-              : props.setBannerTextTransition('closed');
-            setTimeout(() => props.setCarouselState(idx), 150);
-          }}
+          onClick={() => CorouselClick(idx)}
           key={idx}
           ref={props.ThumbnailRef}
           whileTap={{ scale: 0.9 }}

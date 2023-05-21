@@ -65,8 +65,8 @@ export const HeaderNav: FC<IProps> = (props) => {
 
   return (
     <>
-      <div className="hidden medium-screen:flex flex-col">
-        <ul className="flex flex-row space-x-2">
+      <div className="hidden medium-screen:flex flex-col h-full">
+        <ul className="flex flex-row space-x-2 h-full items-center">
           {NavLabel.map((value) => (
             <li key={value.label} className="relative box-border">
               <Button
@@ -84,7 +84,7 @@ export const HeaderNav: FC<IProps> = (props) => {
                   props.Value == value.label
                     ? 'text-[#ffffff] bg-[#202020] hover:bg-[#202020]'
                     : 'text-[#ffffff75] bg-transparent hove:bg-transparent'
-                } cursor-default text-[12px] h-[40px] py-2 px-6 border-solid border-[2px] rounded-full border-[#1f1f1f] tracking-[0.6px] transition-all duration-300 font-normal hover:text-[#ffffff] button-text-lower`}
+                } cursor-default text-[12px] py-2 px-7 border-solid border-[2px] rounded-full border-[#1f1f1f] tracking-[0.6px] transition-all duration-300 font-normal hover:text-[#ffffff] button-text-lower`}
               >
                 {value.label}
               </Button>
@@ -97,10 +97,10 @@ export const HeaderNav: FC<IProps> = (props) => {
         disableRipple
         disableFocusRipple
         disableTouchRipple
-        aria-label="mobile-main-nav-button"
+        aria-label="tablet-main-nav-button"
         className={`${
           Boolean(NonActiveContent(props.Value)) ? 'opacity-50 ' : 'opacity-100'
-        } ${'flex hover:opacity-100 bg-[#202020] hover:bg-[#202020] cursor-default h-[40px] pl-4 pr-3 small-medium-screen:px-6 w-full medium-screen:hidden text-white rounded-full button-text-lower'}`}
+        } ${'flex hover:opacity-100 bg-[#202020] hover:bg-[#202020] cursor-default h-[40px] pl-4 pr-3 small-medium-screen:px-6 w-full medium-screen:hidden text-white rounded-lg button-text-lower'}`}
       >
         <div className="flex space-x-1 items-center">
           <h6 className="font-normal text-[12px] tracking-[0.6px]">

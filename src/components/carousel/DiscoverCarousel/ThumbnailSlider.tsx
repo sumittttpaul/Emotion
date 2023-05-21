@@ -281,7 +281,7 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
         onAnimationComplete={ExceptionalDragHover}
         onDragTransitionEnd={ExceptionalDragHover}
         onPointerLeave={() => setExceptionalHover(true)}
-        transition={{ type: 'spring', bounce: 0.25 }}
+        transition={{ type: 'spring', bounce: 0 }}
         dragConstraints={{ right: 0, left: -DragValue - 32 }}
         whileDrag={{ cursor: 'grab' }}
         style={{ x }}
@@ -292,8 +292,10 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
         <ThumbnailMap
           AutoPlay={props.AutoPlay}
           Duration={props.Duration}
+          Animation={animation}
           ThumbnailArray={props.ThumbnailArray}
           ThumbnailRef={thumbnailRef}
+          ConstraintRef={props.ConstraintRef}
           CarouselState={props.CarouselState}
           LeftIndicator={LeftIndicator}
           RightIndicator={RightIndicator}

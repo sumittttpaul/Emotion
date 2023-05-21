@@ -41,21 +41,21 @@ export const HeaderSearchButtonMenu: FC<HeaderSearchButtonMenuProps> = (
     EmptySearch: (value) => props.setSearch(value),
     onSelect: (value) => props.setSearch(value.Name),
   });
-  
+
   return (
     <div
       className={`${
         props.SearchMenu ? 'block' : 'hidden'
-      } z-10 absolute w-full top-14 px-1.5 py-2.5 bg-white rounded-xl shadow-2xl`}
+      } z-10 absolute w-full top-[45px] px-1.5 py-2.5 bg-[#28282899] backdrop-blur-[15px] rounded-lg text-white shadow-2xl`}
     >
       {Data.map((value, idx) => (
         <div
           {...itemProps(value)}
           key={value.id}
           className={` ${
-            activeIndex === idx ? 'bg-[#00000017]' : 'bg-transparent'
+            activeIndex === idx ? 'bg-[#ffffff15]' : 'bg-transparent'
           }
-          rounded-lg p-1 h-[35px] w-full flex cursor-default items-center`}
+          rounded-lg p-1 h-[40px] w-full flex cursor-default items-center`}
         >
           <div className="block h-5 ml-2 pr-4 opacity-70">
             <Image
@@ -67,7 +67,7 @@ export const HeaderSearchButtonMenu: FC<HeaderSearchButtonMenuProps> = (
             />
           </div>
           <div className="items-center pr-1 w-full overflow-hidden">
-            <p className="block text-[14px] truncate font-medium text-left">
+            <p className="block text-[13px] truncate font-[400px] tracking-wide text-left">
               {value.Name}
             </p>
           </div>
@@ -75,9 +75,9 @@ export const HeaderSearchButtonMenu: FC<HeaderSearchButtonMenuProps> = (
             <IconButton
               onPointerDown={() => removeItem(idx)}
               className={`${activeIndex === idx ? 'flex' : 'hidden'} 
-                  items-center justify-center w-[30px] h-[30px] p-0 m-0 cursor-pointer hover:bg-transparent`}
+                  items-center justify-center w-[30px] h-[30px] p-0 m-0 cursor-pointer opacity-70 hover:bg-[#ffffff30]`}
               style={{
-                borderRadius: 0,
+                borderRadius: 4,
               }}
               sx={{
                 '.MuiTouchRipple-child': {

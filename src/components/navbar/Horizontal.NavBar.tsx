@@ -1,0 +1,111 @@
+import { motion } from 'framer-motion';
+import React, { FC, useState } from 'react';
+
+interface IProps {}
+
+const ContentArray = [
+  { name: 'Discover' },
+  { name: 'Offers' },
+  { name: 'Collections' },
+];
+
+/**
+ * @author
+ * @function @HorizontalNavBar
+ **/
+
+export const HorizontalNavBar: FC<IProps> = (props) => {
+  const [Number, setNumber] = useState(0);
+  const [Width, setWidth] = useState(0);
+  const [MarginLeft, setMarginLeft] = useState(0);
+
+  const variants = {
+    initial: { width: Width, marginLeft: 0 },
+    animate: { width: Width, marginLeft: MarginLeft },
+  };
+
+  const onClick = (idx: number) => {
+    if (Number != idx) {
+      const PrevButtonWidth = document.getElementById(
+        `horizontal-navbar-button-id-${Number}`
+      )?.offsetWidth;
+      const PrevButtonOffsetLeft = document.getElementById(
+        `horizontal-navbar-button-id-${Number}`
+      )?.offsetLeft;
+      const NextButtonWidth = document.getElementById(
+        `horizontal-navbar-button-id-${idx}`
+      )?.offsetWidth;
+      const NextButtonOffsetLeft = document.getElementById(
+        `horizontal-navbar-button-id-${idx}`
+      )?.offsetLeft;
+      const ContainerMarginLeft = document.getElementById(
+        'horizontal-navbar-container-div'
+      )?.offsetLeft;
+      if (
+        PrevButtonWidth &&
+        NextButtonWidth &&
+        PrevButtonOffsetLeft &&
+        NextButtonOffsetLeft &&
+        ContainerMarginLeft
+      ) {
+        if (Number < idx) {
+          const NextMargin = NextButtonOffsetLeft - PrevButtonOffsetLeft;
+          const InitialMargin = PrevButtonOffsetLeft - ContainerMarginLeft;
+          const InitialWidth = NextButtonWidth + NextMargin;
+          setWidth(InitialWidth);
+          setMarginLeft(InitialMargin);
+        }
+        if (Number > idx) {
+          const PrevMargin = PrevButtonOffsetLeft - NextButtonOffsetLeft;
+          const InitialMargin = NextButtonOffsetLeft - ContainerMarginLeft;
+          const InitialWidth = PrevButtonWidth + PrevMargin;
+          setMarginLeft(InitialMargin);
+          setWidth(InitialWidth);
+        }
+        setNumber(idx);
+      }
+    }
+  };
+
+  const onAnimationComplete = () => {
+    const ButtonWidth = document.getElementById(
+      `horizontal-navbar-button-id-${Number}`
+    )?.offsetWidth;
+    const ButtonOffsetLeft = document.getElementById(
+      `horizontal-navbar-button-id-${Number}`
+    )?.offsetLeft;
+    const ContainerMarginLeft = document.getElementById(
+      'horizontal-navbar-container-div'
+    )?.offsetLeft;
+    if (ButtonWidth && ButtonOffsetLeft && ContainerMarginLeft) {
+      const FinalMargin = ButtonOffsetLeft - ContainerMarginLeft;
+      const FinalWidth = ButtonWidth;
+      setWidth(FinalWidth);
+      setMarginLeft(FinalMargin);
+    }
+  };
+
+  return (
+    <div id="horizontal-navbar-container-div" className="w-full flex flex-col">
+      <div className="flex justify-between">
+        {ContentArray.map((value, idx) => (
+          <div
+            id={`horizontal-navbar-button-id-${idx}`}
+            className="py-3 px-5 cursor-default"
+            onClick={() => onClick(idx)}
+          >
+            {value.name}
+          </div>
+        ))}
+      </div>
+      <motion.div
+        animate="animate"
+        initial="initial"
+        variants={variants}
+        onAnimationComplete={onAnimationComplete}
+        transition={{ type: 'twin', duration: 0.125 }}
+        className="h-[2px] bg-white"
+      />
+    </div>
+  );
+};

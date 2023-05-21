@@ -75,14 +75,13 @@ const useNavigateList = <T extends object, K extends keyof T>({
           getDeepValue(listItem, indexPath as string) ===
           getDeepValue(hoveredItem, indexPath as string)
       );
-      onSelect(list[value] as T);
+      // onSelect(list[value] as T);
       setCursor(value);
     },
     [indexPath, list]
   );
 
   const onMouseLeave = useCallback(() => {
-    EmptySearch('');
     setCursor(-1);
   }, [indexPath, list]);
 

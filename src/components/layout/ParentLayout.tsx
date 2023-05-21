@@ -2,41 +2,11 @@ import React, { FC, ReactNode, useState } from 'react';
 import { useReduxSelector } from '../../redux/useReduxSelector';
 import { ContainerDark } from '../container/ContainerDark';
 import { SidePanel } from '../sidepanel/SidePanel';
+import { Header } from '../header/Header';
 
 interface IProps {
   children: ReactNode;
 }
-
-const TopSidePanelItems = [
-  {
-    Name: 'Home',
-    Icon: '/icons/home.svg',
-    IconActive: '/icons/home-fill.svg',
-  },
-  {
-    Name: 'Fanbook',
-    Icon: '/icons/blog.svg',
-    IconActive: '/icons/blog-fill.svg',
-  },
-  {
-    Name: 'Basket',
-    Icon: '/icons/basket.svg',
-    IconActive: '/icons/basket-fill.svg',
-  },
-];
-
-const BottomSidePanelItems = [
-  {
-    Name: 'FAQ',
-    Icon: '/icons/faq.svg',
-    IconActive: '/icons/faq-fill.svg',
-  },
-  {
-    Name: 'Help',
-    Icon: '/icons/help.svg',
-    IconActive: '/icons/help-fill.svg',
-  },
-];
 
 /**
  * @author
@@ -52,8 +22,6 @@ export const ParentLayout: FC<IProps> = (props) => {
   return (
     <ContainerDark>
       <SidePanel
-        TopPanelData={TopSidePanelItems}
-        BottomPanelData={BottomSidePanelItems}
         Active={Active}
         setActive={setActive}
       />

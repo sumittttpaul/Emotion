@@ -108,7 +108,7 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
       aria-label="user-login-button"
       disableFocusRipple
       onClick={props.onClick}
-      className="flex items-center button-text-lower h-full px-4 bg-[#202020] hover:bg-[#202020]"
+      className="flex items-center button-text-lower h-full px-4 bg-transparent hover:bg-[#202020]"
       sx={{
         '.MuiTouchRipple-child': {
           backgroundColor: '#ffffff50 !important',
@@ -116,19 +116,14 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
       }}
       style={{ minWidth: 0 }}
     >
-      <div className="relative flex medium-screen:space-x-2 items-center">
-        <Image
-          height={20}
-          width={20}
-          layout="fixed"
-          className="opacity-70"
-          src={UserIcon}
-          alt=""
-        />
-        <h6 className="text-white hidden medium-screen:block whitespace-nowrap font-[350] text-[12px]">
-          Login
-        </h6>
-      </div>
+      <Image
+        height={20}
+        width={20}
+        layout="fixed"
+        className="opacity-70"
+        src={UserIcon}
+        alt=""
+      />
     </Button>
   );
 };
@@ -140,7 +135,7 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
         disabled
         aria-label="user-button-loading"
         disableFocusRipple
-        className="flex items-center button-text-lower h-full px-1 bg-[#202020] hover:bg-[#202020]"
+        className="flex items-center button-text-lower h-full px-1 bg-transparent hover:bg-[#202020]"
         sx={{
           '.MuiTouchRipple-child': {
             backgroundColor: '#ffffff50 !important',
@@ -193,34 +188,32 @@ const UserButton: FC<UserButtonProps> = (props) => {
           aria-label="user-popup-button"
           disableFocusRipple
           onClick={handleClick}
-          className="flex items-center button-text-lower h-full px-1.5 medium-screen:pl-2 medium-screen:pr-3 bg-[#202020] hover:bg-[#202020]"
+          className="flex items-center button-text-lower h-full bg-transparent hover:bg-[#202020]"
           sx={{
             '.MuiTouchRipple-child': {
               backgroundColor: '#ffffff50 !important',
             },
           }}
-          style={{ minWidth: 47 }}
+          style={{ minWidth: 0 }}
         >
           {props.user.photoURL ? (
-            <div className="relative flex items-center pr-[1px] medium-screen:space-x-2.5">
-              <Image
-                height={35}
-                width={35}
-                layout="fixed"
-                className="rounded-[50%]"
-                src={`${props.user.photoURL}`}
-                alt=""
-              />
-              <h6 className="text-white hidden medium-screen:block whitespace-nowrap font-[300] tracking-[0.075em] text-[12px]">
-                {props.UserName}
-              </h6>
-            </div>
+            <Image
+              height={35}
+              width={35}
+              layout="fixed"
+              className="rounded-[50%]"
+              src={`${props.user.photoURL}`}
+              alt=""
+            />
           ) : (
-            <div className="pl-1.5 relative flex items-center">
-              <h6 className="text-white block whitespace-nowrap font-[300] tracking-[0.075em] text-[12px]">
-                {props.UserName}
-              </h6>
-            </div>
+            <Image
+              height={20}
+              width={20}
+              layout="fixed"
+              className="opacity-70"
+              src={UserIcon}
+              alt=""
+            />
           )}
         </Button>
       </TooltipDark>

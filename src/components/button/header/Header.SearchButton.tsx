@@ -6,18 +6,14 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { motion } from 'framer-motion';
 import Image from 'next/legacy/image';
-import useScreenSize from '../../../algorithms/ScreenSizeDetection';
 import { HeaderSearchButtonMenuProps } from './Header.SearchButton.Menu';
 import dynamic from 'next/dynamic';
 import { IconButton } from '@mui/material';
 import { SearchContent } from '../../../contents/store/search/Store.Search';
 
 const HeaderSearchButtonMenu = dynamic<HeaderSearchButtonMenuProps>(() =>
-  import('./Header.SearchButton.Menu').then(
-    (x) => x.HeaderSearchButtonMenu
-  )
+  import('./Header.SearchButton.Menu').then((x) => x.HeaderSearchButtonMenu)
 );
 
 interface IProps {}
@@ -27,10 +23,10 @@ interface IProps {}
  * @function @HeaderSearchButton
  **/
 export const HeaderSearchButton: FC<IProps> = (props) => {
-  const { MediumScreen, MediumLargeScreen, LargeScreen } = useScreenSize();
   const [SearchMenuOpen, setSearchMenuOpen] = useState(false);
-  const [animate, setAnimate] = useState('closed');
-  const [Search, setSearch] = useState('');
+  const [Search, setSearch] = useState(
+    'Search by product, category, collection and more'
+  );
   const SearchRef = useRef<HTMLInputElement>(null);
   const ContainerRef = useRef<HTMLDivElement>(null);
 
@@ -48,18 +44,11 @@ export const HeaderSearchButton: FC<IProps> = (props) => {
     }
   };
 
-  const ButtonVariant = {
-    open: {
-      maxWidth: 600,
-    },
-    closed: {
-      maxWidth: LargeScreen || MediumLargeScreen || MediumScreen ? 200 : 100,
-    },
-  };
-
   const SearchClick = () => {
-    if (animate === 'closed' && SearchMenuOpen == false) {
-      setAnimate('open');
+    if (SearchMenuOpen == false) {
+      if (Search == 'Search by product, category, collection and more') {
+        setSearch('');
+      }
       setSearchMenuOpen(true);
       SearchRef.current?.focus();
     }
@@ -71,10 +60,10 @@ export const HeaderSearchButton: FC<IProps> = (props) => {
         ContainerRef.current &&
         !ContainerRef.current.contains(event.target as Node)
       ) {
-        if (animate === 'open' && SearchMenuOpen == true) {
-          setAnimate('closed');
+        if (SearchMenuOpen == true) {
+          if (Search == '')
+            setSearch('Search by product, category, collection and more');
           setSearchMenuOpen(false);
-          setSearch('');
         }
       }
     };
@@ -82,41 +71,22 @@ export const HeaderSearchButton: FC<IProps> = (props) => {
     return () => {
       window.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [ContainerRef, SearchMenuOpen, animate]);
-
-  useEffect(() => {
-    if (SearchMenuOpen) {
-      setAnimate('open');
-    } else {
-      setAnimate('closed');
-      setSearch('');
-    }
-  }, [SearchMenuOpen]);
+  }, [ContainerRef, SearchMenuOpen, Search]);
 
   return (
-    <motion.div
+    <div
       ref={ContainerRef}
-      className="relative hidden small-screen:flex flex-col w-full max-w-[600px]"
+      className="relative flex flex-col w-full max-w-[600px] mx-auto"
     >
-      <motion.div
+      <div
         id="desktop-header-search-button"
         aria-label="desktop-search-button"
         onClick={SearchClick}
-        animate={animate}
-        variants={ButtonVariant}
-        transition={{ duration: 0.2, type: 'tween' }}
-        className="block text-white w-full max-w-[100px] medium-screen:max-w-[200px] cursor-text justify-start items-center button-text-lower pl-[10px] rounded-full bg-[#202020] hover:bg-[#202020]"
+        className={`${
+          SearchMenuOpen ? 'bg-[#202020]' : 'bg-[#202020] hover:bg-[#252525]'
+        } block text-white w-full cursor-text justify-start items-center button-text-lower pl-[5px] rounded-lg overflow-hidden relative`}
       >
         <div className="flex items-center">
-          <div className="flex ml-[1px] justify-center h-[16px] w-[16px] opacity-60">
-            <Image
-              src="/icons/search-white-2.svg"
-              height={16}
-              width={16}
-              layout="fixed"
-              alt=""
-            />
-          </div>
           <input
             ref={SearchRef}
             aria-label="search-text-field"
@@ -125,19 +95,24 @@ export const HeaderSearchButton: FC<IProps> = (props) => {
             onKeyDown={handleSearchKeyDown}
             autoCorrect="off"
             autoComplete="off"
-            placeholder={
-              animate === 'open'
-                ? 'Search by product, category or collection'
-                : 'Search'
-            }
-            className="flex min-w-20 pt-[10px] pb-[12px] pl-[10px] mr-2 truncate w-full h-full bg-transparent text-[14px] text-white placeholder:text-[#ffffffad] placeholder:text-[13px] outline-none"
+            className={`${
+              Search != 'Search by product, category, collection and more'
+                ? 'text-[14px] text-white'
+                : 'text-[13px] text-[#ffffffad]'
+            } flex pt-[10px] pb-[12px] pl-[10px] mr-2 truncate w-full h-full bg-transparent outline-none`}
           />
           <IconButton
             aria-label="desktop-search-clear-button"
             onClick={() => setSearch('')}
             className={`${
-              Search === '' ? 'hidden' : ''
-            } cursor-default group p-2 bg-transparent hover:bg-[#ffffff15]`}
+              Search === '' || !SearchMenuOpen ? 'hidden' : ''
+            } cursor-default group p-2 bg-transparent rounded-md hover:bg-[#ffffff15]`}
+            sx={{
+              '.MuiTouchRipple-child': {
+                borderRadius: '4px',
+                backgroundColor: '#ffffff50 !important',
+              },
+            }}
           >
             <Image
               height={18}
@@ -149,22 +124,29 @@ export const HeaderSearchButton: FC<IProps> = (props) => {
             />
           </IconButton>
           <IconButton
-            aria-label="desktop-search-right-arrow-button"
-            className={`${
-              SearchMenuOpen ? '' : 'hidden'
-            } cursor-default group p-2 mr-1 bg-transparent hover:bg-[#ffffff15]`}
+            aria-label="desktop-search-button"
+            className="cursor-default group p-2 mr-1 bg-transparent rounded-md hover:bg-[#ffffff15]"
+            sx={{
+              '.MuiTouchRipple-child': {
+                borderRadius: '4px',
+                backgroundColor: '#ffffff50 !important',
+              },
+            }}
           >
             <Image
-              height={18}
-              width={18}
+              height={16}
+              width={16}
               layout="fixed"
-              src="/icons/arrow-right.svg"
-              className="group-hover:opacity-100 opacity-70"
+              src="/icons/search-white-2.svg"
+              className="group-hover:opacity-90 opacity-60"
               alt=""
             />
           </IconButton>
         </div>
-      </motion.div>
+        {SearchMenuOpen && (
+          <div className="bg-white opacity-40 h-[2px] -ml-[5px] w-full absolute bottom-0" />
+        )}
+      </div>
       <HeaderSearchButtonMenu
         SearchRef={SearchRef}
         ContainerRef={ContainerRef}
@@ -174,6 +156,6 @@ export const HeaderSearchButton: FC<IProps> = (props) => {
         setSearch={setSearch}
         ContentArray={SearchContent}
       />
-    </motion.div>
+    </div>
   );
 };

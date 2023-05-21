@@ -7,7 +7,6 @@ import {
   Cart_Link,
   Redeem_Gift_Codes_Link,
 } from '../../../routerLinks/RouterLinks';
-import { Square_BlurDataURL } from '../../loader/BlurDataURL';
 import Image from 'next/legacy/image';
 import firebase from 'firebase/compat';
 import UserIcon from '../../../../public/icons/user-fill.svg';
@@ -35,11 +34,12 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
       PaperProps={{
         elevation: 0,
         sx: {
-          background: '#282828',
-          mt: 1.2,
-          borderRadius: 3,
+          background: '#28282880',
+          mt: 1.43,
+          borderRadius: 2,
           overflow: 'visible',
-          // filter: 'drop-shadow(0px 0px 0px #ffffff12)',
+          filter: 'drop-shadow(0px 0px 0px #000000)',
+          backdropFilter: 'blur(15px)',
           '.MuiMenu-list': {
             padding: '1px 0',
           },
@@ -58,7 +58,7 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
         key={1}
         disableRipple
         disableTouchRipple
-        className="m-1 p-2 rounded-md cursor-default hover:bg-[transparent]"
+        className="m-1 p-2 pr-10 rounded-md cursor-default hover:bg-[transparent]"
       >
         <div className="flex relative space-x-3">
           <div className="relative block">
@@ -113,15 +113,10 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
             Router.push(Manage_Your_Account_Link);
           }, 150);
         }}
-        className="m-1 rounded-md hover:bg-[#ffffff15]"
+        className="m-1 py-2 rounded-md hover:bg-[#ffffff15]"
       >
         <div className="flex relative space-x-[10px] opacity-90">
-          <Image
-            height={17}
-            width={17}
-            src="/icons/folder.svg"
-            alt=""
-          />
+          <Image height={17} width={17} src="/icons/folder.svg" alt="" />
           <h6 className="text-[14px] font-sans font-[400] text-white">
             Manage your account
           </h6>
@@ -136,15 +131,10 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
             Router.push(Track_Order_Link);
           }, 150);
         }}
-        className="m-1 rounded-md hover:bg-[#ffffff15]"
+        className="m-1 py-2 rounded-md hover:bg-[#ffffff15]"
       >
         <div className="flex relative space-x-[10px] opacity-90">
-          <Image
-            height={18}
-            width={18}
-            src="/icons/truck.svg"
-            alt=""
-          />
+          <Image height={18} width={18} src="/icons/truck.svg" alt="" />
           <h6 className="text-[14px] font-sans font-[400] text-white">
             Track orders
           </h6>
@@ -159,15 +149,10 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
             Router.push(Cart_Link);
           }, 150);
         }}
-        className="m-1 rounded-md hover:bg-[#ffffff15]"
+        className="m-1 py-2 rounded-md hover:bg-[#ffffff15]"
       >
         <div className="flex relative space-x-[10px] opacity-90">
-          <Image
-            height={17}
-            width={17}
-            src="/icons/shopping-bag.svg"
-            alt=""
-          />
+          <Image height={17} width={17} src="/icons/shopping-bag.svg" alt="" />
           <h6 className="text-[14px] font-sans font-[400] text-white">
             View all orders
           </h6>
@@ -182,15 +167,10 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
             Router.push(Redeem_Gift_Codes_Link);
           }, 150);
         }}
-        className="m-1 rounded-md hover:bg-[#ffffff15]"
+        className="m-1 py-2 rounded-md hover:bg-[#ffffff15]"
       >
         <div className="flex relative space-x-[10px] opacity-90">
-          <Image
-            height={17}
-            width={17}
-            src="/icons/gift.svg"
-            alt=""
-          />
+          <Image height={17} width={17} src="/icons/gift.svg" alt="" />
           <h6 className="text-[14px] font-sans font-[400] text-white">
             Redeem code or gift cards
           </h6>

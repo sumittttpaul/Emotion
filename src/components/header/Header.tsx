@@ -48,13 +48,13 @@ export const Header: FC<HeaderProps> = (props) => {
             />
           </div>
           {/* Search Button */}
-          <div className="flex w-full">
+          <div className="flex w-full medium-screen:max-w-[50%]">
             <HeaderSearchButton />
           </div>
         </div>
         {/* Wishlist, Notification, User Button */}
-        <div className="flex space-x-2.5 items-center">
-          <HeaderWishlistButton
+        <div className="flex space-x-2.5 items-center ">
+          {/* <HeaderWishlistButton
             value={`${HomePageState.Page}`}
             Click={() => {
               setTimeout(() => {
@@ -63,7 +63,7 @@ export const Header: FC<HeaderProps> = (props) => {
                 Router.push(Wishlist_Link);
               }, 150);
             }}
-          />
+          /> */}
           <HeaderNotificationButton />
           <HeaderUserButton />
         </div>

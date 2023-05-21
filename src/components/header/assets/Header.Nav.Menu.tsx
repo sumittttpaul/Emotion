@@ -60,13 +60,14 @@ export const HeaderNavMenu: FC<HeaderNavMenuProps> = (props) => {
       PaperProps={{
         elevation: 0,
         sx: {
-          background: '#282828',
-          mt: 1.2,
+          background: '#28282880',
+          mt: 1.1,
           ml: 8.3,
-          borderRadius: 3,
+          borderRadius: 2,
           padding: 0.5,
           overflow: 'visible',
-          // filter: 'drop-shadow(0px 0px 0px #ffffff12)',
+          filter: 'drop-shadow(0px 0px 0px #000000)',
+          backdropFilter: 'blur(15px)',
           '.MuiMenu-list': {
             padding: '1px 0',
           },
@@ -90,7 +91,7 @@ export const HeaderNavMenu: FC<HeaderNavMenuProps> = (props) => {
           className={`${ActiveContent(
             props.Value,
             value.label
-          )} ${'text-white p-0 m-0 hover:opacity-100 bg-transparent rounded-xl disabled:cursor-not-allowed disabled:text-white w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center button-text-lower'}`}
+          )} ${'text-white p-0 m-0 hover:opacity-100 bg-transparent rounded-lg disabled:cursor-not-allowed disabled:text-white w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center button-text-lower'}`}
           onClick={() => {
             setTimeout(() => {
               if (props.Value != value.label) {

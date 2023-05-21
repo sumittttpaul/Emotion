@@ -43,6 +43,10 @@ export const MobileLogo = (props: IProps) => {
   );
 };
 
+export const MobileSearchLogo = () => {
+  return <Image height={25} width={25} layout="fixed" src={Logo} alt="" />;
+};
+
 export const FooterLogo = (props: IProps) => {
   return (
     <>
