@@ -27,19 +27,25 @@ export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
   return (
     <div className="relative z-10 max-w-[2000px] mx-auto">
       <DiscoverCarousel ContentArray={DiscoverCarouselContent} />
-      <DiscoverTiles ContentArray={DiscoverTilesContent} />
-      <DiscoverSlider ContentArray={DiscoverSliderContent} />
-      <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
+      <div className="px-3">
+        <DiscoverTiles ContentArray={DiscoverTilesContent} />
+        <DiscoverSlider ContentArray={DiscoverSliderContent} />
+        <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
+      </div>
       <DiscoverBannerLightingDeal
         ContentArray={DiscoverBannerLightingDealContent}
       />
-      <DiscoverSlider ContentArray={DiscoverSliderContent} />
-      <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
+      <div className="px-3">
+        <DiscoverSlider ContentArray={DiscoverSliderContent} />
+        <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
+      </div>
       <DiscoverBannerArrivals
         ContentArray={DiscoverBannerLightingDealContent}
       />
-      <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
-      <DiscoverBannerFive ContentArray={DiscoverBannerFiveContent} />
+      <div className="px-3">
+        <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
+        <DiscoverBannerFive ContentArray={DiscoverBannerFiveContent} />
+      </div>
       <DiscoverCatelog />
     </div>
   );

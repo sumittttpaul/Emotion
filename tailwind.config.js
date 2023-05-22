@@ -49,6 +49,7 @@ module.exports = {
         'medium-large-screen': '1300px',
         'xl-1400': '1400px',
         'large-screen': '1520px',
+        'xl-1765': '1765px'
       },
     },
   },

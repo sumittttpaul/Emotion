@@ -20,7 +20,7 @@ export const Footer: FC<FooterProps> = (props) => {
     setLoader({ show: value });
   };
   return (
-    <div className="w-full self-end pb-5 pr-5">
+    <div className="w-full self-end pb-3 pr-3">
       <div className="w-full relative pb-5 sm:pb-8 sm:px-8 px-3 box-border rounded-3xl bg-gradient-to-t from-[#151515]">
         <div className="flex flex-col items-center justify-center">
           <FooterLogo

@@ -1,10 +1,11 @@
-import { BellIcon } from '@heroicons/react/outline';
 import { IconButton } from '@mui/material';
-import React, { FC } from 'react';
+import React, { FC, Fragment, useState, MouseEvent } from 'react';
 import { TooltipDark } from '../../tooltip/TooltipDark';
 import Image from 'next/image';
 import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
+import { HeaderNotificationButtonMenu } from './Header.NotificationButton.Menu';
+import { StoreNotification } from '../../../contents/store/discover/Store.Notification';
 
 interface IProps {}
 
@@ -26,32 +27,51 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
  **/
 
 export const HeaderNotificationButton: FC<IProps> = (props) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
-    <TooltipDark
-      arrow
-      placement="bottom"
-      title={<h6 className="font-[400]">What's new</h6>}
-    >
-      <IconButton
-        disableFocusRipple
-        aria-label="desktop-wishlist-button"
-        className="flex transition-all duration-300 text-white h-[47px] w-[47px] items-center justify-center rounded-lg button-text-lower bg-transparent hover:bg-[#202020]"
-        sx={{
-          '.MuiTouchRipple-child': {
-            borderRadius: '4px',
-            backgroundColor: '#ffffff50 !important',
-          },
-        }}
+    <Fragment>
+      <TooltipDark
+        arrow
+        placement="bottom"
+        title={<h6 className="font-[400]">What's New</h6>}
       >
-        <StyledBadge badgeContent={5}>
-          <Image
-            width={22}
-            height={22}
-            src={'/icons/notification-thin-white.svg'}
-            alt=""
-          />
-        </StyledBadge>
-      </IconButton>
-    </TooltipDark>
+        <IconButton
+          disableFocusRipple
+          onClick={handleClick}
+          aria-label="desktop-wishlist-button"
+          className="flex transition-all duration-300 text-white h-[47px] w-[47px] items-center justify-center rounded-lg button-text-lower bg-transparent hover:bg-[#202020]"
+          sx={{
+            '.MuiTouchRipple-child': {
+              borderRadius: '4px',
+              backgroundColor: '#ffffff50 !important',
+            },
+          }}
+        >
+          <StyledBadge badgeContent={5}>
+            <Image
+              width={22}
+              height={22}
+              src={'/icons/notification-thin-white.svg'}
+              alt=""
+            />
+          </StyledBadge>
+        </IconButton>
+      </TooltipDark>
+      <HeaderNotificationButtonMenu
+        ContentArray={StoreNotification}
+        anchorEl={anchorEl}
+        open={open}
+        handleClose={handleClose}
+      />
+    </Fragment>
   );
 };
