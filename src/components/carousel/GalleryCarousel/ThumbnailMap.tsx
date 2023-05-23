@@ -2,7 +2,7 @@ import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
 import { AnimationControls, motion } from 'framer-motion';
 import Image from 'next/legacy/image';
 import React, { Dispatch, FC, RefObject, SetStateAction } from 'react';
-import { DiscoverCarouselIProps } from '../../../contents/store/discover/Store.Discover.Carousel';
+import { GalleryCarouselContentProps } from '../../../contents/store/discover/Store.Discover.Carousel';
 
 interface IProps {
   AutoPlay?: boolean;
@@ -17,7 +17,7 @@ interface IProps {
   setLeftIndicator: Dispatch<SetStateAction<boolean>>;
   setRightIndicator: Dispatch<SetStateAction<boolean>>;
   setBannerTextTransition: Dispatch<SetStateAction<string>>;
-  ThumbnailArray: DiscoverCarouselIProps[];
+  ThumbnailArray: GalleryCarouselContentProps[];
 }
 
 const ThumbnailSizes = 'w-[220px] h-[120px] min-w-[220px] min-h-[120px]';

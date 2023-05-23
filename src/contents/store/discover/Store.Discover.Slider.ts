@@ -1,4 +1,4 @@
-export interface DiscoverSliderIProps {
+export interface DiscoverSliderContentProps {
   Heading: string;
   Discount: string;
   OriginalPrice: string;

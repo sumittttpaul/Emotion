@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import { HeaderNotificationButtonMenu } from './Header.NotificationButton.Menu';
-import { StoreNotification } from '../../../contents/store/discover/Store.Notification';
+import { StoreNotificationContent } from '../../../contents/store/discover/Store.Notification';
 
 interface IProps {}
 
@@ -67,7 +67,7 @@ export const HeaderNotificationButton: FC<IProps> = (props) => {
         </IconButton>
       </TooltipDark>
       <HeaderNotificationButtonMenu
-        ContentArray={StoreNotification}
+        ContentArray={StoreNotificationContent}
         anchorEl={anchorEl}
         open={open}
         handleClose={handleClose}

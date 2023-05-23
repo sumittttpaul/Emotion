@@ -1,5 +1,5 @@
 import React, { FC, useRef, useState } from 'react';
-import { DiscoverSliderIProps } from '../../contents/store/discover/Store.Discover.Slider';
+import { DiscoverSliderContentProps } from '../../contents/store/discover/Store.Discover.Slider';
 import {
   DiscoverSliderBrowser,
   DiscoverSliderMobile,
@@ -7,7 +7,7 @@ import {
 import { DiscoverSliderTitle } from './DiscoverSlider/DiscoverSliderTitle';
 
 interface IProps {
-  ContentArray: DiscoverSliderIProps[];
+  ContentArray: DiscoverSliderContentProps[];
 }
 
 /**

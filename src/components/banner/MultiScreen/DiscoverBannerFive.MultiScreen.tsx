@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Image from 'next/legacy/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { DiscoverBannerFiveIProps } from '../../../contents/store/discover/Store.Discover.Banner';
+import { DiscoverBannerFiveContentProps } from '../../../contents/store/discover/Store.Discover.Banner';
 import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
 import { BannerUnderlineButtonDark } from '../../button/BannerUnderlineButtonDark';
 import useScreenSize from '../../../algorithms/ScreenSizeDetection';
@@ -21,7 +21,7 @@ const GetColor = (index: number) => {
 };
 
 export interface DiscoverBannerFiveBrowserProps {
-  ContentArray: DiscoverBannerFiveIProps[];
+  ContentArray: DiscoverBannerFiveContentProps[];
 }
 export const DiscoverBannerFiveBrowser: FC<DiscoverBannerFiveBrowserProps> = (
   props
@@ -80,7 +80,7 @@ export const DiscoverBannerFiveBrowser: FC<DiscoverBannerFiveBrowserProps> = (
 };
 
 export interface DiscoverBannerFiveMobileProps {
-  ContentArray: DiscoverBannerFiveIProps[];
+  ContentArray: DiscoverBannerFiveContentProps[];
 }
 export const DiscoverBannerFiveMobile: FC<DiscoverBannerFiveMobileProps> = (
   props

@@ -1,4 +1,4 @@
-import { DiscoverSliderIProps } from '../../../contents/store/discover/Store.Discover.Slider';
+import { DiscoverSliderContentProps } from '../../../contents/store/discover/Store.Discover.Slider';
 import React, {
   Dispatch,
   FC,
@@ -25,7 +25,7 @@ const DiscountedPriceStyle = 'text-[14px]';
 const ImageStyle = 'rounded-xl';
 
 export interface DiscoverSliderBrowserProps {
-  ContentArray: DiscoverSliderIProps[];
+  ContentArray: DiscoverSliderContentProps[];
   sliderRef: RefObject<HTMLElement>;
   Wishlist: number;
   setWishlist: Dispatch<SetStateAction<number>>;
@@ -139,7 +139,7 @@ export const DiscoverSliderBrowser: FC<DiscoverSliderBrowserProps> = (
 };
 
 export interface DiscoverSliderMobileProps {
-  ContentArray: DiscoverSliderIProps[];
+  ContentArray: DiscoverSliderContentProps[];
   Wishlist: number;
   setWishlist: Dispatch<SetStateAction<number>>;
 }

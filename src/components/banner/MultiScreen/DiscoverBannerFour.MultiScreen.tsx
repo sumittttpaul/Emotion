@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Image from 'next/legacy/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { DiscoverBannerFourIProps } from '../../../contents/store/discover/Store.Discover.Banner';
+import { DiscoverBannerFourContentProps } from '../../../contents/store/discover/Store.Discover.Banner';
 import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
 import { BannerUnderlineButtonDark } from '../../button/BannerUnderlineButtonDark';
 import useScreenSize from '../../../algorithms/ScreenSizeDetection';
@@ -14,7 +14,7 @@ const DescriptionStyle =
   'text-[14px] whitespace-normal leading-[18px] font-sans font-normal text-left w-full opacity-70';
 
 export interface DiscoverBannerFourBrowserProps {
-  ContentArray: DiscoverBannerFourIProps[];
+  ContentArray: DiscoverBannerFourContentProps[];
 }
 export const DiscoverBannerFourBrowser: FC<DiscoverBannerFourBrowserProps> = (
   props
@@ -77,7 +77,7 @@ export const DiscoverBannerFourBrowser: FC<DiscoverBannerFourBrowserProps> = (
 };
 
 export interface DiscoverBannerFourMobileProps {
-  ContentArray: DiscoverBannerFourIProps[];
+  ContentArray: DiscoverBannerFourContentProps[];
 }
 export const DiscoverBannerFourMobile: FC<DiscoverBannerFourMobileProps> = (
   props

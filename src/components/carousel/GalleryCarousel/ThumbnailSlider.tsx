@@ -10,7 +10,7 @@ import React, {
   SetStateAction,
   Dispatch,
 } from 'react';
-import { DiscoverCarouselIProps } from '../../../contents/store/discover/Store.Discover.Carousel';
+import { GalleryCarouselContentProps } from '../../../contents/store/discover/Store.Discover.Carousel';
 
 export interface ThumbnailSliderProps {
   AutoPlay?: boolean;
@@ -19,7 +19,7 @@ export interface ThumbnailSliderProps {
   CarouselState: number;
   setCarouselState: Dispatch<SetStateAction<number>>;
   setBannerTextTransition: Dispatch<SetStateAction<string>>;
-  ThumbnailArray: DiscoverCarouselIProps[];
+  ThumbnailArray: GalleryCarouselContentProps[];
 }
 
 /**
@@ -228,7 +228,7 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
         return () => ClearCarousel();
       }
     }
-  }, [props.CarouselState, IntervalStatus, props.AutoPlay, props.Duration,]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [props.CarouselState, IntervalStatus, props.AutoPlay, props.Duration]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /* Initial State */
   useEffect(() => {

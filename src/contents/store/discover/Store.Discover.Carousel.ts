@@ -1,4 +1,4 @@
-export interface DiscoverCarouselIProps {
+export interface GalleryCarouselContentProps {
   Button: string;
   Heading: string;
   ThumbnailHeading: string;
@@ -8,7 +8,7 @@ export interface DiscoverCarouselIProps {
   Image: string;
 }
 
-export const DiscoverCarouselContent = [
+export const GalleryCarouselContent = [
   {
     Button: 'Order now',
     Heading: 'Main Heading 1',

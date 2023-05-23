@@ -9,12 +9,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Button } from '@mui/material';
 import { HeartIcon } from '@heroicons/react/outline';
 import { CarouselBannerImage } from './CarouselBannerImage';
-import { DiscoverCarouselIProps } from '../../../contents/store/discover/Store.Discover.Carousel';
+import { GalleryCarouselContentProps } from '../../../contents/store/discover/Store.Discover.Carousel';
 import { useEffect } from 'react';
 
 export interface CarouselBannerProps {
   ElementRef: RefObject<HTMLDivElement>;
-  ContentArray: DiscoverCarouselIProps[];
+  ContentArray: GalleryCarouselContentProps[];
   CarouselState: number;
   BannerTextTransition: string;
   setBannerTextTransition: Dispatch<SetStateAction<string>>;
@@ -74,7 +74,8 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
               transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
               variants={ChildAnimationVariant}
               className={` ${
-                props.ContentArray[CarouselState].Button.toLowerCase() == 'order now'
+                props.ContentArray[CarouselState].Button.toLowerCase() ==
+                'order now'
                   ? 'hidden small-screen:flex'
                   : 'hidden'
               }`}

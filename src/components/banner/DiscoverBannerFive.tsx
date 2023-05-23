@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
-import { DiscoverBannerFiveIProps } from '../../contents/store/discover/Store.Discover.Banner';
+import { DiscoverBannerFiveContentProps } from '../../contents/store/discover/Store.Discover.Banner';
 import {
   DiscoverBannerFiveMobile,
   DiscoverBannerFiveBrowser,
 } from './MultiScreen/DiscoverBannerFive.MultiScreen';
 
 interface IProps {
-  ContentArray: DiscoverBannerFiveIProps[];
+  ContentArray: DiscoverBannerFiveContentProps[];
 }
 
 /**

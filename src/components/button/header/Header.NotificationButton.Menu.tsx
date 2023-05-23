@@ -5,15 +5,10 @@ import { DotsHorizontalIcon } from '@heroicons/react/outline';
 import { HotBadge } from '../../badge/HotBadge';
 import { TrendingBadge } from '../../badge/TrendingBadge';
 import { NewBadge } from '../../badge/NewBadge';
+import { StoreNotificationContentProps } from '../../../contents/store/discover/Store.Notification';
 
 interface IProps {
-  ContentArray: {
-    Heading: string;
-    Description: string;
-    Badge: string;
-    Image: string;
-    isRead: string;
-  }[];
+  ContentArray: StoreNotificationContentProps[];
   anchorEl: null | HTMLElement;
   open: boolean;
   handleClose: () => void;

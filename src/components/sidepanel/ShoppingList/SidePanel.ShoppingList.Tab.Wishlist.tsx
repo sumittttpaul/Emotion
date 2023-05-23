@@ -8,14 +8,10 @@ import MuiAccordionSummary, {
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import { styled } from '@mui/material/styles';
 import { DotsHorizontalIcon } from '@heroicons/react/outline';
+import { StoreWishlistContentProps } from '../../../contents/store/discover/Store.ShoppingList';
 
 interface IProps {
-  ContentArray: {
-    Heading: string;
-    Image: string;
-    Category: string;
-    Price: string;
-  }[];
+  ContentArray: StoreWishlistContentProps[];
 }
 
 const Accordion = styled((props: AccordionProps) => (

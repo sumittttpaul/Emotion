@@ -1,14 +1,14 @@
 import { Button } from '@mui/material';
 import Image from 'next/legacy/image';
 import React, { FC } from 'react';
-import { DiscoverBannerLightingDealIProps } from '../../contents/store/discover/Store.Discover.Banner';
+import { DiscoverBannerLightingDealContentProps } from '../../contents/store/discover/Store.Discover.Banner';
 import {
   DiscoverBannerArrivalsMobile,
   DiscoverBannerArrivalsBrowser,
 } from './MultiScreen/DiscoverBannerArrivals.MultiScreen';
 
 interface IProps {
-  ContentArray: DiscoverBannerLightingDealIProps[];
+  ContentArray: DiscoverBannerLightingDealContentProps[];
 }
 
 /**
@@ -22,12 +22,7 @@ export const DiscoverBannerArrivals: FC<IProps> = (props) => {
         <div className="flex flex-col items-center justify-center w-full">
           <div className="flex flex-col space-y-3 items-center small-medium-screen:items-start justify-center">
             <div className="space-x-3 flex items-center justify-center">
-              <Image
-                height={30}
-                width={30}
-                src="/icons/arrivals.svg"
-                alt=""
-              />
+              <Image height={30} width={30} src="/icons/arrivals.svg" alt="" />
               <h6 className="text-[18px]">New arrivals</h6>
             </div>
             <Button

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { DiscoverBannerLightingDealIProps } from '../../../contents/store/discover/Store.Discover.Banner';
+import { DiscoverBannerLightingDealContentProps } from '../../../contents/store/discover/Store.Discover.Banner';
 import Image from 'next/legacy/image';
 import { motion } from 'framer-motion';
 import { Poster_BlurDataURL } from '../../loader/BlurDataURL';
@@ -17,7 +17,7 @@ const OriginalPriceStyle = 'line-through text-[13.5px] opacity-70';
 const DiscountedPriceStyle = 'text-[15px]';
 
 interface IProps {
-  ContentArray: DiscoverBannerLightingDealIProps[];
+  ContentArray: DiscoverBannerLightingDealContentProps[];
 }
 
 export const DiscoverBannerLightningDealBrowser: FC<IProps> = (props) => {

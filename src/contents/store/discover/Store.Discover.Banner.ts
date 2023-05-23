@@ -1,18 +1,18 @@
-export interface DiscoverBannerFiveIProps {
+export interface DiscoverBannerFiveContentProps {
   Heading: string;
   Description: string;
   Image: string;
   slug: string;
 }
 
-export interface DiscoverBannerFourIProps {
+export interface DiscoverBannerFourContentProps {
   Heading: string;
   Description: string;
   Image: string;
   slug: string;
 }
 
-export interface DiscoverBannerLightingDealIProps {
+export interface DiscoverBannerLightingDealContentProps {
   Heading: string;
   Description: string;
   Image: string;

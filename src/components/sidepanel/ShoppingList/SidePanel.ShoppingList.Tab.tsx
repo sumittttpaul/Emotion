@@ -6,7 +6,10 @@ import TabPanel from '../../tab/SelectAvatarTabPanel';
 import React, { FC, useState, KeyboardEvent } from 'react';
 import { SidePanelShoppingListTabWishlist } from './SidePanel.ShoppingList.Tab.Wishlist';
 import { SidePanelShoppingListTabCart } from './SidePanel.ShoppingList.Tab.Cart';
-import { StoreCart, StoreWishlist } from '../../../contents/store/discover/Store.ShoppingList';
+import {
+  StoreCartContent,
+  StoreWishlistContent,
+} from '../../../contents/store/discover/Store.ShoppingList';
 
 interface IProps {}
 
@@ -105,10 +108,12 @@ export const SidePanelShoppingListTab: FC<IProps> = (props) => {
         }}
       >
         <TabPanel value={Tabvalue} index={0} dir={theme.direction}>
-          <SidePanelShoppingListTabWishlist ContentArray={StoreWishlist} />
+          <SidePanelShoppingListTabWishlist
+            ContentArray={StoreWishlistContent}
+          />
         </TabPanel>
         <TabPanel value={Tabvalue} index={1} dir={theme.direction}>
-          <SidePanelShoppingListTabCart ContentArray={StoreCart} />
+          <SidePanelShoppingListTabCart ContentArray={StoreCartContent} />
         </TabPanel>
       </SwipeableViews>
     </div>

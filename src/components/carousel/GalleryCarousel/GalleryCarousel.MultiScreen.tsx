@@ -1,16 +1,16 @@
 import React, { Dispatch, FC, RefObject, SetStateAction } from 'react';
-import { DiscoverCarouselIProps } from '../../../contents/store/discover/Store.Discover.Carousel';
+import { GalleryCarouselContentProps } from '../../../contents/store/discover/Store.Discover.Carousel';
 import { CarouselBanner } from './CarouselBanner';
 import { SliderCarousel } from './SliderCarousel';
 import { ThumbnailSlider } from './ThumbnailSlider';
 
-export interface DiscoverCarouselMobileProps {
-  ContentArray: DiscoverCarouselIProps[];
+export interface GalleryCarouselMobileProps {
+  ContentArray: GalleryCarouselContentProps[];
 }
 
-export interface DiscoverCarouselDesktopProps {
+export interface GalleryCarouselDesktopProps {
   ElementRef: RefObject<HTMLDivElement>;
-  ContentArray: DiscoverCarouselIProps[];
+  ContentArray: GalleryCarouselContentProps[];
   BannerTextTransition: string;
   AutoPlay?: boolean;
   Duration?: number;
@@ -18,10 +18,10 @@ export interface DiscoverCarouselDesktopProps {
   CarouselState: number;
   setCarouselState: Dispatch<SetStateAction<number>>;
   setBannerTextTransition: Dispatch<SetStateAction<string>>;
-  ThumbnailArray: DiscoverCarouselIProps[];
+  ThumbnailArray: GalleryCarouselContentProps[];
 }
 
-export const DiscoverCarouselMobile: FC<DiscoverCarouselMobileProps> = (
+export const GalleryCarouselMobile: FC<GalleryCarouselMobileProps> = (
   props
 ) => {
   return (
@@ -31,7 +31,7 @@ export const DiscoverCarouselMobile: FC<DiscoverCarouselMobileProps> = (
   );
 };
 
-export const DiscoverCarouselDesktop: FC<DiscoverCarouselDesktopProps> = (
+export const GalleryCarouselDesktop: FC<GalleryCarouselDesktopProps> = (
   props
 ) => {
   return (

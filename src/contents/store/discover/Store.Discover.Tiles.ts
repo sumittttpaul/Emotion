@@ -1,4 +1,4 @@
-export interface DiscoverTilesIProps {
+export interface DiscoverTilesContentProps {
   Heading: string;
   Description: string;
   Price: string;

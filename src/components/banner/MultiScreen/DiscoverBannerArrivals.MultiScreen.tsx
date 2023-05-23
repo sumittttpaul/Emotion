@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { DiscoverBannerLightingDealIProps } from '../../../contents/store/discover/Store.Discover.Banner';
+import { DiscoverBannerLightingDealContentProps } from '../../../contents/store/discover/Store.Discover.Banner';
 import Image from 'next/legacy/image';
 import { motion } from 'framer-motion';
 import { Poster_BlurDataURL } from '../../loader/BlurDataURL';
@@ -15,7 +15,7 @@ const ContainerStyle =
   'p-0 m-0 flex flex-col relative box-border overflow-hidden rounded-xl hover:outline hover:outline-[#ffffff30] hover:outline-2 hover:outline-offset-[13px]';
 
 interface IProps {
-  ContentArray: DiscoverBannerLightingDealIProps[];
+  ContentArray: DiscoverBannerLightingDealContentProps[];
 }
 
 export const DiscoverBannerArrivalsBrowser: FC<IProps> = (props) => {

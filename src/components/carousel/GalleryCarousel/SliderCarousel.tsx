@@ -1,4 +1,4 @@
-import { DiscoverCarouselIProps } from '../../../contents/store/discover/Store.Discover.Carousel';
+import { GalleryCarouselContentProps } from '../../../contents/store/discover/Store.Discover.Carousel';
 import React, { FC } from 'react';
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,7 +8,7 @@ import { Button } from '@mui/material';
 import { HeartIcon } from '@heroicons/react/outline';
 
 export interface SliderCarouselProps {
-  ContentArray: DiscoverCarouselIProps[];
+  ContentArray: GalleryCarouselContentProps[];
 }
 
 /**

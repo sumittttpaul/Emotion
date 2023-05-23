@@ -34,7 +34,7 @@ export const ChildLayout: FC<IProps> = (props) => {
     <main className="pl-[268px] w-full flex-grow z-auto mx-auto">
       <Header />
       <Children />
-      <Footer />
+      {/* <Footer /> */}
     </main>
   );
 };
