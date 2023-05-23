@@ -3,7 +3,6 @@ import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import Image from 'next/legacy/image';
 import { useSearchButtonState } from '../../../providers/state/SearchButtonState';
 import { SearchContentProps } from '../../../contents/store/search/Store.Search';
-import { MobileSearchLogo } from '../../logo/CompanyLogo';
 
 export interface HeaderMobileSearchProps {
   ContentArray: SearchContentProps[];
@@ -63,7 +62,7 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
     return () => {
       window.removeEventListener('popstate', handleBackButtonPressed);
     };
-  }, [SearchButtonState.show]);
+  }, [SearchButtonState.show, setSearchButtonState]);
 
   useEffect(() => {
     function DetectScroll() {

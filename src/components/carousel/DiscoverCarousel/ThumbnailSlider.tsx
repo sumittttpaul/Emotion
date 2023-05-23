@@ -31,7 +31,6 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
   const dragRef = useRef<HTMLDivElement>(null);
   const thumbnailRef = useRef<HTMLButtonElement>(null);
   const [ExceptionalHover, setExceptionalHover] = useState(false);
-  const [DragValue, setDragValue] = useState(0);
   const [DragHover, setDragHover] = useState(false);
   const [LeftHide, setLeftHide] = useState(false);
   const [RightHide, setRightHide] = useState(false);
@@ -229,19 +228,13 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
         return () => ClearCarousel();
       }
     }
-  }, [props.CarouselState, IntervalStatus, props.AutoPlay, props.Duration]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [props.CarouselState, IntervalStatus, props.AutoPlay, props.Duration,]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /* Initial State */
   useEffect(() => {
     IsContentExceed();
     HideButtonInitialState();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    const scrollWidth = dragRef.current;
-    if (scrollWidth)
-      setDragValue(scrollWidth.scrollWidth - scrollWidth.offsetWidth);
-  }); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     x.onChange((latest) => {
@@ -271,7 +264,6 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
       } ${'z-[1] relative box-content'}`}
     >
       <motion.div
-        drag={ContentExceed ? 'x' : false}
         ref={dragRef}
         animate={animation}
         onHoverStart={() => {
@@ -282,8 +274,6 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
         onDragTransitionEnd={ExceptionalDragHover}
         onPointerLeave={() => setExceptionalHover(true)}
         transition={{ type: 'spring', bounce: 0 }}
-        dragConstraints={{ right: 0, left: -DragValue - 32 }}
-        whileDrag={{ cursor: 'grab' }}
         style={{ x }}
         className={`${
           ContentExceed ? 'ml-auto' : 'mr-auto'

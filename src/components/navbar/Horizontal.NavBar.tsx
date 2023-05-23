@@ -90,6 +90,7 @@ export const HorizontalNavBar: FC<IProps> = (props) => {
       <div className="flex justify-between">
         {ContentArray.map((value, idx) => (
           <div
+            key={idx}
             id={`horizontal-navbar-button-id-${idx}`}
             className="py-3 px-5 cursor-default"
             onClick={() => onClick(idx)}

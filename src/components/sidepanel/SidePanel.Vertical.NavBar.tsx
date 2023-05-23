@@ -110,6 +110,7 @@ export const SidePanelVerticalNavBar: FC<IProps> = (props) => {
         <div className="flex flex-col space-y-10 w-full z-10">
           {PanelContentArray.map((value, idx) => (
             <motion.button
+              key={idx}
               id={`sidepanel-vertical-navbar-button-id-${idx}`}
               className="ml-5 group cursor-pointer flex space-x-4 w-full"
               onClick={() => {

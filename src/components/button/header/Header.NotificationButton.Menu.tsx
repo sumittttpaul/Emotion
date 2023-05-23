@@ -75,7 +75,7 @@ export const HeaderNotificationButtonMenu: FC<IProps> = (props) => {
       >
         <div className="flex flex-col w-full px-6 py-3">
           <div className="w-full text-left text-[18px] font-[600] truncate tracking-wide">
-            What's New
+            What&apos;s New
           </div>
           <div className="w-full text-left text-[13px] opacity-90 tracking-wide">
             The latest releases from emotion

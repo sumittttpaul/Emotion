@@ -94,6 +94,7 @@ export const VerticalNavBar: FC<IProps> = (props) => {
       <div className="flex flex-col space-y-10">
         {ContentArray.map((value, idx) => (
           <div
+            key={idx}
             id={`vertical-navbar-button-id-${idx}`}
             className="ml-5 cursor-default"
             onClick={() => onClick(idx)}

@@ -42,7 +42,7 @@ export const HeaderNotificationButton: FC<IProps> = (props) => {
       <TooltipDark
         arrow
         placement="bottom"
-        title={<h6 className="font-[400]">What's New</h6>}
+        title={<h6 className="font-[400]">What&apos;s New</h6>}
       >
         <IconButton
           disableFocusRipple

@@ -1,4 +1,4 @@
-import { RefObject, useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const getDeepValue = <T extends object, K extends keyof T>(
   obj: T,
@@ -22,7 +22,6 @@ type useNavigateListProps<T, K extends keyof T> = {
 const useNavigateList = <T extends object, K extends keyof T>({
   list,
   GetEmptySearch,
-  EmptySearch,
   onSelect,
   indexPath,
   vertical = true,
@@ -54,7 +53,7 @@ const useNavigateList = <T extends object, K extends keyof T>({
         // Proceed Search
       }
     },
-    [cursor, list, nextItemKey, prevItemKey]
+    [cursor, list, nextItemKey, prevItemKey, onSelect]
   );
 
   useEffect(() => {
@@ -83,7 +82,7 @@ const useNavigateList = <T extends object, K extends keyof T>({
 
   const onMouseLeave = useCallback(() => {
     setCursor(-1);
-  }, [indexPath, list]);
+  },[]);
 
   return useMemo(
     () => ({
@@ -94,7 +93,7 @@ const useNavigateList = <T extends object, K extends keyof T>({
         onClick: () => onSelect(item),
       }),
     }),
-    [cursor, onMouseEnter]
+    [cursor, onMouseEnter, onMouseLeave, onSelect]
   );
 };
 
