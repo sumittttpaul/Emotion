@@ -51,7 +51,7 @@ export const HeaderSearchButtonMenu: FC<HeaderSearchButtonMenuProps> = (
       {Data.map((value, idx) => (
         <div
           {...itemProps(value)}
-          key={value.id}
+          key={value.Id}
           className={` ${
             activeIndex === idx ? 'bg-[#ffffff15]' : 'bg-transparent'
           }
@@ -71,7 +71,7 @@ export const HeaderSearchButtonMenu: FC<HeaderSearchButtonMenuProps> = (
               {value.Name}
             </p>
           </div>
-          {value.type == 'previous-search' && (
+          {value.Type == 'previous-search' && (
             <IconButton
               onPointerDown={() => removeItem(idx)}
               className={`${activeIndex === idx ? 'flex' : 'hidden'} 

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const getDeepValue = <T extends object, K extends keyof T>(
   obj: T,
-  path = 'id'
+  path = 'Id'
 ) => {
   const pathArr = path.split('.');
 
