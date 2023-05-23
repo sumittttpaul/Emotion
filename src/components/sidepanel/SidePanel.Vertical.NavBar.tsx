@@ -117,7 +117,7 @@ export const SidePanelVerticalNavBar: FC<IProps> = (props) => {
                 onClick(idx);
                 props.setActive(value.Name);
               }}
-                whileTap={{ scale: 0.95 }}
+              whileTap={{ scale: 0.95 }}
             >
               <Image
                 height={20}

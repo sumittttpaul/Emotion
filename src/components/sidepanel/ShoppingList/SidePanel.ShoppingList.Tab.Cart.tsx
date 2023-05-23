@@ -127,9 +127,21 @@ export const SidePanelShoppingListTabCart: FC<IProps> = (props) => {
               id={`SidePanel-Accordion-${idx}-header`}
             >
               <div className="flex w-full items-center justify-center">
-                <div className="min-w-[50px] min-h-[50px] w-[50px] h-[50px] relative overflow-hidden">
-                  <Image fill src={value.Image} className="rounded-md" alt="" />
-                </div>
+                <Image
+                  height={50}
+                  width={50}
+                  style={{
+                    height: 50,
+                    width: 50,
+                    minHeight: 50,
+                    minWidth: 50,
+                    maxHeight: 50,
+                    maxWidth: 50,
+                    borderRadius: 6,
+                  }}
+                  src={value.Image}
+                  alt=""
+                />
                 <div className="pl-3 w-full h-full space-y-auto items-center overflow-hidden">
                   <div className="w-full text-left truncate text-[14px] font-[500]">
                     {value.Heading}
