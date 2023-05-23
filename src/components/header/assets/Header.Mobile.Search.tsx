@@ -154,7 +154,7 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
       >
         {Data.map((value, idx) => (
           <Button
-            key={value.id}
+            key={value.Id}
             className="
           rounded-xl px-2 py-7 h-[35px] w-full flex cursor-default items-center text-white bg-transparent button-text-lower"
           >
@@ -172,7 +172,7 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
                 {value.Name}
               </p>
             </div>
-            {value.type == 'previous-search' ? (
+            {value.Type == 'previous-search' ? (
               <div
                 onPointerDown={() => removeItem(idx)}
                 className="
