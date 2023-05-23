@@ -1,5 +1,8 @@
 import { motion, useAnimation, useMotionValue } from 'framer-motion';
-import { GalleryCarouselLeftArrowButton, GalleryCarouselRightArrowButton } from './GalleryCarousel.ThumbnailArrow';
+import {
+  GalleryCarouselLeftArrowButton,
+  GalleryCarouselRightArrowButton,
+} from './GalleryCarousel.ThumbnailArrow';
 import { GalleryCarouselThumbnailMap } from './GalleryCarousel.ThumbnailMap';
 import React, {
   FC,
@@ -10,7 +13,7 @@ import React, {
   SetStateAction,
   Dispatch,
 } from 'react';
-import { GalleryCarouselContentProps } from '../../../contents/store/discover/Store.Discover.Carousel';
+import { GalleryCarouselContentProps } from '../../../contents/gallery/Gallery.Carousel';
 
 export interface GalleryCarouselThumbnailSliderProps {
   AutoPlay?: boolean;
@@ -25,7 +28,9 @@ export interface GalleryCarouselThumbnailSliderProps {
 /**
  * @GalleryCarousel_Thumbnail_Slider
  **/
-export const GalleryCarouselThumbnailSlider: FC<GalleryCarouselThumbnailSliderProps> = (props) => {
+export const GalleryCarouselThumbnailSlider: FC<
+  GalleryCarouselThumbnailSliderProps
+> = (props) => {
   const animation = useAnimation();
   const x = useMotionValue(0);
   const dragRef = useRef<HTMLDivElement>(null);

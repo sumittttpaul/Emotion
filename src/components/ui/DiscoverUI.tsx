@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { GalleryCarouselContent } from '../../contents/store/discover/Store.Discover.Carousel';
+import { GalleryCarouselContent } from '../../contents/gallery/Gallery.Carousel';
 import { DiscoverSliderContent } from '../../contents/store/discover/Store.Discover.Slider';
 import {
   DiscoverBannerFiveContent,
@@ -16,6 +16,8 @@ import { DiscoverTiles } from '../tiles/DiscoverTiles';
 import { DiscoverBannerLightingDeal } from '../banner/DiscoverBannerLightingDeal';
 import { DiscoverBannerArrivals } from '../banner/DiscoverBannerArrivals';
 import { DiscoverCatelog } from '../catelog/DiscoverCatelog';
+import { DiscoverCarousel } from '../carousel/DiscoverCarousel';
+import { DiscoverCarouselContent } from '../../contents/store/discover/Store.Discover.Carousel';
 
 export interface DiscoverUIProps {}
 
@@ -23,10 +25,12 @@ export interface DiscoverUIProps {}
  * @author
  * @function @DiscoverUI
  **/
+
 export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
   return (
     <div className="relative z-10 max-w-[2000px] mx-auto">
-      <GalleryCarousel ContentArray={GalleryCarouselContent} />
+      <DiscoverCarousel ContentArray={DiscoverCarouselContent} />
+      {/* <GalleryCarousel ContentArray={GalleryCarouselContent} />
       <DiscoverTiles ContentArray={DiscoverTilesContent} />
       <DiscoverSlider ContentArray={DiscoverSliderContent} />
       <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
@@ -40,7 +44,7 @@ export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
       />
       <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
       <DiscoverBannerFive ContentArray={DiscoverBannerFiveContent} />
-      <DiscoverCatelog />
+      <DiscoverCatelog /> */}
     </div>
   );
 };

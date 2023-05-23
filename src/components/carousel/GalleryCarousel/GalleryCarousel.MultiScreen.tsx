@@ -1,5 +1,5 @@
 import React, { Dispatch, FC, RefObject, SetStateAction } from 'react';
-import { GalleryCarouselContentProps } from '../../../contents/store/discover/Store.Discover.Carousel';
+import { GalleryCarouselContentProps } from '../../../contents/gallery/Gallery.Carousel';
 import { GalleryCarouselBanner } from './GalleryCarousel.Banner';
 import { GalleryCarouselSlider } from './GalleryCarousel.Slider';
 import { GalleryCarouselThumbnailSlider } from './GalleryCarousel.ThumbnailSlider';

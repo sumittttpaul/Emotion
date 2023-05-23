@@ -2,7 +2,7 @@ import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
 import { AnimationControls, motion } from 'framer-motion';
 import Image from 'next/legacy/image';
 import React, { Dispatch, FC, RefObject, SetStateAction } from 'react';
-import { GalleryCarouselContentProps } from '../../../contents/store/discover/Store.Discover.Carousel';
+import { GalleryCarouselContentProps } from '../../../contents/gallery/Gallery.Carousel';
 
 interface IProps {
   AutoPlay?: boolean;

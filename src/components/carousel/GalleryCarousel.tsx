@@ -1,5 +1,5 @@
 import React, { FC, useRef, useState } from 'react';
-import { GalleryCarouselContentProps } from '../../contents/store/discover/Store.Discover.Carousel';
+import { GalleryCarouselContentProps } from '../../contents/gallery/Gallery.Carousel';
 import { useReduxSelector } from '../../redux/useReduxSelector';
 import dynamic from 'next/dynamic';
 import {

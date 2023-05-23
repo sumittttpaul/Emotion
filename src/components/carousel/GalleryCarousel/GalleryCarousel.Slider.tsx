@@ -1,4 +1,4 @@
-import { GalleryCarouselContentProps } from '../../../contents/store/discover/Store.Discover.Carousel';
+import { GalleryCarouselContentProps } from '../../../contents/gallery/Gallery.Carousel';
 import React, { FC } from 'react';
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,7 +14,9 @@ export interface GalleryCarouselSliderProps {
 /**
  * @GalleryCarouselSlider
  **/
-export const GalleryCarouselSlider: FC<GalleryCarouselSliderProps> = (props) => {
+export const GalleryCarouselSlider: FC<GalleryCarouselSliderProps> = (
+  props
+) => {
   return (
     <Swiper
       modules={[Pagination]}

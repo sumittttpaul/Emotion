@@ -1,6 +1,9 @@
 import React, { FC } from 'react'
+import { DiscoverCarouselContentProps } from '../../contents/store/discover/Store.Discover.Carousel'
 
-interface IProps {}
+interface IProps {
+  ContentArray: DiscoverCarouselContentProps[]
+}
 
 /**
 * @author
@@ -9,6 +12,6 @@ interface IProps {}
 
 export const DiscoverCarousel:FC<IProps> = (props) => {
   return (
-    <div>DiscoverCarousel</div>
+    <div className='text-white'>DiscoverCarousel</div>
    )
  }

@@ -154,7 +154,7 @@ export const SidePanelShoppingListTabCart: FC<IProps> = (props) => {
                   <CustomButtons Label="Remove" onClick={() => {}} />
                   <CustomButtons Label="View Details" onClick={() => {}} />
                 </div>
-                <CustomButtons Label="Add to Cart" onClick={() => {}} />
+                <CustomButtons Label="Move to Wishlist" onClick={() => {}} />
               </div>
             </AccordionDetails>
           </Accordion>

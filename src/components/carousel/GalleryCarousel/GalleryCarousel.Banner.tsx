@@ -8,7 +8,7 @@ import React, {
 import { AnimatePresence, motion } from 'framer-motion';
 import { Button } from '@mui/material';
 import { GalleryCarouselBannerImage } from './GalleryCarousel.BannerImage';
-import { GalleryCarouselContentProps } from '../../../contents/store/discover/Store.Discover.Carousel';
+import { GalleryCarouselContentProps } from '../../../contents/gallery/Gallery.Carousel';
 
 export interface GalleryCarouselBannerProps {
   ElementRef: RefObject<HTMLDivElement>;
@@ -41,7 +41,9 @@ const ChildAnimationVariant = {
 /**
  * @Carousel_Banner
  **/
-export const GalleryCarouselBanner: FC<GalleryCarouselBannerProps> = (props) => {
+export const GalleryCarouselBanner: FC<GalleryCarouselBannerProps> = (
+  props
+) => {
   const [CarouselState, setCarouselState] = useState(0);
   return (
     <AnimatePresence exitBeforeEnter>
