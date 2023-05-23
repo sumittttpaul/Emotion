@@ -25,7 +25,7 @@ const ThumbnailSizes = 'w-[220px] h-[120px] min-w-[220px] min-h-[120px]';
 /**
  * @Thumbnail_Button_Map
  **/
-export const ThumbnailMap: FC<IProps> = (props) => {
+export const GalleryCarouselThumbnailMap: FC<IProps> = (props) => {
   const CorouselClick = (idx: number) => {
     if (props.CarouselState !== idx) {
       const ThumbnailWidth = props.ThumbnailRef.current;

@@ -32,9 +32,9 @@ const ArrowClasses =
 const ArrowIconClasses = 'h-full w-full flex items-center justify-center';
 
 /**
- * @Thumbnail_Left_Arrow_Button
+ * @Gallery_Carousel_Thumbnail_Left_Arrow_Button
  **/
-export const LeftArrowButton: FC<IProps> = (props) => {
+export const GalleryCarouselLeftArrowButton: FC<IProps> = (props) => {
   return (
     <motion.button
       variants={LeftVariants}
@@ -47,21 +47,16 @@ export const LeftArrowButton: FC<IProps> = (props) => {
       className={`left-3 ${ArrowClasses}`}
     >
       <div className={ArrowIconClasses}>
-        <Image
-          src="/icons/left-arrow-fill.svg"
-          height={10}
-          width={10}
-          alt=""
-        />
+        <Image src="/icons/left-arrow-fill.svg" height={10} width={10} alt="" />
       </div>
     </motion.button>
   );
 };
 
 /**
- * @Thumbnail_Right_Arrow_Button
+ * @Gallery_Carousel_Thumbnail_Right_Arrow_Button
  **/
-export const RightArrowButton: FC<IProps> = (props) => {
+export const GalleryCarouselRightArrowButton: FC<IProps> = (props) => {
   return (
     <motion.button
       variants={RightVariants}

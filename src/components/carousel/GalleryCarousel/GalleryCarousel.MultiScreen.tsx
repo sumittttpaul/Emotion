@@ -1,8 +1,8 @@
 import React, { Dispatch, FC, RefObject, SetStateAction } from 'react';
 import { GalleryCarouselContentProps } from '../../../contents/store/discover/Store.Discover.Carousel';
-import { CarouselBanner } from './CarouselBanner';
-import { SliderCarousel } from './SliderCarousel';
-import { ThumbnailSlider } from './ThumbnailSlider';
+import { GalleryCarouselBanner } from './GalleryCarousel.Banner';
+import { GalleryCarouselSlider } from './GalleryCarousel.Slider';
+import { GalleryCarouselThumbnailSlider } from './GalleryCarousel.ThumbnailSlider';
 
 export interface GalleryCarouselMobileProps {
   ContentArray: GalleryCarouselContentProps[];
@@ -26,7 +26,7 @@ export const GalleryCarouselMobile: FC<GalleryCarouselMobileProps> = (
 ) => {
   return (
     <div className="w-full flex flex-col relative box-border p-0 m-0 overflow-y-visible overflow-x-hidden">
-      <SliderCarousel ContentArray={props.ContentArray} />
+      <GalleryCarouselSlider ContentArray={props.ContentArray} />
     </div>
   );
 };
@@ -37,7 +37,7 @@ export const GalleryCarouselDesktop: FC<GalleryCarouselDesktopProps> = (
   return (
     <div className="relative">
       <div className="w-full block relative box-border p-0 m-0 bg-transparent overflow-y-visible overflow-x-hidden">
-        <CarouselBanner
+        <GalleryCarouselBanner
           ContentArray={props.ContentArray}
           ElementRef={props.ElementRef}
           CarouselState={props.CarouselState}
@@ -45,7 +45,7 @@ export const GalleryCarouselDesktop: FC<GalleryCarouselDesktopProps> = (
           setBannerTextTransition={props.setBannerTextTransition}
         />
         <div className="bg-gradient-to-t from-[#0f0f0f] w-full h-[130px] -mt-[130px]" />
-        <ThumbnailSlider
+        <GalleryCarouselThumbnailSlider
           AutoPlay={props.AutoPlay}
           Duration={props.Duration}
           ConstraintRef={props.ConstraintRef}

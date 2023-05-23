@@ -7,12 +7,10 @@ import React, {
 } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Button } from '@mui/material';
-import { HeartIcon } from '@heroicons/react/outline';
-import { CarouselBannerImage } from './CarouselBannerImage';
+import { GalleryCarouselBannerImage } from './GalleryCarousel.BannerImage';
 import { GalleryCarouselContentProps } from '../../../contents/store/discover/Store.Discover.Carousel';
-import { useEffect } from 'react';
 
-export interface CarouselBannerProps {
+export interface GalleryCarouselBannerProps {
   ElementRef: RefObject<HTMLDivElement>;
   ContentArray: GalleryCarouselContentProps[];
   CarouselState: number;
@@ -43,7 +41,7 @@ const ChildAnimationVariant = {
 /**
  * @Carousel_Banner
  **/
-export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
+export const GalleryCarouselBanner: FC<GalleryCarouselBannerProps> = (props) => {
   const [CarouselState, setCarouselState] = useState(0);
   return (
     <AnimatePresence exitBeforeEnter>
@@ -51,7 +49,7 @@ export const CarouselBanner: FC<CarouselBannerProps> = (props) => {
         ref={props.ElementRef}
         className="text-white -[z-1] relative box-border items-start justify-end w-full h-[350px] small-screen:h-[500px] medium-screen:h-[660px] px-8 pb-[130px] flex flex-col overflow-hidden rounded-tl-xl bg-gradient-to-r from-[#000000b3]"
       >
-        <CarouselBannerImage
+        <GalleryCarouselBannerImage
           className="-z-[2]"
           src={props.ContentArray[props.CarouselState].Image}
           alt=""

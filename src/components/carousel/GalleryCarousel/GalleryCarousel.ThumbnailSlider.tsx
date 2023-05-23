@@ -1,6 +1,6 @@
 import { motion, useAnimation, useMotionValue } from 'framer-motion';
-import { LeftArrowButton, RightArrowButton } from './ThumbnailArrow';
-import { ThumbnailMap } from './ThumbnailMap';
+import { GalleryCarouselLeftArrowButton, GalleryCarouselRightArrowButton } from './GalleryCarousel.ThumbnailArrow';
+import { GalleryCarouselThumbnailMap } from './GalleryCarousel.ThumbnailMap';
 import React, {
   FC,
   useEffect,
@@ -12,7 +12,7 @@ import React, {
 } from 'react';
 import { GalleryCarouselContentProps } from '../../../contents/store/discover/Store.Discover.Carousel';
 
-export interface ThumbnailSliderProps {
+export interface GalleryCarouselThumbnailSliderProps {
   AutoPlay?: boolean;
   Duration?: number;
   ConstraintRef: RefObject<HTMLDivElement>;
@@ -23,9 +23,9 @@ export interface ThumbnailSliderProps {
 }
 
 /**
- * @Thumbnail_Slider
+ * @GalleryCarousel_Thumbnail_Slider
  **/
-export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
+export const GalleryCarouselThumbnailSlider: FC<GalleryCarouselThumbnailSliderProps> = (props) => {
   const animation = useAnimation();
   const x = useMotionValue(0);
   const dragRef = useRef<HTMLDivElement>(null);
@@ -279,7 +279,7 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
           ContentExceed ? 'ml-auto' : 'mr-auto'
         } ${'w-auto space-x-4 flex px-8 pb-1 -mt-[80px]'}`}
       >
-        <ThumbnailMap
+        <GalleryCarouselThumbnailMap
           AutoPlay={props.AutoPlay}
           Duration={props.Duration}
           Animation={animation}
@@ -297,13 +297,13 @@ export const ThumbnailSlider: FC<ThumbnailSliderProps> = (props) => {
       </motion.div>
       {ContentExceed && DragHover && (
         <>
-          <LeftArrowButton
+          <GalleryCarouselLeftArrowButton
             animate={LeftAnimate}
             onClick={() => LeftClick()}
             onHoverStart={DragHoverStart}
             onHoverEnd={DragHoverEnd}
           />
-          <RightArrowButton
+          <GalleryCarouselRightArrowButton
             animate={RightAnimate}
             onClick={() => RightClick()}
             onHoverStart={DragHoverStart}

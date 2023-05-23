@@ -7,14 +7,14 @@ import { Poster_BlurDataURL } from '../../loader/BlurDataURL';
 import { Button } from '@mui/material';
 import { HeartIcon } from '@heroicons/react/outline';
 
-export interface SliderCarouselProps {
+export interface GalleryCarouselSliderProps {
   ContentArray: GalleryCarouselContentProps[];
 }
 
 /**
- * @SliderCarousel
+ * @GalleryCarouselSlider
  **/
-export const SliderCarousel: FC<SliderCarouselProps> = (props) => {
+export const GalleryCarouselSlider: FC<GalleryCarouselSliderProps> = (props) => {
   return (
     <Swiper
       modules={[Pagination]}
