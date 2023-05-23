@@ -148,6 +148,7 @@ export const HeaderSearchButton: FC<IProps> = (props) => {
         )}
       </div>
       <HeaderSearchButtonMenu
+      Search={Search}
         SearchRef={SearchRef}
         ContainerRef={ContainerRef}
         SearchMenu={SearchMenuOpen}

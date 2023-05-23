@@ -11,6 +11,7 @@ import useNavigateList from '../../../algorithms/KeyboardNavigationList';
 import { SearchContentProps } from '../../../contents/store/search/Store.Search';
 
 export interface HeaderSearchButtonMenuProps {
+  Search: string;
   SearchRef: RefObject<HTMLInputElement>;
   ContainerRef: RefObject<HTMLDivElement>;
   SearchMenu: boolean;
@@ -31,7 +32,10 @@ export const HeaderSearchButtonMenu: FC<HeaderSearchButtonMenuProps> = (
   const [Data, setData] = useState(props.ContentArray);
 
   const removeItem = (index: number) => {
-    if (index !== -1) setData(Data.filter((o, i) => index !== i));
+    if (index !== -1) {
+      setData(Data.filter((o, i) => index !== i));
+      if (props.Search === Data[index].Name) props.setSearch('');
+    }
   };
 
   const { activeIndex, itemProps } = useNavigateList({
@@ -50,12 +54,12 @@ export const HeaderSearchButtonMenu: FC<HeaderSearchButtonMenuProps> = (
     >
       {Data.map((value, idx) => (
         <div
-          {...itemProps(value)}
           key={value.Id}
           className={` ${
             activeIndex === idx ? 'bg-[#ffffff15]' : 'bg-transparent'
           }
-          rounded-lg p-1 h-[40px] w-full flex cursor-default items-center`}
+        rounded-lg p-1 h-[40px] w-full flex cursor-default items-center`}
+          {...itemProps(value)}
         >
           <div className="block h-5 ml-2 pr-4 opacity-70">
             <Image
