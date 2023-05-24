@@ -11,6 +11,56 @@ export interface DiscoverCarouselContentProps {
   export const DiscoverCarouselContent = [
     {
       Button: 'Order now',
+      Heading: 'Main Heading 6',
+      Description:
+        'Save up to 50% off on our brand new full sleeve winter collection full printed T-shirts.',
+      OriginalPrice: '1199.00',
+      DiscountedPrice: '499.00',
+      ThumbnailHeading: 'Main thumbnail heading 6',
+      Image: '/images/avatar/illustration/6.png',
+    },
+    {
+      Button: 'Order now',
+      Heading: 'Main Heading 7',
+      Description:
+        'Save up to 50% off on our brand new full sleeve winter collection full printed T-shirts.',
+      OriginalPrice: '1699.00',
+      DiscountedPrice: '499.00',
+      ThumbnailHeading: 'Main thumbnail heading 7',
+      Image: '/images/avatar/illustration/7.png',
+    },
+    {
+      Button: 'Order now',
+      Heading: 'Main Heading 8',
+      Description:
+        'Save up to 50% off on our brand new full sleeve winter collection full printed T-shirts.',
+      OriginalPrice: '1199.00',
+      DiscountedPrice: '499.00',
+      ThumbnailHeading: 'Main thumbnail heading 8',
+      Image: '/images/avatar/illustration/8.png',
+    },
+    {
+      Button: 'Order now',
+      Heading: 'Main Heading 9',
+      Description:
+        'Save up to 50% off on our brand new full sleeve winter collection full printed T-shirts.',
+      OriginalPrice: '1699.00',
+      DiscountedPrice: '499.00',
+      ThumbnailHeading: 'Main thumbnail heading 9',
+      Image: '/images/avatar/illustration/9.png',
+    },
+    {
+      Button: 'See details',
+      Heading: 'Main Heading 10',
+      Description:
+        'Save up to 50% off on our brand new full sleeve winter collection full printed T-shirts.',
+      OriginalPrice: '1199.00',
+      DiscountedPrice: '499.00',
+      ThumbnailHeading: 'Main thumbnail heading 10',
+      Image: '/images/avatar/illustration/10.png',
+    },
+    {
+      Button: 'Order now',
       Heading: 'Main Heading 1',
       ThumbnailHeading: 'Main thumbnail heading 1',
       Description:
