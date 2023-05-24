@@ -8,7 +8,7 @@ import MuiAccordionSummary, {
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import { styled } from '@mui/material/styles';
 import { DotsHorizontalIcon } from '@heroicons/react/outline';
-import { StoreWishlistContentProps } from '../../../contents/store/discover/Store.ShoppingList';
+import { StoreWishlistContentProps } from '../../../contents/store/Store.ShoppingList';
 
 interface IProps {
   ContentArray: StoreWishlistContentProps[];

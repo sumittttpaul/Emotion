@@ -9,7 +9,7 @@ import { SidePanelShoppingListTabCart } from './SidePanel.ShoppingList.Tab.Cart'
 import {
   StoreCartContent,
   StoreWishlistContent,
-} from '../../../contents/store/discover/Store.ShoppingList';
+} from '../../../contents/store/Store.ShoppingList';
 
 interface IProps {}
 

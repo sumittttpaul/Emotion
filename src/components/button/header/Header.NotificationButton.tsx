@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import { HeaderNotificationButtonMenu } from './Header.NotificationButton.Menu';
-import { StoreNotificationContent } from '../../../contents/store/discover/Store.Notification';
+import { StoreNotificationContent } from '../../../contents/store/Store.Notification';
 
 interface IProps {}
 

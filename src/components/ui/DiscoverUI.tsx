@@ -30,8 +30,8 @@ export interface DiscoverUIProps {}
 export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
   return (
     <div className="relative z-10 w-full rounded-xl">
-      {/* <DiscoverCarousel ContentArray={DiscoverCarouselContent} /> */}
-      <GalleryCarousel ContentArray={GalleryCarouselContent} />
+      <DiscoverCarousel ContentArray={DiscoverCarouselContent} />
+      {/* <GalleryCarousel ContentArray={GalleryCarouselContent} />
       <DiscoverTiles ContentArray={DiscoverTilesContent} />
       <DiscoverSlider ContentArray={DiscoverSliderContent} />
       <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
@@ -45,7 +45,7 @@ export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
       />
       <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
       <DiscoverBannerFive ContentArray={DiscoverBannerFiveContent} />
-      <DiscoverCatelog />
+      <DiscoverCatelog /> */}
     </div>
   );
 };

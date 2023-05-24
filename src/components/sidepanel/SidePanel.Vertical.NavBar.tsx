@@ -125,7 +125,7 @@ export const SidePanelVerticalNavBar: FC<IProps> = (props) => {
                 className={`${
                   props.Active == value.Name
                     ? 'opacity-100'
-                    : 'opacity-50 group-hover:opacity-100 hover:transition-opacity'
+                    : 'opacity-60 group-hover:opacity-100 hover:transition-opacity'
                 }`}
                 src={`${
                   props.Active == value.Name ? value.IconActive : value.Icon
@@ -136,7 +136,7 @@ export const SidePanelVerticalNavBar: FC<IProps> = (props) => {
                 className={`${
                   props.Active == value.Name
                     ? 'opacity-100'
-                    : 'opacity-50 group-hover:opacity-100 hover:transition-opacity'
+                    : 'opacity-60 group-hover:opacity-100 hover:transition-opacity'
                 } trunacate text-[14px] text-white tracking-wide font-[600]`}
               >
                 {value.Name}

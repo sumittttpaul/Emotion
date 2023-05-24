@@ -5,7 +5,7 @@ import { DotsHorizontalIcon } from '@heroicons/react/outline';
 import { HotBadge } from '../../badge/HotBadge';
 import { TrendingBadge } from '../../badge/TrendingBadge';
 import { NewBadge } from '../../badge/NewBadge';
-import { StoreNotificationContentProps } from '../../../contents/store/discover/Store.Notification';
+import { StoreNotificationContentProps } from '../../../contents/store/Store.Notification';
 
 interface IProps {
   ContentArray: StoreNotificationContentProps[];
