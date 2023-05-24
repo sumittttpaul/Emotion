@@ -8,7 +8,18 @@ export interface DiscoverCarouselContentProps {
     Image: string;
   }
   
+// Only 10 Content will show ( not more than 10 - not less than 10 ) 
   export const DiscoverCarouselContent = [
+    {
+      Button: 'See details',
+      Heading: 'Main Heading 5',
+      Description:
+        'Save up to 50% off on our brand new full sleeve winter collection full printed T-shirts.',
+      OriginalPrice: '1599.00',
+      DiscountedPrice: '499.00',
+      ThumbnailHeading: 'Main thumbnail heading 5',
+      Image: '/images/avatar/illustration/5.png',
+    },
     {
       Button: 'Order now',
       Heading: 'Main Heading 6',
@@ -158,6 +169,36 @@ export interface DiscoverCarouselContentProps {
       DiscountedPrice: '499.00',
       ThumbnailHeading: 'Main thumbnail heading 10',
       Image: '/images/avatar/illustration/10.png',
+    },
+    {
+      Button: 'Order now',
+      Heading: 'Main Heading 1',
+      ThumbnailHeading: 'Main thumbnail heading 1',
+      Description:
+        'Save up to 50% off on our brand new full sleeve winter collection full printed T-shirts.',
+      OriginalPrice: '1299.00',
+      DiscountedPrice: '499.00',
+      Image: '/images/avatar/illustration/1.png',
+    },
+    {
+      Button: 'Order now',
+      Heading: 'Main Heading 2',
+      Description:
+        'Save up to 50% off on our brand new full sleeve winter collection full printed T-shirts.',
+      OriginalPrice: '1599.00',
+      DiscountedPrice: '599.00',
+      ThumbnailHeading: 'Main thumbnail heading 2',
+      Image: '/images/avatar/illustration/2.png',
+    },
+    {
+      Button: 'See details',
+      Heading: 'Main Heading 3',
+      OriginalPrice: '1699.00',
+      DiscountedPrice: '1799.00',
+      Description:
+        'Save up to 50% off on our brand new full sleeve winter collection full printed T-shirts.',
+      ThumbnailHeading: 'Main thumbnail heading 3',
+      Image: '/images/avatar/illustration/3.png',
     },
   ];
   

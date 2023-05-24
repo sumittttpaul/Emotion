@@ -115,7 +115,9 @@ export const HeaderNotificationButtonMenu: FC<IProps> = (props) => {
       {props.ContentArray.map((value, idx) => (
         <MenuItem
           key={idx + 1}
-          className="mx-1 px-2 rounded-md text-white hover:bg-[#ffffff15]"
+          className={`${
+            props.ContentArray.length === idx + 1 ? 'mb-1' : ''
+          } mx-1 px-2 rounded-md cursor-default text-white hover:bg-[#ffffff15]`}
         >
           <div className="w-full h-full flex">
             <div className="flex py-2 w-full items-center">
