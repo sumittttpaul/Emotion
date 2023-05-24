@@ -35,7 +35,7 @@ export const Header: FC<HeaderProps> = (props) => {
   };
 
   return (
-    <div className="bg-[#0f0f0f] flex flex-col z-[999] sticky-top justify-center items-center w-full h-[70px] pr-2">
+    <div className="bg-[#0f0f0f] flex flex-col z-[999] fixed top-0 justify-center items-center w-full h-[70px] pr-[278px]">
       <div className="flex w-full space-x-2.5 items-center">
         <div className="flex w-full space-x-2.5 items-center xl-1765:justify-between">
           {/* Nav Bar [ Discover, Offers, Collections] */}

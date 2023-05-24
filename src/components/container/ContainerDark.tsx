@@ -17,7 +17,7 @@ export const ContainerDark: FC<IProps> = (props) => {
     document.body.style.backgroundColor = `${ColorState.bgColor}`;
   }, [setColorState, ColorState.bgColor]);
   return (
-    <div className="p-0 m-0 flex flex-grow relative w-full bg-[#0f0f0f]">
+    <div className="p-0 m-0 flex flex-grow relative w-full h-full bg-[#0f0f0f]">
       {props.children}
     </div>
   );

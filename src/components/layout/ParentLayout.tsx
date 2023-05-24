@@ -21,10 +21,7 @@ export const ParentLayout: FC<IProps> = (props) => {
 
   return (
     <ContainerDark>
-      <SidePanel
-        Active={Active}
-        setActive={setActive}
-      />
+      <SidePanel Active={Active} setActive={setActive} />
       {props.children}
     </ContainerDark>
   );

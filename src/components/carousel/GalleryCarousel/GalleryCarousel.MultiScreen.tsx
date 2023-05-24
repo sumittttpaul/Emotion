@@ -44,7 +44,7 @@ export const GalleryCarouselDesktop: FC<GalleryCarouselDesktopProps> = (
           BannerTextTransition={props.BannerTextTransition}
           setBannerTextTransition={props.setBannerTextTransition}
         />
-        <div className="bg-gradient-to-t from-[#0f0f0f] w-full h-[130px] -mt-[130px]" />
+        <div className="absolute bg-gradient-to-t from-[#181818] w-full h-[130px] -mt-[130px] block" />
         <GalleryCarouselThumbnailSlider
           AutoPlay={props.AutoPlay}
           Duration={props.Duration}

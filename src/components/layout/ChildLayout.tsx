@@ -31,10 +31,18 @@ export const ChildLayout: FC<IProps> = (props) => {
     );
 
   return (
-    <main className="pl-[268px] w-full flex-grow z-auto mx-auto">
-      <Header />
-      <Children />
-      {/* <Footer /> */}
+    <main className="pl-[268px] w-full h-screen z-auto">
+      <div className='w-full h-full'>
+        <Header />
+        <div className="pt-[70px] pr-[278px] pb-3 fixed w-full h-full overflow-hidden">
+          <div className=" flex flex-col w-full h-full mx-auto max-w-[2000px] bg-[#181818] rounded-xl overflow-hidden">
+            <div className="flex flex-col w-full overflow-auto">
+              <Children />
+              <Footer />
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
   );
 };

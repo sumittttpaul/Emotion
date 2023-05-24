@@ -77,6 +77,7 @@ export const DiscoverSliderBrowser: FC<DiscoverSliderBrowserProps> = (
         className="w-full flex px-0 space-x-4 box-border scroll-smooth"
         style={{
           paddingRight: 12,
+          paddingLeft: 12,
         }}
       >
         {props.ContentArray.map((value, index) => (

@@ -35,7 +35,7 @@ export const DiscoverBannerFiveBrowser: FC<DiscoverBannerFiveBrowserProps> = (
   } = useScreenSize();
   return (
     <div className="flex-col w-full relative p-0 m-0 space-y-5">
-      <h6 className="text-[18px]">Our services</h6>
+      <h6 className="text-[18px] px-3">Our services</h6>
       <div className="w-full flex relative box-border space-x-5">
         <Swiper
           slidesPerView={
@@ -54,6 +54,7 @@ export const DiscoverBannerFiveBrowser: FC<DiscoverBannerFiveBrowserProps> = (
           className="w-full flex"
           style={{
             paddingRight: 12,
+            paddingLeft: 12,
           }}
         >
           {props.ContentArray.map((value, index) => (
