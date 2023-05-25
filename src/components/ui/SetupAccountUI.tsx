@@ -31,7 +31,7 @@ interface IProps {
 export const SetupAccountUI: FC<IProps> = (props) => {
   return (
     <AuthContainer>
-      <AnimatePresence exitBeforeEnter>
+      <AnimatePresence mode="wait">
         <motion.div
           className="w-full max-w-[350px] space-y-6 flex flex-col justify-center items-center"
           key=""
