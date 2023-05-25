@@ -37,7 +37,8 @@ export const DiscoverCarouselBannerContent: FC<IProps> = (props) => {
           className="inline-block rounded-xl w-[300px] min-w-[300px] bg-[#2E2E2E]"
         >
           <div className="flex h-full w-full items-center justify-center text-white">
-            {value.Heading}<br/> ID : {idx.toString()}
+            {value.Heading}<br/> 
+            {/* ID : {idx.toString()} */}
           </div>
         </motion.li>
       ))}
