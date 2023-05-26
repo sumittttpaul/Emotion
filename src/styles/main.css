@@ -1,3 +1,8 @@
+:root {
+  --discover-carousel-pie-timer-duration: 10s;
+  --discover-carousel-pie-timer-duration-half: 5s;
+}
+
 .scrollbar-hide {
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */

@@ -3,8 +3,8 @@ import React, { FC } from 'react';
 import { DiscoverCarouselContentProps } from '../../../contents/store/discover/Store.Discover.Carousel';
 
 interface IProps {
-  ContentArray: DiscoverCarouselContentProps[];
-  ActiveIndex: number;
+  BulletArray: DiscoverCarouselContentProps[];
+  CarouselState: number;
 }
 
 /**
@@ -13,20 +13,26 @@ interface IProps {
  **/
 
 export const DiscoverCarouselBulletPoints: FC<IProps> = (props) => {
+  const GetCarouselState = (index: number) => {
+    if (index > 9) return (index - 10) as number;
+    else return index as number;
+  };
+
   return (
     <div className="w-full flex p-3 items-center justify-center">
-      {props.ContentArray.map((value, idx) => (
+      {props.BulletArray.map((value, idx) => (
         <motion.button
           key={idx}
-          whileTap={{ scale: 0.9 }}
-          className="px-1 py-3 group cursor-default bg-transparent"
+          className={`${
+            GetCarouselState(props.CarouselState) === idx ? 'px-1' : 'px-1'
+          } py-3 group block cursor-default bg-transparent`}
         >
           <div
             className={`${
-              props.ActiveIndex === idx
-                ? 'h-[6px] w-[6px]'
-                : 'group-hover:w-[6px] group-hover:h-[6px]'
-            } w-[4px] min-w-[4px] h-[4px] min-h-[4px]  rounded-full bg-white opacity-50 group-hover:opacity-90`}
+              GetCarouselState(props.CarouselState) === idx
+                ? 'h-[6px] w-[6px] min-w-[6px] min-h-[6px] opacity-90'
+                : 'w-[4px] min-w-[4px] h-[4px] min-h-[4px] opacity-50'
+            } block rounded-full bg-white`}
           />
         </motion.button>
       ))}

@@ -242,6 +242,7 @@ export const GalleryCarouselThumbnailSlider: FC<
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
+    // const unsubscribeX = x.on("change", HideButton)
     x.onChange((latest) => {
       HideButton();
     });
