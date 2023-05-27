@@ -15,7 +15,7 @@ interface IProps {
 export const DiscoverCarousel: FC<IProps> = (props) => {
   const [CarouselState, setCarouselState] = useState(10); // Default
   return (
-    <div className="relative w-full mt-8">
+    <div className="relative w-full pt-8">
       <DiscoverCarouselBanner
         AutoPlay={false}
         Duration={11} // Default
