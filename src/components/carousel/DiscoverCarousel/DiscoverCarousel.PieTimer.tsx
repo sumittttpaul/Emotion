@@ -1,7 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 import styles from './../../../styles/modules/pietimer.module.css';
 
-interface IProps {}
+interface IProps {
+  Hide: string;
+}
 
 /**
  * @author
@@ -19,8 +21,10 @@ export const DiscoverCarouselPieTimer: FC<IProps> = (props) => {
 
   return (
     <>
-      {!Hide && (
-        <div className="relative">
+      {!Hide && props.Hide === 'running' && (
+        <div
+          className={`${props.Hide === 'running' ? 'block' : 'hidden'} relative`}
+        >
           <div className={styles.discover_carousel_timer_wrapper}>
             <div
               className={`${styles.discover_carousel_timer_pie} ${styles.discover_carousel_timer_spinner_mask}`}

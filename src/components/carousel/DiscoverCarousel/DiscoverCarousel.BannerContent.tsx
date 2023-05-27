@@ -218,11 +218,11 @@ const BannerContent: FC<BannerContentProps> = (props) => {
             </div>
           </div>
           {props.CarouselState === idx + props.CustomIndex &&
-            props.DisabledCarousel === false &&
-            props.AutoPlay === true &&
+            !props.DisabledCarousel &&
+            props.AutoPlay &&
             props.IntervalStatus === 'running' && (
-              <div className="absolute bottom-0 left-0 p-10 opacity-30 z-[30]">
-                <DiscoverCarouselPieTimer />
+              <div className="absolute bottom-0 left-0 p-[25px] opacity-30 z-[30]">
+                <DiscoverCarouselPieTimer Hide={props.IntervalStatus} />
               </div>
             )}
         </motion.div>
