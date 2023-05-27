@@ -9,10 +9,22 @@ import React, {
 import { motion, useAnimation, useMotionValue } from 'framer-motion';
 import { DiscoverCarouselContentProps } from '../../../contents/store/discover/Store.Discover.Carousel';
 import { DiscoverCarouselBannerContent } from './DiscoverCarousel.BannerContent';
-import {
-  DiscoverCarouselLeftArrowButton,
-  DiscoverCarouselRightArrowButton,
-} from './DiscoverCarousel.ArrowButton';
+import { DiscoverCarouselArrowButtonProps } from './DiscoverCarousel.ArrowButton';
+import dynamic from 'next/dynamic';
+
+const DiscoverCarouselLeftArrowButton =
+  dynamic<DiscoverCarouselArrowButtonProps>(() =>
+    import('./DiscoverCarousel.ArrowButton').then(
+      (x) => x.DiscoverCarouselLeftArrowButton
+    )
+  );
+
+const DiscoverCarouselRightArrowButton =
+  dynamic<DiscoverCarouselArrowButtonProps>(() =>
+    import('./DiscoverCarousel.ArrowButton').then(
+      (x) => x.DiscoverCarouselRightArrowButton
+    )
+  );
 
 interface IProps {
   AutoPlay?: boolean;
@@ -95,7 +107,7 @@ export const DiscoverCarouselBanner: FC<IProps> = (props) => {
 
   const NextCarouselByLeftArrow = () => {
     setDisabledCarousel(true);
-    let CarouselIndex = props.CarouselState > 0 ? props.CarouselState - 1 : 19 ;
+    let CarouselIndex = props.CarouselState > 0 ? props.CarouselState - 1 : 19;
     NextCarouselByIndex(CarouselIndex);
   };
 

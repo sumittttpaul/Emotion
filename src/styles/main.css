@@ -3,6 +3,50 @@
   --discover-carousel-pie-timer-duration-half: 5s;
 }
 
+.bg-dark-red-50 {
+  background-color: rgba(75, 0, 0, 0.5) !important;
+}
+.bg-dark-pink-50 {
+  background-color: rgba(69, 0, 75, 0.5) !important;
+}
+.bg-dark-blue-50 {
+  background-color: rgba(0, 60, 75, 0.5) !important;
+}
+.bg-dark-yellow-50 {
+  background-color: rgba(70, 75, 0, 0.5) !important;
+}
+.bg-dark-green-50 {
+  background-color: rgba(0, 75, 12, 0.5) !important;
+}
+.bg-dark-purple-50 {
+  background-color: rgba(50, 1, 97, 0.5) !important;
+}
+.bg-dark-orange-50 {
+  background-color: rgba(97, 59, 1, 0.5) !important;
+}
+
+.bg-super-dark-red {
+  background-color: rgba(48, 0, 0, 1) !important;
+}
+.bg-super-dark-pink {
+  background-color: rgba(38, 0, 43, 1) !important;
+}
+.bg-super-dark-blue {
+  background-color: rgba(0, 41, 51, 1) !important;
+}
+.bg-super-dark-yellow {
+  background-color: rgba(37, 41, 0, 1) !important;
+}
+.bg-super-dark-green {
+  background-color: rgba(0, 48, 8, 1) !important;
+}
+.bg-super-dark-purple {
+  background-color: rgba(31, 0, 59, 1) !important;
+}
+.bg-super-dark-orange {
+  background-color: rgba(54, 33, 0, 1) !important;
+}
+
 .scrollbar-hide {
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */

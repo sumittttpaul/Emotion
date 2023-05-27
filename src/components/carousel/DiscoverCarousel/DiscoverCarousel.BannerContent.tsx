@@ -87,7 +87,7 @@ const DescriptionAnimationVariant = {
     marginLeft: 0,
     scale: 1,
     height: 40,
-    opacity: 0.7,
+    opacity: 0.8,
   },
   closed: {
     marginLeft: -40,
@@ -108,14 +108,6 @@ const HeaderAnimationVariant = {
   },
 };
 
-const getCarouselColor = (color: string) => {
-  return `from-${color}` as string;
-};
-
-const getButtonColor = (color: string) => {
-  return `bg-${color}` as string;
-};
-
 const BannerContent: FC<BannerContentProps> = (props) => {
   return (
     <div id={props.Id} className="flex space-x-3">
@@ -134,13 +126,14 @@ const BannerContent: FC<BannerContentProps> = (props) => {
           transition={{ type: 'tween' }}
           className="relative inline-block rounded-xl overflow-hidden w-[300px] min-w-[300px] text-white"
         >
+          {/* Image */}
           <div className="flex h-full w-full">
             <Image
               fill
               priority
               className=""
               src={value.Image}
-              sizes='(max-width: 800px) 800px'
+              sizes="(max-width: 800px) 800px"
               style={{
                 objectFit: 'cover',
                 objectPosition: 'center',
@@ -148,17 +141,22 @@ const BannerContent: FC<BannerContentProps> = (props) => {
               alt=""
             />
           </div>
+          {/* Content */}
           <div
-            className={`absolute flex items-end w-full h-full left-0 bottom-0 px-10 pb-[150px] z-[10] bg-gradient-to-r ${getCarouselColor(
-              value.Color
-            )} overflow-hidden`}
+            className={`${
+              props.CarouselState === idx + props.CustomIndex
+                ? `bg-gradient-to-r from-${value.Color}`
+                : `bg-${value.Color}-50`
+            } absolute flex items-end w-full h-full left-0 bottom-0 px-10 pb-[150px] z-[10] overflow-hidden`}
           >
             <div className="flex flex-col w-full space-y-10 z-[20]">
               {/* Content */}
               <div className="flex flex-col w-full space-y-2">
                 {/* Price */}
                 <div className="flex justify-start w-full space-x-2">
-                  <div className="flex bg-[#ffffff25] text-[11px] rounded-md space-x-2 px-3 py-1">
+                  <div
+                    className={`bg-${value.ColorDark} flex text-[11px] rounded-md space-x-2 px-3 py-1`}
+                  >
                     <p className="line-through text-[#CFCFCF]">
                       ₹{value.OriginalPrice}
                     </p>
@@ -179,7 +177,7 @@ const BannerContent: FC<BannerContentProps> = (props) => {
                   }
                   variants={HeaderAnimationVariant}
                   transition={{ type: 'tween', duration: 0.4 }}
-                  className="truncate text-[30px] font-[500] tracking-wide"
+                  className="-ml-[40px] truncate text-[30px] font-[500] tracking-wide"
                 >
                   {value.HeadingLine1} <br /> {value.HeadingLine2} <br />{' '}
                   {value.HeadingLine3}
@@ -207,9 +205,7 @@ const BannerContent: FC<BannerContentProps> = (props) => {
               {/* Button */}
               <div className="w-full justify-start flex">
                 <Button
-                  className={`${getButtonColor(
-                    value.Color
-                  )} z-[1] flex px-8 cursor-default rounded-lg text-white button-text-lower`}
+                  className={`bg-${value.ColorDark} h-8 z-[1] flex px-8 cursor-default items-center rounded-lg text-white button-text-lower`}
                 >
                   <div className="flex space-x-2 items-center justify-center">
                     <ChevronRightIcon className="h-4" />

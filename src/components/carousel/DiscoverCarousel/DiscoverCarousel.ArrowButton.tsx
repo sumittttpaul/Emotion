@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import React, { FC } from 'react';
 import Image from 'next/image';
 
-interface IProps {
+export interface DiscoverCarouselArrowButtonProps {
   onClick: () => void;
   animate: string;
   onHoverStart?: () => void;
@@ -40,7 +40,9 @@ const ArrowIconClasses =
  * @Discover_Carousel_Thumbnail_Left_Arrow_Button
  **/
 
-export const DiscoverCarouselLeftArrowButton: FC<IProps> = (props) => {
+export const DiscoverCarouselLeftArrowButton: FC<
+  DiscoverCarouselArrowButtonProps
+> = (props) => {
   return (
     <motion.button
       variants={LeftVariants}
@@ -63,7 +65,9 @@ export const DiscoverCarouselLeftArrowButton: FC<IProps> = (props) => {
  * @Discover_Carousel_Thumbnail_Right_Arrow_Button
  **/
 
-export const DiscoverCarouselRightArrowButton: FC<IProps> = (props) => {
+export const DiscoverCarouselRightArrowButton: FC<
+  DiscoverCarouselArrowButtonProps
+> = (props) => {
   return (
     <motion.button
       variants={RightVariants}
