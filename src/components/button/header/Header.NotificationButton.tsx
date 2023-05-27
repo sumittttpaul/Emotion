@@ -4,8 +4,16 @@ import { TooltipDark } from '../../tooltip/TooltipDark';
 import Image from 'next/image';
 import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
-import { HeaderNotificationButtonMenu } from './Header.NotificationButton.Menu';
+import { HeaderNotificationButtonMenuProps } from './Header.NotificationButton.Menu';
 import { StoreNotificationContent } from '../../../contents/store/Store.Notification';
+import dynamic from 'next/dynamic';
+
+const HeaderNotificationButtonMenu = dynamic<HeaderNotificationButtonMenuProps>(
+  () =>
+    import('./Header.NotificationButton.Menu').then(
+      (x) => x.HeaderNotificationButtonMenu
+    )
+);
 
 interface IProps {}
 

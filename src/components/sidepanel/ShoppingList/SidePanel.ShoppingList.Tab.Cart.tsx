@@ -10,7 +10,7 @@ import { styled } from '@mui/material/styles';
 import { DotsHorizontalIcon } from '@heroicons/react/outline';
 import { StoreCartContentProps } from '../../../contents/store/Store.ShoppingList';
 
-interface IProps {
+export interface SidePanelShoppingListTabCartProps {
   ContentArray: StoreCartContentProps[];
 }
 
@@ -36,7 +36,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({}));
  * @function @SidePanelShoppingListTabCart
  **/
 
-export const SidePanelShoppingListTabCart: FC<IProps> = (props) => {
+export const SidePanelShoppingListTabCart: FC<SidePanelShoppingListTabCartProps> = (props) => {
   const [expanded, setExpanded] = useState<string | false>('');
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 

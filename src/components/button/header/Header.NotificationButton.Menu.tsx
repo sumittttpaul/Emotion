@@ -7,7 +7,7 @@ import { TrendingBadge } from '../../badge/TrendingBadge';
 import { NewBadge } from '../../badge/NewBadge';
 import { StoreNotificationContentProps } from '../../../contents/store/Store.Notification';
 
-interface IProps {
+export interface HeaderNotificationButtonMenuProps {
   ContentArray: StoreNotificationContentProps[];
   anchorEl: null | HTMLElement;
   open: boolean;
@@ -19,7 +19,9 @@ interface IProps {
  * @function @HeaderNotificationButtonMenu
  **/
 
-export const HeaderNotificationButtonMenu: FC<IProps> = (props) => {
+export const HeaderNotificationButtonMenu: FC<
+  HeaderNotificationButtonMenuProps
+> = (props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);

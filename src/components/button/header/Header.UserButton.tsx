@@ -104,27 +104,33 @@ interface UserButtonProps {
 
 const LoginButton: FC<LoginButtonProps> = (props) => {
   return (
-    <Button
-      aria-label="user-login-button"
-      disableFocusRipple
-      onClick={props.onClick}
-      className="flex items-center button-text-lower h-full px-4 bg-transparent hover:bg-[#202020]"
-      sx={{
-        '.MuiTouchRipple-child': {
-          backgroundColor: '#ffffff50 !important',
-        },
-      }}
-      style={{ minWidth: 0 }}
+    <TooltipDark
+      arrow
+      placement="bottom"
+      title={<h6 className="font-[400]">Account</h6>}
     >
-      <Image
-        height={20}
-        width={20}
-        layout="fixed"
-        className="opacity-70"
-        src={UserIcon}
-        alt=""
-      />
-    </Button>
+      <Button
+        aria-label="user-login-button"
+        disableFocusRipple
+        onClick={props.onClick}
+        className="flex items-center button-text-lower h-full px-[14px] bg-transparent hover:bg-[#202020]"
+        sx={{
+          '.MuiTouchRipple-child': {
+            backgroundColor: '#ffffff50 !important',
+          },
+        }}
+        style={{ minWidth: 0 }}
+      >
+        <Image
+          height={20}
+          width={20}
+          layout="fixed"
+          className="opacity-70"
+          src={UserIcon}
+          alt=""
+        />
+      </Button>
+    </TooltipDark>
   );
 };
 

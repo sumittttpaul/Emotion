@@ -5,11 +5,19 @@ import { LayoutGroup, motion } from 'framer-motion';
 import TabPanel from '../../tab/SelectAvatarTabPanel';
 import React, { FC, useState, KeyboardEvent } from 'react';
 import { SidePanelShoppingListTabWishlist } from './SidePanel.ShoppingList.Tab.Wishlist';
-import { SidePanelShoppingListTabCart } from './SidePanel.ShoppingList.Tab.Cart';
+import { SidePanelShoppingListTabCartProps } from './SidePanel.ShoppingList.Tab.Cart';
 import {
   StoreCartContent,
   StoreWishlistContent,
 } from '../../../contents/store/Store.ShoppingList';
+import dynamic from 'next/dynamic';
+
+const SidePanelShoppingListTabCart = dynamic<SidePanelShoppingListTabCartProps>(
+  () =>
+    import('./SidePanel.ShoppingList.Tab.Cart').then(
+      (x) => x.SidePanelShoppingListTabCart
+    )
+);
 
 interface IProps {}
 

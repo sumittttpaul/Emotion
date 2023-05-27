@@ -4,7 +4,7 @@ import { DiscoverCarouselContentProps } from '../../../contents/store/discover/S
 import { DiscoverCarouselPieTimer } from './DiscoverCarousel.PieTimer';
 import { Button } from '@mui/material';
 import { ChevronRightIcon } from '@heroicons/react/outline';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 
 interface IProps {
   IntervalStatus: string;
@@ -136,12 +136,15 @@ const BannerContent: FC<BannerContentProps> = (props) => {
         >
           <div className="flex h-full w-full">
             <Image
-              objectFit="cover"
-              objectPosition="center"
+              fill
               priority
-              layout="fill"
               className=""
               src={value.Image}
+              sizes='(max-width: 800px) 800px'
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center',
+              }}
               alt=""
             />
           </div>
