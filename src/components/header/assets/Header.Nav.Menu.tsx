@@ -43,7 +43,7 @@ const ActiveContent = (props: string, value: string) => {
   if (props === value) {
     return 'opacity-100 cursor-default hover:bg-transparent';
   } else {
-    return 'opacity-50 cursor-default hover:bg-[#ffffff10]';
+    return 'opacity-50 cursor-default hover:opacity-100 hover:bg-[#ffffff10]';
   }
 };
 
@@ -80,7 +80,8 @@ export const HeaderNavMenu: FC<HeaderNavMenuProps> = (props) => {
         },
       }}
       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-      anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+      anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      className="block medium-screen:hidden"
     >
       {Links.map((value, idx) => (
         <MenuItem
@@ -91,7 +92,7 @@ export const HeaderNavMenu: FC<HeaderNavMenuProps> = (props) => {
           className={`${ActiveContent(
             props.Value,
             value.label
-          )} ${'text-white p-0 m-0 hover:opacity-100 bg-transparent rounded-lg disabled:cursor-not-allowed disabled:text-white w-full opacity-50 transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center button-text-lower'}`}
+          )} ${'text-white cursor-default p-0 m-0 bg-transparent rounded-lg disabled:cursor-not-allowed disabled:text-white w-full transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center button-text-lower'}`}
           onClick={() => {
             setTimeout(() => {
               if (props.Value != value.label) {

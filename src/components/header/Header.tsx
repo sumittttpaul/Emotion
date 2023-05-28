@@ -1,9 +1,6 @@
-import Router from 'next/router';
 import dynamic from 'next/dynamic';
 import React, { FC, MouseEvent, useState } from 'react';
-import { Wishlist_Link } from '../../routerLinks/RouterLinks';
 import { HeaderSearchButton } from '../button/header/Header.SearchButton';
-import { HeaderWishlistButton } from '../button/header/Header.WishlistButton';
 import { HeaderNav } from './assets/Header.Nav';
 import { HeaderNavMenuProps } from './assets/Header.Nav.Menu';
 import { HeaderUserButton } from '../button/header/Header.UserButton';
