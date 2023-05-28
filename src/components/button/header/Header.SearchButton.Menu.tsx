@@ -50,7 +50,7 @@ export const HeaderSearchButtonMenu: FC<HeaderSearchButtonMenuProps> = (
     <div
       className={`${
         props.SearchMenu ? 'block' : 'hidden'
-      } z-10 absolute w-full top-[45px] px-1.5 py-2.5 bg-[#28282899] backdrop-blur-[15px] rounded-lg text-white shadow-2xl`}
+      } z-10 absolute w-full top-[45px] px-1.5 py-2.5 bg-[#1A1A1ACB] backdrop-blur-[15px] rounded-lg text-white shadow-2xl`}
     >
       {Data.map((value, idx) => (
         <div

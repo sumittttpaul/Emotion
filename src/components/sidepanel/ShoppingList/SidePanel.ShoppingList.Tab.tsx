@@ -107,6 +107,7 @@ export const SidePanelShoppingListTab: FC<IProps> = (props) => {
       </div>
       <SidePanelShoppingListTabHeader
         ContentArray={Tabvalue === 0 ? StoreWishlistContent : StoreCartContent}
+        MoreMenuValue={Tabvalue === 0 ? 'wishlist' : 'cart'}
       />
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}

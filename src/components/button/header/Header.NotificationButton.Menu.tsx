@@ -1,11 +1,11 @@
-import { Button, IconButton, Menu, MenuItem } from '@mui/material';
-import React, { FC, MouseEvent, useState } from 'react';
+import { Button, Menu, MenuItem } from '@mui/material';
+import React, { FC } from 'react';
 import Image from 'next/image';
-import { DotsHorizontalIcon } from '@heroicons/react/outline';
 import { HotBadge } from '../../badge/HotBadge';
 import { TrendingBadge } from '../../badge/TrendingBadge';
 import { NewBadge } from '../../badge/NewBadge';
 import { StoreNotificationContentProps } from '../../../contents/store/Store.Notification';
+import { MoreMenuButton } from '../MoreMenuButton/MoreMenuButton';
 
 export interface HeaderNotificationButtonMenuProps {
   ContentArray: StoreNotificationContentProps[];
@@ -22,18 +22,6 @@ export interface HeaderNotificationButtonMenuProps {
 export const HeaderNotificationButtonMenu: FC<
   HeaderNotificationButtonMenuProps
 > = (props) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-  const open = Boolean(anchorEl);
-
-  const handleClick = (event: MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   return (
     <Menu
       anchorEl={props.anchorEl}
@@ -48,7 +36,7 @@ export const HeaderNotificationButtonMenu: FC<
           maxWidth: 400,
           borderRadius: 2,
           overflow: 'visible',
-          filter: 'drop-shadow(0px 0px 0px #000000)',
+          filter: 'drop-shadow(0px 0px 25px #000000)',
           backdropFilter: 'blur(15px)',
           '.MuiMenu-list': {
             padding: '1px 0',
@@ -83,23 +71,21 @@ export const HeaderNotificationButtonMenu: FC<
             <div className="text-[13px] truncate cursor-default tracking-wide font-[400] text-white">
               {props.ContentArray.length} items
             </div>
-            <IconButton
-              disableFocusRipple
-              onClick={handleClick}
-              className="p-1 ml-2 cursor-default block text-white items-center justify-center rounded-md opacity-75 hover:opacity-100 bg-transparent hover:bg-[#ffffff20]"
-              sx={{
-                '.MuiTouchRipple-child': {
-                  borderRadius: '2px',
-                  backgroundColor: '#ffffff50 !important',
+            <MoreMenuButton
+              ClassName="ml-2"
+              Orientation="horizontal"
+              MenuContent={[
+                {
+                  label: 'Mark all as Unread',
+                  icon: '/icons/notification-mark-as-read.svg',
+                  onClick: () => {},
                 },
-              }}
-            >
-              <DotsHorizontalIcon className="h-5" />
-            </IconButton>
-            <MarkAllAsUnReadMenu
-              anchorEl={anchorEl}
-              open={open}
-              handleClose={handleClose}
+                {
+                  label: 'Remove all',
+                  icon: '/icons/x-white-2.svg',
+                  onClick: () => {},
+                },
+              ]}
             />
           </div>
           <Button
@@ -150,57 +136,6 @@ export const HeaderNotificationButtonMenu: FC<
           </div>
         </MenuItem>
       ))}
-    </Menu>
-  );
-};
-
-interface MarkAllAsUnReadMenuProps {
-  anchorEl: null | HTMLElement;
-  open: boolean;
-  handleClose: () => void;
-}
-
-const MarkAllAsUnReadMenu = (props: MarkAllAsUnReadMenuProps) => {
-  return (
-    <Menu
-      anchorEl={props.anchorEl}
-      open={props.open}
-      onClose={props.handleClose}
-      PaperProps={{
-        elevation: 0,
-        sx: {
-          background: '#ffffff10',
-          borderRadius: 2,
-          width: 170,
-          overflow: 'visible',
-          filter: 'drop-shadow(0px 0px 0px #000000)',
-          backdropFilter: 'blur(15px)',
-          '.MuiMenu-list': {
-            padding: '1px 0',
-          },
-          '.MuiMenuItem-root': {
-            minHeight: 0,
-          },
-          '.MuiTouchRipple-child': {
-            backgroundColor: '#ffffff50 !important',
-          },
-        },
-      }}
-      transformOrigin={{ horizontal: 'left', vertical: 'top' }}
-      anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-    >
-      <MenuItem
-        key={1}
-        className="m-1 py-2 rounded-md hover:bg-[#ffffff20] text-white text-left text-[13px] font-[400]"
-      >
-        Mark all as Unread
-      </MenuItem>
-      <MenuItem
-        key={2}
-        className="m-1 py-2 rounded-md hover:bg-[#ffffff20] text-white text-left text-[13px] font-[400]"
-      >
-        Remove all
-      </MenuItem>
     </Menu>
   );
 };
