@@ -31,21 +31,21 @@ export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
   return (
     <div className="relative z-10 w-full rounded-xl">
       <DiscoverCarousel ContentArray={DiscoverCarouselContent} />
-      {/* <GalleryCarousel ContentArray={GalleryCarouselContent} />
-      <DiscoverTiles ContentArray={DiscoverTilesContent} />
-      <DiscoverSlider ContentArray={DiscoverSliderContent} />
-      <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
-      <DiscoverBannerLightingDeal
+      {/* <GalleryCarousel ContentArray={GalleryCarouselContent} /> */}
+      {/* <DiscoverTiles ContentArray={DiscoverTilesContent} /> */}
+      {/* <DiscoverSlider ContentArray={DiscoverSliderContent} /> */}
+      {/* <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} /> */}
+      {/* <DiscoverBannerLightingDeal
         ContentArray={DiscoverBannerLightingDealContent}
-      />
-      <DiscoverSlider ContentArray={DiscoverSliderContent} />
-      <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
-      <DiscoverBannerArrivals
+      /> */}
+      {/* <DiscoverSlider ContentArray={DiscoverSliderContent} /> */}
+      {/* <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} /> */}
+      {/* <DiscoverBannerArrivals
         ContentArray={DiscoverBannerLightingDealContent}
-      />
-      <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
-      <DiscoverBannerFive ContentArray={DiscoverBannerFiveContent} />
-      <DiscoverCatelog /> */}
+      /> */}
+      {/* <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} /> */}
+      {/* <DiscoverBannerFive ContentArray={DiscoverBannerFiveContent} /> */}
+      {/* <DiscoverCatelog /> */}
     </div>
   );
 };

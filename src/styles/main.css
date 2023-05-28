@@ -48,25 +48,25 @@
 }
 
 .bg-dark-red-shadow {
-  filter: drop-shadow(0 0px 30px rgba(75, 0, 0, 0.5)) !important;
+  filter: drop-shadow(0 0px 30px rgba(75, 0, 0, 0.75)) !important;
 }
 .bg-dark-pink-shadow {
-  filter: drop-shadow(0 0px 30px rgba(69, 0, 75, 0.5)) !important;
+  filter: drop-shadow(0 0px 30px rgba(69, 0, 75, 0.75)) !important;
 }
 .bg-dark-blue-shadow {
-  filter: drop-shadow(0 0px 30px rgba(0, 60, 75, 0.5)) !important;
+  filter: drop-shadow(0 0px 30px rgba(0, 60, 75, 0.75)) !important;
 }
 .bg-dark-yellow-shadow {
-  filter: drop-shadow(0 0px 30px rgba(70, 75, 0, 0.5)) !important;
+  filter: drop-shadow(0 0px 30px rgba(70, 75, 0, 0.75)) !important;
 }
 .bg-dark-green-shadow {
-  filter: drop-shadow(0 0px 30px rgba(0, 75, 12, 0.5)) !important;
+  filter: drop-shadow(0 0px 30px rgba(0, 75, 12, 0.75)) !important;
 }
 .bg-dark-purple-shadow {
-  filter: drop-shadow(0 0px 30px rgba(50, 1, 97, 0.5)) !important;
+  filter: drop-shadow(0 0px 30px rgba(50, 1, 97, 0.75)) !important;
 }
 .bg-dark-orange-shadow {
-  filter: drop-shadow(0 0px 30px rgba(97, 59, 1, 0.5)) !important;
+  filter: drop-shadow(0 0px 30px rgba(97, 59, 1, 0.75)) !important;
 }
 
 .scrollbar-hide {

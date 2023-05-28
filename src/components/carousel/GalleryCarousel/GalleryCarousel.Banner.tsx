@@ -46,7 +46,7 @@ export const GalleryCarouselBanner: FC<GalleryCarouselBannerProps> = (
 ) => {
   const [CarouselState, setCarouselState] = useState(0);
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence mode="wait">
       <motion.div
         ref={props.ElementRef}
         className="text-white -[z-1] relative box-border items-start justify-end w-full h-[350px] small-screen:h-[500px] medium-screen:h-[660px] px-8 pb-[130px] flex flex-col overflow-hidden rounded-tl-xl bg-gradient-to-r from-[#000000b3]"

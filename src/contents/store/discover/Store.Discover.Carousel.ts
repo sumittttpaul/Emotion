@@ -37,7 +37,7 @@ export const DiscoverCarouselContent = [
     DescriptionLine2: 'winter collection full printed T-shirts.',
     OriginalPrice: '1599.00',
     DiscountedPrice: '599.00',
-    Image: '/images/avatar/illustration/2.png',
+    Image: '/images/avatar/illustration/5.png',
   },
   {
     Color: 'dark-green', // dark-green
@@ -73,7 +73,7 @@ export const DiscoverCarouselContent = [
     DescriptionLine2: 'winter collection full printed T-shirts.',
     OriginalPrice: '1599.00',
     DiscountedPrice: '499.00',
-    Image: '/images/avatar/illustration/5.png',
+    Image: '/images/avatar/illustration/2.png',
   },
   {
     Color: 'dark-red', // dark-red
