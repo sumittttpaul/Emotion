@@ -19,6 +19,7 @@ import { DiscoverCatelog } from '../catelog/DiscoverCatelog';
 import { DiscoverCarousel } from '../carousel/DiscoverCarousel';
 import { DiscoverCarouselContent } from '../../contents/store/discover/Store.Discover.Carousel';
 import { Footer } from '../footer/Footer';
+import { DiscoverBannerForYou } from '../banner/DiscoverBannerForYou';
 
 export interface DiscoverUIProps {}
 
@@ -30,8 +31,9 @@ export interface DiscoverUIProps {}
 export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
   return (
     <div className="relative z-10 w-full rounded-xl">
-      <DiscoverCarousel ContentArray={DiscoverCarouselContent} />
+      {/* <DiscoverCarousel ContentArray={DiscoverCarouselContent} /> */}
       {/* <GalleryCarousel ContentArray={GalleryCarouselContent} /> */}
+      <DiscoverBannerForYou />
       {/* <DiscoverTiles ContentArray={DiscoverTilesContent} /> */}
       {/* <DiscoverSlider ContentArray={DiscoverSliderContent} /> */}
       {/* <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} /> */}

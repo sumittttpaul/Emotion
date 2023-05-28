@@ -39,7 +39,7 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
           borderRadius: 2,
           overflow: 'visible',
           filter: 'drop-shadow(0px 0px 25px #000000)',
-          backdropFilter: 'blur(15px)',
+          backdropFilter: 'blur(50px)',
           '.MuiMenu-list': {
             padding: '1px 0',
           },
