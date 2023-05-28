@@ -11,6 +11,7 @@ import {
   StoreWishlistContent,
 } from '../../../contents/store/Store.ShoppingList';
 import dynamic from 'next/dynamic';
+import { SidePanelShoppingListTabHeader } from './SidePanel.ShoppingList.Tab.Header';
 
 const SidePanelShoppingListTabCart = dynamic<SidePanelShoppingListTabCartProps>(
   () =>
@@ -104,6 +105,9 @@ export const SidePanelShoppingListTab: FC<IProps> = (props) => {
           </Tab.Group>
         </LayoutGroup>
       </div>
+      <SidePanelShoppingListTabHeader
+        ContentArray={Tabvalue === 0 ? StoreWishlistContent : StoreCartContent}
+      />
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={Tabvalue}

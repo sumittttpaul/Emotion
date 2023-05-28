@@ -206,6 +206,11 @@ const BannerContent: FC<BannerContentProps> = (props) => {
               <div className="w-full justify-start flex">
                 <Button
                   className={`bg-${value.ColorDark} h-8 z-[1] flex px-8 cursor-default items-center rounded-lg text-white button-text-lower`}
+                  sx={{
+                    '.MuiTouchRipple-child': {
+                      backgroundColor: '#ffffff50 !important',
+                    },
+                  }}
                 >
                   <div className="flex space-x-2 items-center justify-center">
                     <ChevronRightIcon className="h-4" />

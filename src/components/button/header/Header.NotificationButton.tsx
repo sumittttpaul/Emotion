@@ -68,7 +68,11 @@ export const HeaderNotificationButton: FC<IProps> = (props) => {
             <Image
               width={22}
               height={22}
-              src={'/icons/notification-thin-white.svg'}
+              src={
+                open
+                  ? '/icons/notification-thin-fill-white.svg'
+                  : '/icons/notification-thin-white.svg'
+              }
               alt=""
             />
           </StyledBadge>

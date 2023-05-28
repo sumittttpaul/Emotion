@@ -25,18 +25,18 @@ export const SidePanelShoppingList: FC<IProps> = (props) => {
           <Image
             height={22}
             width={22}
-            className="opacity-60 group-hover:opacity-100 hover:transition-opacity"
+            className="opacity-60 group-hover:opacity-100 group-hover:transition-opacity"
             src="/icons/shopping-cart-fill.svg"
             alt=""
           />
-          <p className="opacity-60 group-hover:opacity-100 hover:transition-opacity trunacate text-[14px] text-white tracking-wide font-[600] w-full text-left">
+          <p className="opacity-60 group-hover:opacity-100 group-hover:transition-opacity trunacate text-[14px] text-white tracking-wide font-[600] w-full text-left">
             Shopping List
           </p>
           <Image
             height={22}
             width={22}
             src="/icons/arrow-right.svg"
-            className="group-hover:opacity-100 opacity-60"
+            className="group-hover:opacity-100 opacity-60 group-hover:transition-opacity"
             alt=""
           />
         </Button>
