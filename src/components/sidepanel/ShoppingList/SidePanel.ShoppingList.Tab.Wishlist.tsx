@@ -1,42 +1,17 @@
-import Image from 'next/image';
-import React, { FC, useState } from 'react';
-import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
-import MuiAccordionSummary, {
-  AccordionSummaryProps,
-} from '@mui/material/AccordionSummary';
-import MuiAccordionDetails from '@mui/material/AccordionDetails';
-import { styled } from '@mui/material/styles';
-import { StoreWishlistContentProps } from '../../../contents/store/Store.ShoppingList';
+import { Button } from '@mui/material';
 import dynamic from 'next/dynamic';
-import { SidePanelShoppingListTabDetailButtonsProps } from './SidePanel.ShoppingList.Tab.DetailButtons';
+import Image from 'next/image';
+import React, { FC, Fragment, MouseEvent, useCallback, useState } from 'react';
+import { StoreWishlistContentProps } from '../../../contents/store/Store.ShoppingList';
+import { ProductContextMenuProps } from '../../button/ProductContextMenu';
+
+const ProductContextMenu = dynamic<ProductContextMenuProps>(() =>
+  import('../../button/ProductContextMenu').then((x) => x.ProductContextMenu)
+);
 
 interface IProps {
   ContentArray: StoreWishlistContentProps[];
 }
-
-const SidePanelShoppingListTabDetailButtons =
-  dynamic<SidePanelShoppingListTabDetailButtonsProps>(() =>
-    import('./SidePanel.ShoppingList.Tab.DetailButtons').then(
-      (x) => x.SidePanelShoppingListTabDetailButtons
-    )
-  );
-
-const Accordion = styled((props: AccordionProps) => (
-  <MuiAccordion disableGutters elevation={0} square {...props} />
-))(({ theme }) => ({
-  '&:not(:last-child)': {},
-  '&:before': {
-    display: 'none',
-  },
-}));
-
-const AccordionSummary = styled((props: AccordionSummaryProps) => (
-  <MuiAccordionSummary {...props} />
-))(({ theme }) => ({
-  paddingLeft: 10,
-}));
-
-const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({}));
 
 /**
  * @author
@@ -44,31 +19,64 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({}));
  **/
 
 export const SidePanelShoppingListTabWishlist: FC<IProps> = (props) => {
-  const [expanded, setExpanded] = useState<string | false>('');
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
 
-  const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
-      setExpanded(newExpanded ? panel : false);
-    };
+  const handleClick = useCallback((event: MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    // synthetic event
+    switch (event.type) {
+      case 'contextmenu':
+        setAnchorEl(event.currentTarget);
+        break;
+    }
+    // native event
+    switch (event.nativeEvent.button) {
+      case 2:
+        setAnchorEl(event.currentTarget);
+        break;
+    }
+  }, []);
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const MenuContent = [
+    {
+      label: 'Open',
+      icon: '/icons/open-link.svg',
+      onClick: () => {},
+    },
+    {
+      label: 'Add to cart',
+      icon: '/icons/shopping-list-cart.svg',
+      onClick: () => {},
+    },
+    {
+      label: 'Remove',
+      icon: '/icons/x-white-2.svg',
+      onClick: () => {},
+    },
+  ];
 
   return (
     <div className="pb-3 px-1 w-full h-full flex flex-col relative">
       {props.ContentArray.length ? (
         <div className="flex flex-col w-full pb-[60px]">
-          {props.ContentArray.map((value, idx) => (
-            <Accordion
-              key={idx}
-              expanded={expanded === `SidePanel-Accordion-${idx}`}
-              onChange={handleChange(`SidePanel-Accordion-${idx}`)}
-              className={`${
-                expanded === `SidePanel-Accordion-${idx}`
-                  ? 'bg-[#ffffff10]'
-                  : 'bg-transparent hover:bg-[#ffffff09]'
-              } text-white items-center justify-center relative rounded-lg`}
-            >
-              <AccordionSummary
-                aria-controls={`SidePanel-Accordion-${idx}-header-content`}
-                id={`SidePanel-Accordion-${idx}-header`}
+          <Fragment>
+            {props.ContentArray.map((value, idx) => (
+              <Button
+                id={idx.toString()}
+                disableFocusRipple
+                onClick={handleClick}
+                onContextMenu={handleClick}
+                className="cursor-default p-3 bg-transparent hover:bg-[#FFFFFF0A] text-white items-center justify-center relative rounded-lg button-text-lower"
+                sx={{
+                  '.MuiTouchRipple-child': {
+                    backgroundColor: '#ffffff30 !important',
+                  },
+                }}
               >
                 <div className="flex w-full items-center justify-center">
                   <Image
@@ -86,8 +94,8 @@ export const SidePanelShoppingListTabWishlist: FC<IProps> = (props) => {
                     src={value.Image}
                     alt=""
                   />
-                  <div className="pl-3 w-full h-full space-y-auto items-center overflow-hidden">
-                    <div className="w-full text-left truncate text-[14px] font-[500]">
+                  <div className="pl-3 w-full h-full -space-y-[2px] items-center overflow-hidden">
+                    <div className="w-full text-left truncate tracking-wide text-[14px] font-[500]">
                       {value.Heading}
                     </div>
                     <div className="flex w-full justify-start space-x-2">
@@ -101,31 +109,15 @@ export const SidePanelShoppingListTabWishlist: FC<IProps> = (props) => {
                     </div>
                   </div>
                 </div>
-              </AccordionSummary>
-              <AccordionDetails
-                aria-controls={`SidePanel-Accordion-${idx}-detail-content`}
-                id={`SidePanel-Accordion-${idx}-content`}
-                className="p-0 m-0 w-full"
-              >
-                <div className="p-2 space-y-2">
-                  <div className="flex space-x-2">
-                    <SidePanelShoppingListTabDetailButtons
-                      Label="Remove"
-                      onClick={() => {}}
-                    />
-                    <SidePanelShoppingListTabDetailButtons
-                      Label="View Details"
-                      onClick={() => {}}
-                    />
-                  </div>
-                  <SidePanelShoppingListTabDetailButtons
-                    Label="Add to Cart"
-                    onClick={() => {}}
-                  />
-                </div>
-              </AccordionDetails>
-            </Accordion>
-          ))}
+              </Button>
+            ))}
+            <ProductContextMenu
+              anchorEl={anchorEl}
+              open={open}
+              handleClose={handleClose}
+              MenuContent={MenuContent}
+            />
+          </Fragment>
         </div>
       ) : (
         <div className="flex flex-col space-y-5 pt-[150px] h-full w-full items-center justify-center opacity-50">
@@ -135,7 +127,9 @@ export const SidePanelShoppingListTabWishlist: FC<IProps> = (props) => {
             src="/vectors/empty-wishlist-vector-white.svg"
             alt=""
           />
-          <p className='text-[12px] font-[400] tracking-wide truncate'>You haven't saved anything yet</p>
+          <p className="text-[12px] font-[400] tracking-wide truncate">
+            You haven't saved anything yet
+          </p>
         </div>
       )}
     </div>

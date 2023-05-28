@@ -1,5 +1,5 @@
 import { DotsHorizontalIcon, DotsVerticalIcon } from '@heroicons/react/outline';
-import React, { FC, useState, MouseEvent } from 'react';
+import React, { FC, useState, MouseEvent, Fragment } from 'react';
 import { IconButton } from '@mui/material';
 import { MoreMenuButtonMenuProps } from './MoreMenuButton.Menu';
 import dynamic from 'next/dynamic';
@@ -31,7 +31,7 @@ export const MoreMenuButton: FC<IProps> = (props) => {
     setAnchorEl(null);
   };
   return (
-    <>
+    <Fragment>
       <IconButton
         disableFocusRipple
         onClick={handleClick}
@@ -55,6 +55,6 @@ export const MoreMenuButton: FC<IProps> = (props) => {
         handleClose={handleClose}
         MenuContent={props.MenuContent}
       />
-    </>
+    </Fragment>
   );
 };
