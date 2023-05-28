@@ -124,7 +124,7 @@ const BannerContent: FC<BannerContentProps> = (props) => {
           variants={Variants}
           onClick={() => props.onClick(idx + props.CustomIndex)}
           transition={{ type: 'tween' }}
-          className="relative inline-block rounded-xl overflow-hidden w-[300px] min-w-[300px] text-white"
+          className={`bg-${value.Color}-shadow relative inline-block rounded-xl overflow-hidden w-[300px] min-w-[300px] text-white`}
         >
           {/* Image */}
           <div className="flex h-full w-full">

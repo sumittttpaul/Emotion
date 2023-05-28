@@ -52,8 +52,8 @@ export const DiscoverCarouselContent = [
     Image: '/images/avatar/illustration/10.png',
   },
   {
-    Color: 'dark-red', // dark-red
-    ColorDark: 'super-dark-red', // super-dark-red
+    Color: 'dark-pink', // dark-pink
+    ColorDark: 'super-dark-pink', // super-dark-pink
     Button: 'Order now',
     HeadingLine1: 'Carosuel  Main',
     HeadingLine2: 'Heading 4',
@@ -61,7 +61,7 @@ export const DiscoverCarouselContent = [
     DescriptionLine2: 'winter collection full printed T-shirts.',
     OriginalPrice: '1299.00',
     DiscountedPrice: '499.00',
-    Image: '/images/avatar/illustration/4.png',
+    Image: '/images/avatar/illustration/6.png',
   },
   {
     Color: 'dark-yellow', // dark-yellow
@@ -76,8 +76,8 @@ export const DiscoverCarouselContent = [
     Image: '/images/avatar/illustration/5.png',
   },
   {
-    Color: 'dark-pink', // dark-pink
-    ColorDark: 'super-dark-pink', // super-dark-pink
+    Color: 'dark-red', // dark-red
+    ColorDark: 'super-dark-red', // super-dark-red
     Button: 'Order now',
     HeadingLine1: 'Carosuel  Main',
     HeadingLine2: 'Heading 6',
@@ -85,7 +85,7 @@ export const DiscoverCarouselContent = [
     DescriptionLine2: 'winter collection full printed T-shirts.',
     OriginalPrice: '1199.00',
     DiscountedPrice: '499.00',
-    Image: '/images/avatar/illustration/6.png',
+    Image: '/images/avatar/illustration/4.png',
   },
   {
     Color: 'dark-green', // dark-green

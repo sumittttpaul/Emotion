@@ -266,7 +266,7 @@ export const DiscoverCarouselBanner: FC<IProps> = (props) => {
       ref={ContainerRef}
       onHoverStart={CarouselHoverStart}
       onHoverEnd={CarouselHoverEnd}
-      className="relative w-full h-[500px] min-h-[500px] flex overflow-hidden"
+      className="relative w-full h-[500px] min-h-[500px] flex"
     >
       <motion.div className="relative box-content h-full">
         <motion.div
