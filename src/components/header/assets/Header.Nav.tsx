@@ -84,7 +84,7 @@ export const HeaderNav: FC<IProps> = (props) => {
                   props.Value == value.label
                     ? 'text-[#ffffff] bg-[#202020] hover:bg-[#202020]'
                     : 'text-[#ffffff75] bg-transparent hove:bg-transparent'
-                } cursor-default text-[12px] py-2 px-7 border-solid border-[2px] rounded-full border-[#1f1f1f] tracking-[0.6px] transition-all duration-300 font-normal hover:text-[#ffffff] button-text-lower`}
+                } cursor-default text-[12px] py-2 px-7 border-solid border-[2px] rounded-xl border-[#1f1f1f] tracking-[0.6px] transition-all duration-300 font-normal hover:text-[#ffffff] button-text-lower`}
               >
                 {value.label}
               </Button>
