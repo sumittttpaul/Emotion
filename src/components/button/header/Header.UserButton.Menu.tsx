@@ -113,7 +113,7 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
             Router.push(Manage_Your_Account_Link);
           }, 150);
         }}
-        className="m-1 py-2 rounded-md hover:bg-[#ffffff15]"
+        className="m-1 py-2 rounded-md hover:bg-[#ffffff15] cursor-default"
       >
         <div className="flex relative space-x-[10px] opacity-90">
           <Image height={17} width={17} src="/icons/folder.svg" alt="" />
@@ -131,7 +131,7 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
             Router.push(Track_Order_Link);
           }, 150);
         }}
-        className="m-1 py-2 rounded-md hover:bg-[#ffffff15]"
+        className="m-1 py-2 rounded-md hover:bg-[#ffffff15] cursor-default"
       >
         <div className="flex relative space-x-[10px] opacity-90">
           <Image height={18} width={18} src="/icons/truck.svg" alt="" />
@@ -149,7 +149,7 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
             Router.push(Cart_Link);
           }, 150);
         }}
-        className="m-1 py-2 rounded-md hover:bg-[#ffffff15]"
+        className="m-1 py-2 rounded-md hover:bg-[#ffffff15] cursor-default"
       >
         <div className="flex relative space-x-[10px] opacity-90">
           <Image height={17} width={17} src="/icons/shopping-bag.svg" alt="" />
@@ -167,7 +167,7 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
             Router.push(Redeem_Gift_Codes_Link);
           }, 150);
         }}
-        className="m-1 py-2 rounded-md hover:bg-[#ffffff15]"
+        className="m-1 py-2 rounded-md hover:bg-[#ffffff15] cursor-default"
       >
         <div className="flex relative space-x-[10px] opacity-90">
           <Image height={17} width={17} src="/icons/gift.svg" alt="" />
