@@ -14,13 +14,12 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
-import { Poster_BlurDataURL } from '../../loader/BlurDataURL';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { HeartIcon as HeartIconOutline } from '@heroicons/react/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid';
 import { ProductContextMenu } from '../../button/ProductContextMenu';
 
-const HeadingStyle = 'font-[500] tracking-wide text-left w-full truncate';
+const HeadingStyle = 'text-[14px] font-[500] tracking-wide text-left w-full truncate';
 const DescriptionStyle =
   'text-[13px] font-normal text-left w-full opacity-[0.75] leading-[18px] line-clamp-2';
 const DiscountStyle =
@@ -142,33 +141,37 @@ export const DiscoverSliderBrowser: FC<DiscoverSliderBrowserProps> = (
                 },
               }}
             >
-              <div className="w-full flex flex-col relative">
+              <div className="w-full space-y-2.5 flex flex-col relative">
                 <div className="relative w-full overflow-hidden">
                   <Image
                     priority
-                    height={307}
-                    width={240}
-                    objectFit="cover"
-                    objectPosition="center"
-                    placeholder="blur"
+                    height={240}
+                    width={188}
                     className={ImageStyle}
-                    blurDataURL={Poster_BlurDataURL}
                     src={value.Image}
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                      maxHeight: 240,
+                      maxWidth: 188,
+                    }}
                     alt=""
                   />
                 </div>
-                <h5 className={HeadingStyle}>{value.Heading}</h5>
-                <h6 className={DescriptionStyle}>{value.Description}</h6>
-                <div className="block h-5 w-full" />
-                <div className="text-xs flex items-center space-x-2 pt-1">
-                  <h6 className={DiscountStyle}>{value.Discount}</h6>
-                  <div className="py-[5px] px-[8px] flex space-x-2 bg-white/5 rounded-md">
-                    <h6 className={OriginalPriceStyle}>
-                      {`₹${value.OriginalPrice}`}
-                    </h6>
-                    <h6
-                      className={DiscountedPriceStyle}
-                    >{`₹${value.DiscountedPrice}`}</h6>
+                <div className="flex flex-col w-full">
+                  <h5 className={HeadingStyle}>{value.Heading}</h5>
+                  <h6 className={DescriptionStyle}>{value.Description}</h6>
+                  <div className="block h-5 w-full" />
+                  <div className="text-xs flex items-center space-x-2 pt-1">
+                    <h6 className={DiscountStyle}>{value.Discount}</h6>
+                    <div className="py-[5px] px-[8px] flex space-x-2 bg-white/5 rounded-md">
+                      <h6 className={OriginalPriceStyle}>
+                        {`₹${value.OriginalPrice}`}
+                      </h6>
+                      <h6
+                        className={DiscountedPriceStyle}
+                      >{`₹${value.DiscountedPrice}`}</h6>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -242,15 +245,16 @@ export const DiscoverSliderMobile: FC<DiscoverSliderMobileProps> = (props) => {
                   </div>
                   <Image
                     priority
-                    height={307}
-                    width={240}
-                    layout="responsive"
-                    objectFit="cover"
-                    objectPosition="center"
-                    placeholder="blur"
+                    height={240}
+                    width={188}
                     className={ImageStyle}
-                    blurDataURL={Poster_BlurDataURL}
                     src={value.Image}
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                      maxHeight: 240,
+                      maxWidth: 188,
+                    }}
                     alt=""
                   />
                 </div>

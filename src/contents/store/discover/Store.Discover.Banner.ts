@@ -20,6 +20,7 @@ export interface DiscoverBannerLightingDealContentProps {
   DiscountedPrice: string;
   Available: boolean;
   slug: string;
+  Color: string;
 }
 
 export interface DiscoverBannerTop5ContentProps {
@@ -97,15 +98,16 @@ export const DiscoverBannerFourContent = [
   },
 ];
 
-export const DiscoverBannerLightingDealContent = [
+export const DiscoverBannerDealContent = [
   {
     Heading: 'Lighting Deal Heading 1',
     Description: 'Offers are valid till 20th August',
     OriginalPrice: '1999.00',
     DiscountedPrice: '999.00',
     Available: true,
-    Image: '/images/avatar/illustration/6.png',
+    Image: '/images/avatar/illustration/4.png',
     slug: 'lightning-deal-heading-1',
+   Color:'dark-red',
   },
   {
     Heading: 'Lighting Deal Heading 2',
@@ -115,6 +117,7 @@ export const DiscoverBannerLightingDealContent = [
     Available: true,
     Image: '/images/avatar/illustration/7.png',
     slug: 'lightning-deal-heading-2',
+   Color:'dark-green',
   },
   {
     Heading: 'Lighting Deal Heading 3',
@@ -124,6 +127,7 @@ export const DiscoverBannerLightingDealContent = [
     Available: false,
     Image: '/images/avatar/illustration/8.png',
     slug: 'lightning-deal-heading-3',
+   Color:'dark-blue',
   },
   {
     Heading: 'Lighting Deal Heading 4',
@@ -131,8 +135,9 @@ export const DiscoverBannerLightingDealContent = [
     OriginalPrice: '2999.00',
     DiscountedPrice: '999.00',
     Available: true,
-    Image: '/images/avatar/illustration/9.png',
+    Image: '/images/avatar/illustration/2.png',
     slug: 'lightning-deal-heading-4',
+   Color:'dark-orange',
   },
   {
     Heading: 'Lighting Deal Heading 5',
@@ -140,8 +145,9 @@ export const DiscoverBannerLightingDealContent = [
     OriginalPrice: '1999.00',
     DiscountedPrice: '899.00',
     Available: false,
-    Image: '/images/avatar/illustration/10.png',
+    Image: '/images/avatar/illustration/6.png',
     slug: 'lightning-deal-heading-5',
+   Color:'dark-pink',
   },
 ];
 

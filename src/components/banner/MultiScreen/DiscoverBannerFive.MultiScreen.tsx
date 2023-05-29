@@ -24,6 +24,7 @@ const GetColor = (index: number) => {
 
 export interface DiscoverBannerFiveBrowserProps {
   ContentArray: DiscoverBannerFiveContentProps[];
+  Label: string;
 }
 export const DiscoverBannerFiveBrowser: FC<DiscoverBannerFiveBrowserProps> = (
   props
@@ -38,7 +39,7 @@ export const DiscoverBannerFiveBrowser: FC<DiscoverBannerFiveBrowserProps> = (
   return (
     <div className="flex-col w-full relative p-0 m-0 space-y-2.5">
       <div className="flex justify-start pl-3">
-        <BannerTitleButton Label="Our services" onClick={() => {}} />
+        <BannerTitleButton Label={props.Label} onClick={() => {}} />
       </div>
       <div className="w-full flex relative box-border space-x-5">
         <Swiper

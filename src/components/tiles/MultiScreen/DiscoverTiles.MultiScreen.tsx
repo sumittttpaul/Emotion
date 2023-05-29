@@ -31,6 +31,7 @@ const GetColorDark = (index: number) => {
 
 export interface DiscoverTilesBrowserProps {
   ContentArray: DiscoverTilesContentProps[];
+  Label: string;
 }
 export const DiscoverTilesBrowser: FC<DiscoverTilesBrowserProps> = (props) => {
   const {
@@ -44,7 +45,7 @@ export const DiscoverTilesBrowser: FC<DiscoverTilesBrowserProps> = (props) => {
   return (
     <div className="w-full flex flex-col space-y-2.5">
       <div className="flex justify-start">
-        <BannerTitleButton Label="Our Category" onClick={() => {}} />
+        <BannerTitleButton Label={props.Label} onClick={() => {}} />
       </div>
       <Swiper
         slidesPerView={
