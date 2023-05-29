@@ -3,15 +3,18 @@ import Image from 'next/legacy/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { DiscoverBannerFiveContentProps } from '../../../contents/store/discover/Store.Discover.Banner';
 import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
-import { BannerUnderlineButtonDark } from '../../button/BannerUnderlineButtonDark';
+import { BannerSmallButtonForBannerFour } from '../../button/banner/Banner.SmallButton.ForBannerFour';
 import useScreenSize from '../../../algorithms/ScreenSizeDetection';
+import { BannerTitleButton } from '../../button/banner/Banner.TitleButton';
+import { UnderlineButtonDark } from '../../button/UnderlineButtonDark';
+import { BannerUnderlineButton } from '../../button/banner/Banner.UnderlineButton';
 
 const ContainerStyle =
-  'text-white group relative p-0 m-0 rounded-2xl bg-gradient-to-b overflow-hidden';
+  'text-white group relative p-0 m-0 rounded-xl bg-gradient-to-b overflow-hidden';
 const TextContainerStyle = 'px-4 pt-4 pb-[100px] space-y-2';
-const HeadingStyle = 'font-normal text-left w-full';
+const HeadingStyle = 'font-[500] tracking-wide text-left w-full';
 const DescriptionStyle =
-  'text-[14px] whitespace-normal leading-[18px] font-sans font-normal text-left w-full opacity-70';
+  'text-[14px] whitespace-normal leading-[18px] font-normal text-left w-full opacity-70';
 const GetColor = (index: number) => {
   if (index === 0) return 'from-dark-red';
   if (index === 1) return 'from-dark-pink';
@@ -34,8 +37,10 @@ export const DiscoverBannerFiveBrowser: FC<DiscoverBannerFiveBrowserProps> = (
     SmallScreen,
   } = useScreenSize();
   return (
-    <div className="flex-col w-full relative p-0 m-0 space-y-5">
-      <h6 className="text-[18px] px-3">Our services</h6>
+    <div className="flex-col w-full relative p-0 m-0 space-y-2.5">
+      <div className="flex justify-start pl-3">
+        <BannerTitleButton Label="Our services" onClick={() => {}} />
+      </div>
       <div className="w-full flex relative box-border space-x-5">
         <Swiper
           slidesPerView={
@@ -65,13 +70,11 @@ export const DiscoverBannerFiveBrowser: FC<DiscoverBannerFiveBrowserProps> = (
             >
               <div className="p-0 m-0">
                 <div className={TextContainerStyle}>
-                  <h6 className={`text-[16px] ${HeadingStyle}`}>
-                    {value.Heading}
-                  </h6>
+                  <h5 className={HeadingStyle}>{value.Heading}</h5>
                   <h6 className={DescriptionStyle}>{value.Description}</h6>
                 </div>
               </div>
-              <BannerUnderlineButtonDark label="Learn More" />
+              <BannerUnderlineButton label="Learn more" />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -128,7 +131,7 @@ export const DiscoverBannerFiveMobile: FC<DiscoverBannerFiveMobileProps> = (
                   <h6 className={DescriptionStyle}>{value.Description}</h6>
                 </div>
               </div>
-              <BannerUnderlineButtonDark label="Learn More" />
+              <BannerSmallButtonForBannerFour label="Learn More" />
             </SwiperSlide>
           ))}
         </Swiper>

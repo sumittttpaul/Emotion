@@ -38,7 +38,7 @@ export const ChildLayout: FC<IProps> = (props) => {
           <div className=" flex flex-col w-full h-full mx-auto max-w-[2000px] bg-[#181818] rounded-xl overflow-hidden">
             <div className="flex flex-col w-full overflow-auto">
               <Children />
-              {/* <Footer /> */}
+              <Footer />
             </div>
           </div>
         </div>

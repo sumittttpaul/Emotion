@@ -1,6 +1,7 @@
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import { IconButton } from '@mui/material';
 import React, { FC, RefObject } from 'react';
+import Image from 'next/image';
+import { BannerTitleButton } from '../../button/banner/Banner.TitleButton';
 
 export interface DiscoverSliderTitleProps {
   label: string;
@@ -28,36 +29,58 @@ export const DiscoverSliderTitle: FC<DiscoverSliderTitleProps> = (props) => {
     }
   };
   return (
-    <div className="w-full px-3 flex text-white justify-between">
-      <h6 className="text-[18px]">{props.label}</h6>
+    <div className="w-full px-3 flex space-y-2.5 text-white items-center justify-between">
+      <div className="flex justify-start">
+        <BannerTitleButton Label={props.label} onClick={() => {}} />
+      </div>
       <div className="flex space-x-2">
-        <IconButton
+        <NavigationButton
+          Direction="left"
           onClick={slideLeft}
-          disabled={props.LeftDisabled}
-          disableFocusRipple
-          className="block disabled:opacity-40 opacity-100 transition-all duration-300 button-text-lower h-full p-2 bg-[#202020] hover:bg-[#303030] disabled:bg-white disabled:bg-opacity-10"
-          sx={{
-            '.MuiTouchRipple-child': {
-              backgroundColor: '#ffffff80 !important',
-            },
-          }}
-        >
-          <ChevronLeftIcon className="h-4 w-4 opacity-90 hover:opacity-100 header-icon-hover text-white" />
-        </IconButton>
-        <IconButton
+          Disabled={props.LeftDisabled}
+        />
+        <NavigationButton
+          Direction="right"
           onClick={slideRight}
-          disabled={props.RightDisabled}
-          disableFocusRipple
-          className="block disabled:opacity-40 opacity-100 transition-all duration-300 button-text-lower h-full p-2 bg-[#202020] hover:bg-[#303030] disabled:bg-white disabled:bg-opacity-10"
-          sx={{
-            '.MuiTouchRipple-child': {
-              backgroundColor: '#ffffff80 !important',
-            },
-          }}
-        >
-          <ChevronRightIcon className="h-4 w-4 opacity-90 hover:opacity-100 header-icon-hover text-white" />
-        </IconButton>
+          Disabled={props.RightDisabled}
+        />
       </div>
     </div>
+  );
+};
+
+interface NavigationButtonProps {
+  onClick: () => void;
+  Disabled: boolean;
+  Direction: string;
+}
+
+const ArrowIconClasses =
+  'relative h-[10px] w-[10px] group-hover:h-[12px] group-hover:w-[12px] flex items-center justify-center opacity-75 group-hover:opacity-90';
+
+const NavigationButton: FC<NavigationButtonProps> = (props) => {
+  return (
+    <IconButton
+      onClick={props.onClick}
+      disabled={props.Disabled}
+      disableFocusRipple
+      className="flex group transition-all duration-300 button-text-lower h-[35px] w-[35px] bg-white/5 hover:bg-white/5 disabled:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40 opacity-100 cursor-default"
+      sx={{
+        '.MuiTouchRipple-child': {
+          backgroundColor: '#ffffff80 !important',
+        },
+      }}
+    >
+      {props.Direction === 'left' && (
+        <div className={ArrowIconClasses}>
+          <Image src="/icons/left-arrow-fill-white.svg" fill alt="" />
+        </div>
+      )}
+      {props.Direction === 'right' && (
+        <div className={ArrowIconClasses}>
+          <Image src="/icons/right-arrow-fill-white.svg" fill alt="" />
+        </div>
+      )}
+    </IconButton>
   );
 };

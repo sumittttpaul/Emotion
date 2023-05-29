@@ -2,9 +2,13 @@ import { DiscoverSliderContentProps } from '../../../contents/store/discover/Sto
 import React, {
   Dispatch,
   FC,
+  Fragment,
   RefObject,
   SetStateAction,
+  useCallback,
   useEffect,
+  useState,
+  MouseEvent,
 } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,14 +18,15 @@ import { Poster_BlurDataURL } from '../../loader/BlurDataURL';
 import Image from 'next/legacy/image';
 import { HeartIcon as HeartIconOutline } from '@heroicons/react/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid';
-import { TooltipDark } from '../../tooltip/TooltipDark';
+import { ProductContextMenu } from '../../button/ProductContextMenu';
 
-const HeadingStyle =
-  'text-[14px] font-normal text-left w-full whitespace-nowrap overflow-hidden text-ellipsis';
+const HeadingStyle = 'font-[500] tracking-wide text-left w-full truncate';
+const DescriptionStyle =
+  'text-[13px] font-normal text-left w-full opacity-[0.75] leading-[18px] line-clamp-2';
 const DiscountStyle =
-  'bg-primary-blue-rgb font-[600] text-[11px] py-[5px] px-[10px] mr-[2px] rounded-[4px]';
-const OriginalPriceStyle = 'line-through text-[13.5px] opacity-70';
-const DiscountedPriceStyle = 'text-[14px]';
+  'bg-primary-blue-rgb font-[600] text-[11px] py-[5px] px-[10px] mr-[2px] rounded-md';
+const OriginalPriceStyle = ' line-through text-[12px] opacity-70';
+const DiscountedPriceStyle = ' text-[13px]';
 const ImageStyle = 'rounded-xl';
 
 export interface DiscoverSliderBrowserProps {
@@ -32,9 +37,33 @@ export interface DiscoverSliderBrowserProps {
   setLeftDisabled: Dispatch<SetStateAction<boolean>>;
   setRightDisabled: Dispatch<SetStateAction<boolean>>;
 }
+
 export const DiscoverSliderBrowser: FC<DiscoverSliderBrowserProps> = (
   props
 ) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = useCallback((event: MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    // synthetic event
+    switch (event.type) {
+      case 'contextmenu':
+        setAnchorEl(event.currentTarget);
+        break;
+    }
+    // native event
+    switch (event.nativeEvent.button) {
+      case 2:
+        setAnchorEl(event.currentTarget);
+        break;
+    }
+  }, []);
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const ListenToSliderScroll = () => {
     const slider = props.sliderRef.current;
     if (slider) {
@@ -51,6 +80,7 @@ export const DiscoverSliderBrowser: FC<DiscoverSliderBrowserProps> = (
       }
     }
   };
+
   useEffect(() => {
     const slider = props.sliderRef.current;
     if (slider) {
@@ -60,6 +90,7 @@ export const DiscoverSliderBrowser: FC<DiscoverSliderBrowserProps> = (
       if (slider) slider.removeEventListener('scroll', ListenToSliderScroll);
     };
   });
+
   useEffect(() => {
     const slider = props.sliderRef.current;
     if (slider) {
@@ -67,74 +98,95 @@ export const DiscoverSliderBrowser: FC<DiscoverSliderBrowserProps> = (
       else props.setLeftDisabled(false);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const MenuContent = [
+    {
+      label: 'Open',
+      icon: '/icons/open-link.svg',
+    },
+    {
+      label: 'Add to cart',
+      icon: '/icons/shopping-list-cart.svg',
+    },
+    {
+      label: 'Save to wishlist',
+      icon: '/icons/shopping-list-wishlist.svg',
+    },
+  ];
+
   return (
     <div className="flex w-full box-border">
-      <ScrollContainer
-        vertical={false}
-        hideScrollbars={true}
-        innerRef={props.sliderRef}
-        component="ul"
-        className="w-full flex px-0 space-x-4 box-border scroll-smooth"
-        style={{
-          paddingRight: 12,
-          paddingLeft: 12,
-        }}
-      >
-        {props.ContentArray.map((value, index) => (
-          <Button
-            key={index}
-            component="li"
-            disableFocusRipple
-            className="text-white group m-0 p-0 space-y-1 min-w-[220px] button-text-lower"
-            sx={{
-              '.MuiTouchRipple-child': {
-                backgroundColor: '#ffffff80 !important',
-              },
-            }}
-          >
-            <div className="w-full flex flex-col relative">
-              <div className="relative w-full overflow-hidden">
-                <div className="opacity-0 p-2 flex items-start justify-end group-hover:opacity-100 absolute z-[1] transition-opacity duration-300 rounded-md h-[98%] w-full bg-gradient-to-bl from-[#0000004d]">
-                  <TooltipDark arrow title="Add to Wishlist" placement="top">
-                    <motion.button
-                      onClick={() => props.setWishlist(index)}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      {props.Wishlist === index ? (
-                        <HeartIconSolid className="h-6 w-6 text-white opacity-100" />
-                      ) : (
-                        <HeartIconOutline className="h-6 w-6 text-white opacity-80" />
-                      )}
-                    </motion.button>
-                  </TooltipDark>
+      <Fragment>
+        <ScrollContainer
+          vertical={false}
+          hideScrollbars={true}
+          innerRef={props.sliderRef}
+          component="ul"
+          className="w-full flex px-0 space-x-4 box-border scroll-smooth"
+          style={{
+            paddingRight: 12,
+            paddingLeft: 12,
+          }}
+        >
+          {props.ContentArray.map((value, index) => (
+            <Button
+              key={index}
+              component="li"
+              disableFocusRipple
+              onClick={handleClick}
+              onContextMenu={handleClick}
+              className="text-white cursor-default group m-0 p-4 space-y-1 min-w-[220px] button-text-lower rounded-xl bg-white/5 hover:bg-white/10 transition-all"
+              sx={{
+                '.MuiTouchRipple-child': {
+                  backgroundColor: '#ffffff80 !important',
+                },
+              }}
+            >
+              <div className="w-full flex flex-col relative">
+                <div className="relative w-full overflow-hidden">
+                  <Image
+                    priority
+                    height={307}
+                    width={240}
+                    objectFit="cover"
+                    objectPosition="center"
+                    placeholder="blur"
+                    className={ImageStyle}
+                    blurDataURL={Poster_BlurDataURL}
+                    src={value.Image}
+                    alt=""
+                  />
                 </div>
-                <Image
-                  priority
-                  height={307}
-                  width={240}
-                  objectFit="cover"
-                  objectPosition="center"
-                  placeholder="blur"
-                  className={ImageStyle}
-                  blurDataURL={Poster_BlurDataURL}
-                  src={value.Image}
-                  alt=""
-                />
+                <h5 className={HeadingStyle}>{value.Heading}</h5>
+                <h6 className={DescriptionStyle}>{value.Description}</h6>
+                <div className="block h-5 w-full" />
+                <div className="text-xs flex items-center space-x-2 pt-1">
+                  <h6 className={DiscountStyle}>{value.Discount}</h6>
+                  <div className="py-[5px] px-[8px] flex space-x-2 bg-white/5 rounded-md">
+                    <h6 className={OriginalPriceStyle}>
+                      {`₹${value.OriginalPrice}`}
+                    </h6>
+                    <h6
+                      className={DiscountedPriceStyle}
+                    >{`₹${value.DiscountedPrice}`}</h6>
+                  </div>
+                </div>
               </div>
-              <h6 className={HeadingStyle}>{value.Heading}</h6>
-              <div className="text-xs flex items-center space-x-2 pt-1">
-                <h6 className={DiscountStyle}>{value.Discount}</h6>
-                <h6 className={OriginalPriceStyle}>
-                  {`₹${value.OriginalPrice}`}
-                </h6>
-                <h6
-                  className={DiscountedPriceStyle}
-                >{`₹${value.DiscountedPrice}`}</h6>
-              </div>
-            </div>
-          </Button>
-        ))}
-      </ScrollContainer>
+            </Button>
+          ))}
+        </ScrollContainer>
+        <ProductContextMenu
+          anchorEl={anchorEl}
+          open={open}
+          handleClose={handleClose}
+          MenuContent={MenuContent}
+          minWidth={220}
+          TransformHorizontal={'center'}
+          TransformVertical={'center'}
+          AnchorHorizontal={'center'}
+          AnchorVertical={'center'}
+        />
+      </Fragment>
     </div>
   );
 };

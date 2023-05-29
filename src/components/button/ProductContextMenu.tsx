@@ -3,10 +3,15 @@ import React, { FC } from 'react';
 import Image from 'next/image';
 
 export interface ProductContextMenuProps {
+  MenuContent: { label: string; icon: string; onClick?: () => void }[];
   anchorEl: null | HTMLElement;
   open: boolean;
   handleClose: () => void;
-  MenuContent: { label: string; icon: string; onClick: () => void }[];
+  minWidth?: number;
+  TransformHorizontal?: 'left' | 'right' | 'center' | number;
+  TransformVertical?: 'top' | 'bottom' | 'center' | number;
+  AnchorHorizontal?: 'left' | 'right' | 'center' | number;
+  AnchorVertical?: 'top' | 'bottom' | 'center' | number;
 }
 
 /**
@@ -25,7 +30,7 @@ export const ProductContextMenu: FC<ProductContextMenuProps> = (props) => {
         sx: {
           background: '#28282875',
           borderRadius: 2,
-          minWidth: 250,
+          minWidth: props.minWidth ? props.minWidth : 250,
           overflow: 'visible',
           filter: 'drop-shadow(0px 0px 20px #000000)',
           backdropFilter: 'blur(15px)',
@@ -40,8 +45,16 @@ export const ProductContextMenu: FC<ProductContextMenuProps> = (props) => {
           },
         },
       }}
-      transformOrigin={{ horizontal: 'left', vertical: 'top' }}
-      anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+      transformOrigin={{
+        horizontal: props.TransformHorizontal
+          ? props.TransformHorizontal
+          : 'left',
+        vertical: props.TransformVertical ? props.TransformVertical : 'top',
+      }}
+      anchorOrigin={{
+        horizontal: props.AnchorHorizontal ? props.AnchorHorizontal : 'right',
+        vertical: props.AnchorVertical ? props.AnchorVertical : 'top',
+      }}
     >
       {props.MenuContent.map((value, idx) => (
         <MenuItem

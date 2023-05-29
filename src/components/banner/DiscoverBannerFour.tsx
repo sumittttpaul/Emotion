@@ -15,7 +15,7 @@ interface IProps {
  **/
 export const DiscoverBannerFour: FC<IProps> = (props) => {
   return (
-    <div className="flex w-full overflow-x-hidden overflow-y-visible mt-[30px]">
+    <div className="flex w-full overflow-x-hidden overflow-y-visible mt-10">
       <DiscoverBannerFourBrowser ContentArray={props.ContentArray} />
       {/* <DiscoverBannerFourMobile ContentArray={props.ContentArray} /> */}
     </div>

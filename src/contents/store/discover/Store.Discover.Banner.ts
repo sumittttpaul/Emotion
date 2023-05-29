@@ -22,6 +22,12 @@ export interface DiscoverBannerLightingDealContentProps {
   slug: string;
 }
 
+export interface DiscoverBannerTop5ContentProps {
+  Color: string;
+  Heading: string;
+  Image: string;
+}
+
 export const DiscoverBannerFiveContent = [
   {
     Heading: 'Banner Five Heading 1',
@@ -136,5 +142,33 @@ export const DiscoverBannerLightingDealContent = [
     Available: false,
     Image: '/images/avatar/illustration/10.png',
     slug: 'lightning-deal-heading-5',
+  },
+];
+
+export const DiscoverBannerTop5Content = [
+  {
+    Color: 'dark-orange',
+    Heading: 'Trends of the week Heading 1',
+    Image: '/images/avatar/illustration/2.png',
+  },
+  {
+    Color: 'dark-green',
+    Heading: 'Trends of the week Heading 2',
+    Image: '/images/avatar/illustration/7.png',
+  },
+  {
+    Color: 'dark-red',
+    Heading: 'Trends of the week Heading 3',
+    Image: '/images/avatar/illustration/4.png',
+  },
+  {
+    Color: 'dark-blue',
+    Heading: 'Trends of the week Heading 4',
+    Image: '/images/avatar/illustration/3.png',
+  },
+  {
+    Color: 'dark-pink',
+    Heading: 'Trends of the week Heading 5',
+    Image: '/images/avatar/illustration/6.png',
   },
 ];

@@ -1,25 +1,22 @@
 import React, { FC } from 'react';
-
-import { GalleryCarouselContent } from '../../contents/gallery/Gallery.Carousel';
 import { DiscoverSliderContent } from '../../contents/store/discover/Store.Discover.Slider';
 import {
   DiscoverBannerFiveContent,
   DiscoverBannerLightingDealContent,
+  DiscoverBannerTop5Content,
 } from '../../contents/store/discover/Store.Discover.Banner';
 import { DiscoverBannerFourContent } from '../../contents/store/discover/Store.Discover.Banner';
 import { DiscoverTilesContent } from '../../contents/store/discover/Store.Discover.Tiles';
-import { GalleryCarousel } from '../carousel/GalleryCarousel';
 import { DiscoverSlider } from '../slider/DiscoverSlider';
-import { DiscoverBannerFive } from '../banner/DiscoverBannerFive';
-import { DiscoverBannerFour } from '../banner/DiscoverBannerFour';
+import { DiscoverBannerTop5 } from '../banner/DiscoverBannerTop5';
 import { DiscoverTiles } from '../tiles/DiscoverTiles';
-import { DiscoverBannerLightingDeal } from '../banner/DiscoverBannerLightingDeal';
+import { DiscoverBannerFour } from '../banner/DiscoverBannerFour';
+import { DiscoverBannerFive } from '../banner/DiscoverBannerFive';
 import { DiscoverBannerArrivals } from '../banner/DiscoverBannerArrivals';
+import { DiscoverBannerLightingDeal } from '../banner/DiscoverBannerLightingDeal';
 import { DiscoverCatelog } from '../catelog/DiscoverCatelog';
 import { DiscoverCarousel } from '../carousel/DiscoverCarousel';
 import { DiscoverCarouselContent } from '../../contents/store/discover/Store.Discover.Carousel';
-import { Footer } from '../footer/Footer';
-import { DiscoverBannerForYou } from '../banner/DiscoverBannerForYou';
 
 export interface DiscoverUIProps {}
 
@@ -31,23 +28,22 @@ export interface DiscoverUIProps {}
 export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
   return (
     <div className="relative z-10 w-full rounded-xl">
-      {/* <DiscoverCarousel ContentArray={DiscoverCarouselContent} /> */}
-      {/* <GalleryCarousel ContentArray={GalleryCarouselContent} /> */}
-      <DiscoverBannerForYou />
-      {/* <DiscoverTiles ContentArray={DiscoverTilesContent} /> */}
-      {/* <DiscoverSlider ContentArray={DiscoverSliderContent} /> */}
-      {/* <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} /> */}
-      {/* <DiscoverBannerLightingDeal
+      <DiscoverCarousel ContentArray={DiscoverCarouselContent} />
+      <DiscoverBannerTop5 ContentArray={DiscoverBannerTop5Content} />
+      <DiscoverTiles ContentArray={DiscoverTilesContent} />
+      <DiscoverSlider ContentArray={DiscoverSliderContent} />
+      <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
+      <DiscoverBannerLightingDeal
         ContentArray={DiscoverBannerLightingDealContent}
-      /> */}
-      {/* <DiscoverSlider ContentArray={DiscoverSliderContent} /> */}
-      {/* <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} /> */}
-      {/* <DiscoverBannerArrivals
+      />
+      <DiscoverSlider ContentArray={DiscoverSliderContent} />
+      <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
+      <DiscoverBannerArrivals
         ContentArray={DiscoverBannerLightingDealContent}
-      /> */}
-      {/* <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} /> */}
-      {/* <DiscoverBannerFive ContentArray={DiscoverBannerFiveContent} /> */}
-      {/* <DiscoverCatelog /> */}
+      />
+      <DiscoverBannerFour ContentArray={DiscoverBannerFourContent} />
+      <DiscoverBannerFive ContentArray={DiscoverBannerFiveContent} />
+      <DiscoverCatelog />
     </div>
   );
 };

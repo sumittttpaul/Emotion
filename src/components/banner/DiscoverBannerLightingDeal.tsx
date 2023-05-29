@@ -19,7 +19,7 @@ interface IProps {
 export const DiscoverBannerLightingDeal: FC<IProps> = (props) => {
   return (
     <div className="relative flex box-border w-full pr-3 overflow-hidden">
-      <div className="flex text-white w-full bg-gradient-to-l from-dark-orange rounded-3xl space-x-7 px-7 p-10 mt-[30px]">
+      <div className="flex text-white w-full bg-gradient-to-l from-dark-orange rounded-3xl space-x-7 px-7 p-10 mt-10">
         <div className="flex flex-col items-center justify-center w-full">
           <div className="flex flex-col space-y-3 items-center small-medium-screen:items-start justify-center">
             <div className="space-x-3 flex items-center justify-center">
