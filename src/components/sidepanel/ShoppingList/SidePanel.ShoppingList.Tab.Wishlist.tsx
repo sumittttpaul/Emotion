@@ -128,7 +128,7 @@ export const SidePanelShoppingListTabWishlist: FC<IProps> = (props) => {
             alt=""
           />
           <p className="text-[12px] font-[400] tracking-wide truncate">
-            You haven't saved anything yet
+            You haven&apos;t saved anything yet
           </p>
         </div>
       )}
