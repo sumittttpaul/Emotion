@@ -86,7 +86,7 @@ export const SidePanelShoppingListTabCart: FC<
         <Fragment>
           {props.ContentArray.map((value, idx) => (
             <Button
-              id={idx.toString()}
+              key={idx}
               disableFocusRipple
               onClick={handleClick}
               onContextMenu={handleClick}
