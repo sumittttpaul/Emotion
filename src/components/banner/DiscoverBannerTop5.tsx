@@ -15,56 +15,56 @@ interface IProps {
 
 export const DiscoverBannerTop5: FC<IProps> = (props) => {
   const sliderRef = useRef<HTMLElement>(null);
-  const [LeftAnimate, setLeftAnimate] = useState('closed');
-  const [RightAnimate, setRightAnimate] = useState('closed');
+  // const [LeftAnimate, setLeftAnimate] = useState('closed');
+  // const [RightAnimate, setRightAnimate] = useState('closed');
 
-  const slideLeft = () => {
-    const slider = sliderRef.current;
-    if (slider) {
-      slider.scrollLeft = slider.scrollLeft - slider.offsetWidth;
-    }
-  };
-  const slideRight = () => {
-    const slider = sliderRef.current;
-    if (slider) {
-      slider.scrollLeft = slider.scrollLeft + slider.offsetWidth;
-    }
-  };
+  // const slideLeft = () => {
+  //   const slider = sliderRef.current;
+  //   if (slider) {
+  //     slider.scrollLeft = slider.scrollLeft - slider.offsetWidth;
+  //   }
+  // };
+  // const slideRight = () => {
+  //   const slider = sliderRef.current;
+  //   if (slider) {
+  //     slider.scrollLeft = slider.scrollLeft + slider.offsetWidth;
+  //   }
+  // };
 
-  const ListenToSliderScroll = () => {
-    const slider = sliderRef.current;
-    if (slider) {
-      if (slider.scrollLeft === 0) {
-        setLeftAnimate('closed');
-      } else {
-        setLeftAnimate('open');
-      }
-      let maxScroll = slider.scrollWidth - slider.offsetWidth;
-      if (slider.scrollLeft === maxScroll) {
-        setRightAnimate('closed');
-      } else {
-        setRightAnimate('open');
-      }
-    }
-  };
+  // const ListenToSliderScroll = () => {
+  //   const slider = sliderRef.current;
+  //   if (slider) {
+  //     if (slider.scrollLeft === 0) {
+  //       setLeftAnimate('closed');
+  //     } else {
+  //       setLeftAnimate('open');
+  //     }
+  //     let maxScroll = slider.scrollWidth - slider.offsetWidth;
+  //     if (slider.scrollLeft === maxScroll) {
+  //       setRightAnimate('closed');
+  //     } else {
+  //       setRightAnimate('open');
+  //     }
+  //   }
+  // };
 
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (slider) {
-      slider.addEventListener('scroll', ListenToSliderScroll);
-    }
-    return () => {
-      if (slider) slider.removeEventListener('scroll', ListenToSliderScroll);
-    };
-  });
+  // useEffect(() => {
+  //   const slider = sliderRef.current;
+  //   if (slider) {
+  //     slider.addEventListener('scroll', ListenToSliderScroll);
+  //   }
+  //   return () => {
+  //     if (slider) slider.removeEventListener('scroll', ListenToSliderScroll);
+  //   };
+  // });
 
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (slider) {
-      if (slider.scrollLeft === 0) setLeftAnimate('closed');
-      else setLeftAnimate('open');
-    }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  // useEffect(() => {
+  //   const slider = sliderRef.current;
+  //   if (slider) {
+  //     if (slider.scrollLeft === 0) setLeftAnimate('closed');
+  //     else setLeftAnimate('open');
+  //   }
+  // }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="relative flex w-full p-3">
