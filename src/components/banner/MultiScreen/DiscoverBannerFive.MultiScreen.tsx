@@ -6,7 +6,6 @@ import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
 import { BannerSmallButtonForBannerFour } from '../../button/banner/Banner.SmallButton.ForBannerFour';
 import useScreenSize from '../../../algorithms/ScreenSizeDetection';
 import { BannerTitleButton } from '../../button/banner/Banner.TitleButton';
-import { UnderlineButtonDark } from '../../button/UnderlineButtonDark';
 import { BannerUnderlineButton } from '../../button/banner/Banner.UnderlineButton';
 
 const ContainerStyle =
