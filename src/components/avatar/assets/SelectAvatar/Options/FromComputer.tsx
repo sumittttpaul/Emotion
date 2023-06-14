@@ -1,10 +1,11 @@
 import { Button, styled } from '@mui/material';
-import React, { FC } from 'react';
+import React, { Dispatch, FC, SetStateAction } from 'react';
 import Image from 'next/legacy/image';
 
 interface IProps {
   show: () => void;
   getURL: (value: string) => void;
+  backBool: (value:boolean) => void;
 }
 
 /**
@@ -22,6 +23,7 @@ const FromComputer: FC<IProps> = (props) => {
     if (file) {
       props.getURL(URL.createObjectURL(file));
       props.show();
+      props.backBool(true);
     }
   };
 

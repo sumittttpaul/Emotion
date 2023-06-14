@@ -91,14 +91,14 @@ const SelectAvatar: FC<IProps> = (props) => {
         {/* Tab Content */}
       </div>
       {/* Divider */}
-      <div className="h-[1px] bg-white/20 w-full" />
+      <div className="h-[1px] bg-white/20 w-full z-[1]" />
       {/* Main */}
       <SwipeableViews
         index={value}
         disabled={true}
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         className="w-full h-full"
-        id="SwipeableViews"
+        id="SelectAvatarSwipeableViews"
         containerStyle={{
           height: '100%',
           width: '100%',
@@ -116,7 +116,7 @@ const SelectAvatar: FC<IProps> = (props) => {
           />
         </SelectAvatarTabPanel>
         <SelectAvatarTabPanel value={value} index={1} dir={theme.direction}>
-          <FromComputer show={props.forward} getURL={props.getURL} />
+          <FromComputer backBool={props.backBool} show={props.forward} getURL={props.getURL} />
         </SelectAvatarTabPanel>
       </SwipeableViews>
     </div>

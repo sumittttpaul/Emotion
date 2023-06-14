@@ -5,7 +5,34 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { Poster_BlurDataURL } from '../../../../loader/BlurDataURL';
 import { m } from 'framer-motion';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
+import Illustration1 from '../../../../../../public/images/avatar/illustration/1.png';
+import Illustration2 from '../../../../../../public/images/avatar/illustration/2.png';
+import Illustration3 from '../../../../../../public/images/avatar/illustration/3.png';
+import Illustration4 from '../../../../../../public/images/avatar/illustration/4.png';
+import Illustration5 from '../../../../../../public/images/avatar/illustration/5.png';
+import Illustration6 from '../../../../../../public/images/avatar/illustration/6.png';
+import Illustration7 from '../../../../../../public/images/avatar/illustration/7.png';
+import Illustration8 from '../../../../../../public/images/avatar/illustration/8.png';
+import Illustration9 from '../../../../../../public/images/avatar/illustration/9.png';
+import Illustration10 from '../../../../../../public/images/avatar/illustration/10.png';
+import Illustration11 from '../../../../../../public/images/avatar/illustration/11.png';
+import Illustration12 from '../../../../../../public/images/avatar/illustration/12.png';
+import Illustration13 from '../../../../../../public/images/avatar/illustration/13.png';
+import Illustration14 from '../../../../../../public/images/avatar/illustration/14.png';
+import Illustration15 from '../../../../../../public/images/avatar/illustration/15.png';
+import Illustration16 from '../../../../../../public/images/avatar/illustration/16.png';
+import Illustration17 from '../../../../../../public/images/avatar/illustration/17.png';
+import Illustration18 from '../../../../../../public/images/avatar/illustration/18.png';
+import Illustration19 from '../../../../../../public/images/avatar/illustration/19.png';
+import Illustration20 from '../../../../../../public/images/avatar/illustration/20.png';
+import Illustration21 from '../../../../../../public/images/avatar/illustration/21.png';
+import Illustration22 from '../../../../../../public/images/avatar/illustration/22.png';
+import Illustration23 from '../../../../../../public/images/avatar/illustration/23.png';
+import Illustration24 from '../../../../../../public/images/avatar/illustration/24.png';
+import Illustration25 from '../../../../../../public/images/avatar/illustration/25.png';
+import Illustration26 from '../../../../../../public/images/avatar/illustration/26.png';
+import Illustration27 from '../../../../../../public/images/avatar/illustration/27.png';
 
 interface IProps {
   show: () => void;
@@ -14,33 +41,33 @@ interface IProps {
 }
 
 const Illustrations = [
-  '/images/avatar/illustration/1.png',
-  '/images/avatar/illustration/2.png',
-  '/images/avatar/illustration/3.png',
-  '/images/avatar/illustration/4.png',
-  '/images/avatar/illustration/5.png',
-  '/images/avatar/illustration/6.png',
-  '/images/avatar/illustration/7.png',
-  '/images/avatar/illustration/8.png',
-  '/images/avatar/illustration/9.png',
-  '/images/avatar/illustration/10.png',
-  '/images/avatar/illustration/11.png',
-  '/images/avatar/illustration/12.png',
-  '/images/avatar/illustration/13.png',
-  '/images/avatar/illustration/14.png',
-  '/images/avatar/illustration/15.png',
-  '/images/avatar/illustration/16.png',
-  '/images/avatar/illustration/17.png',
-  '/images/avatar/illustration/18.png',
-  '/images/avatar/illustration/19.png',
-  '/images/avatar/illustration/20.png',
-  '/images/avatar/illustration/21.png',
-  '/images/avatar/illustration/22.png',
-  '/images/avatar/illustration/23.png',
-  '/images/avatar/illustration/24.png',
-  '/images/avatar/illustration/25.png',
-  '/images/avatar/illustration/26.png',
-  '/images/avatar/illustration/27.png',
+  Illustration1.src,
+  Illustration2.src,
+  Illustration3.src,
+  Illustration4.src,
+  Illustration5.src,
+  Illustration6.src,
+  Illustration7.src,
+  Illustration8.src,
+  Illustration9.src,
+  Illustration10.src,
+  Illustration11.src,
+  Illustration12.src,
+  Illustration13.src,
+  Illustration14.src,
+  Illustration15.src,
+  Illustration16.src,
+  Illustration17.src,
+  Illustration18.src,
+  Illustration19.src,
+  Illustration20.src,
+  Illustration21.src,
+  Illustration22.src,
+  Illustration23.src,
+  Illustration24.src,
+  Illustration25.src,
+  Illustration26.src,
+  Illustration27.src,
 ];
 
 const blurDataURL = Poster_BlurDataURL;
@@ -163,10 +190,9 @@ export const IllustrationCollections: FC<IProps> = (props) => {
               height={3012}
               className="rounded-md"
               src={illustrationURL}
-              alt=""
-              priority
-              placeholder="blur"
               blurDataURL={blurDataURL}
+              placeholder="blur"
+              alt=""
             />
           </Button>
         ))}

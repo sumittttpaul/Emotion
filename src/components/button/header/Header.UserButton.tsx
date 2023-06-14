@@ -5,7 +5,6 @@ import { useAuth } from '../../../firebase/AuthProvider';
 import firebase from 'firebase/compat/app';
 import firebaseUser from 'firebase/compat';
 import Router from 'next/router';
-import UserIcon from '../../../../public/icons/user-fill.svg';
 import { Setup_Link } from '../../../routerLinks/RouterLinks';
 import { useLoaderState } from '../../../providers/state/LoadingState';
 import { HeaderUserButtonMenuProps } from './Header.UserButton.Menu';
@@ -85,7 +84,7 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
         aria-label="user-login-button"
         disableFocusRipple
         onClick={props.onClick}
-        className="flex items-center button-text-lower h-full px-[14.5px] bg-transparent hover:bg-[#202020]"
+        className="flex items-center button-text-lower h-full px-[15.5px] bg-transparent hover:bg-[#202020]"
         sx={{
           '.MuiTouchRipple-child': {
             backgroundColor: '#ffffff50 !important',
@@ -98,7 +97,7 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
           width={20}
           layout="fixed"
           className="opacity-70"
-          src={UserIcon}
+          src="/icons/user-fill.svg"
           alt=""
         />
       </Button>
@@ -180,7 +179,11 @@ const UserButton: FC<UserButtonProps> = (props) => {
               width={35}
               layout="fixed"
               className="rounded-[50%]"
-              src={props.user.photoURL}
+              src={
+                props.user.photoURL
+                  ? props.user.photoURL
+                  : '/images/loader/dark-circle.png'
+              }
               alt=""
             />
           ) : (
@@ -189,7 +192,7 @@ const UserButton: FC<UserButtonProps> = (props) => {
               width={20}
               layout="fixed"
               className="opacity-70"
-              src={UserIcon}
+              src="/icons/user-fill.svg"
               alt=""
             />
           )}

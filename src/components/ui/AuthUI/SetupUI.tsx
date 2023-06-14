@@ -148,31 +148,34 @@ export const SetupUI: FC<IProps> = (props) => {
   const [SkipDialog, setSkipDialog] = useState(false);
   const [Finish, setFinish] = useState(false);
   const [Loading, setLoading] = useState(false);
-  const [InformationCheckLoading, setInformationCheckLoading] = useState(true); //true
+  const [InformationCheckLoading, setInformationCheckLoading] = useState(false); //true
   const [Toast, setToast] = useState(false);
   const [ToastSetting, setToastSetting] = useState({
     Title: '',
     Description: '',
     Type: '',
   });
-  const [Screen, setScreen] = useState<AuthType>('login-phone');
+  const [Screen, setScreen] = useState<AuthType>('register-profile-picture');
+
+  // User
+  const FirebaseUser = useAuth();
 
   // Extra State
   const [FullName, setFullName] = useState('');
   const [PhoneNumber, setPhoneNumber] = useState('');
   const [EmailAddress, setEmailAddress] = useState('');
+  const [VerifyEmailAddress, setVerifyEmailAddress] = useState(false);
+  const [ProfilePicture, setProfilePicture] = useState('');
   const [DateOfBirth, setDateOfBirth] = useState('');
   const [Gender, setGender] = useState('');
 
   const [ResetCaptcha, setResetCaptcha] = useState(false);
 
-  const FirebaseUser = useAuth();
+  const SkipDialogClose = () => setSkipDialog(false);
 
   const isEmailVerified = FirebaseUser?.emailVerified || false;
 
-  const ProfilePicture = FirebaseUser?.photoURL || '';
-
-  const SkipDialogClose = () => setSkipDialog(false);
+  const photoURL = FirebaseUser?.photoURL || '';
 
   const handleIsInformationContent = (Screen: AuthType) => {
     setInitialSlide(0);
@@ -494,7 +497,7 @@ export const SetupUI: FC<IProps> = (props) => {
       FullName,
       PhoneNumber,
       EmailAddress,
-      isEmailVerified,
+      VerifyEmailAddress,
       ProfilePicture,
       DateOfBirth,
       Gender,
@@ -507,7 +510,7 @@ export const SetupUI: FC<IProps> = (props) => {
       FullName,
       PhoneNumber,
       EmailAddress,
-      isEmailVerified,
+      VerifyEmailAddress,
       ProfilePicture,
       DateOfBirth,
       Gender,
@@ -520,7 +523,7 @@ export const SetupUI: FC<IProps> = (props) => {
       FullName,
       PhoneNumber,
       EmailAddress,
-      isEmailVerified,
+      VerifyEmailAddress,
       ProfilePicture,
       DateOfBirth,
       Gender,
@@ -533,7 +536,7 @@ export const SetupUI: FC<IProps> = (props) => {
       FullName,
       PhoneNumber,
       EmailAddress,
-      isEmailVerified,
+      VerifyEmailAddress,
       ProfilePicture,
       DateOfBirth,
       Gender,
@@ -546,7 +549,7 @@ export const SetupUI: FC<IProps> = (props) => {
       FullName,
       PhoneNumber,
       EmailAddress,
-      isEmailVerified,
+      VerifyEmailAddress,
       ProfilePicture,
       DateOfBirth,
       Gender,
@@ -559,7 +562,7 @@ export const SetupUI: FC<IProps> = (props) => {
       FullName,
       PhoneNumber,
       EmailAddress,
-      isEmailVerified,
+      VerifyEmailAddress,
       ProfilePicture,
       DateOfBirth,
       Gender,
@@ -572,7 +575,7 @@ export const SetupUI: FC<IProps> = (props) => {
       FullName,
       PhoneNumber,
       EmailAddress,
-      isEmailVerified,
+      VerifyEmailAddress,
       ProfilePicture,
       DateOfBirth,
       Gender,
@@ -580,58 +583,63 @@ export const SetupUI: FC<IProps> = (props) => {
     );
   };
 
+  // useEffect(() => {
+  //   if (!loading) {
+  //     if (!FirebaseUser) {
+  //       handleIsInformationContent('login-phone');
+  //     } else if (FirebaseUser) {
+  //       GetUserData(FirebaseUser.uid).then((value) => {
+  //         const UserName = value.FullName;
+  //         const UserPhone = value.PhoneNumber;
+  //         const UserEmail = value.EmailAddress;
+  //         const UserEmailVerified = FirebaseUser.emailVerified;
+  //         const UserPhoto = FirebaseUser.photoURL;
+  //         const UserDOB = value.DateOfBirth;
+  //         const UserGender = value.Gender;
+  //         setFullName(
+  //           UserName && UserName.length > 0
+  //             ? DecryptData(UserName, NameEncrytionKey(FirebaseUser.uid))
+  //             : ''
+  //         );
+  //         setPhoneNumber(
+  //           UserPhone && UserPhone.length > 0
+  //             ? DecryptData(UserPhone, PhoneEncrytionKey(FirebaseUser.uid))
+  //             : ''
+  //         );
+  //         setEmailAddress(
+  //           UserEmail && UserEmail.length > 0
+  //             ? DecryptData(UserEmail, EmailEncrytionKey(FirebaseUser.uid))
+  //             : ''
+  //         );
+  //         setDateOfBirth(
+  //           UserDOB && UserDOB.length > 0
+  //             ? DecryptData(UserDOB, DOBEncrytionKey(FirebaseUser.uid))
+  //             : ''
+  //         );
+  //         setGender(
+  //           UserGender && UserGender.length > 0
+  //             ? DecryptData(UserGender, GenderEncrytionKey(FirebaseUser.uid))
+  //             : ''
+  //         );
+  //         handleIsInformation(
+  //           UserName,
+  //           UserPhone,
+  //           UserEmail,
+  //           UserEmailVerified,
+  //           UserPhoto,
+  //           UserDOB,
+  //           UserGender,
+  //           'after-login'
+  //         );
+  //       });
+  //     }
+  //   }
+  // }, [loading]);
+
   useEffect(() => {
-    if (!loading) {
-      if (!FirebaseUser) {
-        handleIsInformationContent('login-phone');
-      } else if (FirebaseUser) {
-        GetUserData(FirebaseUser.uid).then((value) => {
-          const UserName = value.FullName;
-          const UserPhone = value.PhoneNumber;
-          const UserEmail = value.EmailAddress;
-          const UserEmailVerified = FirebaseUser.emailVerified;
-          const UserPhoto = FirebaseUser.photoURL;
-          const UserDOB = value.DateOfBirth;
-          const UserGender = value.Gender;
-          setFullName(
-            UserName && UserName.length > 0
-              ? DecryptData(UserName, NameEncrytionKey(FirebaseUser.uid))
-              : ''
-          );
-          setPhoneNumber(
-            UserPhone && UserPhone.length > 0
-              ? DecryptData(UserPhone, PhoneEncrytionKey(FirebaseUser.uid))
-              : ''
-          );
-          setEmailAddress(
-            UserEmail && UserEmail.length > 0
-              ? DecryptData(UserEmail, EmailEncrytionKey(FirebaseUser.uid))
-              : ''
-          );
-          setDateOfBirth(
-            UserDOB && UserDOB.length > 0
-              ? DecryptData(UserDOB, DOBEncrytionKey(FirebaseUser.uid))
-              : ''
-          );
-          setGender(
-            UserGender && UserGender.length > 0
-              ? DecryptData(UserGender, GenderEncrytionKey(FirebaseUser.uid))
-              : ''
-          );
-          handleIsInformation(
-            UserName,
-            UserPhone,
-            UserEmail,
-            UserEmailVerified,
-            UserPhoto,
-            UserDOB,
-            UserGender,
-            'after-login'
-          );
-        });
-      }
-    }
-  }, [loading]);
+    setVerifyEmailAddress(isEmailVerified);
+    setProfilePicture(photoURL);
+  }, [isEmailVerified, photoURL]);
 
   // Class
   const ContentClassName = 'h-[300px]';
@@ -827,7 +835,7 @@ export const SetupUI: FC<IProps> = (props) => {
           {Screen === 'register-verify-email' && (
             <RegisterVerifyEmailAuthUI
               ClassName={ContentClassName}
-              isEmailVerified={isEmailVerified}
+              isEmailVerified={VerifyEmailAddress}
               Toast={Toast}
               Loading={Loading}
               setAuthScreen={setScreen}

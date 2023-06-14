@@ -526,7 +526,7 @@ export const VerifyEmailAddress = ({
         Loading(false);
         ShowToast(
           'Email verification link sent successfully',
-          'A link to reset your password has been sent to your email address.',
+          'A link to verify your email has been sent to your email address.',
           'Success',
           true
         );

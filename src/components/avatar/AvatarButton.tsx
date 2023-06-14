@@ -13,6 +13,9 @@ import { useAuth } from '../../firebase/AuthProvider';
 import { useReduxSelector } from '../../redux/useReduxSelector';
 import { AvatarCustomButton } from './assets/AvatarCustomButton';
 import { AvatarButtonDialogProps } from './AvatarButtonDialog';
+import { getAuth } from 'firebase/auth';
+import firebase from 'firebase/compat/app';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const AvatarButtonDialog = dynamic<AvatarButtonDialogProps>(
   () => import('./AvatarButtonDialog').then((x) => x.AvatarButtonDialog),
@@ -32,7 +35,9 @@ export interface AvatarButtonProps {
  **/
 
 export const AvatarButton: FC<AvatarButtonProps> = (props) => {
-  const user = useAuth();
+  const FirebaseUser = useAuth();
+  const FirebaseAuth = getAuth(firebase.app());
+  const [user, loading] = useAuthState(FirebaseAuth);
   const userPhoto = user?.photoURL?.toString();
   // Handle Collections
   const { Avatar } = useReduxSelector((state) => state);
@@ -40,7 +45,7 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
   const [AvatarDialog, setAvatarDialog] = useState(false);
   const [ChangeAvatar, setChangeAvatar] = useState(true);
   const [AvatarURL, setAvatarURL] = useState(
-    !user
+    loading
       ? '/images/loader/dark-circle.png'
       : userPhoto && ChangeAvatar
       ? userPhoto
@@ -53,8 +58,9 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
   const [Collection, setCollection] = useState(Avatar.Animal);
   const [Collectionheading, setCollectionHeading] = useState('');
   const [CollectionBackBool, setCollectionBackBool] = useState(false);
-  const [AvatarScreen1, setAvatarScreen1] = useState(false);
-  const [AvatarScreen2, setAvatarScreen2] = useState(false);
+  const [AvatarScreen, setAvatarScreen] = useState<
+    'show-avatar' | 'select-avatar' | 'collection-for-avatar' | 'crop-avatar'
+  >('show-avatar');
   const [RemoveDisabled, setRemoveDisabled] = useState(true);
   const [ChangeDisabled, setChangeDisabled] = useState(false);
   const [AvatarLoading, setAvatarLoading] = useState(false);
@@ -68,59 +74,45 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
     setAvatarDialog(false);
     setTimeout(() => {
       setAvatarContainer('ShowAvatar-container');
-      setAvatarScreen1(false);
-      setAvatarScreen2(false);
+      setAvatarScreen('show-avatar');
     }, 200);
   };
 
   // Avatar Screens
   const ShowAvatarScreen = () => {
     setAvatarContainer('ShowAvatar-container');
-    setAvatarScreen1(false);
-    setAvatarScreen2(false);
+    setAvatarScreen('show-avatar');
   };
   const SelectAvatarScreen = () => {
     setAvatarContainer('SelectAvatar-container');
-    setAvatarScreen1(true);
-    setAvatarScreen2(false);
+    setAvatarScreen('select-avatar');
   };
   const AvatarCollectionScreen = () => {
     setAvatarContainer('SelectAvatar-container');
-    setAvatarScreen1(false);
-    setAvatarScreen2(true);
+    setAvatarScreen('collection-for-avatar');
   };
   const CropAvatarScreen = () => {
     setAvatarContainer('SelectAvatar-container');
-    setAvatarScreen1(true);
-    setAvatarScreen2(true);
-  };
-  const BackToShowAvatarScreen = () => {
-    setAvatarContainer('ShowAvatar-container');
-    setAvatarScreen1(false);
-    setAvatarScreen2(false);
+    setAvatarScreen('crop-avatar');
   };
   const BackToShowAvatarScreenWithPhotoURLCondition = () => {
-    if (!user?.photoURL) setAvatarURL('/images/default/user.png');
+    if (!FirebaseUser?.photoURL) setAvatarURL('/images/default/user.png');
     setAvatarContainer('ShowAvatar-container');
-    setAvatarScreen1(false);
-    setAvatarScreen2(false);
+    setAvatarScreen('show-avatar');
   };
-  const BackToSelectAvatarScreen = () => {
-    setAvatarContainer('SelectAvatar-container');
-    setAvatarScreen1(true);
-    setAvatarScreen2(false);
-  };
-  const BackToAvatarCollectionScreen = () => {
-    if (CollectionBackBool === true) {
-      setAvatarContainer('SelectAvatar-container');
-      setAvatarScreen1(true);
-      setAvatarScreen2(false);
-    } else {
-      setAvatarContainer('SelectAvatar-container');
-      setAvatarScreen1(false);
-      setAvatarScreen2(true);
-    }
-  };
+  // const BackToAvatarCollectionScreen = () => {
+  //   if (CollectionBackBool === true) {
+  //     setAvatarContainer('SelectAvatar-container');
+  //     setAvatarScreen1(true);
+  //     setAvatarScreen2(false);
+  //     // select
+  //   } else {
+  //     setAvatarContainer('SelectAvatar-container');
+  //     setAvatarScreen1(false);
+  //     setAvatarScreen2(true);
+  //     // collection
+  //   }
+  // };
 
   // Handle Image
   const ChangeImageDisabled = (value: boolean) => {
@@ -210,8 +202,7 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
       setChangeAvatar(false);
       RemoveImageDisabled(true);
       ChangeImageDisabled(true);
-
-      BackToShowAvatarScreen();
+      ShowAvatarScreen();
       UploadAvatar({
         Progress: AvatarUploadProgress,
         File: value,
@@ -222,12 +213,12 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
     }
   };
   const RemoveImageClick = () => {
-    if (user)
-      if (user.photoURL) {
+    if (FirebaseUser)
+      if (FirebaseUser.photoURL) {
         RemoveImageDisabled(true);
         ChangeImageDisabled(true);
         DeleteAvatar({
-          AvatarURL: user.photoURL,
+          AvatarURL: FirebaseUser.photoURL,
           Loading: setAvatarLoading,
           ShowToast: ShowToast,
           AfterDelete: () => {
@@ -240,12 +231,12 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
   };
 
   useEffect(() => {
-    if (user) {
-      if (user.photoURL && ChangeAvatar) {
-        setAvatarURL(user.photoURL);
+    if (FirebaseUser) {
+      if (FirebaseUser.photoURL && ChangeAvatar) {
+        setAvatarURL(FirebaseUser.photoURL);
       }
     }
-  }, [AvatarURL, ChangeAvatar, user]);
+  }, [AvatarURL, ChangeAvatar, FirebaseUser]);
 
   return (
     <Fragment>
@@ -255,8 +246,7 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
         AvatarDialog={AvatarDialog}
         setAvatarDialog={HideAvatarDialog}
         AvatarContainer={AvatarContainer}
-        AvatarScreen1={AvatarScreen1}
-        AvatarScreen2={AvatarScreen2}
+        AvatarScreen={AvatarScreen}
         RemoveClick={RemoveImageClick}
         ChangeDisabled={ChangeDisabled}
         RemoveDisabled={RemoveDisabled && !user?.photoURL && ChangeAvatar}
@@ -265,8 +255,10 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
         MoveToSelectAvatar={SelectAvatarScreen}
         MoveToCropAvatar={CropAvatarScreen}
         BackToShowAvatar={BackToShowAvatarScreenWithPhotoURLCondition}
-        BackToSelectAvatar={BackToSelectAvatarScreen}
-        BackToAvatarCollection={BackToAvatarCollectionScreen}
+        BackToSelectAvatar={SelectAvatarScreen}
+        BackToAvatarCollection={
+          CollectionBackBool === true ? SelectAvatarScreen : AvatarCollectionScreen
+        }
         GetImageURL={GetImageURL}
         GetCropImageURL={GetCropImageURL}
         ImageURLToCrop={CropAvatarURL}

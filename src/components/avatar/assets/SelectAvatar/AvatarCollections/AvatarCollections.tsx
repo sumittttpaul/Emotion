@@ -6,6 +6,19 @@ import {
   Banner_BlurDataURL,
   Square_BlurDataURL,
 } from '../../../../loader/BlurDataURL';
+import AnimalBannerImage from '../../../../../../public/images/avatar/banner/animal.png';
+import EmojiBannerImage from '../../../../../../public/images/avatar/banner/emoji.png';
+import FestivalBannerImage from '../../../../../../public/images/avatar/banner/festival.png';
+import HandDrawingBannerImage from '../../../../../../public/images/avatar/banner/hand-drawing.png';
+import FlatBannerImage from '../../../../../../public/images/avatar/banner/flat.png';
+import HipsterBannerImage from '../../../../../../public/images/avatar/banner/hipster.png';
+import PaintBannerImage from '../../../../../../public/images/avatar/banner/paint.png';
+import MinimalBannerImage from '../../../../../../public/images/avatar/banner/minimal.png';
+import PlainBannerImage from '../../../../../../public/images/avatar/banner/plain.png';
+import PopularImage1 from '../../../../../../public/images/avatar/popular/1.png';
+import PopularImage2 from '../../../../../../public/images/avatar/popular/2.png';
+import PopularImage3 from '../../../../../../public/images/avatar/popular/3.png';
+import PopularImage4 from '../../../../../../public/images/avatar/popular/4.png';
 
 interface IProps {
   AnimalClick: () => void;
@@ -29,11 +42,6 @@ interface IProps {
 
 const BlurDataUrl = Banner_BlurDataURL;
 const BlurDataUrlSquare = Square_BlurDataURL;
-
-const PopularImage1 = '/images/avatar/popular/1.png';
-const PopularImage2 = '/images/avatar/popular/2.png';
-const PopularImage3 = '/images/avatar/popular/3.png';
-const PopularImage4 = '/images/avatar/popular/4.png';
 
 export const AvatarCollections: FC<IProps> = (props) => {
   // Banner
@@ -75,25 +83,26 @@ export const AvatarCollections: FC<IProps> = (props) => {
   };
   // Popular
   const Popular1Click = () => {
-    props.getURL(PopularImage1);
+    props.getURL(PopularImage1.src);
     props.backBool(true);
     props.show();
   };
   const Popular2Click = () => {
-    props.getURL(PopularImage2);
+    props.getURL(PopularImage2.src);
     props.backBool(true);
     props.show();
   };
   const Popular3Click = () => {
-    props.getURL(PopularImage3);
+    props.getURL(PopularImage3.src);
     props.backBool(true);
     props.show();
   };
   const Popular4Click = () => {
-    props.getURL(PopularImage4);
+    props.getURL(PopularImage4.src);
     props.backBool(true);
     props.show();
   };
+
   return (
     <div className="text-white relative flex flex-col p-3  space-y-2 box-border w-full">
       {/* Heading */}
@@ -119,11 +128,10 @@ export const AvatarCollections: FC<IProps> = (props) => {
               width={1920}
               height={500}
               className="rounded-md"
-              src="/images/avatar/banner/animal.png"
-              alt=""
-              priority
-              placeholder="blur"
+              src={AnimalBannerImage}
               blurDataURL={BlurDataUrl}
+              placeholder="blur"
+              alt=""
             />
           </Button>
           <Button
@@ -141,11 +149,10 @@ export const AvatarCollections: FC<IProps> = (props) => {
               width={1920}
               height={500}
               className="rounded-md"
-              src="/images/avatar/banner/emoji.png"
-              alt=""
-              priority
-              placeholder="blur"
+              src={EmojiBannerImage}
               blurDataURL={BlurDataUrl}
+              placeholder="blur"
+              alt=""
             />
           </Button>
         </div>
@@ -165,11 +172,10 @@ export const AvatarCollections: FC<IProps> = (props) => {
               width={1920}
               height={500}
               className="rounded-md"
-              src="/images/avatar/banner/festival.png"
-              alt=""
-              priority
-              placeholder="blur"
+              src={FestivalBannerImage}
               blurDataURL={BlurDataUrl}
+              placeholder="blur"
+              alt=""
             />
           </Button>
           <Button
@@ -187,11 +193,10 @@ export const AvatarCollections: FC<IProps> = (props) => {
               width={1920}
               height={500}
               className="rounded-md"
-              src="/images/avatar/banner/hand-drawing.png"
-              alt=""
-              priority
-              placeholder="blur"
+              src={HandDrawingBannerImage}
               blurDataURL={BlurDataUrl}
+              placeholder="blur"
+              alt=""
             />
           </Button>
         </div>
@@ -211,11 +216,10 @@ export const AvatarCollections: FC<IProps> = (props) => {
               width={1920}
               height={500}
               className="rounded-md"
-              src="/images/avatar/banner/flat.png"
-              alt=""
-              priority
-              placeholder="blur"
+              src={FlatBannerImage}
               blurDataURL={BlurDataUrl}
+              placeholder="blur"
+              alt=""
             />
           </Button>
           <Button
@@ -233,11 +237,10 @@ export const AvatarCollections: FC<IProps> = (props) => {
               width={1920}
               height={500}
               className="rounded-md"
-              src="/images/avatar/banner/hipster.png"
-              alt=""
-              priority
-              placeholder="blur"
+              src={HipsterBannerImage}
               blurDataURL={BlurDataUrl}
+              placeholder="blur"
+              alt=""
             />
           </Button>
         </div>
@@ -257,11 +260,10 @@ export const AvatarCollections: FC<IProps> = (props) => {
               width={1920}
               height={500}
               className="rounded-md"
-              src="/images/avatar/banner/paint.png"
-              alt=""
-              priority
-              placeholder="blur"
+              src={PaintBannerImage}
               blurDataURL={BlurDataUrl}
+              placeholder="blur"
+              alt=""
             />
           </Button>
           <Button
@@ -279,11 +281,10 @@ export const AvatarCollections: FC<IProps> = (props) => {
               width={1920}
               height={500}
               className="rounded-md"
-              src="/images/avatar/banner/minimal.png"
-              alt=""
-              priority
-              placeholder="blur"
+              src={MinimalBannerImage}
               blurDataURL={BlurDataUrl}
+              placeholder="blur"
+              alt=""
             />
           </Button>
         </div>
@@ -303,11 +304,10 @@ export const AvatarCollections: FC<IProps> = (props) => {
               width={1920}
               height={500}
               className="rounded-md"
-              src="/images/avatar/banner/plain.png"
-              alt=""
-              priority
-              placeholder="blur"
+              src={PlainBannerImage}
               blurDataURL={BlurDataUrl}
+              placeholder="blur"
+              alt=""
             />
           </Button>
           <div className="flex w-full relative sm:max-w-[50%] space-x-[6px]">
@@ -327,10 +327,9 @@ export const AvatarCollections: FC<IProps> = (props) => {
                 height={550}
                 className="rounded-md"
                 src={PopularImage1}
-                alt=""
-                priority
-                placeholder="blur"
                 blurDataURL={BlurDataUrlSquare}
+                placeholder="blur"
+                alt=""
               />
             </Button>
             <Button
@@ -349,10 +348,9 @@ export const AvatarCollections: FC<IProps> = (props) => {
                 height={550}
                 className="rounded-md"
                 src={PopularImage2}
-                alt=""
-                priority
-                placeholder="blur"
                 blurDataURL={BlurDataUrlSquare}
+                placeholder="blur"
+                alt=""
               />
             </Button>
             <Button
@@ -371,10 +369,9 @@ export const AvatarCollections: FC<IProps> = (props) => {
                 height={550}
                 className="rounded-md"
                 src={PopularImage3}
-                alt=""
-                priority
-                placeholder="blur"
                 blurDataURL={BlurDataUrlSquare}
+                placeholder="blur"
+                alt=""
               />
             </Button>
             <Button
@@ -393,10 +390,9 @@ export const AvatarCollections: FC<IProps> = (props) => {
                 height={550}
                 className="rounded-md"
                 src={PopularImage4}
-                alt=""
-                priority
-                placeholder="blur"
                 blurDataURL={BlurDataUrlSquare}
+                placeholder="blur"
+                alt=""
               />
             </Button>
           </div>

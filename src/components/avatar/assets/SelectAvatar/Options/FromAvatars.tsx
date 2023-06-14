@@ -63,7 +63,7 @@ const FromAvatars: FC<IProps> = (props) => {
     props.ShowCollection();
   };
   return (
-    <div className="box-border scroll-smooth overflow-y-auto overflow-x-hidden pt-3 space-y-5 h-full w-full items-center flex flex-col">
+    <div className="box-border scroll-smooth overflow-y-auto overflow-x-hidden py-3 space-y-5 h-full w-full items-center flex flex-col">
       <AvatarCollections
         AnimalClick={AnimalClick}
         EmojiClick={EmojiClick}

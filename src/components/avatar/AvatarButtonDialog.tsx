@@ -11,8 +11,11 @@ export interface AvatarButtonDialogProps {
   AvatarDialog: boolean;
   setAvatarDialog: () => void;
   AvatarContainer: string;
-  AvatarScreen1: boolean;
-  AvatarScreen2: boolean;
+  AvatarScreen:
+    | 'show-avatar'
+    | 'select-avatar'
+    | 'collection-for-avatar'
+    | 'crop-avatar';
   MoveToSelectAvatar: () => void;
   AvatarURL: string;
   RemoveClick: () => void;
@@ -64,37 +67,7 @@ export const AvatarButtonDialog: FC<AvatarButtonDialogProps> = (props) => {
         show={props.AvatarDialog}
         className={props.AvatarContainer}
       >
-        {props.AvatarScreen1 ? (
-          props.AvatarScreen2 ? (
-            <CropAvatar
-              moreInfo={MoreInfoClick}
-              back={props.BackToAvatarCollection}
-              submit={props.AvatarSubmit}
-              URL={props.ImageURLToCrop}
-              getURL={props.GetCropImageURL}
-            />
-          ) : (
-            <SelectAvatar
-              moreInfo={MoreInfoClick}
-              backward={props.BackToShowAvatar}
-              forward={props.MoveToCropAvatar}
-              getURL={props.GetImageURL}
-              backBool={props.CollectionBackBool}
-              ShowCollection={props.CollectionShow}
-              CollectionHeading={props.CollectionHeading}
-              AvatarName={props.CollectionReducerName}
-            />
-          )
-        ) : props.AvatarScreen2 ? (
-          <CollectionForAvatar
-            moreInfo={MoreInfoClick}
-            heading={props.CollectionShowHeading}
-            backward={props.BackToSelectAvatar}
-            forward={props.MoveToCropAvatar}
-            getURL={props.GetImageURL}
-            AvatarReducer={props.CollectionReducer}
-          />
-        ) : (
+        {props.AvatarScreen === 'show-avatar' && (
           <ShowAvatar
             moreInfo={MoreInfoClick}
             URL={props.AvatarURL}
@@ -105,6 +78,37 @@ export const AvatarButtonDialog: FC<AvatarButtonDialogProps> = (props) => {
             forward={props.MoveToSelectAvatar}
             ShowProgress={props.UploadLoadingScreen}
             Progress={props.UploadProgress}
+          />
+        )}
+        {props.AvatarScreen === 'select-avatar' && (
+          <SelectAvatar
+            moreInfo={MoreInfoClick}
+            backward={props.BackToShowAvatar}
+            forward={props.MoveToCropAvatar}
+            getURL={props.GetImageURL}
+            backBool={props.CollectionBackBool}
+            ShowCollection={props.CollectionShow}
+            CollectionHeading={props.CollectionHeading}
+            AvatarName={props.CollectionReducerName}
+          />
+        )}
+        {props.AvatarScreen === 'collection-for-avatar' && (
+          <CollectionForAvatar
+            moreInfo={MoreInfoClick}
+            heading={props.CollectionShowHeading}
+            backward={props.BackToSelectAvatar}
+            forward={props.MoveToCropAvatar}
+            getURL={props.GetImageURL}
+            AvatarReducer={props.CollectionReducer}
+          />
+        )}
+        {props.AvatarScreen === 'crop-avatar' && (
+          <CropAvatar
+            moreInfo={MoreInfoClick}
+            back={props.BackToAvatarCollection}
+            submit={props.AvatarSubmit}
+            URL={props.ImageURLToCrop}
+            getURL={props.GetCropImageURL}
           />
         )}
       </AvatarContainerDialog>
