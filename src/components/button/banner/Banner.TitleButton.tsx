@@ -7,7 +7,7 @@ interface IProps {
   onClick?: () => void;
 }
 
-const variants = {
+const Variants = {
   open: {
     marginLeft: 0,
   },
@@ -41,7 +41,7 @@ export const BannerTitleButton: FC<IProps> = (props) => {
     >
       <motion.div
         animate={Animate}
-        variants={variants}
+        variants={Variants}
         className="flex space-x-1 items-center justify-center"
       >
         <h6 className="group-hover:opacity-75 opacity-100 text-[20px] font-[500] tracking-wide text-white">

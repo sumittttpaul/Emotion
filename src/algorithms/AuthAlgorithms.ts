@@ -4,24 +4,29 @@ import {
   VerifyOTPProps,
   SignInWithPhoneNumberProps,
   SignInWithEmailAndPasswordProps,
-  SignInWithFacebookProps,
-  SignInWithGoogleProps,
-  SignInWithAppleProps,
-  SignUpProps,
+  SignInWithOtherAccountsProps,
   UploadAvatarProps,
   DeleteAvatarProps,
   RecaptchaProps,
   PasswordResentProps,
+  AddFullNameProps,
+  LinkWithEmailAndPasswordProps,
+  VerifyEmailProps,
+  LinkWithPhoneNumberProps,
+  VerifyOTPForLinkWithPhoneProps,
 } from './Props/AuthProps';
 import 'firebase/compat/auth';
 import { AuthError } from '../firebase/AuthError';
 import { getDownloadURL } from 'firebase/storage';
+import { Home_Link } from '../routerLinks/RouterLinks';
 import Router from 'next/router';
+import { CreateUserProfileData } from './AuthDB';
 import {
-  Home_Link,
-  Register_Link,
-  Setup_Account_Link,
-} from '../routerLinks/RouterLinks';
+  EmailEncrytionKey,
+  NameEncrytionKey,
+  PhoneEncrytionKey,
+} from './security/CryptionKey';
+import { EncryptData } from './security/CryptionSecurity';
 
 declare global {
   interface Window {
@@ -34,17 +39,10 @@ declare global {
 // Captcha
 
 export const configureCaptcha = ({
-  ToastMessage,
-  ToastType,
-  ToastShow,
+  ShowToast,
   ResetCaptcha,
 }: RecaptchaProps) => {
   if (typeof window === 'object') {
-    const Toast = (message: string, type: string, show: boolean) => {
-      ToastMessage(message);
-      ToastType(type);
-      ToastShow(show);
-    };
     if (ResetCaptcha) {
       window.recaptchaVerifier.render().then(function (widgetId: any) {
         window.grecaptcha.reset(widgetId);
@@ -56,11 +54,11 @@ export const configureCaptcha = ({
           size: 'invisible',
           callback: (response: any) => {
             // reCAPTCHA solved, allow signInWithPhoneNumber.
-            console.log('Recaptca Verified');
           },
           'expired-callback': () => {
-            Toast(
-              'Recaptcha token expired, please refresh the page',
+            ShowToast(
+              'Recaptcha token expired',
+              'Your recaptcha token has been expired, please refresh the page.',
               'Error',
               true
             );
@@ -75,22 +73,15 @@ export const configureCaptcha = ({
 // OTP
 
 export const ResentOTP = ({
-  Phone,
+  PhoneNumber,
   Loading,
-  ToastMessage,
-  ToastType,
-  ToastShow,
+  ShowToast,
 }: ResendOTPProps) => {
-  const Toast = (message: string, type: string, show: boolean) => {
-    ToastMessage(message);
-    ToastType(type);
-    ToastShow(show);
-  };
   Loading(true);
   window.recaptchaVerifier.render().then(function (widgetId: any) {
     window.grecaptcha.reset(widgetId);
   });
-  const number = '+91' + Phone;
+  const number = '+91' + PhoneNumber;
   const appVerifier = window.recaptchaVerifier;
   firebase
     .auth()
@@ -98,31 +89,29 @@ export const ResentOTP = ({
     .then((confirmationResult) => {
       window.confirmationResult = confirmationResult;
       Loading(false);
-      Toast('OTP sent successfully', 'Success', true);
-      console.log('Otp has been sent to ' + number);
+      ShowToast(
+        'OTP sent successfully',
+        'An OTP has been sent to your phone number.',
+        'Success',
+        true
+      );
     })
     .catch((error) => {
       Loading(false);
       const message = AuthError(error.code);
-      Toast(`${message}`, 'Error', true);
-      console.error('Otp not sent beacuse' + error.code);
+      ShowToast('Something went wrong', `${message}`, 'Error', true);
     });
 };
 
 export const VerifyOTP = ({
-  Phone,
   OTP,
+  PhoneNumber,
   Loading,
+  LoadingScreen,
   EmptyOTPBox,
-  ToastMessage,
-  ToastType,
-  ToastShow,
+  ShowToast,
+  Next,
 }: VerifyOTPProps) => {
-  const Toast = (message: string, type: string, show: boolean) => {
-    ToastMessage(message);
-    ToastType(type);
-    ToastShow(show);
-  };
   Loading(true);
   const code = OTP.toString();
   var credential = firebase.auth.PhoneAuthProvider.credential(
@@ -132,289 +121,559 @@ export const VerifyOTP = ({
   firebase
     .auth()
     .signInWithCredential(credential)
-    .then((result: any) => {
-      console.log('user is verified and SignIn');
-      const IsNewUser = result.additionalUserInfo.isNewUser;
-      if (IsNewUser) {
-        if (firebase.auth().currentUser) {
-          const UID = firebase.auth().currentUser?.uid;
-          Loading(true);
-          Router.push({
-            pathname: Register_Link,
-            query: { id: `${UID}`, phone: `${Phone}` },
+    .then((result) => {
+      const IsNewUser = result.additionalUserInfo?.isNewUser;
+      const user = firebase.auth().currentUser;
+      if (user) {
+        if (IsNewUser) {
+          const UserPhoneNumber = EncryptData(
+            PhoneNumber,
+            PhoneEncrytionKey(user.uid)
+          );
+          CreateUserProfileData({
+            UserId: user.uid,
+            FullName: '',
+            EmailAddress: '',
+            PhoneNumber: UserPhoneNumber,
+            DateOfBirth: '',
+            Gender: '',
+            Loading: Loading,
+            ShowToast: ShowToast,
+            Next: Next,
           });
+        } else {
+          LoadingScreen(true);
+          Loading(false);
+          Router.push(Home_Link);
         }
-      } else {
-        Loading(true);
-        Router.push(Home_Link);
       }
     })
     .catch((error) => {
       Loading(false);
       const message = AuthError(error.code);
       if (message == 'Invalid verification code') EmptyOTPBox();
-      Toast(`${message}`, 'Error', true);
-      console.error('OTP verification failed beacuse ' + error.code);
+      ShowToast('Something went wrong', `${message}`, 'Error', true);
     });
 };
 
 export const PasswordReset = ({
-  Email,
+  EmailAddress,
   Loading,
-  ToastShow,
-  ToastMessage,
-  ToastType,
+  ShowToast,
 }: PasswordResentProps) => {
-  const Toast = (message: string, type: string, show: boolean) => {
-    ToastMessage(message);
-    ToastType(type);
-    ToastShow(show);
-  };
   Loading(true);
   firebase
     .auth()
-    .sendPasswordResetEmail(Email)
+    .sendPasswordResetEmail(EmailAddress)
     .then(() => {
       Loading(false);
-      Toast('Password reset link sent successfully', 'Success', true);
+      ShowToast(
+        'Password reset link sent successfully',
+        'A link to reset your password has been sent to your email address.',
+        'Success',
+        true
+      );
     })
     .catch((error) => {
       Loading(false);
       const message = AuthError(error.code);
-      Toast(`${message}`, 'Error', true);
-      console.error('Password reset link not sent beacuse' + error.code);
+      ShowToast('Something went wrong', `${message}`, 'Error', true);
     });
 };
 
 // SignIn
 
 export const SignInWithPhoneNumber = ({
-  Phone,
-  EmptyPhone,
-  ToastShow,
-  ToastMessage,
-  ToastType,
+  PhoneNumber,
+  EmptyPhoneNumber,
   ResetCaptcha,
   setResetCaptcha,
-  ShowOTPDialog,
   Loading,
+  MoveToOTPScreen,
+  ShowToast,
 }: SignInWithPhoneNumberProps) => {
-  const Toast = (message: string, type: string, show: boolean) => {
-    ToastMessage(message);
-    ToastType(type);
-    ToastShow(show);
-  };
   Loading(true);
   configureCaptcha({
-    ToastShow: ToastShow,
-    ToastMessage: ToastMessage,
-    ToastType: ToastType,
+    ShowToast: ShowToast,
     ResetCaptcha: ResetCaptcha,
   });
-  const number = '+91' + Phone;
+  const number = '+91' + PhoneNumber;
   const appVerifier = window.recaptchaVerifier;
   firebase
     .auth()
     .signInWithPhoneNumber(number, appVerifier)
     .then((confirmationResult) => {
       window.confirmationResult = confirmationResult;
-      Toast('OTP sent successfully', 'Success', true);
-      console.log('OTP sent to ' + number);
-      ShowOTPDialog();
-      // Loading(false);
+      ShowToast(
+        'OTP sent successfully',
+        'An OTP has been sent to your phone number.',
+        'Success',
+        true
+      );
+      MoveToOTPScreen();
+      Loading(false);
     })
     .catch((error) => {
       Loading(false);
       const message = AuthError(error.code);
-      Toast(`${message}`, 'Error', true);
-      EmptyPhone();
+      ShowToast('Something went wrong', `${message}`, 'Error', true);
+      EmptyPhoneNumber();
       setResetCaptcha(true);
-      console.error('OTP not sent beacuse' + error.code);
     });
 };
 
 export const SignInWithEmailAndPassword = ({
-  Email,
+  EmailAddress,
   Password,
   EmptyPasswordTextField,
-  ToastMessage,
-  ToastType,
-  ToastShow,
   Loading,
   LoadingScreen,
+  BackToEmailScreen,
+  ShowToast,
 }: SignInWithEmailAndPasswordProps) => {
-  const Toast = (message: string, type: string, show: boolean) => {
-    ToastMessage(message);
-    ToastType(type);
-    ToastShow(show);
-  };
   Loading(true);
   firebase
     .auth()
-    .signInWithEmailAndPassword(Email, Password)
+    .signInWithEmailAndPassword(EmailAddress, Password)
     .then(() => {
       LoadingScreen(true);
+      Loading(false);
       Router.push(Home_Link);
-      console.error('SingIn with Email & Password Successful !');
     })
     .catch((error) => {
+      BackToEmailScreen();
       Loading(false);
       const message = AuthError(error.code);
-      Toast(`${message}`, 'Error', true);
+      ShowToast('Something went wrong', `${message}`, 'Error', true);
       EmptyPasswordTextField();
-      console.error(
-        'SingIn with Email & Password Failed because ' + error.code
-      );
     });
 };
 
 export const SignInWithFacebook = ({
-  ToastMessage,
-  ToastType,
-  ToastShow,
+  Loading,
   LoadingScreen,
-}: SignInWithFacebookProps) => {
-  const Toast = (message: string, type: string, show: boolean) => {
-    ToastMessage(message);
-    ToastType(type);
-    ToastShow(show);
-  };
+  ShowToast,
+  Next,
+  setFullName,
+  setEmailAddress,
+  setPhoneNumber,
+}: SignInWithOtherAccountsProps) => {
   const facebookProvider = new firebase.auth.FacebookAuthProvider();
+  Loading(true);
   firebase
     .auth()
     .signInWithPopup(facebookProvider)
     .then((result) => {
-      LoadingScreen(true);
-      Router.push(Home_Link);
-      console.log('SignIn with Facebook Successful !');
+      const IsNewUser = result.additionalUserInfo?.isNewUser;
+      const user = firebase.auth().currentUser;
+      if (user) {
+        if (IsNewUser) {
+          const UserFullName = user.displayName;
+          const UserEmailAddress = user.email;
+          const UserPhoneNumber = user.phoneNumber;
+          setFullName(UserFullName ? UserFullName : '');
+          setEmailAddress(UserEmailAddress ? UserEmailAddress : '');
+          setPhoneNumber(UserPhoneNumber ? UserPhoneNumber : '');
+          CreateUserProfileData({
+            UserId: user.uid,
+            FullName:
+              UserFullName && UserFullName.length > 0
+                ? EncryptData(UserFullName, NameEncrytionKey(user.uid))
+                : '',
+            EmailAddress:
+              UserEmailAddress && UserEmailAddress.length > 0
+                ? EncryptData(UserEmailAddress, EmailEncrytionKey(user.uid))
+                : '',
+            PhoneNumber:
+              UserPhoneNumber && UserPhoneNumber.length > 0
+                ? EncryptData(UserPhoneNumber, PhoneEncrytionKey(user.uid))
+                : '',
+            DateOfBirth: '',
+            Gender: '',
+            Loading: () => {},
+            ShowToast: ShowToast,
+            Next: Next,
+          });
+        } else {
+          LoadingScreen(true);
+          Loading(false);
+          Router.push(Home_Link);
+        }
+      }
     })
     .catch((error) => {
+      Loading(false);
       const message = AuthError(error.code);
-      Toast(`${message}`, 'Error', true);
-      console.error('Failed to SignIn with Facebook because ' + error.code);
+      ShowToast('Something went wrong', `${message}`, 'Error', true);
     });
 };
 
 export const SignInWithGoogle = ({
-  ToastMessage,
-  ToastType,
-  ToastShow,
+  Loading,
   LoadingScreen,
-}: SignInWithGoogleProps) => {
-  const Toast = (message: string, type: string, show: boolean) => {
-    ToastMessage(message);
-    ToastType(type);
-    ToastShow(show);
-  };
+  ShowToast,
+  Next,
+  setFullName,
+  setEmailAddress,
+  setPhoneNumber,
+}: SignInWithOtherAccountsProps) => {
   const googleProvider = new firebase.auth.GoogleAuthProvider();
+  Loading(true);
   firebase
     .auth()
     .signInWithPopup(googleProvider)
     .then((result) => {
-      LoadingScreen(true);
-      Router.push(Home_Link);
-      console.log('SignIn with Google Successful !');
+      const IsNewUser = result.additionalUserInfo?.isNewUser;
+      const user = firebase.auth().currentUser;
+      if (user) {
+        if (IsNewUser) {
+          const UserFullName = user.displayName;
+          const UserEmailAddress = user.email;
+          const UserPhoneNumber = user.phoneNumber;
+          setFullName(UserFullName ? UserFullName : '');
+          setEmailAddress(UserEmailAddress ? UserEmailAddress : '');
+          setPhoneNumber(UserPhoneNumber ? UserPhoneNumber : '');
+          CreateUserProfileData({
+            UserId: user.uid,
+            FullName:
+              UserFullName && UserFullName.length > 0
+                ? EncryptData(UserFullName, NameEncrytionKey(user.uid))
+                : '',
+            EmailAddress:
+              UserEmailAddress && UserEmailAddress.length > 0
+                ? EncryptData(UserEmailAddress, EmailEncrytionKey(user.uid))
+                : '',
+            PhoneNumber:
+              UserPhoneNumber && UserPhoneNumber.length > 0
+                ? EncryptData(UserPhoneNumber, PhoneEncrytionKey(user.uid))
+                : '',
+            DateOfBirth: '',
+            Gender: '',
+            Loading: () => {},
+            ShowToast: ShowToast,
+            Next: Next,
+          });
+        } else {
+          LoadingScreen(true);
+          Loading(false);
+          Router.push(Home_Link);
+        }
+      }
     })
     .catch((error) => {
+      Loading(false);
       const message = AuthError(error.code);
-      Toast(`${message}`, 'Error', true);
-      console.error('Failed to SignIn with Google because ' + error.code);
+      ShowToast('Something went wrong', `${message}`, 'Error', true);
     });
 };
 
 export const SignInWithApple = ({
-  ToastMessage,
-  ToastType,
-  ToastShow,
+  Loading,
   LoadingScreen,
-}: SignInWithAppleProps) => {
-  const Toast = (message: string, type: string, show: boolean) => {
-    ToastMessage(message);
-    ToastType(type);
-    ToastShow(show);
-  };
+  ShowToast,
+  Next,
+  setFullName,
+  setEmailAddress,
+  setPhoneNumber,
+}: SignInWithOtherAccountsProps) => {
   const appleProvider = new firebase.auth.OAuthProvider('apple.com');
+  Loading(true);
   firebase
     .auth()
     .signInWithPopup(appleProvider)
     .then((result) => {
-      LoadingScreen(true);
-      Router.push(Home_Link);
-      console.log('SignIn with Apple Successful !');
+      const IsNewUser = result.additionalUserInfo?.isNewUser;
+      const user = firebase.auth().currentUser;
+      if (user) {
+        if (IsNewUser) {
+          const UserFullName = user.displayName;
+          const UserEmailAddress = user.email;
+          const UserPhoneNumber = user.phoneNumber;
+          setFullName(UserFullName ? UserFullName : '');
+          setEmailAddress(UserEmailAddress ? UserEmailAddress : '');
+          setPhoneNumber(UserPhoneNumber ? UserPhoneNumber : '');
+          CreateUserProfileData({
+            UserId: user.uid,
+            FullName:
+              UserFullName && UserFullName.length > 0
+                ? EncryptData(UserFullName, NameEncrytionKey(user.uid))
+                : '',
+            EmailAddress:
+              UserEmailAddress && UserEmailAddress.length > 0
+                ? EncryptData(UserEmailAddress, EmailEncrytionKey(user.uid))
+                : '',
+            PhoneNumber:
+              UserPhoneNumber && UserPhoneNumber.length > 0
+                ? EncryptData(UserPhoneNumber, PhoneEncrytionKey(user.uid))
+                : '',
+            DateOfBirth: '',
+            Gender: '',
+            Loading: () => {},
+            ShowToast: ShowToast,
+            Next: Next,
+          });
+        } else {
+          LoadingScreen(true);
+          Loading(false);
+          Router.push(Home_Link);
+        }
+      }
     })
     .catch((error) => {
+      Loading(false);
       const message = AuthError(error.code);
-      Toast(`${message}`, 'Error', true);
-      console.error('Failed to SignIn with Apple because ' + error.code);
+      ShowToast('Something went wrong', `${message}`, 'Error', true);
+    });
+};
+
+export const SignInWithMicrosoft = ({
+  Loading,
+  LoadingScreen,
+  ShowToast,
+  Next,
+  setFullName,
+  setEmailAddress,
+  setPhoneNumber,
+}: SignInWithOtherAccountsProps) => {
+  const microsoftProvider = new firebase.auth.OAuthProvider('microsoft.com');
+  Loading(true);
+  firebase
+    .auth()
+    .signInWithPopup(microsoftProvider)
+    .then((result) => {
+      const IsNewUser = result.additionalUserInfo?.isNewUser;
+      const user = firebase.auth().currentUser;
+      if (user) {
+        if (IsNewUser) {
+          const UserFullName = user.displayName;
+          const UserEmailAddress = user.email;
+          const UserPhoneNumber = user.phoneNumber;
+          setFullName(UserFullName ? UserFullName : '');
+          setEmailAddress(UserEmailAddress ? UserEmailAddress : '');
+          setPhoneNumber(UserPhoneNumber ? UserPhoneNumber : '');
+          CreateUserProfileData({
+            UserId: user.uid,
+            FullName:
+              UserFullName && UserFullName.length > 0
+                ? EncryptData(UserFullName, NameEncrytionKey(user.uid))
+                : '',
+            EmailAddress:
+              UserEmailAddress && UserEmailAddress.length > 0
+                ? EncryptData(UserEmailAddress, EmailEncrytionKey(user.uid))
+                : '',
+            PhoneNumber:
+              UserPhoneNumber && UserPhoneNumber.length > 0
+                ? EncryptData(UserPhoneNumber, PhoneEncrytionKey(user.uid))
+                : '',
+            DateOfBirth: '',
+            Gender: '',
+            Loading: () => {},
+            ShowToast: ShowToast,
+            Next: Next,
+          });
+        } else {
+          LoadingScreen(true);
+          Loading(false);
+          Router.push(Home_Link);
+        }
+      }
+    })
+    .catch((error) => {
+      Loading(false);
+      const message = AuthError(error.code);
+      ShowToast('Something went wrong', `${message}`, 'Error', true);
     });
 };
 
 // Sign Up
 
-export const SignUp = ({
-  FirstName,
-  LastName,
-  Email,
-  Password,
-  EmptyPasswordTextField,
+export const AddFullName = ({
+  FullName,
   Loading,
-  LoadingScreen,
-  ToastMessage,
-  ToastShow,
-  ToastType,
-}: SignUpProps) => {
-  const Toast = (message: string, type: string, show: boolean) => {
-    ToastMessage(message);
-    ToastType(type);
-    ToastShow(show);
-  };
+  ShowToast,
+  updateUserData,
+}: AddFullNameProps) => {
   Loading(true);
   const user = firebase.auth().currentUser;
-  user
-    ?.updateProfile({
-      displayName: FirstName + ' ' + LastName,
-    })
-    .then(() => {
-      console.log('Name updated');
-      var credential = firebase.auth.EmailAuthProvider.credential(
-        Email,
-        Password
-      );
-      user
-        ?.linkWithCredential(credential)
-        .then(() => {
-          console.log('Linking account successfully');
-          const { phone } = Router.query;
-          if (firebase.auth().currentUser) {
-            const UID = firebase.auth().currentUser?.uid;
-            LoadingScreen(true);
-            Router.push({
-              pathname: Setup_Account_Link,
-              query: {
-                id: `${UID}`,
-                firstname: `${FirstName}`,
-                lastname: `${LastName}`,
-                email: `${Email}`,
-                phone: `${phone}`,
-              },
-            });
-          }
-        })
-        .catch((error) => {
-          Loading(false);
-          EmptyPasswordTextField();
-          const message = AuthError(error.code);
-          Toast(`${message}`, 'Error', true);
-          console.error('Failed to Link account because ' + error.code);
-        });
-    })
-    .catch((error) => {
-      Loading(false);
-      EmptyPasswordTextField();
-      const message = AuthError(error.code);
-      Toast(`${message}`, 'Error', true);
-      console.error('Name not updated because ' + error.code);
-    });
+  if (user) {
+    user
+      .updateProfile({
+        displayName: FullName,
+      })
+      .then(() => {
+        // Loading(false);
+        updateUserData();
+      })
+      .catch((error) => {
+        Loading(false);
+        const message = AuthError(error.code);
+        ShowToast('Something went wrong', `${message}`, 'Error', true);
+      });
+  }
+};
+
+export const VerifyEmailAddress = ({
+  Loading,
+  ShowToast,
+  Next,
+}: VerifyEmailProps) => {
+  Loading(true);
+  const user = firebase.auth().currentUser;
+  if (user) {
+    user
+      .sendEmailVerification()
+      .then(() => {
+        Loading(false);
+        ShowToast(
+          'Email verification link sent successfully',
+          'A link to reset your password has been sent to your email address.',
+          'Success',
+          true
+        );
+        Next();
+      })
+      .catch((error) => {
+        Loading(false);
+        const message = AuthError(error.code);
+        ShowToast('Something went wrong', `${message}`, 'Error', true);
+      });
+  }
+};
+
+export const LinkWithEmailAndPassword = ({
+  EmailAddress,
+  Password,
+  ShowToast,
+  Loading,
+  EmptyPasswordTextField,
+  BackToEmailScreen,
+  updateUserData,
+}: LinkWithEmailAndPasswordProps) => {
+  Loading(true);
+  const user = firebase.auth().currentUser;
+  var credential = firebase.auth.EmailAuthProvider.credential(
+    EmailAddress,
+    Password
+  );
+  if (user) {
+    user
+      .linkWithCredential(credential)
+      .then(() => {
+        // Loading(false);
+        updateUserData();
+      })
+      .catch((error) => {
+        Loading(false);
+        BackToEmailScreen();
+        EmptyPasswordTextField();
+        const message = AuthError(error.code);
+        ShowToast('Something went wrong', `${message}`, 'Error', true);
+      });
+  }
+};
+
+export const LinkWithPhoneNumber = ({
+  PhoneNumber,
+  EmptyPhoneNumber,
+  ResetCaptcha,
+  setResetCaptcha,
+  MoveToOTPScreen,
+  ShowToast,
+  Loading,
+}: LinkWithPhoneNumberProps) => {
+  Loading(true);
+  configureCaptcha({
+    ShowToast: ShowToast,
+    ResetCaptcha: ResetCaptcha,
+  });
+  const number = '+91' + PhoneNumber;
+  const appVerifier = window.recaptchaVerifier;
+  const user = firebase.auth().currentUser;
+  if (user) {
+    user
+      .linkWithPhoneNumber(number, appVerifier)
+      .then((confirmationResult) => {
+        window.confirmationResult = confirmationResult;
+        ShowToast(
+          'OTP sent successfully',
+          'An OTP has been sent to your phone number.',
+          'Success',
+          true
+        );
+        MoveToOTPScreen();
+        Loading(false);
+      })
+      .catch((error) => {
+        Loading(false);
+        const message = AuthError(error.code);
+        ShowToast('Something went wrong', `${message}`, 'Error', true);
+        EmptyPhoneNumber();
+        setResetCaptcha(true);
+      });
+  }
+};
+
+export const VerifyOTPForLinkWithPhone = ({
+  OTP,
+  EmptyOTPBox,
+  Loading,
+  ShowToast,
+  updateUserData,
+}: VerifyOTPForLinkWithPhoneProps) => {
+  Loading(true);
+  const code = OTP.toString();
+  const user = firebase.auth().currentUser;
+  var credential = firebase.auth.PhoneAuthProvider.credential(
+    window.confirmationResult.verificationId,
+    code
+  );
+  if (user) {
+    user
+      .linkWithCredential(credential)
+      .then(() => {
+        // Loading(false);
+        updateUserData();
+      })
+      .catch((error) => {
+        Loading(false);
+        const message = AuthError(error.code);
+        if (message == 'Invalid verification code') EmptyOTPBox();
+        ShowToast('Something went wrong', `${message}`, 'Error', true);
+      });
+  }
+};
+
+export const ResentOTPForLinkWithPhone = ({
+  PhoneNumber,
+  Loading,
+  ShowToast,
+}: ResendOTPProps) => {
+  Loading(true);
+  window.recaptchaVerifier.render().then(function (widgetId: any) {
+    window.grecaptcha.reset(widgetId);
+  });
+  const number = '+91' + PhoneNumber;
+  const appVerifier = window.recaptchaVerifier;
+  const user = firebase.auth().currentUser;
+  if (user) {
+    user
+      .linkWithPhoneNumber(number, appVerifier)
+      .then((confirmationResult) => {
+        window.confirmationResult = confirmationResult;
+        Loading(false);
+        ShowToast(
+          'OTP sent successfully',
+          'An OTP has been sent to your phone number.',
+          'Success',
+          true
+        );
+      })
+      .catch((error) => {
+        Loading(false);
+        const message = AuthError(error.code);
+        ShowToast('Something went wrong', `${message}`, 'Error', true);
+      });
+  }
 };
 
 // Avatar
@@ -424,15 +683,8 @@ export const UploadAvatar = ({
   File,
   getImageURL,
   Loading,
-  ToastMessage,
-  ToastShow,
-  ToastType,
+  ShowToast,
 }: UploadAvatarProps) => {
-  const Toast = (message: string, type: string, show: boolean) => {
-    ToastMessage(message);
-    ToastType(type);
-    ToastShow(show);
-  };
   if (File) {
     Loading(true);
     const extension = File.type.split('/')[1];
@@ -462,13 +714,17 @@ export const UploadAvatar = ({
               //Image update successfully
               getImageURL(url);
               Loading(false);
-              Toast('Avatar updated successfully', 'Success', true);
+              ShowToast(
+                'Avatar updated successfully',
+                'You profile picture has been updated for your account.',
+                'Success',
+                true
+              );
             })
             .catch((error) => {
               Loading(false);
               const message = AuthError(error.code);
-              Toast(`${message}`, 'Error', true);
-              console.log('Avatar upload failed because ' + error.code);
+              ShowToast('Something went wrong', `${message}`, 'Error', true);
             });
         });
     });
@@ -479,15 +735,8 @@ export const DeleteAvatar = ({
   AvatarURL,
   AfterDelete,
   Loading,
-  ToastMessage,
-  ToastShow,
-  ToastType,
+  ShowToast,
 }: DeleteAvatarProps) => {
-  const Toast = (message: string, type: string, show: boolean) => {
-    ToastMessage(message);
-    ToastType(type);
-    ToastShow(show);
-  };
   if (AvatarURL) {
     Loading(true);
     const storage = firebase.storage();
@@ -502,15 +751,19 @@ export const DeleteAvatar = ({
           })
           .then(() => {
             Loading(false);
-            Toast('Avatar deleted successfully', 'Success', true);
+            ShowToast(
+              'Avatar deleted successfully',
+              'You profile picture has been removed from your account.',
+              'Success',
+              true
+            );
             AfterDelete();
           });
       })
       .catch((error) => {
         Loading(false);
         const message = AuthError(error.code);
-        Toast(`${message}`, 'Error', true);
-        console.log('Avatar delete failed because ' + error.code);
+        ShowToast('Something went wrong', `${message}`, 'Error', true);
       });
   }
 };

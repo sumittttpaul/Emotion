@@ -10,8 +10,10 @@ import { HeaderMobileSearchProps } from './assets/Header.Mobile.Search';
 import { SearchMobileContent } from '../../contents/store/search/Store.Search';
 import dynamic from 'next/dynamic';
 
-const HeaderMobileSearch = dynamic<HeaderMobileSearchProps>(() =>
-  import('./assets/Header.Mobile.Search').then((x) => x.HeaderMobileSearch)
+const HeaderMobileSearch = dynamic<HeaderMobileSearchProps>(
+  () =>
+    import('./assets/Header.Mobile.Search').then((x) => x.HeaderMobileSearch),
+  { ssr: false }
 );
 
 interface IProps {}

@@ -1,7 +1,7 @@
 import { MouseEvent, KeyboardEvent, ChangeEvent, FocusEvent } from 'react';
 
 export interface IconNumberTextFieldProps {
-  id?:string
+  id?: string;
   value: string;
   placeholder?: string;
   icon: string;
@@ -18,7 +18,7 @@ export interface IconNumberTextFieldProps {
 }
 
 export interface IconPasswordTextFieldProps {
-  id?:string
+  id?: string;
   value: string;
   placeholder: string;
   icon: string;
@@ -33,7 +33,7 @@ export interface IconPasswordTextFieldProps {
 }
 
 export interface IconTextFieldProps {
-  id?:string
+  id?: string;
   value: string;
   placeholder?: string;
   icon: string;
@@ -49,7 +49,7 @@ export interface IconTextFieldProps {
 }
 
 export interface NumberTextFieldProps {
-  id?:string
+  id?: string;
   value: string;
   placeholder?: string;
   type?: string;
@@ -65,7 +65,7 @@ export interface NumberTextFieldProps {
 }
 
 export interface PlainTextFieldProps {
-  id?:string
+  id?: string;
   value: string;
   placeholder: string;
   type: string;
@@ -80,7 +80,7 @@ export interface PlainTextFieldProps {
 }
 
 export interface PasswordTextFieldProps {
-  id?:string
+  id?: string;
   value: string;
   placeholder: string;
   error?: boolean;
@@ -94,7 +94,7 @@ export interface PasswordTextFieldProps {
 }
 
 export interface OTPTextFieldProps {
-  id?:string
+  id?: string;
   value: string;
   onClick: (event: MouseEvent<HTMLInputElement>) => void;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;

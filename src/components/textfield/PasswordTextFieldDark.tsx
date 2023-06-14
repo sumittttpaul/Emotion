@@ -33,13 +33,13 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
   '& .MuiFilledInput-root': {
     height: 63,
-    borderRadius: 6,
-    fontWeight: 300,
-    fontSize: '13.5px',
-    letterSpacing: 0.5,
-    fontFamily: ['Poppins', 'sans-serif'].join(','),
+    borderRadius: 12,
+    fontWeight: 400,
+    fontSize: '14px',
+    letterSpacing: '0.025em',
+    // fontFamily: ['Poppins', 'sans-serif'].join(','),
     color: '#ffffff',
-    border: '1px solid #ffffff3b',
+    border: '1px solid #ffffff50',
     overflow: 'hidden',
     paddingLeft: 13,
     paddingRight: 8,
@@ -65,8 +65,11 @@ const CustomTextField = styled((props: TextFieldProps) => (
       boxShadow: `${alpha('#FF2020', 0.25)} 0 0 0 0px`,
       borderColor: '#CE0000',
       color: '#ffffff',
+      '&:before': {
+        borderBottom: 0,
+      },
       '&:after': {
-        borderBottom: 'none',
+        borderBottom: 0,
       },
     },
   },
@@ -100,7 +103,7 @@ const PasswordTextFieldDark: FC<PasswordTextFieldProps> = (props) => {
       <CustomTextField
         id={props.id}
         aria-label="password-textfield"
-        className="w-full z-10"
+        className="w-full"
         label={props.placeholder}
         onChange={props.onChange}
         onKeyUp={props.onkeyUp}
@@ -127,20 +130,20 @@ const PasswordTextFieldDark: FC<PasswordTextFieldProps> = (props) => {
                 onMouseDown={handleMouseDownPassword}
                 className="z-20 h-11 w-11 mb-[3px] rounded-md passwordEyeButton"
                 style={{
-                  borderRadius: 6,
+                  borderRadius: 8,
                 }}
               >
                 {values.showPassword ? (
                   <EyeOffIcon
                     height={22}
                     width={22}
-                    className="opacity-[0.5] text-white"
+                    className="opacity-50 text-white"
                   />
                 ) : (
                   <EyeIcon
                     height={22}
                     width={22}
-                    className="opacity-[0.5] text-white"
+                    className="opacity-50 text-white"
                   />
                 )}
               </IconButton>

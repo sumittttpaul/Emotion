@@ -1,6 +1,5 @@
 import React, { FC, ReactNode, Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { motion } from 'framer-motion';
 
 interface IProps {
   children: ReactNode;
@@ -16,7 +15,7 @@ interface IProps {
 
 const AvatarContainerDialog: FC<IProps> = (props) => {
   const classes =
-    'box-border absolute sm:relative h-full w-full transform overflow-hidden sm:rounded-lg bg-black text-center align-middle shadow-xl transition-all ease-in';
+    'box-border absolute sm:relative h-full w-full transform overflow-hidden sm:rounded-xl bg-black text-center align-middle shadow-xl transition-all ease-in';
 
   return (
     <Transition appear show={props.show} as={Fragment}>
@@ -38,16 +37,16 @@ const AvatarContainerDialog: FC<IProps> = (props) => {
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-75"
+              enterFrom="opacity-0 scale-90"
               enterTo="opacity-100 scale-100"
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-75"
+              leaveTo="opacity-0 scale-90"
             >
               <Dialog.Panel className="absolute h-full w-full sm:relative sm:h-suto sm:w-auto">
-                <motion.div className={`${classes} ${props.className}`}>
+                <div className={`${classes} ${props.className}`}>
                   {props.children}
-                </motion.div>
+                </div>
               </Dialog.Panel>
             </Transition.Child>
           </div>

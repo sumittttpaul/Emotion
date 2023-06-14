@@ -1,9 +1,8 @@
 import { Tab } from '@headlessui/react';
-import { Button, useTheme } from '@mui/material';
-import SwipeableViews from 'react-swipeable-views';
+import { useTheme } from '@mui/material';
 import { LayoutGroup, motion } from 'framer-motion';
-import TabPanel from '../../tab/SelectAvatarTabPanel';
-import React, { FC, useState, KeyboardEvent } from 'react';
+import TabPanel from '../../tab/SelectAvatar/SelectAvatarTabPanel';
+import React, { FC, useState } from 'react';
 import { SidePanelShoppingListTabWishlist } from './SidePanel.ShoppingList.Tab.Wishlist';
 import { SidePanelShoppingListTabCartProps } from './SidePanel.ShoppingList.Tab.Cart';
 import {
@@ -12,12 +11,14 @@ import {
 } from '../../../contents/store/Store.ShoppingList';
 import dynamic from 'next/dynamic';
 import { SidePanelShoppingListTabHeader } from './SidePanel.ShoppingList.Tab.Header';
+import SwipeableViews from '../../../../packages/react-swipeable-views/src/index';
 
 const SidePanelShoppingListTabCart = dynamic<SidePanelShoppingListTabCartProps>(
   () =>
     import('./SidePanel.ShoppingList.Tab.Cart').then(
       (x) => x.SidePanelShoppingListTabCart
-    )
+    ),
+  { ssr: false }
 );
 
 interface IProps {}
@@ -35,10 +36,6 @@ export const SidePanelShoppingListTab: FC<IProps> = (props) => {
   const [Tabvalue, setTabValue] = useState(0);
   const theme = useTheme();
 
-  const handleChangeIndex = (index: number) => {
-    setTabValue(index);
-  };
-
   const handleWishlistClick = () => {
     setTabValue(0);
     // props.TabClick(true);
@@ -49,10 +46,6 @@ export const SidePanelShoppingListTab: FC<IProps> = (props) => {
     // props.TabClick(false);
   };
 
-  const handleKeyDown = (value: KeyboardEvent<HTMLElement>) => {
-    if (value.key === 'LeftArrow') setTabValue(0);
-    if (value.key === 'RightArrow') setTabValue(1);
-  };
   return (
     <div className="w-full h-full flex flex-col relative">
       <div className="w-full px-3 pb-3">
@@ -63,7 +56,7 @@ export const SidePanelShoppingListTab: FC<IProps> = (props) => {
                 onClick={handleWishlistClick}
                 className={({ selected }) =>
                   classNames(
-                    'w-full relative rounded-md text-[13px] outline-none custom-tab-transition-color',
+                    'w-full relative rounded-md text-[13px] outline-none custom-tab-transition-color cursor-default',
                     selected ? 'text-white' : 'text-white/[0.50]'
                   )
                 }
@@ -84,7 +77,7 @@ export const SidePanelShoppingListTab: FC<IProps> = (props) => {
                 onClick={handleCartClick}
                 className={({ selected }) =>
                   classNames(
-                    'w-full relative rounded-md text-[13px] outline-none custom-tab-transition-color',
+                    'w-full relative rounded-md text-[13px] outline-none custom-tab-transition-color cursor-default',
                     selected ? 'text-white' : 'text-white/[0.50]'
                   )
                 }
@@ -110,10 +103,9 @@ export const SidePanelShoppingListTab: FC<IProps> = (props) => {
         MoreMenuValue={Tabvalue === 0 ? 'wishlist' : 'cart'}
       />
       <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        disabled={true}
         index={Tabvalue}
-        onChangeIndex={handleChangeIndex}
-        onKeyDown={handleKeyDown}
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         className="w-full h-full flex flex-col relative"
         id="SidepanelSwipeableViews"
         containerStyle={{

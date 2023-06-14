@@ -6,19 +6,17 @@ import firebase from 'firebase/compat/app';
 import firebaseUser from 'firebase/compat';
 import Router from 'next/router';
 import UserIcon from '../../../../public/icons/user-fill.svg';
-import { Login_Link } from '../../../routerLinks/RouterLinks';
+import { Setup_Link } from '../../../routerLinks/RouterLinks';
 import { useLoaderState } from '../../../providers/state/LoadingState';
 import { HeaderUserButtonMenuProps } from './Header.UserButton.Menu';
 import dynamic from 'next/dynamic';
-import { GetUserAuthData } from '../../../algorithms/AuthDB';
-import { DecryptData } from '../../../algorithms/security/CryptionSecurity';
-import { FirstNameEncrytionKey } from '../../../algorithms/security/CryptionKey';
 import { TooltipDark } from '../../tooltip/TooltipDark';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 
-const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(() =>
-  import('./Header.UserButton.Menu').then((x) => x.HeaderUserButtonMenu)
+const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
+  () => import('./Header.UserButton.Menu').then((x) => x.HeaderUserButtonMenu),
+  { ssr: false }
 );
 
 interface IProps {}
@@ -27,33 +25,18 @@ interface IProps {}
  * @author
  * @function @HeaderUserButton
  **/
+
 export const HeaderUserButton: FC<IProps> = (props) => {
   const FirebaseUser = useAuth();
   const FirebaseAuth = getAuth(firebase.app());
   const [user, loading] = useAuthState(FirebaseAuth);
-  const [UserNameLoading, setUserNameLoading] = useState(false);
-  const [UserName, setUserName] = useState<string>('');
 
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => {
     setLoader({ show: value });
   };
 
-  const getUserName = (UID: string) => {
-    GetUserAuthData(UID)
-      .then((e) => {
-        if (e) {
-          setUserName(
-            'Hi, ' + DecryptData(e.FirstName, FirstNameEncrytionKey(UID))
-          );
-        } else {
-          setUserName('Hi, User');
-        }
-      })
-      .then(() => setUserNameLoading(false));
-  };
-
-  if (loading || UserNameLoading)
+  if (loading)
     return (
       <ContainerButton>
         <LoadingButton />
@@ -61,28 +44,18 @@ export const HeaderUserButton: FC<IProps> = (props) => {
     );
 
   if (user && FirebaseUser)
-    if (!UserName) {
-      setUserNameLoading(true);
-      getUserName(FirebaseUser.uid);
-      return null;
-    }
-
-  if (user && FirebaseUser)
-    if (UserName)
-      return (
-        <ContainerButton>
-          <UserButton user={FirebaseUser} UserName={UserName} />
-        </ContainerButton>
-      );
+    return (
+      <ContainerButton>
+        <UserButton user={FirebaseUser} />
+      </ContainerButton>
+    );
 
   return (
     <ContainerButton>
       <LoginButton
         onClick={() => {
-          setTimeout(() => {
-            Router.push(Login_Link);
-            LoadingScreen(true);
-          }, 150);
+          Router.push(Setup_Link);
+          LoadingScreen(true);
         }}
       />
     </ContainerButton>
@@ -99,7 +72,6 @@ interface ContainerButtonProps {
 }
 interface UserButtonProps {
   user: firebaseUser.User;
-  UserName: string;
 }
 
 const LoginButton: FC<LoginButtonProps> = (props) => {
@@ -113,7 +85,7 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
         aria-label="user-login-button"
         disableFocusRipple
         onClick={props.onClick}
-        className="flex items-center button-text-lower h-full px-[14px] bg-transparent hover:bg-[#202020]"
+        className="flex items-center button-text-lower h-full px-[14.5px] bg-transparent hover:bg-[#202020]"
         sx={{
           '.MuiTouchRipple-child': {
             backgroundColor: '#ffffff50 !important',
@@ -141,7 +113,7 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
         disabled
         aria-label="user-button-loading"
         disableFocusRipple
-        className="flex items-center button-text-lower h-full px-1 bg-transparent hover:bg-[#202020]"
+        className="flex items-center button-text-lower h-full px-[5.5px] bg-transparent hover:bg-[#202020]"
         sx={{
           '.MuiTouchRipple-child': {
             backgroundColor: '#ffffff50 !important',
@@ -208,7 +180,7 @@ const UserButton: FC<UserButtonProps> = (props) => {
               width={35}
               layout="fixed"
               className="rounded-[50%]"
-              src={`${props.user.photoURL}`}
+              src={props.user.photoURL}
               alt=""
             />
           ) : (

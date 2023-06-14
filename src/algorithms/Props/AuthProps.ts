@@ -1,108 +1,199 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export interface RecaptchaProps {
-  ToastShow: (value: boolean) => void;
-  ToastMessage: (value: string) => void;
-  ToastType: (value: string) => void;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
   ResetCaptcha: boolean;
 }
 
 export interface ResendOTPProps {
-  Phone: number;
-  Loading: (value: boolean) => void;
-  ToastShow: (value: boolean) => void;
-  ToastMessage: (value: string) => void;
-  ToastType: (value: string) => void;
+  PhoneNumber: number;
+  Loading: Dispatch<SetStateAction<boolean>>;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
 }
 
 export interface VerifyOTPProps {
-  Phone: number;
   OTP: number;
+  PhoneNumber: string;
   EmptyOTPBox: () => void;
-  Loading: (value: boolean) => void;
-  ToastShow: (value: boolean) => void;
-  ToastMessage: (value: string) => void;
-  ToastType: (value: string) => void;
+  Next: () => void;
+  Loading: Dispatch<SetStateAction<boolean>>;
+  LoadingScreen: (value: boolean) => void;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
 }
 
 export interface PasswordResentProps {
-  Email: string;
-  Loading: (value: boolean) => void;
-  ToastShow: (value: boolean) => void;
-  ToastMessage: (value: string) => void;
-  ToastType: (value: string) => void;
+  EmailAddress: string;
+  Loading: Dispatch<SetStateAction<boolean>>;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
 }
 
 export interface SignInWithPhoneNumberProps {
-  Phone: number;
-  EmptyPhone: () => void;
-  Loading: (value: boolean) => void;
-  ShowOTPDialog: () => void;
-  ToastShow: (value: boolean) => void;
-  ToastMessage: (value: string) => void;
-  ToastType: (value: string) => void;
+  PhoneNumber: number;
+  EmptyPhoneNumber: () => void;
   ResetCaptcha: boolean;
-  setResetCaptcha: (value: boolean) => void;
+  setResetCaptcha: Dispatch<SetStateAction<boolean>>;
+  MoveToOTPScreen: () => void;
+  Loading: Dispatch<SetStateAction<boolean>>;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
 }
 
 export interface SignInWithEmailAndPasswordProps {
-  Email: string;
+  EmailAddress: string;
   Password: string;
-  Loading: (value: boolean) => void;
+  Loading: Dispatch<SetStateAction<boolean>>;
   LoadingScreen: (value: boolean) => void;
   EmptyPasswordTextField: () => void;
-  ToastShow: (value: boolean) => void;
-  ToastMessage: (value: string) => void;
-  ToastType: (value: string) => void;
+  BackToEmailScreen: () => void;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
 }
 
-export interface SignInWithFacebookProps {
-  ToastShow: (value: boolean) => void;
-  ToastMessage: (value: string) => void;
-  ToastType: (value: string) => void;
+export interface SignInWithOtherAccountsProps {
+  Loading: Dispatch<SetStateAction<boolean>>;
   LoadingScreen: (value: boolean) => void;
+  Next: () => void;
+  setFullName: Dispatch<SetStateAction<string>>;
+  setEmailAddress: Dispatch<SetStateAction<string>>;
+  setPhoneNumber: Dispatch<SetStateAction<string>>;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
 }
 
-export interface SignInWithGoogleProps {
-  ToastShow: (value: boolean) => void;
-  ToastMessage: (value: string) => void;
-  ToastType: (value: string) => void;
-  LoadingScreen: (value: boolean) => void;
+export interface AddFullNameProps {
+  FullName: string;
+  Loading: Dispatch<SetStateAction<boolean>>;
+  updateUserData: () => void;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
 }
 
-export interface SignInWithAppleProps {
-  ToastShow: (value: boolean) => void;
-  ToastMessage: (value: string) => void;
-  ToastType: (value: string) => void;
-  LoadingScreen: (value: boolean) => void;
-}
-
-export interface SignUpProps {
-  FirstName: string;
-  LastName: string;
-  Email: string;
+export interface LinkWithEmailAndPasswordProps {
+  EmailAddress: string;
   Password: string;
+  Loading: Dispatch<SetStateAction<boolean>>;
   EmptyPasswordTextField: () => void;
-  Loading: (value: boolean) => void;
+  BackToEmailScreen: () => void;
+  updateUserData: () => void;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
+}
+
+export interface LinkWithPhoneNumberProps {
+  PhoneNumber: number;
+  EmptyPhoneNumber: () => void;
+  ResetCaptcha: boolean;
+  setResetCaptcha: Dispatch<SetStateAction<boolean>>;
+  MoveToOTPScreen: () => void;
+  Loading: Dispatch<SetStateAction<boolean>>;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
+}
+
+export interface VerifyOTPForLinkWithPhoneProps {
+  OTP: number;
+  EmptyOTPBox: () => void;
+  updateUserData: () => void;
+  Loading: Dispatch<SetStateAction<boolean>>;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
+}
+
+export interface AddPhoneNumberProps {
+  OTP: number;
+  PhoneNumber: string;
+  EmptyOTPBox: () => void;
+  updateUserData: () => void;
+  Loading: Dispatch<SetStateAction<boolean>>;
   LoadingScreen: (value: boolean) => void;
-  ToastShow: (value: boolean) => void;
-  ToastMessage: (value: string) => void;
-  ToastType: (value: string) => void;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
+}
+
+export interface VerifyEmailProps {
+  Next: () => void;
+  Loading: Dispatch<SetStateAction<boolean>>;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
 }
 
 export interface UploadAvatarProps {
   Progress: (value: string) => void;
   File: File | undefined;
   getImageURL: (value: string) => void;
-  Loading: (value: boolean) => void;
-  ToastShow: (value: boolean) => void;
-  ToastMessage: (value: string) => void;
-  ToastType: (value: string) => void;
+  Loading: Dispatch<SetStateAction<boolean>>;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
 }
 
 export interface DeleteAvatarProps {
   AvatarURL: string;
   AfterDelete: () => void;
-  Loading: (value: boolean) => void;
-  ToastShow: (value: boolean) => void;
-  ToastMessage: (value: string) => void;
-  ToastType: (value: string) => void;
+  Loading: Dispatch<SetStateAction<boolean>>;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
 }

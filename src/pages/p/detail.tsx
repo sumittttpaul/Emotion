@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import { ChildLayout } from '../../components/layout/ChildLayout';
-import { ParentLayout } from '../../components/layout/ParentLayout';
+import { HomeAndGalleryChildLayout } from '../../components/layout/HomeAndGallery/HomeAndGallery.ChildLayout';
+import { HomeAndGalleryParentLayout } from '../../components/layout/HomeAndGallery/HomeAndGallery.ParentLayout';
 import { ProductDetailUI } from '../../components/ui/ProductDetailUI';
 import { getServerSideProps } from '../../algorithms/DeviceDetectSSR';
 
@@ -13,9 +13,9 @@ function ProductDetail() {
 
 ProductDetail.getLayout = function GetLayout(ProductDetail: ReactElement) {
   return (
-    <ParentLayout>
-      <ChildLayout>{ProductDetail}</ChildLayout>
-    </ParentLayout>
+    <HomeAndGalleryParentLayout>
+      <HomeAndGalleryChildLayout>{ProductDetail}</HomeAndGalleryChildLayout>
+    </HomeAndGalleryParentLayout>
   );
 };
 

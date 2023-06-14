@@ -13,17 +13,21 @@ import { DiscoverCarouselArrowButtonProps } from './DiscoverCarousel.ArrowButton
 import dynamic from 'next/dynamic';
 
 const DiscoverCarouselLeftArrowButton =
-  dynamic<DiscoverCarouselArrowButtonProps>(() =>
-    import('./DiscoverCarousel.ArrowButton').then(
-      (x) => x.DiscoverCarouselLeftArrowButton
-    )
+  dynamic<DiscoverCarouselArrowButtonProps>(
+    () =>
+      import('./DiscoverCarousel.ArrowButton').then(
+        (x) => x.DiscoverCarouselLeftArrowButton
+      ),
+    { ssr: false }
   );
 
 const DiscoverCarouselRightArrowButton =
-  dynamic<DiscoverCarouselArrowButtonProps>(() =>
-    import('./DiscoverCarousel.ArrowButton').then(
-      (x) => x.DiscoverCarouselRightArrowButton
-    )
+  dynamic<DiscoverCarouselArrowButtonProps>(
+    () =>
+      import('./DiscoverCarousel.ArrowButton').then(
+        (x) => x.DiscoverCarouselRightArrowButton
+      ),
+    { ssr: false }
   );
 
 interface IProps {

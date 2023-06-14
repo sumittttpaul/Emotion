@@ -5,19 +5,17 @@ import firebase from 'firebase/compat/app';
 import firebaseUser from 'firebase/compat';
 import React, { FC, Fragment, ReactNode, useState, MouseEvent } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { GetUserAuthData } from '../../../../algorithms/AuthDB';
-import { FirstNameEncrytionKey } from '../../../../algorithms/security/CryptionKey';
-import { DecryptData } from '../../../../algorithms/security/CryptionSecurity';
 import { useAuth } from '../../../../firebase/AuthProvider';
 import { useLoaderState } from '../../../../providers/state/LoadingState';
-import { Login_Link } from '../../../../routerLinks/RouterLinks';
+import { Setup_Link } from '../../../../routerLinks/RouterLinks';
 import Router from 'next/router';
 import Image from 'next/legacy/image';
 import dynamic from 'next/dynamic';
 import { HeaderUserButtonMenuProps } from '../Header.UserButton.Menu';
 
-const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(() =>
-  import('../Header.UserButton.Menu').then((x) => x.HeaderUserButtonMenu)
+const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
+  () => import('../Header.UserButton.Menu').then((x) => x.HeaderUserButtonMenu),
+  { ssr: false }
 );
 
 interface IProps {}
@@ -55,7 +53,7 @@ export const HeaderMobileUserButton: FC<IProps> = (props) => {
       <LoginButton
         onClick={() => {
           setTimeout(() => {
-            Router.push(Login_Link);
+            Router.push(Setup_Link);
             LoadingScreen(true);
           }, 150);
         }}

@@ -17,7 +17,7 @@ export const StateProvider: FC<IProps> = (props) => {
   return (
     <HomePageState value={{ Page: 'Discover' }}>
       <SearchButtonState value={{ show: false }}>
-        <ColorState>
+        <ColorState value={{ bgColor: '#0f0f0f' }}>
           <LoaderState value={{ show: false }}>{props.children}</LoaderState>
         </ColorState>
       </SearchButtonState>

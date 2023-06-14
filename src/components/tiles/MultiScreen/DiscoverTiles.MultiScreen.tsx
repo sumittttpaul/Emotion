@@ -72,7 +72,7 @@ export const DiscoverTilesBrowser: FC<DiscoverTilesBrowserProps> = (props) => {
           >
             <div className={`space-y-5 ${TopHeadingContainerStyle}`}>
               <div className="space-y-1 flex flex-col">
-                <h5 className="font-[500] tracking-wide">{value.Heading}</h5>
+                <div className="font-[500] tracking-wide">{value.Heading}</div>
                 <h6 className="text-[13px] opacity-[0.75] font-normal">
                   {value.Description}
                 </h6>

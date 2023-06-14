@@ -1,14 +1,8 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
-import Router from 'next/router';
-import { Home_Link } from '../routerLinks/RouterLinks';
-import {
-  CreateUserDataProps,
-  UpdateUserDataProps,
-  UserDataType,
-} from './Props/AuthDBProps';
+import { CreateUserDataProps, UserDataType } from './Props/AuthDBProps';
 
-const COLLECTION_NAME = 'users';
+const COLLECTION_NAME = 'user-profile';
 
 export const GetAllUserAuthData = async (): Promise<Array<UserDataType>> => {
   const db = firebase.firestore();
@@ -23,13 +17,13 @@ export const GetAllUserAuthData = async (): Promise<Array<UserDataType>> => {
   return data as Array<UserDataType>;
 };
 
-export const GetUserAuthData = async (id: string): Promise<UserDataType> => {
+export const GetUserData = async (id: string): Promise<UserDataType> => {
   const db = firebase.firestore();
   const _data = await db.collection(COLLECTION_NAME).doc(id).get();
   return _data.data() as UserDataType;
 };
 
-const CreateUser = async (
+export const CreateUserData = async (
   id: string,
   userData: UserDataType
 ): Promise<UserDataType> => {
@@ -41,7 +35,7 @@ const CreateUser = async (
   } as UserDataType;
 };
 
-const UpdateUser = async (
+export const UpdateUserData = async (
   id: string,
   userData: UserDataType
 ): Promise<UserDataType> => {
@@ -53,85 +47,37 @@ const UpdateUser = async (
   } as UserDataType;
 };
 
-export const DeleteUserAuthData = async (id: string) => {
+export const DeleteUserData = async (id: string) => {
   const db = firebase.firestore();
   await db.collection(COLLECTION_NAME).doc(id).delete();
 };
 
-export const CreateUserAuthData = ({
-  Id,
-  FirstName,
-  LastName,
-  Email,
+export const CreateUserProfileData = ({
+  UserId,
+  FullName,
   PhoneNumber,
-  DOB,
+  EmailAddress,
+  DateOfBirth,
   Gender,
   Loading,
-  LoadingScreen,
-  ToastShow,
-  ToastMessage,
-  ToastType,
+  ShowToast,
+  Next,
 }: CreateUserDataProps) => {
-  const Toast = (message: string, type: string, show: boolean) => {
-    ToastMessage(message);
-    ToastType(type);
-    ToastShow(show);
-  };
   Loading(true);
-  CreateUser(Id, {
-    FirstName: FirstName,
-    LastName: LastName,
-    Email: Email,
-    PhoneNumber: PhoneNumber,
-    DOB: DOB,
-    Gender: Gender,
+  CreateUserData(UserId, {
+    FullName: FullName && FullName.length > 0 ? FullName : '',
+    PhoneNumber: PhoneNumber && PhoneNumber.length > 0 ? PhoneNumber : '',
+    EmailAddress: EmailAddress && EmailAddress.length > 0 ? EmailAddress : '',
+    DateOfBirth: DateOfBirth && DateOfBirth.length > 0 ? DateOfBirth : '',
+    Gender: Gender && Gender.length > 0 ? Gender : '',
   })
     .then(() => {
-      LoadingScreen(true);
-      Router.push(Home_Link);
       // Loading(false);
+      Next();
     })
     .catch((error) => {
       Loading(false);
-      Toast('Something went wrong, please try again later', 'Error', true);
-      console.error('Otp not sent beacuse' + error.code);
-    });
-};
-
-export const UpdateUserAuthData = ({
-  Id,
-  FirstName,
-  LastName,
-  Email,
-  PhoneNumber,
-  DOB,
-  Gender,
-  Loading,
-  ToastShow,
-  ToastMessage,
-  ToastType,
-}: UpdateUserDataProps) => {
-  const Toast = (message: string, type: string, show: boolean) => {
-    ToastMessage(message);
-    ToastType(type);
-    ToastShow(show);
-  };
-  Loading(true);
-  UpdateUser(Id, {
-    FirstName: FirstName,
-    LastName: LastName,
-    Email: Email,
-    PhoneNumber: PhoneNumber,
-    DOB: DOB,
-    Gender: Gender,
-  })
-    .then(() => {
-      Toast('User profile updated', 'Success', true);
-      Loading(false);
-    })
-    .catch((error) => {
-      Loading(false);
-      Toast('Something went wrong, please try again', 'Error', true);
-      console.error('Otp not sent beacuse' + error.code);
+      ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      console.error('User data not created because ' + error.message);
     });
 };

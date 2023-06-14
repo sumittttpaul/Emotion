@@ -1,10 +1,9 @@
 import React, { FC, Fragment, ReactNode } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { useReduxSelector } from '../../redux/useReduxSelector';
 
 interface IProps {
   children: ReactNode;
-  show?: boolean;
+  show: boolean;
   close: () => void;
 }
 
@@ -13,14 +12,12 @@ interface IProps {
  * @function @DialogContainerDark
  **/
 export const DialogContainerDark: FC<IProps> = (props) => {
-  const { isMobile } = useReduxSelector((state) => state.Device);
-
   return (
     <Transition appear show={props.show} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={props.close}>
         <Transition.Child
           as={Fragment}
-          enter="ease-out duration-300"
+          enter="ease-out duration-200"
           enterFrom="opacity-0"
           enterTo="opacity-100"
           leave="ease-in duration-200"
@@ -34,20 +31,14 @@ export const DialogContainerDark: FC<IProps> = (props) => {
           <div className="flex min-h-full items-center justify-center p-4 text-center">
             <Transition.Child
               as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-150"
+              enter="ease-out duration-200"
+              enterFrom="opacity-0 scale-90"
               enterTo="opacity-100 scale-100"
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-150"
+              leaveTo="opacity-0 scale-90"
             >
-              <Dialog.Panel
-                className={`${
-                  isMobile
-                    ? 'absolute h-full w-full'
-                    : 'relative w-auto h-auto rounded-2xl'
-                } transform scroll-smooth overflow-auto bg-[#202020] text-center align-middle shadow-xl transition-all`}
-              >
+              <Dialog.Panel className="relative w-auto h-auto rounded-2xl transform scroll-smooth overflow-auto bg-[#202020] text-center align-middle  shadow-2xl transition-all">
                 {props.children}
               </Dialog.Panel>
             </Transition.Child>

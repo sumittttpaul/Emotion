@@ -4,8 +4,9 @@ import { IconButton } from '@mui/material';
 import { MoreMenuButtonMenuProps } from './MoreMenuButton.Menu';
 import dynamic from 'next/dynamic';
 
-const MoreMenuButtonMenu = dynamic<MoreMenuButtonMenuProps>(() =>
-  import('./MoreMenuButton.Menu').then((x) => x.MoreMenuButtonMenu)
+const MoreMenuButtonMenu = dynamic<MoreMenuButtonMenuProps>(
+  () => import('./MoreMenuButton.Menu').then((x) => x.MoreMenuButtonMenu),
+  { ssr: false }
 );
 
 interface IProps {
@@ -30,6 +31,7 @@ export const MoreMenuButton: FC<IProps> = (props) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <Fragment>
       <IconButton

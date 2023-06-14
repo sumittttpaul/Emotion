@@ -1,7 +1,4 @@
-export const Login_Link = '/auth/login';
-export const Register_Link = '/auth/register';
-export const Forgot_Password_Link = '/auth/login/forgot-password';
-export const Setup_Account_Link = '/auth/register/setup-account';
+export const Setup_Link = '/setup';
 //
 export const Privacy_Policy_Link = '/';
 export const Terms_Conditions_Link = '/';

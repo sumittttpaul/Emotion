@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
-import { ParentLayout } from '../../components/layout/ParentLayout';
-import { ChildLayout } from '../../components/layout/ChildLayout';
 import { WishlistUI } from '../../components/ui/WishlistUI';
 import { getServerSideProps } from '../../algorithms/DeviceDetectSSR';
+import { HomeAndGalleryChildLayout } from '../../components/layout/HomeAndGallery/HomeAndGallery.ChildLayout';
+import { HomeAndGalleryParentLayout } from '../../components/layout/HomeAndGallery/HomeAndGallery.ParentLayout';
 
 /**
  * @Wishlist_Page
@@ -13,9 +13,9 @@ function Wishlist() {
 
 Wishlist.getLayout = function GetLayout(Wishlist: ReactElement) {
   return (
-    <ParentLayout>
-      <ChildLayout>{Wishlist}</ChildLayout>
-    </ParentLayout>
+    <HomeAndGalleryParentLayout>
+      <HomeAndGalleryChildLayout>{Wishlist}</HomeAndGalleryChildLayout>
+    </HomeAndGalleryParentLayout>
   );
 };
 

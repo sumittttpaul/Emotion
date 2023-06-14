@@ -7,16 +7,20 @@ import {
   GalleryCarouselMobileProps,
 } from './GalleryCarousel/GalleryCarousel.MultiScreen';
 
-const GalleryCarouselMobile = dynamic<GalleryCarouselMobileProps>(() =>
-  import('./GalleryCarousel/GalleryCarousel.MultiScreen').then(
-    (x) => x.GalleryCarouselMobile
-  )
+const GalleryCarouselMobile = dynamic<GalleryCarouselMobileProps>(
+  () =>
+    import('./GalleryCarousel/GalleryCarousel.MultiScreen').then(
+      (x) => x.GalleryCarouselMobile
+    ),
+  { ssr: false }
 );
 
-const GalleryCarouselDesktop = dynamic<GalleryCarouselDesktopProps>(() =>
-  import('./GalleryCarousel/GalleryCarousel.MultiScreen').then(
-    (x) => x.GalleryCarouselDesktop
-  )
+const GalleryCarouselDesktop = dynamic<GalleryCarouselDesktopProps>(
+  () =>
+    import('./GalleryCarousel/GalleryCarousel.MultiScreen').then(
+      (x) => x.GalleryCarouselDesktop
+    ),
+  { ssr: false }
 );
 
 interface IProps {

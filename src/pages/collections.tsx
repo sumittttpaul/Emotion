@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
-import { ChildLayout } from '../components/layout/ChildLayout';
-import { ParentLayout } from '../components/layout/ParentLayout';
 import { CollectionsUI } from '../components/ui/CollectionsUI';
 import { getServerSideProps } from '../algorithms/DeviceDetectSSR';
+import { HomeAndGalleryChildLayout } from '../components/layout/HomeAndGallery/HomeAndGallery.ChildLayout';
+import { HomeAndGalleryParentLayout } from '../components/layout/HomeAndGallery/HomeAndGallery.ParentLayout';
 
 /**
  * @Collections_Page
@@ -13,9 +13,9 @@ function Collections() {
 
 Collections.getLayout = function GetLayout(Collections: ReactElement) {
   return (
-    <ParentLayout>
-      <ChildLayout>{Collections}</ChildLayout>
-    </ParentLayout>
+    <HomeAndGalleryParentLayout>
+      <HomeAndGalleryChildLayout>{Collections}</HomeAndGalleryChildLayout>
+    </HomeAndGalleryParentLayout>
   );
 };
 

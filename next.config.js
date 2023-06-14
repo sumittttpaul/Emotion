@@ -11,6 +11,7 @@ module.exports = withBundleAnalyzer({
       'www.w3.org',
       'www.gstatic.com',
       'firebasestorage.googleapis.com',
+      'lh3.googleusercontent.com'
     ],
   },
 });

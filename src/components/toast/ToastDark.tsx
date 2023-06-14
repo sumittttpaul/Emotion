@@ -1,234 +1,139 @@
-import {
-  CheckCircleIcon,
-  InformationCircleIcon,
-  XCircleIcon,
-  XIcon,
-} from '@heroicons/react/solid';
-import React, { FC, useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Slide, SlideProps, Snackbar } from '@mui/material';
+import React, {
+  Dispatch,
+  FC,
+  Fragment,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
+import { Slide, SlideProps } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
+import { ToastDarkContentProps } from './ToastDarkContent';
+import dynamic from 'next/dynamic';
 
-interface IProps {
-  message: string;
-  slideDirection: any;
-  positionVertical: any;
-  positionHorizontal: any;
-  open: boolean;
-  type: string;
-  bgColor: string;
-  autoHideDuration: number;
-  close: (value: boolean) => void;
+const ToastDarkContent = dynamic<ToastDarkContentProps>(
+  () => import('./ToastDarkContent').then((x) => x.ToastDarkContent),
+  { ssr: false }
+);
+
+export interface ToastDarkProps {
+  SlideDirection: 'left' | 'right' | 'up' | 'down';
+  Vertical: 'top' | 'bottom';
+  Horizontal: 'left' | 'center' | 'right';
+  HideDuration: number;
+  Toast: {
+    Open: boolean;
+    onClose: Dispatch<SetStateAction<boolean>>;
+    MessageTitle: string;
+    MessageDescription: string;
+    Type: string;
+  };
 }
-
-const textColor = 'text-white opacity-100';
-const maxWidth = 'max-w-[400px]';
-
-const ErrorBorderColor = 'border-[#fd1616]';
-const ErrorIconColor = 'text-[#FF2828]';
-
-const SuccessBorderColor = 'border-[#00cc11cc]';
-const SuccessIconColor = 'text-[#00cc11cc]';
-
-const InfoBorderColor = 'border-[#0099ff]';
-const InfoIconColor = 'text-[#0099ff]';
-
-const WarningBorderColor = 'border-[#ffae00ea]';
-const WarningIconColor = 'text-[#ffae00ea]';
 
 /**
  * @author
  * @function @ToastDark
  **/
 
-export const ToastDark: FC<IProps> = (props) => {
-  const bgColor = props.bgColor;
-  const autoHideDuration = props.autoHideDuration;
-
+export const ToastDark: FC<ToastDarkProps> = (props) => {
   const SlideTransition = (prop: SlideProps) => {
-    return <Slide {...prop} direction={props.slideDirection} />;
+    return (
+      <Slide
+        {...prop}
+        style={{ marginTop: 0, paddingTop: 0 }}
+        direction={props.SlideDirection}
+      />
+    );
   };
 
   const [state, setState] = useState<{
-    open: boolean;
+    Open: boolean;
     Transition: React.ComponentType<
       TransitionProps & {
         children: React.ReactElement<any, any>;
       }
     >;
   }>({
-    open: false,
+    Open: false,
     Transition: SlideTransition,
   });
 
   const handleClose = () => {
     setState({
       ...state,
-      open: false,
+      Open: false,
     });
-    props.close(false);
-  };
-
-  const handleCloseClick = () => {
-    setTimeout(() => {
-      setState({
-        ...state,
-        open: false,
-      });
-      props.close(false);
-    }, 200);
+    props.Toast.onClose(false);
   };
 
   useEffect(() => {
-    if (state.open === props.open) {
+    if (state.Open === props.Toast.Open) {
       return;
     }
     setState({
       ...state,
-      open: props.open,
+      Open: props.Toast.Open,
     });
-  }, [props.open, state]);
+  }, [props.Toast.Open, state]);
 
-  if (props.type.toLowerCase() === 'error') {
-    return (
-      <Snackbar
-        open={state.open}
-        autoHideDuration={autoHideDuration}
-        onClose={handleClose}
-        TransitionComponent={state.Transition}
-        anchorOrigin={{
-          vertical: props.positionVertical,
-          horizontal: props.positionHorizontal,
-        }}
-      >
-        <div
-          className={`${'text-white flex relative space-x-3 p-3 items-center border-l-[3px] rounded-lg'} ${maxWidth} ${ErrorBorderColor} ${bgColor}`}
-        >
-          <div className="h-full items-start">
-            <XCircleIcon className={`${'h-7 w-7'} ${ErrorIconColor}`} />
-          </div>
-          <h6 className={`${'text-xs font-[350] pr-10'} ${textColor}`}>
-            {props.message}
-          </h6>
-          <div className="h-full absolute block top-3 right-3">
-            <motion.button
-              onClick={handleCloseClick}
-              whileTap={{ scale: 0.8 }}
-              className="bg-[#ffffff1a] hover:bg-[#ffffff1a] cursor-default p-[6px] rounded-md"
-            >
-              <XIcon className="text-white h-[14px] w-[14px] opacity-70" />
-            </motion.button>
-          </div>
-        </div>
-      </Snackbar>
-    );
-  }
-  if (props.type.toLowerCase() === 'success') {
-    return (
-      <Snackbar
-        open={state.open}
-        autoHideDuration={autoHideDuration}
-        onClose={handleClose}
-        TransitionComponent={state.Transition}
-        anchorOrigin={{
-          vertical: props.positionVertical,
-          horizontal: props.positionHorizontal,
-        }}
-      >
-        <div
-          className={`${'text-white flex relative items-center border-l-[3px] space-x-3 p-3 rounded-lg'} ${maxWidth} ${SuccessBorderColor} ${bgColor}`}
-        >
-          <div className="h-full items-start">
-            <CheckCircleIcon className={`${'h-7 w-7'} ${SuccessIconColor}`} />
-          </div>
-          <h6 className={`${'text-xs font-[350] pr-10'} ${textColor}`}>
-            {props.message}
-          </h6>
-          <div className="h-full absolute block top-3 right-3">
-            <motion.button
-              onClick={handleCloseClick}
-              whileTap={{ scale: 0.8 }}
-              className="bg-[#ffffff1a] hover:bg-[#ffffff1a] cursor-default p-[6px] relative block rounded-md"
-            >
-              <XIcon className="text-white h-[14px] w-[14px] opacity-70" />
-            </motion.button>
-          </div>
-        </div>
-      </Snackbar>
-    );
-  }
-  if (props.type.toLowerCase() === 'info') {
-    return (
-      <Snackbar
-        open={state.open}
-        autoHideDuration={autoHideDuration}
-        onClose={handleClose}
-        TransitionComponent={state.Transition}
-        anchorOrigin={{
-          vertical: props.positionVertical,
-          horizontal: props.positionHorizontal,
-        }}
-      >
-        <div
-          className={`${'text-white flex relative space-x-3 p-3 items-center border-l-[3px] rounded-lg'} ${maxWidth} ${InfoBorderColor} ${bgColor}`}
-        >
-          <div className="h-full items-start">
-            <InformationCircleIcon
-              className={`${'h-7 w-7'} ${InfoIconColor}`}
-            />
-          </div>
-          <h6 className={`${'text-xs font-[350] pr-10'} ${textColor}`}>
-            {props.message}
-          </h6>
-          <div className="h-full absolute block top-3 right-3">
-            <motion.button
-              onClick={handleCloseClick}
-              whileTap={{ scale: 0.8 }}
-              className="bg-[#ffffff1a] hover:bg-[#ffffff1a] cursor-default p-[6px] rounded-md"
-            >
-              <XIcon className="text-white h-[14px] w-[14px] opacity-70" />
-            </motion.button>
-          </div>
-        </div>
-      </Snackbar>
-    );
-  }
-  if (props.type.toLowerCase() === 'warning') {
-    return (
-      <Snackbar
-        open={state.open}
-        autoHideDuration={autoHideDuration}
-        onClose={handleClose}
-        TransitionComponent={state.Transition}
-        anchorOrigin={{
-          vertical: props.positionVertical,
-          horizontal: props.positionHorizontal,
-        }}
-      >
-        <div
-          className={`${'text-white flex relative space-x-3 p-3 items-center border-l-[3px] rounded-lg'} ${maxWidth} ${WarningBorderColor} ${bgColor}`}
-        >
-          <div className="h-full items-start">
-            <InformationCircleIcon
-              className={`${'h-7 w-7'} ${WarningIconColor}`}
-            />
-          </div>
-          <h6 className={`${'text-xs font-[350] pr-10'} ${textColor}`}>
-            {props.message}
-          </h6>
-          <div className="h-full absolute block top-3 right-3">
-            <motion.button
-              onClick={handleCloseClick}
-              whileTap={{ scale: 0.8 }}
-              className="bg-[#ffffff1a] hover:bg-[#ffffff1a] cursor-default p-[6px] rounded-md"
-            >
-              <XIcon className="text-white h-[14px] w-[14px] opacity-70" />
-            </motion.button>
-          </div>
-        </div>
-      </Snackbar>
-    );
-  } else {
-    return null;
-  }
+  return (
+    <Fragment>
+      {props.Toast.Type.toLowerCase() === 'error' && (
+        <ToastDarkContent
+          Open={state.Open}
+          Color="bg-dark-red"
+          Icon="/icons/x-circle-thin.svg"
+          MessageTitle={props.Toast.MessageTitle}
+          MessageDescription={props.Toast.MessageDescription}
+          HideDuration={props.HideDuration}
+          onClose={handleClose}
+          Transition={state.Transition}
+          Vertical={props.Vertical}
+          Horizontal={props.Horizontal}
+        />
+      )}
+      {props.Toast.Type.toLowerCase() === 'success' && (
+        <ToastDarkContent
+          Open={state.Open}
+          Color="bg-dark-green"
+          Icon="/icons/check-circle-thin.svg"
+          MessageTitle={props.Toast.MessageTitle}
+          MessageDescription={props.Toast.MessageDescription}
+          HideDuration={props.HideDuration}
+          onClose={handleClose}
+          Transition={state.Transition}
+          Vertical={props.Vertical}
+          Horizontal={props.Horizontal}
+        />
+      )}
+      {props.Toast.Type.toLowerCase() === 'info' && (
+        <ToastDarkContent
+          Open={state.Open}
+          Color="bg-dark-blue"
+          Icon="/icons/alert-circle-thin.svg"
+          MessageTitle={props.Toast.MessageTitle}
+          MessageDescription={props.Toast.MessageDescription}
+          HideDuration={props.HideDuration}
+          onClose={handleClose}
+          Transition={state.Transition}
+          Vertical={props.Vertical}
+          Horizontal={props.Horizontal}
+        />
+      )}
+      {props.Toast.Type.toLowerCase() === 'warning' && (
+        <ToastDarkContent
+          Open={state.Open}
+          Color="bg-dark-orange"
+          Icon="/icons/alert-triangle-thin.svg"
+          MessageTitle={props.Toast.MessageTitle}
+          MessageDescription={props.Toast.MessageDescription}
+          HideDuration={props.HideDuration}
+          onClose={handleClose}
+          Transition={state.Transition}
+          Vertical={props.Vertical}
+          Horizontal={props.Horizontal}
+        />
+      )}
+    </Fragment>
+  );
 };

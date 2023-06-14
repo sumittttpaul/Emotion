@@ -30,9 +30,9 @@ export const DiscoverCatelog: FC<IProps> = (props) => {
         </div>
         <div className="medium-screen:max-w-[35%] small-medium-screen:max-w-[50%] max-w-[65%] h-full w-full z-[2] flex relative justify-start items-center">
           <div className="text-white flex flex-col w-full space-y-2">
-            <h5 className="text-[14px] font-[500] small-screen:text-[30px] w-full">
+            <div className="text-[14px] font-[500] small-screen:text-[30px] w-full">
               Explore our Gallery
-            </h5>
+            </div>
             <h6 className="text-[13px] small-screen:text-[16px] whitespace-normal leading-[18px] font-normal text-left w-full opacity-[0.75]">
               Browse by genre, features, price and more to find your next
               favorite look.

@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
-import { ParentLayout } from '../components/layout/ParentLayout';
-import { ChildLayout } from '../components/layout/ChildLayout';
 import { DiscoverUI } from '../components/ui/DiscoverUI';
 import { getServerSideProps } from '../algorithms/DeviceDetectSSR';
+import { HomeAndGalleryChildLayout } from '../components/layout/HomeAndGallery/HomeAndGallery.ChildLayout';
+import { HomeAndGalleryParentLayout } from '../components/layout/HomeAndGallery/HomeAndGallery.ParentLayout';
 
 /**
  * @Store_Page
@@ -14,9 +14,9 @@ function Store() {
 
 Store.getLayout = function GetLayout(Store: ReactElement) {
   return (
-    <ParentLayout>
-      <ChildLayout>{Store}</ChildLayout>
-    </ParentLayout>
+    <HomeAndGalleryParentLayout>
+      <HomeAndGalleryChildLayout>{Store}</HomeAndGalleryChildLayout>
+    </HomeAndGalleryParentLayout>
   );
 };
 

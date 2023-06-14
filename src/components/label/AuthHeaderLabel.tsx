@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
-import { AuthHeaderLogo } from '../logo/CompanyLogo';
+import React, { FC, ReactNode } from 'react';
 
 interface IProps {
-  label: string;
+  children: ReactNode;
+  ClassName?: string;
 }
 
 /**
@@ -12,9 +12,10 @@ interface IProps {
 
 export const AuthHeaderLabel: FC<IProps> = (props) => {
   return (
-    <>
-      <AuthHeaderLogo />
-      <h6 className="font-medium text-center text-[16px]">{props.label}</h6>
-    </>
+    <h5
+      className={`${props.ClassName} font-[700] line-clamp-2 text-left w-full text-white text-[25px] md:text-[30px]`}
+    >
+      {props.children}
+    </h5>
   );
 };

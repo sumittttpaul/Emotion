@@ -33,13 +33,13 @@ export const RadioGroupDark: FC<IProps> = (props) => {
     return (
       <RadioGroup
         value={props.value}
-        className="custom-webkit-focus"
+        className="custom-webkit-focus w-full flex"
         onChange={props.onChange}
       >
-        <RadioGroup.Label className="sr-only custom-webkit-focus">
+        <RadioGroup.Label className="sr-only w-full flex custom-webkit-focus">
           Radio Group Dark
         </RadioGroup.Label>
-        <div className="space-x-1 mx-auto w-full flex custom-webkit-focus">
+        <div className="space-x-1 w-full flex custom-webkit-focus">
           {props.content.map((content,i) => (
             <RadioGroup.Option
               key={i}
@@ -51,7 +51,7 @@ export const RadioGroupDark: FC<IProps> = (props) => {
                     ? 'bg-[#0f0f0f] text-black border-0'
                     : 'bg-[#00000013] text-black'
                 }
-                  relative rounded-md px-3 xs-300:px-4 xs-350:px-3 py-2.5 w-full cursor-pointer custom-webkit-focus flex outline-none transition-all ease-in-out duration-300`
+                  relative rounded-lg px-3 py-2.5 w-full cursor-pointer custom-webkit-focus flex outline-none transition-all ease-in-out duration-300`
               }
             >
               {({ active, checked }) => (
@@ -61,7 +61,7 @@ export const RadioGroupDark: FC<IProps> = (props) => {
                       <div className="text-sm w-full">
                         <RadioGroup.Label
                           as="p"
-                          className={`text-[12.5px] text-center ${
+                          className={`text-sm text-center ${
                             checked
                               ? 'text-white font-normal'
                               : 'text-black font-medium'
@@ -89,13 +89,13 @@ export const RadioGroupDark: FC<IProps> = (props) => {
     return (
       <RadioGroup
         value={props.value}
-        className="custom-webkit-focus"
+        className="custom-webkit-focus w-full flex max-w-[300px] mx-auto"
         onChange={props.onChange}
       >
-        <RadioGroup.Label className="sr-only custom-webkit-focus">
+        <RadioGroup.Label className="sr-only flex w-full custom-webkit-focus">
           Radio Group Dark
         </RadioGroup.Label>
-        <div className="space-x-1 mx-auto w-full flex custom-webkit-focus">
+        <div className="space-x-2 mx-auto w-full flex custom-webkit-focus">
           {props.content.map((content,i) => (
             <RadioGroup.Option
               key={i}
@@ -104,10 +104,10 @@ export const RadioGroupDark: FC<IProps> = (props) => {
                 `${active ? 'ring-0 ring-offset-0' : ''}
                 ${
                   checked
-                    ? 'bg-[#0f0f0f] text-white border-0'
-                    : 'bg-[#191919] text-white'
+                    ? 'bg-[#0f0f0f] text-white'
+                    : 'bg-[#191919] text-white transition-colors hover:bg-[#101010]'
                 }
-                  relative rounded-md px-3 xs-300:px-4 xs-350:px-3 py-2.5 w-full cursor-pointer custom-webkit-focus flex outline-none transition-all ease-in`
+                  relative rounded-lg border border-solid border-white/10 px-3 py-2.5 w-full cursor-default custom-webkit-focus flex outline-none`
               }
             >
               {({ active, checked }) => (
@@ -117,7 +117,7 @@ export const RadioGroupDark: FC<IProps> = (props) => {
                       <div className="text-sm w-full">
                         <RadioGroup.Label
                           as="p"
-                          className={`font-normal text-[12.5px] text-center ${
+                          className={`font-normal text-sm text-center ${
                             checked ? 'text-white' : 'text-[#ffffffb3]'
                           }`}
                         >
@@ -126,7 +126,7 @@ export const RadioGroupDark: FC<IProps> = (props) => {
                       </div>
                     </div>
                     {checked && (
-                      <div className="flex-shrink-0 custom-webkit-focus text-white pl-2 -mr-1">
+                      <div className="flex-shrink-0 custom-webkit-focus text-white pl-2">
                         <CheckIcon className="w-4 h-4" />
                       </div>
                     )}

@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
-import { ParentLayout } from '../../components/layout/ParentLayout';
-import { ChildLayout } from '../../components/layout/ChildLayout';
 import { CartUI } from '../../components/ui/CartUI';
 import { getServerSideProps } from '../../algorithms/DeviceDetectSSR';
+import { HomeAndGalleryChildLayout } from '../../components/layout/HomeAndGallery/HomeAndGallery.ChildLayout';
+import { HomeAndGalleryParentLayout } from '../../components/layout/HomeAndGallery/HomeAndGallery.ParentLayout';
 
 /**
  * @Cart_Page
@@ -13,9 +13,9 @@ function Cart() {
 
 Cart.getLayout = function GetLayout(Cart: ReactElement) {
   return (
-    <ParentLayout>
-      <ChildLayout>{Cart}</ChildLayout>
-    </ParentLayout>
+    <HomeAndGalleryParentLayout>
+      <HomeAndGalleryChildLayout>{Cart}</HomeAndGalleryChildLayout>
+    </HomeAndGalleryParentLayout>
   );
 };
 

@@ -12,8 +12,10 @@ import dynamic from 'next/dynamic';
 import { IconButton } from '@mui/material';
 import { SearchContent } from '../../../contents/store/search/Store.Search';
 
-const HeaderSearchButtonMenu = dynamic<HeaderSearchButtonMenuProps>(() =>
-  import('./Header.SearchButton.Menu').then((x) => x.HeaderSearchButtonMenu)
+const HeaderSearchButtonMenu = dynamic<HeaderSearchButtonMenuProps>(
+  () =>
+    import('./Header.SearchButton.Menu').then((x) => x.HeaderSearchButtonMenu),
+  { ssr: false }
 );
 
 interface IProps {}
@@ -148,7 +150,7 @@ export const HeaderSearchButton: FC<IProps> = (props) => {
         )}
       </div>
       <HeaderSearchButtonMenu
-      Search={Search}
+        Search={Search}
         SearchRef={SearchRef}
         ContainerRef={ContainerRef}
         SearchMenu={SearchMenuOpen}

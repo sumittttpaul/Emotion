@@ -4,7 +4,6 @@ import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
 import Image from 'next/legacy/image';
 import { IconNumberTextFieldProps } from './AllTextFieldProps';
-import { Square_BlurDataURL } from '../loader/BlurDataURL';
 
 const CustomTextField = styled((props: TextFieldProps) => (
   <TextField
@@ -33,13 +32,13 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
   '& .MuiFilledInput-root': {
     height: 63,
-    borderRadius: 6,
-    fontWeight: 300,
-    fontSize: '13.5px',
-    letterSpacing: 0.5,
-    fontFamily: ['Poppins', 'sans-serif'].join(','),
+    borderRadius: 12,
+    fontWeight: 400,
+    fontSize: '14px',
+    letterSpacing: '0.025em',
+    // fontFamily: ['Poppins', 'sans-serif'].join(','),
     color: '#ffffff',
-    border: '1px solid #ffffff3b',
+    border: '1px solid #ffffff50',
     overflow: 'hidden',
     paddingLeft: 54,
     paddingTop: 4,
@@ -64,8 +63,11 @@ const CustomTextField = styled((props: TextFieldProps) => (
       boxShadow: `${alpha('#FF2020', 0.25)} 0 0 0 0px`,
       borderColor: '#CE0000',
       color: '#ffffff',
+      '&:before': {
+        borderBottom: 0,
+      },
       '&:after': {
-        borderBottom: 'none',
+        borderBottom: 0,
       },
     },
   },
@@ -81,7 +83,7 @@ const IconNumberTextFieldDark: FC<IconNumberTextFieldProps> = (props) => {
     <div className="flex flex-col w-full">
       <CustomTextField
         id={props.id}
-        className="w-full z-10"
+        className="w-full"
         label={props.placeholder}
         onChange={props.onChange}
         onKeyUp={props.onkeyUp}
@@ -107,7 +109,7 @@ const IconNumberTextFieldDark: FC<IconNumberTextFieldProps> = (props) => {
         <Image
           height={30}
           width={30}
-          className="opacity-[0.4]"
+          className="opacity-50"
           src={props.icon}
           alt=""
         />

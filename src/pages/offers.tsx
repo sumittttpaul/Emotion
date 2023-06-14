@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import { ParentLayout } from '../components/layout/ParentLayout';
-import { ChildLayout } from '../components/layout/ChildLayout';
+import { HomeAndGalleryParentLayout } from '../components/layout/HomeAndGallery/HomeAndGallery.ParentLayout';
+import { HomeAndGalleryChildLayout } from '../components/layout/HomeAndGallery/HomeAndGallery.ChildLayout';
 import { OffersUI } from '../components/ui/OffersUI';
 import { getServerSideProps } from '../algorithms/DeviceDetectSSR';
 
@@ -14,9 +14,9 @@ function Offers() {
 
 Offers.getLayout = function GetLayout(Offers: ReactElement) {
   return (
-    <ParentLayout>
-      <ChildLayout>{Offers}</ChildLayout>
-    </ParentLayout>
+    <HomeAndGalleryParentLayout>
+      <HomeAndGalleryChildLayout>{Offers}</HomeAndGalleryChildLayout>
+    </HomeAndGalleryParentLayout>
   );
 };
 

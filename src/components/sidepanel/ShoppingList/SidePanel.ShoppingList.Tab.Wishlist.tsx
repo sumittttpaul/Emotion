@@ -5,8 +5,10 @@ import React, { FC, Fragment, MouseEvent, useCallback, useState } from 'react';
 import { StoreWishlistContentProps } from '../../../contents/store/Store.ShoppingList';
 import { ProductContextMenuProps } from '../../button/ProductContextMenu';
 
-const ProductContextMenu = dynamic<ProductContextMenuProps>(() =>
-  import('../../button/ProductContextMenu').then((x) => x.ProductContextMenu)
+const ProductContextMenu = dynamic<ProductContextMenuProps>(
+  () =>
+    import('../../button/ProductContextMenu').then((x) => x.ProductContextMenu),
+  { ssr: false }
 );
 
 interface IProps {

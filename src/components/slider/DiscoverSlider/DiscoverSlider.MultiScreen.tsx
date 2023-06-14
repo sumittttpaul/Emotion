@@ -19,7 +19,8 @@ import { HeartIcon as HeartIconOutline } from '@heroicons/react/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid';
 import { ProductContextMenu } from '../../button/ProductContextMenu';
 
-const HeadingStyle = 'text-[14px] font-[500] tracking-wide text-left w-full truncate';
+const HeadingStyle =
+  'text-[14px] font-[500] tracking-wide text-left w-full truncate';
 const DescriptionStyle =
   'text-[13px] font-normal text-left w-full opacity-[0.75] leading-[18px] line-clamp-2';
 const DiscountStyle =
@@ -159,7 +160,7 @@ export const DiscoverSliderBrowser: FC<DiscoverSliderBrowserProps> = (
                   />
                 </div>
                 <div className="flex flex-col w-full">
-                  <h5 className={HeadingStyle}>{value.Heading}</h5>
+                  <div className={HeadingStyle}>{value.Heading}</div>
                   <h6 className={DescriptionStyle}>{value.Description}</h6>
                   <div className="block h-5 w-full" />
                   <div className="text-xs flex items-center space-x-2 pt-1">

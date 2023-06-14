@@ -12,7 +12,8 @@ const HeaderNotificationButtonMenu = dynamic<HeaderNotificationButtonMenuProps>(
   () =>
     import('./Header.NotificationButton.Menu').then(
       (x) => x.HeaderNotificationButtonMenu
-    )
+    ),
+  { ssr: false }
 );
 
 interface IProps {}

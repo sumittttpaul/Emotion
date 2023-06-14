@@ -30,7 +30,7 @@ const LargeButtonBlue: FC<LargeButtonBlueProps> = (props) => {
       >
         {props.content}
       </Button>
-      {props.Loading ? (
+      {props.Loading && (
         <div className="absolute h-full w-full top-0 bg-[#104A82] transition-all ease-in rounded-md flex items-center justify-center">
           <CircularProgress
             className="text-white opacity-75"
@@ -38,8 +38,6 @@ const LargeButtonBlue: FC<LargeButtonBlueProps> = (props) => {
             thickness={3}
           />
         </div>
-      ) : (
-        <></>
       )}
     </div>
   );

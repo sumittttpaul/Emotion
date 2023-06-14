@@ -7,8 +7,9 @@ import { HeaderUserButton } from '../button/header/Header.UserButton';
 import { HeaderNotificationButton } from '../button/header/Header.NotificationButton';
 import { useHomePageState } from '../../providers/state/HomePageState';
 
-const HeaderNavMenu = dynamic<HeaderNavMenuProps>(() =>
-  import('./assets/Header.Nav.Menu').then((x) => x.HeaderNavMenu)
+const HeaderNavMenu = dynamic<HeaderNavMenuProps>(
+  () => import('./assets/Header.Nav.Menu').then((x) => x.HeaderNavMenu),
+  { ssr: false }
 );
 
 interface HeaderProps {}

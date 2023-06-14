@@ -1,6 +1,13 @@
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import React, { FC, Fragment, useCallback, MouseEvent, useState, ReactNode } from 'react';
+import React, {
+  FC,
+  Fragment,
+  useCallback,
+  MouseEvent,
+  useState,
+  ReactNode,
+} from 'react';
 import { Button } from '@mui/material';
 import { DiscoverBannerLightingDealContentProps } from '../../contents/store/discover/Store.Discover.Banner';
 import { ChevronRightIcon } from '@heroicons/react/outline';
@@ -62,9 +69,7 @@ export const DiscoverBannerDeal: FC<IProps> = (props) => {
       <div className="relative w-full items-center space-x-5 flex bg-white/5 rounded-xl overflow-hidden">
         {/* Title */}
         <div className="flex flex-col space-y-4 text-white min-w-[300px] max-w-[300px] mx-auto w-full cursor-default py-10 pl-10">
-          <div className="flex justify-start">
-            {props.Badge}
-          </div>
+          <div className="flex justify-start">{props.Badge}</div>
           <div className="flex flex-col w-full space-y-2">
             <div className="text-[30px] text-white tracking-wide font-[500] leading-[35px]">
               {props.Label}
@@ -130,9 +135,9 @@ export const DiscoverBannerDeal: FC<IProps> = (props) => {
                       alt=""
                     />
                   </div>
-                  <h5 className="mt-2.5 text-[14px] font-[500] tracking-wide text-left w-full truncate">
+                  <div className="mt-2.5 text-[14px] font-[500] tracking-wide text-left w-full truncate">
                     {value.Heading}
-                  </h5>
+                  </div>
                   <h6 className="mt-1 text-[13px] font-normal text-left w-full opacity-[0.75] leading-[18px] line-clamp-2">
                     {value.Description}
                   </h6>

@@ -49,17 +49,3 @@ export const NoAccessToNullPages = (gssp: any) => {
     };
   };
 };
-
-/**
- * @Access_Denied_For_Index_Pages
- **/
-export const NoAccessToIndexPages = (gssp: any) => {
-  return async () => {
-    return {
-      redirect: {
-        destination: '/home',
-        statusCode: 302,
-      },
-    };
-  };
-};

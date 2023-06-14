@@ -307,7 +307,7 @@ export const AuthError = (Code: string) => {
       return 'Proof of ownership of a second factor is required to complete sign-in.';
 
     case 'auth/account-exists-with-different-credential':
-      return 'Account already exists with the same email address but different sign-in methods';
+      return 'Account already exists with the different user';
 
     case 'auth/network-request-failed':
       return 'Network AuthError (such as timeout, interrupted connection or unreachable host) has occurred.';
