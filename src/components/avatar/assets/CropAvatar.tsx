@@ -235,7 +235,7 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
   };
 
   return (
-    <div className="bg-secondary-theme relative box-border flex flex-col overflow-hidden overscroll-none items-center h-full w-full">
+    <div className="bg-secondary-theme CropAvatar-container relative box-border flex flex-col overflow-hidden overscroll-none items-center h-full w-full">
       <div className="z-[1] -mb-[160px] xs-330:-mb-[126px] xs-435:-mb-[126px] w-full flex flex-col">
         <CropAvatarTop
           heading="Crop & Rotate"

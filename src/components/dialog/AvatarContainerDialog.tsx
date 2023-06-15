@@ -14,9 +14,6 @@ interface IProps {
  **/
 
 const AvatarContainerDialog: FC<IProps> = (props) => {
-  const classes =
-    'box-border absolute sm:relative h-full w-full transform overflow-hidden sm:rounded-xl bg-black text-center align-middle shadow-xl transition-all ease-in';
-
   return (
     <Transition appear show={props.show} as={Fragment}>
       <Dialog as="div" className="relative z-20" onClose={props.close}>
@@ -44,7 +41,11 @@ const AvatarContainerDialog: FC<IProps> = (props) => {
               leaveTo="opacity-0 scale-90"
             >
               <Dialog.Panel className="absolute h-full w-full sm:relative sm:h-suto sm:w-auto">
-                <div className={`${classes} ${props.className}`}>
+                <div
+                  className={`${'box-border absolute sm:relative h-full w-full transform overflow-hidden sm:rounded-xl bg-secondary-theme text-center align-middle shadow-xl transition-all ease-in'} ${
+                    props.className
+                  }`}
+                >
                   {props.children}
                 </div>
               </Dialog.Panel>

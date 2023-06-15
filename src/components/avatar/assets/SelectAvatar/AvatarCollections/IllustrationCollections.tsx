@@ -178,7 +178,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
               props.show();
               props.backBool(true);
             }}
-            className="p-0 inline-block w-[130px] cursor-default rounded-md"
+            className="p-0 inline-block w-[150px] cursor-default rounded-md"
             sx={{
               '.MuiTouchRipple-child': {
                 backgroundColor: '#ffffff80 !important',
@@ -203,7 +203,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
         variants={LeftVariants}
         initial={{ x: -50 }}
         animate={LeftAnimate}
-        className="bg-black/80 backdrop-blur-lg hover:bg-black/80 group cursor-default rounded-[50%] absolute h-9 w-9 p-0 left-3 z-[1] top-[calc(50%-20px)] Custom-DropShadow"
+        className="bg-black/80 backdrop-blur-lg hover:bg-black/80 group cursor-default rounded-[50%] absolute h-9 w-9 p-0 left-3 z-[1] top-[calc(50%-15px)] Custom-DropShadow"
       >
         <div className="h-full w-full flex items-center justify-center">
           <ChevronLeftIcon className="h-5 group-hover:h-6" />
@@ -215,7 +215,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
         variants={RightVariants}
         initial={{ x: 50 }}
         animate={RightAnimate}
-        className="bg-black/80 backdrop-blur-lg hover:bg-black/80 group cursor-default rounded-[50%] absolute h-9 w-9 p-0 right-3 z-[1] top-[calc(50%-20px)] Custom-DropShadow"
+        className="bg-black/80 backdrop-blur-lg hover:bg-black/80 group cursor-default rounded-[50%] absolute h-9 w-9 p-0 right-3 z-[1] top-[calc(50%-15px)] Custom-DropShadow"
       >
         <div className="h-full w-full flex items-center justify-center">
           <ChevronRightIcon className="h-5 group-hover:h-6" />

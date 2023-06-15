@@ -30,7 +30,7 @@ interface IProps {
 
 const ShowAvatar: FC<IProps> = (props) => {
   return (
-    <div className="bg-secondary-theme text-white flex flex-col w-full h-full scroll-smooth  overflow-y-auto overflow-x-hidden items-center">
+    <div className="bg-secondary-theme ShowAvatar-container text-white flex flex-col w-full h-full scroll-smooth overflow-y-auto overflow-x-hidden items-center">
       {/* Header */}
       <div className="flex w-full z-10 justify-between items-center p-1">
         <TooltipDark placement="bottom" title="Close profile picture" arrow>

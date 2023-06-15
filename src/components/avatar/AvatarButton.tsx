@@ -52,9 +52,9 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
       : '/images/default/user.png'
   );
   const [CropAvatarURL, setCropAvatarURL] = useState('');
-  const [AvatarContainer, setAvatarContainer] = useState(
-    'ShowAvatar-container'
-  );
+  const [AvatarContainer, setAvatarContainer] = useState<
+    'ShowAvatar-container' | 'SelectAvatar-container'
+  >('ShowAvatar-container');
   const [Collection, setCollection] = useState(Avatar.Animal);
   const [Collectionheading, setCollectionHeading] = useState('');
   const [CollectionBackBool, setCollectionBackBool] = useState(false);
@@ -100,19 +100,6 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
     setAvatarContainer('ShowAvatar-container');
     setAvatarScreen('show-avatar');
   };
-  // const BackToAvatarCollectionScreen = () => {
-  //   if (CollectionBackBool === true) {
-  //     setAvatarContainer('SelectAvatar-container');
-  //     setAvatarScreen1(true);
-  //     setAvatarScreen2(false);
-  //     // select
-  //   } else {
-  //     setAvatarContainer('SelectAvatar-container');
-  //     setAvatarScreen1(false);
-  //     setAvatarScreen2(true);
-  //     // collection
-  //   }
-  // };
 
   // Handle Image
   const ChangeImageDisabled = (value: boolean) => {
@@ -257,7 +244,9 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
         BackToShowAvatar={BackToShowAvatarScreenWithPhotoURLCondition}
         BackToSelectAvatar={SelectAvatarScreen}
         BackToAvatarCollection={
-          CollectionBackBool === true ? SelectAvatarScreen : AvatarCollectionScreen
+          CollectionBackBool === true
+            ? SelectAvatarScreen
+            : AvatarCollectionScreen
         }
         GetImageURL={GetImageURL}
         GetCropImageURL={GetCropImageURL}

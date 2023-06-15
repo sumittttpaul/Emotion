@@ -39,7 +39,7 @@ const SelectAvatar: FC<IProps> = (props) => {
   };
 
   return (
-    <div className=" bg-secondary-theme flex flex-col scroll-smooth overflow-auto items-center h-full w-full">
+    <div className=" bg-secondary-theme SelectAvatar-container flex flex-col scroll-smooth overflow-auto items-center h-full w-full">
       {/* Header */}
       <div className="flex w-full z-10 justify-between items-center p-1">
         <TooltipDark placement="bottom" title="Back" arrow>

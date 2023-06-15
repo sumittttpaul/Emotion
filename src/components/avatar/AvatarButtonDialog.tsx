@@ -10,7 +10,7 @@ import { MoreInfoDialog } from './assets/MoreInfoDialog';
 export interface AvatarButtonDialogProps {
   AvatarDialog: boolean;
   setAvatarDialog: () => void;
-  AvatarContainer: string;
+  AvatarContainer: 'ShowAvatar-container' | 'SelectAvatar-container';
   AvatarScreen:
     | 'show-avatar'
     | 'select-avatar'
