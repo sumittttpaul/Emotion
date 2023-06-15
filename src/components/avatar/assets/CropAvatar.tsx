@@ -236,9 +236,9 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
 
   return (
     <div className="bg-secondary-theme CropAvatar-container relative box-border flex flex-col overflow-hidden overscroll-none items-center h-full w-full">
-      <div className="z-[1] -mb-[160px] xs-330:-mb-[126px] xs-435:-mb-[126px] w-full flex flex-col">
+      <div className="z-[1] w-full h-[126px] flex flex-col">
         <CropAvatarTop
-          heading="Crop & Rotate"
+          heading="Edit profile picture"
           back={back}
           moreInfo={props.moreInfo}
         />
@@ -265,6 +265,7 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
           aspectRatio: 1 / 1,
           movable: false,
           // previewClassName: 'CropAvatar-Stencil-preview',
+          overlayClassName: 'CropAvatar-stencil-overlay',
           handlerClassNames: {
             default: 'CropAvatar-Stencil-handler',
           },
@@ -283,10 +284,10 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
           },
         }}
         className={
-          'cropper circle-stencil cursor-default active:cursor-grab CropAvatar-background flex relative w-full h-full px-7 sm:mx-[65px] pb-[242px] pt-[160px] xs-435:pt-[126px]'
+          'cropper circle-stencil px-5 -mt-[126px] -mb-[228px] pt-[132px] py-[234px] cursor-default active:cursor-grab CropAvatar-background flex relative w-full h-full'
         }
       />
-      <div className="z-[1] -mt-[242px] flex flex-col w-full">
+      <div className="z-[1] flex flex-col h-[228px] w-full">
         <CropAvatarSlider
           Active={Active}
           ZoomValue={ZoomValue}

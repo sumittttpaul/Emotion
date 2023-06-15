@@ -2,7 +2,7 @@ import React, { FC, SyntheticEvent, useState, MouseEvent } from 'react';
 import { IconButton, useTheme } from '@mui/material';
 import {
   SparklesIcon,
-  DesktopComputerIcon,
+  DeviceTabletIcon,
   DotsVerticalIcon,
   ArrowLeftIcon,
 } from '@heroicons/react/outline';
@@ -80,12 +80,12 @@ const SelectAvatar: FC<IProps> = (props) => {
           aria-label="styled tabs example"
         >
           <SelectAvatarTabItem
-            icon={<SparklesIcon className="h-5 opacity-70" />}
+            icon={<SparklesIcon className="h-5" />}
             label="From Avatars"
           />
           <SelectAvatarTabItem
-            icon={<DesktopComputerIcon className="h-5 opacity-70" />}
-            label="From Computer"
+            icon={<DeviceTabletIcon className="h-5" />}
+            label="From Device"
           />
         </SelectAvatarTabs>
         {/* Tab Content */}

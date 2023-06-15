@@ -14,9 +14,9 @@ interface StyledTabProps {
 const StyledTab = styled((props: StyledTabProps) => <Tab {...props} />)(
   ({ theme }) => ({
     textTransform: 'none',
-    fontWeight: 400,
+    fontWeight: 500,
     fontSize: 14,
-    color: '#ffffff75',
+    color: '#ffffff90',
     '&.Mui-selected': {
       color: 'rgb(56 189 248)',
     },

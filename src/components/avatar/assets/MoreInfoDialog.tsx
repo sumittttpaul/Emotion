@@ -23,7 +23,7 @@ export const MoreInfoDialog: FC<IProps> = (props) => {
       PaperProps={{
         elevation: 0,
         sx: {
-          background: '#ffffff10',
+          background: '#50505090',
           borderRadius: 2,
           minWidth: 200,
           overflow: 'visible',

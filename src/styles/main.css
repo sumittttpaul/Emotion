@@ -153,13 +153,13 @@
   transition-duration: 300ms;
 }
 
-/* .CropAvatar-Stencil-preview {
+.CropAvatar-Stencil-preview {
   border: dashed 2px #ffffff1a;
-} */
+}
 
 .CropAvatar-Stencil-handler {
   display: block;
-  background: white;
+  background: #ffffff;
   border-radius: 50%;
   height: 20px !important;
   width: 20px !important;
@@ -171,6 +171,10 @@
 
 .CropAvatar-background {
   background: #202020 !important;
+}
+
+.CropAvatar-stencil-overlay {
+  box-shadow: 0 0 0 1000px rgba(32, 32, 32, 0.75) !important;
 }
 
 .scroll {
@@ -246,6 +250,7 @@
     max-width: 370px;
     max-height: 560px;
     width: calc(100vw - 100px);
+    transition: all 0.2s ease-out;
   }
 
   .SelectAvatar-container {
@@ -253,6 +258,7 @@
     max-width: 800px;
     max-height: 800px;
     width: calc(100vw - 100px);
+    transition: all 0.25s ease-in;
   }
 
   .CropAvatar-container {
@@ -260,5 +266,6 @@
     max-width: 800px;
     max-height: 800px;
     width: calc(100vw - 100px);
+    transition: all 0.25s ease-in;
   }
 }
