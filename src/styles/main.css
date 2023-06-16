@@ -244,6 +244,23 @@
   background: #ffffff !important;
 }
 
+.opacity-gradient {
+  -webkit-mask-image: linear-gradient(
+    to left,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to left,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+}
+
 @media screen and (min-width: 640px) {
   .ShowAvatar-container {
     height: calc(100vh - 100px);

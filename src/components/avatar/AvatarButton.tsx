@@ -75,7 +75,7 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
     setTimeout(() => {
       setAvatarContainer('ShowAvatar-container');
       setAvatarScreen('show-avatar');
-    }, 200);
+    }, 500);
   };
 
   // Avatar Screens

@@ -130,6 +130,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
       }
     }
   };
+
   useEffect(() => {
     const slider = sliderRef.current;
     if (slider) {
@@ -140,7 +141,8 @@ export const IllustrationCollections: FC<IProps> = (props) => {
         slider.removeEventListener('scroll', ListenToIllustrationScroll);
       }
     };
-  });
+  }, [sliderRef]);
+
   useEffect(() => {
     const slider = sliderRef.current;
     if (slider) {
@@ -165,7 +167,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
         hideScrollbars={true}
         component="ul"
         innerRef={sliderRef}
-        className="px-3 relative box-border h-full w-full space-x-[6px] whitespace-nowrap scroll-smooth overflow-x-scroll scroll scrollbar-hide"
+        className="px-3 relative box-border h-full w-full space-x-[6px] whitespace-nowrap scroll-smooth scrollbar-hide"
       >
         {Illustrations.map((illustrationURL) => (
           <Button

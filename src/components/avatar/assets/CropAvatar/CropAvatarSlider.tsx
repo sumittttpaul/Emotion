@@ -1,6 +1,7 @@
 import { ZoomOutIcon, ZoomInIcon } from '@heroicons/react/solid';
 import { IconButton, Slider } from '@mui/material';
 import React, { FC } from 'react';
+import { RotateSlider } from '../../../slider/RotateSlider';
 
 interface IProps {
   Active: boolean;

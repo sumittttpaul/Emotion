@@ -92,7 +92,7 @@ export const HorizontalNavBar: FC<IProps> = (props) => {
           <div
             key={idx}
             id={`horizontal-navbar-button-id-${idx}`}
-            className="py-3 px-5 cursor-default"
+            className="py-3 cursor-default"
             onClick={() => onClick(idx)}
           >
             {value.name}
