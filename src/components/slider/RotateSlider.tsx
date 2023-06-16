@@ -49,9 +49,8 @@ export const RotateSlider: FC<IProps> = (props) => {
       } else if (slider.scrollLeft < 531) {
         const getDegreeValue =
           44 - parseInt(ScrollToDegree.toString().split('.')[0]);
-        const CovertToMinus = -getDegreeValue;
         setDegree(getDegreeValue.toString().split('.')[0]);
-        props.getValue(CovertToMinus.toString().split('.')[0]);
+        props.getValue('-' + getDegreeValue.toString().split('.')[0]);
         setDirection('left');
       } else if (slider.scrollLeft > 557) {
         const getDegreeValue = Math.abs(
