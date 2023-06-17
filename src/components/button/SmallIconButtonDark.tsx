@@ -1,9 +1,10 @@
 import { Button } from '@mui/material';
 import React, { FC, ReactEventHandler } from 'react';
-import Image from 'next/legacy/image';
-import { Square_BlurDataURL } from '../loader/BlurDataURL';
+import Image from 'next/image';
+import { TooltipDark } from '../tooltip/TooltipDark';
 
 interface IProps {
+  tooltip?: string;
   content: string;
   iconURL: string;
   onClick: ReactEventHandler;
@@ -16,33 +17,27 @@ interface IProps {
 
 export const SmallIconButtonDark: FC<IProps> = (props) => {
   return (
-    <Button
-      aria-label="small-icon-button"
-      disableFocusRipple
-      onClick={props.onClick}
-      className="button-text-lower text-white p-2 rounded-full outline-none hover:border-[#ffffff33]"
-      sx={{
-        border: '1px solid #ffffff00',
-        '.MuiTouchRipple-child': {
-          backgroundColor: '#ffffff80 !important',
-        },
-      }}
-    >
-      <div className="flex space-x-2 items-center opacity-90">
-        <Image
-          layout="fixed"
-          height={15}
-          width={15}
-          src={props.iconURL}
-          alt=""
-          priority
-          placeholder="blur"
-          blurDataURL={Square_BlurDataURL}
-        />
-        <h6 className="text-xs font-normal font-sans whitespace-nowrap hidden xs-435:block">
-          {props.content}
-        </h6>
-      </div>
-    </Button>
+    <TooltipDark title={props.tooltip} placement="bottom" arrow>
+      <Button
+        aria-label="small-icon-button"
+        disableFocusRipple
+        onClick={props.onClick}
+        className="button-text-lower h-9 py-2 px-3 rounded-md cursor-default hover:bg-white/10"
+        sx={{
+          '.MuiTouchRipple-child': {
+            backgroundColor: '#ffffff80 !important',
+          },
+        }}
+      >
+        <div className="flex sm:space-x-2 items-center">
+          <div className="flex min-w-[18px] max-w-[18px] min-h-[18px] max-h-[18px]">
+            <Image height={18} width={18} src={props.iconURL} alt="" />
+          </div>
+          <h6 className="text-[13px] text-white font-normal font-sans whitespace-nowrap hidden md:block">
+            {props.content}
+          </h6>
+        </div>
+      </Button>
+    </TooltipDark>
   );
 };

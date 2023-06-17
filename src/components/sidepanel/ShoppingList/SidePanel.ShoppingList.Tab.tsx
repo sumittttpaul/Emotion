@@ -38,12 +38,10 @@ export const SidePanelShoppingListTab: FC<IProps> = (props) => {
 
   const handleWishlistClick = () => {
     setTabValue(0);
-    // props.TabClick(true);
   };
 
   const handleCartClick = () => {
     setTabValue(1);
-    // props.TabClick(false);
   };
 
   return (

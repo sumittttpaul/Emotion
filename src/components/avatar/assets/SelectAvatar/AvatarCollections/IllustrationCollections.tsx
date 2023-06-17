@@ -75,18 +75,22 @@ const blurDataURL = Poster_BlurDataURL;
 const LeftVariants = {
   open: {
     x: 0,
+    opacity: 1,
   },
   closed: {
-    x: -50,
+    x: -20,
+    opacity: 0,
   },
 };
 
 const RightVariants = {
   open: {
     x: 0,
+    opacity: 1,
   },
   closed: {
-    x: 50,
+    x: 20,
+    opacity: 0,
   },
 };
 
@@ -200,11 +204,12 @@ export const IllustrationCollections: FC<IProps> = (props) => {
         ))}
       </ScrollContainer>
       <m.button
+        initial="open"
         onClick={() => slideLeft()}
         whileTap={{ scale: 0.9 }}
         variants={LeftVariants}
-        initial={{ x: -50 }}
         animate={LeftAnimate}
+        transition={{ duration: 0.15 }}
         className="bg-black/80 backdrop-blur-lg hover:bg-black/80 group cursor-default rounded-[50%] absolute h-9 w-9 p-0 left-3 z-[1] top-[calc(50%-15px)] Custom-DropShadow"
       >
         <div className="h-full w-full flex items-center justify-center">
@@ -212,11 +217,12 @@ export const IllustrationCollections: FC<IProps> = (props) => {
         </div>
       </m.button>
       <m.button
+        initial="open"
         onClick={() => slideRight()}
         whileTap={{ scale: 0.9 }}
         variants={RightVariants}
-        initial={{ x: 50 }}
         animate={RightAnimate}
+        transition={{ duration: 0.15 }}
         className="bg-black/80 backdrop-blur-lg hover:bg-black/80 group cursor-default rounded-[50%] absolute h-9 w-9 p-0 right-3 z-[1] top-[calc(50%-15px)] Custom-DropShadow"
       >
         <div className="h-full w-full flex items-center justify-center">

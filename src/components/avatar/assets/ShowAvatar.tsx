@@ -2,6 +2,7 @@ import React, { FC, MouseEvent } from 'react';
 import Image from 'next/image';
 import { Button, IconButton } from '@mui/material';
 import {
+  CameraIcon,
   DotsVerticalIcon,
   PencilIcon,
   TrashIcon,
@@ -70,7 +71,7 @@ const ShowAvatar: FC<IProps> = (props) => {
           you&apos;re signed in to your account
         </h6>
         {/* Info Heading */}
-        <div className="flex w-full space-x-2 pt-2 pb-3 items-center">
+        <div className="flex w-full space-x-2 pt-2 pb-4 items-center">
           <UsersIcon className="h-5 text-white opacity-75" />
           <h6 className="text-sm text-white/75 text-left w-full">
             Visible across Emotion services.
@@ -108,27 +109,35 @@ const ShowAvatar: FC<IProps> = (props) => {
           }}
         >
           <div className="flex space-x-2 items-center justify-center">
-            <PencilIcon className="h-4" />
-            <h6 className="text-[13px]">Change</h6>
+            {!props.removedisabled ? (
+              <PencilIcon className="h-4" />
+            ) : (
+              <CameraIcon className="h-4" />
+            )}
+            <h6 className="text-[13.5px] block whitespace-nowrap">
+              {!props.removedisabled ? 'Change' : 'Add profile picture'}
+            </h6>
           </div>
         </Button>
-        <Button
-          aria-label="remove-image-button"
-          disableFocusRipple
-          onClick={props.remove}
-          disabled={props.removedisabled}
-          className="disabled:opacity-50 disabled:cursor-not-allowed cursor-default button-text-lower py-2 disabled:text-sky-400 text-sky-400 w-full rounded-lg border border-solid border-white/30 hover:bg-transparent active:bg-transparent"
-          sx={{
-            '.MuiTouchRipple-child': {
-              backgroundColor: '#ffffff80 !important',
-            },
-          }}
-        >
-          <div className="flex space-x-2 items-center justify-center">
-            <TrashIcon className="h-4" />
-            <h6 className="text-[13px]">Remove</h6>
-          </div>
-        </Button>
+        {!props.removedisabled && (
+          <Button
+            aria-label="remove-image-button"
+            disableFocusRipple
+            onClick={props.remove}
+            disabled={props.changedisabled}
+            className="disabled:opacity-50 disabled:cursor-not-allowed cursor-default button-text-lower py-2 disabled:text-sky-400 text-sky-400 w-full rounded-lg border border-solid border-white/30 hover:bg-transparent active:bg-transparent"
+            sx={{
+              '.MuiTouchRipple-child': {
+                backgroundColor: '#ffffff80 !important',
+              },
+            }}
+          >
+            <div className="flex space-x-2 items-center justify-center">
+              <TrashIcon className="h-4" />
+              <h6 className="text-[13.5px]">Remove</h6>
+            </div>
+          </Button>
+        )}
       </div>
       {props.ShowProgress && <AuthLoading />}
     </div>

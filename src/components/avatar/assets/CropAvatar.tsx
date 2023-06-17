@@ -13,7 +13,7 @@ import 'react-advanced-cropper/dist/style.css';
 import { CropAvatarBottom } from './CropAvatar/CropAvatarBottom';
 import { CropAvatarNavigation } from './CropAvatar/CropAvatarNavigation';
 import { CropAvatarSlider } from './CropAvatar/CropAvatarSlider';
-import { CropAvatarToggle } from './CropAvatar/CropAvatarToggle';
+import { CropAvatarZoom } from './CropAvatar/CropAvatarZoom';
 import { CropAvatarTop } from './CropAvatar/CropAvatarTop';
 import {
   getAbsoluteZoom,
@@ -35,18 +35,17 @@ export interface DefaultCropperProps extends CropperProps {
 
 const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
   const [changed, setChanged] = useState(false);
-  const [Active, setActive] = useState(false);
   const [RotateValue, setRotateValue] = useState(0);
   const [ZoomValue, setZoomValue] = useState(0);
   const [Loading, setLaoding] = useState(false);
 
   const cropperRef = useRef<CropperRef>(null);
+  const sliderRef = useRef<HTMLElement>(null);
 
   const onChange = (cropper: CropperRef) => {
     const state = cropper.getState();
     setChanged(state ? !isEqualStates(state, getDefaultState(cropper)) : false);
     ChangeZoomValue();
-    // console.log(cropper.getCoordinates(), cropper.getCanvas());
   };
 
   const defaultSize = ({ imageSize, visibleArea }: any) => {
@@ -93,34 +92,21 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
         },
         cropper.getSettings()
       );
-    } else {
-      return null;
-    }
+    } else return null;
   };
 
   const flip = (horizontal: boolean, vertical: boolean) => {
     const cropper = cropperRef.current;
     if (cropper) {
-      if (cropper.getTransforms().rotate % 180 !== 0) {
+      if (cropper.getTransforms().rotate % 180 !== 0)
         cropper.flipImage(!horizontal, !vertical);
-      } else {
-        cropper.flipImage(horizontal, vertical);
-      }
+      else cropper.flipImage(horizontal, vertical);
     }
   };
 
   const rotate = (angle: number) => {
     const cropper = cropperRef.current;
-    if (cropper) {
-      cropper.rotateImage(RotateValue - angle);
-    }
-  };
-
-  const rotateButton = (angle: number) => {
-    const cropper = cropperRef.current;
-    if (cropper) {
-      cropper.rotateImage(angle);
-    }
+    if (cropper) cropper.rotateImage(RotateValue - angle);
   };
 
   const onZoom = (value: number) => {
@@ -144,15 +130,15 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
   };
 
   const onZoomIn = () => {
-    if (setZoomValue && isNumber(ZoomValue)) {
+    if (isNumber(ZoomValue)) {
       setZoomValue(Math.min(1, ZoomValue + 0.1));
       onZoom(Math.min(1, ZoomValue + 0.1));
     }
   };
 
   const onZoomOut = () => {
-    if (setZoomValue && isNumber(ZoomValue)) {
-      setZoomValue(Math.max(0, ZoomValue - 0.1));
+    if (isNumber(ZoomValue)) {
+      setZoomValue(Math.min(1, ZoomValue - 0.1));
       onZoom(Math.min(1, ZoomValue - 0.1));
     }
   };
@@ -163,6 +149,10 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
       cropper.setState(getDefaultState(cropper));
       setZoomValue(0);
       setRotateValue(0);
+      const slider = sliderRef.current;
+      if (slider) {
+        slider.scrollTo({ left: 544, top: 0, behavior: 'smooth' });
+      }
     }
   };
 
@@ -173,50 +163,17 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
       const absoluteZoom = isInitializedState(state)
         ? getAbsoluteZoom(state, cropper.getSettings())
         : 0;
-      // console.log('Zoom value : ' + toFixed(`${absoluteZoom * 100}`));
       setZoomValue(absoluteZoom);
     }
   };
 
-  const RotataionButtonHandle = () => {
-    setActive(false);
-  };
+  const RotateLeft = () => rotate(90);
 
-  const ZoomButtonHandle = () => {
-    setActive(true);
-  };
+  const RotateRight = () => rotate(-90);
 
-  const RotateLeft = () => {
-    rotateButton(90);
-  };
+  const FlipX = () => flip(true, false);
 
-  const RotateRight = () => {
-    rotateButton(-90);
-  };
-
-  const FlipX = () => {
-    flip(true, false);
-  };
-
-  const FlipY = () => {
-    flip(false, true);
-  };
-
-  const setZoomValuehandle = (value: number) => {
-    setZoomValue(value);
-  };
-
-  const setRotateValuehandle = (value: number) => {
-    setRotateValue(value);
-  };
-
-  const rotatehandle = (value: number) => {
-    rotate(value);
-  };
-
-  const onZoomhandle = (value: number) => {
-    onZoom(value);
-  };
+  const FlipY = () => flip(false, true);
 
   const submit = () => {
     setLaoding(true);
@@ -236,13 +193,15 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
 
   return (
     <div className="bg-secondary-theme CropAvatar-container relative box-border flex flex-col overflow-hidden overscroll-none items-center h-full w-full">
-      <div className="z-[1] w-full h-[126px] flex flex-col">
+      <div className="z-[1] w-full h-[150px] flex flex-col">
         <CropAvatarTop
           heading="Edit profile picture"
           back={back}
           moreInfo={props.moreInfo}
         />
         <CropAvatarNavigation
+          ResetClick={reset}
+          Changed={changed}
           RotateLeft={RotateLeft}
           RotateRight={RotateRight}
           FlipX={FlipX}
@@ -284,29 +243,22 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
           },
         }}
         className={
-          'cropper circle-stencil px-5 -mt-[126px] -mb-[228px] pt-[132px] py-[234px] cursor-default active:cursor-grab CropAvatar-background flex relative w-full h-full'
+          'cropper circle-stencil px-5 -mt-[150px] -mb-[228px] pt-[156px] pb-[234px] cursor-default active:cursor-grab CropAvatar-background flex relative w-full h-full'
         }
       />
-      <div className="z-[1] flex flex-col h-[228px] w-full">
+      <div className="z-[1] flex flex-col h-[228px] w-full relative">
         <CropAvatarSlider
-          Active={Active}
+          SliderRef={sliderRef}
+          setRotateValue={setRotateValue}
+          rotate={rotate}
+        />
+        <CropAvatarZoom
           ZoomValue={ZoomValue}
-          setZoomValue={setZoomValuehandle}
-          RotateValue={RotateValue}
-          setRotateValue={setRotateValuehandle}
-          rotate={rotatehandle}
-          onZoom={onZoomhandle}
           onZoomIn={onZoomIn}
           onZoomOut={onZoomOut}
         />
-        <CropAvatarToggle
-          Rotataion={RotataionButtonHandle}
-          Zoom={ZoomButtonHandle}
-          Active={Active}
-        />
         <CropAvatarBottom
-          changed={changed}
-          resetClick={reset}
+          back={back}
           submitClick={submit}
           submitLoading={Loading}
         />

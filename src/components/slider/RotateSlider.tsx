@@ -2,15 +2,17 @@ import React, {
   Dispatch,
   FC,
   Fragment,
+  RefObject,
   SetStateAction,
   useEffect,
-  useRef,
   useState,
 } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import { m } from 'framer-motion';
 
 interface IProps {
-  getValue: Dispatch<SetStateAction<string>>;
+  getValue: Dispatch<SetStateAction<number>>;
+  SliderRef: RefObject<HTMLElement>;
 }
 
 /**
@@ -21,10 +23,21 @@ interface IProps {
 export const RotateSlider: FC<IProps> = (props) => {
   const [Direction, setDirection] = useState<'left' | 'right' | null>(null);
   const [Degree, setDegree] = useState('0');
-  const sliderRef = useRef<HTMLElement>(null);
+  const [LeftAnimate, setLeftAnimate] = useState('closed');
+  const [RightAnimate, setRightAnimate] = useState('closed');
+
+  const LeftVariant = {
+    open: { marginRight: '120px', opacity: 1 },
+    closed: { marginRight: '90px', opacity: 0 },
+  };
+
+  const RightVariant = {
+    open: { marginLeft: '140px', opacity: 1 },
+    closed: { marginLeft: '110px', opacity: 0 },
+  };
 
   const handleScrollEnd = () => {
-    const slider = sliderRef.current;
+    const slider = props.SliderRef.current;
     if (slider) {
       if (slider.scrollLeft > 530 && slider.scrollLeft < 558)
         slider.scrollTo(544, 0);
@@ -32,7 +45,7 @@ export const RotateSlider: FC<IProps> = (props) => {
   };
 
   const ListenToSliderScroll = () => {
-    const slider = sliderRef.current;
+    const slider = props.SliderRef.current;
     if (slider) {
       const sliderValue = slider.scrollLeft.toString().split('.')[0];
       const sliderMaxValue = slider.scrollWidth - slider.clientWidth;
@@ -43,30 +56,37 @@ export const RotateSlider: FC<IProps> = (props) => {
         12.6;
       if (slider.scrollLeft === 0) {
         setDegree('45');
-        props.getValue('-45');
+        setLeftAnimate('open');
+        setRightAnimate('closed');
       } else if (slider.scrollLeft === sliderMaxValue) {
-        props.getValue('45');
+        setDegree('45');
+        setLeftAnimate('closed');
+        setRightAnimate('open');
       } else if (slider.scrollLeft < 531) {
         const getDegreeValue =
           44 - parseInt(ScrollToDegree.toString().split('.')[0]);
         setDegree(getDegreeValue.toString().split('.')[0]);
-        props.getValue('-' + getDegreeValue.toString().split('.')[0]);
         setDirection('left');
+        setLeftAnimate('open');
+        setRightAnimate('closed');
       } else if (slider.scrollLeft > 557) {
         const getDegreeValue = Math.abs(
           44.6 - parseInt(ScrollToDegree.toString().split('.')[0])
         );
         setDegree(getDegreeValue.toString().split('.')[0]);
-        props.getValue(getDegreeValue.toString().split('.')[0]);
         setDirection('right');
+        setLeftAnimate('closed');
+        setRightAnimate('open');
       } else {
         setDegree('0');
+        setLeftAnimate('closed');
+        setRightAnimate('closed');
       }
     }
   };
 
   useEffect(() => {
-    const slider = sliderRef.current;
+    const slider = props.SliderRef.current;
     if (slider) {
       slider.addEventListener('scroll', ListenToSliderScroll);
     }
@@ -75,10 +95,19 @@ export const RotateSlider: FC<IProps> = (props) => {
         slider.removeEventListener('scroll', ListenToSliderScroll);
       }
     };
-  }, [sliderRef]);
+  }, [props.SliderRef]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    const slider = sliderRef.current;
+    const validateDegree =
+      Degree != '' && Degree != undefined && Degree != null;
+    if (validateDegree && Direction === 'left')
+      props.getValue(parseInt(Degree));
+    else if (validateDegree && Direction === 'right')
+      props.getValue(parseInt('-' + Degree));
+  }, [Degree, Direction, props]);
+
+  useEffect(() => {
+    const slider = props.SliderRef.current;
     if (slider) {
       slider.scrollTo({ left: 544, top: 0, behavior: 'instant' });
     }
@@ -94,7 +123,7 @@ export const RotateSlider: FC<IProps> = (props) => {
           horizontal={true}
           hideScrollbars={true}
           onEndScroll={handleScrollEnd}
-          innerRef={sliderRef}
+          innerRef={props.SliderRef}
           className="w-full relative box-border px-[50%] py-4 space-x-2 whitespace-nowrap cursor-ew-resize scroll-smooth scrollbar-hide items-center justify-center"
         >
           <SliderComponent value={Degree} direction={Direction} />
@@ -103,6 +132,22 @@ export const RotateSlider: FC<IProps> = (props) => {
           <div className="flex touch-none pointer-events-none h-6 w-2 bg-white rounded-full" />
         </div>
       </div>
+      <m.div
+        initial="closed"
+        animate={LeftAnimate}
+        variants={LeftVariant}
+        className="absolute cursor-default top-0 text-sm text-white mt-[3px] block"
+      >
+        Rotate left
+      </m.div>
+      <m.div
+        initial="closed"
+        animate={RightAnimate}
+        variants={RightVariant}
+        className="absolute cursor-default top-0 text-sm text-white mt-[3px] block"
+      >
+        Rotate right
+      </m.div>
     </div>
   );
 };

@@ -36,11 +36,11 @@ const TestPage: NextPage<IProps> = (props) => {
     });
   };
 
-  const [DegreeValue, setDegreeValue] = useState('0');
-
   return (
     <div className="h-screen w-screen flex flex-col text-white items-center p-5 justify-center bg-primary-theme overflow-hidden box-border">
-      <RotateSlider Degree={DegreeValue} setDegree={setDegreeValue} />
+      <LazyMotion features={domAnimation} strict>
+        <RotateSlider getValue={() => {}} />
+      </LazyMotion>
       <div className="flex flex-col max-w-[500px] mx-auto w-full h-full space-y-10 justify-center items-center">
         <VerticalNavBar />
         <HorizontalNavBar />
