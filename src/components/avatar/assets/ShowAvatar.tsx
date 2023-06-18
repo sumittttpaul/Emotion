@@ -32,7 +32,7 @@ interface IProps {
 
 const ShowAvatar: FC<IProps> = (props) => {
   return (
-    <div className="bg-secondary-theme ShowAvatar-container text-white flex flex-col w-full h-full scroll-smooth overflow-y-auto overflow-x-hidden items-center">
+    <div className="bg-secondary-theme Show-Avatar-Container text-white flex flex-col w-full h-full scroll-smooth overflow-y-auto overflow-x-hidden items-center">
       {/* Header */}
       <div className="flex w-full z-10 justify-between items-center p-1">
         <TooltipDark placement="bottom" title="Close profile picture" arrow>
@@ -69,7 +69,7 @@ const ShowAvatar: FC<IProps> = (props) => {
         {/* Sub Heading */}
         <h6 className="text-sm text-white/75 text-left w-full">
           A picture helps people recognize you and lets you know when
-          you&apos;re signed in to your account
+          you&apos;re signed in to your account.
         </h6>
         {/* Info Heading */}
         <div className="flex w-full space-x-2 pt-2 pb-4 items-center">
@@ -79,25 +79,27 @@ const ShowAvatar: FC<IProps> = (props) => {
           </h6>
         </div>
         {/* Center */}
-        <div className="flex box-content rounded-[50%] overflow-hidden relative justify-center min-h-[96px] min-w-[96px] show-avatar-profile-photo">
-          <div className="rounded-full scale-[.99] relative w-full h-full">
-            <Image
-              fill
-              onClick={props.forward}
-              className="cursor-default rounded-[50%] overflow-hidden transition-all"
-              src={props.URL ? props.URL : '/images/loader/dark-circle.png'}
-              style={{
-                objectFit: 'fill',
-              }}
-              alt=""
-              placeholder="blur"
-              blurDataURL={Circle_BlurDataURL}
-            />
+        <div className='flex h-full w-full justify-center items-center relative'>
+          <div className="flex box-content rounded-[50%] overflow-hidden relative justify-center min-h-[96px] min-w-[96px] show-avatar-profile-photo">
+            <div className="rounded-full relative w-full h-full">
+              <Image
+                fill
+                onClick={props.forward}
+                className="cursor-default rounded-[50%] overflow-hidden transition-all"
+                src={props.URL ? props.URL : '/images/loader/dark-circle.png'}
+                style={{
+                  objectFit: 'fill',
+                }}
+                alt=""
+                placeholder="blur"
+                blurDataURL={Circle_BlurDataURL}
+              />
+            </div>
           </div>
         </div>
       </div>
       {/* Bottom */}
-      <div className="flex space-x-3 w-full px-5 pb-5 pt-2">
+      <div className="flex space-x-2 w-full px-5 pb-5 pt-2">
         <Button
           disableFocusRipple
           aria-label="change-image-button"
@@ -112,11 +114,11 @@ const ShowAvatar: FC<IProps> = (props) => {
         >
           <div className="flex space-x-2 items-center justify-center">
             {!props.removedisabled ? (
-              <PencilIcon className="h-4" />
+              <PencilIcon className="h-[18px] block" />
             ) : (
-              <CameraIcon className="h-4" />
+              <CameraIcon className="h-[18px] block" />
             )}
-            <h6 className="text-[13.5px] block whitespace-nowrap">
+            <h6 className="text-sm flex truncate pt-[2px] font-[600]">
               {!props.removedisabled ? 'Change' : 'Add profile picture'}
             </h6>
           </div>
@@ -135,8 +137,10 @@ const ShowAvatar: FC<IProps> = (props) => {
             }}
           >
             <div className="flex space-x-2 items-center justify-center">
-              <TrashIcon className="h-4" />
-              <h6 className="text-[13.5px]">Remove</h6>
+              <TrashIcon className="h-[18px] block" />
+              <h6 className="text-sm flex truncate pt-[2px] font-[600]">
+                Remove
+              </h6>
             </div>
           </Button>
         )}

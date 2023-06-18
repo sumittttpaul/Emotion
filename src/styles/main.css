@@ -146,6 +146,11 @@
   width: min(100vw - 38px, 288px);
 }
 
+.remove-avatar-profile-photo {
+  height: min(100vw - 38px, 200px);
+  width: min(100vw - 38px, 200px);
+}
+
 .custom-tab-transition-color {
   transition-property: color, background-color, border-color,
     text-decoration-color, fill, stroke;
@@ -262,7 +267,7 @@
 }
 
 @media screen and (min-width: 640px) {
-  .ShowAvatar-container {
+  .Show-Avatar-Container {
     height: calc(100vh - 100px);
     max-width: 370px;
     max-height: 560px;
@@ -270,15 +275,15 @@
     transition: all 0.2s ease-out;
   }
 
-  .SelectAvatar-container {
+  .Remove-Avatar-Container {
     height: calc(100vh - 100px);
-    max-width: 800px;
-    max-height: 800px;
+    max-width: 540px;
+    max-height: 460px;
     width: calc(100vw - 100px);
-    transition: all 0.25s ease-in;
+    transition: all 0.2s ease-out;
   }
 
-  .CropAvatar-container {
+  .Select-And-Crop-Avatar-Container {
     height: calc(100vh - 100px);
     max-width: 800px;
     max-height: 800px;

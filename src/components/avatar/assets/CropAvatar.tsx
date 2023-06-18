@@ -37,7 +37,6 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
   const [changed, setChanged] = useState(false);
   const [RotateValue, setRotateValue] = useState(0);
   const [ZoomValue, setZoomValue] = useState(0);
-  const [Loading, setLaoding] = useState(false);
 
   const cropperRef = useRef<CropperRef>(null);
   const sliderRef = useRef<HTMLElement>(null);
@@ -176,7 +175,6 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
   const FlipY = () => flip(false, true);
 
   const submit = () => {
-    setLaoding(true);
     const cropper = cropperRef.current;
     if (cropper) {
       cropper.getCanvas()?.toBlob((blob: any) => {
@@ -192,7 +190,7 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
   };
 
   return (
-    <div className="bg-secondary-theme CropAvatar-container relative box-border flex flex-col overflow-hidden overscroll-none items-center h-full w-full">
+    <div className="bg-secondary-theme Select-And-Crop-Avatar-Container relative box-border flex flex-col overflow-hidden overscroll-none items-center h-full w-full">
       <div className="z-[1] w-full h-[150px] flex flex-col">
         <CropAvatarTop
           heading="Edit profile picture"
@@ -260,7 +258,6 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
         <CropAvatarBottom
           back={back}
           submitClick={submit}
-          submitLoading={Loading}
         />
       </div>
     </div>

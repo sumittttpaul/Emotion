@@ -6,16 +6,14 @@ import SelectAvatar from './assets/SelectAvatar';
 import CollectionForAvatar from './assets/CollectionForAvatar';
 import CropAvatar from './assets/CropAvatar';
 import { MoreInfoDialog } from './assets/MoreInfoDialog';
+import { AvatarContainerType, AvatarScreenType } from './assets/AvatarType';
+import { RemoveAvatar } from './assets/RemoveAvatar';
 
 export interface AvatarButtonDialogProps {
   AvatarDialog: boolean;
   setAvatarDialog: () => void;
-  AvatarContainer: 'ShowAvatar-container' | 'SelectAvatar-container';
-  AvatarScreen:
-    | 'show-avatar'
-    | 'select-avatar'
-    | 'collection-for-avatar'
-    | 'crop-avatar';
+  AvatarContainer: AvatarContainerType;
+  AvatarScreen: AvatarScreenType;
   MoveToSelectAvatar: () => void;
   AvatarURL: string;
   RemoveClick: () => void;
@@ -25,6 +23,7 @@ export interface AvatarButtonDialogProps {
   UploadProgress: string;
   BackToShowAvatar: () => void;
   MoveToCropAvatar: () => void;
+  MoveToRemoveAvatar: () => void;
   GetImageURL: (value: string) => void;
   CollectionBackBool: (value: boolean) => void;
   CollectionReducerName: (value: string) => void;
@@ -71,13 +70,21 @@ export const AvatarButtonDialog: FC<AvatarButtonDialogProps> = (props) => {
           <ShowAvatar
             moreInfo={MoreInfoClick}
             URL={props.AvatarURL}
-            remove={props.RemoveClick}
+            remove={props.MoveToRemoveAvatar}
             changedisabled={props.ChangeDisabled}
             removedisabled={props.RemoveDisabled}
             backward={props.setAvatarDialog}
             forward={props.MoveToSelectAvatar}
             ShowProgress={props.UploadLoadingScreen}
             Progress={props.UploadProgress}
+          />
+        )}
+        {props.AvatarScreen === 'remove-avatar' && (
+          <RemoveAvatar
+            moreInfo={MoreInfoClick}
+            URL={props.AvatarURL}
+            remove={props.RemoveClick}
+            backward={props.BackToShowAvatar}
           />
         )}
         {props.AvatarScreen === 'select-avatar' && (
