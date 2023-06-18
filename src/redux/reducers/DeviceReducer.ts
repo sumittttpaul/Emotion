@@ -8,11 +8,13 @@ const initialState = {
 export const DeviceSlice = createSlice({
   name: 'Device',
   initialState: initialState,
+  // For Client Side Update
   reducers: {
     setDevice: (state, action) => {
       state.isMobile = action.payload;
     },
   },
+  // For Server Side Update
   extraReducers: {
     [HYDRATE]: (state, action) => {
       if (!action.payload.Device.isMobile) return state;

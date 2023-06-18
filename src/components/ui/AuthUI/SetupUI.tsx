@@ -155,7 +155,7 @@ export const SetupUI: FC<IProps> = (props) => {
     Description: '',
     Type: '',
   });
-  const [Screen, setScreen] = useState<AuthType>('register-profile-picture');
+  const [Screen, setScreen] = useState<AuthType>('login-phone');
 
   // User
   const FirebaseUser = useAuth();
