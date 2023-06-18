@@ -5,7 +5,9 @@ import { HeaderNav } from './assets/Header.Nav';
 import { HeaderNavMenuProps } from './assets/Header.Nav.Menu';
 import { HeaderUserButton } from '../button/header/Header.UserButton';
 import { HeaderNotificationButton } from '../button/header/Header.NotificationButton';
-import { useHomePageState } from '../../providers/state/HomePageState';
+import { useReduxSelector } from '../../redux/useReduxSelector';
+import { setPage } from '../../redux/reducers/PageReducer';
+import store from '../../redux/store';
 
 const HeaderNavMenu = dynamic<HeaderNavMenuProps>(
   () => import('./assets/Header.Nav.Menu').then((x) => x.HeaderNavMenu),
@@ -19,7 +21,7 @@ interface HeaderProps {}
  * @function @Header
  **/
 export const Header: FC<HeaderProps> = (props) => {
-  const { HomePageState, setHomePageState } = useHomePageState();
+  const { Page } = useReduxSelector((state) => state);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const NavMenuOpen = Boolean(anchorEl);
@@ -41,8 +43,8 @@ export const Header: FC<HeaderProps> = (props) => {
             <HeaderNav
               open={NavMenuOpen}
               onOpen={handleNavMenuClick}
-              Value={`${HomePageState.Page}`}
-              onValueChange={(value) => setHomePageState({ Page: value })}
+              Value={Page.HomePage}
+              onValueChange={(value) => store.dispatch(setPage(value))}
             />
           </div>
           {/* Search Button */}
@@ -51,7 +53,7 @@ export const Header: FC<HeaderProps> = (props) => {
               <HeaderSearchButton />
             </div>
           </div>
-          {/* Wishlist, Notification, User Button */}
+          {/* Notification, User Button */}
           <div className="flex space-x-2.5 items-center ">
             <HeaderNotificationButton />
             <HeaderUserButton />
@@ -62,8 +64,8 @@ export const Header: FC<HeaderProps> = (props) => {
         anchorEl={anchorEl}
         open={NavMenuOpen}
         onClose={handleNavMenuClose}
-        Value={`${HomePageState.Page}`}
-        onValueChange={(value) => setHomePageState({ Page: value })}
+        Value={Page.HomePage}
+        onValueChange={(value) => store.dispatch(setPage(value))}
       />
     </div>
   );

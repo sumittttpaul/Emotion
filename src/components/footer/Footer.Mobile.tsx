@@ -1,11 +1,12 @@
 import Router from 'next/router';
 import React, { FC } from 'react';
-import { useHomePageState } from '../../providers/state/HomePageState';
 import { useLoaderState } from '../../providers/state/LoadingState';
 import { Home_Link } from '../../routerLinks/RouterLinks';
 import { FooterLogo } from '../logo/CompanyLogo';
 import { FooterBottom } from './assets/FooterBottom';
 import { ScrollToTopButton } from './assets/ScrollToTopButton';
+import { setPage } from '../../redux/reducers/PageReducer';
+import store from '../../redux/store';
 
 interface FooterProps {}
 
@@ -14,7 +15,6 @@ interface FooterProps {}
  * @function @FooterMobile
  **/
 export const FooterMobile: FC<FooterProps> = (props) => {
-  const { setHomePageState } = useHomePageState();
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => {
     setLoader({ show: value });
@@ -25,7 +25,7 @@ export const FooterMobile: FC<FooterProps> = (props) => {
         <div className="flex flex-col items-center justify-center">
           <FooterLogo
             onValueChange={(value) => {
-              setHomePageState({ Page: value });
+              store.dispatch(setPage(value))
               LoadingScreen(true);
               Router.push(Home_Link);
             }}

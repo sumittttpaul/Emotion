@@ -1,6 +1,6 @@
-import { GetServerSideProps } from 'next';
 import { setDevice } from '../redux/reducers/DeviceReducer';
 import { wrapper } from '../redux/store';
+import { GetServerSideProps } from 'next';
 import { parse } from 'next-useragent';
 
 type ServerProps = {
