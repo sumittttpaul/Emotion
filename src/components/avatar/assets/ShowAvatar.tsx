@@ -11,6 +11,7 @@ import {
 import { UsersIcon } from '@heroicons/react/solid';
 import { TooltipDark } from '../../tooltip/TooltipDark';
 import { AuthLoading } from '../../loader/Auth/AuthLoading';
+import { Circle_BlurDataURL } from '../../loader/BlurDataURL';
 
 interface IProps {
   backward: () => void;
@@ -82,7 +83,6 @@ const ShowAvatar: FC<IProps> = (props) => {
           <div className="rounded-full scale-[.99] relative w-full h-full">
             <Image
               fill
-              priority
               onClick={props.forward}
               className="cursor-default rounded-[50%] overflow-hidden transition-all"
               src={props.URL ? props.URL : '/images/loader/dark-circle.png'}
@@ -90,6 +90,8 @@ const ShowAvatar: FC<IProps> = (props) => {
                 objectFit: 'fill',
               }}
               alt=""
+              placeholder="blur"
+              blurDataURL={Circle_BlurDataURL}
             />
           </div>
         </div>

@@ -4,7 +4,6 @@ import React, {
   FC,
   Fragment,
   SetStateAction,
-  MouseEvent,
   useEffect,
   useState,
 } from 'react';

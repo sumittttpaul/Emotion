@@ -2,6 +2,7 @@ import { IconButton } from '@mui/material';
 import { CameraIcon } from '@heroicons/react/solid';
 import React, { FC } from 'react';
 import Image from 'next/legacy/image';
+import { Circle_BlurDataURL } from '../../loader/BlurDataURL';
 
 interface IProps {
   onClick?: () => void;
@@ -29,8 +30,9 @@ export const AvatarCustomButton: FC<IProps> = (props) => {
           width={125}
           className="rounded-[50%]"
           src={props.ImageURL}
-          priority
           alt=""
+          placeholder="blur"
+          blurDataURL={Circle_BlurDataURL}
         />
         <div className="absolute bg-secondary-theme flex justify-center items-center right-0 bottom-0 p-1.5 rounded-[50%]">
           <CameraIcon className="text-white h-[25px] w-[25px]" />

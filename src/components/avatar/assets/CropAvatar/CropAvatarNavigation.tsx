@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { SmallIconButtonDark } from '../../../button/SmallIconButtonDark';
 import { Button } from '@mui/material';
+import { TooltipDark } from '../../../tooltip/TooltipDark';
 
 interface IProps {
   Changed: boolean;
@@ -45,21 +46,32 @@ export const CropAvatarNavigation: FC<IProps> = (props) => {
           iconURL="/icons/flip-y.svg"
         />
         <div className="h-7 mx-3 block w-[2px] bg-white/50" />
-        <Button
-          aria-label="small-icon-button"
-          disableFocusRipple
-          disabled={!props.Changed}
-          onClick={props.ResetClick}
-          className="disabled:opacity-50 disabled:text-white disabled:cursor-not-allowed button-text-lower text-white h-9 py-2 px-4 text-[13px] rounded-md cursor-default hover:bg-white/10"
-          sx={{
-            minWidth: 0,
-            '.MuiTouchRipple-child': {
-              backgroundColor: '#ffffff80 !important',
-            },
-          }}
+        <TooltipDark
+          title="Reset all edits performed on the image"
+          placement="bottom"
+          arrow
         >
-          Reset
-        </Button>
+          <Button
+            aria-label="small-icon-button"
+            disableFocusRipple
+            onClick={!props.Changed ? () => {} : props.ResetClick}
+            className={`${
+              !props.Changed
+                ? 'opacity-50 hover:bg-transparent'
+                : 'opacity-100 hover:bg-white/10'
+            } button-text-lower text-white h-9 py-2 px-4 text-[13px] rounded-md cursor-default`}
+            sx={{
+              minWidth: 0,
+              '.MuiTouchRipple-child': {
+                backgroundColor: !props.Changed
+                  ? '#ffffff00 !important'
+                  : '#ffffff80 !important',
+              },
+            }}
+          >
+            Reset
+          </Button>
+        </TooltipDark>
       </div>
     </div>
   );

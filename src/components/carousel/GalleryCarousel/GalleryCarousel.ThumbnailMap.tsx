@@ -66,7 +66,6 @@ export const GalleryCarouselThumbnailMap: FC<IProps> = (props) => {
           } ${ThumbnailSizes} ${'group relative p-0 m-0 transition-shadow duration-300 ring-white ring-opacity-50 rounded-xl box-border flex items-center justify-center overflow-hidden'}`}
         >
           <Image
-            priority
             layout="fill"
             className={`${
               props.CarouselState === idx

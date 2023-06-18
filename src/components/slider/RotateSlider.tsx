@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { m } from 'framer-motion';
+import { TooltipDark } from '../tooltip/TooltipDark';
 
 interface IProps {
   getValue: Dispatch<SetStateAction<number>>;
@@ -114,41 +115,43 @@ export const RotateSlider: FC<IProps> = (props) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="w-full flex flex-col h-[71px] min-h-[71px] relative items-center justify-center box-border overflow-hidden">
-      <div className="w-full text-center cursor-default font-normal text-md ml-3 text-white">{`${Degree} °`}</div>
-      <div className="w-full max-w-[700px] opacity-gradient relative justify-center items-center flex flex-col box-border overflow-hidden">
-        <ScrollContainer
-          component="ul"
-          vertical={false}
-          horizontal={true}
-          hideScrollbars={true}
-          onEndScroll={handleScrollEnd}
-          innerRef={props.SliderRef}
-          className="w-full relative box-border px-[50%] py-4 space-x-2 whitespace-nowrap cursor-ew-resize scroll-smooth scrollbar-hide items-center justify-center"
-        >
-          <SliderComponent value={Degree} direction={Direction} />
-        </ScrollContainer>
-        <div className="absolute touch-none pointer-events-none h-full left-0 top-0 w-full flex items-center justify-center">
-          <div className="flex touch-none pointer-events-none h-6 w-2 bg-white rounded-full" />
+    <TooltipDark title="Drag to rotate the image" placement="top" arrow>
+      <div className="w-full flex flex-col h-[71px] min-h-[71px] relative items-center justify-center box-border overflow-hidden">
+        <div className="w-full text-center cursor-default font-normal text-md ml-3 text-white">{`${Degree} °`}</div>
+        <div className="w-full max-w-[700px] opacity-gradient relative justify-center items-center flex flex-col box-border overflow-hidden">
+          <ScrollContainer
+            component="ul"
+            vertical={false}
+            horizontal={true}
+            hideScrollbars={true}
+            innerRef={props.SliderRef}
+            onEndScroll={handleScrollEnd}
+            className="w-full relative box-border px-[50%] py-4 space-x-2 whitespace-nowrap cursor-ew-resize scroll-smooth scrollbar-hide items-center justify-center"
+          >
+            <SliderComponent value={Degree} direction={Direction} />
+          </ScrollContainer>
+          <div className="absolute touch-none pointer-events-none h-full left-0 top-0 w-full flex items-center justify-center">
+            <div className="flex touch-none pointer-events-none h-6 w-2 bg-white rounded-full" />
+          </div>
         </div>
+        <m.div
+          initial="closed"
+          animate={LeftAnimate}
+          variants={LeftVariant}
+          className="absolute cursor-default top-0 text-sm text-white mt-[3px] block"
+        >
+          Rotate left
+        </m.div>
+        <m.div
+          initial="closed"
+          animate={RightAnimate}
+          variants={RightVariant}
+          className="absolute cursor-default top-0 text-sm text-white mt-[3px] block"
+        >
+          Rotate right
+        </m.div>
       </div>
-      <m.div
-        initial="closed"
-        animate={LeftAnimate}
-        variants={LeftVariant}
-        className="absolute cursor-default top-0 text-sm text-white mt-[3px] block"
-      >
-        Rotate left
-      </m.div>
-      <m.div
-        initial="closed"
-        animate={RightAnimate}
-        variants={RightVariant}
-        className="absolute cursor-default top-0 text-sm text-white mt-[3px] block"
-      >
-        Rotate right
-      </m.div>
-    </div>
+    </TooltipDark>
   );
 };
 

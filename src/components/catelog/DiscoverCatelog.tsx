@@ -23,7 +23,6 @@ export const DiscoverCatelog: FC<IProps> = (props) => {
             objectFit="cover"
             objectPosition="center"
             src="/images/avatar/illustration/5.png"
-            priority
             blurDataURL={Rectangle_BlurDataURL}
             alt=""
           />

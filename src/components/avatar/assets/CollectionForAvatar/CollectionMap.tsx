@@ -40,7 +40,6 @@ export const CollectionMap: FC<IProps> = (props) => {
               }}
             >
               <Image
-                priority
                 height={440}
                 width={440}
                 src={avatars.iconURL}

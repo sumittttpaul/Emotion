@@ -49,7 +49,6 @@ export const GalleryCarouselSlider: FC<GalleryCarouselSliderProps> = (
           }}
         >
           <Image
-            priority
             layout="fill"
             objectFit="cover"
             objectPosition="center"

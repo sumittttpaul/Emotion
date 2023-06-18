@@ -143,6 +143,17 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
     }
   };
 
+  const ChangeZoomValue = () => {
+    const cropper = cropperRef.current;
+    if (cropper) {
+      const state = cropper.getState();
+      const absoluteZoom = isInitializedState(state)
+        ? getAbsoluteZoom(state, cropper.getSettings())
+        : 0;
+      setZoomValue(absoluteZoom);
+    }
+  };
+
   const reset = () => {
     const cropper = cropperRef.current;
     if (cropper) {
@@ -153,17 +164,6 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
       if (slider) {
         slider.scrollTo({ left: 544, top: 0, behavior: 'smooth' });
       }
-    }
-  };
-
-  const ChangeZoomValue = () => {
-    const cropper = cropperRef.current;
-    if (cropper) {
-      const state = cropper.getState();
-      const absoluteZoom = isInitializedState(state)
-        ? getAbsoluteZoom(state, cropper.getSettings())
-        : 0;
-      setZoomValue(absoluteZoom);
     }
   };
 
@@ -248,9 +248,9 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
       />
       <div className="z-[1] flex flex-col h-[228px] w-full relative">
         <CropAvatarSlider
+          rotate={rotate}
           SliderRef={sliderRef}
           setRotateValue={setRotateValue}
-          rotate={rotate}
         />
         <CropAvatarZoom
           ZoomValue={ZoomValue}

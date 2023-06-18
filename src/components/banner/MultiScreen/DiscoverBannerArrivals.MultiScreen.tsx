@@ -48,7 +48,6 @@ export const DiscoverBannerArrivalsBrowser: FC<IProps> = (props) => {
             objectFit="cover"
             objectPosition="center"
             src={value.Image}
-            priority
             placeholder="blur"
             blurDataURL={Poster_BlurDataURL}
             alt=""
@@ -80,7 +79,6 @@ export const DiscoverBannerArrivalsMobile: FC<IProps> = (props) => {
               objectFit="cover"
               objectPosition="center"
               src={value.Image}
-              priority
               placeholder="blur"
               blurDataURL={Poster_BlurDataURL}
               alt=""
@@ -115,7 +113,6 @@ export const DiscoverBannerArrivalsMobile: FC<IProps> = (props) => {
               objectFit="cover"
               objectPosition="center"
               src={value.Image}
-              priority
               placeholder="blur"
               blurDataURL={Poster_BlurDataURL}
               alt=""
