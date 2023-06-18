@@ -12,7 +12,7 @@ import { AddFullName } from '../../../../algorithms/AuthAlgorithms';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { RegisterSkipAllButton } from '../../../button/Auth/RegisterSkipAllButton';
 import IconTextFieldDark from '../../../textfield/IconTextFieldDark';
-import { useAuth } from '../../../../firebase/AuthProvider';
+import { useAuth } from '../../../../firebase/useAuth';
 import { UpdateUserData } from '../../../../algorithms/AuthDB';
 import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
 import { NameEncrytionKey } from '../../../../algorithms/security/CryptionKey';
@@ -41,7 +41,7 @@ export interface RegisterNameAuthUIProps {
  **/
 
 export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
-  const user = useAuth();
+  const { FirebaseUser } = useAuth();
 
   // ID
   const FullNameID = 'FullName-TextField-Signup';
@@ -107,13 +107,13 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
 
   // Databse
   const updateUserData = () => {
-    if (user) {
+    if (FirebaseUser) {
       props.setLoading(true);
       const UserFullName = EncryptData(
         props.FullName,
-        NameEncrytionKey(user.uid)
+        NameEncrytionKey(FirebaseUser.uid)
       );
-      UpdateUserData(user.uid, {
+      UpdateUserData(FirebaseUser.uid, {
         FullName: UserFullName,
       })
         .then(() => {

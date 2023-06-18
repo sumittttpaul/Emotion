@@ -7,14 +7,14 @@ import {
   Cart_Link,
   Redeem_Gift_Codes_Link,
 } from '../../../routerLinks/RouterLinks';
-import Image from 'next/legacy/image';
-import firebase from 'firebase/compat';
+import Image from 'next/image';
 import UserIcon from '../../../../public/icons/user-fill.svg';
+import { UserType } from '../../../firebase/useAuth';
 
 export interface HeaderUserButtonMenuProps {
   anchorEl: null | HTMLElement;
   open: boolean;
-  user: firebase.User;
+  user: UserType;
   handleClose: () => void;
   SignOutUser: () => void;
   LoadingScreen: (value: boolean) => void;
@@ -62,7 +62,7 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
       >
         <div className="flex relative space-x-3">
           <div className="relative block">
-            {props.user.photoURL ? (
+            {props.user?.photoURL ? (
               <Image
                 height={50}
                 width={50}
@@ -83,10 +83,10 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
           </div>
           <div className="relative block">
             <h6 className="text-[15px] whitespace-nowrap font-sans text-white">{`${
-              props.user.displayName ? props.user.displayName : 'User'
+              props.user?.displayName ? props.user.displayName : 'User'
             }`}</h6>
             <h6 className="text-[11px] mr-8 whitespace-nowrap text-white opacity-[0.85]">{`${
-              props.user.email
+              props.user?.email
                 ? props.user.email
                 : 'No email address has been added'
             }`}</h6>

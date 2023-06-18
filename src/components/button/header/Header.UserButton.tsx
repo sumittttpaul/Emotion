@@ -1,17 +1,14 @@
+import Image from 'next/legacy/image';
+import Router from 'next/router';
+import dynamic from 'next/dynamic';
 import React, { FC, Fragment, MouseEvent, ReactNode, useState } from 'react';
 import { Button, CircularProgress } from '@mui/material';
-import Image from 'next/legacy/image';
-import { useAuth } from '../../../firebase/AuthProvider';
-import firebase from 'firebase/compat/app';
-import firebaseUser from 'firebase/compat';
-import Router from 'next/router';
 import { Setup_Link } from '../../../routerLinks/RouterLinks';
 import { useLoaderState } from '../../../providers/state/LoadingState';
 import { HeaderUserButtonMenuProps } from './Header.UserButton.Menu';
-import dynamic from 'next/dynamic';
 import { TooltipDark } from '../../tooltip/TooltipDark';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { getAuth } from 'firebase/auth';
+import { UserType, useAuth } from '../../../firebase/useAuth';
+import { SignOut } from '../../../algorithms/AuthAlgorithms';
 
 const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
   () => import('./Header.UserButton.Menu').then((x) => x.HeaderUserButtonMenu),
@@ -26,23 +23,21 @@ interface IProps {}
  **/
 
 export const HeaderUserButton: FC<IProps> = (props) => {
-  const FirebaseUser = useAuth();
-  const FirebaseAuth = getAuth(firebase.app());
-  const [user, loading] = useAuthState(FirebaseAuth);
+  const { FirebaseUser, FirebaseLoading } = useAuth();
 
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => {
     setLoader({ show: value });
   };
 
-  if (loading)
+  if (FirebaseLoading)
     return (
       <ContainerButton>
         <LoadingButton />
       </ContainerButton>
     );
 
-  if (user && FirebaseUser)
+  if (FirebaseUser)
     return (
       <ContainerButton>
         <UserButton user={FirebaseUser} />
@@ -53,8 +48,8 @@ export const HeaderUserButton: FC<IProps> = (props) => {
     <ContainerButton>
       <LoginButton
         onClick={() => {
-          Router.push(Setup_Link);
           LoadingScreen(true);
+          Router.push(Setup_Link);
         }}
       />
     </ContainerButton>
@@ -70,7 +65,7 @@ interface ContainerButtonProps {
   children: ReactNode;
 }
 interface UserButtonProps {
-  user: firebaseUser.User;
+  user: UserType;
 }
 
 const LoginButton: FC<LoginButtonProps> = (props) => {
@@ -144,14 +139,7 @@ const UserButton: FC<UserButtonProps> = (props) => {
   };
 
   const SignOutUser = () => {
-    setTimeout(() => {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          handleClose();
-        });
-    }, 200);
+    SignOut({ Next: handleClose });
   };
 
   return (
@@ -173,7 +161,7 @@ const UserButton: FC<UserButtonProps> = (props) => {
           }}
           style={{ minWidth: 0 }}
         >
-          {props.user.photoURL ? (
+          {props.user?.photoURL ? (
             <Image
               height={35}
               width={35}

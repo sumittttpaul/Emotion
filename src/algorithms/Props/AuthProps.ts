@@ -197,3 +197,7 @@ export interface DeleteAvatarProps {
     show: boolean
   ) => void;
 }
+
+export interface SignOutProps {
+  Next: () => void;
+}

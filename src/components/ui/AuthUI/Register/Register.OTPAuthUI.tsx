@@ -23,7 +23,7 @@ import {
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import { AuthType } from '../AuthType';
-import { useAuth } from '../../../../firebase/AuthProvider';
+import { useAuth } from '../../../../firebase/useAuth';
 import { UpdateUserData } from '../../../../algorithms/AuthDB';
 import { PhoneEncrytionKey } from '../../../../algorithms/security/CryptionKey';
 import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
@@ -49,7 +49,7 @@ export interface RegisterOTPAuthUIProps {
  **/
 
 export const RegisterOTPAuthUI: FC<RegisterOTPAuthUIProps> = (props) => {
-  const user = useAuth();
+  const { FirebaseUser } = useAuth();
 
   // ID
   const OTP1ID = 'RegisterOTPInputField1';
@@ -170,13 +170,13 @@ export const RegisterOTPAuthUI: FC<RegisterOTPAuthUIProps> = (props) => {
 
   // Databse
   const updateUserData = () => {
-    if (user) {
+    if (FirebaseUser) {
       props.setLoading(true);
       const UserPhoneNumber = EncryptData(
         props.PhoneNumber,
-        PhoneEncrytionKey(user.uid)
+        PhoneEncrytionKey(FirebaseUser.uid)
       );
-      UpdateUserData(user.uid, {
+      UpdateUserData(FirebaseUser.uid, {
         PhoneNumber: UserPhoneNumber,
       })
         .then(() => {

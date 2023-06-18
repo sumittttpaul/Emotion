@@ -8,14 +8,11 @@ import React, {
   useState,
 } from 'react';
 import { UploadAvatar, DeleteAvatar } from '../../algorithms/AuthAlgorithms';
-import { useAuth } from '../../firebase/AuthProvider';
 import { useReduxSelector } from '../../redux/useReduxSelector';
 import { AvatarCustomButton } from './assets/AvatarCustomButton';
 import { AvatarButtonDialogProps } from './AvatarButtonDialog';
-import { getAuth } from 'firebase/auth';
-import firebase from 'firebase/compat/app';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { AvatarContainerType, AvatarScreenType } from './assets/AvatarType';
+import { useAuth } from '../../firebase/useAuth';
 
 const AvatarButtonDialog = dynamic<AvatarButtonDialogProps>(
   () => import('./AvatarButtonDialog').then((x) => x.AvatarButtonDialog),
@@ -35,17 +32,16 @@ export interface AvatarButtonProps {
  **/
 
 export const AvatarButton: FC<AvatarButtonProps> = (props) => {
-  const FirebaseUser = useAuth();
-  const FirebaseAuth = getAuth(firebase.app());
-  const [user, loading] = useAuthState(FirebaseAuth);
-  const userPhoto = user?.photoURL?.toString();
+  const { FirebaseUser, FirebaseLoading } = useAuth();
+
+  const userPhoto = FirebaseUser?.photoURL?.toString();
   // Handle Collections
   const { Avatar } = useReduxSelector((state) => state);
   // State
   const [AvatarDialog, setAvatarDialog] = useState(false);
   const [ChangeAvatar, setChangeAvatar] = useState(true);
   const [AvatarURL, setAvatarURL] = useState(
-    loading
+    FirebaseLoading
       ? '/images/loader/dark-circle.png'
       : userPhoto && ChangeAvatar
       ? userPhoto
@@ -240,7 +236,9 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
         AvatarScreen={AvatarScreen}
         RemoveClick={RemoveImageClick}
         ChangeDisabled={ChangeDisabled}
-        RemoveDisabled={RemoveDisabled && !user?.photoURL && ChangeAvatar}
+        RemoveDisabled={
+          RemoveDisabled && !FirebaseUser?.photoURL && ChangeAvatar
+        }
         UploadLoadingScreen={AvatarLoading}
         UploadProgress={UploadProgess}
         MoveToRemoveAvatar={RemoveAvatarScreen}

@@ -1,4 +1,4 @@
-import firebase from 'firebase/compat/app';
+import firebase from '../firebase/clientApp';
 import {
   ResendOTPProps,
   VerifyOTPProps,
@@ -14,8 +14,8 @@ import {
   VerifyEmailProps,
   LinkWithPhoneNumberProps,
   VerifyOTPForLinkWithPhoneProps,
+  SignOutProps,
 } from './Props/AuthProps';
-import 'firebase/compat/auth';
 import { AuthError } from '../firebase/AuthError';
 import { getDownloadURL } from 'firebase/storage';
 import { Home_Link } from '../routerLinks/RouterLinks';
@@ -766,4 +766,11 @@ export const DeleteAvatar = ({
         ShowToast('Something went wrong', `${message}`, 'Error', true);
       });
   }
+};
+
+export const SignOut = ({ Next }: SignOutProps) => {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => Next());
 };

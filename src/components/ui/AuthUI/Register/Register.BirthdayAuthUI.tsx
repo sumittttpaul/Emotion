@@ -4,7 +4,7 @@ import { RegisterSkipAllButton } from '../../../button/Auth/RegisterSkipAllButto
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
 import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
-import { useAuth } from '../../../../firebase/AuthProvider';
+import { useAuth } from '../../../../firebase/useAuth';
 import { DOBEncrytionKey } from '../../../../algorithms/security/CryptionKey';
 import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
 import { UpdateUserData } from '../../../../algorithms/AuthDB';
@@ -35,7 +35,7 @@ export interface RegisterBirthdayAuthUIProps {
 export const RegisterBirthdayAuthUI: FC<RegisterBirthdayAuthUIProps> = (
   props
 ) => {
-  const user = useAuth();
+  const { FirebaseUser } = useAuth();
 
   // State
   const [SubmitDisabled, setSubmitDisabled] = useState(true);
@@ -57,10 +57,13 @@ export const RegisterBirthdayAuthUI: FC<RegisterBirthdayAuthUIProps> = (
 
   // Database
   const updateUserData = () => {
-    if (user) {
+    if (FirebaseUser) {
       props.setLoading(true);
-      const UserDOB = EncryptData(props.DateOfBirth, DOBEncrytionKey(user.uid));
-      UpdateUserData(user.uid, {
+      const UserDOB = EncryptData(
+        props.DateOfBirth,
+        DOBEncrytionKey(FirebaseUser.uid)
+      );
+      UpdateUserData(FirebaseUser.uid, {
         DateOfBirth: UserDOB,
       })
         .then(() => {

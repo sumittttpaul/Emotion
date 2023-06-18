@@ -110,7 +110,8 @@ export const RotateSlider: FC<IProps> = (props) => {
   useEffect(() => {
     const slider = props.SliderRef.current;
     if (slider) {
-      slider.scrollTo({ left: 544, top: 0, behavior: 'instant' });
+      const scrollToOptions = { top: 0, left: 544, behavior: 'instant' };
+      slider.scrollTo(scrollToOptions as unknown as ScrollToOptions);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

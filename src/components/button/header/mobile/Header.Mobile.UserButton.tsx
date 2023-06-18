@@ -1,17 +1,14 @@
 import UserIcon from '../../../../../public/icons/user-fill.svg';
 import { CircularProgress, IconButton } from '@mui/material';
-import { getAuth } from 'firebase/auth';
-import firebase from 'firebase/compat/app';
-import firebaseUser from 'firebase/compat';
 import React, { FC, Fragment, ReactNode, useState, MouseEvent } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useAuth } from '../../../../firebase/AuthProvider';
 import { useLoaderState } from '../../../../providers/state/LoadingState';
 import { Setup_Link } from '../../../../routerLinks/RouterLinks';
 import Router from 'next/router';
 import Image from 'next/legacy/image';
 import dynamic from 'next/dynamic';
 import { HeaderUserButtonMenuProps } from '../Header.UserButton.Menu';
+import { UserType, useAuth } from '../../../../firebase/useAuth';
+import { SignOut } from '../../../../algorithms/AuthAlgorithms';
 
 const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
   () => import('../Header.UserButton.Menu').then((x) => x.HeaderUserButtonMenu),
@@ -25,23 +22,21 @@ interface IProps {}
  * @function @HeaderMobileUserButton
  **/
 export const HeaderMobileUserButton: FC<IProps> = (props) => {
-  const FirebaseUser = useAuth();
-  const FirebaseAuth = getAuth(firebase.app());
-  const [user, loading] = useAuthState(FirebaseAuth);
+  const { FirebaseUser, FirebaseLoading } = useAuth();
 
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => {
     setLoader({ show: value });
   };
 
-  if (loading)
+  if (FirebaseLoading)
     return (
       <ContainerButton>
         <LoadingButton />
       </ContainerButton>
     );
 
-  if (user && FirebaseUser)
+  if (FirebaseUser)
     return (
       <ContainerButton>
         <UserButton user={FirebaseUser} />
@@ -71,7 +66,7 @@ interface ContainerButtonProps {
   children: ReactNode;
 }
 interface UserButtonProps {
-  user: firebaseUser.User;
+  user: UserType;
 }
 
 const LoginButton: FC<LoginButtonProps> = (props) => {
@@ -124,7 +119,7 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
 const UserButton: FC<UserButtonProps> = (props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const photoURL = props.user.photoURL;
+  const photoURL = props.user?.photoURL;
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => {
     setLoader({ show: value });
@@ -139,14 +134,7 @@ const UserButton: FC<UserButtonProps> = (props) => {
   };
 
   const SignOutUser = () => {
-    setTimeout(() => {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          handleClose();
-        });
-    }, 200);
+    SignOut({ Next: handleClose });
   };
 
   return (

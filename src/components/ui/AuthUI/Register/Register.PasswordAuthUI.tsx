@@ -12,7 +12,7 @@ import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import IconPasswordTextFieldDark from '../../../textfield/IconPasswordTextFieldDark';
 import { LinkWithEmailAndPassword } from '../../../../algorithms/AuthAlgorithms';
-import { useAuth } from '../../../../firebase/AuthProvider';
+import { useAuth } from '../../../../firebase/useAuth';
 import { UpdateUserData } from '../../../../algorithms/AuthDB';
 import { EmailEncrytionKey } from '../../../../algorithms/security/CryptionKey';
 import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
@@ -40,7 +40,7 @@ export interface RegisterPasswordAuthUIProps {
 export const RegisterPasswordAuthUI: FC<RegisterPasswordAuthUIProps> = (
   props
 ) => {
-  const user = useAuth();
+  const { FirebaseUser } = useAuth();
 
   // ID
   const PasswordID = 'Password-TextField-Login';
@@ -120,13 +120,13 @@ export const RegisterPasswordAuthUI: FC<RegisterPasswordAuthUIProps> = (
 
   // Database
   const updateUserData = () => {
-    if (user) {
+    if (FirebaseUser) {
       props.setLoading(true);
       const UserEmailAddress = EncryptData(
         props.EmailAddress,
-        EmailEncrytionKey(user.uid)
+        EmailEncrytionKey(FirebaseUser.uid)
       );
-      UpdateUserData(user.uid, {
+      UpdateUserData(FirebaseUser.uid, {
         EmailAddress: UserEmailAddress,
       })
         .then(() => {

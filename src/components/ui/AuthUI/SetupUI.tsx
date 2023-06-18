@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import React, { FC, useEffect, useState } from 'react';
 import firebase from 'firebase/compat/app';
 import { AuthType } from './AuthType';
-import { useAuth } from '../../../firebase/AuthProvider';
+import { useAuth } from '../../../firebase/useAuth';
 import { User, getAuth } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { AnimatePresence } from 'framer-motion';
@@ -142,8 +142,7 @@ interface IProps {}
  **/
 
 export const SetupUI: FC<IProps> = (props) => {
-  const FirebaseAuth = getAuth(firebase.app());
-  const [user, loading] = useAuthState(FirebaseAuth);
+  const { FirebaseUser, FirebaseLoading } = useAuth();
   const [InitialSlide, setInitialSlide] = useState(0);
   const [SkipDialog, setSkipDialog] = useState(false);
   const [Finish, setFinish] = useState(false);
@@ -155,10 +154,7 @@ export const SetupUI: FC<IProps> = (props) => {
     Description: '',
     Type: '',
   });
-  const [Screen, setScreen] = useState<AuthType>('login-phone');
-
-  // User
-  const FirebaseUser = useAuth();
+  const [Screen, setScreen] = useState<AuthType>('register-profile-picture');
 
   // Extra State
   const [FullName, setFullName] = useState('');

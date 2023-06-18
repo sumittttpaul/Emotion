@@ -7,7 +7,7 @@ import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionC
 import { UpdateUserData } from '../../../../algorithms/AuthDB';
 import { GenderEncrytionKey } from '../../../../algorithms/security/CryptionKey';
 import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
-import { useAuth } from '../../../../firebase/AuthProvider';
+import { useAuth } from '../../../../firebase/useAuth';
 import { RadioGroupDark } from '../../../radiogroup/RadioGroupDark';
 import { AuthType } from '../AuthType';
 
@@ -33,7 +33,7 @@ export interface RegisterGenderAuthUIProps {
  **/
 
 export const RegisterGenderAuthUI: FC<RegisterGenderAuthUIProps> = (props) => {
-  const user = useAuth();
+  const { FirebaseUser } = useAuth();
 
   // Toast
   const ShowToast = (
@@ -57,13 +57,13 @@ export const RegisterGenderAuthUI: FC<RegisterGenderAuthUIProps> = (props) => {
 
   // Database
   const updateUserData = () => {
-    if (user) {
+    if (FirebaseUser) {
       props.setLoading(true);
       const UserGender = EncryptData(
         props.Gender,
-        GenderEncrytionKey(user.uid)
+        GenderEncrytionKey(FirebaseUser.uid)
       );
-      UpdateUserData(user.uid, {
+      UpdateUserData(FirebaseUser.uid, {
         Gender: UserGender,
       })
         .then(() => {
