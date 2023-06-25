@@ -1,11 +1,11 @@
 import { Button, styled } from '@mui/material';
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import React, { FC } from 'react';
 import Image from 'next/legacy/image';
 
 interface IProps {
   show: () => void;
   getURL: (value: string) => void;
-  backBool: (value:boolean) => void;
+  backBool: (value: boolean) => void;
 }
 
 /**
@@ -54,13 +54,9 @@ const FromComputer: FC<IProps> = (props) => {
           disableRipple
           disableFocusRipple
           disableTouchRipple
-          sx={{
-            '&': {
-              border: '2px dashed #FFFFFF60',
-            },
-          }}
+          sx={{ border: '2px dashed #FFFFFF60' }}
           component="span"
-          className="button-text-lower p-6 bg-transparent text-[#ffffff80] w-full max-w-[350px] rounded-md hover:bg-transparent active:bg-transparent"
+          className="button-text-lower cursor-default p-6 bg-transparent text-[#ffffff80] w-full max-w-[350px] rounded-md hover:bg-primary-theme/30 active:outline-none focus:outline-none transition-colors"
         >
           <div className="flex flex-col space-y-2 items-center justify-center">
             <Image

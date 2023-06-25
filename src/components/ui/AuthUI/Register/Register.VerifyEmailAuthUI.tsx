@@ -26,8 +26,8 @@ export interface RegisterVerifyEmailAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
-  IsInformationFilledAfterVerifyEmail: () => void;
-  IsInformationFilledBeforeVerifyEmail: () => void;
+  IsInformationAfterVerifyEmail: () => void;
+  IsInformationBeforeVerifyEmail: () => void;
 }
 
 /**
@@ -64,7 +64,7 @@ export const RegisterVerifyEmailAuthUI: FC<RegisterVerifyEmailAuthUIProps> = (
   // Submit
   const VerifyEmailClick = () => {
     if (props.isEmailVerified) {
-      props.IsInformationFilledAfterVerifyEmail();
+      props.IsInformationAfterVerifyEmail();
     } else {
       VerifyEmailAddress({
         Loading: props.setLoading,
@@ -95,13 +95,13 @@ export const RegisterVerifyEmailAuthUI: FC<RegisterVerifyEmailAuthUIProps> = (
             <div className="w-full flex justify-start">
               <SignInNextButton
                 Label="I will add later"
-                onClick={props.IsInformationFilledAfterVerifyEmail}
+                onClick={props.IsInformationAfterVerifyEmail}
               />
             </div>
             <div className="w-full flex justify-start">
               <SignInBackButton
                 Label="Back"
-                onClick={props.IsInformationFilledBeforeVerifyEmail}
+                onClick={props.IsInformationBeforeVerifyEmail}
               />
             </div>
           </div>

@@ -31,7 +31,7 @@ export const CollectionMap: FC<IProps> = (props) => {
           return (
             <m.button
               key={avatars.iconURL}
-              className="rounded-[50%] relative overflow-hidden cursor-default hover:opacity-50 transition-opacity"
+              className="rounded-[50%] relative overflow-hidden cursor-default opacity-100 hover:opacity-50 transition-opacity"
               whileTap={{ scale: 0.9 }}
               whileHover={{scale: 1.1}}
               onClick={() => {

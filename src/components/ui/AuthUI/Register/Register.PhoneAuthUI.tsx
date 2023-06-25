@@ -10,11 +10,21 @@ import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { RegisterSkipAllButton } from '../../../button/Auth/RegisterSkipAllButton';
 import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import IconNumberTextFieldDark from '../../../textfield/IconNumberTextFieldDark';
-import { SignInWithPhoneNumber } from '../../../../algorithms/AuthAlgorithms';
+import { LinkWithPhoneNumber } from '../../../../algorithms/AuthAlgorithms';
 import { InputNumberOnly } from '../../../../algorithms/UIAlgorithms';
 import { AuthType } from '../AuthType';
 import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
+import { useAuth } from '../../../../firebase/useAuth';
+import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
+import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
+import { useQueryClient, useMutation } from 'react-query';
+import {
+  putUserProfile,
+  getUserProfile,
+} from '../../../../mongodb/helper/Helper.UserProfile';
+import { IUserProfileDataUpdate } from '../../../../mongodb/schema/Schema.UserProfile';
+import _uid from '../../../../pages/api/users/profile/[_uid]';
 
 export interface RegisterPhoneAuthUIProps {
   ClassName?: string;
@@ -31,8 +41,8 @@ export interface RegisterPhoneAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
-  IsInformationFilledAfterPhoneAndOTP: () => void;
-  IsInformationFilledBeforePhoneAndOTP: () => void;
+  IsInformationAfterPhoneAndOTP: () => void;
+  IsInformationBeforePhoneAndOTP: () => void;
 }
 
 /**
@@ -41,6 +51,37 @@ export interface RegisterPhoneAuthUIProps {
  **/
 
 export const RegisterPhoneAuthUI: FC<RegisterPhoneAuthUIProps> = (props) => {
+  const { FirebaseUser } = useAuth();
+  const queryClient = useQueryClient();
+  const updateUserProfile = useMutation(
+    (data: IUserProfileDataUpdate) => putUserProfile(FirebaseUser?.uid, data),
+    {
+      onSuccess: async () => {
+        await queryClient
+          .prefetchQuery('user_profile', () =>
+            getUserProfile(FirebaseUser?.uid)
+          )
+          .then(() => {
+            props.setLoading(false);
+            MoveToOTPScreen();
+          })
+          .catch((error) => {
+            props.setLoading(false);
+            ShowToast(
+              'Something went wrong',
+              `${error.message}`,
+              'Error',
+              true
+            );
+          });
+      },
+      onError: (error: any) => {
+        props.setLoading(false);
+        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      },
+    }
+  );
+
   // ID
   const PhoneNumberID = 'PhoneNumber-TextField-Login';
 
@@ -127,17 +168,44 @@ export const RegisterPhoneAuthUI: FC<RegisterPhoneAuthUIProps> = (props) => {
     props.setSkipDialog(true);
   };
 
+  // Database
+  const UpdateDataBase = () => {
+    if (FirebaseUser) {
+      try {
+        const UserPhoneNumber = EncryptData(
+          UserProfileEncrytionKey(FirebaseUser.uid, 'PhoneNumber'),
+          props.PhoneNumber.toString()
+        );
+        const _data: IUserProfileDataUpdate = {
+          '_data.phoneNumber': UserPhoneNumber,
+        };
+        updateUserProfile.mutate(_data);
+      } catch (error: any) {
+        props.setLoading(false);
+        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+        console.error('User profile data not updated because ' + error.message);
+      }
+    } else {
+      ShowToast(
+        'Something went wrong',
+        'It seems like user is not exist.',
+        'Error',
+        true
+      );
+    }
+  };
+
   // Submit
   const PhoneNumberSubmitClick = () => {
     if (ValidatePhoneNumber) {
-      SignInWithPhoneNumber({
+      LinkWithPhoneNumber({
         PhoneNumber: parseInt(props.PhoneNumber),
         EmptyPhoneNumber: EmptyPhoneNumber,
         Loading: props.setLoading,
         ShowToast: ShowToast,
         ResetCaptcha: props.ResetCaptcha,
         setResetCaptcha: props.setResetCaptcha,
-        MoveToOTPScreen: MoveToOTPScreen,
+        UpdateDataBase: UpdateDataBase,
       });
     } else {
       ShowToast(
@@ -170,13 +238,13 @@ export const RegisterPhoneAuthUI: FC<RegisterPhoneAuthUIProps> = (props) => {
           <div className="w-full flex justify-start">
             <SignInNextButton
               Label="I will add later"
-              onClick={props.IsInformationFilledAfterPhoneAndOTP}
+              onClick={props.IsInformationAfterPhoneAndOTP}
             />
           </div>
           <div className="w-full flex justify-start">
             <SignInBackButton
               Label="Back"
-              onClick={props.IsInformationFilledBeforePhoneAndOTP}
+              onClick={props.IsInformationBeforePhoneAndOTP}
             />
           </div>
         </div>

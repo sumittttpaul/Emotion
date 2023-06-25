@@ -24,9 +24,12 @@ import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import { AuthType } from '../AuthType';
 import { useAuth } from '../../../../firebase/useAuth';
-import { UpdateUserData } from '../../../../algorithms/AuthDB';
-import { PhoneEncrytionKey } from '../../../../algorithms/security/CryptionKey';
-import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
+import { useQueryClient, useMutation } from 'react-query';
+import {
+  putUserProfile,
+  getUserProfile,
+} from '../../../../mongodb/helper/Helper.UserProfile';
+import { IUserProfileDataUpdate } from '../../../../mongodb/schema/Schema.UserProfile';
 
 export interface RegisterOTPAuthUIProps {
   ClassName?: string;
@@ -40,7 +43,7 @@ export interface RegisterOTPAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
-  IsInformationFilledAfterPhoneAndOTP: () => void;
+  IsInformationAfterPhoneAndOTP: () => void;
 }
 
 /**
@@ -50,6 +53,34 @@ export interface RegisterOTPAuthUIProps {
 
 export const RegisterOTPAuthUI: FC<RegisterOTPAuthUIProps> = (props) => {
   const { FirebaseUser } = useAuth();
+  const queryClient = useQueryClient();
+  const updateUserProfile = useMutation(
+    (data: IUserProfileDataUpdate) => putUserProfile(FirebaseUser?.uid, data),
+    {
+      onSuccess: async () => {
+        await queryClient
+          .prefetchQuery('user_profile', () =>
+            getUserProfile(FirebaseUser?.uid)
+          )
+          .then(() => {
+            props.IsInformationAfterPhoneAndOTP();
+          })
+          .catch((error) => {
+            props.setLoading(false);
+            ShowToast(
+              'Something went wrong',
+              `${error.message}`,
+              'Error',
+              true
+            );
+          });
+      },
+      onError: (error: any) => {
+        props.setLoading(false);
+        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      },
+    }
+  );
 
   // ID
   const OTP1ID = 'RegisterOTPInputField1';
@@ -168,28 +199,18 @@ export const RegisterOTPAuthUI: FC<RegisterOTPAuthUIProps> = (props) => {
       document.getElementById('RegisterOTPInputField1')?.focus();
   };
 
-  // Databse
-  const updateUserData = () => {
+  // Database
+  const UpdateDataBase = () => {
     if (FirebaseUser) {
-      props.setLoading(true);
-      const UserPhoneNumber = EncryptData(
-        props.PhoneNumber,
-        PhoneEncrytionKey(FirebaseUser.uid)
-      );
-      UpdateUserData(FirebaseUser.uid, {
-        PhoneNumber: UserPhoneNumber,
-      })
-        .then(() => {
-          //   props.setLoading(false);
-          props.IsInformationFilledAfterPhoneAndOTP();
-        })
-        .catch((error) => {
-          props.setLoading(false);
-          ShowToast('Something went wrong', `${error.message}`, 'Error', true);
-          console.error(
-            'User data not updates not created because ' + error.message
-          );
-        });
+      try {
+        const _data: IUserProfileDataUpdate = {
+          '_data.isVerified.phoneNumber': true,
+        };
+        updateUserProfile.mutate(_data);
+      } catch (error: any) {
+        props.setLoading(false);
+        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      }
     } else {
       ShowToast(
         'Something went wrong',
@@ -230,7 +251,7 @@ export const RegisterOTPAuthUI: FC<RegisterOTPAuthUIProps> = (props) => {
         EmptyOTPBox: EmptyOTP,
         Loading: props.setLoading,
         ShowToast: ShowToast,
-        updateUserData: updateUserData,
+        UpdateDataBase: UpdateDataBase,
       });
     }
   };

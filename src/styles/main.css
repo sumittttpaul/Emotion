@@ -158,28 +158,29 @@
   transition-duration: 300ms;
 }
 
+.CropAvatar-Stencil-grid {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
 .CropAvatar-Stencil-preview {
-  border: dashed 2px #ffffff1a;
+  border: solid 2px rgba(255, 255, 255, 0) !important;
 }
 
 .CropAvatar-Stencil-handler {
-  display: block;
-  background: #ffffff;
-  border-radius: 50%;
-  height: 20px !important;
-  width: 20px !important;
+  opacity: 1 !important;
 }
 
 .CropAvatar-Stencil-line {
+  opacity: 0.5;
   border-color: #ffffff !important;
+}
+
+.CropAvatar-Stencil-overlay {
+  box-shadow: 0 0 0 1000px rgba(32, 32, 32, 0.75) !important;
 }
 
 .CropAvatar-background {
   background: #202020 !important;
-}
-
-.CropAvatar-stencil-overlay {
-  box-shadow: 0 0 0 1000px rgba(32, 32, 32, 0.75) !important;
 }
 
 .scroll {

@@ -2,7 +2,6 @@ import React, { FC, ReactNode, useState } from 'react';
 import { useReduxSelector } from '../../../redux/useReduxSelector';
 import { ContainerDark } from '../../container/ContainerDark';
 import { SidePanel } from '../../sidepanel/SidePanel';
-import { Header } from '../../header/Header';
 
 interface IProps {
   children: ReactNode;

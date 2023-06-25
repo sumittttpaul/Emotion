@@ -1,22 +1,20 @@
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { getAuth } from 'firebase/auth';
 import { useEffect } from 'react';
-import firebase from './clientApp';
 import nookies from 'nookies';
+import { FirebaseAuth, _firebaseAuth } from './clientApp';
 
 export const useAuth = () => {
-  const FirebaseApp = getAuth(firebase.app());
-  const [user, loading, error] = useAuthState(FirebaseApp);
+  const [user, loading, error] = useAuthState(FirebaseAuth);
 
   const FirebaseUser = user;
   const FirebaseLoading = loading;
   const FirebaseError = error;
 
   useEffect(() => {
-    if (!FirebaseApp) {
+    if (!FirebaseAuth) {
       return;
     }
-    return FirebaseApp.onIdTokenChanged(async (user) => {
+    return FirebaseAuth.onIdTokenChanged(async (user) => {
       if (!user) {
         nookies.destroy(undefined, 'token');
         return;
@@ -27,9 +25,17 @@ export const useAuth = () => {
         secure: true,
       });
     });
-  }, [FirebaseApp]);
+  }, []);
+
+  useEffect(() => {
+    const handle = setInterval(async () => {
+      const user = FirebaseAuth.currentUser;
+      if (user) await user.getIdToken(true);
+    }, 10 * 60 * 1000);
+    return () => clearInterval(handle);
+  }, []);
 
   return { FirebaseUser, FirebaseLoading, FirebaseError };
 };
 
-export type UserType = firebase.UserInfo | null | undefined;
+export type UserType = _firebaseAuth.User | null | undefined;

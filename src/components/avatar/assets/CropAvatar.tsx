@@ -1,21 +1,23 @@
 import React, { useRef, useState, MouseEvent } from 'react';
 import {
   CircleStencil,
-  CropperRef,
-  Cropper,
-  isNumber,
-  createState,
+  FixedCropper,
   CropperProps,
-  isEqualStates,
+  isNumber,
   isInitializedState,
+  ImageRestriction,
+  getCloserAngle,
+  FixedCropperRef,
 } from 'react-advanced-cropper';
 import 'react-advanced-cropper/dist/style.css';
+import 'react-advanced-cropper/dist/themes/compact.css';
 import { CropAvatarBottom } from './CropAvatar/CropAvatarBottom';
 import { CropAvatarNavigation } from './CropAvatar/CropAvatarNavigation';
 import { CropAvatarSlider } from './CropAvatar/CropAvatarSlider';
 import { CropAvatarZoom } from './CropAvatar/CropAvatarZoom';
 import { CropAvatarTop } from './CropAvatar/CropAvatarTop';
 import {
+  isEqualState,
   getAbsoluteZoom,
   getVisibleAreaSize,
 } from './cropper/CropperAlgorithms';
@@ -38,14 +40,8 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
   const [RotateValue, setRotateValue] = useState(0);
   const [ZoomValue, setZoomValue] = useState(0);
 
-  const cropperRef = useRef<CropperRef>(null);
+  const cropperRef = useRef<FixedCropperRef>(null);
   const sliderRef = useRef<HTMLElement>(null);
-
-  const onChange = (cropper: CropperRef) => {
-    const state = cropper.getState();
-    setChanged(state ? !isEqualStates(state, getDefaultState(cropper)) : false);
-    ChangeZoomValue();
-  };
 
   const defaultSize = ({ imageSize, visibleArea }: any) => {
     return {
@@ -61,37 +57,19 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
     };
   };
 
-  const getDefaultState = (cropper: CropperRef) => {
-    const state = cropper.getState();
-    if (state) {
-      const image = cropper.getImage();
-      const transforms = cropper.getTransforms();
-
-      const k = (transforms.rotate > 0 ? Math.floor : Math.ceil)(
-        transforms.rotate / 360
-      );
-
-      return (props.createStateAlgorithm || createState)(
-        {
-          boundary: state.boundary,
-          imageSize: state.imageSize,
-          priority: props.priority,
-          transforms: image
-            ? {
-                ...image.transforms,
-                rotate: k * 360 + image.transforms.rotate,
-              }
-            : {
-                flip: {
-                  horizontal: false,
-                  vertical: false,
-                },
-                rotate: k * 360,
-              },
-        },
-        cropper.getSettings()
-      );
-    } else return null;
+  const onChange = (cropper: FixedCropperRef) => {
+    const currentCoordinates = cropper.getCoordinates();
+    const defaultCoordinates = cropper.getDefaultState()?.coordinates;
+    const currentFlip = cropper.getTransforms().flip;
+    const defaultFlip = cropper.getDefaultState()?.transforms.flip;
+    const currentRotate = cropper.getTransforms().rotate;
+    const defaultRotate = cropper.getDefaultState()?.transforms.rotate;
+    setChanged(
+      isEqualState(currentCoordinates, defaultCoordinates) ||
+        isEqualState(currentFlip, defaultFlip) ||
+        currentRotate !== defaultRotate
+    );
+    ChangeZoomValue();
   };
 
   const flip = (horizontal: boolean, vertical: boolean) => {
@@ -156,7 +134,7 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
   const reset = () => {
     const cropper = cropperRef.current;
     if (cropper) {
-      cropper.setState(getDefaultState(cropper));
+      cropper.setState(cropper.getDefaultState());
       setZoomValue(0);
       setRotateValue(0);
       const slider = sliderRef.current;
@@ -206,42 +184,25 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
           FlipY={FlipY}
         />
       </div>
-      <Cropper
+      <FixedCropper
         src={URL}
-        /* @ts-ignore: Unreachable code error */
-        imageRestriction="stencil"
+        ref={cropperRef}
         onChange={onChange}
-        autoZoom={true}
-        stencilComponent={CircleStencil}
         defaultSize={defaultSize}
         stencilSize={stencilSize}
-        ref={cropperRef}
-        moveImage={true}
-        scaleImage={true}
+        stencilComponent={CircleStencil}
+        imageRestriction={ImageRestriction.stencil}
         stencilProps={{
-          aspectRatio: 1 / 1,
           movable: false,
-          // previewClassName: 'CropAvatar-Stencil-preview',
-          overlayClassName: 'CropAvatar-stencil-overlay',
-          handlerClassNames: {
-            default: 'CropAvatar-Stencil-handler',
-          },
-          lineClassNames: {
-            default: 'CropAvatar-Stencil-line',
-          },
-          handlers: {
-            eastNorth: true,
-            north: false,
-            westNorth: true,
-            west: false,
-            westSouth: true,
-            south: false,
-            eastSouth: true,
-            east: false,
-          },
+          grid: true,
+          gridClassName: 'CropAvatar-Stencil-grid',
+          overlayClassName: 'CropAvatar-Stencil-overlay',
+          previewClassName: 'CropAvatar-Stencil-preview',
+          handlerClassNames: { default: 'CropAvatar-Stencil-handler' },
+          lineClassNames: { default: 'CropAvatar-Stencil-line' },
         }}
         className={
-          'cropper circle-stencil px-5 -mt-[150px] -mb-[228px] pt-[156px] pb-[234px] cursor-default active:cursor-grab CropAvatar-background flex relative w-full h-full'
+          'cropper circle-stencil px-5 -mt-[150px] -mb-[228px] pt-[156px] pb-[234px] cursor-grab active:cursor-grabbing CropAvatar-background flex relative w-full h-full'
         }
       />
       <div className="z-[1] flex flex-col h-[228px] w-full relative">
@@ -255,10 +216,7 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
           onZoomIn={onZoomIn}
           onZoomOut={onZoomOut}
         />
-        <CropAvatarBottom
-          back={back}
-          submitClick={submit}
-        />
+        <CropAvatarBottom back={back} submitClick={submit} />
       </div>
     </div>
   );

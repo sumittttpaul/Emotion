@@ -11,6 +11,15 @@ import {
 } from '../../../../algorithms/AuthAlgorithms';
 import { useLoaderState } from '../../../../providers/state/LoadingState';
 import { AuthType } from '../AuthType';
+import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
+import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
+import { useQueryClient, useMutation } from 'react-query';
+import {
+  postUserProfile,
+  getUserProfile,
+} from '../../../../mongodb/helper/Helper.UserProfile';
+import { IUserProfile } from '../../../../mongodb/schema/Schema.UserProfile';
+import { UserType } from '../../../../firebase/useAuth';
 
 export interface LoginOtherAccountAuthUIProps {
   Loading: boolean;
@@ -21,10 +30,7 @@ export interface LoginOtherAccountAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
-  setFullName: Dispatch<SetStateAction<string>>;
-  setEmailAddress: Dispatch<SetStateAction<string>>;
-  setPhoneNumber: Dispatch<SetStateAction<string>>;
-  IsInformationFilled: () => void;
+  IsInformation: () => void;
 }
 
 /**
@@ -35,6 +41,25 @@ export interface LoginOtherAccountAuthUIProps {
 export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
   props
 ) => {
+  const queryClient = useQueryClient();
+  const createUserProfile = useMutation(postUserProfile, {
+    onSuccess: async (data, variables) => {
+      await queryClient
+        .prefetchQuery('user_profile', () => getUserProfile(variables._uid))
+        .then(() => {
+          props.IsInformation();
+        })
+        .catch((error) => {
+          props.setLoading(false);
+          ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+        });
+    },
+    onError: (error: any) => {
+      props.setLoading(false);
+      ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+    },
+  });
+
   // Loading
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => {
@@ -61,16 +86,69 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
     props.setAuthScreen('login-phone');
   };
 
+  // Database
+  const CreateDateBase = (user: UserType) => {
+    if (user) {
+      try {
+        const UserFullName =
+          user.displayName && user.displayName.length > 0
+            ? EncryptData(
+                UserProfileEncrytionKey(user.uid, 'FullName'),
+                user.displayName
+              )
+            : '';
+        const UserEmailAddress =
+          user.email && user.email.length > 0
+            ? EncryptData(
+                UserProfileEncrytionKey(user.uid, 'EmailAddress'),
+                user.email
+              )
+            : '';
+        const UserPhoneNumber =
+          user.phoneNumber && user.phoneNumber.length > 0
+            ? EncryptData(
+                UserProfileEncrytionKey(user.uid, 'PhoneNumber'),
+                user.phoneNumber
+              )
+            : '';
+        const _data: IUserProfile = {
+          _uid: user.uid,
+          _data: {
+            fullName: UserFullName,
+            emailAddress: UserEmailAddress,
+            phoneNumber: UserPhoneNumber,
+            photoURL: '',
+            dateOfBirth: '',
+            age: '',
+            gender: '',
+            isVerified: {
+              phoneNumber: true,
+              emailAddress: false,
+            },
+          },
+        };
+        createUserProfile.mutate(_data);
+      } catch (error: any) {
+        props.setLoading(false);
+        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      }
+    } else {
+      ShowToast(
+        'Something went wrong',
+        'It seems like user is not exist.',
+        'Error',
+        true
+      );
+    }
+  };
+
   // Submit
   const GoogleSignIn = () => {
     SignInWithGoogle({
       ShowToast: ShowToast,
       Loading: props.setLoading,
       LoadingScreen: LoadingScreen,
-      Next: props.IsInformationFilled,
-      setFullName: props.setFullName,
-      setEmailAddress: props.setEmailAddress,
-      setPhoneNumber: props.setPhoneNumber,
+      CreateDateBase: CreateDateBase,
     });
   };
 
@@ -79,10 +157,7 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
       ShowToast: ShowToast,
       Loading: props.setLoading,
       LoadingScreen: LoadingScreen,
-      Next: props.IsInformationFilled,
-      setFullName: props.setFullName,
-      setEmailAddress: props.setEmailAddress,
-      setPhoneNumber: props.setPhoneNumber,
+      CreateDateBase: CreateDateBase,
     });
   };
 
@@ -91,10 +166,7 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
       ShowToast: ShowToast,
       Loading: props.setLoading,
       LoadingScreen: LoadingScreen,
-      Next: props.IsInformationFilled,
-      setFullName: props.setFullName,
-      setEmailAddress: props.setEmailAddress,
-      setPhoneNumber: props.setPhoneNumber,
+      CreateDateBase: CreateDateBase,
     });
   };
 
@@ -103,10 +175,7 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
       ShowToast: ShowToast,
       Loading: props.setLoading,
       LoadingScreen: LoadingScreen,
-      Next: props.IsInformationFilled,
-      setFullName: props.setFullName,
-      setEmailAddress: props.setEmailAddress,
-      setPhoneNumber: props.setPhoneNumber,
+      CreateDateBase: CreateDateBase,
     });
   };
 

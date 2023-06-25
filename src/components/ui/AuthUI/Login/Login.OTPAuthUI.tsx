@@ -21,6 +21,14 @@ import {
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import { AuthType } from '../AuthType';
+import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
+import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
+import { useQueryClient, useMutation } from 'react-query';
+import {
+  postUserProfile,
+  getUserProfile,
+} from '../../../../mongodb/helper/Helper.UserProfile';
+import { IUserProfile } from '../../../../mongodb/schema/Schema.UserProfile';
 
 export interface LoginOTPAuthUIProps {
   ClassName?: string;
@@ -31,10 +39,10 @@ export interface LoginOTPAuthUIProps {
   setResetCaptcha: Dispatch<SetStateAction<boolean>>;
   setToast: Dispatch<SetStateAction<boolean>>;
   setToastSetting: Dispatch<
-  SetStateAction<{ Title: string; Description: string; Type: string }>
+    SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
-  IsInformationFilled: () => void;
+  IsInformation: () => void;
 }
 
 /**
@@ -43,6 +51,25 @@ export interface LoginOTPAuthUIProps {
  **/
 
 export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
+  const queryClient = useQueryClient();
+  const createUserProfile = useMutation(postUserProfile, {
+    onSuccess: async (data, variables) => {
+      await queryClient
+        .prefetchQuery('user_profile', () => getUserProfile(variables._uid))
+        .then(() => {
+          props.IsInformation();
+        })
+        .catch((error) => {
+          props.setLoading(false);
+          ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+        });
+    },
+    onError: (error: any) => {
+      props.setLoading(false);
+      ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+    },
+  });
+
   // ID
   const OTP1ID = 'LoginOTPInputField1';
   const OTP2ID = 'LoginOTPInputField2';
@@ -166,6 +193,36 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
       document.getElementById('LoginOTPInputField1')?.focus();
   };
 
+  // Database
+  const CreateDateBase = (_uid: string) => {
+    try {
+      const UserPhoneNumber = EncryptData(
+        UserProfileEncrytionKey(_uid, 'PhoneNumber'),
+        props.PhoneNumber
+      );
+      const _data: IUserProfile = {
+        _uid: _uid,
+        _data: {
+          fullName: '',
+          emailAddress: '',
+          phoneNumber: UserPhoneNumber,
+          photoURL: '',
+          dateOfBirth: '',
+          age: '',
+          gender: '',
+          isVerified: {
+            phoneNumber: true,
+            emailAddress: false,
+          },
+        },
+      };
+      createUserProfile.mutate(_data);
+    } catch (error: any) {
+      props.setLoading(false);
+      ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+    }
+  };
+
   // OTP Submit
   const OTPResend = () => {
     ResentOTP({
@@ -193,12 +250,11 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
     ) {
       VerifyOTP({
         OTP: parseInt(OTP1 + OTP2 + OTP3 + OTP4 + OTP5 + OTP6),
-        PhoneNumber: props.PhoneNumber,
         EmptyOTPBox: EmptyOTP,
         Loading: props.setLoading,
         LoadingScreen: LoadingScreen,
         ShowToast: ShowToast,
-        Next: props.IsInformationFilled,
+        CreateDateBase: CreateDateBase,
       });
     }
   };

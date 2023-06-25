@@ -17,7 +17,7 @@ interface IProps {
 
 export const SmallIconButtonDark: FC<IProps> = (props) => {
   return (
-    <TooltipDark title={props.tooltip} placement="bottom" arrow>
+    <TooltipDark title={props.tooltip} placement="top" arrow>
       <Button
         aria-label="small-icon-button"
         disableFocusRipple

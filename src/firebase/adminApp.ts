@@ -1,5 +1,5 @@
 const admin = require('firebase-admin');
-//const serverAccount = require("../auth/secrets.json");
+
 const SERVER_ACCOUNT = {
   type: process.env.NEXT_SERVER_FIREBASE_TYPE,
   project_id: process.env.NEXT_SERVER_FIREBASE_PROJECT_ID,
@@ -14,7 +14,7 @@ const SERVER_ACCOUNT = {
   client_x509_cert_url: process.env.NEXT_SERVER_FIREBASE_CLIENT_X509_CERT_URL,
 };
 
-export const verfyIdTokem = (token: any) => {
+export const verfyIdToken = (token: any) => {
   if (!admin.apps.length) {
     admin.initializeApp({
       credential: admin.credential.cert(SERVER_ACCOUNT),

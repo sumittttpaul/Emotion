@@ -2,7 +2,6 @@ import React, {
   ChangeEvent,
   Dispatch,
   FC,
-  Fragment,
   KeyboardEvent,
   SetStateAction,
   useState,
@@ -17,7 +16,7 @@ import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { AuthFooter } from '../../../footer/AuthFooter';
 import { AuthType } from '../AuthType';
 
-interface LoginPhoneAuthUIProps {
+export interface LoginPhoneAuthUIProps {
   ClassName?: string;
   Loading: boolean;
   Toast: boolean;
@@ -38,7 +37,7 @@ interface LoginPhoneAuthUIProps {
  * @function @LoginPhoneAuthUI
  **/
 
-const LoginPhoneAuthUI: FC<LoginPhoneAuthUIProps> = (props) => {
+export const LoginPhoneAuthUI: FC<LoginPhoneAuthUIProps> = (props) => {
   // ID
   const PhoneNumberID = 'PhoneNumber-TextField-Login';
 
@@ -198,5 +197,3 @@ const LoginPhoneAuthUI: FC<LoginPhoneAuthUIProps> = (props) => {
     </AuthTransitionContainer>
   );
 };
-
-export default LoginPhoneAuthUI;

@@ -12,10 +12,6 @@ import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import IconPasswordTextFieldDark from '../../../textfield/IconPasswordTextFieldDark';
 import { LinkWithEmailAndPassword } from '../../../../algorithms/AuthAlgorithms';
-import { useAuth } from '../../../../firebase/useAuth';
-import { UpdateUserData } from '../../../../algorithms/AuthDB';
-import { EmailEncrytionKey } from '../../../../algorithms/security/CryptionKey';
-import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
 import { AuthType } from '../AuthType';
 
 export interface RegisterPasswordAuthUIProps {
@@ -29,7 +25,7 @@ export interface RegisterPasswordAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
-  IsInformationFilledAfterEmailAndPassword: () => void;
+  IsInformationAfterEmailAndPassword: () => void;
 }
 
 /**
@@ -40,8 +36,6 @@ export interface RegisterPasswordAuthUIProps {
 export const RegisterPasswordAuthUI: FC<RegisterPasswordAuthUIProps> = (
   props
 ) => {
-  const { FirebaseUser } = useAuth();
-
   // ID
   const PasswordID = 'Password-TextField-Login';
 
@@ -118,38 +112,6 @@ export const RegisterPasswordAuthUI: FC<RegisterPasswordAuthUIProps> = (
     props.setAuthScreen('register-email');
   };
 
-  // Database
-  const updateUserData = () => {
-    if (FirebaseUser) {
-      props.setLoading(true);
-      const UserEmailAddress = EncryptData(
-        props.EmailAddress,
-        EmailEncrytionKey(FirebaseUser.uid)
-      );
-      UpdateUserData(FirebaseUser.uid, {
-        EmailAddress: UserEmailAddress,
-      })
-        .then(() => {
-          // props.setLoading(false);
-          props.IsInformationFilledAfterEmailAndPassword();
-        })
-        .catch((error) => {
-          props.setLoading(false);
-          ShowToast('Something went wrong', `${error.message}`, 'Error', true);
-          console.error(
-            'User data not updates not created because ' + error.message
-          );
-        });
-    } else {
-      ShowToast(
-        'Something went wrong',
-        'It seems like user is not exist.',
-        'Error',
-        true
-      );
-    }
-  };
-
   // Submit
   const PasswordSubmitClick = () => {
     if (ValidatePassword) {
@@ -160,7 +122,7 @@ export const RegisterPasswordAuthUI: FC<RegisterPasswordAuthUIProps> = (
         ShowToast: ShowToast,
         EmptyPasswordTextField: EmptyPassword,
         BackToEmailScreen: BackToEmailAddressScreen,
-        updateUserData: updateUserData,
+        Next: props.IsInformationAfterEmailAndPassword,
       });
     } else {
       ShowToast(

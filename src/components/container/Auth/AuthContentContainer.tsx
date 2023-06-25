@@ -4,6 +4,7 @@ import { AuthHeaderDescription } from '../../label/AuthHeaderDescription';
 import { AuthContentHeader } from '../../label/AuthContentHeader';
 import { AuthType } from '../../ui/AuthUI/AuthType';
 import { AuthTransitionContainer } from './AuthTransitionContainer';
+import { AnimatePresence } from 'framer-motion';
 
 interface IProps {
   children: ReactNode;

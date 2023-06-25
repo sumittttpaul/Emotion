@@ -6,7 +6,9 @@ import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import Router from 'next/router';
 import { useLoaderState } from '../../../../providers/state/LoadingState';
 
-export interface FinishAuthUIProps {}
+export interface FinishAuthUIProps {
+  ClassName: string;
+}
 
 /**
  * @author
@@ -22,7 +24,7 @@ export const FinishAuthUI: FC<FinishAuthUIProps> = (props) => {
   };
 
   return (
-    <div className="p-5 md:p-14 space-y-7 w-full h-full md:h-[652px] flex flex-col relative items-center justify-center">
+    <div className={`${props.ClassName} p-5 md:p-14 space-y-7 w-full flex flex-col relative items-center justify-center`}>
       <div className="pt-14 md:pt-0 w-full relative flex justify-center items-center">
         <Image
           height={275} //320

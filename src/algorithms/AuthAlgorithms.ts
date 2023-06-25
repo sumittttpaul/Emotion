@@ -1,4 +1,4 @@
-import firebase from '../firebase/clientApp';
+import Router from 'next/router';
 import {
   ResendOTPProps,
   VerifyOTPProps,
@@ -17,16 +17,12 @@ import {
   SignOutProps,
 } from './Props/AuthProps';
 import { AuthError } from '../firebase/AuthError';
-import { getDownloadURL } from 'firebase/storage';
 import { Home_Link } from '../routerLinks/RouterLinks';
-import Router from 'next/router';
-import { CreateUserProfileData } from './AuthDB';
 import {
-  EmailEncrytionKey,
-  NameEncrytionKey,
-  PhoneEncrytionKey,
-} from './security/CryptionKey';
-import { EncryptData } from './security/CryptionSecurity';
+  FirebaseAuth,
+  _firebaseAuth,
+  _firebaseStorage,
+} from '../firebase/clientApp';
 
 declare global {
   interface Window {
@@ -38,17 +34,14 @@ declare global {
 
 // Captcha
 
-export const configureCaptcha = ({
-  ShowToast,
-  ResetCaptcha,
-}: RecaptchaProps) => {
+const configureCaptcha = ({ ShowToast, ResetCaptcha }: RecaptchaProps) => {
   if (typeof window === 'object') {
     if (ResetCaptcha) {
       window.recaptchaVerifier.render().then(function (widgetId: any) {
         window.grecaptcha.reset(widgetId);
       });
     } else {
-      window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+      window.recaptchaVerifier = new _firebaseAuth.RecaptchaVerifier(
         'verify-sign-in-recaptcha',
         {
           size: 'invisible',
@@ -64,7 +57,8 @@ export const configureCaptcha = ({
             );
           },
           defaultCountry: 'IN',
-        }
+        },
+        FirebaseAuth
       );
     }
   }
@@ -83,9 +77,8 @@ export const ResentOTP = ({
   });
   const number = '+91' + PhoneNumber;
   const appVerifier = window.recaptchaVerifier;
-  firebase
-    .auth()
-    .signInWithPhoneNumber(number, appVerifier)
+  _firebaseAuth
+    .signInWithPhoneNumber(FirebaseAuth, number, appVerifier)
     .then((confirmationResult) => {
       window.confirmationResult = confirmationResult;
       Loading(false);
@@ -105,46 +98,32 @@ export const ResentOTP = ({
 
 export const VerifyOTP = ({
   OTP,
-  PhoneNumber,
   Loading,
   LoadingScreen,
   EmptyOTPBox,
   ShowToast,
-  Next,
+  CreateDateBase,
 }: VerifyOTPProps) => {
   Loading(true);
   const code = OTP.toString();
-  var credential = firebase.auth.PhoneAuthProvider.credential(
+  var credential = _firebaseAuth.PhoneAuthProvider.credential(
     window.confirmationResult.verificationId,
     code
   );
-  firebase
-    .auth()
-    .signInWithCredential(credential)
+  _firebaseAuth
+    .signInWithCredential(FirebaseAuth, credential)
     .then((result) => {
-      const IsNewUser = result.additionalUserInfo?.isNewUser;
-      const user = firebase.auth().currentUser;
-      if (user) {
-        if (IsNewUser) {
-          const UserPhoneNumber = EncryptData(
-            PhoneNumber,
-            PhoneEncrytionKey(user.uid)
-          );
-          CreateUserProfileData({
-            UserId: user.uid,
-            FullName: '',
-            EmailAddress: '',
-            PhoneNumber: UserPhoneNumber,
-            DateOfBirth: '',
-            Gender: '',
-            Loading: Loading,
-            ShowToast: ShowToast,
-            Next: Next,
-          });
-        } else {
-          LoadingScreen(true);
-          Loading(false);
-          Router.push(Home_Link);
+      const getAdditionalUserInfo = _firebaseAuth.getAdditionalUserInfo(result);
+      if (getAdditionalUserInfo) {
+        const IsNewUser = getAdditionalUserInfo.isNewUser;
+        const user = FirebaseAuth.currentUser;
+        if (user) {
+          if (IsNewUser) CreateDateBase(user.uid);
+          else {
+            LoadingScreen(true);
+            Loading(false);
+            Router.push(Home_Link);
+          }
         }
       }
     })
@@ -162,9 +141,8 @@ export const PasswordReset = ({
   ShowToast,
 }: PasswordResentProps) => {
   Loading(true);
-  firebase
-    .auth()
-    .sendPasswordResetEmail(EmailAddress)
+  _firebaseAuth
+    .sendPasswordResetEmail(FirebaseAuth, EmailAddress)
     .then(() => {
       Loading(false);
       ShowToast(
@@ -199,17 +177,16 @@ export const SignInWithPhoneNumber = ({
   });
   const number = '+91' + PhoneNumber;
   const appVerifier = window.recaptchaVerifier;
-  firebase
-    .auth()
-    .signInWithPhoneNumber(number, appVerifier)
+  _firebaseAuth
+    .signInWithPhoneNumber(FirebaseAuth, number, appVerifier)
     .then((confirmationResult) => {
       window.confirmationResult = confirmationResult;
-      ShowToast(
-        'OTP sent successfully',
-        'An OTP has been sent to your phone number.',
-        'Success',
-        true
-      );
+      // ShowToast(
+      //   'OTP sent successfully',
+      //   'An OTP has been sent to your phone number.',
+      //   'Success',
+      //   true
+      // );
       MoveToOTPScreen();
       Loading(false);
     })
@@ -232,9 +209,8 @@ export const SignInWithEmailAndPassword = ({
   ShowToast,
 }: SignInWithEmailAndPasswordProps) => {
   Loading(true);
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(EmailAddress, Password)
+  _firebaseAuth
+    .signInWithEmailAndPassword(FirebaseAuth, EmailAddress, Password)
     .then(() => {
       LoadingScreen(true);
       Loading(false);
@@ -249,55 +225,30 @@ export const SignInWithEmailAndPassword = ({
     });
 };
 
+// other account
+
 export const SignInWithFacebook = ({
   Loading,
   LoadingScreen,
   ShowToast,
-  Next,
-  setFullName,
-  setEmailAddress,
-  setPhoneNumber,
+  CreateDateBase,
 }: SignInWithOtherAccountsProps) => {
-  const facebookProvider = new firebase.auth.FacebookAuthProvider();
+  const facebookProvider = new _firebaseAuth.FacebookAuthProvider();
   Loading(true);
-  firebase
-    .auth()
-    .signInWithPopup(facebookProvider)
+  _firebaseAuth
+    .signInWithPopup(FirebaseAuth, facebookProvider)
     .then((result) => {
-      const IsNewUser = result.additionalUserInfo?.isNewUser;
-      const user = firebase.auth().currentUser;
-      if (user) {
-        if (IsNewUser) {
-          const UserFullName = user.displayName;
-          const UserEmailAddress = user.email;
-          const UserPhoneNumber = user.phoneNumber;
-          setFullName(UserFullName ? UserFullName : '');
-          setEmailAddress(UserEmailAddress ? UserEmailAddress : '');
-          setPhoneNumber(UserPhoneNumber ? UserPhoneNumber : '');
-          CreateUserProfileData({
-            UserId: user.uid,
-            FullName:
-              UserFullName && UserFullName.length > 0
-                ? EncryptData(UserFullName, NameEncrytionKey(user.uid))
-                : '',
-            EmailAddress:
-              UserEmailAddress && UserEmailAddress.length > 0
-                ? EncryptData(UserEmailAddress, EmailEncrytionKey(user.uid))
-                : '',
-            PhoneNumber:
-              UserPhoneNumber && UserPhoneNumber.length > 0
-                ? EncryptData(UserPhoneNumber, PhoneEncrytionKey(user.uid))
-                : '',
-            DateOfBirth: '',
-            Gender: '',
-            Loading: () => {},
-            ShowToast: ShowToast,
-            Next: Next,
-          });
-        } else {
-          LoadingScreen(true);
-          Loading(false);
-          Router.push(Home_Link);
+      const getAdditionalUserInfo = _firebaseAuth.getAdditionalUserInfo(result);
+      if (getAdditionalUserInfo) {
+        const IsNewUser = getAdditionalUserInfo.isNewUser;
+        const user = FirebaseAuth.currentUser;
+        if (user) {
+          if (IsNewUser) CreateDateBase(user);
+          else {
+            LoadingScreen(true);
+            Loading(false);
+            Router.push(Home_Link);
+          }
         }
       }
     })
@@ -312,51 +263,24 @@ export const SignInWithGoogle = ({
   Loading,
   LoadingScreen,
   ShowToast,
-  Next,
-  setFullName,
-  setEmailAddress,
-  setPhoneNumber,
+  CreateDateBase,
 }: SignInWithOtherAccountsProps) => {
-  const googleProvider = new firebase.auth.GoogleAuthProvider();
+  const googleProvider = new _firebaseAuth.GoogleAuthProvider();
   Loading(true);
-  firebase
-    .auth()
-    .signInWithPopup(googleProvider)
+  _firebaseAuth
+    .signInWithPopup(FirebaseAuth, googleProvider)
     .then((result) => {
-      const IsNewUser = result.additionalUserInfo?.isNewUser;
-      const user = firebase.auth().currentUser;
-      if (user) {
-        if (IsNewUser) {
-          const UserFullName = user.displayName;
-          const UserEmailAddress = user.email;
-          const UserPhoneNumber = user.phoneNumber;
-          setFullName(UserFullName ? UserFullName : '');
-          setEmailAddress(UserEmailAddress ? UserEmailAddress : '');
-          setPhoneNumber(UserPhoneNumber ? UserPhoneNumber : '');
-          CreateUserProfileData({
-            UserId: user.uid,
-            FullName:
-              UserFullName && UserFullName.length > 0
-                ? EncryptData(UserFullName, NameEncrytionKey(user.uid))
-                : '',
-            EmailAddress:
-              UserEmailAddress && UserEmailAddress.length > 0
-                ? EncryptData(UserEmailAddress, EmailEncrytionKey(user.uid))
-                : '',
-            PhoneNumber:
-              UserPhoneNumber && UserPhoneNumber.length > 0
-                ? EncryptData(UserPhoneNumber, PhoneEncrytionKey(user.uid))
-                : '',
-            DateOfBirth: '',
-            Gender: '',
-            Loading: () => {},
-            ShowToast: ShowToast,
-            Next: Next,
-          });
-        } else {
-          LoadingScreen(true);
-          Loading(false);
-          Router.push(Home_Link);
+      const getAdditionalUserInfo = _firebaseAuth.getAdditionalUserInfo(result);
+      if (getAdditionalUserInfo) {
+        const IsNewUser = getAdditionalUserInfo.isNewUser;
+        const user = FirebaseAuth.currentUser;
+        if (user) {
+          if (IsNewUser) CreateDateBase(user);
+          else {
+            LoadingScreen(true);
+            Loading(false);
+            Router.push(Home_Link);
+          }
         }
       }
     })
@@ -371,51 +295,24 @@ export const SignInWithApple = ({
   Loading,
   LoadingScreen,
   ShowToast,
-  Next,
-  setFullName,
-  setEmailAddress,
-  setPhoneNumber,
+  CreateDateBase,
 }: SignInWithOtherAccountsProps) => {
-  const appleProvider = new firebase.auth.OAuthProvider('apple.com');
+  const appleProvider = new _firebaseAuth.OAuthProvider('apple.com');
   Loading(true);
-  firebase
-    .auth()
-    .signInWithPopup(appleProvider)
+  _firebaseAuth
+    .signInWithPopup(FirebaseAuth, appleProvider)
     .then((result) => {
-      const IsNewUser = result.additionalUserInfo?.isNewUser;
-      const user = firebase.auth().currentUser;
-      if (user) {
-        if (IsNewUser) {
-          const UserFullName = user.displayName;
-          const UserEmailAddress = user.email;
-          const UserPhoneNumber = user.phoneNumber;
-          setFullName(UserFullName ? UserFullName : '');
-          setEmailAddress(UserEmailAddress ? UserEmailAddress : '');
-          setPhoneNumber(UserPhoneNumber ? UserPhoneNumber : '');
-          CreateUserProfileData({
-            UserId: user.uid,
-            FullName:
-              UserFullName && UserFullName.length > 0
-                ? EncryptData(UserFullName, NameEncrytionKey(user.uid))
-                : '',
-            EmailAddress:
-              UserEmailAddress && UserEmailAddress.length > 0
-                ? EncryptData(UserEmailAddress, EmailEncrytionKey(user.uid))
-                : '',
-            PhoneNumber:
-              UserPhoneNumber && UserPhoneNumber.length > 0
-                ? EncryptData(UserPhoneNumber, PhoneEncrytionKey(user.uid))
-                : '',
-            DateOfBirth: '',
-            Gender: '',
-            Loading: () => {},
-            ShowToast: ShowToast,
-            Next: Next,
-          });
-        } else {
-          LoadingScreen(true);
-          Loading(false);
-          Router.push(Home_Link);
+      const getAdditionalUserInfo = _firebaseAuth.getAdditionalUserInfo(result);
+      if (getAdditionalUserInfo) {
+        const IsNewUser = getAdditionalUserInfo.isNewUser;
+        const user = FirebaseAuth.currentUser;
+        if (user) {
+          if (IsNewUser) CreateDateBase(user);
+          else {
+            LoadingScreen(true);
+            Loading(false);
+            Router.push(Home_Link);
+          }
         }
       }
     })
@@ -430,51 +327,24 @@ export const SignInWithMicrosoft = ({
   Loading,
   LoadingScreen,
   ShowToast,
-  Next,
-  setFullName,
-  setEmailAddress,
-  setPhoneNumber,
+  CreateDateBase,
 }: SignInWithOtherAccountsProps) => {
-  const microsoftProvider = new firebase.auth.OAuthProvider('microsoft.com');
+  const microsoftProvider = new _firebaseAuth.OAuthProvider('microsoft.com');
   Loading(true);
-  firebase
-    .auth()
-    .signInWithPopup(microsoftProvider)
+  _firebaseAuth
+    .signInWithPopup(FirebaseAuth, microsoftProvider)
     .then((result) => {
-      const IsNewUser = result.additionalUserInfo?.isNewUser;
-      const user = firebase.auth().currentUser;
-      if (user) {
-        if (IsNewUser) {
-          const UserFullName = user.displayName;
-          const UserEmailAddress = user.email;
-          const UserPhoneNumber = user.phoneNumber;
-          setFullName(UserFullName ? UserFullName : '');
-          setEmailAddress(UserEmailAddress ? UserEmailAddress : '');
-          setPhoneNumber(UserPhoneNumber ? UserPhoneNumber : '');
-          CreateUserProfileData({
-            UserId: user.uid,
-            FullName:
-              UserFullName && UserFullName.length > 0
-                ? EncryptData(UserFullName, NameEncrytionKey(user.uid))
-                : '',
-            EmailAddress:
-              UserEmailAddress && UserEmailAddress.length > 0
-                ? EncryptData(UserEmailAddress, EmailEncrytionKey(user.uid))
-                : '',
-            PhoneNumber:
-              UserPhoneNumber && UserPhoneNumber.length > 0
-                ? EncryptData(UserPhoneNumber, PhoneEncrytionKey(user.uid))
-                : '',
-            DateOfBirth: '',
-            Gender: '',
-            Loading: () => {},
-            ShowToast: ShowToast,
-            Next: Next,
-          });
-        } else {
-          LoadingScreen(true);
-          Loading(false);
-          Router.push(Home_Link);
+      const getAdditionalUserInfo = _firebaseAuth.getAdditionalUserInfo(result);
+      if (getAdditionalUserInfo) {
+        const IsNewUser = getAdditionalUserInfo.isNewUser;
+        const user = FirebaseAuth.currentUser;
+        if (user) {
+          if (IsNewUser) CreateDateBase(user);
+          else {
+            LoadingScreen(true);
+            Loading(false);
+            Router.push(Home_Link);
+          }
         }
       }
     })
@@ -491,19 +361,16 @@ export const AddFullName = ({
   FullName,
   Loading,
   ShowToast,
-  updateUserData,
+  UpdateDataBase,
 }: AddFullNameProps) => {
   Loading(true);
-  const user = firebase.auth().currentUser;
+  const user = FirebaseAuth.currentUser;
   if (user) {
-    user
-      .updateProfile({
+    _firebaseAuth
+      .updateProfile(user, {
         displayName: FullName,
       })
-      .then(() => {
-        // Loading(false);
-        updateUserData();
-      })
+      .then(() => UpdateDataBase())
       .catch((error) => {
         Loading(false);
         const message = AuthError(error.code);
@@ -518,10 +385,10 @@ export const VerifyEmailAddress = ({
   Next,
 }: VerifyEmailProps) => {
   Loading(true);
-  const user = firebase.auth().currentUser;
+  const user = FirebaseAuth.currentUser;
   if (user) {
-    user
-      .sendEmailVerification()
+    _firebaseAuth
+      .sendEmailVerification(user)
       .then(() => {
         Loading(false);
         ShowToast(
@@ -547,21 +414,18 @@ export const LinkWithEmailAndPassword = ({
   Loading,
   EmptyPasswordTextField,
   BackToEmailScreen,
-  updateUserData,
+  Next,
 }: LinkWithEmailAndPasswordProps) => {
   Loading(true);
-  const user = firebase.auth().currentUser;
-  var credential = firebase.auth.EmailAuthProvider.credential(
+  const user = FirebaseAuth.currentUser;
+  var credential = _firebaseAuth.EmailAuthProvider.credential(
     EmailAddress,
     Password
   );
   if (user) {
-    user
-      .linkWithCredential(credential)
-      .then(() => {
-        // Loading(false);
-        updateUserData();
-      })
+    _firebaseAuth
+      .linkWithCredential(user, credential)
+      .then(() => Next())
       .catch((error) => {
         Loading(false);
         BackToEmailScreen();
@@ -577,7 +441,7 @@ export const LinkWithPhoneNumber = ({
   EmptyPhoneNumber,
   ResetCaptcha,
   setResetCaptcha,
-  MoveToOTPScreen,
+  UpdateDataBase, // MoveToOTPScreen
   ShowToast,
   Loading,
 }: LinkWithPhoneNumberProps) => {
@@ -588,10 +452,10 @@ export const LinkWithPhoneNumber = ({
   });
   const number = '+91' + PhoneNumber;
   const appVerifier = window.recaptchaVerifier;
-  const user = firebase.auth().currentUser;
+  const user = FirebaseAuth.currentUser;
   if (user) {
-    user
-      .linkWithPhoneNumber(number, appVerifier)
+    _firebaseAuth
+      .linkWithPhoneNumber(user, number, appVerifier)
       .then((confirmationResult) => {
         window.confirmationResult = confirmationResult;
         ShowToast(
@@ -600,8 +464,7 @@ export const LinkWithPhoneNumber = ({
           'Success',
           true
         );
-        MoveToOTPScreen();
-        Loading(false);
+        UpdateDataBase();
       })
       .catch((error) => {
         Loading(false);
@@ -618,22 +481,19 @@ export const VerifyOTPForLinkWithPhone = ({
   EmptyOTPBox,
   Loading,
   ShowToast,
-  updateUserData,
+  UpdateDataBase,
 }: VerifyOTPForLinkWithPhoneProps) => {
   Loading(true);
   const code = OTP.toString();
-  const user = firebase.auth().currentUser;
-  var credential = firebase.auth.PhoneAuthProvider.credential(
+  const user = FirebaseAuth.currentUser;
+  var credential = _firebaseAuth.PhoneAuthProvider.credential(
     window.confirmationResult.verificationId,
     code
   );
   if (user) {
-    user
-      .linkWithCredential(credential)
-      .then(() => {
-        // Loading(false);
-        updateUserData();
-      })
+    _firebaseAuth
+      .linkWithCredential(user, credential)
+      .then(() => UpdateDataBase())
       .catch((error) => {
         Loading(false);
         const message = AuthError(error.code);
@@ -654,10 +514,10 @@ export const ResentOTPForLinkWithPhone = ({
   });
   const number = '+91' + PhoneNumber;
   const appVerifier = window.recaptchaVerifier;
-  const user = firebase.auth().currentUser;
+  const user = FirebaseAuth.currentUser;
   if (user) {
-    user
-      .linkWithPhoneNumber(number, appVerifier)
+    _firebaseAuth
+      .linkWithPhoneNumber(user, number, appVerifier)
       .then((confirmationResult) => {
         window.confirmationResult = confirmationResult;
         Loading(false);
@@ -681,96 +541,104 @@ export const ResentOTPForLinkWithPhone = ({
 export const UploadAvatar = ({
   Progress,
   File,
-  getImageURL,
   Loading,
   ShowToast,
+  UpdateDataBaseWithURL,
 }: UploadAvatarProps) => {
   if (File) {
     Loading(true);
-    const extension = File.type.split('/')[1];
-    const storage = firebase.storage();
-    const ref = storage.ref(
-      `userAvatar/${firebase.auth().currentUser?.uid}/profilePhoto.${extension}`
-    );
-    // Start the upload
-    const STATE_CHANGED = firebase.storage.TaskEvent.STATE_CHANGED;
-    const task = ref.put(File);
-    task.on(STATE_CHANGED, (snapshot) => {
-      const pct = (
-        (snapshot.bytesTransferred / snapshot.totalBytes) *
-        100
-      ).toFixed(0);
-      Progress(pct);
-      // Get image Link
-      task
-        .then(() => getDownloadURL(ref))
-        .then((url) => {
-          firebase
-            .auth()
-            .currentUser?.updateProfile({
-              photoURL: url,
-            })
-            .then(() => {
-              //Image update successfully
-              getImageURL(url);
-              Loading(false);
-              ShowToast(
-                'Avatar updated successfully',
-                'You profile picture has been updated for your account.',
-                'Success',
-                true
-              );
-            })
-            .catch((error) => {
-              Loading(false);
-              const message = AuthError(error.code);
-              ShowToast('Something went wrong', `${message}`, 'Error', true);
+    const user = FirebaseAuth.currentUser;
+    if (user) {
+      const metadata = {
+        contentType: 'image/png',
+      };
+      const extension = File.type.split('/')[1];
+      const storage = _firebaseStorage.getStorage();
+      const storageRef = _firebaseStorage.ref(
+        storage,
+        `userAvatar/${user.uid}/profilePhoto.${extension}`
+      );
+      const uploadTask = _firebaseStorage.uploadBytesResumable(
+        storageRef,
+        File,
+        metadata
+      );
+      uploadTask.on(
+        'state_changed',
+        (snapshot) => {
+          const pct = (
+            (snapshot.bytesTransferred / snapshot.totalBytes) *
+            100
+          ).toFixed(0);
+          Progress(pct);
+        },
+        (error) => {
+          Loading(false);
+          const message = AuthError(error.code);
+          ShowToast('Something went wrong', `${message}`, 'Error', true);
+        },
+        () => {
+          _firebaseStorage
+            .getDownloadURL(uploadTask.snapshot.ref)
+            .then((url) => {
+              _firebaseAuth
+                .updateProfile(user, {
+                  photoURL: url,
+                })
+                .then(() => UpdateDataBaseWithURL(url))
+                .catch((error) => {
+                  Loading(false);
+                  const message = AuthError(error.code);
+                  ShowToast(
+                    'Something went wrong',
+                    `${message}`,
+                    'Error',
+                    true
+                  );
+                });
             });
-        });
-    });
+        }
+      );
+    }
   }
 };
 
 export const DeleteAvatar = ({
   AvatarURL,
-  AfterDelete,
+  DeletePhotoURLFromDataBase,
   Loading,
   ShowToast,
 }: DeleteAvatarProps) => {
   if (AvatarURL) {
     Loading(true);
-    const storage = firebase.storage();
-    let avatarRef = storage.refFromURL(AvatarURL);
-    avatarRef
-      .delete()
-      .then(() => {
-        firebase
-          .auth()
-          .currentUser?.updateProfile({
-            photoURL: '',
-          })
-          .then(() => {
-            Loading(false);
-            ShowToast(
-              'Avatar deleted successfully',
-              'You profile picture has been removed from your account.',
-              'Success',
-              true
-            );
-            AfterDelete();
-          });
-      })
-      .catch((error) => {
-        Loading(false);
-        const message = AuthError(error.code);
-        ShowToast('Something went wrong', `${message}`, 'Error', true);
-      });
+    const user = FirebaseAuth.currentUser;
+    if (user) {
+      const storage = _firebaseStorage.getStorage();
+      const avatarRef = _firebaseStorage.ref(storage, AvatarURL);
+      _firebaseStorage
+        .deleteObject(avatarRef)
+        .then(() => {
+          _firebaseAuth
+            .updateProfile(user, {
+              photoURL: '',
+            })
+            .then(() => DeletePhotoURLFromDataBase())
+            .catch((error) => {
+              Loading(false);
+              const message = AuthError(error.code);
+              ShowToast('Something went wrong', `${message}`, 'Error', true);
+            });
+        })
+        .catch((error) => {
+          Loading(false);
+          const message = AuthError(error.code);
+          ShowToast('Something went wrong', `${message}`, 'Error', true);
+        });
+    }
   }
 };
 
 export const SignOut = ({ Next }: SignOutProps) => {
-  firebase
-    .auth()
-    .signOut()
-    .then(() => Next());
+  const user = FirebaseAuth.currentUser;
+  if (user) _firebaseAuth.signOut(FirebaseAuth).then(() => Next());
 };

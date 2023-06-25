@@ -1,7 +1,9 @@
 import { Skeleton } from '@mui/material';
 import React, { FC } from 'react';
 
-interface IProps {}
+interface IProps {
+  ClassName: string;
+}
 
 /**
  * @author
@@ -11,7 +13,7 @@ interface IProps {}
 export const AuthSkeleton: FC<IProps> = (props) => {
   const backgroundColor = '#FFFFFF1F';
   return (
-    <div className="flex w-full h-full md:h-[652px] items-center justify-center">
+    <div className={`${props.ClassName} flex w-full items-center justify-center`}>
       <div className="w-full h-full hidden ml-14 md:p-14 md:flex items-center justify-center">
         <Skeleton
           variant="rectangular"

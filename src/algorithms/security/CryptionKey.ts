@@ -1,6 +1,28 @@
-// User auth data
-export const NameEncrytionKey = (UID: string) => 'user-' + `${UID}` + '-name';
-export const EmailEncrytionKey = (UID: string) => 'user-' + `${UID}` + '-email';
-export const PhoneEncrytionKey = (UID: string) => 'user-' + `${UID}` + '-phonenumber';
-export const DOBEncrytionKey = (UID: string) => 'user-' + `${UID}` + '-dateofbirth';
-export const GenderEncrytionKey = (UID: string) => 'user-' + `${UID}` + '-gender';
+import { UserProfileEncrytionKeyType } from '../Props/CryptionProps';
+
+export const UserProfileEncrytionKey = (
+  UserId: string,
+  type: UserProfileEncrytionKeyType
+) => {
+  if (type === 'FullName') {
+    return ('user_profile-' + `${UserId}` + '-fullname') as string;
+  }
+  if (type === 'EmailAddress') {
+    return ('user_profile-' + `${UserId}` + '-emailaddress') as string;
+  }
+  if (type === 'PhoneNumber') {
+    return ('user_profile-' + `${UserId}` + '-phonenumber') as string;
+  }
+  if (type === 'PhotoURL') {
+    return ('user_profile-' + `${UserId}` + '-photourl') as string;
+  }
+  if (type === 'DateOfBirth') {
+    return ('user_profile-' + `${UserId}` + '-dateofbirth') as string;
+  }
+  if (type === 'Age') {
+    return ('user_profile-' + `${UserId}` + '-age') as string;
+  }
+  if (type === 'Gender') {
+    return ('user_profile-' + `${UserId}` + '-gender') as string;
+  } else return undefined;
+};

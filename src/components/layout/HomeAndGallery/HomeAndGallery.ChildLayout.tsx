@@ -1,7 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import { useReduxSelector } from '../../../redux/useReduxSelector';
 import { Footer } from '../../footer/Footer';
-import { FooterMobile } from '../../footer/Footer.Mobile';
 import { Header } from '../../header/Header';
 import { HeaderMobile } from '../../header/Header.Mobile';
 

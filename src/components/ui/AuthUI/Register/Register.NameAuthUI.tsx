@@ -13,11 +13,16 @@ import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { RegisterSkipAllButton } from '../../../button/Auth/RegisterSkipAllButton';
 import IconTextFieldDark from '../../../textfield/IconTextFieldDark';
 import { useAuth } from '../../../../firebase/useAuth';
-import { UpdateUserData } from '../../../../algorithms/AuthDB';
-import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
-import { NameEncrytionKey } from '../../../../algorithms/security/CryptionKey';
 import { AuthType } from '../AuthType';
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
+import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
+import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
+import { useQueryClient, useMutation } from 'react-query';
+import {
+  putUserProfile,
+  getUserProfile,
+} from '../../../../mongodb/helper/Helper.UserProfile';
+import { IUserProfileDataUpdate } from '../../../../mongodb/schema/Schema.UserProfile';
 
 export interface RegisterNameAuthUIProps {
   ClassName?: string;
@@ -32,7 +37,7 @@ export interface RegisterNameAuthUIProps {
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
   FullName: string;
   setFullName: Dispatch<SetStateAction<string>>;
-  IsInformationFilledAfterName: () => void;
+  IsInformationAfterName: () => void;
 }
 
 /**
@@ -42,6 +47,34 @@ export interface RegisterNameAuthUIProps {
 
 export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
   const { FirebaseUser } = useAuth();
+  const queryClient = useQueryClient();
+  const updateUserProfile = useMutation(
+    (data: IUserProfileDataUpdate) => putUserProfile(FirebaseUser?.uid, data),
+    {
+      onSuccess: async () => {
+        await queryClient
+          .prefetchQuery('user_profile', () =>
+            getUserProfile(FirebaseUser?.uid)
+          )
+          .then(() => {
+            props.IsInformationAfterName();
+          })
+          .catch((error) => {
+            props.setLoading(false);
+            ShowToast(
+              'Something went wrong',
+              `${error.message}`,
+              'Error',
+              true
+            );
+          });
+      },
+      onError: (error: any) => {
+        props.setLoading(false);
+        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      },
+    }
+  );
 
   // ID
   const FullNameID = 'FullName-TextField-Signup';
@@ -105,28 +138,27 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
     props.setToast(false);
   };
 
-  // Databse
-  const updateUserData = () => {
+  const SkipClick = () => {
+    props.setSkipDialog(true);
+  };
+
+  // Database
+  const UpdateDataBase = () => {
     if (FirebaseUser) {
-      props.setLoading(true);
-      const UserFullName = EncryptData(
-        props.FullName,
-        NameEncrytionKey(FirebaseUser.uid)
-      );
-      UpdateUserData(FirebaseUser.uid, {
-        FullName: UserFullName,
-      })
-        .then(() => {
-          // props.setLoading(false);
-          props.IsInformationFilledAfterName();
-        })
-        .catch((error) => {
-          props.setLoading(false);
-          ShowToast('Something went wrong', `${error.message}`, 'Error', true);
-          console.error(
-            'User data not updates not created because ' + error.message
-          );
-        });
+      try {
+        const UserFullName = EncryptData(
+          UserProfileEncrytionKey(FirebaseUser.uid, 'FullName'),
+          props.FullName
+        );
+        const _data: IUserProfileDataUpdate = {
+          '_data.fullName': UserFullName,
+        };
+        updateUserProfile.mutate(_data);
+        props.IsInformationAfterName();
+      } catch (error: any) {
+        props.setLoading(false);
+        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      }
     } else {
       ShowToast(
         'Something went wrong',
@@ -137,10 +169,6 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
     }
   };
 
-  const SkipClick = () => {
-    props.setSkipDialog(true);
-  };
-
   // Submit
   const FullNameSubmitClick = () => {
     if (ValidateFullName) {
@@ -148,7 +176,7 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
         FullName: props.FullName,
         Loading: props.setLoading,
         ShowToast: ShowToast,
-        updateUserData: updateUserData,
+        UpdateDataBase: UpdateDataBase,
       });
     } else {
       ShowToast(
@@ -178,7 +206,7 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
         <div className="w-full flex justify-start">
           <SignInNextButton
             Label="I will add later"
-            onClick={props.IsInformationFilledAfterName}
+            onClick={props.IsInformationAfterName}
           />
         </div>
       </div>

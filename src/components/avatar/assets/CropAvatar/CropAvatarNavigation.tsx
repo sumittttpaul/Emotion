@@ -48,7 +48,7 @@ export const CropAvatarNavigation: FC<IProps> = (props) => {
         <div className="h-7 mx-3 block w-[2px] bg-white/50" />
         <TooltipDark
           title="Reset all edits performed on the image"
-          placement="bottom"
+          placement="top"
           arrow
         >
           <Button

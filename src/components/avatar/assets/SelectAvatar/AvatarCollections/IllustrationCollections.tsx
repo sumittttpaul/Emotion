@@ -184,7 +184,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
               props.show();
               props.backBool(true);
             }}
-            className="p-0 inline-block w-[150px] cursor-default rounded-md"
+            className="p-0 inline-block w-[150px] cursor-default rounded-md opacity-100 hover:opacity-50 transition-opacity"
             sx={{
               '.MuiTouchRipple-child': {
                 backgroundColor: '#ffffff80 !important',

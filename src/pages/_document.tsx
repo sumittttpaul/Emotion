@@ -8,9 +8,9 @@ import Document, {
   DocumentContext,
 } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
-import createEmotionCache from '../createEmotionCache';
+import createEmotionCache from '../utils/createEmotionCache';
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
-import { noto_sans } from '../theme';
+import { noto_sans } from '../utils/theme';
 
 interface MyDocumentProps extends DocumentProps {
   emotionStyleTags: EmotionJSX.Element[];

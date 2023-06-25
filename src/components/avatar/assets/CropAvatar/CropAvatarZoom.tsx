@@ -32,7 +32,11 @@ export const CropAvatarZoom: FC<IProps> = (props) => {
         ContainerClassName="rounded-l-lg border-r-0"
         Icon={<ZoomOutIcon className="h-[18px] text-white" />}
       />
-      <TooltipDark title="Shows the zoom value of the image" placement='top' arrow>
+      <TooltipDark
+        title="Shows the zoom percentage of the image"
+        placement="bottom"
+        arrow
+      >
         <div className="cursor-default h-[44px] w-[80px] border border-solid border-white/10 relative flex text-sm font-normal whitespace-nowrap text-white items-center justify-center">
           {Zoom} %
         </div>
@@ -65,7 +69,7 @@ const CustomButton: FC<CustomButtonProps> = (props) => {
     <div
       className={`${props.ContainerClassName} h-[44px] w-full max-w-[100px] md:max-w-[140px] border border-solid border-white/10 flex relative p-1 items-center justify-center`}
     >
-      <TooltipDark title={props.Tooltip} placement="top" arrow>
+      <TooltipDark title={props.Tooltip} placement="bottom" arrow>
         <m.button
           onClick={props.Disabled ? () => {} : props.onClick}
           whileTap={{ scale: props.Disabled ? 1 : 0.9 }}

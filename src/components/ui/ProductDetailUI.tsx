@@ -1,6 +1,5 @@
 import Image from 'next/legacy/image';
 import React, { FC } from 'react';
-import { Rectangle_BlurDataURL } from '../loader/BlurDataURL';
 
 export interface ProductDetailProps {}
 

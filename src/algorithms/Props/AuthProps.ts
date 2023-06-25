@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { UserType } from '../../firebase/useAuth';
 
 export interface RecaptchaProps {
   ShowToast: (
@@ -23,9 +24,8 @@ export interface ResendOTPProps {
 
 export interface VerifyOTPProps {
   OTP: number;
-  PhoneNumber: string;
   EmptyOTPBox: () => void;
-  Next: () => void;
+  CreateDateBase: (value: string) => void;
   Loading: Dispatch<SetStateAction<boolean>>;
   LoadingScreen: (value: boolean) => void;
   ShowToast: (
@@ -76,14 +76,10 @@ export interface SignInWithEmailAndPasswordProps {
     show: boolean
   ) => void;
 }
-
 export interface SignInWithOtherAccountsProps {
   Loading: Dispatch<SetStateAction<boolean>>;
   LoadingScreen: (value: boolean) => void;
-  Next: () => void;
-  setFullName: Dispatch<SetStateAction<string>>;
-  setEmailAddress: Dispatch<SetStateAction<string>>;
-  setPhoneNumber: Dispatch<SetStateAction<string>>;
+  CreateDateBase: (user: UserType) => void;
   ShowToast: (
     title: string,
     description: string,
@@ -95,7 +91,7 @@ export interface SignInWithOtherAccountsProps {
 export interface AddFullNameProps {
   FullName: string;
   Loading: Dispatch<SetStateAction<boolean>>;
-  updateUserData: () => void;
+  UpdateDataBase: () => void;
   ShowToast: (
     title: string,
     description: string,
@@ -110,7 +106,7 @@ export interface LinkWithEmailAndPasswordProps {
   Loading: Dispatch<SetStateAction<boolean>>;
   EmptyPasswordTextField: () => void;
   BackToEmailScreen: () => void;
-  updateUserData: () => void;
+  Next: () => void;
   ShowToast: (
     title: string,
     description: string,
@@ -124,7 +120,7 @@ export interface LinkWithPhoneNumberProps {
   EmptyPhoneNumber: () => void;
   ResetCaptcha: boolean;
   setResetCaptcha: Dispatch<SetStateAction<boolean>>;
-  MoveToOTPScreen: () => void;
+  UpdateDataBase: () => void;
   Loading: Dispatch<SetStateAction<boolean>>;
   ShowToast: (
     title: string,
@@ -137,7 +133,7 @@ export interface LinkWithPhoneNumberProps {
 export interface VerifyOTPForLinkWithPhoneProps {
   OTP: number;
   EmptyOTPBox: () => void;
-  updateUserData: () => void;
+  UpdateDataBase: () => void;
   Loading: Dispatch<SetStateAction<boolean>>;
   ShowToast: (
     title: string,
@@ -176,7 +172,7 @@ export interface VerifyEmailProps {
 export interface UploadAvatarProps {
   Progress: (value: string) => void;
   File: File | undefined;
-  getImageURL: (value: string) => void;
+  UpdateDataBaseWithURL: (value: string) => void;
   Loading: Dispatch<SetStateAction<boolean>>;
   ShowToast: (
     title: string,
@@ -188,7 +184,7 @@ export interface UploadAvatarProps {
 
 export interface DeleteAvatarProps {
   AvatarURL: string;
-  AfterDelete: () => void;
+  DeletePhotoURLFromDataBase: () => void;
   Loading: Dispatch<SetStateAction<boolean>>;
   ShowToast: (
     title: string,

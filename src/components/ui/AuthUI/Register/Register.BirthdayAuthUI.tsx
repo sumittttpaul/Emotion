@@ -5,11 +5,16 @@ import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
 import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
 import { useAuth } from '../../../../firebase/useAuth';
-import { DOBEncrytionKey } from '../../../../algorithms/security/CryptionKey';
-import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
-import { UpdateUserData } from '../../../../algorithms/AuthDB';
 import { DatePickerButton } from '../../../datepicker/DatePickerButton';
 import { AuthType } from '../AuthType';
+import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
+import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
+import { useQueryClient, useMutation } from 'react-query';
+import {
+  putUserProfile,
+  getUserProfile,
+} from '../../../../mongodb/helper/Helper.UserProfile';
+import { IUserProfileDataUpdate } from '../../../../mongodb/schema/Schema.UserProfile';
 
 export interface RegisterBirthdayAuthUIProps {
   ClassName?: string;
@@ -23,8 +28,8 @@ export interface RegisterBirthdayAuthUIProps {
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
   DateOfBirth: string;
   setDateOfBirth: Dispatch<SetStateAction<string>>;
-  IsInformationFilledAfterBirthday: () => void;
-  IsInformationFilledBeforeBirthday: () => void;
+  IsInformationAfterBirthday: () => void;
+  IsInformationBeforeBirthday: () => void;
 }
 
 /**
@@ -36,6 +41,34 @@ export const RegisterBirthdayAuthUI: FC<RegisterBirthdayAuthUIProps> = (
   props
 ) => {
   const { FirebaseUser } = useAuth();
+  const queryClient = useQueryClient();
+  const updateUserProfile = useMutation(
+    (data: IUserProfileDataUpdate) => putUserProfile(FirebaseUser?.uid, data),
+    {
+      onSuccess: async () => {
+        await queryClient
+          .prefetchQuery('user_profile', () =>
+            getUserProfile(FirebaseUser?.uid)
+          )
+          .then(() => {
+            props.IsInformationAfterBirthday();
+          })
+          .catch((error) => {
+            props.setLoading(false);
+            ShowToast(
+              'Something went wrong',
+              `${error.message}`,
+              'Error',
+              true
+            );
+          });
+      },
+      onError: (error: any) => {
+        props.setLoading(false);
+        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      },
+    }
+  );
 
   // State
   const [SubmitDisabled, setSubmitDisabled] = useState(true);
@@ -58,25 +91,19 @@ export const RegisterBirthdayAuthUI: FC<RegisterBirthdayAuthUIProps> = (
   // Database
   const updateUserData = () => {
     if (FirebaseUser) {
-      props.setLoading(true);
-      const UserDOB = EncryptData(
-        props.DateOfBirth,
-        DOBEncrytionKey(FirebaseUser.uid)
-      );
-      UpdateUserData(FirebaseUser.uid, {
-        DateOfBirth: UserDOB,
-      })
-        .then(() => {
-          // props.setLoading(false);
-          props.IsInformationFilledAfterBirthday();
-        })
-        .catch((error) => {
-          props.setLoading(false);
-          ShowToast('Something went wrong', `${error.message}`, 'Error', true);
-          console.error(
-            'User data not updates not created because ' + error.message
-          );
-        });
+      try {
+        const UserDOB = EncryptData(
+          UserProfileEncrytionKey(FirebaseUser.uid, 'DateOfBirth'),
+          props.DateOfBirth
+        );
+        const _data: IUserProfileDataUpdate = {
+          '_data.dateOfBirth': UserDOB,
+        };
+        updateUserProfile.mutate(_data);
+      } catch (error: any) {
+        props.setLoading(false);
+        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      }
     } else {
       ShowToast(
         'Something went wrong',
@@ -110,13 +137,13 @@ export const RegisterBirthdayAuthUI: FC<RegisterBirthdayAuthUIProps> = (
           <div className="w-full flex justify-start">
             <SignInNextButton
               Label="I will add later"
-              onClick={props.IsInformationFilledAfterBirthday}
+              onClick={props.IsInformationAfterBirthday}
             />
           </div>
           <div className="w-full flex justify-start">
             <SignInBackButton
               Label="Back"
-              onClick={props.IsInformationFilledBeforeBirthday}
+              onClick={props.IsInformationBeforeBirthday}
             />
           </div>
         </div>

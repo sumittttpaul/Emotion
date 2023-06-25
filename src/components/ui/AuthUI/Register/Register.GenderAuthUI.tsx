@@ -4,12 +4,17 @@ import { RegisterSkipAllButton } from '../../../button/Auth/RegisterSkipAllButto
 import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
 import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
-import { UpdateUserData } from '../../../../algorithms/AuthDB';
-import { GenderEncrytionKey } from '../../../../algorithms/security/CryptionKey';
+import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
 import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
 import { useAuth } from '../../../../firebase/useAuth';
 import { RadioGroupDark } from '../../../radiogroup/RadioGroupDark';
 import { AuthType } from '../AuthType';
+import { useQueryClient, useMutation } from 'react-query';
+import {
+  putUserProfile,
+  getUserProfile,
+} from '../../../../mongodb/helper/Helper.UserProfile';
+import { IUserProfileDataUpdate } from '../../../../mongodb/schema/Schema.UserProfile';
 
 export interface RegisterGenderAuthUIProps {
   ClassName?: string;
@@ -24,7 +29,7 @@ export interface RegisterGenderAuthUIProps {
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
   Gender: string;
   setGender: Dispatch<SetStateAction<string>>;
-  IsInformationFilledBeforeGender: () => void;
+  IsInformationBeforeGender: () => void;
 }
 
 /**
@@ -34,6 +39,35 @@ export interface RegisterGenderAuthUIProps {
 
 export const RegisterGenderAuthUI: FC<RegisterGenderAuthUIProps> = (props) => {
   const { FirebaseUser } = useAuth();
+  const queryClient = useQueryClient();
+  const updateUserProfile = useMutation(
+    (data: IUserProfileDataUpdate) => putUserProfile(FirebaseUser?.uid, data),
+    {
+      onSuccess: async () => {
+        await queryClient
+          .prefetchQuery('user_profile', () =>
+            getUserProfile(FirebaseUser?.uid)
+          )
+          .then(() => {
+            props.setLoading(false);
+            MoveToFinishScreen();
+          })
+          .catch((error) => {
+            props.setLoading(false);
+            ShowToast(
+              'Something went wrong',
+              `${error.message}`,
+              'Error',
+              true
+            );
+          });
+      },
+      onError: (error: any) => {
+        props.setLoading(false);
+        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      },
+    }
+  );
 
   // Toast
   const ShowToast = (
@@ -58,25 +92,19 @@ export const RegisterGenderAuthUI: FC<RegisterGenderAuthUIProps> = (props) => {
   // Database
   const updateUserData = () => {
     if (FirebaseUser) {
-      props.setLoading(true);
-      const UserGender = EncryptData(
-        props.Gender,
-        GenderEncrytionKey(FirebaseUser.uid)
-      );
-      UpdateUserData(FirebaseUser.uid, {
-        Gender: UserGender,
-      })
-        .then(() => {
-          props.setLoading(false);
-          MoveToFinishScreen();
-        })
-        .catch((error) => {
-          props.setLoading(false);
-          ShowToast('Something went wrong', `${error.message}`, 'Error', true);
-          console.error(
-            'User data not updates not created because ' + error.message
-          );
-        });
+      try {
+        const UserGender = EncryptData(
+          UserProfileEncrytionKey(FirebaseUser.uid, 'Gender'),
+          props.Gender
+        );
+        const _data: IUserProfileDataUpdate = {
+          '_data.gender': UserGender,
+        };
+        updateUserProfile.mutate(_data);
+      } catch (error: any) {
+        props.setLoading(false);
+        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      }
     } else {
       ShowToast(
         'Something went wrong',
@@ -117,7 +145,7 @@ export const RegisterGenderAuthUI: FC<RegisterGenderAuthUIProps> = (props) => {
           <div className="w-full flex justify-start">
             <SignInBackButton
               Label="Back"
-              onClick={props.IsInformationFilledBeforeGender}
+              onClick={props.IsInformationBeforeGender}
             />
           </div>
         </div>

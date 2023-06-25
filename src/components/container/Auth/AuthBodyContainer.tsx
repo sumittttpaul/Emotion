@@ -22,32 +22,27 @@ import { FinishAuthUIProps } from '../../ui/AuthUI/Finish/FinishAuthUI';
 import { SkipDialogAuthUIProps } from '../../ui/AuthUI/Dialog/SkipDialogAuthUI';
 import { AuthSkeleton } from '../../loader/Auth/AuthSkeleton';
 
-const AuthLoading = dynamic<AuthLoadingProps>(
-  () => import('../../loader/Auth/AuthLoading').then((x) => x.AuthLoading),
-  { ssr: false }
+const AuthLoading = dynamic<AuthLoadingProps>(() =>
+  import('../../loader/Auth/AuthLoading').then((x) => x.AuthLoading)
 );
 
-const ToastDark = dynamic<ToastDarkProps>(
-  () => import('../../toast/ToastDark').then((x) => x.ToastDark),
-  { ssr: false }
+const ToastDark = dynamic<ToastDarkProps>(() =>
+  import('../../toast/ToastDark').then((x) => x.ToastDark)
 );
 
-const FinishAuthUI = dynamic<FinishAuthUIProps>(
-  () =>
-    import('../../ui/AuthUI/Finish/FinishAuthUI').then((x) => x.FinishAuthUI),
-  { ssr: false }
+const FinishAuthUI = dynamic<FinishAuthUIProps>(() =>
+  import('../../ui/AuthUI/Finish/FinishAuthUI').then((x) => x.FinishAuthUI)
 );
 
-const SkipDialogAuthUI = dynamic<SkipDialogAuthUIProps>(
-  () =>
-    import('../../ui/AuthUI/Dialog/SkipDialogAuthUI').then(
-      (x) => x.SkipDialogAuthUI
-    ),
-  { ssr: false }
+const SkipDialogAuthUI = dynamic<SkipDialogAuthUIProps>(() =>
+  import('../../ui/AuthUI/Dialog/SkipDialogAuthUI').then(
+    (x) => x.SkipDialogAuthUI
+  )
 );
 
 interface IProps {
   children: ReactNode;
+  ClassName: string;
   InitialSlide: number;
   Loading: boolean;
   InformationCheckLoading: boolean;
@@ -154,7 +149,7 @@ const AuthBodyContainer: FC<IProps> = (props) => {
         <div className="bg-[#0f0f0f] flex md:p-[32px] items-center justify-center h-full md:h-screen w-screen main-auth overflow-hidden">
           <div className="relative bg-[#202020] md:rounded-xl w-full md:max-w-[1040px] flex items-center justify-center overflow-hidden">
             {props.InformationCheckLoading ? (
-              <AuthSkeleton />
+              <AuthSkeleton ClassName={props.ClassName} />
             ) : (
               <Swiper
                 onSwiper={(e) => setSwiperInstance(e)}
@@ -163,7 +158,7 @@ const AuthBodyContainer: FC<IProps> = (props) => {
                 initialSlide={props.InitialSlide}
                 draggable={false}
                 allowTouchMove={false}
-                className="flex w-full h-full relative"
+                className={`${props.ClassName} flex w-full relative`}
               >
                 <SwiperSlide className="relative items-center justify-center h-full w-full flex flex-col md:flex-row">
                   <div className="p-14 ml-14 relative hidden md:flex w-full h-full justify-center items-center">
@@ -191,7 +186,7 @@ const AuthBodyContainer: FC<IProps> = (props) => {
                 </SwiperSlide>
                 {props.Finish && (
                   <SwiperSlide className="relative h-full w-full flex">
-                    <FinishAuthUI />
+                    <FinishAuthUI ClassName={props.ClassName} />
                   </SwiperSlide>
                 )}
               </Swiper>

@@ -1,5 +1,3 @@
-export const Setup_Link = '/setup';
-//
 export const Privacy_Policy_Link = '/';
 export const Terms_Conditions_Link = '/';
 export const Return_Order_Policy_Link = '/';
@@ -22,6 +20,7 @@ export const Track_Order_Link = '/';
 export const Return_Order_Link = '/';
 export const Cancel_Order_Link = '/';
 //
+export const Setup_Link = '/setup';
 export const Manage_Your_Account_Link = '/';
 export const Redeem_Gift_Codes_Link = '/';
 //

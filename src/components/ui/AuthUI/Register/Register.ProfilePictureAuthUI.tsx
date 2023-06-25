@@ -16,8 +16,8 @@ export interface RegisterProfilePictureAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
-  IsInformationFilledAfterProfilePhoto: () => void;
-  IsInformationFilledBeforeProfilePhoto: () => void;
+  IsInformationAfterProfilePhoto: () => void;
+  IsInformationBeforeProfilePhoto: () => void;
 }
 
 /**
@@ -45,13 +45,13 @@ export const RegisterProfilePictureAuthUI: FC<
           <div className="w-full flex justify-start">
             <SignInNextButton
               Label="I will add later"
-              onClick={props.IsInformationFilledAfterProfilePhoto}
+              onClick={props.IsInformationAfterProfilePhoto}
             />
           </div>
           <div className="w-full flex justify-start">
             <SignInBackButton
               Label="Back"
-              onClick={props.IsInformationFilledBeforeProfilePhoto}
+              onClick={props.IsInformationBeforeProfilePhoto}
             />
           </div>
         </div>
@@ -63,7 +63,7 @@ export const RegisterProfilePictureAuthUI: FC<
           </RegisterSkipAllButton>
           <AuthSubmitButton
             Disabled={false}
-            onClick={props.IsInformationFilledAfterProfilePhoto}
+            onClick={props.IsInformationAfterProfilePhoto}
           >
             Next
           </AuthSubmitButton>

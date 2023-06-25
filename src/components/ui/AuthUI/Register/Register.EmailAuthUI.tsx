@@ -13,6 +13,15 @@ import { RegisterSkipAllButton } from '../../../button/Auth/RegisterSkipAllButto
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { AuthType } from '../AuthType';
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
+import { useAuth } from '../../../../firebase/useAuth';
+import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
+import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
+import { useQueryClient, useMutation } from 'react-query';
+import {
+  putUserProfile,
+  getUserProfile,
+} from '../../../../mongodb/helper/Helper.UserProfile';
+import { IUserProfileDataUpdate } from '../../../../mongodb/schema/Schema.UserProfile';
 
 export interface RegisterEmailAuthUIProps {
   ClassName?: string;
@@ -27,8 +36,8 @@ export interface RegisterEmailAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
-  IsInformationFilledAfterEmailAndPassword: () => void;
-  IsInformationFilledBeforeEmailAndPassword: () => void;
+  IsInformationAfterEmailAndPassword: () => void;
+  IsInformationBeforeEmailAndPassword: () => void;
 }
 
 /**
@@ -37,6 +46,37 @@ export interface RegisterEmailAuthUIProps {
  **/
 
 export const RegisterEmailAuthUI: FC<RegisterEmailAuthUIProps> = (props) => {
+  const { FirebaseUser } = useAuth();
+  const queryClient = useQueryClient();
+  const updateUserProfile = useMutation(
+    (data: IUserProfileDataUpdate) => putUserProfile(FirebaseUser?.uid, data),
+    {
+      onSuccess: async () => {
+        await queryClient
+          .prefetchQuery('user_profile', () =>
+            getUserProfile(FirebaseUser?.uid)
+          )
+          .then(() => {
+            props.setLoading(false);
+            MoveToPasswordScreen();
+          })
+          .catch((error) => {
+            props.setLoading(false);
+            ShowToast(
+              'Something went wrong',
+              `${error.message}`,
+              'Error',
+              true
+            );
+          });
+      },
+      onError: (error: any) => {
+        props.setLoading(false);
+        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      },
+    }
+  );
+
   // ID
   const EmailAddressID = 'EmailAddress-TextField-Register';
 
@@ -119,10 +159,39 @@ export const RegisterEmailAuthUI: FC<RegisterEmailAuthUIProps> = (props) => {
     props.setSkipDialog(true);
   };
 
+  // Database
+  const UpdateDataBase = () => {
+    if (FirebaseUser) {
+      try {
+        const UserEmailAddress = EncryptData(
+          UserProfileEncrytionKey(FirebaseUser.uid, 'EmailAddress'),
+          props.EmailAddress
+        );
+        const _data: IUserProfileDataUpdate = {
+          '_data.emailAddress': UserEmailAddress,
+        };
+        updateUserProfile.mutate(_data);
+      } catch (error: any) {
+        props.setLoading(false);
+        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      }
+    } else {
+      ShowToast(
+        'Something went wrong',
+        'It seems like user is not exist.',
+        'Error',
+        true
+      );
+    }
+  };
+
   // Submit
   const EmailAddressSubmitClick = () => {
     if (ValidateEmailAddress) {
-      MoveToPasswordScreen();
+      if (FirebaseUser) {
+        props.setLoading(true);
+        UpdateDataBase();
+      }
     } else {
       ShowToast(
         'Incorrect email',
@@ -152,13 +221,13 @@ export const RegisterEmailAuthUI: FC<RegisterEmailAuthUIProps> = (props) => {
           <div className="w-full flex justify-start">
             <SignInNextButton
               Label="I will add later"
-              onClick={props.IsInformationFilledAfterEmailAndPassword}
+              onClick={props.IsInformationAfterEmailAndPassword}
             />
           </div>
           <div className="w-full flex justify-start">
             <SignInBackButton
               Label="Back"
-              onClick={props.IsInformationFilledBeforeEmailAndPassword}
+              onClick={props.IsInformationBeforeEmailAndPassword}
             />
           </div>
         </div>

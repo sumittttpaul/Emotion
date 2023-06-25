@@ -1,23 +1,13 @@
 import dynamic from 'next/dynamic';
+import { useQuery } from 'react-query';
+import { AnimatePresence } from 'framer-motion';
 import React, { FC, useEffect, useState } from 'react';
-import firebase from 'firebase/compat/app';
 import { AuthType } from './AuthType';
 import { useAuth } from '../../../firebase/useAuth';
-import { User, getAuth } from 'firebase/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { AnimatePresence } from 'framer-motion';
-import { GetUserData } from '../../../algorithms/AuthDB';
-import { DecryptData } from '../../../algorithms/security/CryptionSecurity';
-import {
-  DOBEncrytionKey,
-  EmailEncrytionKey,
-  GenderEncrytionKey,
-  NameEncrytionKey,
-  PhoneEncrytionKey,
-} from '../../../algorithms/security/CryptionKey';
-import AuthBodyContainer from '../../container/Auth/AuthBodyContainer';
-import AuthContentContainer from '../../container/Auth/AuthContentContainer';
-import LoginPhoneAuthUI from './Login/Login.PhoneAuthUI';
+import { getUserProfile } from '../../../mongodb/helper/Helper.UserProfile';
+import { IsInformationHandler } from './IsInformationHandler';
+import { IUserProfile } from '../../../mongodb/schema/Schema.UserProfile';
+import { LoginPhoneAuthUIProps } from './Login/Login.PhoneAuthUI';
 import { LoginEmailAuthUIProps } from './Login/Login.EmailAuthUI';
 import { LoginOtherAccountAuthUIProps } from './Login/Login.OtherAccountAuthUI';
 import { LoginOTPAuthUIProps } from './Login/Login.OTPAuthUI';
@@ -32,106 +22,81 @@ import { RegisterVerifyEmailAuthUIProps } from './Register/Register.VerifyEmailA
 import { RegisterProfilePictureAuthUIProps } from './Register/Register.ProfilePictureAuthUI';
 import { RegisterBirthdayAuthUIProps } from './Register/Register.BirthdayAuthUI';
 import { RegisterGenderAuthUIProps } from './Register/Register.GenderAuthUI';
+import AuthBodyContainer from '../../container/Auth/AuthBodyContainer';
+import AuthContentContainer from '../../container/Auth/AuthContentContainer';
 
 // Dynamic Imports
-const LoginEmailAuthUI = dynamic<LoginEmailAuthUIProps>(
-  () => import('./Login/Login.EmailAuthUI').then((x) => x.LoginEmailAuthUI),
-  { ssr: false }
+const LoginPhoneAuthUI = dynamic<LoginPhoneAuthUIProps>(() =>
+  import('./Login/Login.PhoneAuthUI').then((x) => x.LoginPhoneAuthUI)
 );
 
-const LoginOtherAccountAuthUI = dynamic<LoginOtherAccountAuthUIProps>(
-  () =>
-    import('./Login/Login.OtherAccountAuthUI').then(
-      (x) => x.LoginOtherAccountAuthUI
-    ),
-  { ssr: false }
+const LoginEmailAuthUI = dynamic<LoginEmailAuthUIProps>(() =>
+  import('./Login/Login.EmailAuthUI').then((x) => x.LoginEmailAuthUI)
 );
 
-const LoginOTPAuthUI = dynamic<LoginOTPAuthUIProps>(
-  () => import('./Login/Login.OTPAuthUI').then((x) => x.LoginOTPAuthUI),
-  { ssr: false }
+const LoginOtherAccountAuthUI = dynamic<LoginOtherAccountAuthUIProps>(() =>
+  import('./Login/Login.OtherAccountAuthUI').then(
+    (x) => x.LoginOtherAccountAuthUI
+  )
 );
 
-const LoginPasswordAuthUI = dynamic<LoginPasswordAuthUIProps>(
-  () =>
-    import('./Login/Login.PasswordAuthUI').then((x) => x.LoginPasswordAuthUI),
-  { ssr: false }
+const LoginOTPAuthUI = dynamic<LoginOTPAuthUIProps>(() =>
+  import('./Login/Login.OTPAuthUI').then((x) => x.LoginOTPAuthUI)
 );
 
-const LoginForgotPasswordAuthUI = dynamic<LoginForgotPasswordAuthUIProps>(
-  () =>
-    import('./Login/Login.ForgotPasswordAuthUI').then(
-      (x) => x.LoginForgotPasswordAuthUI
-    ),
-  { ssr: false }
+const LoginPasswordAuthUI = dynamic<LoginPasswordAuthUIProps>(() =>
+  import('./Login/Login.PasswordAuthUI').then((x) => x.LoginPasswordAuthUI)
 );
 
-const RegisterNameAuthUI = dynamic<RegisterNameAuthUIProps>(
-  () =>
-    import('./Register/Register.NameAuthUI').then((x) => x.RegisterNameAuthUI),
-  { ssr: false }
+const LoginForgotPasswordAuthUI = dynamic<LoginForgotPasswordAuthUIProps>(() =>
+  import('./Login/Login.ForgotPasswordAuthUI').then(
+    (x) => x.LoginForgotPasswordAuthUI
+  )
 );
 
-const RegisterPhoneAuthUI = dynamic<RegisterPhoneAuthUIProps>(
-  () =>
-    import('./Register/Register.PhoneAuthUI').then(
-      (x) => x.RegisterPhoneAuthUI
-    ),
-  { ssr: false }
+const RegisterNameAuthUI = dynamic<RegisterNameAuthUIProps>(() =>
+  import('./Register/Register.NameAuthUI').then((x) => x.RegisterNameAuthUI)
 );
 
-const RegisterOTPAuthUI = dynamic<RegisterOTPAuthUIProps>(
-  () =>
-    import('./Register/Register.OTPAuthUI').then((x) => x.RegisterOTPAuthUI),
-  { ssr: false }
+const RegisterPhoneAuthUI = dynamic<RegisterPhoneAuthUIProps>(() =>
+  import('./Register/Register.PhoneAuthUI').then((x) => x.RegisterPhoneAuthUI)
 );
 
-const RegisterEmailAuthUI = dynamic<RegisterEmailAuthUIProps>(
-  () =>
-    import('./Register/Register.EmailAuthUI').then(
-      (x) => x.RegisterEmailAuthUI
-    ),
-  { ssr: false }
+const RegisterOTPAuthUI = dynamic<RegisterOTPAuthUIProps>(() =>
+  import('./Register/Register.OTPAuthUI').then((x) => x.RegisterOTPAuthUI)
 );
 
-const RegisterPasswordAuthUI = dynamic<RegisterPasswordAuthUIProps>(
-  () =>
-    import('./Register/Register.PasswordAuthUI').then(
-      (x) => x.RegisterPasswordAuthUI
-    ),
-  { ssr: false }
+const RegisterEmailAuthUI = dynamic<RegisterEmailAuthUIProps>(() =>
+  import('./Register/Register.EmailAuthUI').then((x) => x.RegisterEmailAuthUI)
 );
 
-const RegisterVerifyEmailAuthUI = dynamic<RegisterVerifyEmailAuthUIProps>(
-  () =>
-    import('./Register/Register.VerifyEmailAuthUI').then(
-      (x) => x.RegisterVerifyEmailAuthUI
-    ),
-  { ssr: false }
+const RegisterPasswordAuthUI = dynamic<RegisterPasswordAuthUIProps>(() =>
+  import('./Register/Register.PasswordAuthUI').then(
+    (x) => x.RegisterPasswordAuthUI
+  )
+);
+
+const RegisterVerifyEmailAuthUI = dynamic<RegisterVerifyEmailAuthUIProps>(() =>
+  import('./Register/Register.VerifyEmailAuthUI').then(
+    (x) => x.RegisterVerifyEmailAuthUI
+  )
 );
 
 const RegisterProfilePictureAuthUI = dynamic<RegisterProfilePictureAuthUIProps>(
   () =>
     import('./Register/Register.ProfilePictureAuthUI').then(
       (x) => x.RegisterProfilePictureAuthUI
-    ),
-  { ssr: false }
+    )
 );
 
-const RegisterBirthdayAuthUI = dynamic<RegisterBirthdayAuthUIProps>(
-  () =>
-    import('./Register/Register.BirthdayAuthUI').then(
-      (x) => x.RegisterBirthdayAuthUI
-    ),
-  { ssr: false }
+const RegisterBirthdayAuthUI = dynamic<RegisterBirthdayAuthUIProps>(() =>
+  import('./Register/Register.BirthdayAuthUI').then(
+    (x) => x.RegisterBirthdayAuthUI
+  )
 );
 
-const RegisterGenderAuthUI = dynamic<RegisterGenderAuthUIProps>(
-  () =>
-    import('./Register/Register.GenderAuthUI').then(
-      (x) => x.RegisterGenderAuthUI
-    ),
-  { ssr: false }
+const RegisterGenderAuthUI = dynamic<RegisterGenderAuthUIProps>(() =>
+  import('./Register/Register.GenderAuthUI').then((x) => x.RegisterGenderAuthUI)
 );
 
 interface IProps {}
@@ -147,7 +112,7 @@ export const SetupUI: FC<IProps> = (props) => {
   const [SkipDialog, setSkipDialog] = useState(false);
   const [Finish, setFinish] = useState(false);
   const [Loading, setLoading] = useState(false);
-  const [InformationCheckLoading, setInformationCheckLoading] = useState(false); //true
+  const [InformationCheckLoading, setInformationCheckLoading] = useState(true);
   const [Toast, setToast] = useState(false);
   const [ToastSetting, setToastSetting] = useState({
     Title: '',
@@ -156,22 +121,37 @@ export const SetupUI: FC<IProps> = (props) => {
   });
   const [Screen, setScreen] = useState<AuthType>('register-profile-picture');
 
+  const { isLoading, data } = useQuery(
+    ['user_profile', FirebaseUser?.uid],
+    () => getUserProfile(FirebaseUser?.uid)
+  );
+  const userProfile = data as IUserProfile;
+
   // Extra State
   const [FullName, setFullName] = useState('');
-  const [PhoneNumber, setPhoneNumber] = useState('');
   const [EmailAddress, setEmailAddress] = useState('');
-  const [VerifyEmailAddress, setVerifyEmailAddress] = useState(false);
-  const [ProfilePicture, setProfilePicture] = useState('');
+  const [PhoneNumber, setPhoneNumber] = useState('');
   const [DateOfBirth, setDateOfBirth] = useState('');
   const [Gender, setGender] = useState('');
-
   const [ResetCaptcha, setResetCaptcha] = useState(false);
 
   const SkipDialogClose = () => setSkipDialog(false);
 
-  const isEmailVerified = FirebaseUser?.emailVerified || false;
+  const VerifyEmailAddress = FirebaseUser?.emailVerified || false;
 
-  const photoURL = FirebaseUser?.photoURL || '';
+  const ShowToast = (
+    title: string,
+    desccription: string,
+    type: string,
+    show: boolean
+  ) => {
+    setToast(show);
+    setToastSetting({
+      Title: title,
+      Description: desccription,
+      Type: type,
+    });
+  };
 
   const handleIsInformationContent = (Screen: AuthType) => {
     setInitialSlide(0);
@@ -180,469 +160,86 @@ export const SetupUI: FC<IProps> = (props) => {
     setInformationCheckLoading(false);
   };
 
-  const handleIsInformation = (
-    UserFullName: string | undefined,
-    UserPhoneNumber: string | undefined,
-    UserEmailAddress: string | undefined,
-    UserEmailAddressVerified: boolean | undefined,
-    UserProfilePicture: string | null,
-    UserDateOfBirth: string | undefined,
-    UserGender: string | undefined,
-    AfterScreen:
-      | 'after-login'
-      | 'after-name'
-      | 'after-phone'
-      | 'after-email'
-      | 'after-verify-email'
-      | 'after-profile-picture'
-      | 'after-date-of-birth'
-  ) => {
-    if (AfterScreen === 'after-login') {
-      if (!UserFullName || (UserFullName && UserFullName.length < 1)) {
-        handleIsInformationContent('register-name');
-      } else if (
-        !UserPhoneNumber ||
-        (UserPhoneNumber && UserPhoneNumber.length < 1)
-      ) {
-        handleIsInformationContent('register-phone');
-      } else if (
-        !UserEmailAddress ||
-        (UserEmailAddress && UserEmailAddress.length < 1)
-      ) {
-        handleIsInformationContent('register-email');
-      } else if (
-        !UserEmailAddressVerified &&
-        UserEmailAddressVerified === false
-      ) {
-        handleIsInformationContent('register-verify-email');
-      } else if (
-        !UserProfilePicture ||
-        (UserProfilePicture && UserProfilePicture.length < 1)
-      ) {
-        handleIsInformationContent('register-profile-picture');
-      } else if (
-        !UserDateOfBirth ||
-        (UserDateOfBirth && UserDateOfBirth.length < 1)
-      ) {
-        handleIsInformationContent('register-date-of-birth');
-      } else if (!UserGender || (UserGender && UserGender.length < 1)) {
-        handleIsInformationContent('register-gender');
-      } else if (
-        UserFullName &&
-        UserPhoneNumber &&
-        UserEmailAddress &&
-        UserEmailAddressVerified &&
-        UserProfilePicture &&
-        UserDateOfBirth &&
-        UserGender
-      ) {
-        if (
-          UserFullName.length > 0 &&
-          UserPhoneNumber.length > 0 &&
-          UserEmailAddress.length > 0 &&
-          UserProfilePicture.length > 0 &&
-          UserDateOfBirth.length > 0 &&
-          UserGender.length > 0 &&
-          UserEmailAddressVerified === true
-        ) {
-          setInitialSlide(1);
-          setFinish(true);
-          setLoading(false);
-          setInformationCheckLoading(false);
-        }
-      }
-    }
-    if (AfterScreen === 'after-name') {
-      if (!UserPhoneNumber || (UserPhoneNumber && UserPhoneNumber.length < 1)) {
-        handleIsInformationContent('register-phone');
-      } else if (
-        !UserEmailAddress ||
-        (UserEmailAddress && UserEmailAddress.length < 1)
-      ) {
-        handleIsInformationContent('register-email');
-      } else if (
-        !UserEmailAddressVerified &&
-        UserEmailAddressVerified === false
-      ) {
-        handleIsInformationContent('register-verify-email');
-      } else if (
-        !UserProfilePicture ||
-        (UserProfilePicture && UserProfilePicture.length < 1)
-      ) {
-        handleIsInformationContent('register-profile-picture');
-      } else if (
-        !UserDateOfBirth ||
-        (UserDateOfBirth && UserDateOfBirth.length < 1)
-      ) {
-        handleIsInformationContent('register-date-of-birth');
-      } else if (!UserGender || (UserGender && UserGender.length < 1)) {
-        handleIsInformationContent('register-gender');
-      } else if (
-        UserFullName &&
-        UserPhoneNumber &&
-        UserEmailAddress &&
-        UserEmailAddressVerified &&
-        UserProfilePicture &&
-        UserDateOfBirth &&
-        UserGender
-      ) {
-        if (
-          UserFullName.length > 0 &&
-          UserPhoneNumber.length > 0 &&
-          UserEmailAddress.length > 0 &&
-          UserProfilePicture.length > 0 &&
-          UserDateOfBirth.length > 0 &&
-          UserGender.length > 0 &&
-          UserEmailAddressVerified === true
-        ) {
-          setInitialSlide(1);
-          setFinish(true);
-          setLoading(false);
-          setInformationCheckLoading(false);
-        }
-      }
-    }
-    if (AfterScreen === 'after-phone') {
-      if (
-        !UserEmailAddress ||
-        (UserEmailAddress && UserEmailAddress.length < 1)
-      ) {
-        handleIsInformationContent('register-email');
-      } else if (
-        !UserEmailAddressVerified &&
-        UserEmailAddressVerified === false
-      ) {
-        handleIsInformationContent('register-verify-email');
-      } else if (
-        !UserProfilePicture ||
-        (UserProfilePicture && UserProfilePicture.length < 1)
-      ) {
-        handleIsInformationContent('register-profile-picture');
-      } else if (
-        !UserDateOfBirth ||
-        (UserDateOfBirth && UserDateOfBirth.length < 1)
-      ) {
-        handleIsInformationContent('register-date-of-birth');
-      } else if (!UserGender || (UserGender && UserGender.length < 1)) {
-        handleIsInformationContent('register-gender');
-      } else if (
-        UserFullName &&
-        UserPhoneNumber &&
-        UserEmailAddress &&
-        UserEmailAddressVerified &&
-        UserProfilePicture &&
-        UserDateOfBirth &&
-        UserGender
-      ) {
-        if (
-          UserFullName.length > 0 &&
-          UserPhoneNumber.length > 0 &&
-          UserEmailAddress.length > 0 &&
-          UserProfilePicture.length > 0 &&
-          UserDateOfBirth.length > 0 &&
-          UserGender.length > 0 &&
-          UserEmailAddressVerified === true
-        ) {
-          setInitialSlide(1);
-          setFinish(true);
-          setLoading(false);
-          setInformationCheckLoading(false);
-        }
-      }
-    }
-    if (AfterScreen === 'after-email') {
-      if (!UserEmailAddressVerified && UserEmailAddressVerified === false) {
-        handleIsInformationContent('register-verify-email');
-      } else if (
-        !UserProfilePicture ||
-        (UserProfilePicture && UserProfilePicture.length < 1)
-      ) {
-        handleIsInformationContent('register-profile-picture');
-      } else if (
-        !UserDateOfBirth ||
-        (UserDateOfBirth && UserDateOfBirth.length < 1)
-      ) {
-        handleIsInformationContent('register-date-of-birth');
-      } else if (!UserGender || (UserGender && UserGender.length < 1)) {
-        handleIsInformationContent('register-gender');
-      } else if (
-        UserFullName &&
-        UserPhoneNumber &&
-        UserEmailAddress &&
-        UserEmailAddressVerified &&
-        UserProfilePicture &&
-        UserDateOfBirth &&
-        UserGender
-      ) {
-        if (
-          UserFullName.length > 0 &&
-          UserPhoneNumber.length > 0 &&
-          UserEmailAddress.length > 0 &&
-          UserProfilePicture.length > 0 &&
-          UserDateOfBirth.length > 0 &&
-          UserGender.length > 0 &&
-          UserEmailAddressVerified === true
-        ) {
-          setInitialSlide(1);
-          setFinish(true);
-          setLoading(false);
-          setInformationCheckLoading(false);
-        }
-      }
-    }
-    if (AfterScreen === 'after-verify-email') {
-      if (
-        !UserProfilePicture ||
-        (UserProfilePicture && UserProfilePicture.length < 1)
-      ) {
-        handleIsInformationContent('register-profile-picture');
-      } else if (
-        !UserDateOfBirth ||
-        (UserDateOfBirth && UserDateOfBirth.length < 1)
-      ) {
-        handleIsInformationContent('register-date-of-birth');
-      } else if (!UserGender || (UserGender && UserGender.length < 1)) {
-        handleIsInformationContent('register-gender');
-      } else if (
-        UserFullName &&
-        UserPhoneNumber &&
-        UserEmailAddress &&
-        UserEmailAddressVerified &&
-        UserProfilePicture &&
-        UserDateOfBirth &&
-        UserGender
-      ) {
-        if (
-          UserFullName.length > 0 &&
-          UserPhoneNumber.length > 0 &&
-          UserEmailAddress.length > 0 &&
-          UserProfilePicture.length > 0 &&
-          UserDateOfBirth.length > 0 &&
-          UserGender.length > 0 &&
-          UserEmailAddressVerified === true
-        ) {
-          setInitialSlide(1);
-          setFinish(true);
-          setLoading(false);
-          setInformationCheckLoading(false);
-        }
-      }
-    }
-    if (AfterScreen === 'after-profile-picture') {
-      if (!UserDateOfBirth || (UserDateOfBirth && UserDateOfBirth.length < 1)) {
-        handleIsInformationContent('register-date-of-birth');
-      } else if (!UserGender || (UserGender && UserGender.length < 1)) {
-        handleIsInformationContent('register-gender');
-      } else if (
-        UserFullName &&
-        UserPhoneNumber &&
-        UserEmailAddress &&
-        UserEmailAddressVerified &&
-        UserProfilePicture &&
-        UserDateOfBirth &&
-        UserGender
-      ) {
-        if (
-          UserFullName.length > 0 &&
-          UserPhoneNumber.length > 0 &&
-          UserEmailAddress.length > 0 &&
-          UserProfilePicture.length > 0 &&
-          UserDateOfBirth.length > 0 &&
-          UserGender.length > 0 &&
-          UserEmailAddressVerified === true
-        ) {
-          setInitialSlide(1);
-          setFinish(true);
-          setLoading(false);
-          setInformationCheckLoading(false);
-        }
-      }
-    }
-    if (AfterScreen === 'after-date-of-birth') {
-      if (!UserGender || (UserGender && UserGender.length < 1)) {
-        handleIsInformationContent('register-gender');
-      } else if (
-        UserFullName &&
-        UserPhoneNumber &&
-        UserEmailAddress &&
-        UserEmailAddressVerified &&
-        UserProfilePicture &&
-        UserDateOfBirth &&
-        UserGender
-      ) {
-        if (
-          UserFullName.length > 0 &&
-          UserPhoneNumber.length > 0 &&
-          UserEmailAddress.length > 0 &&
-          UserProfilePicture.length > 0 &&
-          UserDateOfBirth.length > 0 &&
-          UserGender.length > 0 &&
-          UserEmailAddressVerified === true
-        ) {
-          setInitialSlide(1);
-          setFinish(true);
-          setLoading(false);
-          setInformationCheckLoading(false);
-        }
-      }
-    }
+  const handleIsformationProps = {
+    FirebaseUser: FirebaseUser,
+    userProfile: userProfile,
+    FirebaseLoading: FirebaseLoading,
+    isuserProfileLoading: isLoading,
+    handleIsInformationContent: handleIsInformationContent,
+    setInitialSlide: setInitialSlide,
+    setFinish: setFinish,
+    setLoading: setLoading,
+    setInformationCheckLoading: setInformationCheckLoading,
+    ShowToast: ShowToast,
   };
 
-  const IsInformationFilledAfterLogin = () => {
-    handleIsInformation(
-      FullName,
-      PhoneNumber,
-      EmailAddress,
-      VerifyEmailAddress,
-      ProfilePicture,
-      DateOfBirth,
-      Gender,
-      'after-login'
-    );
+  const IsInformation_AfterLogin = () => {
+    IsInformationHandler({
+      AfterScreen: 'after-login',
+      ...handleIsformationProps,
+    });
   };
 
-  const IsInformationFilledAfterName = () => {
-    handleIsInformation(
-      FullName,
-      PhoneNumber,
-      EmailAddress,
-      VerifyEmailAddress,
-      ProfilePicture,
-      DateOfBirth,
-      Gender,
-      'after-name'
-    );
+  const IsInformation_AfterName = () => {
+    IsInformationHandler({
+      AfterScreen: 'after-name',
+      ...handleIsformationProps,
+    });
   };
 
-  const IsInformationFilledAfterPhoneAndOTP = () => {
-    handleIsInformation(
-      FullName,
-      PhoneNumber,
-      EmailAddress,
-      VerifyEmailAddress,
-      ProfilePicture,
-      DateOfBirth,
-      Gender,
-      'after-phone'
-    );
+  const IsInformation_AfterPhoneAndOTP = () => {
+    IsInformationHandler({
+      AfterScreen: 'after-phone',
+      ...handleIsformationProps,
+    });
   };
 
-  const IsInformationFilledAfterEmailAndPassword = () => {
-    handleIsInformation(
-      FullName,
-      PhoneNumber,
-      EmailAddress,
-      VerifyEmailAddress,
-      ProfilePicture,
-      DateOfBirth,
-      Gender,
-      'after-email'
-    );
+  const IsInformation_AfterEmailAndPassword = () => {
+    IsInformationHandler({
+      AfterScreen: 'after-email',
+      ...handleIsformationProps,
+    });
   };
 
-  const IsInformationFilledAfterVerifyEmail = () => {
-    handleIsInformation(
-      FullName,
-      PhoneNumber,
-      EmailAddress,
-      VerifyEmailAddress,
-      ProfilePicture,
-      DateOfBirth,
-      Gender,
-      'after-verify-email'
-    );
+  const IsInformation_AfterVerifyEmail = () => {
+    IsInformationHandler({
+      AfterScreen: 'after-verify-email',
+      ...handleIsformationProps,
+    });
   };
 
-  const IsInformationFilledAfterProfilePhoto = () => {
-    handleIsInformation(
-      FullName,
-      PhoneNumber,
-      EmailAddress,
-      VerifyEmailAddress,
-      ProfilePicture,
-      DateOfBirth,
-      Gender,
-      'after-profile-picture'
-    );
+  const IsInformation_AfterProfilePhoto = () => {
+    IsInformationHandler({
+      AfterScreen: 'after-profile-picture',
+      ...handleIsformationProps,
+    });
   };
 
-  const IsInformationFilledAfterBirthday = () => {
-    handleIsInformation(
-      FullName,
-      PhoneNumber,
-      EmailAddress,
-      VerifyEmailAddress,
-      ProfilePicture,
-      DateOfBirth,
-      Gender,
-      'after-date-of-birth'
-    );
+  const IsInformation_AfterBirthday = () => {
+    IsInformationHandler({
+      AfterScreen: 'after-date-of-birth',
+      ...handleIsformationProps,
+    });
   };
-
-  // useEffect(() => {
-  //   if (!loading) {
-  //     if (!FirebaseUser) {
-  //       handleIsInformationContent('login-phone');
-  //     } else if (FirebaseUser) {
-  //       GetUserData(FirebaseUser.uid).then((value) => {
-  //         const UserName = value.FullName;
-  //         const UserPhone = value.PhoneNumber;
-  //         const UserEmail = value.EmailAddress;
-  //         const UserEmailVerified = FirebaseUser.emailVerified;
-  //         const UserPhoto = FirebaseUser.photoURL;
-  //         const UserDOB = value.DateOfBirth;
-  //         const UserGender = value.Gender;
-  //         setFullName(
-  //           UserName && UserName.length > 0
-  //             ? DecryptData(UserName, NameEncrytionKey(FirebaseUser.uid))
-  //             : ''
-  //         );
-  //         setPhoneNumber(
-  //           UserPhone && UserPhone.length > 0
-  //             ? DecryptData(UserPhone, PhoneEncrytionKey(FirebaseUser.uid))
-  //             : ''
-  //         );
-  //         setEmailAddress(
-  //           UserEmail && UserEmail.length > 0
-  //             ? DecryptData(UserEmail, EmailEncrytionKey(FirebaseUser.uid))
-  //             : ''
-  //         );
-  //         setDateOfBirth(
-  //           UserDOB && UserDOB.length > 0
-  //             ? DecryptData(UserDOB, DOBEncrytionKey(FirebaseUser.uid))
-  //             : ''
-  //         );
-  //         setGender(
-  //           UserGender && UserGender.length > 0
-  //             ? DecryptData(UserGender, GenderEncrytionKey(FirebaseUser.uid))
-  //             : ''
-  //         );
-  //         handleIsInformation(
-  //           UserName,
-  //           UserPhone,
-  //           UserEmail,
-  //           UserEmailVerified,
-  //           UserPhoto,
-  //           UserDOB,
-  //           UserGender,
-  //           'after-login'
-  //         );
-  //       });
-  //     }
-  //   }
-  // }, [loading]);
 
   useEffect(() => {
-    setVerifyEmailAddress(isEmailVerified);
-    setProfilePicture(photoURL);
-  }, [isEmailVerified, photoURL]);
+    if (!FirebaseLoading && !isLoading) {
+      if (FirebaseUser) {
+        IsInformation_AfterLogin();
+      } else {
+        handleIsInformationContent('login-phone');
+      }
+    }
+  }, [FirebaseLoading, isLoading]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Class
+  const BodyClassName = 'h-full md:h-[652px] ';
   const ContentClassName = 'h-[300px]';
   const ContainerClassName = 'h-[350px]';
 
   return (
     <AuthBodyContainer
+      ClassName={BodyClassName}
       InitialSlide={InitialSlide}
       SkipDialogOpen={SkipDialog}
       SkipDialogClose={SkipDialogClose}
@@ -659,7 +256,7 @@ export const SetupUI: FC<IProps> = (props) => {
       }}
     >
       <AuthContentContainer ClassName={ContainerClassName} AuthScreen={Screen}>
-        <AnimatePresence mode="sync" initial={true}>
+        <AnimatePresence mode="wait" initial={true}>
           {Screen === 'login-phone' && (
             <LoginPhoneAuthUI
               ClassName={ContentClassName}
@@ -696,10 +293,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              setFullName={setFullName}
-              setEmailAddress={setEmailAddress}
-              setPhoneNumber={setPhoneNumber}
-              IsInformationFilled={IsInformationFilledAfterLogin}
+              IsInformation={IsInformation_AfterLogin}
             />
           )}
           {Screen === 'login-otp' && (
@@ -713,7 +307,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationFilled={IsInformationFilledAfterLogin}
+              IsInformation={IsInformation_AfterLogin}
             />
           )}
           {Screen === 'login-password' && (
@@ -752,7 +346,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setToastSetting={setToastSetting}
               FullName={FullName}
               setFullName={setFullName}
-              IsInformationFilledAfterName={IsInformationFilledAfterName}
+              IsInformationAfterName={IsInformation_AfterName}
             />
           )}
           {Screen === 'register-phone' && (
@@ -769,12 +363,8 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationFilledBeforePhoneAndOTP={
-                IsInformationFilledAfterLogin
-              }
-              IsInformationFilledAfterPhoneAndOTP={
-                IsInformationFilledAfterPhoneAndOTP
-              }
+              IsInformationBeforePhoneAndOTP={IsInformation_AfterLogin}
+              IsInformationAfterPhoneAndOTP={IsInformation_AfterPhoneAndOTP}
             />
           )}
           {Screen === 'register-otp' && (
@@ -788,9 +378,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationFilledAfterPhoneAndOTP={
-                IsInformationFilledAfterPhoneAndOTP
-              }
+              IsInformationAfterPhoneAndOTP={IsInformation_AfterPhoneAndOTP}
             />
           )}
           {Screen === 'register-email' && (
@@ -805,11 +393,9 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationFilledBeforeEmailAndPassword={
-                IsInformationFilledAfterLogin
-              }
-              IsInformationFilledAfterEmailAndPassword={
-                IsInformationFilledAfterEmailAndPassword
+              IsInformationBeforeEmailAndPassword={IsInformation_AfterLogin}
+              IsInformationAfterEmailAndPassword={
+                IsInformation_AfterEmailAndPassword
               }
             />
           )}
@@ -823,8 +409,8 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationFilledAfterEmailAndPassword={
-                IsInformationFilledAfterEmailAndPassword
+              IsInformationAfterEmailAndPassword={
+                IsInformation_AfterEmailAndPassword
               }
             />
           )}
@@ -838,12 +424,8 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationFilledBeforeVerifyEmail={
-                IsInformationFilledAfterLogin
-              }
-              IsInformationFilledAfterVerifyEmail={
-                IsInformationFilledAfterVerifyEmail
-              }
+              IsInformationBeforeVerifyEmail={IsInformation_AfterLogin}
+              IsInformationAfterVerifyEmail={IsInformation_AfterVerifyEmail}
             />
           )}
           {Screen === 'register-profile-picture' && (
@@ -854,12 +436,8 @@ export const SetupUI: FC<IProps> = (props) => {
               setAuthScreen={setScreen}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationFilledBeforeProfilePhoto={
-                IsInformationFilledAfterLogin
-              }
-              IsInformationFilledAfterProfilePhoto={
-                IsInformationFilledAfterProfilePhoto
-              }
+              IsInformationBeforeProfilePhoto={IsInformation_AfterLogin}
+              IsInformationAfterProfilePhoto={IsInformation_AfterProfilePhoto}
             />
           )}
           {Screen === 'register-date-of-birth' && (
@@ -873,10 +451,8 @@ export const SetupUI: FC<IProps> = (props) => {
               setToastSetting={setToastSetting}
               DateOfBirth={DateOfBirth}
               setDateOfBirth={setDateOfBirth}
-              IsInformationFilledBeforeBirthday={IsInformationFilledAfterLogin}
-              IsInformationFilledAfterBirthday={
-                IsInformationFilledAfterBirthday
-              }
+              IsInformationBeforeBirthday={IsInformation_AfterLogin}
+              IsInformationAfterBirthday={IsInformation_AfterBirthday}
             />
           )}
           {Screen === 'register-gender' && (
@@ -891,7 +467,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setToastSetting={setToastSetting}
               Gender={Gender}
               setGender={setGender}
-              IsInformationFilledBeforeGender={IsInformationFilledAfterLogin}
+              IsInformationBeforeGender={IsInformation_AfterLogin}
             />
           )}
         </AnimatePresence>
