@@ -1,6 +1,6 @@
 import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
 import { AnimationControls, motion } from 'framer-motion';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import React, { Dispatch, FC, RefObject, SetStateAction } from 'react';
 import { GalleryCarouselContentProps } from '../../../contents/gallery/Gallery.Carousel';
 
@@ -66,7 +66,7 @@ export const GalleryCarouselThumbnailMap: FC<IProps> = (props) => {
           } ${ThumbnailSizes} ${'group relative p-0 m-0 transition-shadow duration-300 ring-white ring-opacity-50 rounded-xl box-border flex items-center justify-center overflow-hidden'}`}
         >
           <Image
-            layout="fill"
+            fill
             className={`${
               props.CarouselState === idx
                 ? 'scale-100 translate-x-0'

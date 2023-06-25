@@ -121,7 +121,6 @@ export const DiscoverBannerDeal: FC<IProps> = (props) => {
                 <div className="w-full flex flex-col relative">
                   <div className="relative w-full overflow-hidden">
                     <Image
-                      priority
                       height={240}
                       width={188}
                       className="rounded-xl"

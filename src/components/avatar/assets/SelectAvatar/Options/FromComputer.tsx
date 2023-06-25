@@ -1,6 +1,6 @@
-import { Button, styled } from '@mui/material';
 import React, { FC } from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
+import { Button, styled } from '@mui/material';
 
 interface IProps {
   show: () => void;

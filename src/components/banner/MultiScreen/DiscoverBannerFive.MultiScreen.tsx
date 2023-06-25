@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { DiscoverBannerFiveContentProps } from '../../../contents/store/discover/Store.Discover.Banner';
 import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
@@ -113,7 +113,6 @@ export const DiscoverBannerFiveMobile: FC<DiscoverBannerFiveMobileProps> = (
                 <div className="relative w-full h-full">
                   <div className="absolute z-[1] h-full w-full bg-transparent" />
                   <Image
-                    layout="responsive"
                     className="rounded-xl"
                     width={490}
                     height={275}

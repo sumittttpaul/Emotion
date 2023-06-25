@@ -168,7 +168,6 @@ const AuthBodyContainer: FC<IProps> = (props) => {
                           {props.AuthScreen === value.Alt && (
                             <AuthTransitionContainer>
                               <Image
-                                priority
                                 height={370}
                                 width={370}
                                 src={value.Image}

@@ -7,9 +7,9 @@ import 'swiper/css/bundle';
 import * as React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
+import { CssBaseline } from '@mui/material';
 import { CacheProvider, EmotionCache } from '@emotion/react';
+import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 import theme from '../utils/theme';
 import createEmotionCache from '../utils/createEmotionCache';
 import StateProvider from '../providers/StateProvider';
@@ -61,11 +61,11 @@ function MyApp(AppProps: AppPropsWithLayout, cache: EmotionCacheProps) {
                 content="initial-scale=1, width=device-width"
               />
             </Head>
-            <ThemeProvider theme={theme}>
+            <CssVarsProvider theme={theme}>
               <CssBaseline />
               {getLayout(<Component {...props.pageProps} />)}
               <Loading />
-            </ThemeProvider>
+            </CssVarsProvider>
           </StateProvider>
         </Provider>
       </CacheProvider>

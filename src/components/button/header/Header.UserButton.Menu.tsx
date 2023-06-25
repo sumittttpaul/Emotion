@@ -66,7 +66,6 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
               <Image
                 height={50}
                 width={50}
-                layout="fixed"
                 className="rounded-[50%]"
                 src={`${props.user.photoURL}`}
                 alt=""

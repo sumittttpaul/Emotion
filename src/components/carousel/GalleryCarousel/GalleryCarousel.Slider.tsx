@@ -2,7 +2,7 @@ import { GalleryCarouselContentProps } from '../../../contents/gallery/Gallery.C
 import React, { FC } from 'react';
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { Poster_BlurDataURL } from '../../loader/BlurDataURL';
 import { Button } from '@mui/material';
 import { HeartIcon } from '@heroicons/react/outline';
@@ -49,9 +49,11 @@ export const GalleryCarouselSlider: FC<GalleryCarouselSliderProps> = (
           }}
         >
           <Image
-            layout="fill"
-            objectFit="cover"
-            objectPosition="center"
+            fill
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
             placeholder="blur"
             className="-z-[1]"
             src={content.Image}

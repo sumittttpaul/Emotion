@@ -1,6 +1,6 @@
 import React, { FC, MouseEvent } from 'react';
 import Image from 'next/image';
-import { Button, IconButton } from '@mui/material';
+import { IconButton, Button } from '@mui/material';
 import {
   CameraIcon,
   DotsVerticalIcon,
@@ -79,7 +79,7 @@ const ShowAvatar: FC<IProps> = (props) => {
           </h6>
         </div>
         {/* Center */}
-        <div className='flex h-full w-full justify-center items-center relative'>
+        <div className="flex h-full w-full justify-center items-center relative">
           <div className="flex box-content rounded-[50%] overflow-hidden relative justify-center min-h-[96px] min-w-[96px] show-avatar-profile-photo">
             <div className="rounded-full relative w-full h-full">
               <Image

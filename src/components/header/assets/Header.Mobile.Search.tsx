@@ -1,6 +1,6 @@
 import { Button, IconButton } from '@mui/material';
 import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { useSearchButtonState } from '../../../providers/state/SearchButtonState';
 import { SearchContentProps } from '../../../contents/store/search/Store.Search';
 
@@ -100,7 +100,6 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
               <Image
                 height={20}
                 width={20}
-                layout="fixed"
                 src="/icons/arrow-left.svg"
                 className="group-hover:opacity-100 opacity-70"
                 alt=""
@@ -125,7 +124,6 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
                 <Image
                   height={19}
                   width={19}
-                  layout="fixed"
                   src="/icons/search-white.svg"
                   alt=""
                 />
@@ -139,7 +137,6 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
                 <Image
                   height={19}
                   width={19}
-                  layout="fixed"
                   src="/icons/x-white-2.svg"
                   alt=""
                 />
@@ -160,7 +157,6 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
           >
             <div className="block h-5 ml-1 pr-3.5 opacity-70">
               <Image
-                layout="fixed"
                 height={18}
                 width={18}
                 src={value.Icon}
@@ -179,7 +175,6 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
                 rounded-[50%] flex opacity-70 items-center justify-center w-[30px] h-[30px] p-0 m-0 cursor-pointer hover:bg-transparent"
               >
                 <Image
-                  layout="fixed"
                   height={17}
                   width={17}
                   src={value.DeleteIcon}
@@ -192,7 +187,6 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
                 rounded-[50%] flex opacity-70 items-center justify-center w-[30px] h-[30px] p-0 m-0 cursor-pointer hover:bg-transparent"
               >
                 <Image
-                  layout="fixed"
                   height={22}
                   width={22}
                   src={value.DeleteIcon}

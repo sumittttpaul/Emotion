@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { DiscoverBannerLightingDealContentProps } from '../../../contents/store/discover/Store.Discover.Banner';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Poster_BlurDataURL } from '../../loader/BlurDataURL';
 import useScreenSize from '../../../algorithms/ScreenSizeDetection';
@@ -46,9 +46,10 @@ export const DiscoverBannerLightningDealBrowser: FC<IProps> = (props) => {
             className="rounded-xl"
             height={320}
             width={240}
-            layout="responsive"
-            objectFit="cover"
-            objectPosition="center"
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
             src={value.Image}
             placeholder="blur"
             blurDataURL={Poster_BlurDataURL}
@@ -93,8 +94,10 @@ export const DiscoverBannerLightningDealMobile: FC<IProps> = (props) => {
               className="rounded-t-md absolute h-full w-full"
               height={320}
               width={240}
-              objectFit="cover"
-              objectPosition="center"
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center',
+              }}
               src={value.Image}
               placeholder="blur"
               blurDataURL={Poster_BlurDataURL}
@@ -135,8 +138,10 @@ export const DiscoverBannerLightningDealMobile: FC<IProps> = (props) => {
               className="rounded-t-md absolute h-full w-full"
               height={320}
               width={240}
-              objectFit="cover"
-              objectPosition="center"
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center',
+              }}
               src={value.Image}
               placeholder="blur"
               blurDataURL={Poster_BlurDataURL}

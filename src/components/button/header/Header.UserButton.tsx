@@ -1,4 +1,4 @@
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
 import React, { FC, Fragment, MouseEvent, ReactNode, useState } from 'react';
@@ -90,7 +90,6 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
         <Image
           height={20}
           width={20}
-          layout="fixed"
           className="opacity-70"
           src="/icons/user-fill.svg"
           alt=""
@@ -165,7 +164,6 @@ const UserButton: FC<UserButtonProps> = (props) => {
             <Image
               height={35}
               width={35}
-              layout="fixed"
               className="rounded-[50%]"
               src={
                 props.user.photoURL
@@ -178,7 +176,6 @@ const UserButton: FC<UserButtonProps> = (props) => {
             <Image
               height={20}
               width={20}
-              layout="fixed"
               className="opacity-70"
               src="/icons/user-fill.svg"
               alt=""

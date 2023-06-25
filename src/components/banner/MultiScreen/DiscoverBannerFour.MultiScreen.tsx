@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { DiscoverBannerFourContentProps } from '../../../contents/store/discover/Store.Discover.Banner';
 import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
@@ -47,7 +47,6 @@ export const DiscoverBannerFourBrowser: FC<DiscoverBannerFourBrowserProps> = (
               <div className="relative w-full h-full">
                 <div className="absolute z-[1] h-full w-full bg-gradient-to-t from-[#242424]" />
                 <Image
-                  layout="responsive"
                   className="rounded-t-xl"
                   width={490}
                   height={275}
@@ -95,7 +94,6 @@ export const DiscoverBannerFourMobile: FC<DiscoverBannerFourMobileProps> = (
               <div className="relative w-full h-full">
                 <div className="absolute z-[1] h-full w-full bg-transparent" />
                 <Image
-                  layout="responsive"
                   className="rounded-xl"
                   width={490}
                   height={275}

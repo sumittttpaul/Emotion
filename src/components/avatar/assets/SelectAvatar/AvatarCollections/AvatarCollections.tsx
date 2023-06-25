@@ -1,24 +1,11 @@
 import React, { FC } from 'react';
 import { PhotographIcon } from '@heroicons/react/solid';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { Button } from '@mui/material';
 import {
   Banner_BlurDataURL,
   Square_BlurDataURL,
 } from '../../../../loader/BlurDataURL';
-import AnimalBannerImage from '../../../../../../public/images/avatar/banner/animal.png';
-import EmojiBannerImage from '../../../../../../public/images/avatar/banner/emoji.png';
-import FestivalBannerImage from '../../../../../../public/images/avatar/banner/festival.png';
-import HandDrawingBannerImage from '../../../../../../public/images/avatar/banner/hand-drawing.png';
-import FlatBannerImage from '../../../../../../public/images/avatar/banner/flat.png';
-import HipsterBannerImage from '../../../../../../public/images/avatar/banner/hipster.png';
-import PaintBannerImage from '../../../../../../public/images/avatar/banner/paint.png';
-import MinimalBannerImage from '../../../../../../public/images/avatar/banner/minimal.png';
-import PlainBannerImage from '../../../../../../public/images/avatar/banner/plain.png';
-import PopularImage1 from '../../../../../../public/images/avatar/popular/1.png';
-import PopularImage2 from '../../../../../../public/images/avatar/popular/2.png';
-import PopularImage3 from '../../../../../../public/images/avatar/popular/3.png';
-import PopularImage4 from '../../../../../../public/images/avatar/popular/4.png';
 
 interface IProps {
   AnimalClick: () => void;
@@ -42,6 +29,20 @@ interface IProps {
 
 const BlurDataUrl = Banner_BlurDataURL;
 const BlurDataUrlSquare = Square_BlurDataURL;
+
+const AnimalBannerImage = '/images/avatar/banner/animal.png';
+const EmojiBannerImage = '/images/avatar/banner/emoji.png';
+const FestivalBannerImage = '/images/avatar/banner/festival.png';
+const HandDrawingBannerImage = '/images/avatar/banner/hand-drawing.png';
+const FlatBannerImage = '/images/avatar/banner/flat.png';
+const HipsterBannerImage = '/images/avatar/banner/hipster.png';
+const PaintBannerImage = '/images/avatar/banner/paint.png';
+const MinimalBannerImage = '/images/avatar/banner/minimal.png';
+const PlainBannerImage = '/images/avatar/banner/plain.png';
+const PopularImage1 = '/images/avatar/popular/1.png';
+const PopularImage2 = '/images/avatar/popular/2.png';
+const PopularImage3 = '/images/avatar/popular/3.png';
+const PopularImage4 = '/images/avatar/popular/4.png';
 
 export const AvatarCollections: FC<IProps> = (props) => {
   // Banner
@@ -83,22 +84,22 @@ export const AvatarCollections: FC<IProps> = (props) => {
   };
   // Popular
   const Popular1Click = () => {
-    props.getURL(PopularImage1.src);
+    props.getURL(PopularImage1);
     props.backBool(true);
     props.show();
   };
   const Popular2Click = () => {
-    props.getURL(PopularImage2.src);
+    props.getURL(PopularImage2);
     props.backBool(true);
     props.show();
   };
   const Popular3Click = () => {
-    props.getURL(PopularImage3.src);
+    props.getURL(PopularImage3);
     props.backBool(true);
     props.show();
   };
   const Popular4Click = () => {
-    props.getURL(PopularImage4.src);
+    props.getURL(PopularImage4);
     props.backBool(true);
     props.show();
   };

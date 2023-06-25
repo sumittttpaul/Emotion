@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { experimental_extendTheme as extendTheme } from '@mui/material/styles';
 import { Noto_Sans } from 'next/font/google';
 
 export const noto_sans = Noto_Sans({
@@ -8,17 +8,18 @@ export const noto_sans = Noto_Sans({
   fallback: ['Helvetica', 'Arial', 'sans-serif'],
 });
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#0f0f0f',
+const theme = extendTheme({
+  colorSchemes: {
+    dark: {
+      palette: {
+        primary: {
+          main: '#0f0f0f',
+        },
+        secondary: {
+          main: '#202020',
+        },
+      },
     },
-    secondary: {
-      main: '#202020',
-    },
-  },
-  typography: {
-    fontFamily: noto_sans.style.fontFamily,
   },
 });
 

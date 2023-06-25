@@ -23,7 +23,7 @@
     "@firebase/util": "^1.6.0",
     "@headlessui/react": "^1.6.1",
     "@heroicons/react": "^1.0.6",
-    "@mui/material": "^5.13.3",
+    "@mui/material": "^5.13.6",
     "@reduxjs/toolkit": "^1.8.1",
     "atob": "^2.1.2",
     "browserslist": "^4.21.4",

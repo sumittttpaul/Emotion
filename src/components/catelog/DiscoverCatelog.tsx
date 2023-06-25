@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { Button } from '@mui/material';
 import { Rectangle_BlurDataURL } from '../loader/BlurDataURL';
 import { ChevronRightIcon } from '@heroicons/react/outline';
@@ -19,9 +19,11 @@ export const DiscoverCatelog: FC<IProps> = (props) => {
           <div className="z-[1] absolute w-full h-full bg-gradient-to-l from-dark-orange rounded-xl" />
           <Image
             className="rounded-xl"
-            layout="fill"
-            objectFit="cover"
-            objectPosition="center"
+            fill
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
             src="/images/avatar/illustration/5.png"
             blurDataURL={Rectangle_BlurDataURL}
             alt=""

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 
 interface IProps {
   src: string;
@@ -49,25 +49,25 @@ export class GalleryCarouselBannerImage extends Component<IProps> {
       <>
         {topSrc && (
           <Image
-            objectFit="cover"
-            objectPosition={objectPosition}
-            priority
-            layout="fill"
+            fill
             className={className}
-            style={{ ...style }}
+            style={{
+              objectFit: 'cover',
+              objectPosition: objectPosition,
+              ...style,
+            }}
             src={topSrc}
             alt={alt}
           />
         )}
         {bottomSrc && (
           <Image
-            objectFit="cover"
-            objectPosition="center"
-            priority
-            layout="fill"
+            fill
             className={className}
             alt={alt}
             style={{
+              objectFit: 'cover',
+              objectPosition: 'center',
               ...style,
               ...{
                 opacity: bottomOpacity,

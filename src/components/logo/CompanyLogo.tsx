@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import Logo from '../../../public/agewear_white.svg';
 import Logo_Full from '../../../public/agewear_full_white.svg';
 
@@ -13,7 +13,6 @@ export const HeaderLogo = (props: IProps) => {
       <Image
         height={32.5}
         width={32.5}
-        layout="fixed"
         onClick={() => props.onValueChange('Discover')}
         className="opacity-90 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
         src={Logo}
@@ -34,7 +33,6 @@ export const MobileLogo = (props: IProps) => {
     <Image
       height={30}
       width={30}
-      layout="fixed"
       onClick={() => props.onValueChange('Discover')}
       className="opacity-90 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
       src={Logo}
@@ -44,7 +42,7 @@ export const MobileLogo = (props: IProps) => {
 };
 
 export const MobileSearchLogo = () => {
-  return <Image height={25} width={25} layout="fixed" src={Logo} alt="" />;
+  return <Image height={25} width={25} src={Logo} alt="" />;
 };
 
 export const FooterLogo = (props: IProps) => {

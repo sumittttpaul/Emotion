@@ -3,7 +3,8 @@ import {
   DotsVerticalIcon,
   TrashIcon,
 } from '@heroicons/react/outline';
-import { Button, IconButton } from '@mui/material';
+import { Button } from '@mui/material';
+import { IconButton } from '@mui/material';
 import React, { FC, MouseEvent } from 'react';
 import { TooltipDark } from '../../tooltip/TooltipDark';
 import Image from 'next/image';

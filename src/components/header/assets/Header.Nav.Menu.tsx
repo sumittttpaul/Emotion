@@ -5,7 +5,7 @@ import {
   Discover_Link,
   Offers_Link,
 } from '../../../routerLinks/RouterLinks';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import Router from 'next/router';
 
 export interface HeaderNavMenuProps {
@@ -108,7 +108,6 @@ export const HeaderNavMenu: FC<HeaderNavMenuProps> = (props) => {
             {Boolean(DisableButton(props.Value, value.label)) && (
               <div className="block h-5 w-5 opacity-70">
                 <Image
-                  layout="fixed"
                   height={18}
                   width={18}
                   src="/icons/check-white-2.svg"

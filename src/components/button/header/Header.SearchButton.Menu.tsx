@@ -1,5 +1,5 @@
 import { IconButton } from '@mui/material';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import React, {
   Dispatch,
   FC,
@@ -63,9 +63,12 @@ export const HeaderSearchButtonMenu: FC<HeaderSearchButtonMenuProps> = (
         >
           <div className="block h-5 ml-2 pr-4 opacity-70">
             <Image
-              layout="fixed"
               height={18}
               width={18}
+              style={{
+                minHeight: 18,
+                minWidth: 18,
+              }}
               src={value.Icon}
               alt=""
             />
@@ -90,9 +93,12 @@ export const HeaderSearchButtonMenu: FC<HeaderSearchButtonMenuProps> = (
               }}
             >
               <Image
-                layout="fixed"
                 height={17}
                 width={17}
+                style={{
+                  minHeight: 17,
+                  minWidth: 17,
+                }}
                 src={value.DeleteIcon}
                 alt=""
               />

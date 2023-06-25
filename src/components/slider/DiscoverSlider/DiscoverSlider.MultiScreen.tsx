@@ -145,7 +145,6 @@ export const DiscoverSliderBrowser: FC<DiscoverSliderBrowserProps> = (
               <div className="w-full space-y-2.5 flex flex-col relative">
                 <div className="relative w-full overflow-hidden">
                   <Image
-                    priority
                     height={240}
                     width={188}
                     className={ImageStyle}
@@ -245,7 +244,6 @@ export const DiscoverSliderMobile: FC<DiscoverSliderMobileProps> = (props) => {
                     </motion.button>
                   </div>
                   <Image
-                    priority
                     height={240}
                     width={188}
                     className={ImageStyle}

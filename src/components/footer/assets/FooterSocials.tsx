@@ -1,7 +1,6 @@
 import { Link } from '@mui/material';
 import React, { FC } from 'react';
-import Image, { StaticImageData } from 'next/legacy/image';
-import { Square_BlurDataURL } from '../../loader/BlurDataURL';
+import Image, { StaticImageData } from 'next/image';
 
 interface IProps {
   Content: { label: string; to: string; icon: StaticImageData }[];

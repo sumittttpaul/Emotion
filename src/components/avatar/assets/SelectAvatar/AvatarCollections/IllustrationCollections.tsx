@@ -1,73 +1,73 @@
-import { FilmIcon } from '@heroicons/react/solid';
-import { Button } from '@mui/material';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
+import { FilmIcon } from '@heroicons/react/solid';
+import { Button } from '@mui/material';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { Poster_BlurDataURL } from '../../../../loader/BlurDataURL';
 import { m } from 'framer-motion';
 import Image from 'next/image';
-import Illustration1 from '../../../../../../public/images/avatar/illustration/1.png';
-import Illustration2 from '../../../../../../public/images/avatar/illustration/2.png';
-import Illustration3 from '../../../../../../public/images/avatar/illustration/3.png';
-import Illustration4 from '../../../../../../public/images/avatar/illustration/4.png';
-import Illustration5 from '../../../../../../public/images/avatar/illustration/5.png';
-import Illustration6 from '../../../../../../public/images/avatar/illustration/6.png';
-import Illustration7 from '../../../../../../public/images/avatar/illustration/7.png';
-import Illustration8 from '../../../../../../public/images/avatar/illustration/8.png';
-import Illustration9 from '../../../../../../public/images/avatar/illustration/9.png';
-import Illustration10 from '../../../../../../public/images/avatar/illustration/10.png';
-import Illustration11 from '../../../../../../public/images/avatar/illustration/11.png';
-import Illustration12 from '../../../../../../public/images/avatar/illustration/12.png';
-import Illustration13 from '../../../../../../public/images/avatar/illustration/13.png';
-import Illustration14 from '../../../../../../public/images/avatar/illustration/14.png';
-import Illustration15 from '../../../../../../public/images/avatar/illustration/15.png';
-import Illustration16 from '../../../../../../public/images/avatar/illustration/16.png';
-import Illustration17 from '../../../../../../public/images/avatar/illustration/17.png';
-import Illustration18 from '../../../../../../public/images/avatar/illustration/18.png';
-import Illustration19 from '../../../../../../public/images/avatar/illustration/19.png';
-import Illustration20 from '../../../../../../public/images/avatar/illustration/20.png';
-import Illustration21 from '../../../../../../public/images/avatar/illustration/21.png';
-import Illustration22 from '../../../../../../public/images/avatar/illustration/22.png';
-import Illustration23 from '../../../../../../public/images/avatar/illustration/23.png';
-import Illustration24 from '../../../../../../public/images/avatar/illustration/24.png';
-import Illustration25 from '../../../../../../public/images/avatar/illustration/25.png';
-import Illustration26 from '../../../../../../public/images/avatar/illustration/26.png';
-import Illustration27 from '../../../../../../public/images/avatar/illustration/27.png';
-
 interface IProps {
   show: () => void;
   getURL: (value: string) => void;
   backBool: (value: boolean) => void;
 }
 
+const Illustration1 = '/images/avatar/illustration/1.png';
+const Illustration2 = '/images/avatar/illustration/2.png';
+const Illustration3 = '/images/avatar/illustration/3.png';
+const Illustration4 = '/images/avatar/illustration/4.png';
+const Illustration5 = '/images/avatar/illustration/5.png';
+const Illustration6 = '/images/avatar/illustration/6.png';
+const Illustration7 = '/images/avatar/illustration/7.png';
+const Illustration8 = '/images/avatar/illustration/8.png';
+const Illustration9 = '/images/avatar/illustration/9.png';
+const Illustration10 = '/images/avatar/illustration/10.png';
+const Illustration11 = '/images/avatar/illustration/11.png';
+const Illustration12 = '/images/avatar/illustration/12.png';
+const Illustration13 = '/images/avatar/illustration/13.png';
+const Illustration14 = '/images/avatar/illustration/14.png';
+const Illustration15 = '/images/avatar/illustration/15.png';
+const Illustration16 = '/images/avatar/illustration/16.png';
+const Illustration17 = '/images/avatar/illustration/17.png';
+const Illustration18 = '/images/avatar/illustration/18.png';
+const Illustration19 = '/images/avatar/illustration/19.png';
+const Illustration20 = '/images/avatar/illustration/20.png';
+const Illustration21 = '/images/avatar/illustration/21.png';
+const Illustration22 = '/images/avatar/illustration/22.png';
+const Illustration23 = '/images/avatar/illustration/23.png';
+const Illustration24 = '/images/avatar/illustration/24.png';
+const Illustration25 = '/images/avatar/illustration/25.png';
+const Illustration26 = '/images/avatar/illustration/26.png';
+const Illustration27 = '/images/avatar/illustration/27.png';
+
 const Illustrations = [
-  Illustration1.src,
-  Illustration2.src,
-  Illustration3.src,
-  Illustration4.src,
-  Illustration5.src,
-  Illustration6.src,
-  Illustration7.src,
-  Illustration8.src,
-  Illustration9.src,
-  Illustration10.src,
-  Illustration11.src,
-  Illustration12.src,
-  Illustration13.src,
-  Illustration14.src,
-  Illustration15.src,
-  Illustration16.src,
-  Illustration17.src,
-  Illustration18.src,
-  Illustration19.src,
-  Illustration20.src,
-  Illustration21.src,
-  Illustration22.src,
-  Illustration23.src,
-  Illustration24.src,
-  Illustration25.src,
-  Illustration26.src,
-  Illustration27.src,
+  Illustration1,
+  Illustration2,
+  Illustration3,
+  Illustration4,
+  Illustration5,
+  Illustration6,
+  Illustration7,
+  Illustration8,
+  Illustration9,
+  Illustration10,
+  Illustration11,
+  Illustration12,
+  Illustration13,
+  Illustration14,
+  Illustration15,
+  Illustration16,
+  Illustration17,
+  Illustration18,
+  Illustration19,
+  Illustration20,
+  Illustration21,
+  Illustration22,
+  Illustration23,
+  Illustration24,
+  Illustration25,
+  Illustration26,
+  Illustration27,
 ];
 
 const blurDataURL = Poster_BlurDataURL;

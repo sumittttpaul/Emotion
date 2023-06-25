@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { IconButton } from '@mui/material';
 import { HeaderMobileSearchButton } from '../button/header/mobile/Header.Mobile.SearchButton';
 import { HeaderMobileUserButton } from '../button/header/mobile/Header.Mobile.UserButton';

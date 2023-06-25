@@ -6,7 +6,6 @@ import {
   isNumber,
   isInitializedState,
   ImageRestriction,
-  getCloserAngle,
   FixedCropperRef,
 } from 'react-advanced-cropper';
 import 'react-advanced-cropper/dist/style.css';

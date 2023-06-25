@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { HeaderSearchButtonMenuProps } from './Header.SearchButton.Menu';
 import dynamic from 'next/dynamic';
 import { IconButton } from '@mui/material';
@@ -119,7 +119,10 @@ export const HeaderSearchButton: FC<IProps> = (props) => {
             <Image
               height={18}
               width={18}
-              layout="fixed"
+              style={{
+                minHeight: 18,
+                minWidth: 18,
+              }}
               src="/icons/x-white-2.svg"
               className="group-hover:opacity-100 opacity-70"
               alt=""
@@ -138,7 +141,10 @@ export const HeaderSearchButton: FC<IProps> = (props) => {
             <Image
               height={16}
               width={16}
-              layout="fixed"
+              style={{
+                minHeight: 16,
+                minWidth: 16,
+              }}
               src="/icons/search-white-2.svg"
               className="group-hover:opacity-90 opacity-60"
               alt=""

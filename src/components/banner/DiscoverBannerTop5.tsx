@@ -6,7 +6,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import { DiscoverBannerTop5ContentProps } from '../../contents/store/discover/Store.Discover.Banner';
 
 interface IProps {
-  ContentArray: DiscoverBannerTop5ContentProps[]
+  ContentArray: DiscoverBannerTop5ContentProps[];
 }
 /**
  * @author
@@ -117,7 +117,6 @@ export const DiscoverBannerTop5: FC<IProps> = (props) => {
                 }}
               >
                 <Image
-                  priority
                   height={150}
                   width={300}
                   src={value.Image}

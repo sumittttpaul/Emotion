@@ -1,8 +1,6 @@
-import { Checkbox } from '@mui/material';
-import { alpha } from '@mui/material/styles';
-import Image from 'next/legacy/image';
+import { Checkbox, alpha } from '@mui/material';
+import Image from 'next/image';
 import React, { ChangeEvent, FC } from 'react';
-import { Square_BlurDataURL } from '../loader/BlurDataURL';
 
 interface IProps {
   Checked: boolean;

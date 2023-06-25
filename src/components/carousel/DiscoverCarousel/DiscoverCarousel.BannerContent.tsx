@@ -130,7 +130,6 @@ const BannerContent: FC<BannerContentProps> = (props) => {
           <div className="flex h-full w-full">
             <Image
               fill
-              priority
               className=""
               src={value.Image}
               sizes="(max-width: 800px) 800px"

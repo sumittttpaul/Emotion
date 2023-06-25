@@ -1,8 +1,13 @@
 import React, { FC, useState, MouseEvent } from 'react';
-import { alpha, styled } from '@mui/material/styles';
-import TextField, { TextFieldProps } from '@mui/material/TextField';
-import { OutlinedInputProps } from '@mui/material/OutlinedInput';
-import { IconButton, InputAdornment } from '@mui/material';
+import {
+  IconButton,
+  InputAdornment,
+  OutlinedInputProps,
+  TextField,
+  TextFieldProps,
+  alpha,
+  styled,
+} from '@mui/material';
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
 import { PasswordTextFieldProps } from './AllTextFieldProps';
 

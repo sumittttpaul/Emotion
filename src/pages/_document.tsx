@@ -7,6 +7,7 @@ import Document, {
   DocumentProps,
   DocumentContext,
 } from 'next/document';
+import { getInitColorSchemeScript } from '@mui/material/styles';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '../utils/createEmotionCache';
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
@@ -25,6 +26,7 @@ function MyDocument({ emotionStyleTags }: MyDocumentProps) {
         {emotionStyleTags}
       </Head>
       <body>
+        {getInitColorSchemeScript()}
         <Main />
         <NextScript />
       </body>

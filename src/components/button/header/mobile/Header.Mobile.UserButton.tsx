@@ -4,7 +4,7 @@ import React, { FC, Fragment, ReactNode, useState, MouseEvent } from 'react';
 import { useLoaderState } from '../../../../providers/state/LoadingState';
 import { Setup_Link } from '../../../../routerLinks/RouterLinks';
 import Router from 'next/router';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { HeaderUserButtonMenuProps } from '../Header.UserButton.Menu';
 import { UserType, useAuth } from '../../../../firebase/useAuth';
@@ -86,7 +86,6 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
       <Image
         height={25}
         width={25}
-        layout="fixed"
         className="opacity-70 rounded-[50%]"
         src={UserIcon}
         alt=""
@@ -155,7 +154,6 @@ const UserButton: FC<UserButtonProps> = (props) => {
           <Image
             height={35}
             width={35}
-            layout="fixed"
             className="rounded-[50%]"
             src={`${photoURL}`}
             alt=""
@@ -164,7 +162,6 @@ const UserButton: FC<UserButtonProps> = (props) => {
           <Image
             height={25}
             width={25}
-            layout="fixed"
             className="opacity-70 rounded-[50%]"
             src={UserIcon}
             alt=""

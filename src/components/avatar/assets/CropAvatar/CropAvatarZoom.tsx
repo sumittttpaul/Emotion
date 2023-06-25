@@ -1,7 +1,7 @@
 import { ZoomInIcon, ZoomOutIcon } from '@heroicons/react/outline';
+import { TooltipDark } from '../../../tooltip/TooltipDark';
 import React, { FC, ReactNode } from 'react';
 import { m } from 'framer-motion';
-import { TooltipDark } from '../../../tooltip/TooltipDark';
 
 interface IProps {
   ZoomValue: number;
