@@ -194,7 +194,7 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
   };
 
   // Database
-  const CreateDateBase = (_uid: string) => {
+  const CreateDateBase = async (_uid: string) => {
     try {
       const UserPhoneNumber = EncryptData(
         UserProfileEncrytionKey(_uid, 'PhoneNumber'),

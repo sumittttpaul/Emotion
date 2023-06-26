@@ -1,10 +1,12 @@
 import React, { FC, useState } from 'react';
-import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
-import MuiAccordionSummary, {
+import {
+  AccordionDetails as MuiAccordionDetails,
+  AccordionSummary as MuiAccordionSummary,
+  Accordion as MuiAccordion,
   AccordionSummaryProps,
-} from '@mui/material/AccordionSummary';
-import MuiAccordionDetails from '@mui/material/AccordionDetails';
-import { styled } from '@mui/material/styles';
+  AccordionProps,
+  styled,
+} from '@mui/material';
 
 interface IProps {}
 

@@ -11,6 +11,7 @@ import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
 import { useQueryClient, useMutation } from 'react-query';
 import {
+  _userProfileEndURL as cacheKey,
   putUserProfile,
   getUserProfile,
 } from '../../../../mongodb/helper/Helper.UserProfile';
@@ -47,9 +48,7 @@ export const RegisterBirthdayAuthUI: FC<RegisterBirthdayAuthUIProps> = (
     {
       onSuccess: async () => {
         await queryClient
-          .prefetchQuery('user_profile', () =>
-            getUserProfile(FirebaseUser?.uid)
-          )
+          .prefetchQuery(cacheKey, () => getUserProfile(FirebaseUser?.uid))
           .then(() => {
             props.IsInformationAfterBirthday();
           })

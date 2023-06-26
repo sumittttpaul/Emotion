@@ -8,15 +8,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  transpilePackages: ["@heroicons/react"],
-  modularizeImports: {
-    "@heroicons/react/outline/?(((\\w*)?/?)*)": {
-      transform: "@heroicons/react/outline/{{ matches.[1] }}/{{member}}"
-    },
-    "@heroicons/react/solid/?(((\\w*)?/?)*)": {
-      transform: "@heroicons/react/solid/{{ matches.[1] }}/{{member}}"
-    },
-  },
   images: {
     domains: [
       'www.gstatic.com',

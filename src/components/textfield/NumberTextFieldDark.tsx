@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import {
-  OutlinedInputProps,
+  FilledInputProps,
   TextField,
   TextFieldProps,
   alpha,
@@ -10,7 +10,7 @@ import { NumberTextFieldProps } from './AllTextFieldProps';
 
 const CustomTextField = styled((props: TextFieldProps) => (
   <TextField
-    InputProps={{ disableUnderline: true } as Partial<OutlinedInputProps>}
+    InputProps={{ disableUnderline: true } as Partial<FilledInputProps>}
     {...props}
   />
 ))(({ theme }) => ({
@@ -54,6 +54,14 @@ const CustomTextField = styled((props: TextFieldProps) => (
     '&:hover': {
       backgroundColor: 'transparent',
       color: '#ffffff',
+    },
+    '&:before': {
+      transition: 'none !important',
+      borderBottom: 0,
+    },
+    '&:after': {
+      transition: 'none !important',
+      borderBottom: 0,
     },
     '&.Mui-focused': {
       backgroundColor: 'transparent',

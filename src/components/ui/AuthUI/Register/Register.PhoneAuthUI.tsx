@@ -20,6 +20,7 @@ import { UserProfileEncrytionKey } from '../../../../algorithms/security/Cryptio
 import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
 import { useQueryClient, useMutation } from 'react-query';
 import {
+  _userProfileEndURL as cacheKey,
   putUserProfile,
   getUserProfile,
 } from '../../../../mongodb/helper/Helper.UserProfile';
@@ -58,9 +59,7 @@ export const RegisterPhoneAuthUI: FC<RegisterPhoneAuthUIProps> = (props) => {
     {
       onSuccess: async () => {
         await queryClient
-          .prefetchQuery('user_profile', () =>
-            getUserProfile(FirebaseUser?.uid)
-          )
+          .prefetchQuery(cacheKey, () => getUserProfile(FirebaseUser?.uid))
           .then(() => {
             props.setLoading(false);
             MoveToOTPScreen();

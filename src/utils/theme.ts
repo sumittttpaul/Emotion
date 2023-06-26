@@ -1,4 +1,4 @@
-import { experimental_extendTheme as extendTheme } from '@mui/material/styles';
+import { experimental_extendTheme as extendTheme } from '@mui/material';
 import { Noto_Sans } from 'next/font/google';
 
 export const noto_sans = Noto_Sans({

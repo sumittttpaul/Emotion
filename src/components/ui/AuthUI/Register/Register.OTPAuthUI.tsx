@@ -26,6 +26,7 @@ import { AuthType } from '../AuthType';
 import { useAuth } from '../../../../firebase/useAuth';
 import { useQueryClient, useMutation } from 'react-query';
 import {
+  _userProfileEndURL as cacheKey,
   putUserProfile,
   getUserProfile,
 } from '../../../../mongodb/helper/Helper.UserProfile';
@@ -59,9 +60,7 @@ export const RegisterOTPAuthUI: FC<RegisterOTPAuthUIProps> = (props) => {
     {
       onSuccess: async () => {
         await queryClient
-          .prefetchQuery('user_profile', () =>
-            getUserProfile(FirebaseUser?.uid)
-          )
+          .prefetchQuery(cacheKey, () => getUserProfile(FirebaseUser?.uid))
           .then(() => {
             props.IsInformationAfterPhoneAndOTP();
           })

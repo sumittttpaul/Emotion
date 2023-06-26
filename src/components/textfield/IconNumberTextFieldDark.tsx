@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import {
-  OutlinedInputProps,
+  FilledInputProps,
   TextField,
   TextFieldProps,
   alpha,
@@ -11,7 +11,7 @@ import { IconNumberTextFieldProps } from './AllTextFieldProps';
 
 const CustomTextField = styled((props: TextFieldProps) => (
   <TextField
-    InputProps={{ disableUnderline: true } as Partial<OutlinedInputProps>}
+    InputProps={{ disableUnderline: true } as Partial<FilledInputProps>}
     {...props}
   />
 ))(({ theme }) => ({
@@ -34,6 +34,9 @@ const CustomTextField = styled((props: TextFieldProps) => (
   '& .MuiInputLabel-shrink': {
     transform: 'translate(67px, 12px) scale(0.90)',
   },
+  '& .MuiInputBase-underline': {
+    display: 'none',
+  },
   '& .MuiFilledInput-root': {
     height: 63,
     borderRadius: 12,
@@ -55,6 +58,14 @@ const CustomTextField = styled((props: TextFieldProps) => (
     '&:hover': {
       backgroundColor: 'transparent',
       color: '#ffffff',
+    },
+    '&:before': {
+      transition: 'none !important',
+      borderBottom: 0,
+    },
+    '&:after': {
+      transition: 'none !important',
+      borderBottom: 0,
     },
     '&.Mui-focused': {
       backgroundColor: 'transparent',

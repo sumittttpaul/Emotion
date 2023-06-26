@@ -11,6 +11,7 @@ import { RadioGroupDark } from '../../../radiogroup/RadioGroupDark';
 import { AuthType } from '../AuthType';
 import { useQueryClient, useMutation } from 'react-query';
 import {
+  _userProfileEndURL as cacheKey,
   putUserProfile,
   getUserProfile,
 } from '../../../../mongodb/helper/Helper.UserProfile';
@@ -45,9 +46,7 @@ export const RegisterGenderAuthUI: FC<RegisterGenderAuthUIProps> = (props) => {
     {
       onSuccess: async () => {
         await queryClient
-          .prefetchQuery('user_profile', () =>
-            getUserProfile(FirebaseUser?.uid)
-          )
+          .prefetchQuery(cacheKey, () => getUserProfile(FirebaseUser?.uid))
           .then(() => {
             props.setLoading(false);
             MoveToFinishScreen();

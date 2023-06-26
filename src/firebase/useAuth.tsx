@@ -6,10 +6,6 @@ import { FirebaseAuth, _firebaseAuth } from './clientApp';
 export const useAuth = () => {
   const [user, loading, error] = useAuthState(FirebaseAuth);
 
-  const FirebaseUser = user;
-  const FirebaseLoading = loading;
-  const FirebaseError = error;
-
   useEffect(() => {
     if (!FirebaseAuth) {
       return;
@@ -35,7 +31,7 @@ export const useAuth = () => {
     return () => clearInterval(handle);
   }, []);
 
-  return { FirebaseUser, FirebaseLoading, FirebaseError };
+  return { FirebaseUser: user, FirebaseLoading: loading, FirebaseError: error };
 };
 
 export type UserType = _firebaseAuth.User | null | undefined;
