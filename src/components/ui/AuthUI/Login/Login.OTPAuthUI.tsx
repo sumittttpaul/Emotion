@@ -27,6 +27,7 @@ import { useQueryClient, useMutation } from 'react-query';
 import {
   postUserProfile,
   getUserProfile,
+  _userProfileEndURL as cacheKey,
 } from '../../../../mongodb/helper/Helper.UserProfile';
 import { IUserProfile } from '../../../../mongodb/schema/Schema.UserProfile';
 
@@ -42,7 +43,7 @@ export interface LoginOTPAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
-  IsInformation: () => void;
+  IsInformation: (value: IUserProfile) => void;
 }
 
 /**
@@ -53,16 +54,13 @@ export interface LoginOTPAuthUIProps {
 export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
   const queryClient = useQueryClient();
   const createUserProfile = useMutation(postUserProfile, {
-    onSuccess: async (data, variables) => {
-      await queryClient
-        .prefetchQuery('user_profile', () => getUserProfile(variables._uid))
-        .then(() => {
-          props.IsInformation();
-        })
-        .catch((error) => {
-          props.setLoading(false);
-          ShowToast('Something went wrong', `${error.message}`, 'Error', true);
-        });
+    onSuccess: async (data: any) => {
+      const stringifyData = JSON.stringify(data);
+      const _data: IUserProfile = JSON.parse(stringifyData);
+      await queryClient.prefetchQuery(cacheKey, () =>
+        getUserProfile(_data._uid)
+      );
+      props.IsInformation(_data);
     },
     onError: (error: any) => {
       props.setLoading(false);

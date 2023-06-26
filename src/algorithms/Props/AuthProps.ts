@@ -25,7 +25,7 @@ export interface ResendOTPProps {
 export interface VerifyOTPProps {
   OTP: number;
   EmptyOTPBox: () => void;
-  CreateDateBase: (value: string) => void;
+  CreateDateBase: (value: string, ) => void;
   Loading: Dispatch<SetStateAction<boolean>>;
   LoadingScreen: (value: boolean) => void;
   ShowToast: (

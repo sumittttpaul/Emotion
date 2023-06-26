@@ -249,24 +249,21 @@ export const IsInformationHandler = ({
           }
         }
         if (AfterScreen === 'after-date-of-birth') {
-          if (userProfile && userProfile._data && !isuserProfileLoading) {
-            const Gender = userProfile._data.gender;
-            if (!Gender || (Gender && Gender.length < 1)) {
-              handleIsInformationContent('register-gender');
-            } else if (Gender) {
-              if (Gender.length > 0) {
-                setInitialSlide(1);
-                setFinish(true);
-                setLoading(false);
-                setInformationCheckLoading(false);
-              }
+          if (!Gender || (Gender && Gender.length < 1)) {
+            handleIsInformationContent('register-gender');
+          } else if (Gender) {
+            if (Gender.length > 0) {
+              setInitialSlide(1);
+              setFinish(true);
+              setLoading(false);
+              setInformationCheckLoading(false);
             }
           }
         }
       } catch (error: any) {
         ShowToast(
           'Something went wrong',
-          `Database - ${error.message}`,
+          `${error.message} in the database`,
           'Error',
           true
         );

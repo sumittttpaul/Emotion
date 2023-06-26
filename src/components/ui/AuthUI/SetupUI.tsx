@@ -4,7 +4,6 @@ import { AnimatePresence } from 'framer-motion';
 import React, { FC, useEffect, useState } from 'react';
 import { AuthType } from './AuthType';
 import { useAuth } from '../../../firebase/useAuth';
-import { getUserProfile } from '../../../mongodb/helper/Helper.UserProfile';
 import { IsInformationHandler } from './IsInformationHandler';
 import { IUserProfile } from '../../../mongodb/schema/Schema.UserProfile';
 import { LoginPhoneAuthUIProps } from './Login/Login.PhoneAuthUI';
@@ -22,6 +21,10 @@ import { RegisterVerifyEmailAuthUIProps } from './Register/Register.VerifyEmailA
 import { RegisterProfilePictureAuthUIProps } from './Register/Register.ProfilePictureAuthUI';
 import { RegisterBirthdayAuthUIProps } from './Register/Register.BirthdayAuthUI';
 import { RegisterGenderAuthUIProps } from './Register/Register.GenderAuthUI';
+import {
+  getUserProfile,
+  _userProfileEndURL as cacheKey,
+} from '../../../mongodb/helper/Helper.UserProfile';
 import AuthBodyContainer from '../../container/Auth/AuthBodyContainer';
 import AuthContentContainer from '../../container/Auth/AuthContentContainer';
 
@@ -121,9 +124,8 @@ export const SetupUI: FC<IProps> = (props) => {
   });
   const [Screen, setScreen] = useState<AuthType>('register-profile-picture');
 
-  const { isLoading, data } = useQuery(
-    ['user_profile', FirebaseUser?.uid],
-    () => getUserProfile(FirebaseUser?.uid)
+  const { isLoading, data } = useQuery([cacheKey, FirebaseUser?.uid], () =>
+    getUserProfile(FirebaseUser?.uid)
   );
   const userProfile = data as IUserProfile;
 
@@ -171,6 +173,22 @@ export const SetupUI: FC<IProps> = (props) => {
     setLoading: setLoading,
     setInformationCheckLoading: setInformationCheckLoading,
     ShowToast: ShowToast,
+  };
+
+  const IsInformation_IsNewUser = (data: IUserProfile) => {
+    IsInformationHandler({
+      AfterScreen: 'after-login',
+      FirebaseUser: FirebaseUser,
+      userProfile: data,
+      FirebaseLoading: FirebaseLoading,
+      isuserProfileLoading: isLoading,
+      handleIsInformationContent: handleIsInformationContent,
+      setInitialSlide: setInitialSlide,
+      setFinish: setFinish,
+      setLoading: setLoading,
+      setInformationCheckLoading: setInformationCheckLoading,
+      ShowToast: ShowToast,
+    });
   };
 
   const IsInformation_AfterLogin = () => {
@@ -293,7 +311,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformation={IsInformation_AfterLogin}
+              IsInformation={IsInformation_IsNewUser}
             />
           )}
           {Screen === 'login-otp' && (
@@ -307,7 +325,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformation={IsInformation_AfterLogin}
+              IsInformation={IsInformation_IsNewUser}
             />
           )}
           {Screen === 'login-password' && (

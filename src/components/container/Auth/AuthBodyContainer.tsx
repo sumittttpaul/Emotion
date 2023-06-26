@@ -195,7 +195,7 @@ const AuthBodyContainer: FC<IProps> = (props) => {
         </div>
         <div
           id="verify-sign-in-recaptcha"
-          className="h-full sm:h-screen absolute flex text-center items-center justify-center"
+          className="h-full sm:h-screen absolute top-0 flex items-center justify-center"
         />
         <SkipDialogAuthUI
           Open={props.SkipDialogOpen}
