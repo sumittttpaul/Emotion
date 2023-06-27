@@ -58,21 +58,11 @@ export const RegisterPhoneAuthUI: FC<RegisterPhoneAuthUIProps> = (props) => {
     (data: IUserProfileDataUpdate) => putUserProfile(FirebaseUser?.uid, data),
     {
       onSuccess: async () => {
-        await queryClient
-          .prefetchQuery(cacheKey, () => getUserProfile(FirebaseUser?.uid))
-          .then(() => {
-            props.setLoading(false);
-            MoveToOTPScreen();
-          })
-          .catch((error) => {
-            props.setLoading(false);
-            ShowToast(
-              'Something went wrong',
-              `${error.message}`,
-              'Error',
-              true
-            );
-          });
+        await queryClient.prefetchQuery([cacheKey, FirebaseUser?.uid], () =>
+          getUserProfile(FirebaseUser?.uid)
+        );
+        props.setLoading(false);
+        MoveToOTPScreen();
       },
       onError: (error: any) => {
         props.setLoading(false);

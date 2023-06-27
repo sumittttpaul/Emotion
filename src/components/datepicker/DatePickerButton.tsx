@@ -13,6 +13,7 @@ const DatePickerButtonDialog = dynamic<DatePickerButtonDialogProps>(
 interface IProps {
   theme: string;
   getDOB: (value: string) => void;
+  SubmitDisabled: boolean;
   setSubmitDisabled: (value: boolean) => void;
 }
 
@@ -30,12 +31,9 @@ export const DatePickerButton: FC<IProps> = (props) => {
   const [DOBDialog, setDOBDialog] = useState(false);
   const [DOBScreen, setDOBScreen] = useState<'year' | 'month' | 'day'>('year');
   const [DOBSubmitDisabled, setDOBSubmitDisabled] = useState(false);
-  const [DOBDay, setDOBDay] = useState(0);
-  const [DOBMonth, setDOBMonth] = useState(0);
-  const [DOBYear, setDOBYear] = useState(0);
-  const [DOBDayValue, setDOBDayValue] = useState(MomentDay);
-  const [DOBMonthValue, setDOBMonthValue] = useState(MomentMonth);
-  const [DOBYearValue, setDOBYearValue] = useState(MomentYear);
+  const [DOBDay, setDOBDay] = useState(MomentDay);
+  const [DOBMonth, setDOBMonth] = useState(MomentMonth);
+  const [DOBYear, setDOBYear] = useState(MomentYear);
 
   // Handle Dialog
   const ShowDOBDialog = () => {
@@ -43,33 +41,25 @@ export const DatePickerButton: FC<IProps> = (props) => {
   };
   const HideDOBDialog = () => {
     setDOBDialog(false);
-    setDOBDayValue(MomentDay);
-    setDOBMonthValue(MomentMonth);
-    setDOBYearValue(MomentYear);
+    setTimeout(() => {
+      setDOBDay(MomentDay);
+      setDOBMonth(MomentMonth);
+      setDOBYear(MomentYear);
+    }, 200);
   };
 
   // DOB Get
-  const GetDOBMonthName = (month: number) => {
-    const date = new Date();
-    date.setMonth(month - 1);
-    return date.toLocaleString('en-IN', {
-      month: 'short',
-    });
-  };
-  const GetDOBDay = (day: number) => {
+  const GetDOBDay = (day: string) => {
     setDOBDay(day);
-    setDOBDayValue(`${day}`);
     setDOBSubmitDisabled(true);
   };
-  const GetDOBMonth = (month: number) => {
+  const GetDOBMonth = (month: string) => {
     setDOBMonth(month);
-    setDOBMonthValue(GetDOBMonthName(month));
     setDOBScreen('day');
   };
 
-  const GetDOBYear = (year: number) => {
+  const GetDOBYear = (year: string) => {
     setDOBYear(year);
-    setDOBYearValue(`${year}`);
     setDOBScreen('month');
   };
 
@@ -77,23 +67,21 @@ export const DatePickerButton: FC<IProps> = (props) => {
   const DOBOpenhandle = () => {
     setDOBScreen('year');
     setDOBSubmitDisabled(false);
+    setDOBDay(MomentDay);
+    setDOBMonth(MomentMonth);
+    setDOBYear(MomentYear);
     ShowDOBDialog();
-    setDOBDayValue(MomentDay);
-    setDOBMonthValue(MomentMonth);
-    setDOBYearValue(MomentYear);
   };
   const DOBCancelhandle = () => {
     HideDOBDialog();
-    setDOBDayValue(MomentDay);
-    setDOBMonthValue(MomentMonth);
-    setDOBYearValue(MomentYear);
   };
   const DOBSubmithandle = () => {
     props.getDOB(DOBDay + '-' + DOBMonth + '-' + DOBYear);
     props.setSubmitDisabled(false);
     setDOBDialog(false);
   };
-  const DOBLabel = DOBDayValue + ' ' + DOBMonthValue + ' , ' + DOBYearValue;
+  const DOBLabel = DOBDay + ' ' + DOBMonth + ' , ' + DOBYear;
+
   return (
     <Fragment>
       <DatePickerCustomButton
@@ -108,9 +96,6 @@ export const DatePickerButton: FC<IProps> = (props) => {
         DOBDay={DOBDay}
         DOBMonth={DOBMonth}
         DOBYear={DOBYear}
-        DOBDayValue={DOBDayValue}
-        DOBMonthValue={DOBMonthValue}
-        DOBYearValue={DOBYearValue}
         GetDOBDay={GetDOBDay}
         GetDOBMonth={GetDOBMonth}
         GetDOBYear={GetDOBYear}

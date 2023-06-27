@@ -3,7 +3,7 @@ import { m } from 'framer-motion';
 import moment from 'moment';
 
 interface IProps {
-  setYear: (year: number) => void;
+  setYear: (year: string) => void;
 }
 
 /**
@@ -26,7 +26,9 @@ export const SelectYear: FC<IProps> = (props) => {
   const Years = yearRange(1900, new Date().getFullYear());
 
   const dayStyles = (Year: any) => {
-    if (selected == Year) return 'bg-[#ffffff1a]';
+    return selected == Year
+      ? 'bg-[#ffffff1a] hover:bg-[#ffffff1a]'
+      : 'bg-transparent hover:bg-white/5';
   };
 
   return (
@@ -41,10 +43,10 @@ export const SelectYear: FC<IProps> = (props) => {
         <button
           onClick={() => {
             setSelected(year);
-            props.setYear(year);
+            props.setYear(`${year}`);
           }}
           key={year}
-          className={`${'text-white hover:bg-white/5 w-full flex justify-center text-[13px] m-1 p-4 rounded-md cursor-default transition-all ease-in-out'} ${dayStyles(
+          className={`${'text-white w-full flex justify-center text-[13px] m-1 p-4 rounded-md cursor-default transition-colors ease-in-out duration-200'} ${dayStyles(
             year
           )}`}
         >

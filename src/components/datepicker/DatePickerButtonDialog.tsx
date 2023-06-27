@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { Dispatch, FC, SetStateAction } from 'react';
 import { DatePickerContainerDialog } from '../dialog/DatePickerContainerDialog';
 import { DatePickerDialogBottom } from './assets/Dialog/DatePickerDialogBottom';
 import { DatePickerDialogHeader } from './assets/Dialog/DatePickerDialogHeader';
@@ -10,15 +10,12 @@ export interface DatePickerButtonDialogProps {
   DOBScreen: 'year' | 'month' | 'day';
   DOBShow: boolean;
   setDOBShow: () => void;
-  DOBDay: number;
-  DOBMonth: number;
-  DOBYear: number;
-  DOBDayValue: string;
-  DOBMonthValue: string;
-  DOBYearValue: string;
-  GetDOBDay: (day: number) => void;
-  GetDOBMonth: (month: number) => void;
-  GetDOBYear: (year: number) => void;
+  DOBDay: string;
+  DOBMonth: string;
+  DOBYear: string;
+  GetDOBDay: (day: string) => void;
+  GetDOBMonth: (month: string) => void;
+  GetDOBYear: (year: string) => void;
   DOBCancel: () => void;
   DOBSubmit: () => void;
   DOBSubmitDisabled: boolean;
@@ -33,14 +30,12 @@ export const DatePickerButtonDialog: FC<DatePickerButtonDialogProps> = (
   props
 ) => {
   const setHeaderDates = () => {
-    return (
-      props.DOBYearValue + ', ' + props.DOBMonthValue + ' ' + props.DOBDayValue
-    );
+    return props.DOBYear + ', ' + props.DOBMonth + ' ' + props.DOBDay;
   };
 
   return (
     <DatePickerContainerDialog show={props.DOBShow} onClose={props.setDOBShow}>
-      <div className='flex flex-col w-[330px] h-[500px]'>
+      <div className="flex flex-col w-[330px] h-[525px]">
         <DatePickerDialogHeader setHeaderDates={setHeaderDates()} />
         {props.DOBScreen === 'year' && (
           <SelectYear setYear={props.GetDOBYear} />
@@ -55,6 +50,7 @@ export const DatePickerButtonDialog: FC<DatePickerButtonDialogProps> = (
             year={props.DOBYear}
             setDay={props.GetDOBDay}
             setMonth={props.GetDOBMonth}
+            setYear={props.GetDOBYear}
           />
         )}
         <DatePickerDialogBottom

@@ -17,9 +17,9 @@ import { useQueryClient, useMutation } from 'react-query';
 import {
   putUserProfile,
   getUserProfile,
+  _userProfileEndURL as cacheKey,
 } from '../../mongodb/helper/Helper.UserProfile';
 import { IUserProfileDataUpdate } from '../../mongodb/schema/Schema.UserProfile';
-import { url } from 'inspector';
 import { UserProfileEncrytionKey } from '../../algorithms/security/CryptionKey';
 import { EncryptData } from '../../algorithms/security/CryptionSecurity';
 
@@ -47,9 +47,13 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
     (data: IUserProfileDataUpdate) => putUserProfile(FirebaseUser?.uid, data),
     {
       onSuccess: async () => {
-        queryClient.prefetchQuery('user_profile', () =>
+        queryClient.prefetchQuery([cacheKey, FirebaseUser?.uid], () =>
           getUserProfile(FirebaseUser?.uid)
         );
+      },
+      onError: (error: any) => {
+        setAvatarLoading(false);
+        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
       },
     }
   );
@@ -202,7 +206,7 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
     if (FirebaseUser) {
       try {
         const UserPhotoURL = EncryptData(
-          UserProfileEncrytionKey(FirebaseUser.uid, 'PhotoURL'),
+          UserProfileEncrytionKey(FirebaseUser?.uid, 'PhotoURL'),
           value
         );
         const _data: IUserProfileDataUpdate = {
@@ -213,12 +217,12 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
         RemoveImageDisabled(false);
         ChangeImageDisabled(false);
         setAvatarLoading(false);
-        // ShowToast(
-        //   'Avatar updated successfully',
-        //   'You profile picture has been updated for your account.',
-        //   'Success',
-        //   true
-        // );
+        ShowToast(
+          'Avatar updated successfully',
+          'You profile picture has been updated for your account.',
+          'Success',
+          true
+        );
       } catch (error: any) {
         setAvatarLoading(false);
         ShowToast('Something went wrong', `${error.message}`, 'Error', true);
@@ -243,12 +247,12 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
         ChangeImageDisabled(false);
         RemoveImageDisabled(true);
         setAvatarLoading(false);
-        // ShowToast(
-        //   'Avatar deleted successfully',
-        //   'You profile picture has been removed from your account.',
-        //   'Success',
-        //   true
-        // );
+        ShowToast(
+          'Avatar deleted successfully',
+          'You profile picture has been removed from your account.',
+          'Success',
+          true
+        );
       } catch (error: any) {
         setAvatarLoading(false);
         ShowToast('Something went wrong', `${error.message}`, 'Error', true);

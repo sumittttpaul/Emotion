@@ -5,12 +5,20 @@ import { SelectDayHeader } from './selectDay/SelectDayHeader';
 import { WeekNames } from './selectDay/WeekNames';
 
 interface IProps {
-  year: number;
-  month: number;
-  day: number;
-  setDay: (day: number) => void;
-  setMonth: (month: number) => void;
+  year: string;
+  month: string;
+  day: string;
+  setDay: (day: string) => void;
+  setMonth: (month: string) => void;
+  setYear: (year: string) => void;
 }
+
+const getMonthNumber = (month: any) => {
+  var d = Date.parse(month + '10, 2002');
+  if (!isNaN(d)) {
+    return new Date(d).getMonth() + 1;
+  }
+};
 
 /**
  * @author
@@ -18,7 +26,9 @@ interface IProps {
  **/
 
 export const SelectDay: FC<IProps> = (props) => {
-  const [value, setValue] = useState(moment(props.year + '-' + props.month));
+  const [value, setValue] = useState(
+    moment(props.year + '-' + props.month, 'YYYY-MM')
+  );
   const [calender, setCalender] = useState([]);
 
   const startDay = value.clone().startOf('month').startOf('week');
@@ -52,22 +62,32 @@ export const SelectDay: FC<IProps> = (props) => {
     return value.isSame(new Date(), 'month');
   };
 
+  // previous year
+  const prevYear = () => {
+    return value.clone().subtract(1, 'year').format('YYYY');
+  };
+
+  // next year
+  const nextYear = () => {
+    return value.clone().add(1, 'year').format('YYYY');
+  };
+
   // Last date of previous month
   const beforeMonth = () => {
-    return value.clone().subtract(1, 'month').endOf('month');
+    return prevMonth().endOf('month');
   };
 
-  // First date of previous month
+  // First date of next month
   const afterMonth = () => {
-    return value.clone().add(1, 'month').startOf('month');
+    return nextMonth().startOf('month');
   };
 
-  // button
+  // previous month
   const prevMonth = () => {
     return value.clone().subtract(1, 'month');
   };
 
-  // button
+  // next month
   const nextMonth = () => {
     return value.clone().add(1, 'month');
   };
@@ -82,23 +102,31 @@ export const SelectDay: FC<IProps> = (props) => {
 
   const prevMonthClick = () => {
     setValue(prevMonth());
-    props.setMonth(parseInt(value.clone().subtract(1, 'month').format('M')));
+    if (props.month.toLowerCase() === 'jan') props.setYear(prevYear());
+    props.setMonth(prevMonth().format('MMM'));
+    props.setDay(prevMonth().endOf('month').format('DD'));
+    setValue(prevMonth().endOf('month'));
   };
 
   const nextMonthClick = () => {
     setValue(nextMonth());
-    props.setMonth(parseInt(value.clone().add(1, 'month').format('M')));
+    if (props.month.toLowerCase() === 'dec') props.setYear(nextYear());
+    props.setMonth(nextMonth().format('MMM'));
+    props.setDay(nextMonth().startOf('month').format('DD'));
+    setValue(nextMonth().startOf('month'));
   };
 
   const disableDay = 'opacity-30 select-none pointer-events-none touch-none';
 
   const dayStyles = (day: any) => {
-    if (isSelected(day)) return 'bg-[#ffffff1a]';
     if (afterTaday(day)) return disableDay;
     if (isBefore1(day)) return disableDay;
     if (isBefore2(day)) return disableDay;
     if (isAfter1(day)) return disableDay;
     if (isAfter2(day)) return disableDay;
+    return isSelected(day)
+      ? 'bg-[#ffffff1a] hover:bg-[#ffffff1a]'
+      : 'bg-transparent hover:bg-white/5';
   };
 
   useEffect(() => {
@@ -112,11 +140,15 @@ export const SelectDay: FC<IProps> = (props) => {
       );
     }
     setCalender(a);
-  }, [value, startDay, endDay]);
+  }, [value]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    props.setDay('01');
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <m.div
-      className="w-full h-full relative box-border p-5"
+      className="w-full h-full relative box-border px-5 pt-5"
       animate={{ opacity: 1, scale: 1 }}
       initial={{ opacity: 0, scale: 1 }}
       exit={{ opacity: 0, scale: 0 }}
@@ -139,7 +171,7 @@ export const SelectDay: FC<IProps> = (props) => {
                   setValue(day);
                   props.setDay(day.format('DD'));
                 }}
-                className={`${'py-3 m-1 text-white text-[13px] hover:bg-white/5 rounded-md cursor-default text-center box-border relative inline-block transition-all ease-in-out'} 
+                className={`${'py-3 m-1 text-white text-[13px] rounded-md cursor-default text-center box-border relative inline-block transition-colors ease-in-out duration-200'} 
                 ${dayStyles(day)}`}
                 key={day}
               >

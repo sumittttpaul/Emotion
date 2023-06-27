@@ -43,7 +43,7 @@ export interface LoginOTPAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
-  IsInformation: (value: IUserProfile) => void;
+  IsInformation: () => void;
 }
 
 /**
@@ -57,10 +57,10 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
     onSuccess: async (data: any) => {
       const stringifyData = JSON.stringify(data);
       const _data: IUserProfile = JSON.parse(stringifyData);
-      await queryClient.prefetchQuery(cacheKey, () =>
+      await queryClient.prefetchQuery([cacheKey, _data._uid], () =>
         getUserProfile(_data._uid)
       );
-      props.IsInformation(_data);
+      props.IsInformation();
     },
     onError: (error: any) => {
       props.setLoading(false);

@@ -3,7 +3,7 @@ import { m } from 'framer-motion';
 import moment from 'moment';
 
 interface IProps {
-  setMonth: (month: number) => void;
+  setMonth: (month: string) => void;
 }
 
 /**
@@ -31,15 +31,10 @@ export const SelectMonth: FC<IProps> = (props) => {
     moment().endOf('month').format('MMM')
   );
 
-  const getMonthNumber = (month: any) => {
-    var d = Date.parse(month + '10, 2002');
-    if (!isNaN(d)) {
-      return new Date(d).getMonth() + 1;
-    }
-  };
-
   const dayStyles = (month: any) => {
-    if (selected == month) return 'bg-[#ffffff1a]';
+    return selected == month
+      ? 'bg-[#ffffff1a] hover:bg-[#ffffff1a]'
+      : 'bg-transparent hover:bg-white/5';
   };
 
   return (
@@ -54,10 +49,10 @@ export const SelectMonth: FC<IProps> = (props) => {
         <button
           onClick={() => {
             setSelected(month);
-            props.setMonth(getMonthNumber(month) || 0);
+            props.setMonth(month);
           }}
           key={month}
-          className={`${'text-white text-[13px] hover:bg-white/5 m-1 p-4 rounded-md cursor-default transition-all ease-in-out'} ${dayStyles(
+          className={`${'text-white text-[13px] m-1 p-4 rounded-md cursor-default transition-colors ease-in-out duration-150'} ${dayStyles(
             month
           )}`}
         >

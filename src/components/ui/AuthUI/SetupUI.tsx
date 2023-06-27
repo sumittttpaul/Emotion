@@ -29,77 +29,109 @@ import AuthBodyContainer from '../../container/Auth/AuthBodyContainer';
 import AuthContentContainer from '../../container/Auth/AuthContentContainer';
 
 // Dynamic Imports
-const LoginPhoneAuthUI = dynamic<LoginPhoneAuthUIProps>(() =>
-  import('./Login/Login.PhoneAuthUI').then((x) => x.LoginPhoneAuthUI)
+const LoginPhoneAuthUI = dynamic<LoginPhoneAuthUIProps>(
+  () => import('./Login/Login.PhoneAuthUI').then((x) => x.LoginPhoneAuthUI),
+  { ssr: false }
 );
 
-const LoginEmailAuthUI = dynamic<LoginEmailAuthUIProps>(() =>
-  import('./Login/Login.EmailAuthUI').then((x) => x.LoginEmailAuthUI)
+const LoginEmailAuthUI = dynamic<LoginEmailAuthUIProps>(
+  () => import('./Login/Login.EmailAuthUI').then((x) => x.LoginEmailAuthUI),
+  { ssr: false }
 );
 
-const LoginOtherAccountAuthUI = dynamic<LoginOtherAccountAuthUIProps>(() =>
-  import('./Login/Login.OtherAccountAuthUI').then(
-    (x) => x.LoginOtherAccountAuthUI
-  )
+const LoginOtherAccountAuthUI = dynamic<LoginOtherAccountAuthUIProps>(
+  () =>
+    import('./Login/Login.OtherAccountAuthUI').then(
+      (x) => x.LoginOtherAccountAuthUI
+    ),
+  { ssr: false }
 );
 
-const LoginOTPAuthUI = dynamic<LoginOTPAuthUIProps>(() =>
-  import('./Login/Login.OTPAuthUI').then((x) => x.LoginOTPAuthUI)
+const LoginOTPAuthUI = dynamic<LoginOTPAuthUIProps>(
+  () => import('./Login/Login.OTPAuthUI').then((x) => x.LoginOTPAuthUI),
+  { ssr: false }
 );
 
-const LoginPasswordAuthUI = dynamic<LoginPasswordAuthUIProps>(() =>
-  import('./Login/Login.PasswordAuthUI').then((x) => x.LoginPasswordAuthUI)
+const LoginPasswordAuthUI = dynamic<LoginPasswordAuthUIProps>(
+  () =>
+    import('./Login/Login.PasswordAuthUI').then((x) => x.LoginPasswordAuthUI),
+  { ssr: false }
 );
 
-const LoginForgotPasswordAuthUI = dynamic<LoginForgotPasswordAuthUIProps>(() =>
-  import('./Login/Login.ForgotPasswordAuthUI').then(
-    (x) => x.LoginForgotPasswordAuthUI
-  )
+const LoginForgotPasswordAuthUI = dynamic<LoginForgotPasswordAuthUIProps>(
+  () =>
+    import('./Login/Login.ForgotPasswordAuthUI').then(
+      (x) => x.LoginForgotPasswordAuthUI
+    ),
+  { ssr: false }
 );
 
-const RegisterNameAuthUI = dynamic<RegisterNameAuthUIProps>(() =>
-  import('./Register/Register.NameAuthUI').then((x) => x.RegisterNameAuthUI)
+const RegisterNameAuthUI = dynamic<RegisterNameAuthUIProps>(
+  () =>
+    import('./Register/Register.NameAuthUI').then((x) => x.RegisterNameAuthUI),
+  { ssr: false }
 );
 
-const RegisterPhoneAuthUI = dynamic<RegisterPhoneAuthUIProps>(() =>
-  import('./Register/Register.PhoneAuthUI').then((x) => x.RegisterPhoneAuthUI)
+const RegisterPhoneAuthUI = dynamic<RegisterPhoneAuthUIProps>(
+  () =>
+    import('./Register/Register.PhoneAuthUI').then(
+      (x) => x.RegisterPhoneAuthUI
+    ),
+  { ssr: false }
 );
 
-const RegisterOTPAuthUI = dynamic<RegisterOTPAuthUIProps>(() =>
-  import('./Register/Register.OTPAuthUI').then((x) => x.RegisterOTPAuthUI)
+const RegisterOTPAuthUI = dynamic<RegisterOTPAuthUIProps>(
+  () =>
+    import('./Register/Register.OTPAuthUI').then((x) => x.RegisterOTPAuthUI),
+  { ssr: false }
 );
 
-const RegisterEmailAuthUI = dynamic<RegisterEmailAuthUIProps>(() =>
-  import('./Register/Register.EmailAuthUI').then((x) => x.RegisterEmailAuthUI)
+const RegisterEmailAuthUI = dynamic<RegisterEmailAuthUIProps>(
+  () =>
+    import('./Register/Register.EmailAuthUI').then(
+      (x) => x.RegisterEmailAuthUI
+    ),
+  { ssr: false }
 );
 
-const RegisterPasswordAuthUI = dynamic<RegisterPasswordAuthUIProps>(() =>
-  import('./Register/Register.PasswordAuthUI').then(
-    (x) => x.RegisterPasswordAuthUI
-  )
+const RegisterPasswordAuthUI = dynamic<RegisterPasswordAuthUIProps>(
+  () =>
+    import('./Register/Register.PasswordAuthUI').then(
+      (x) => x.RegisterPasswordAuthUI
+    ),
+  { ssr: false }
 );
 
-const RegisterVerifyEmailAuthUI = dynamic<RegisterVerifyEmailAuthUIProps>(() =>
-  import('./Register/Register.VerifyEmailAuthUI').then(
-    (x) => x.RegisterVerifyEmailAuthUI
-  )
+const RegisterVerifyEmailAuthUI = dynamic<RegisterVerifyEmailAuthUIProps>(
+  () =>
+    import('./Register/Register.VerifyEmailAuthUI').then(
+      (x) => x.RegisterVerifyEmailAuthUI
+    ),
+  { ssr: false }
 );
 
 const RegisterProfilePictureAuthUI = dynamic<RegisterProfilePictureAuthUIProps>(
   () =>
     import('./Register/Register.ProfilePictureAuthUI').then(
       (x) => x.RegisterProfilePictureAuthUI
-    )
+    ),
+  { ssr: false }
 );
 
-const RegisterBirthdayAuthUI = dynamic<RegisterBirthdayAuthUIProps>(() =>
-  import('./Register/Register.BirthdayAuthUI').then(
-    (x) => x.RegisterBirthdayAuthUI
-  )
+const RegisterBirthdayAuthUI = dynamic<RegisterBirthdayAuthUIProps>(
+  () =>
+    import('./Register/Register.BirthdayAuthUI').then(
+      (x) => x.RegisterBirthdayAuthUI
+    ),
+  { ssr: false }
 );
 
-const RegisterGenderAuthUI = dynamic<RegisterGenderAuthUIProps>(() =>
-  import('./Register/Register.GenderAuthUI').then((x) => x.RegisterGenderAuthUI)
+const RegisterGenderAuthUI = dynamic<RegisterGenderAuthUIProps>(
+  () =>
+    import('./Register/Register.GenderAuthUI').then(
+      (x) => x.RegisterGenderAuthUI
+    ),
+  { ssr: false }
 );
 
 interface IProps {}
@@ -124,8 +156,10 @@ export const SetupUI: FC<IProps> = (props) => {
   });
   const [Screen, setScreen] = useState<AuthType>('register-profile-picture');
 
-  const { isLoading, data } = useQuery([cacheKey, FirebaseUser?.uid], () =>
-    getUserProfile(FirebaseUser?.uid)
+  const { isLoading, data } = useQuery(
+    [cacheKey, FirebaseUser?.uid],
+    () => getUserProfile(FirebaseUser?.uid),
+    { staleTime: Infinity }
   );
   const userProfile = data as IUserProfile;
 
@@ -173,22 +207,6 @@ export const SetupUI: FC<IProps> = (props) => {
     setLoading: setLoading,
     setInformationCheckLoading: setInformationCheckLoading,
     ShowToast: ShowToast,
-  };
-
-  const IsInformation_IsNewUser = (data: IUserProfile) => {
-    IsInformationHandler({
-      AfterScreen: 'after-login',
-      FirebaseUser: FirebaseUser,
-      userProfile: data,
-      FirebaseLoading: FirebaseLoading,
-      isuserProfileLoading: isLoading,
-      handleIsInformationContent: handleIsInformationContent,
-      setInitialSlide: setInitialSlide,
-      setFinish: setFinish,
-      setLoading: setLoading,
-      setInformationCheckLoading: setInformationCheckLoading,
-      ShowToast: ShowToast,
-    });
   };
 
   const IsInformation_AfterLogin = () => {
@@ -311,7 +329,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformation={IsInformation_IsNewUser}
+              IsInformation={IsInformation_AfterLogin}
             />
           )}
           {Screen === 'login-otp' && (
@@ -325,7 +343,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformation={IsInformation_IsNewUser}
+              IsInformation={IsInformation_AfterLogin}
             />
           )}
           {Screen === 'login-password' && (

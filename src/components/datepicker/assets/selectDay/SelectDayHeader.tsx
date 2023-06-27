@@ -33,15 +33,14 @@ export const SelectDayHeader: FC<IProps> = (props) => {
           >
             <ChevronUpIcon className="text-white h-[16px]" />
           </m.button>
-          {!props.isthisMonth && (
-            <m.button
-              onClick={props.nextMonthClick}
-              whileTap={{ scale: 0.9 }}
-              className="text-white p-[4px] rounded-md bg-[#ffffff1a] opacity-100 hover:opacity-75 relative block cursor-default"
-            >
-              <ChevronDownIcon className="text-white h-[16px]" />
-            </m.button>
-          )}
+          <m.button
+            onClick={props.nextMonthClick}
+            whileTap={{ scale: props.isthisMonth ? 1 : 0.9 }}
+            disabled={props.isthisMonth}
+            className="text-white disabled:opacity-50 p-[4px] rounded-md bg-[#ffffff1a] opacity-100 hover:opacity-75 relative block cursor-default"
+          >
+            <ChevronDownIcon className="text-white h-[16px]" />
+          </m.button>
         </div>
       </div>
     </div>
