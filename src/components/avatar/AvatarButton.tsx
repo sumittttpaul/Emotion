@@ -8,7 +8,6 @@ import React, {
   useState,
 } from 'react';
 import { UploadAvatar, DeleteAvatar } from '../../algorithms/AuthAlgorithms';
-import { useReduxSelector } from '../../redux/useReduxSelector';
 import { AvatarCustomButton } from './assets/AvatarCustomButton';
 import { AvatarButtonDialogProps } from './AvatarButtonDialog';
 import { AvatarContainerType, AvatarScreenType } from './assets/AvatarType';
@@ -22,6 +21,10 @@ import {
 import { IUserProfileDataUpdate } from '../../mongodb/schema/Schema.UserProfile';
 import { UserProfileEncrytionKey } from '../../algorithms/security/CryptionKey';
 import { EncryptData } from '../../algorithms/security/CryptionSecurity';
+import {
+  SetupAvatarContent,
+  SetupAvatarContentProps,
+} from '../../contents/setup/Setup.Avatar';
 
 const AvatarButtonDialog = dynamic<AvatarButtonDialogProps>(
   () => import('./AvatarButtonDialog').then((x) => x.AvatarButtonDialog),
@@ -59,8 +62,7 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
   );
 
   const userPhoto = FirebaseUser?.photoURL?.toString();
-  // Handle Collections
-  const { Avatar } = useReduxSelector((state) => state);
+
   // State
   const [AvatarDialog, setAvatarDialog] = useState(false);
   const [ChangeAvatar, setChangeAvatar] = useState(true);
@@ -75,7 +77,7 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
   const [AvatarContainer, setAvatarContainer] = useState<AvatarContainerType>(
     'Remove-Avatar-Container'
   );
-  const [Collection, setCollection] = useState(Avatar.Animal);
+  const [Collection, setCollection] = useState<SetupAvatarContentProps[]>([]);
   const [Collectionheading, setCollectionHeading] = useState('');
   const [CollectionBackBool, setCollectionBackBool] = useState(false);
   const [AvatarScreen, setAvatarScreen] =
@@ -145,31 +147,31 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
   };
   const CollectionReducerName = (value: string) => {
     if (value === 'Animal') {
-      setCollection(Avatar.Animal);
+      setCollection(SetupAvatarContent.Animal);
     }
     if (value === 'Emoji') {
-      setCollection(Avatar.Emoji);
+      setCollection(SetupAvatarContent.Emoji);
     }
     if (value === 'Festival') {
-      setCollection(Avatar.Festival);
+      setCollection(SetupAvatarContent.Festival);
     }
     if (value === 'Handdrawing') {
-      setCollection(Avatar.Handdrawing);
+      setCollection(SetupAvatarContent.Handdrawing);
     }
     if (value === 'Flat') {
-      setCollection(Avatar.Flat);
+      setCollection(SetupAvatarContent.Flat);
     }
     if (value === 'Hipster') {
-      setCollection(Avatar.Hipster);
+      setCollection(SetupAvatarContent.Hipster);
     }
     if (value === 'Paint') {
-      setCollection(Avatar.Paint);
+      setCollection(SetupAvatarContent.Paint);
     }
     if (value === 'Minimal') {
-      setCollection(Avatar.Minimal);
+      setCollection(SetupAvatarContent.Minimal);
     }
     if (value === 'Plain') {
-      setCollection(Avatar.Plain);
+      setCollection(SetupAvatarContent.Plain);
     }
   };
   const CollectionHeading = (value: string) => {

@@ -4,7 +4,7 @@ import {
   circularProgressClasses,
 } from '@mui/material';
 import React, { FC } from 'react';
-import { useLoaderState } from '../../providers/state/LoadingState';
+import { useLoaderState } from '../../provider/LoadingState';
 
 interface IProps {}
 
@@ -14,7 +14,7 @@ interface IProps {}
  **/
 export const Loading: FC<IProps> = (props) => {
   const { Loader } = useLoaderState();
-  const Show: any = Loader.show;
+  const Show: boolean = Loader.show || false;
   return (
     <Backdrop
       className="backdrop-blur-sm transition-all ease-out"

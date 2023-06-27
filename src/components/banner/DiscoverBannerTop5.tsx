@@ -3,7 +3,7 @@ import React, { FC, useEffect, useRef, useState } from 'react';
 import { TrendingBadge } from '../badge/TrendingBadge';
 import { Button } from '@mui/material';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import { DiscoverBannerTop5ContentProps } from '../../contents/store/discover/Store.Discover.Banner';
+import { DiscoverBannerTop5ContentProps } from '../../contents/home/discover/Home.Discover.Banner';
 
 interface IProps {
   ContentArray: DiscoverBannerTop5ContentProps[];

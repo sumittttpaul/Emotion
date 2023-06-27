@@ -12,7 +12,7 @@ import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
 import OTPTextFieldDark from '../../../textfield/OTPTextFieldDark';
 import { ResentOTP, VerifyOTP } from '../../../../algorithms/AuthAlgorithms';
-import { useLoaderState } from '../../../../providers/state/LoadingState';
+import { useLoaderState } from '../../../../provider/LoadingState';
 import {
   ClickToFocus,
   InputChangeFocus,

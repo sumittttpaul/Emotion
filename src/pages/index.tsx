@@ -5,21 +5,21 @@ import { DiscoverUI } from '../components/ui/DiscoverUI';
 import { HomeAndGalleryChildLayout } from '../components/layout/HomeAndGallery/HomeAndGallery.ChildLayout';
 import { HomeAndGalleryParentLayout } from '../components/layout/HomeAndGallery/HomeAndGallery.ParentLayout';
 import { setDevice } from '../redux/reducers/DeviceReducer';
-import { wrapper } from '../redux/store';
-import { setPage } from '../redux/reducers/PageReducer';
+import { wrapper } from '../redux/ReduxStore';
+import { setHomePage } from '../redux/reducers/HomePageReducer';
 
 /**
- * @Store_Page
+ * @Home_Page
  **/
 
-function Store() {
+function Home() {
   return <DiscoverUI />;
 }
 
-Store.getLayout = function GetLayout(Store: ReactElement) {
+Home.getLayout = function GetLayout(Home: ReactElement) {
   return (
     <HomeAndGalleryParentLayout>
-      <HomeAndGalleryChildLayout>{Store}</HomeAndGalleryChildLayout>
+      <HomeAndGalleryChildLayout>{Home}</HomeAndGalleryChildLayout>
     </HomeAndGalleryParentLayout>
   );
 };
@@ -29,12 +29,12 @@ type ServerProps = {
 };
 
 export const getServerSideProps: GetServerSideProps<ServerProps> =
-  wrapper.getServerSideProps((store) => async (context) => {
+  wrapper.getServerSideProps((ReduxStore) => async (context) => {
     const { req } = context;
     const userAgent = req.headers['user-agent'] ?? '';
     const isMobile = parse(userAgent).isMobile;
-    store.dispatch(setDevice(isMobile));
-    store.dispatch(setPage('Discover'));
+    ReduxStore.dispatch(setDevice(isMobile));
+    ReduxStore.dispatch(setHomePage('Discover'));
     return {
       props: {
         isMobile,
@@ -42,4 +42,4 @@ export const getServerSideProps: GetServerSideProps<ServerProps> =
     };
   });
 
-export default Store;
+export default Home;

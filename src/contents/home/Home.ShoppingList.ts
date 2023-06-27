@@ -1,18 +1,18 @@
-export interface StoreWishlistContentProps {
+export interface HomeWishlistContentProps {
   Heading: string;
   Image: string;
   Category: string;
   Price: string;
 }
 
-export interface StoreCartContentProps {
+export interface HomeCartContentProps {
   Heading: string;
   Category: string;
   Price: string;
   Image: string;
 }
 
-export const StoreWishlistContent = [
+export const HomeWishlistContent = [
   // {
   //   Heading: 'Wishlist Heading 1',
   //   Image: '/images/avatar/animal/9.png',
@@ -75,7 +75,7 @@ export const StoreWishlistContent = [
   // },
 ];
 
-export const StoreCartContent = [
+export const HomeCartContent = [
   {
     Heading: 'Cart Heading 1',
     Image: '/images/avatar/illustration/9.png',

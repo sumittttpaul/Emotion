@@ -1,5 +1,5 @@
 import React, { FC, useRef, useState } from 'react';
-import { DiscoverSliderContentProps } from '../../contents/store/discover/Store.Discover.Slider';
+import { DiscoverSliderContentProps } from '../../contents/home/discover/Home.Discover.Slider';
 import {
   DiscoverSliderBrowser,
   DiscoverSliderMobile,

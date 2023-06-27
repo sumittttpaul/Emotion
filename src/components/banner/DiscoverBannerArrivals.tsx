@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import Image from 'next/image';
 import React, { FC } from 'react';
-import { DiscoverBannerLightingDealContentProps } from '../../contents/store/discover/Store.Discover.Banner';
+import { DiscoverBannerLightingDealContentProps } from '../../contents/home/discover/Home.Discover.Banner';
 import {
   DiscoverBannerArrivalsMobile,
   DiscoverBannerArrivalsBrowser,

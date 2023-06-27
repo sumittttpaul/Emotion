@@ -14,4 +14,4 @@ export type AuthType =
   | 'register-profile-picture'
   | 'register-date-of-birth'
   | 'register-gender'
-  | '';
+  | null;

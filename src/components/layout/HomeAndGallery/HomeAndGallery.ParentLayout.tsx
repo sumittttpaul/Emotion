@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useState } from 'react';
-import { useReduxSelector } from '../../../redux/useReduxSelector';
+import { useReduxStore } from '../../../redux/useReduxStore';
 import { ContainerDark } from '../../container/ContainerDark';
 import { SidePanel } from '../../sidepanel/SidePanel';
 
@@ -14,7 +14,7 @@ interface IProps {
 
 export const HomeAndGalleryParentLayout: FC<IProps> = (props) => {
   const [Active, setActive] = useState('Home');
-  const { isMobile } = useReduxSelector((state) => state.Device);
+  const { isMobile } = useReduxStore((state) => state.Device);
 
   if (isMobile) return <ContainerDark>{props.children}</ContainerDark>;
 

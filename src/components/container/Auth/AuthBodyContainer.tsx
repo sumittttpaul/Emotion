@@ -13,7 +13,6 @@ import dynamic from 'next/dynamic';
 import SwiperCore from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
-import { useColorState } from '../../../providers/state/ColorState';
 import { AuthLoadingProps } from '../../loader/Auth/AuthLoading';
 import { ToastDarkProps } from '../../toast/ToastDark';
 import { AuthTransitionContainer } from './AuthTransitionContainer';
@@ -21,6 +20,10 @@ import { AuthType } from '../../ui/AuthUI/AuthType';
 import { FinishAuthUIProps } from '../../ui/AuthUI/Finish/FinishAuthUI';
 import { SkipDialogAuthUIProps } from '../../ui/AuthUI/Dialog/SkipDialogAuthUI';
 import { AuthSkeleton } from '../../loader/Auth/AuthSkeleton';
+import { GetServerSideProps } from 'next';
+import { setPageColor } from '../../../redux/reducers/PageColorReducer';
+import { wrapper } from '../../../redux/ReduxStore';
+import { useReduxStore } from '../../../redux/useReduxStore';
 
 const AuthLoading = dynamic<AuthLoadingProps>(() =>
   import('../../loader/Auth/AuthLoading').then((x) => x.AuthLoading)
@@ -128,13 +131,13 @@ const Illustrations = [
  **/
 
 const AuthBodyContainer: FC<IProps> = (props) => {
-  const { setColorState } = useColorState();
-  useEffect(() => {
-    setColorState({ bgColor: '#202020' });
-    document.body.style.backgroundColor = '#202020';
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+  const { color } = useReduxStore((state) => state.PageColor);
   const [swiperInstance, setSwiperInstance] = useState<SwiperCore>();
+
+  useEffect(() => {
+    document.body.style.backgroundColor = color;
+  }, [color]);
+
   useEffect(() => {
     if (swiperInstance && props.InitialSlide === 0)
       props.Finish && swiperInstance.slideNext();
@@ -212,5 +215,13 @@ const AuthBodyContainer: FC<IProps> = (props) => {
     </Fragment>
   );
 };
+
+export const getServerSideProps: GetServerSideProps<{}> =
+  wrapper.getServerSideProps((ReduxStore) => async (context) => {
+    ReduxStore.dispatch(setPageColor('#202020'));
+    return {
+      props: {},
+    };
+  });
 
 export default AuthBodyContainer;

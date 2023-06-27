@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { DiscoverBannerLightingDealContentProps } from '../../../contents/store/discover/Store.Discover.Banner';
+import { DiscoverBannerLightingDealContentProps } from '../../../contents/home/discover/Home.Discover.Banner';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Poster_BlurDataURL } from '../../loader/BlurDataURL';

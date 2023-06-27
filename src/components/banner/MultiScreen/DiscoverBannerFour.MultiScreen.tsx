@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { DiscoverBannerFourContentProps } from '../../../contents/store/discover/Store.Discover.Banner';
+import { DiscoverBannerFourContentProps } from '../../../contents/home/discover/Home.Discover.Banner';
 import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
 import { BannerSmallButtonForBannerFour } from '../../button/banner/Banner.SmallButton.ForBannerFour';
 import useScreenSize from '../../../algorithms/ScreenSizeDetection';

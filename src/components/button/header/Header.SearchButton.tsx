@@ -10,7 +10,7 @@ import Image from 'next/image';
 import { HeaderSearchButtonMenuProps } from './Header.SearchButton.Menu';
 import dynamic from 'next/dynamic';
 import { IconButton } from '@mui/material';
-import { SearchContent } from '../../../contents/store/search/Store.Search';
+import { SearchContent } from '../../../contents/home/search/Home.Search';
 
 const HeaderSearchButtonMenu = dynamic<HeaderSearchButtonMenuProps>(
   () =>

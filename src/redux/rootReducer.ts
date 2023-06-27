@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import { AvatarReducer } from './reducers/AvatarReducer';
 import { DeviceReducer } from './reducers/DeviceReducer';
-import { PageReducer } from './reducers/PageReducer';
+import { HomePageReducer } from './reducers/HomePageReducer';
+import { PageColorReducer } from './reducers/PageColorReducer';
 
 const rootReducer = combineReducers({
-  Avatar: AvatarReducer,
   Device: DeviceReducer,
-  Page: PageReducer,
+  HomePage: HomePageReducer,
+  PageColor: PageColorReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

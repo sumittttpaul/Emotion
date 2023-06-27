@@ -5,9 +5,9 @@ import { HeaderNav } from './assets/Header.Nav';
 import { HeaderNavMenuProps } from './assets/Header.Nav.Menu';
 import { HeaderUserButton } from '../button/header/Header.UserButton';
 import { HeaderNotificationButton } from '../button/header/Header.NotificationButton';
-import { useReduxSelector } from '../../redux/useReduxSelector';
-import { setPage } from '../../redux/reducers/PageReducer';
-import store from '../../redux/store';
+import { useReduxStore } from '../../redux/useReduxStore';
+import { setHomePage } from '../../redux/reducers/HomePageReducer';
+import ReduxStore from '../../redux/ReduxStore';
 
 const HeaderNavMenu = dynamic<HeaderNavMenuProps>(
   () => import('./assets/Header.Nav.Menu').then((x) => x.HeaderNavMenu),
@@ -21,7 +21,7 @@ interface HeaderProps {}
  * @function @Header
  **/
 export const Header: FC<HeaderProps> = (props) => {
-  const { Page } = useReduxSelector((state) => state);
+  const { HomePage } = useReduxStore((state) => state);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const NavMenuOpen = Boolean(anchorEl);
@@ -43,8 +43,8 @@ export const Header: FC<HeaderProps> = (props) => {
             <HeaderNav
               open={NavMenuOpen}
               onOpen={handleNavMenuClick}
-              Value={Page.HomePage}
-              onValueChange={(value) => store.dispatch(setPage(value))}
+              Value={HomePage.page}
+              onValueChange={(value) => ReduxStore.dispatch(setHomePage(value))}
             />
           </div>
           {/* Search Button */}
@@ -64,8 +64,8 @@ export const Header: FC<HeaderProps> = (props) => {
         anchorEl={anchorEl}
         open={NavMenuOpen}
         onClose={handleNavMenuClose}
-        Value={Page.HomePage}
-        onValueChange={(value) => store.dispatch(setPage(value))}
+        Value={HomePage.page}
+        onValueChange={(value) => ReduxStore.dispatch(setHomePage(value))}
       />
     </div>
   );

@@ -9,7 +9,7 @@ import React, {
   ReactNode,
 } from 'react';
 import { Button } from '@mui/material';
-import { DiscoverBannerLightingDealContentProps } from '../../contents/store/discover/Store.Discover.Banner';
+import { DiscoverBannerLightingDealContentProps } from '../../contents/home/discover/Home.Discover.Banner';
 import { ChevronRightIcon } from '@heroicons/react/outline';
 import { ProductContextMenu } from '../button/ProductContextMenu';
 

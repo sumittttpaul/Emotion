@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { FC, Fragment, MouseEvent, useCallback, useState } from 'react';
-import { StoreCartContentProps } from '../../../contents/store/Store.ShoppingList';
+import { HomeCartContentProps } from '../../../contents/home/Home.ShoppingList';
 import { ProductContextMenuProps } from '../../button/ProductContextMenu';
 
 const ProductContextMenu = dynamic<ProductContextMenuProps>(
@@ -12,7 +12,7 @@ const ProductContextMenu = dynamic<ProductContextMenuProps>(
 );
 
 export interface SidePanelShoppingListTabCartProps {
-  ContentArray: StoreCartContentProps[];
+  ContentArray: HomeCartContentProps[];
 }
 
 /**

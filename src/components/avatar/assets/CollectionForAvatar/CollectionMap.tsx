@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { m } from 'framer-motion';
 import Image from 'next/image';
-import { IAvatarIconReducerState } from '../../../../redux/reducers/AvatarReducer';
 import { Square_BlurDataURL } from '../../../loader/BlurDataURL';
+import { SetupAvatarContentProps } from '../../../../contents/setup/Setup.Avatar';
 
 interface IProps {
-  AvatarReducer: IAvatarIconReducerState[];
+  AvatarReducer: SetupAvatarContentProps[];
   forward: () => void;
   getURL: (value: string) => void;
 }
@@ -33,7 +33,7 @@ export const CollectionMap: FC<IProps> = (props) => {
               key={avatars.iconURL}
               className="rounded-[50%] relative overflow-hidden cursor-default opacity-100 hover:opacity-50 transition-opacity"
               whileTap={{ scale: 0.9 }}
-              whileHover={{scale: 1.1}}
+              whileHover={{ scale: 1.1 }}
               onClick={() => {
                 props.getURL(avatars.iconURL);
                 props.forward();

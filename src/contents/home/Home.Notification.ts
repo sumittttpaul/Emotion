@@ -1,4 +1,4 @@
-export interface StoreNotificationContentProps {
+export interface HomeNotificationContentProps {
   Heading: string;
   Description: string;
   Badge: string;
@@ -6,7 +6,7 @@ export interface StoreNotificationContentProps {
   isRead: string;
 }
 
-export const StoreNotificationContent = [
+export const HomeNotificationContent = [
   {
     Heading: 'Notification Heading 1',
     Image: '/images/avatar/illustration/9.png',

@@ -3,7 +3,7 @@ import React, { FC, Fragment, useState, MouseEvent } from 'react';
 import { TooltipDark } from '../../tooltip/TooltipDark';
 import Image from 'next/image';
 import { HeaderNotificationButtonMenuProps } from './Header.NotificationButton.Menu';
-import { StoreNotificationContent } from '../../../contents/store/Store.Notification';
+import { HomeNotificationContent } from '../../../contents/home/Home.Notification';
 import dynamic from 'next/dynamic';
 
 const HeaderNotificationButtonMenu = dynamic<HeaderNotificationButtonMenuProps>(
@@ -78,7 +78,7 @@ export const HeaderNotificationButton: FC<IProps> = (props) => {
         </IconButton>
       </TooltipDark>
       <HeaderNotificationButtonMenu
-        ContentArray={StoreNotificationContent}
+        ContentArray={HomeNotificationContent}
         anchorEl={anchorEl}
         open={open}
         handleClose={handleClose}

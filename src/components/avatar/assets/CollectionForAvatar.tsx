@@ -1,12 +1,12 @@
 import { ArrowLeftIcon, DotsVerticalIcon } from '@heroicons/react/outline';
 import { IconButton } from '@mui/material';
 import React, { FC, MouseEvent } from 'react';
-import { IAvatarIconReducerState } from '../../../redux/reducers/AvatarReducer';
 import { CollectionMap } from './CollectionForAvatar/CollectionMap';
 import { TooltipDark } from '../../tooltip/TooltipDark';
+import { SetupAvatarContentProps } from '../../../contents/setup/Setup.Avatar';
 
 interface IProps {
-  AvatarReducer: IAvatarIconReducerState[];
+  AvatarReducer: SetupAvatarContentProps[];
   backward: () => void;
   moreInfo: (event: MouseEvent<HTMLElement>) => void;
   forward: () => void;

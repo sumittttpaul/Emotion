@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { DiscoverCarouselContentProps } from '../../contents/store/discover/Store.Discover.Carousel';
+import { DiscoverCarouselContentProps } from '../../contents/home/discover/Home.Discover.Carousel';
 import { DiscoverCarouselBanner } from './DiscoverCarousel/DiscoverCarousel.Banner';
 import { DiscoverCarouselBulletPoints } from './DiscoverCarousel/DiscoverCarousel.BulletPoints';
 

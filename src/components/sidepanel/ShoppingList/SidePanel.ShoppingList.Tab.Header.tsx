@@ -1,10 +1,10 @@
 import { Button } from '@mui/material';
 import React, { FC } from 'react';
-import { StoreWishlistContentProps } from '../../../contents/store/Store.ShoppingList';
+import { HomeWishlistContentProps } from '../../../contents/home/Home.ShoppingList';
 import { MoreMenuButton } from '../../button/MoreMenuButton/MoreMenuButton';
 
 interface IProps {
-  ContentArray: StoreWishlistContentProps[];
+  ContentArray: HomeWishlistContentProps[];
   MoreMenuValue: string;
 }
 

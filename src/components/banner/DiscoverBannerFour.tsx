@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { DiscoverBannerFourContentProps } from '../../contents/store/discover/Store.Discover.Banner';
+import { DiscoverBannerFourContentProps } from '../../contents/home/discover/Home.Discover.Banner';
 import {
   DiscoverBannerFourBrowser,
   DiscoverBannerFourMobile,

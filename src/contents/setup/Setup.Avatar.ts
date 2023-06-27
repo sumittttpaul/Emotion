@@ -1,22 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit';
-
-export interface IAvatarState {
-  Animal: IAvatarIconReducerState[];
-  Emoji: IAvatarIconReducerState[];
-  Festival: IAvatarIconReducerState[];
-  Handdrawing: IAvatarIconReducerState[];
-  Flat: IAvatarIconReducerState[];
-  Hipster: IAvatarIconReducerState[];
-  Paint: IAvatarIconReducerState[];
-  Minimal: IAvatarIconReducerState[];
-  Plain: IAvatarIconReducerState[];
+export interface SetupAvatarProps {
+  Animal: SetupAvatarContentProps[];
+  Emoji: SetupAvatarContentProps[];
+  Festival: SetupAvatarContentProps[];
+  Handdrawing: SetupAvatarContentProps[];
+  Flat: SetupAvatarContentProps[];
+  Hipster: SetupAvatarContentProps[];
+  Paint: SetupAvatarContentProps[];
+  Minimal: SetupAvatarContentProps[];
+  Plain: SetupAvatarContentProps[];
 }
 
-export interface IAvatarIconReducerState {
+export interface SetupAvatarContentProps {
   iconURL: string;
 }
 
-const initialState = {
+export const SetupAvatarContent = {
   Animal: [
     {
       iconURL: '/images/avatar/animal/1.png',
@@ -843,11 +841,3 @@ const initialState = {
     },
   ],
 };
-
-export const AvatarSlice = createSlice({
-  name: 'Avatar',
-  initialState: initialState,
-  reducers: {},
-});
-
-export const AvatarReducer = AvatarSlice.reducer;

@@ -4,7 +4,7 @@ import { AuthHeaderLabel } from '../../../label/AuthHeaderLabel';
 import { AuthHeaderDescription } from '../../../label/AuthHeaderDescription';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import Router from 'next/router';
-import { useLoaderState } from '../../../../providers/state/LoadingState';
+import { useLoaderState } from '../../../../provider/LoadingState';
 
 export interface FinishAuthUIProps {
   ClassName: string;
@@ -24,7 +24,9 @@ export const FinishAuthUI: FC<FinishAuthUIProps> = (props) => {
   };
 
   return (
-    <div className={`${props.ClassName} p-5 md:p-14 space-y-7 w-full flex flex-col relative items-center justify-center`}>
+    <div
+      className={`${props.ClassName} p-5 md:p-14 space-y-7 w-full flex flex-col relative items-center justify-center`}
+    >
       <div className="pt-14 md:pt-0 w-full relative flex justify-center items-center">
         <Image
           height={275} //320

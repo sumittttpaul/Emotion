@@ -8,7 +8,7 @@ import React, {
   useState,
 } from 'react';
 import useNavigateList from '../../../algorithms/KeyboardNavigationList';
-import { SearchContentProps } from '../../../contents/store/search/Store.Search';
+import { SearchContentProps } from '../../../contents/home/search/Home.Search';
 
 export interface HeaderSearchButtonMenuProps {
   Search: string;

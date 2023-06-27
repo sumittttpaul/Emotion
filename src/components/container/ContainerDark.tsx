@@ -1,5 +1,5 @@
 import React, { useEffect, FC, ReactNode } from 'react';
-import { useColorState } from '../../providers/state/ColorState';
+import { useReduxStore } from '../../redux/useReduxStore';
 
 interface IProps {
   children: ReactNode;
@@ -11,11 +11,11 @@ interface IProps {
  **/
 
 export const ContainerDark: FC<IProps> = (props) => {
-  const { ColorState, setColorState } = useColorState();
+  const { color } = useReduxStore((state) => state.PageColor);
   useEffect(() => {
-    setColorState({ bgColor: '#0f0f0f' });
-    document.body.style.backgroundColor = `${ColorState.bgColor}`;
-  }, [setColorState, ColorState.bgColor]);
+    document.body.style.backgroundColor = color;
+  }, [color]);
+
   return (
     <div className="p-0 m-0 flex flex-grow relative w-full h-full bg-[#0f0f0f]">
       {props.children}

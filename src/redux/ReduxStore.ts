@@ -3,9 +3,9 @@ import { createWrapper } from 'next-redux-wrapper';
 import { Action } from 'redux';
 import rootReducer from './rootReducer';
 
-const store = configureStore({ reducer: rootReducer });
+const ReduxStore = configureStore({ reducer: rootReducer });
 
-const makeStore = () => store;
+const makeStore = () => ReduxStore;
 
 export type AppStore = ReturnType<typeof makeStore>;
 export type AppState = ReturnType<AppStore['getState']>;
@@ -18,4 +18,4 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 
 export const wrapper = createWrapper(makeStore);
 
-export default store;
+export default ReduxStore;

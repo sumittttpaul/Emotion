@@ -6,11 +6,11 @@ import { HeaderMobileUserButton } from '../button/header/mobile/Header.Mobile.Us
 import { MobileLogo } from '../logo/CompanyLogo';
 import { HeaderNavMobile } from './assets/Header.Nav.Mobile';
 import { HeaderMobileSearchProps } from './assets/Header.Mobile.Search';
-import { SearchMobileContent } from '../../contents/store/search/Store.Search';
-import { setPage } from '../../redux/reducers/PageReducer';
+import { SearchMobileContent } from '../../contents/home/search/Home.Search';
+import { setHomePage } from '../../redux/reducers/HomePageReducer';
 import dynamic from 'next/dynamic';
-import store from '../../redux/store';
-import { useReduxSelector } from '../../redux/useReduxSelector';
+import ReduxStore from '../../redux/ReduxStore';
+import { useReduxStore } from '../../redux/useReduxStore';
 
 const HeaderMobileSearch = dynamic<HeaderMobileSearchProps>(
   () =>
@@ -26,7 +26,7 @@ interface IProps {}
  **/
 
 export const HeaderMobile: FC<IProps> = (props) => {
-  const { Page } = useReduxSelector((state) => state);
+  const { HomePage } = useReduxStore((state) => state);
 
   useEffect(() => {
     history.pushState('', document.title, window.location.pathname);
@@ -37,7 +37,7 @@ export const HeaderMobile: FC<IProps> = (props) => {
       <div className="overflow-hidden bg-primary-theme z-[999] flex w-full box-border text-white items-center px-3 pb-2">
         <div className="flex">
           <MobileLogo
-            onValueChange={(value) => store.dispatch(setPage(value))}
+            onValueChange={(value) => ReduxStore.dispatch(setHomePage(value))}
           />
         </div>
         <div className="flex w-full justify-end items-center">
@@ -50,8 +50,8 @@ export const HeaderMobile: FC<IProps> = (props) => {
       </div>
       <HeaderMobileSearch ContentArray={SearchMobileContent} />
       <HeaderNavMobile
-        Value={Page.HomePage}
-        onValueChange={(value) => store.dispatch(setPage(value))}
+        Value={HomePage.page}
+        onValueChange={(value) => ReduxStore.dispatch(setHomePage(value))}
       />
     </>
   );

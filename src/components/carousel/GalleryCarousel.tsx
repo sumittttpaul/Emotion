@@ -1,11 +1,11 @@
 import React, { FC, useRef, useState } from 'react';
 import { GalleryCarouselContentProps } from '../../contents/gallery/Gallery.Carousel';
-import { useReduxSelector } from '../../redux/useReduxSelector';
 import dynamic from 'next/dynamic';
 import {
   GalleryCarouselDesktopProps,
   GalleryCarouselMobileProps,
 } from './GalleryCarousel/GalleryCarousel.MultiScreen';
+import { useReduxStore } from '../../redux/useReduxStore';
 
 const GalleryCarouselMobile = dynamic<GalleryCarouselMobileProps>(
   () =>
@@ -35,7 +35,7 @@ export const GalleryCarousel: FC<IProps> = (props) => {
   const ContainerRef = useRef<HTMLDivElement>(null);
   const [CarouselState, setCarouselState] = useState(0);
   const [BannerTextTransition, setBannerTextTransition] = useState('open');
-  const { isMobile } = useReduxSelector((state) => state.Device);
+  const { isMobile } = useReduxStore((state) => state.Device);
 
   if (isMobile)
     return <GalleryCarouselMobile ContentArray={props.ContentArray} />;

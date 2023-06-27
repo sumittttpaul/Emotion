@@ -1,5 +1,4 @@
 import React, { FC, Fragment, MouseEvent, useState } from 'react';
-import { IAvatarIconReducerState } from '../../redux/reducers/AvatarReducer';
 import AvatarContainerDialog from '../dialog/AvatarContainerDialog';
 import ShowAvatar from './assets/ShowAvatar';
 import SelectAvatar from './assets/SelectAvatar';
@@ -8,6 +7,7 @@ import CropAvatar from './assets/CropAvatar';
 import { MoreInfoDialog } from './assets/MoreInfoDialog';
 import { AvatarContainerType, AvatarScreenType } from './assets/AvatarType';
 import { RemoveAvatar } from './assets/RemoveAvatar';
+import { SetupAvatarContentProps } from '../../contents/setup/Setup.Avatar';
 
 export interface AvatarButtonDialogProps {
   AvatarDialog: boolean;
@@ -31,7 +31,7 @@ export interface AvatarButtonDialogProps {
   CollectionShowHeading: string;
   CollectionShow: () => void;
   BackToSelectAvatar: () => void;
-  CollectionReducer: IAvatarIconReducerState[];
+  CollectionReducer: SetupAvatarContentProps[];
   BackToAvatarCollection: () => void;
   ImageURLToCrop: string;
   GetCropImageURL: (value: string) => void;

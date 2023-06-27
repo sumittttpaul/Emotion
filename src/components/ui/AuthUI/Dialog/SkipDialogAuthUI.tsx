@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { DialogContainerDark } from '../../../dialog/DialogContainerDark';
 import { Button } from '@mui/material';
 import Router from 'next/router';
-import { useLoaderState } from '../../../../providers/state/LoadingState';
+import { useLoaderState } from '../../../../provider/LoadingState';
 
 export interface SkipDialogAuthUIProps {
   Open: boolean;

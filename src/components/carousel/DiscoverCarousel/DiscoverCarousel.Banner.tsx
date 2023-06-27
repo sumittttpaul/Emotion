@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { motion, useAnimation, useMotionValue } from 'framer-motion';
-import { DiscoverCarouselContentProps } from '../../../contents/store/discover/Store.Discover.Carousel';
+import { DiscoverCarouselContentProps } from '../../../contents/home/discover/Home.Discover.Carousel';
 import { DiscoverCarouselBannerContent } from './DiscoverCarousel.BannerContent';
 import { DiscoverCarouselArrowButtonProps } from './DiscoverCarousel.ArrowButton';
 import dynamic from 'next/dynamic';

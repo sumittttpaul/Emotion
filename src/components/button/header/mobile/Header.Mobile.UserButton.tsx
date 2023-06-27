@@ -1,7 +1,7 @@
 import UserIcon from '../../../../../public/icons/user-fill.svg';
 import { CircularProgress, IconButton } from '@mui/material';
 import React, { FC, Fragment, ReactNode, useState, MouseEvent } from 'react';
-import { useLoaderState } from '../../../../providers/state/LoadingState';
+import { useLoaderState } from '../../../../provider/LoadingState';
 import { Setup_Link } from '../../../../routerLinks/RouterLinks';
 import Router from 'next/router';
 import Image from 'next/image';

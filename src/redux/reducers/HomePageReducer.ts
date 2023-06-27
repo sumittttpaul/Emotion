@@ -2,27 +2,27 @@ import { createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
 const initialState = {
-  HomePage: 'Discover',
+  page: 'Discover',
 };
 
 export const PageSlice = createSlice({
-  name: 'Page',
+  name: 'HomePage',
   initialState: initialState,
   // For Client Side Update
   reducers: {
-    setPage: (state, action) => {
-      state.HomePage = action.payload;
+    setHomePage: (state, action) => {
+      state.page = action.payload;
     },
   },
   // For Server Side Update
   extraReducers: {
     [HYDRATE]: (state, action) => {
       if (!action.payload.Page.HomePage) return state;
-      state.HomePage = action.payload.Page.HomePage;
+      state.page = action.payload.Page.HomePage;
     },
   },
 });
 
-export const { setPage } = PageSlice.actions;
+export const { setHomePage } = PageSlice.actions;
 
-export const PageReducer = PageSlice.reducer;
+export const HomePageReducer = PageSlice.reducer;

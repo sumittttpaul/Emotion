@@ -4,11 +4,11 @@ import Image from 'next/image';
 import { HotBadge } from '../../badge/HotBadge';
 import { TrendingBadge } from '../../badge/TrendingBadge';
 import { NewBadge } from '../../badge/NewBadge';
-import { StoreNotificationContentProps } from '../../../contents/store/Store.Notification';
+import { HomeNotificationContentProps } from '../../../contents/home/Home.Notification';
 import { MoreMenuButton } from '../MoreMenuButton/MoreMenuButton';
 
 export interface HeaderNotificationButtonMenuProps {
-  ContentArray: StoreNotificationContentProps[];
+  ContentArray: HomeNotificationContentProps[];
   anchorEl: null | HTMLElement;
   open: boolean;
   handleClose: () => void;

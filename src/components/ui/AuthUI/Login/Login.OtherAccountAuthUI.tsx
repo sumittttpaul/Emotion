@@ -9,7 +9,7 @@ import {
   SignInWithApple,
   SignInWithMicrosoft,
 } from '../../../../algorithms/AuthAlgorithms';
-import { useLoaderState } from '../../../../providers/state/LoadingState';
+import { useLoaderState } from '../../../../provider/LoadingState';
 import { AuthType } from '../AuthType';
 import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
 import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';

@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import Image from 'next/image';
 import { Button } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useSearchButtonState } from '../../../../providers/state/SearchButtonState';
 
 interface IProps {}
 
@@ -12,14 +11,13 @@ interface IProps {}
  **/
 
 export const HeaderMobileSearchButton: FC<IProps> = (props) => {
-  const { SearchButtonState, setSearchButtonState } = useSearchButtonState();
   const router = useRouter();
 
   const SearchClick = () => {
-    if (!SearchButtonState.show) {
-      router.push({ hash: 'search' });
-      setSearchButtonState({ show: true });
-    }
+    // if (!SearchButtonState.show) {
+    //   router.push({ hash: 'search' });
+    //   setSearchButtonState({ show: true });
+    // }
   };
 
   return (

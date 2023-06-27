@@ -12,7 +12,7 @@ import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
 import Image from 'next/image';
 import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import { SignInWithEmailAndPassword } from '../../../../algorithms/AuthAlgorithms';
-import { useLoaderState } from '../../../../providers/state/LoadingState';
+import { useLoaderState } from '../../../../provider/LoadingState';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { AuthType } from '../AuthType';
 

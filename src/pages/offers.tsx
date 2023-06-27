@@ -5,8 +5,8 @@ import { OffersUI } from '../components/ui/OffersUI';
 import { GetServerSideProps } from 'next';
 import { parse } from 'next-useragent';
 import { setDevice } from '../redux/reducers/DeviceReducer';
-import { setPage } from '../redux/reducers/PageReducer';
-import { wrapper } from '../redux/store';
+import { setHomePage } from '../redux/reducers/HomePageReducer';
+import { wrapper } from '../redux/ReduxStore';
 
 /**
  * @Offers_Page
@@ -29,12 +29,12 @@ type ServerProps = {
 };
 
 export const getServerSideProps: GetServerSideProps<ServerProps> =
-  wrapper.getServerSideProps((store) => async (context) => {
+  wrapper.getServerSideProps((ReduxStore) => async (context) => {
     const { req } = context;
     const userAgent = req.headers['user-agent'] ?? '';
     const isMobile = parse(userAgent).isMobile;
-    store.dispatch(setDevice(isMobile));
-    store.dispatch(setPage('Offers'));
+    ReduxStore.dispatch(setDevice(isMobile));
+    ReduxStore.dispatch(setHomePage('Offers'));
     return {
       props: {
         isMobile,

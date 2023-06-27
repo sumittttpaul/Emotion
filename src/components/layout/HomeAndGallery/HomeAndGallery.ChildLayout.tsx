@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import { useReduxSelector } from '../../../redux/useReduxSelector';
+import { useReduxStore } from '../../../redux/useReduxStore';
 import { Footer } from '../../footer/Footer';
 import { Header } from '../../header/Header';
 import { HeaderMobile } from '../../header/Header.Mobile';
@@ -14,7 +14,7 @@ interface IProps {
  **/
 
 export const HomeAndGalleryChildLayout: FC<IProps> = (props) => {
-  const { isMobile } = useReduxSelector((state) => state.Device);
+  const { isMobile } = useReduxStore((state) => state.Device);
 
   const Children = () => {
     return <div className="w-full z-auto">{props.children}</div>;

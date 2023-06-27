@@ -1,8 +1,7 @@
 import { Button, IconButton } from '@mui/material';
 import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { useSearchButtonState } from '../../../providers/state/SearchButtonState';
-import { SearchContentProps } from '../../../contents/store/search/Store.Search';
+import { SearchContentProps } from '../../../contents/home/search/Home.Search';
 
 export interface HeaderMobileSearchProps {
   ContentArray: SearchContentProps[];
@@ -17,7 +16,6 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
   const [Search, setSearch] = useState('');
   const SearchRef = useRef<HTMLInputElement>(null);
   const [Data, setData] = useState(props.ContentArray);
-  const { SearchButtonState, setSearchButtonState } = useSearchButtonState();
 
   const removeItem = (index: number) => {
     if (index !== -1) setData(Data.filter((o, i) => index !== i));
@@ -37,32 +35,32 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
   };
 
   const BackClick = () => {
-    if (SearchButtonState.show) {
-      removeHash();
-      SearchRef.current?.blur();
-      setSearchButtonState({ show: false });
-    }
+    // if (SearchButtonState.show) {
+    //   removeHash();
+    //   SearchRef.current?.blur();
+    //   setSearchButtonState({ show: false });
+    // }
   };
 
   const SearchBlur = () => {
-    if (SearchButtonState.show) SearchRef.current?.blur();
+    // if (SearchButtonState.show) SearchRef.current?.blur();
   };
 
-  useEffect(() => {
-    function handleBackButtonPressed(event: PopStateEvent) {
-      event.preventDefault();
-      if (SearchButtonState.show) {
-        removeHash();
-        SearchRef.current?.blur();
-        setSearchButtonState({ show: false });
-        setSearch('');
-      }
-    }
-    window.addEventListener('popstate', handleBackButtonPressed);
-    return () => {
-      window.removeEventListener('popstate', handleBackButtonPressed);
-    };
-  }, [SearchButtonState.show, setSearchButtonState]);
+  // useEffect(() => {
+  //   function handleBackButtonPressed(event: PopStateEvent) {
+  //     event.preventDefault();
+  //     if (SearchButtonState.show) {
+  //       removeHash();
+  //       SearchRef.current?.blur();
+  //       setSearchButtonState({ show: false });
+  //       setSearch('');
+  //     }
+  //   }
+  //   window.addEventListener('popstate', handleBackButtonPressed);
+  //   return () => {
+  //     window.removeEventListener('popstate', handleBackButtonPressed);
+  //   };
+  // }, [SearchButtonState.show, setSearchButtonState]);
 
   useEffect(() => {
     function DetectScroll() {
@@ -74,15 +72,16 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
     };
   });
 
-  useEffect(() => {
-    if (SearchButtonState.show) SearchRef.current?.focus();
-  }, [SearchButtonState.show]);
+  // useEffect(() => {
+  //   if (SearchButtonState.show) SearchRef.current?.focus();
+  // }, [SearchButtonState.show]);
 
   return (
     <div
       id="search"
       className={`${
-        SearchButtonState.show ? 'flex flex-col' : 'hidden'
+        () => {}
+        // SearchButtonState.show ? 'flex flex-col' : 'hidden'
       } absolute w-full top-0 z-[999] bg-primary-theme`}
     >
       <div className="sticky-top z-10 flex w-full bg-primary-theme">
@@ -156,12 +155,7 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
           rounded-xl px-2 py-7 h-[35px] w-full flex cursor-default items-center text-white bg-transparent button-text-lower"
           >
             <div className="block h-5 ml-1 pr-3.5 opacity-70">
-              <Image
-                height={18}
-                width={18}
-                src={value.Icon}
-                alt=""
-              />
+              <Image height={18} width={18} src={value.Icon} alt="" />
             </div>
             <div className="items-center pl-2 pr-1 w-full overflow-hidden">
               <p className="block text-[13px] truncate font-normal text-left opacity-75">
@@ -174,24 +168,14 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
                 className="
                 rounded-[50%] flex opacity-70 items-center justify-center w-[30px] h-[30px] p-0 m-0 cursor-pointer hover:bg-transparent"
               >
-                <Image
-                  height={17}
-                  width={17}
-                  src={value.DeleteIcon}
-                  alt=""
-                />
+                <Image height={17} width={17} src={value.DeleteIcon} alt="" />
               </div>
             ) : (
               <div
                 className="
                 rounded-[50%] flex opacity-70 items-center justify-center w-[30px] h-[30px] p-0 m-0 cursor-pointer hover:bg-transparent"
               >
-                <Image
-                  height={22}
-                  width={22}
-                  src={value.DeleteIcon}
-                  alt=""
-                />
+                <Image height={22} width={22} src={value.DeleteIcon} alt="" />
               </div>
             )}
           </Button>

@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
-import { DiscoverSliderContent } from '../../contents/store/discover/Store.Discover.Slider';
+import { DiscoverSliderContent } from '../../contents/home/discover/Home.Discover.Slider';
 import {
   DiscoverBannerFiveContent,
   DiscoverBannerDealContent,
   DiscoverBannerTop5Content,
-} from '../../contents/store/discover/Store.Discover.Banner';
-import { DiscoverBannerFourContent } from '../../contents/store/discover/Store.Discover.Banner';
-import { DiscoverTilesContent } from '../../contents/store/discover/Store.Discover.Tiles';
+} from '../../contents/home/discover/Home.Discover.Banner';
+import { DiscoverBannerFourContent } from '../../contents/home/discover/Home.Discover.Banner';
+import { DiscoverTilesContent } from '../../contents/home/discover/Home.Discover.Tiles';
 import { DiscoverSlider } from '../slider/DiscoverSlider';
 import { DiscoverBannerTop5 } from '../banner/DiscoverBannerTop5';
 import { DiscoverTiles } from '../tiles/DiscoverTiles';
@@ -14,7 +14,7 @@ import { DiscoverBannerFour } from '../banner/DiscoverBannerFour';
 import { DiscoverBannerFive } from '../banner/DiscoverBannerFive';
 import { DiscoverCatelog } from '../catelog/DiscoverCatelog';
 import { DiscoverCarousel } from '../carousel/DiscoverCarousel';
-import { DiscoverCarouselContent } from '../../contents/store/discover/Store.Discover.Carousel';
+import { DiscoverCarouselContent } from '../../contents/home/discover/Home.Discover.Carousel';
 import { DiscoverBannerDeal } from '../banner/DiscoverBannerDeal';
 import { LightningBadge } from '../badge/LightningBadge';
 import { NewBadge } from '../badge/NewBadge';

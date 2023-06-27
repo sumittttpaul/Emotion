@@ -6,9 +6,9 @@ import React, { FC, useState } from 'react';
 import { SidePanelShoppingListTabWishlist } from './SidePanel.ShoppingList.Tab.Wishlist';
 import { SidePanelShoppingListTabCartProps } from './SidePanel.ShoppingList.Tab.Cart';
 import {
-  StoreCartContent,
-  StoreWishlistContent,
-} from '../../../contents/store/Store.ShoppingList';
+  HomeCartContent,
+  HomeWishlistContent,
+} from '../../../contents/home/Home.ShoppingList';
 import dynamic from 'next/dynamic';
 import { SidePanelShoppingListTabHeader } from './SidePanel.ShoppingList.Tab.Header';
 import SwipeableViews from '../../../../packages/react-swipeable-views/src/index';
@@ -97,7 +97,7 @@ export const SidePanelShoppingListTab: FC<IProps> = (props) => {
         </LayoutGroup>
       </div>
       <SidePanelShoppingListTabHeader
-        ContentArray={Tabvalue === 0 ? StoreWishlistContent : StoreCartContent}
+        ContentArray={Tabvalue === 0 ? HomeWishlistContent : HomeCartContent}
         MoreMenuValue={Tabvalue === 0 ? 'wishlist' : 'cart'}
       />
       <SwipeableViews
@@ -112,11 +112,11 @@ export const SidePanelShoppingListTab: FC<IProps> = (props) => {
       >
         <TabPanel value={Tabvalue} index={0} dir={theme.direction}>
           <SidePanelShoppingListTabWishlist
-            ContentArray={StoreWishlistContent}
+            ContentArray={HomeWishlistContent}
           />
         </TabPanel>
         <TabPanel value={Tabvalue} index={1} dir={theme.direction}>
-          <SidePanelShoppingListTabCart ContentArray={StoreCartContent} />
+          <SidePanelShoppingListTabCart ContentArray={HomeCartContent} />
         </TabPanel>
       </SwipeableViews>
     </div>

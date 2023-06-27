@@ -1,12 +1,12 @@
 import { HeaderLogo } from '../logo/CompanyLogo';
 import Router from 'next/router';
 import { Dispatch, FC, SetStateAction } from 'react';
-import { useLoaderState } from '../../providers/state/LoadingState';
+import { useLoaderState } from '../../provider/LoadingState';
 import { Home_Link } from '../../routerLinks/RouterLinks';
 import { SidePanelVerticalNavBar } from './SidePanel.Vertical.NavBar';
 import { SidePanelShoppingList } from './ShoppingList/SidePanel.ShoppingList';
-import { setPage } from '../../redux/reducers/PageReducer';
-import store from '../../redux/store';
+import { setHomePage } from '../../redux/reducers/HomePageReducer';
+import ReduxStore from '../../redux/ReduxStore';
 
 interface SidePanelProps {
   Active: string;
@@ -30,7 +30,7 @@ export const SidePanel: FC<SidePanelProps> = (props) => {
       <div className="flex py-3 ml-[27px] h-[65px] min-h-[65px] items-center justify-start">
         <HeaderLogo
           onValueChange={(value) => {
-            store.dispatch(setPage(value));
+            ReduxStore.dispatch(setHomePage(value));
             LoadingScreen(true);
             Router.push(Home_Link);
           }}
