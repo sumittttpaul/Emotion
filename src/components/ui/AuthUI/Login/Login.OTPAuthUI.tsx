@@ -7,29 +7,29 @@ import React, {
   MouseEvent,
   KeyboardEvent,
 } from 'react';
-import { OTPTimer } from '../../../timer/OTPTimer';
-import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
-import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
-import OTPTextFieldDark from '../../../textfield/OTPTextFieldDark';
-import { ResentOTP, VerifyOTP } from '../../../../algorithms/AuthAlgorithms';
-import { useLoaderState } from '../../../../provider/LoadingState';
 import {
   ClickToFocus,
   InputChangeFocus,
   InputNumberOnly,
 } from '../../../../algorithms/UIAlgorithms';
-import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
-import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
-import { AuthType } from '../AuthType';
-import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
-import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
-import { useQueryClient, useMutation } from 'react-query';
 import {
   postUserProfile,
   getUserProfile,
   _userProfileEndURL as cacheKey,
 } from '../../../../mongodb/helper/Helper.UserProfile';
+import { OTPTimer } from '../../../timer/OTPTimer';
+import { AuthType } from '../AuthType';
+import { useQueryClient, useMutation } from 'react-query';
+import { useLoaderState } from '../../../../provider/LoadingState';
+import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
+import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
+import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
 import { IUserProfile } from '../../../../mongodb/schema/Schema.UserProfile';
+import { ResentOTP, VerifyOTP } from '../../../../algorithms/AuthAlgorithms';
+import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
+import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
+import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
+import OTPTextFieldDark from '../../../textfield/OTPTextFieldDark';
 
 export interface LoginOTPAuthUIProps {
   ClassName?: string;

@@ -57,6 +57,7 @@ export const HeaderNotificationButton: FC<IProps> = (props) => {
           aria-label="desktop-wishlist-button"
           className="flex transition-all duration-300 text-white h-[47px] w-[47px] items-center justify-center rounded-lg button-text-lower bg-transparent hover:bg-[#202020]"
           sx={{
+            minWidth: 47,
             '.MuiTouchRipple-child': {
               borderRadius: '4px',
               backgroundColor: '#ffffff50 !important',

@@ -50,13 +50,13 @@ export const IsInformationHandler = ({
   if (!FirebaseLoading && !isuserProfileLoading) {
     if (FirebaseUser) {
       try {
-        const FullName = userProfile._data.fullName;
-        const PhoneNumber = userProfile._data.phoneNumber;
-        const EmailAddress = userProfile._data.emailAddress;
-        const EmailAddressVerified = userProfile._data.isVerified?.emailAddress;
-        const ProfilePicture = userProfile._data.photoURL;
-        const DateOfBirth = userProfile._data.dateOfBirth;
-        const Gender = userProfile._data.gender;
+        const FullName: string = userProfile._data.fullName || '';
+        const PhoneNumber: string = userProfile._data.phoneNumber || '';
+        const EmailAddress: string = userProfile._data.emailAddress || '';
+        const EmailAddressVerified: boolean = userProfile._data.isVerified?.emailAddress || false;
+        const ProfilePicture: string = userProfile._data.photoURL || '';
+        const DateOfBirth: string = userProfile._data.dateOfBirth || '';
+        const Gender: string = userProfile._data.gender || '';
         if (AfterScreen === 'after-login') {
           if (!FullName || (FullName && FullName.length < 1)) {
             handleIsInformationContent('register-name');
@@ -261,6 +261,7 @@ export const IsInformationHandler = ({
           }
         }
       } catch (error: any) {
+        setLoading(false);
         ShowToast(
           'Something went wrong',
           `${error.message} in the database`,

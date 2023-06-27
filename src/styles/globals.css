@@ -8,6 +8,7 @@ html,
 body {
   padding: 0;
   margin: 0;
+  background-color: #0f0f0f;
 }
 
 * {
@@ -67,4 +68,11 @@ img::selection {
 ::-webkit-scrollbar-track {
   background: #f1f1f100;
   overflow: overlay;
+}
+
+@media screen and (max-width: 768px) {
+  html,
+  body {
+    background-color: #202020;
+  }
 }

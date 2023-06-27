@@ -102,11 +102,21 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
                 user.email
               )
             : '';
+        const UserEmailAddressVerified = user.emailVerified
+          ? user.emailVerified
+          : false;
         const UserPhoneNumber =
           user.phoneNumber && user.phoneNumber.length > 0
             ? EncryptData(
                 UserProfileEncrytionKey(user.uid, 'PhoneNumber'),
                 user.phoneNumber
+              )
+            : '';
+        const UserPhotoURL =
+          user.photoURL && user.photoURL.length > 0
+            ? EncryptData(
+                UserProfileEncrytionKey(user.uid, 'PhotoURL'),
+                user.photoURL
               )
             : '';
         const _data: IUserProfile = {
@@ -115,13 +125,13 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
             fullName: UserFullName,
             emailAddress: UserEmailAddress,
             phoneNumber: UserPhoneNumber,
-            photoURL: '',
+            photoURL: UserPhotoURL,
             dateOfBirth: '',
             age: '',
             gender: '',
             isVerified: {
               phoneNumber: true,
-              emailAddress: false,
+              emailAddress: UserEmailAddressVerified,
             },
           },
         };

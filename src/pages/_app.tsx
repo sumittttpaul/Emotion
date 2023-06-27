@@ -7,7 +7,9 @@ import 'swiper/css/bundle';
 import * as React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
+import { Provider } from 'react-redux';
 import { CacheProvider, EmotionCache } from '@emotion/react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   CssBaseline,
@@ -17,8 +19,6 @@ import createEmotionCache from '../utils/createEmotionCache';
 import { Loading } from '../components/loader/Loading';
 import { NextPage } from 'next';
 import { wrapper } from '../redux/ReduxStore';
-import { Provider } from 'react-redux';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { LoaderState } from '../provider/LoadingState';
 
 const clientSideEmotionCache = createEmotionCache();
@@ -45,23 +45,30 @@ function MyApp(AppProps: AppPropsWithLayout, cache: EmotionCacheProps) {
     <QueryClientProvider client={queryClient}>
       <CacheProvider value={emotionCache}>
         <Provider store={store}>
-          <Head>
-            <title>Emotion | Outfit</title>
-            <meta property="og:title" content="Emotion | Outfit" key="title" />
-            <meta name="description" content="Welcome to emotion-outfit.com" />
-            <meta name="theme-color" content="#0f0f0f" />
-            <meta
-              name="viewport"
-              content="initial-scale=1, width=device-width"
-            />
-          </Head>
-          <CssVarsProvider theme={theme}>
-            <CssBaseline />
-            <LoaderState value={{ show: false }}>
+          <LoaderState value={{ show: false }}>
+            <Head>
+              <title>Emotion | Outfit</title>
+              <meta
+                property="og:title"
+                content="Emotion | Outfit"
+                key="title"
+              />
+              <meta
+                name="description"
+                content="Welcome to emotion-outfit.com"
+              />
+              <meta name="theme-color" content="#0f0f0f" />
+              <meta
+                name="viewport"
+                content="initial-scale=1, width=device-width"
+              />
+            </Head>
+            <CssVarsProvider theme={theme}>
+              <CssBaseline />
               {getLayout(<Component {...props.pageProps} />)}
-            </LoaderState>
-            <Loading />
-          </CssVarsProvider>
+              <Loading />
+            </CssVarsProvider>
+          </LoaderState>
         </Provider>
       </CacheProvider>
     </QueryClientProvider>

@@ -17,8 +17,8 @@ export const PageSlice = createSlice({
   // For Server Side Update
   extraReducers: {
     [HYDRATE]: (state, action) => {
-      if (!action.payload.Page.HomePage) return state;
-      state.page = action.payload.Page.HomePage;
+      if (!action.payload.HomePage.page) return state;
+      state.page = action.payload.HomePage.page;
     },
   },
 });

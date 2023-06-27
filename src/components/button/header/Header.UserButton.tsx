@@ -32,36 +32,35 @@ export const HeaderUserButton: FC<IProps> = (props) => {
 
   if (FirebaseLoading)
     return (
-      <ContainerButton>
-        <LoadingButton />
-      </ContainerButton>
+      <Container>
+        <UserLoading />
+      </Container>
     );
 
   if (FirebaseUser)
     return (
-      <ContainerButton>
+      <Container>
         <UserButton user={FirebaseUser} />
-      </ContainerButton>
+      </Container>
     );
 
   return (
-    <ContainerButton>
+    <Container>
       <LoginButton
         onClick={() => {
           LoadingScreen(true);
           Router.push(Setup_Link);
         }}
       />
-    </ContainerButton>
+    </Container>
   );
 };
 
 interface LoginButtonProps {
   onClick: () => void;
 }
-interface LoadingButtonProps {}
 
-interface ContainerButtonProps {
+interface ContainerProps {
   children: ReactNode;
 }
 interface UserButtonProps {
@@ -79,13 +78,13 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
         aria-label="user-login-button"
         disableFocusRipple
         onClick={props.onClick}
-        className="flex items-center button-text-lower h-full px-[15.5px] bg-transparent hover:bg-[#202020]"
+        className="flex items-center justify-center button-text-lower h-full bg-transparent hover:bg-[#202020]"
         sx={{
+          minWidth: 47,
           '.MuiTouchRipple-child': {
             backgroundColor: '#ffffff50 !important',
           },
         }}
-        style={{ minWidth: 0 }}
       >
         <Image
           height={20}
@@ -99,24 +98,11 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
   );
 };
 
-const LoadingButton: FC<LoadingButtonProps> = (props) => {
+const UserLoading = () => {
   return (
-    <Fragment>
-      <Button
-        disabled
-        aria-label="user-button-loading"
-        disableFocusRipple
-        className="flex items-center button-text-lower h-full px-[5.5px] bg-transparent hover:bg-[#202020]"
-        sx={{
-          '.MuiTouchRipple-child': {
-            backgroundColor: '#ffffff50 !important',
-          },
-        }}
-        style={{ minWidth: 0 }}
-      >
-        <CircularProgress className="text-white p-2.5" />
-      </Button>
-    </Fragment>
+    <div className="flex items-center justify-center button-text-lower h-full min-w-[47px] bg-transparent">
+      <CircularProgress className="text-white p-2.5" thickness={4} />
+    </div>
   );
 };
 
@@ -152,13 +138,13 @@ const UserButton: FC<UserButtonProps> = (props) => {
           aria-label="user-popup-button"
           disableFocusRipple
           onClick={handleClick}
-          className="flex items-center button-text-lower h-full bg-transparent hover:bg-[#202020]"
+          className="flex items-center justify-center button-text-lower h-full bg-transparent hover:bg-[#202020]"
           sx={{
+            minWidth: 47,
             '.MuiTouchRipple-child': {
               backgroundColor: '#ffffff50 !important',
             },
           }}
-          style={{ minWidth: 0 }}
         >
           {props.user?.photoURL ? (
             <Image
@@ -195,9 +181,9 @@ const UserButton: FC<UserButtonProps> = (props) => {
   );
 };
 
-const ContainerButton: FC<ContainerButtonProps> = (props) => {
+const Container: FC<ContainerProps> = (props) => {
   return (
-    <div className="flex relative box-border h-[47px] rounded-lg overflow-hidden">
+    <div className="flex relative box-border h-[47px] min-h-[47px] rounded-lg overflow-hidden">
       {props.children}
     </div>
   );

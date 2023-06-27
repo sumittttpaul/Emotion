@@ -21,27 +21,34 @@ import { FinishAuthUIProps } from '../../ui/AuthUI/Finish/FinishAuthUI';
 import { SkipDialogAuthUIProps } from '../../ui/AuthUI/Dialog/SkipDialogAuthUI';
 import { AuthSkeleton } from '../../loader/Auth/AuthSkeleton';
 import { GetServerSideProps } from 'next';
-import { setPageColor } from '../../../redux/reducers/PageColorReducer';
-import { wrapper } from '../../../redux/ReduxStore';
-import { useReduxStore } from '../../../redux/useReduxStore';
 
-const AuthLoading = dynamic<AuthLoadingProps>(() =>
-  import('../../loader/Auth/AuthLoading').then((x) => x.AuthLoading)
+const AuthLoading = dynamic<AuthLoadingProps>(
+  () => import('../../loader/Auth/AuthLoading').then((x) => x.AuthLoading),
+  { ssr: false }
 );
 
-const ToastDark = dynamic<ToastDarkProps>(() =>
-  import('../../toast/ToastDark').then((x) => x.ToastDark)
+const ToastDark = dynamic<ToastDarkProps>(
+  () => import('../../toast/ToastDark').then((x) => x.ToastDark),
+  { ssr: false }
 );
 
-const FinishAuthUI = dynamic<FinishAuthUIProps>(() =>
-  import('../../ui/AuthUI/Finish/FinishAuthUI').then((x) => x.FinishAuthUI)
+const FinishAuthUI = dynamic<FinishAuthUIProps>(
+  () =>
+    import('../../ui/AuthUI/Finish/FinishAuthUI').then((x) => x.FinishAuthUI),
+  { ssr: false }
 );
 
-const SkipDialogAuthUI = dynamic<SkipDialogAuthUIProps>(() =>
-  import('../../ui/AuthUI/Dialog/SkipDialogAuthUI').then(
-    (x) => x.SkipDialogAuthUI
-  )
+const SkipDialogAuthUI = dynamic<SkipDialogAuthUIProps>(
+  () =>
+    import('../../ui/AuthUI/Dialog/SkipDialogAuthUI').then(
+      (x) => x.SkipDialogAuthUI
+    ),
+  { ssr: false }
 );
+
+type ServerProps = {
+  color?: string;
+};
 
 interface IProps {
   children: ReactNode;
@@ -130,13 +137,8 @@ const Illustrations = [
  * @function @AuthOuterContainer
  **/
 
-const AuthBodyContainer: FC<IProps> = (props) => {
-  const { color } = useReduxStore((state) => state.PageColor);
+const AuthBodyContainer: FC<IProps & ServerProps> = (props) => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperCore>();
-
-  useEffect(() => {
-    document.body.style.backgroundColor = color;
-  }, [color]);
 
   useEffect(() => {
     if (swiperInstance && props.InitialSlide === 0)
@@ -149,7 +151,7 @@ const AuthBodyContainer: FC<IProps> = (props) => {
         <meta name="theme-color" content="#202020" />
       </Head>
       <LazyMotion features={domAnimation} strict>
-        <div className="bg-[#0f0f0f] flex md:p-[32px] items-center justify-center h-full md:h-screen w-screen main-auth overflow-hidden">
+        <div className="bg-[#202020] md:bg-[#0f0f0f] flex md:p-[32px] items-start md:items-center justify-center md:h-screen w-screen main-auth overflow-hidden">
           <div className="relative bg-[#202020] md:rounded-xl w-full md:max-w-[1040px] flex items-center justify-center overflow-hidden">
             {props.InformationCheckLoading ? (
               <AuthSkeleton ClassName={props.ClassName} />
@@ -182,7 +184,7 @@ const AuthBodyContainer: FC<IProps> = (props) => {
                       ))}
                     </AnimatePresence>
                   </div>
-                  <div className="md:p-9 relative w-full md:min-w-[400px] flex items-center justify-center overflow-hidden">
+                  <div className="md:p-9 relative w-full md:min-w-[500px] flex items-center justify-center overflow-hidden">
                     {props.children}
                   </div>
                 </SwiperSlide>
@@ -215,13 +217,5 @@ const AuthBodyContainer: FC<IProps> = (props) => {
     </Fragment>
   );
 };
-
-export const getServerSideProps: GetServerSideProps<{}> =
-  wrapper.getServerSideProps((ReduxStore) => async (context) => {
-    ReduxStore.dispatch(setPageColor('#202020'));
-    return {
-      props: {},
-    };
-  });
 
 export default AuthBodyContainer;
