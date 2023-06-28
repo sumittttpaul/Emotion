@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from 'react';
+import React, { FC, Fragment, useEffect, useState } from 'react';
 import moment from 'moment';
 import dynamic from 'next/dynamic';
 import { DatePickerCustomButton } from './assets/DatePickerCustomButton';
@@ -12,6 +12,7 @@ const DatePickerButtonDialog = dynamic<DatePickerButtonDialogProps>(
 
 interface IProps {
   theme: string;
+  DOB: string;
   getDOB: (value: string) => void;
   SubmitDisabled: boolean;
   setSubmitDisabled: (value: boolean) => void;
@@ -26,6 +27,10 @@ export const DatePickerButton: FC<IProps> = (props) => {
   var MomentDay = moment().endOf('day').format('DD');
   var MomentMonth = moment().endOf('month').format('MMM');
   var MomentYear = moment().endOf('year').format('YYYY');
+
+  const _dataDay = props.DOB.split('-')[0];
+  const _dataMonth = props.DOB.split('-')[1];
+  const _dataYear = props.DOB.split('-')[2];
 
   // State
   const [DOBDialog, setDOBDialog] = useState(false);
@@ -81,6 +86,14 @@ export const DatePickerButton: FC<IProps> = (props) => {
     setDOBDialog(false);
   };
   const DOBLabel = DOBDay + ' ' + DOBMonth + ' , ' + DOBYear;
+
+  useEffect(() => {
+    if (props.DOB) {
+      setDOBDay(_dataDay);
+      setDOBMonth(_dataMonth);
+      setDOBYear(_dataYear);
+    }
+  }, [props.DOB]);
 
   return (
     <Fragment>

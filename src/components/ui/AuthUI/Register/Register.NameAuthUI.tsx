@@ -39,7 +39,7 @@ export interface RegisterNameAuthUIProps {
   FullName: string;
   setFullName: Dispatch<SetStateAction<string>>;
   Animation: AuthAnimationType;
-  IsInformationAfterName: () => void;
+  IsInformation: () => void;
 }
 
 /**
@@ -57,7 +57,7 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
         await queryClient.prefetchQuery([cacheKey, FirebaseUser?.uid], () =>
           getUserProfile(FirebaseUser?.uid)
         );
-        props.IsInformationAfterName();
+        props.IsInformation();
       },
       onError: (error: any) => {
         props.setLoading(false);
@@ -144,7 +144,6 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
           '_data.fullName': UserFullName,
         };
         updateUserProfile.mutate(_data);
-        props.IsInformationAfterName();
       } catch (error: any) {
         props.setLoading(false);
         ShowToast('Something went wrong', `${error.message}`, 'Error', true);
@@ -201,7 +200,7 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
         <div className="w-full flex justify-start">
           <SignInNextButton
             Label="I will add later"
-            onClick={props.IsInformationAfterName}
+            onClick={props.IsInformation}
           />
         </div>
       </div>

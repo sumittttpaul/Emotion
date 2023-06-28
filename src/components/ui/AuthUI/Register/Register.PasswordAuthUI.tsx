@@ -26,7 +26,7 @@ export interface RegisterPasswordAuthUIProps {
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
   Animation: AuthAnimationType;
-  IsInformationAfterEmailAndPassword: () => void;
+  IsInformation: () => void;
 }
 
 /**
@@ -123,7 +123,7 @@ export const RegisterPasswordAuthUI: FC<RegisterPasswordAuthUIProps> = (
         ShowToast: ShowToast,
         EmptyPasswordTextField: EmptyPassword,
         BackToEmailScreen: BackToEmailAddressScreen,
-        Next: props.IsInformationAfterEmailAndPassword,
+        Next: props.IsInformation,
       });
     } else {
       ShowToast(

@@ -38,7 +38,7 @@ export interface RegisterEmailAuthUIProps {
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
   Animation: AuthAnimationType;
-  IsInformationAfterEmailAndPassword: () => void;
+  IsInformation: () => void;
 }
 
 /**
@@ -217,7 +217,7 @@ export const RegisterEmailAuthUI: FC<RegisterEmailAuthUIProps> = (props) => {
           <div className="w-full flex justify-start">
             <SignInNextButton
               Label="I will add later"
-              onClick={props.IsInformationAfterEmailAndPassword}
+              onClick={props.IsInformation}
             />
           </div>
           <div className="w-full flex justify-start">

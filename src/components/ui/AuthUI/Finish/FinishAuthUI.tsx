@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
-import { AuthHeaderLabel } from '../../../label/AuthHeaderLabel';
-import { AuthHeaderDescription } from '../../../label/AuthHeaderDescription';
-import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import Router from 'next/router';
+import { AuthHeaderLabel } from '../../../label/AuthHeaderLabel';
 import { useLoaderState } from '../../../../provider/LoadingState';
+import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 
 export interface FinishAuthUIProps {
   ClassName: string;
@@ -45,13 +44,13 @@ export const FinishAuthUI: FC<FinishAuthUIProps> = (props) => {
           />
           <AuthHeaderLabel>You are all set</AuthHeaderLabel>
         </div>
-        <div className="w-full flex flex-col max-w-[500px] -space-y-3">
-          <AuthHeaderDescription ClassName="text-center">
+        <div className="w-full flex flex-col max-w-[550px] space-y-3">
+          <h6 className="ml-3 font-normal line-clamp-2 text-center w-full text-white/75 text-[15px]">
             &quot;The only way to do great work is to love what you do.&quot;
-          </AuthHeaderDescription>
-          <AuthHeaderDescription ClassName="text-right">
+          </h6>
+          <h6 className="ml-3 font-normal line-clamp-2 text-right w-full text-white/75 text-[15px]">
             - Steve Jobs
-          </AuthHeaderDescription>
+          </h6>
         </div>
       </div>
       <div className="relative md:absolute p-5 md:p-14 flex h-full w-full items-end justify-end">

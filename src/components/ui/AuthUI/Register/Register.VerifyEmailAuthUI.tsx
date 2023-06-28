@@ -34,7 +34,7 @@ export interface RegisterVerifyEmailAuthUIProps {
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
   Animation: AuthAnimationType;
-  IsInformationAfterVerifyEmail: () => void;
+  IsInformation: () => void;
 }
 
 /**
@@ -54,7 +54,7 @@ export const RegisterVerifyEmailAuthUI: FC<RegisterVerifyEmailAuthUIProps> = (
         await queryClient.prefetchQuery([cacheKey, FirebaseUser?.uid], () =>
           getUserProfile(FirebaseUser?.uid)
         );
-        props.IsInformationAfterVerifyEmail();
+        props.IsInformation();
       },
       onError: (error: any) => {
         props.setLoading(false);
@@ -148,7 +148,7 @@ export const RegisterVerifyEmailAuthUI: FC<RegisterVerifyEmailAuthUIProps> = (
           <div className="w-full flex justify-start">
             <SignInNextButton
               Label="I will verify later"
-              onClick={props.IsInformationAfterVerifyEmail}
+              onClick={props.IsInformation}
             />
           </div>
         )}

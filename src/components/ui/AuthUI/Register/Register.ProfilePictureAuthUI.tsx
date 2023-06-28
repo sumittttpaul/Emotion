@@ -17,7 +17,7 @@ export interface RegisterProfilePictureAuthUIProps {
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
   Animation: AuthAnimationType;
-  IsInformationAfterProfilePhoto: () => void;
+  IsInformation: () => void;
 }
 
 /**
@@ -33,7 +33,7 @@ export const RegisterProfilePictureAuthUI: FC<
   };
   const BackToEmail = () => {
     props.setAuthScreen('register-email');
-  }
+  };
 
   return (
     <m.div
@@ -53,14 +53,11 @@ export const RegisterProfilePictureAuthUI: FC<
           <div className="w-full flex justify-start">
             <SignInNextButton
               Label="I will add later"
-              onClick={props.IsInformationAfterProfilePhoto}
+              onClick={props.IsInformation}
             />
           </div>
           <div className="w-full flex justify-start">
-            <SignInBackButton
-              Label="Back"
-              onClick={BackToEmail}
-            />
+            <SignInBackButton Label="Back" onClick={BackToEmail} />
           </div>
         </div>
       </div>
@@ -69,10 +66,7 @@ export const RegisterProfilePictureAuthUI: FC<
           <RegisterSkipAllButton onClick={SkipClick}>
             Skip all
           </RegisterSkipAllButton>
-          <AuthSubmitButton
-            Disabled={false}
-            onClick={props.IsInformationAfterProfilePhoto}
-          >
+          <AuthSubmitButton Disabled={false} onClick={props.IsInformation}>
             Next
           </AuthSubmitButton>
         </div>

@@ -5,13 +5,15 @@ import { AuthType } from './AuthType';
 
 interface IProps {
   AfterScreen:
-    | 'after-login'
+    | 'initial-load'
     | 'after-name'
     | 'after-phone'
     | 'after-email'
     | 'after-verify-email'
     | 'after-profile-picture'
-    | 'after-date-of-birth';
+    | 'after-date-of-birth'
+    | 'after-gender';
+  ScreenState: 'initial' | 'normal';
   FirebaseUser: UserType;
   userProfile: IUserProfile;
   FirebaseLoading: boolean;
@@ -36,6 +38,7 @@ interface IProps {
 
 export const IsInformationHandler = ({
   AfterScreen,
+  ScreenState,
   FirebaseUser,
   userProfile,
   FirebaseLoading,
@@ -61,14 +64,19 @@ export const IsInformationHandler = ({
       const ProfilePicture = userProfile._data.photoURL;
       const DateOfBirth = userProfile._data.dateOfBirth;
       const Gender = userProfile._data.gender;
-      if (AfterScreen === 'after-login') {
+      if (AfterScreen === 'initial-load') {
         if (!FullName || (FullName && FullName.length < 1)) {
           handleIsInformationContent('register-name');
         } else if (!PhoneNumber || (PhoneNumber && PhoneNumber.length < 1)) {
           handleIsInformationContent('register-phone');
         } else if (!EmailAddress || (EmailAddress && EmailAddress.length < 1)) {
           handleIsInformationContent('register-email');
-        } else if (!EmailAddressVerified && EmailAddressVerified === false) {
+        } else if (
+          EmailAddress &&
+          EmailAddress.length > 0 &&
+          !EmailAddressVerified &&
+          EmailAddressVerified === false
+        ) {
           handleIsInformationContent('register-verify-email');
         } else if (
           !ProfilePicture ||
@@ -97,7 +105,7 @@ export const IsInformationHandler = ({
             Gender.length > 0 &&
             EmailAddressVerified === true
           ) {
-            setInitialSlide(1);
+            if (ScreenState === 'initial') setInitialSlide(1);
             setFinish(true);
             setLoading(false);
             setInformationCheckLoading(false);
@@ -109,7 +117,12 @@ export const IsInformationHandler = ({
           handleIsInformationContent('register-phone');
         } else if (!EmailAddress || (EmailAddress && EmailAddress.length < 1)) {
           handleIsInformationContent('register-email');
-        } else if (!EmailAddressVerified && EmailAddressVerified === false) {
+        } else if (
+          EmailAddress &&
+          EmailAddress.length > 0 &&
+          !EmailAddressVerified &&
+          EmailAddressVerified === false
+        ) {
           handleIsInformationContent('register-verify-email');
         } else if (
           !ProfilePicture ||
@@ -120,33 +133,22 @@ export const IsInformationHandler = ({
           handleIsInformationContent('register-date-of-birth');
         } else if (!Gender || (Gender && Gender.length < 1)) {
           handleIsInformationContent('register-gender');
-        } else if (
-          PhoneNumber &&
-          EmailAddress &&
-          EmailAddressVerified &&
-          ProfilePicture &&
-          DateOfBirth &&
-          Gender
-        ) {
-          if (
-            PhoneNumber.length > 0 &&
-            EmailAddress.length > 0 &&
-            ProfilePicture.length > 0 &&
-            DateOfBirth.length > 0 &&
-            Gender.length > 0 &&
-            EmailAddressVerified === true
-          ) {
-            setInitialSlide(1);
-            setFinish(true);
-            setLoading(false);
-            setInformationCheckLoading(false);
-          }
+        } else {
+          if (ScreenState === 'initial') setInitialSlide(1);
+          setFinish(true);
+          setLoading(false);
+          setInformationCheckLoading(false);
         }
       }
       if (AfterScreen === 'after-phone') {
         if (!EmailAddress || (EmailAddress && EmailAddress.length < 1)) {
           handleIsInformationContent('register-email');
-        } else if (!EmailAddressVerified && EmailAddressVerified === false) {
+        } else if (
+          EmailAddress &&
+          EmailAddress.length > 0 &&
+          !EmailAddressVerified &&
+          EmailAddressVerified === false
+        ) {
           handleIsInformationContent('register-verify-email');
         } else if (
           !ProfilePicture ||
@@ -157,29 +159,20 @@ export const IsInformationHandler = ({
           handleIsInformationContent('register-date-of-birth');
         } else if (!Gender || (Gender && Gender.length < 1)) {
           handleIsInformationContent('register-gender');
-        } else if (
-          EmailAddress &&
-          EmailAddressVerified &&
-          ProfilePicture &&
-          DateOfBirth &&
-          Gender
-        ) {
-          if (
-            EmailAddress.length > 0 &&
-            ProfilePicture.length > 0 &&
-            DateOfBirth.length > 0 &&
-            Gender.length > 0 &&
-            EmailAddressVerified === true
-          ) {
-            setInitialSlide(1);
-            setFinish(true);
-            setLoading(false);
-            setInformationCheckLoading(false);
-          }
+        } else {
+          if (ScreenState === 'initial') setInitialSlide(1);
+          setFinish(true);
+          setLoading(false);
+          setInformationCheckLoading(false);
         }
       }
       if (AfterScreen === 'after-email') {
-        if (!EmailAddressVerified && EmailAddressVerified === false) {
+        if (
+          EmailAddress &&
+          EmailAddress.length > 0 &&
+          !EmailAddressVerified &&
+          EmailAddressVerified === false
+        ) {
           handleIsInformationContent('register-verify-email');
         } else if (
           !ProfilePicture ||
@@ -190,23 +183,11 @@ export const IsInformationHandler = ({
           handleIsInformationContent('register-date-of-birth');
         } else if (!Gender || (Gender && Gender.length < 1)) {
           handleIsInformationContent('register-gender');
-        } else if (
-          EmailAddressVerified &&
-          ProfilePicture &&
-          DateOfBirth &&
-          Gender
-        ) {
-          if (
-            ProfilePicture.length > 0 &&
-            DateOfBirth.length > 0 &&
-            Gender.length > 0 &&
-            EmailAddressVerified === true
-          ) {
-            setInitialSlide(1);
-            setFinish(true);
-            setLoading(false);
-            setInformationCheckLoading(false);
-          }
+        } else {
+          if (ScreenState === 'initial') setInitialSlide(1);
+          setFinish(true);
+          setLoading(false);
+          setInformationCheckLoading(false);
         }
       }
       if (AfterScreen === 'after-verify-email') {
@@ -216,17 +197,11 @@ export const IsInformationHandler = ({
           handleIsInformationContent('register-date-of-birth');
         } else if (!Gender || (Gender && Gender.length < 1)) {
           handleIsInformationContent('register-gender');
-        } else if (ProfilePicture && DateOfBirth && Gender) {
-          if (
-            ProfilePicture.length > 0 &&
-            DateOfBirth.length > 0 &&
-            Gender.length > 0
-          ) {
-            setInitialSlide(1);
-            setFinish(true);
-            setLoading(false);
-            setInformationCheckLoading(false);
-          }
+        } else {
+          if (ScreenState === 'initial') setInitialSlide(1);
+          setFinish(true);
+          setLoading(false);
+          setInformationCheckLoading(false);
         }
       }
       if (AfterScreen === 'after-profile-picture') {
@@ -234,26 +209,27 @@ export const IsInformationHandler = ({
           handleIsInformationContent('register-date-of-birth');
         } else if (!Gender || (Gender && Gender.length < 1)) {
           handleIsInformationContent('register-gender');
-        } else if (DateOfBirth && Gender) {
-          if (DateOfBirth.length > 0 && Gender.length > 0) {
-            setInitialSlide(1);
-            setFinish(true);
-            setLoading(false);
-            setInformationCheckLoading(false);
-          }
+        } else {
+          if (ScreenState === 'initial') setInitialSlide(1);
+          setFinish(true);
+          setLoading(false);
+          setInformationCheckLoading(false);
         }
       }
       if (AfterScreen === 'after-date-of-birth') {
         if (!Gender || (Gender && Gender.length < 1)) {
           handleIsInformationContent('register-gender');
-        } else if (Gender) {
-          if (Gender.length > 0) {
-            setInitialSlide(1);
-            setFinish(true);
-            setLoading(false);
-            setInformationCheckLoading(false);
-          }
+        } else {
+          if (ScreenState === 'initial') setInitialSlide(1);
+          setFinish(true);
+          setLoading(false);
+          setInformationCheckLoading(false);
         }
+      }
+      if (AfterScreen === 'after-gender') {
+        setFinish(true);
+        setLoading(false);
+        setInformationCheckLoading(false);
       }
     } catch (error: any) {
       ShowToast(

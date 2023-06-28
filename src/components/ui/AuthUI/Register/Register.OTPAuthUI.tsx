@@ -45,7 +45,7 @@ export interface RegisterOTPAuthUIProps {
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
   Animation: AuthAnimationType;
-  IsInformationAfterPhoneAndOTP: () => void;
+  IsInformation: () => void;
 }
 
 /**
@@ -63,7 +63,7 @@ export const RegisterOTPAuthUI: FC<RegisterOTPAuthUIProps> = (props) => {
         await queryClient.prefetchQuery([cacheKey, FirebaseUser?.uid], () =>
           getUserProfile(FirebaseUser?.uid)
         );
-        props.IsInformationAfterPhoneAndOTP();
+        props.IsInformation();
       },
       onError: (error: any) => {
         props.setLoading(false);

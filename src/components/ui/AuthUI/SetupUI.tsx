@@ -27,6 +27,8 @@ import {
 } from '../../../mongodb/helper/Helper.UserProfile';
 import AuthBodyContainer from '../../container/Auth/AuthBodyContainer';
 import AuthContentContainer from '../../container/Auth/AuthContentContainer';
+import { DecryptData } from '../../../algorithms/security/CryptionSecurity';
+import { UserProfileEncrytionKey } from '../../../algorithms/security/CryptionKey';
 
 // Dynamic Imports
 const LoginPhoneAuthUI = dynamic<LoginPhoneAuthUIProps>(
@@ -208,55 +210,78 @@ export const SetupUI: FC<IProps> = (props) => {
     ShowToast: ShowToast,
   };
 
-  const IsInformation_IsNewUser = (Screen: AuthType) => {
+  const IsInformation_AfterLogin = (Screen: AuthType) => {
     handleIsInformationContent(Screen);
   };
 
-  const IsInformation_AfterLogin = () => {
+  const IsInformation_InitialLoad = (ScreenState: 'initial' | 'normal') => {
     IsInformationHandler({
-      AfterScreen: 'after-login',
+      AfterScreen: 'initial-load',
+      ScreenState: ScreenState,
       ...handleIsformationProps,
     });
   };
 
-  const IsInformation_AfterName = () => {
+  const IsInformation_AfterName = (ScreenState: 'initial' | 'normal') => {
     IsInformationHandler({
       AfterScreen: 'after-name',
+      ScreenState: ScreenState,
       ...handleIsformationProps,
     });
   };
 
-  const IsInformation_AfterPhoneAndOTP = () => {
+  const IsInformation_AfterPhoneAndOTP = (
+    ScreenState: 'initial' | 'normal'
+  ) => {
     IsInformationHandler({
       AfterScreen: 'after-phone',
+      ScreenState: ScreenState,
       ...handleIsformationProps,
     });
   };
 
-  const IsInformation_AfterEmailAndPassword = () => {
+  const IsInformation_AfterEmailAndPassword = (
+    ScreenState: 'initial' | 'normal'
+  ) => {
     IsInformationHandler({
       AfterScreen: 'after-email',
+      ScreenState: ScreenState,
       ...handleIsformationProps,
     });
   };
 
-  const IsInformation_AfterVerifyEmail = () => {
+  const IsInformation_AfterVerifyEmail = (
+    ScreenState: 'initial' | 'normal'
+  ) => {
     IsInformationHandler({
       AfterScreen: 'after-verify-email',
+      ScreenState: ScreenState,
       ...handleIsformationProps,
     });
   };
 
-  const IsInformation_AfterProfilePhoto = () => {
+  const IsInformation_AfterProfilePhoto = (
+    ScreenState: 'initial' | 'normal'
+  ) => {
     IsInformationHandler({
       AfterScreen: 'after-profile-picture',
+      ScreenState: ScreenState,
       ...handleIsformationProps,
     });
   };
 
-  const IsInformation_AfterBirthday = () => {
+  const IsInformation_AfterBirthday = (ScreenState: 'initial' | 'normal') => {
     IsInformationHandler({
       AfterScreen: 'after-date-of-birth',
+      ScreenState: ScreenState,
+      ...handleIsformationProps,
+    });
+  };
+
+  const IsInformation_AfterGender = (ScreenState: 'initial' | 'normal') => {
+    IsInformationHandler({
+      AfterScreen: 'after-gender',
+      ScreenState: ScreenState,
       ...handleIsformationProps,
     });
   };
@@ -269,11 +294,56 @@ export const SetupUI: FC<IProps> = (props) => {
   useEffect(() => {
     if (InitialLoading) return;
     if (FirebaseUser) {
-      IsInformation_AfterLogin();
+      IsInformation_InitialLoad('initial');
     } else {
       handleIsInformationContent('login-phone');
     }
   }, [InitialLoading]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (data) {
+      setFullName(
+        FirebaseUser?.uid && userProfile._data.fullName
+          ? DecryptData(
+              UserProfileEncrytionKey(FirebaseUser.uid, 'FullName'),
+              userProfile._data.fullName
+            )
+          : ''
+      );
+      setEmailAddress(
+        FirebaseUser?.uid && userProfile?._data.emailAddress
+          ? DecryptData(
+              UserProfileEncrytionKey(FirebaseUser.uid, 'EmailAddress'),
+              userProfile._data.emailAddress
+            )
+          : ''
+      );
+      setPhoneNumber(
+        FirebaseUser?.uid && userProfile?._data.phoneNumber
+          ? DecryptData(
+              UserProfileEncrytionKey(FirebaseUser.uid, 'PhoneNumber'),
+              userProfile._data.phoneNumber
+            )
+          : ''
+      );
+      setDateOfBirth(
+        FirebaseUser?.uid && userProfile?._data.dateOfBirth
+          ? DecryptData(
+              UserProfileEncrytionKey(FirebaseUser.uid, 'DateOfBirth'),
+              userProfile._data.dateOfBirth
+            )
+          : ''
+      );
+      setGender(
+        FirebaseUser?.uid && userProfile?._data.gender
+          ? DecryptData(
+              UserProfileEncrytionKey(FirebaseUser.uid, 'Gender'),
+              userProfile._data.gender
+            )
+          : ''
+      );
+    }
+  }, [data]);
 
   // Class
   const BodyClassName = 'h-full md:h-[652px] ';
@@ -351,7 +421,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformation={IsInformation_IsNewUser}
+              IsInformation={IsInformation_AfterLogin}
             />
           )}
           {Screen === 'login-otp' && (
@@ -366,7 +436,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformation={IsInformation_IsNewUser}
+              IsInformation={IsInformation_AfterLogin}
             />
           )}
           {Screen === 'login-password' && (
@@ -407,7 +477,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setToastSetting={setToastSetting}
               FullName={FullName}
               setFullName={setFullName}
-              IsInformationAfterName={IsInformation_AfterName}
+              IsInformation={() => IsInformation_AfterName('normal')}
             />
           )}
           {Screen === 'register-phone' && (
@@ -425,7 +495,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationAfterPhoneAndOTP={IsInformation_AfterPhoneAndOTP}
+              IsInformation={() => IsInformation_AfterPhoneAndOTP('normal')}
             />
           )}
           {Screen === 'register-otp' && (
@@ -440,7 +510,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationAfterPhoneAndOTP={IsInformation_AfterPhoneAndOTP}
+              IsInformation={() => IsInformation_AfterPhoneAndOTP('normal')}
             />
           )}
           {Screen === 'register-email' && (
@@ -456,8 +526,8 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationAfterEmailAndPassword={
-                IsInformation_AfterEmailAndPassword
+              IsInformation={() =>
+                IsInformation_AfterEmailAndPassword('normal')
               }
             />
           )}
@@ -472,8 +542,8 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationAfterEmailAndPassword={
-                IsInformation_AfterEmailAndPassword
+              IsInformation={() =>
+                IsInformation_AfterEmailAndPassword('normal')
               }
             />
           )}
@@ -487,7 +557,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationAfterVerifyEmail={IsInformation_AfterVerifyEmail}
+              IsInformation={() => IsInformation_AfterVerifyEmail('normal')}
             />
           )}
           {Screen === 'register-profile-picture' && (
@@ -499,7 +569,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setAuthScreen={setScreen}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationAfterProfilePhoto={IsInformation_AfterProfilePhoto}
+              IsInformation={() => IsInformation_AfterProfilePhoto('normal')}
             />
           )}
           {Screen === 'register-date-of-birth' && (
@@ -514,7 +584,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setToastSetting={setToastSetting}
               DateOfBirth={DateOfBirth}
               setDateOfBirth={setDateOfBirth}
-              IsInformationAfterBirthday={IsInformation_AfterBirthday}
+              IsInformation={() => IsInformation_AfterBirthday('normal')}
             />
           )}
           {Screen === 'register-gender' && (
@@ -530,6 +600,7 @@ export const SetupUI: FC<IProps> = (props) => {
               setToastSetting={setToastSetting}
               Gender={Gender}
               setGender={setGender}
+              IsInformation={() => IsInformation_AfterGender('normal')}
             />
           )}
         </AnimatePresence>

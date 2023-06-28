@@ -31,6 +31,7 @@ export interface RegisterGenderAuthUIProps {
   Gender: string;
   setGender: Dispatch<SetStateAction<string>>;
   Animation: AuthAnimationType;
+  IsInformation: () => void;
 }
 
 /**
@@ -48,8 +49,7 @@ export const RegisterGenderAuthUI: FC<RegisterGenderAuthUIProps> = (props) => {
         await queryClient.prefetchQuery([cacheKey, FirebaseUser?.uid], () =>
           getUserProfile(FirebaseUser?.uid)
         );
-        props.setLoading(false);
-        MoveToFinishScreen();
+        props.IsInformation();
       },
       onError: (error: any) => {
         props.setLoading(false);
@@ -71,11 +71,6 @@ export const RegisterGenderAuthUI: FC<RegisterGenderAuthUIProps> = (props) => {
       Type: type,
     });
     props.setToast(show);
-  };
-
-  // Screens
-  const MoveToFinishScreen = () => {
-    props.setFinish(true);
   };
 
   // Database
@@ -137,14 +132,11 @@ export const RegisterGenderAuthUI: FC<RegisterGenderAuthUIProps> = (props) => {
           <div className="w-full flex justify-start">
             <SignInNextButton
               Label="I will add later"
-              onClick={MoveToFinishScreen}
+              onClick={props.IsInformation}
             />
           </div>
           <div className="w-full flex justify-start">
-            <SignInBackButton
-              Label="Back"
-              onClick={BackToBirthday}
-            />
+            <SignInBackButton Label="Back" onClick={BackToBirthday} />
           </div>
         </div>
       </div>

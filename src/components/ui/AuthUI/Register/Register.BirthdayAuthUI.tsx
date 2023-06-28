@@ -31,7 +31,7 @@ export interface RegisterBirthdayAuthUIProps {
   DateOfBirth: string;
   setDateOfBirth: Dispatch<SetStateAction<string>>;
   Animation: AuthAnimationType;
-  IsInformationAfterBirthday: () => void;
+  IsInformation: () => void;
 }
 
 /**
@@ -51,7 +51,7 @@ export const RegisterBirthdayAuthUI: FC<RegisterBirthdayAuthUIProps> = (
         await queryClient.prefetchQuery([cacheKey, FirebaseUser?.uid], () =>
           getUserProfile(FirebaseUser?.uid)
         );
-        props.IsInformationAfterBirthday();
+        props.IsInformation();
       },
       onError: (error: any) => {
         props.setLoading(false);
@@ -135,6 +135,7 @@ export const RegisterBirthdayAuthUI: FC<RegisterBirthdayAuthUIProps> = (
         <div className="w-full flex items-start justify-center pt-2">
           <DatePickerButton
             theme="dark"
+            DOB={props.DateOfBirth}
             getDOB={props.setDateOfBirth}
             SubmitDisabled={SubmitDisabled}
             setSubmitDisabled={setSubmitDisabled}
@@ -144,7 +145,7 @@ export const RegisterBirthdayAuthUI: FC<RegisterBirthdayAuthUIProps> = (
           <div className="w-full flex justify-start">
             <SignInNextButton
               Label="I will add later"
-              onClick={props.IsInformationAfterBirthday}
+              onClick={props.IsInformation}
             />
           </div>
           <div className="w-full flex justify-start">
