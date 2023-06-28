@@ -31,7 +31,6 @@ export interface RegisterGenderAuthUIProps {
   Gender: string;
   setGender: Dispatch<SetStateAction<string>>;
   Animation: AuthAnimationType;
-  IsInformationBeforeGender: () => void;
 }
 
 /**
@@ -108,6 +107,9 @@ export const RegisterGenderAuthUI: FC<RegisterGenderAuthUIProps> = (props) => {
   const SkipClick = () => {
     props.setSkipDialog(true);
   };
+  const BackToBirthday = () => {
+    props.setAuthScreen('register-date-of-birth');
+  };
 
   // Submit
   const SubmitClick = () => {
@@ -141,7 +143,7 @@ export const RegisterGenderAuthUI: FC<RegisterGenderAuthUIProps> = (props) => {
           <div className="w-full flex justify-start">
             <SignInBackButton
               Label="Back"
-              onClick={props.IsInformationBeforeGender}
+              onClick={BackToBirthday}
             />
           </div>
         </div>

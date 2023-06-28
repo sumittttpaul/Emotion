@@ -44,7 +44,6 @@ export interface RegisterPhoneAuthUIProps {
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
   Animation: AuthAnimationType;
   IsInformationAfterPhoneAndOTP: () => void;
-  IsInformationBeforePhoneAndOTP: () => void;
 }
 
 /**
@@ -153,7 +152,9 @@ export const RegisterPhoneAuthUI: FC<RegisterPhoneAuthUIProps> = (props) => {
   const MoveToOTPScreen = () => {
     props.setAuthScreen('register-otp');
   };
-
+  const BackToName = () => {
+    props.setAuthScreen('register-name');
+  }
   const SkipClick = () => {
     props.setSkipDialog(true);
   };
@@ -239,7 +240,7 @@ export const RegisterPhoneAuthUI: FC<RegisterPhoneAuthUIProps> = (props) => {
           <div className="w-full flex justify-start">
             <SignInBackButton
               Label="Back"
-              onClick={props.IsInformationBeforePhoneAndOTP}
+              onClick={BackToName}
             />
           </div>
         </div>

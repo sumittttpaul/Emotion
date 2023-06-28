@@ -39,7 +39,6 @@ export interface RegisterEmailAuthUIProps {
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
   Animation: AuthAnimationType;
   IsInformationAfterEmailAndPassword: () => void;
-  IsInformationBeforeEmailAndPassword: () => void;
 }
 
 /**
@@ -144,7 +143,9 @@ export const RegisterEmailAuthUI: FC<RegisterEmailAuthUIProps> = (props) => {
   const MoveToPasswordScreen = () => {
     props.setAuthScreen('register-password');
   };
-
+  const BackToPhone = () => {
+    props.setAuthScreen('register-phone');
+  }
   const SkipClick = () => {
     props.setSkipDialog(true);
   };
@@ -222,7 +223,7 @@ export const RegisterEmailAuthUI: FC<RegisterEmailAuthUIProps> = (props) => {
           <div className="w-full flex justify-start">
             <SignInBackButton
               Label="Back"
-              onClick={props.IsInformationBeforeEmailAndPassword}
+              onClick={BackToPhone}
             />
           </div>
         </div>

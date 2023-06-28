@@ -35,7 +35,6 @@ export interface RegisterVerifyEmailAuthUIProps {
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
   Animation: AuthAnimationType;
   IsInformationAfterVerifyEmail: () => void;
-  IsInformationBeforeVerifyEmail: () => void;
 }
 
 /**
@@ -146,19 +145,11 @@ export const RegisterVerifyEmailAuthUI: FC<RegisterVerifyEmailAuthUIProps> = (
           </h6>
         )}
         {!FirebaseUser?.emailVerified && (
-          <div className="w-full flex flex-col space-y-1">
-            <div className="w-full flex justify-start">
-              <SignInNextButton
-                Label="I will verify later"
-                onClick={props.IsInformationAfterVerifyEmail}
-              />
-            </div>
-            <div className="w-full flex justify-start">
-              <SignInBackButton
-                Label="Back"
-                onClick={props.IsInformationBeforeVerifyEmail}
-              />
-            </div>
+          <div className="w-full flex justify-start">
+            <SignInNextButton
+              Label="I will verify later"
+              onClick={props.IsInformationAfterVerifyEmail}
+            />
           </div>
         )}
         {FirebaseUser?.emailVerified && (

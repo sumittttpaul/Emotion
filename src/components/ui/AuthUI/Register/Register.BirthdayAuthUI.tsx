@@ -32,7 +32,6 @@ export interface RegisterBirthdayAuthUIProps {
   setDateOfBirth: Dispatch<SetStateAction<string>>;
   Animation: AuthAnimationType;
   IsInformationAfterBirthday: () => void;
-  IsInformationBeforeBirthday: () => void;
 }
 
 /**
@@ -78,6 +77,11 @@ export const RegisterBirthdayAuthUI: FC<RegisterBirthdayAuthUIProps> = (
     });
     props.setToast(show);
   };
+
+  // Screens
+  const BackToPhoto = () => {
+    props.setAuthScreen('register-profile-picture')
+  }
 
   // Database
   const updateUserData = () => {
@@ -146,7 +150,7 @@ export const RegisterBirthdayAuthUI: FC<RegisterBirthdayAuthUIProps> = (
           <div className="w-full flex justify-start">
             <SignInBackButton
               Label="Back"
-              onClick={props.IsInformationBeforeBirthday}
+              onClick={BackToPhoto}
             />
           </div>
         </div>

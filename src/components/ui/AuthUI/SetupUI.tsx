@@ -425,7 +425,6 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationBeforePhoneAndOTP={IsInformation_AfterLogin}
               IsInformationAfterPhoneAndOTP={IsInformation_AfterPhoneAndOTP}
             />
           )}
@@ -457,7 +456,6 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationBeforeEmailAndPassword={IsInformation_AfterLogin}
               IsInformationAfterEmailAndPassword={
                 IsInformation_AfterEmailAndPassword
               }
@@ -489,7 +487,6 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationBeforeVerifyEmail={IsInformation_AfterLogin}
               IsInformationAfterVerifyEmail={IsInformation_AfterVerifyEmail}
             />
           )}
@@ -502,7 +499,6 @@ export const SetupUI: FC<IProps> = (props) => {
               setAuthScreen={setScreen}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformationBeforeProfilePhoto={IsInformation_AfterLogin}
               IsInformationAfterProfilePhoto={IsInformation_AfterProfilePhoto}
             />
           )}
@@ -518,7 +514,6 @@ export const SetupUI: FC<IProps> = (props) => {
               setToastSetting={setToastSetting}
               DateOfBirth={DateOfBirth}
               setDateOfBirth={setDateOfBirth}
-              IsInformationBeforeBirthday={IsInformation_AfterLogin}
               IsInformationAfterBirthday={IsInformation_AfterBirthday}
             />
           )}
@@ -535,7 +530,6 @@ export const SetupUI: FC<IProps> = (props) => {
               setToastSetting={setToastSetting}
               Gender={Gender}
               setGender={setGender}
-              IsInformationBeforeGender={IsInformation_AfterLogin}
             />
           )}
         </AnimatePresence>
