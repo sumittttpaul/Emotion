@@ -184,7 +184,7 @@ const AuthBodyContainer: FC<IProps & ServerProps> = (props) => {
                       ))}
                     </AnimatePresence>
                   </div>
-                  <div className="md:p-9 relative w-full md:min-w-[500px] flex items-center justify-center overflow-hidden">
+                  <div className="md:p-9 relative w-full md:min-w-[400px] md-1000:min-w-[500px] flex items-center justify-center overflow-hidden">
                     {props.children}
                   </div>
                 </SwiperSlide>
