@@ -18,7 +18,7 @@ import {
   _userProfileEndURL as cacheKey,
 } from '../../../../mongodb/helper/Helper.UserProfile';
 import { OTPTimer } from '../../../timer/OTPTimer';
-import { AuthType } from '../AuthType';
+import { AuthAnimationType, AuthType } from '../AuthType';
 import { useQueryClient, useMutation } from 'react-query';
 import { useLoaderState } from '../../../../provider/LoadingState';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
@@ -28,8 +28,8 @@ import { IUserProfile } from '../../../../mongodb/schema/Schema.UserProfile';
 import { ResentOTP, VerifyOTP } from '../../../../algorithms/AuthAlgorithms';
 import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
-import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import OTPTextFieldDark from '../../../textfield/OTPTextFieldDark';
+import { m } from 'framer-motion';
 
 export interface LoginOTPAuthUIProps {
   ClassName?: string;
@@ -43,7 +43,8 @@ export interface LoginOTPAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
-  IsInformation: () => void;
+  Animation: AuthAnimationType;
+  IsInformation: (Screen: AuthType) => void;
 }
 
 /**
@@ -60,7 +61,7 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
       await queryClient.prefetchQuery([cacheKey, _data._uid], () =>
         getUserProfile(_data._uid)
       );
-      props.IsInformation();
+      props.IsInformation('register-name');
     },
     onError: (error: any) => {
       props.setLoading(false);
@@ -260,7 +261,12 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
   const spaceBetween = 'ml-2';
 
   return (
-    <AuthTransitionContainer>
+    <m.div
+      className="w-full relative"
+      initial={props.Animation.Initial}
+      animate={props.Animation.Final}
+      transition={props.Animation.Transition}
+    >
       <div className={`${props.ClassName} w-full flex flex-col space-y-4`}>
         <div className="pb-1.5 flex space-x-1 items-center">
           <div className="text-white/75 text-[14px] tracking-wide font-normal">
@@ -354,6 +360,6 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
           </AuthSubmitButton>
         </div>
       </div>
-    </AuthTransitionContainer>
+    </m.div>
   );
 };

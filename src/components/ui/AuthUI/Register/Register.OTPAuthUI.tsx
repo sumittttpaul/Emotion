@@ -21,8 +21,7 @@ import {
   InputNumberOnly,
 } from '../../../../algorithms/UIAlgorithms';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
-import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
-import { AuthType } from '../AuthType';
+import { AuthAnimationType, AuthType } from '../AuthType';
 import { useAuth } from '../../../../firebase/useAuth';
 import { useQueryClient, useMutation } from 'react-query';
 import {
@@ -31,6 +30,7 @@ import {
   getUserProfile,
 } from '../../../../mongodb/helper/Helper.UserProfile';
 import { IUserProfileDataUpdate } from '../../../../mongodb/schema/Schema.UserProfile';
+import { m } from 'framer-motion';
 
 export interface RegisterOTPAuthUIProps {
   ClassName?: string;
@@ -44,6 +44,7 @@ export interface RegisterOTPAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
+  Animation: AuthAnimationType;
   IsInformationAfterPhoneAndOTP: () => void;
 }
 
@@ -248,7 +249,12 @@ export const RegisterOTPAuthUI: FC<RegisterOTPAuthUIProps> = (props) => {
   const spaceBetween = 'ml-2';
 
   return (
-    <AuthTransitionContainer>
+    <m.div
+      className="w-full relative"
+      initial={props.Animation.Initial}
+      animate={props.Animation.Final}
+      transition={props.Animation.Transition}
+    >
       <div className={`${props.ClassName} w-full flex flex-col space-y-4`}>
         <div className="pb-1.5 flex space-x-1 items-center">
           <div className="text-white/75 text-[14px] tracking-wide font-normal">
@@ -342,6 +348,6 @@ export const RegisterOTPAuthUI: FC<RegisterOTPAuthUIProps> = (props) => {
           </AuthSubmitButton>
         </div>
       </div>
-    </AuthTransitionContainer>
+    </m.div>
   );
 };

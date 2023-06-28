@@ -2,14 +2,14 @@ import React, { FC, ReactNode } from 'react';
 import { AuthHeaderLabel } from '../../label/AuthHeaderLabel';
 import { AuthHeaderDescription } from '../../label/AuthHeaderDescription';
 import { AuthContentHeader } from '../../label/AuthContentHeader';
-import { AuthType } from '../../ui/AuthUI/AuthType';
-import { AuthTransitionContainer } from './AuthTransitionContainer';
-import { AnimatePresence } from 'framer-motion';
+import { AuthAnimationType, AuthType } from '../../ui/AuthUI/AuthType';
+import { m } from 'framer-motion';
 
 interface IProps {
   children: ReactNode;
   ClassName: string;
   AuthScreen: AuthType;
+  Animation: AuthAnimationType;
 }
 
 /**
@@ -20,7 +20,12 @@ interface IProps {
 const AuthContentContainer: FC<IProps> = (props) => {
   return (
     <div className="w-full space-y-5 flex flex-col justify-center items-center">
-      <AuthTransitionContainer ClassName="space-y-5 flex flex-col justify-center items-center">
+      <m.div
+        className="space-y-5 flex flex-col justify-center items-center w-full relative"
+        initial={props.Animation.Initial}
+        animate={props.Animation.Final}
+        transition={props.Animation.Transition}
+      >
         <AuthHeaderLabel ClassName="px-5 pt-5">
           {props.AuthScreen === 'login-phone' &&
             `Let's add your Emotion account`}
@@ -102,7 +107,7 @@ const AuthContentContainer: FC<IProps> = (props) => {
           {props.AuthScreen === 'register-date-of-birth' && 'Account setup'}
           {props.AuthScreen === 'register-gender' && 'Account setup'}
         </AuthContentHeader>
-      </AuthTransitionContainer>
+      </m.div>
       <div
         className={`${props.ClassName} px-5 w-full relative overflow-hidden`}
       >

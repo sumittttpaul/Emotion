@@ -9,10 +9,10 @@ import React, {
 import IconTextFieldDark from '../../../textfield/IconTextFieldDark';
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
 import { YellowBulbHint } from '../../../hint/YellowBulbHint';
-import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { AuthFooter } from '../../../footer/AuthFooter';
-import { AuthType } from '../AuthType';
+import { AuthAnimationType, AuthType } from '../AuthType';
+import { m } from 'framer-motion';
 
 export interface LoginEmailAuthUIProps {
   ClassName?: string;
@@ -26,6 +26,7 @@ export interface LoginEmailAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
+  Animation: AuthAnimationType;
 }
 
 /**
@@ -131,7 +132,12 @@ export const LoginEmailAuthUI: FC<LoginEmailAuthUIProps> = (props) => {
   };
 
   return (
-    <AuthTransitionContainer>
+    <m.div
+      className="w-full relative"
+      initial={props.Animation.Initial}
+      animate={props.Animation.Final}
+      transition={props.Animation.Transition}
+    >
       <div className={`${props.ClassName} w-full flex flex-col space-y-4`}>
         <IconTextFieldDark
           id={EmailID}
@@ -174,6 +180,6 @@ export const LoginEmailAuthUI: FC<LoginEmailAuthUIProps> = (props) => {
           </AuthSubmitButton>
         </div>
       </div>
-    </AuthTransitionContainer>
+    </m.div>
   );
 };

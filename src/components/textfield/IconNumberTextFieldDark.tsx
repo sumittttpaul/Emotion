@@ -120,7 +120,7 @@ const IconNumberTextFieldDark: FC<IconNumberTextFieldProps> = (props) => {
           readOnly: props.readonly,
         }}
       />
-      <div className="-mt-[46px] ml-[20px] mb-[16px] flex">
+      <div className="-mt-[46px] ml-[20px] mb-[16px] flex cursor-text">
         <Image
           height={30}
           width={30}

@@ -2,11 +2,10 @@ import React, { Dispatch, FC, SetStateAction, useState } from 'react';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { RegisterSkipAllButton } from '../../../button/Auth/RegisterSkipAllButton';
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
-import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
 import { useAuth } from '../../../../firebase/useAuth';
 import { DatePickerButton } from '../../../datepicker/DatePickerButton';
-import { AuthType } from '../AuthType';
+import { AuthAnimationType, AuthType } from '../AuthType';
 import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
 import { useQueryClient, useMutation } from 'react-query';
@@ -16,6 +15,8 @@ import {
   getUserProfile,
 } from '../../../../mongodb/helper/Helper.UserProfile';
 import { IUserProfileDataUpdate } from '../../../../mongodb/schema/Schema.UserProfile';
+import { m } from 'framer-motion';
+import { CalculateAge } from '../../../../algorithms/UIAlgorithms';
 
 export interface RegisterBirthdayAuthUIProps {
   ClassName?: string;
@@ -29,6 +30,7 @@ export interface RegisterBirthdayAuthUIProps {
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
   DateOfBirth: string;
   setDateOfBirth: Dispatch<SetStateAction<string>>;
+  Animation: AuthAnimationType;
   IsInformationAfterBirthday: () => void;
   IsInformationBeforeBirthday: () => void;
 }
@@ -85,8 +87,13 @@ export const RegisterBirthdayAuthUI: FC<RegisterBirthdayAuthUIProps> = (
           UserProfileEncrytionKey(FirebaseUser.uid, 'DateOfBirth'),
           props.DateOfBirth
         );
+        const UserAge = EncryptData(
+          UserProfileEncrytionKey(FirebaseUser.uid, 'Age'),
+          CalculateAge(props.DateOfBirth).toString()
+        );
         const _data: IUserProfileDataUpdate = {
           '_data.dateOfBirth': UserDOB,
+          '_data.age': UserAge,
         };
         updateUserProfile.mutate(_data);
       } catch (error: any) {
@@ -109,11 +116,17 @@ export const RegisterBirthdayAuthUI: FC<RegisterBirthdayAuthUIProps> = (
 
   // Submit
   const SubmitClick = () => {
+    props.setLoading(true);
     updateUserData();
   };
 
   return (
-    <AuthTransitionContainer>
+    <m.div
+      className="w-full relative"
+      initial={props.Animation.Initial}
+      animate={props.Animation.Final}
+      transition={props.Animation.Transition}
+    >
       <div className={`${props.ClassName} w-full flex flex-col space-y-4`}>
         <div className="w-full flex items-start justify-center pt-2">
           <DatePickerButton
@@ -148,6 +161,6 @@ export const RegisterBirthdayAuthUI: FC<RegisterBirthdayAuthUIProps> = (
           </AuthSubmitButton>
         </div>
       </div>
-    </AuthTransitionContainer>
+    </m.div>
   );
 };

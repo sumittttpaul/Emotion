@@ -1,11 +1,11 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
 import { AvatarButton } from '../../../avatar/AvatarButton';
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
-import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { RegisterSkipAllButton } from '../../../button/Auth/RegisterSkipAllButton';
-import { AuthType } from '../AuthType';
+import { AuthAnimationType, AuthType } from '../AuthType';
 import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
+import { m } from 'framer-motion';
 
 export interface RegisterProfilePictureAuthUIProps {
   ClassName?: string;
@@ -16,6 +16,7 @@ export interface RegisterProfilePictureAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
+  Animation: AuthAnimationType;
   IsInformationAfterProfilePhoto: () => void;
   IsInformationBeforeProfilePhoto: () => void;
 }
@@ -33,7 +34,12 @@ export const RegisterProfilePictureAuthUI: FC<
   };
 
   return (
-    <AuthTransitionContainer>
+    <m.div
+      className="w-full relative"
+      initial={props.Animation.Initial}
+      animate={props.Animation.Final}
+      transition={props.Animation.Transition}
+    >
       <div className={`${props.ClassName} w-full flex flex-col space-y-4`}>
         <div className="w-full flex items-start justify-center pt-2">
           <AvatarButton
@@ -69,6 +75,6 @@ export const RegisterProfilePictureAuthUI: FC<
           </AuthSubmitButton>
         </div>
       </div>
-    </AuthTransitionContainer>
+    </m.div>
   );
 };

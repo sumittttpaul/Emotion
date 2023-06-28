@@ -7,13 +7,12 @@ import React, {
   SetStateAction,
   useState,
 } from 'react';
-import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import { AddFullName } from '../../../../algorithms/AuthAlgorithms';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { RegisterSkipAllButton } from '../../../button/Auth/RegisterSkipAllButton';
 import IconTextFieldDark from '../../../textfield/IconTextFieldDark';
 import { useAuth } from '../../../../firebase/useAuth';
-import { AuthType } from '../AuthType';
+import { AuthAnimationType, AuthType } from '../AuthType';
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
 import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
 import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
@@ -24,6 +23,7 @@ import {
   getUserProfile,
 } from '../../../../mongodb/helper/Helper.UserProfile';
 import { IUserProfileDataUpdate } from '../../../../mongodb/schema/Schema.UserProfile';
+import { m } from 'framer-motion';
 
 export interface RegisterNameAuthUIProps {
   ClassName?: string;
@@ -38,6 +38,7 @@ export interface RegisterNameAuthUIProps {
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
   FullName: string;
   setFullName: Dispatch<SetStateAction<string>>;
+  Animation: AuthAnimationType;
   IsInformationAfterName: () => void;
 }
 
@@ -178,7 +179,12 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
   };
 
   return (
-    <AuthTransitionContainer>
+    <m.div
+      className="w-full relative"
+      initial={props.Animation.Initial}
+      animate={props.Animation.Final}
+      transition={props.Animation.Transition}
+    >
       <div className={`${props.ClassName} w-full flex flex-col space-y-4`}>
         <IconTextFieldDark
           placeholder="Full Name"
@@ -212,6 +218,6 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
           </AuthSubmitButton>
         </div>
       </div>
-    </AuthTransitionContainer>
+    </m.div>
   );
 };

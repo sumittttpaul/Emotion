@@ -10,11 +10,11 @@ import IconPasswordTextFieldDark from '../../../textfield/IconPasswordTextFieldD
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
 import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
 import Image from 'next/image';
-import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import { SignInWithEmailAndPassword } from '../../../../algorithms/AuthAlgorithms';
 import { useLoaderState } from '../../../../provider/LoadingState';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
-import { AuthType } from '../AuthType';
+import { AuthAnimationType, AuthType } from '../AuthType';
+import { m } from 'framer-motion';
 
 export interface LoginPasswordAuthUIProps {
   ClassName?: string;
@@ -27,6 +27,7 @@ export interface LoginPasswordAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
+  Animation: AuthAnimationType;
 }
 
 /**
@@ -143,7 +144,12 @@ export const LoginPasswordAuthUI: FC<LoginPasswordAuthUIProps> = (props) => {
   };
 
   return (
-    <AuthTransitionContainer>
+    <m.div
+      className="w-full relative"
+      initial={props.Animation.Initial}
+      animate={props.Animation.Final}
+      transition={props.Animation.Transition}
+    >
       <div className={`${props.ClassName} w-full flex flex-col space-y-4`}>
         <div className="flex justify-center items-center w-full">
           <div className="flex space-x-2 items-center justify-center bg-white/5 py-1 pl-1 pr-3 rounded-full">
@@ -194,6 +200,6 @@ export const LoginPasswordAuthUI: FC<LoginPasswordAuthUIProps> = (props) => {
           </AuthSubmitButton>
         </div>
       </div>
-    </AuthTransitionContainer>
+    </m.div>
   );
 };

@@ -458,12 +458,12 @@ export const LinkWithPhoneNumber = ({
       .linkWithPhoneNumber(user, number, appVerifier)
       .then((confirmationResult) => {
         window.confirmationResult = confirmationResult;
-        ShowToast(
-          'OTP sent successfully',
-          'An OTP has been sent to your phone number.',
-          'Success',
-          true
-        );
+        // ShowToast(
+        //   'OTP sent successfully',
+        //   'An OTP has been sent to your phone number.',
+        //   'Success',
+        //   true
+        // );
         UpdateDataBase();
       })
       .catch((error) => {

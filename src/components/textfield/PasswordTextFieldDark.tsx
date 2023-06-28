@@ -140,7 +140,7 @@ const PasswordTextFieldDark: FC<PasswordTextFieldProps> = (props) => {
                 disableRipple
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
+                onPointerDown={handleMouseDownPassword}
                 className="z-20 h-11 w-11 mb-[3px] rounded-md passwordEyeButton"
                 style={{
                   borderRadius: 8,

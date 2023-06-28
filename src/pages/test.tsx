@@ -3,6 +3,7 @@ import { Button } from '@mui/material';
 import { useState } from 'react';
 import { ToastDark } from '../components/toast/ToastDark';
 import { LazyMotion, domAnimation } from 'framer-motion';
+import { CalculateAge } from '../algorithms/UIAlgorithms';
 
 interface IProps {}
 
@@ -43,10 +44,11 @@ const TestPage: NextPage<IProps> = (props) => {
 
   return (
     <div className="h-screen w-screen flex flex-col text-white items-center p-5 justify-center bg-primary-theme overflow-hidden box-border">
-      {/* <div className="flex flex-col max-w-[500px] mx-auto w-full h-full space-y-10 justify-center items-center">
-        <VerticalNavBar />
-        <HorizontalNavBar />
-      </div> */}
+      <div className="flex flex-col max-w-[500px] mx-auto w-full h-full space-y-10 justify-center items-center">
+        {/* <VerticalNavBar /> */}
+        {/* <HorizontalNavBar /> */}
+      </div>
+      {/* {CalculateAge('16-10-2002').toString()} */}
       <LazyMotion features={domAnimation} strict>
         <div className="w-full flex justify-between space-x-1 sm:space-x-10 p-0 sm:p-5">
           <Button

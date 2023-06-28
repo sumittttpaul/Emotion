@@ -67,7 +67,7 @@ const useNavigateList = <T extends object, K extends keyof T>({
     if (GetEmptySearch) setCursor(-1);
   }, [GetEmptySearch]);
 
-  const onMouseEnter = useCallback(
+  const onPointerEnter = useCallback(
     (hoveredItem: T) => {
       const value = list.findIndex(
         (listItem) =>
@@ -80,20 +80,20 @@ const useNavigateList = <T extends object, K extends keyof T>({
     [indexPath, list]
   );
 
-  const onMouseLeave = useCallback(() => {
+  const onPointerLeave = useCallback(() => {
     setCursor(-1);
-  },[]);
+  }, []);
 
   return useMemo(
     () => ({
       activeIndex: cursor,
       itemProps: (item: T) => ({
-        onMouseLeave: () => onMouseLeave(),
-        onMouseEnter: () => onMouseEnter(item),
+        onPointerLeave: () => onPointerLeave(),
+        onPointerEnter: () => onPointerEnter(item),
         onClick: () => onSelect(item),
       }),
     }),
-    [cursor, onMouseEnter, onMouseLeave, onSelect]
+    [cursor, onPointerEnter, onPointerLeave, onSelect]
   );
 };
 

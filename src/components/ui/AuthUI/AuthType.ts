@@ -15,3 +15,17 @@ export type AuthType =
   | 'register-date-of-birth'
   | 'register-gender'
   | null;
+
+export type AuthAnimationType = {
+  Initial: {
+    x: number;
+    opacity: number;
+  };
+  Final: {
+    x: number;
+    opacity: number;
+  };
+  Transition: {
+    type: string;
+  };
+};

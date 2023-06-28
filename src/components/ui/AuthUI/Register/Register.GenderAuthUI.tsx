@@ -1,14 +1,13 @@
-import React, { Dispatch, FC, SetStateAction, useState } from 'react';
+import React, { Dispatch, FC, SetStateAction } from 'react';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { RegisterSkipAllButton } from '../../../button/Auth/RegisterSkipAllButton';
 import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
-import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
 import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
 import { useAuth } from '../../../../firebase/useAuth';
 import { RadioGroupDark } from '../../../radiogroup/RadioGroupDark';
-import { AuthType } from '../AuthType';
+import { AuthAnimationType, AuthType } from '../AuthType';
 import { useQueryClient, useMutation } from 'react-query';
 import {
   _userProfileEndURL as cacheKey,
@@ -16,6 +15,7 @@ import {
   getUserProfile,
 } from '../../../../mongodb/helper/Helper.UserProfile';
 import { IUserProfileDataUpdate } from '../../../../mongodb/schema/Schema.UserProfile';
+import { m } from 'framer-motion';
 
 export interface RegisterGenderAuthUIProps {
   ClassName?: string;
@@ -30,6 +30,7 @@ export interface RegisterGenderAuthUIProps {
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
   Gender: string;
   setGender: Dispatch<SetStateAction<string>>;
+  Animation: AuthAnimationType;
   IsInformationBeforeGender: () => void;
 }
 
@@ -110,11 +111,17 @@ export const RegisterGenderAuthUI: FC<RegisterGenderAuthUIProps> = (props) => {
 
   // Submit
   const SubmitClick = () => {
+    props.setLoading(true);
     updateUserData();
   };
 
   return (
-    <AuthTransitionContainer>
+    <m.div
+      className="w-full relative"
+      initial={props.Animation.Initial}
+      animate={props.Animation.Final}
+      transition={props.Animation.Transition}
+    >
       <div className={`${props.ClassName} w-full flex flex-col space-y-4`}>
         <div className="w-full flex items-start pt-2">
           <RadioGroupDark
@@ -152,6 +159,6 @@ export const RegisterGenderAuthUI: FC<RegisterGenderAuthUIProps> = (props) => {
           </AuthSubmitButton>
         </div>
       </div>
-    </AuthTransitionContainer>
+    </m.div>
   );
 };

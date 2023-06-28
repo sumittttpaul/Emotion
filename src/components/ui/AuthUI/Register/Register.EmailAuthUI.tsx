@@ -8,10 +8,9 @@ import React, {
 } from 'react';
 import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
 import IconTextFieldDark from '../../../textfield/IconTextFieldDark';
-import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import { RegisterSkipAllButton } from '../../../button/Auth/RegisterSkipAllButton';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
-import { AuthType } from '../AuthType';
+import { AuthAnimationType, AuthType } from '../AuthType';
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
 import { useAuth } from '../../../../firebase/useAuth';
 import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
@@ -23,6 +22,7 @@ import {
   getUserProfile,
 } from '../../../../mongodb/helper/Helper.UserProfile';
 import { IUserProfileDataUpdate } from '../../../../mongodb/schema/Schema.UserProfile';
+import { m } from 'framer-motion';
 
 export interface RegisterEmailAuthUIProps {
   ClassName?: string;
@@ -37,6 +37,7 @@ export interface RegisterEmailAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
+  Animation: AuthAnimationType;
   IsInformationAfterEmailAndPassword: () => void;
   IsInformationBeforeEmailAndPassword: () => void;
 }
@@ -192,7 +193,12 @@ export const RegisterEmailAuthUI: FC<RegisterEmailAuthUIProps> = (props) => {
   };
 
   return (
-    <AuthTransitionContainer>
+    <m.div
+      className="w-full relative"
+      initial={props.Animation.Initial}
+      animate={props.Animation.Final}
+      transition={props.Animation.Transition}
+    >
       <div className={`${props.ClassName} w-full flex flex-col space-y-4`}>
         <IconTextFieldDark
           id={EmailAddressID}
@@ -234,6 +240,6 @@ export const RegisterEmailAuthUI: FC<RegisterEmailAuthUIProps> = (props) => {
           </AuthSubmitButton>
         </div>
       </div>
-    </AuthTransitionContainer>
+    </m.div>
   );
 };

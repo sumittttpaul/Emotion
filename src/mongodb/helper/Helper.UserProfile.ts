@@ -11,8 +11,6 @@ export const getUserProfile = async (_uid: string | undefined) => {
     const response = await fetch(`${_userProfileEndURL}/${_uid}`);
     const json = await response.json();
     if (!json) return {};
-    console.log('GET');
-    console.log(json);
     return json as IUserProfile;
   } catch (error) {
     return error;
@@ -30,8 +28,6 @@ export const postUserProfile = async (_data: IUserProfile) => {
     const response = await fetch(`${_userProfileEndURL}`, options);
     const json = await response.json();
     if (!json) return {};
-    console.log('POST');
-    console.log(json);
     return json as IUserProfile;
   } catch (error) {
     return error;

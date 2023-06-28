@@ -9,12 +9,12 @@ import React, {
 import IconNumberTextFieldDark from '../../../textfield/IconNumberTextFieldDark';
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
 import { YellowBulbHint } from '../../../hint/YellowBulbHint';
-import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import { SignInWithPhoneNumber } from '../../../../algorithms/AuthAlgorithms';
 import { InputNumberOnly } from '../../../../algorithms/UIAlgorithms';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { AuthFooter } from '../../../footer/AuthFooter';
-import { AuthType } from '../AuthType';
+import { AuthAnimationType, AuthType } from '../AuthType';
+import { m } from 'framer-motion';
 
 export interface LoginPhoneAuthUIProps {
   ClassName?: string;
@@ -30,6 +30,7 @@ export interface LoginPhoneAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
+  Animation: AuthAnimationType;
 }
 
 /**
@@ -132,7 +133,7 @@ export const LoginPhoneAuthUI: FC<LoginPhoneAuthUIProps> = (props) => {
       SignInWithPhoneNumber({
         PhoneNumber: parseInt(props.PhoneNumber),
         EmptyPhoneNumber: EmptyPhoneNumber,
-        Loading:  props.setLoading,
+        Loading: props.setLoading,
         ShowToast: ShowToast,
         ResetCaptcha: props.ResetCaptcha,
         setResetCaptcha: props.setResetCaptcha,
@@ -149,7 +150,12 @@ export const LoginPhoneAuthUI: FC<LoginPhoneAuthUIProps> = (props) => {
   };
 
   return (
-    <AuthTransitionContainer>
+    <m.div
+      className="w-full relative"
+      initial={props.Animation.Initial}
+      animate={props.Animation.Final}
+      transition={props.Animation.Transition}
+    >
       <div className={`${props.ClassName} w-full flex flex-col space-y-4`}>
         <IconNumberTextFieldDark
           id={PhoneNumberID}
@@ -194,6 +200,6 @@ export const LoginPhoneAuthUI: FC<LoginPhoneAuthUIProps> = (props) => {
           </AuthSubmitButton>
         </div>
       </div>
-    </AuthTransitionContainer>
+    </m.div>
   );
 };

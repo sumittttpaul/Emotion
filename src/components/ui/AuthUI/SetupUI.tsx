@@ -147,6 +147,7 @@ export const SetupUI: FC<IProps> = (props) => {
   const [SkipDialog, setSkipDialog] = useState(false);
   const [Finish, setFinish] = useState(false);
   const [Loading, setLoading] = useState(false);
+  const [InitialLoading, setInitialLoading] = useState(true);
   const [InformationCheckLoading, setInformationCheckLoading] = useState(true);
   const [Toast, setToast] = useState(false);
   const [ToastSetting, setToastSetting] = useState({
@@ -172,8 +173,6 @@ export const SetupUI: FC<IProps> = (props) => {
   const [ResetCaptcha, setResetCaptcha] = useState(false);
 
   const SkipDialogClose = () => setSkipDialog(false);
-
-  const VerifyEmailAddress = FirebaseUser?.emailVerified || false;
 
   const ShowToast = (
     title: string,
@@ -207,6 +206,10 @@ export const SetupUI: FC<IProps> = (props) => {
     setLoading: setLoading,
     setInformationCheckLoading: setInformationCheckLoading,
     ShowToast: ShowToast,
+  };
+
+  const IsInformation_IsNewUser = (Screen: AuthType) => {
+    handleIsInformationContent(Screen);
   };
 
   const IsInformation_AfterLogin = () => {
@@ -259,23 +262,35 @@ export const SetupUI: FC<IProps> = (props) => {
   };
 
   useEffect(() => {
-    if (!FirebaseLoading && !isLoading) {
-      if (FirebaseUser) {
-        IsInformation_AfterLogin();
-      } else {
-        handleIsInformationContent('login-phone');
-      }
+    if (InitialLoading && !FirebaseLoading && !isLoading)
+      setInitialLoading(false);
+  }, [InitialLoading, FirebaseLoading, isLoading]);
+
+  useEffect(() => {
+    if (InitialLoading) return;
+    if (FirebaseUser) {
+      IsInformation_AfterLogin();
+    } else {
+      handleIsInformationContent('login-phone');
     }
-  }, [FirebaseLoading, isLoading]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [InitialLoading]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Class
   const BodyClassName = 'h-full md:h-[652px] ';
   const ContentClassName = 'h-[300px]';
   const ContainerClassName = 'h-[350px]';
 
+  // Animation
+  const Animation = {
+    Initial: { x: 50, opacity: 0 },
+    Final: { x: 0, opacity: 1 },
+    Transition: { type: 'tween' },
+  };
+
   return (
     <AuthBodyContainer
       ClassName={BodyClassName}
+      Animation={Animation}
       InitialSlide={InitialSlide}
       SkipDialogOpen={SkipDialog}
       SkipDialogClose={SkipDialogClose}
@@ -291,11 +306,16 @@ export const SetupUI: FC<IProps> = (props) => {
         Type: ToastSetting.Type,
       }}
     >
-      <AuthContentContainer ClassName={ContainerClassName} AuthScreen={Screen}>
+      <AuthContentContainer
+        ClassName={ContainerClassName}
+        Animation={Animation}
+        AuthScreen={Screen}
+      >
         <AnimatePresence mode="wait" initial={true}>
           {Screen === 'login-phone' && (
             <LoginPhoneAuthUI
               ClassName={ContentClassName}
+              Animation={Animation}
               PhoneNumber={PhoneNumber}
               setPhoneNumber={setPhoneNumber}
               ResetCaptcha={ResetCaptcha}
@@ -311,6 +331,7 @@ export const SetupUI: FC<IProps> = (props) => {
           {Screen === 'login-email' && (
             <LoginEmailAuthUI
               ClassName={ContentClassName}
+              Animation={Animation}
               EmailAddress={EmailAddress}
               setEmailAddress={setEmailAddress}
               Toast={Toast}
@@ -323,18 +344,20 @@ export const SetupUI: FC<IProps> = (props) => {
           )}
           {Screen === 'login-others' && (
             <LoginOtherAccountAuthUI
+              Animation={Animation}
               Toast={Toast}
               Loading={Loading}
               setAuthScreen={setScreen}
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformation={IsInformation_AfterLogin}
+              IsInformation={IsInformation_IsNewUser}
             />
           )}
           {Screen === 'login-otp' && (
             <LoginOTPAuthUI
               ClassName={ContentClassName}
+              Animation={Animation}
               PhoneNumber={PhoneNumber}
               Toast={Toast}
               Loading={Loading}
@@ -343,12 +366,13 @@ export const SetupUI: FC<IProps> = (props) => {
               setLoading={setLoading}
               setToast={setToast}
               setToastSetting={setToastSetting}
-              IsInformation={IsInformation_AfterLogin}
+              IsInformation={IsInformation_IsNewUser}
             />
           )}
           {Screen === 'login-password' && (
             <LoginPasswordAuthUI
               ClassName={ContentClassName}
+              Animation={Animation}
               EmailAddress={EmailAddress}
               Toast={Toast}
               Loading={Loading}
@@ -373,6 +397,7 @@ export const SetupUI: FC<IProps> = (props) => {
           {Screen === 'register-name' && (
             <RegisterNameAuthUI
               ClassName={ContentClassName}
+              Animation={Animation}
               setSkipDialog={setSkipDialog}
               Toast={Toast}
               Loading={Loading}
@@ -388,6 +413,7 @@ export const SetupUI: FC<IProps> = (props) => {
           {Screen === 'register-phone' && (
             <RegisterPhoneAuthUI
               ClassName={ContentClassName}
+              Animation={Animation}
               PhoneNumber={PhoneNumber}
               setPhoneNumber={setPhoneNumber}
               ResetCaptcha={ResetCaptcha}
@@ -406,6 +432,7 @@ export const SetupUI: FC<IProps> = (props) => {
           {Screen === 'register-otp' && (
             <RegisterOTPAuthUI
               ClassName={ContentClassName}
+              Animation={Animation}
               PhoneNumber={PhoneNumber}
               Toast={Toast}
               Loading={Loading}
@@ -420,6 +447,7 @@ export const SetupUI: FC<IProps> = (props) => {
           {Screen === 'register-email' && (
             <RegisterEmailAuthUI
               ClassName={ContentClassName}
+              Animation={Animation}
               setSkipDialog={setSkipDialog}
               EmailAddress={EmailAddress}
               setEmailAddress={setEmailAddress}
@@ -438,6 +466,7 @@ export const SetupUI: FC<IProps> = (props) => {
           {Screen === 'register-password' && (
             <RegisterPasswordAuthUI
               ClassName={ContentClassName}
+              Animation={Animation}
               EmailAddress={EmailAddress}
               Toast={Toast}
               Loading={Loading}
@@ -453,7 +482,7 @@ export const SetupUI: FC<IProps> = (props) => {
           {Screen === 'register-verify-email' && (
             <RegisterVerifyEmailAuthUI
               ClassName={ContentClassName}
-              isEmailVerified={VerifyEmailAddress}
+              Animation={Animation}
               Toast={Toast}
               Loading={Loading}
               setAuthScreen={setScreen}
@@ -467,6 +496,7 @@ export const SetupUI: FC<IProps> = (props) => {
           {Screen === 'register-profile-picture' && (
             <RegisterProfilePictureAuthUI
               ClassName={ContentClassName}
+              Animation={Animation}
               setSkipDialog={setSkipDialog}
               Toast={Toast}
               setAuthScreen={setScreen}
@@ -479,6 +509,7 @@ export const SetupUI: FC<IProps> = (props) => {
           {Screen === 'register-date-of-birth' && (
             <RegisterBirthdayAuthUI
               ClassName={ContentClassName}
+              Animation={Animation}
               setSkipDialog={setSkipDialog}
               Toast={Toast}
               setLoading={setLoading}
@@ -494,6 +525,7 @@ export const SetupUI: FC<IProps> = (props) => {
           {Screen === 'register-gender' && (
             <RegisterGenderAuthUI
               ClassName={ContentClassName}
+              Animation={Animation}
               setSkipDialog={setSkipDialog}
               Toast={Toast}
               setFinish={setFinish}

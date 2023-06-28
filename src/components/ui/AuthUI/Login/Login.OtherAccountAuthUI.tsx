@@ -2,7 +2,6 @@ import React, { Dispatch, FC, SetStateAction } from 'react';
 import { Button } from '@mui/material';
 import { ChevronRightIcon } from '@heroicons/react/outline';
 import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
-import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import {
   SignInWithGoogle,
   SignInWithFacebook,
@@ -10,7 +9,7 @@ import {
   SignInWithMicrosoft,
 } from '../../../../algorithms/AuthAlgorithms';
 import { useLoaderState } from '../../../../provider/LoadingState';
-import { AuthType } from '../AuthType';
+import { AuthAnimationType, AuthType } from '../AuthType';
 import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
 import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
 import { useQueryClient, useMutation } from 'react-query';
@@ -21,6 +20,7 @@ import {
 } from '../../../../mongodb/helper/Helper.UserProfile';
 import { IUserProfile } from '../../../../mongodb/schema/Schema.UserProfile';
 import { UserType } from '../../../../firebase/useAuth';
+import { m } from 'framer-motion';
 
 export interface LoginOtherAccountAuthUIProps {
   Loading: boolean;
@@ -31,7 +31,8 @@ export interface LoginOtherAccountAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
-  IsInformation: () => void;
+  Animation: AuthAnimationType;
+  IsInformation: (Screen: AuthType) => void;
 }
 
 /**
@@ -50,7 +51,27 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
       await queryClient.prefetchQuery([cacheKey, _data._uid], () =>
         getUserProfile(_data._uid)
       );
-      props.IsInformation();
+      const FullName = _data._data.fullName;
+      const PhoneNumber = _data._data.phoneNumber;
+      const EmailAddress = _data._data.emailAddress;
+      const EmailAddressVerified = _data._data.isVerified?.emailAddress;
+      const ProfilePicture = _data._data.photoURL;
+      if (!FullName || (FullName && FullName.length < 1)) {
+        props.IsInformation('register-name');
+      } else if (!PhoneNumber || (PhoneNumber && PhoneNumber.length < 1)) {
+        props.IsInformation('register-phone');
+      } else if (!EmailAddress || (EmailAddress && EmailAddress.length < 1)) {
+        props.IsInformation('register-email');
+      } else if (!EmailAddressVerified && EmailAddressVerified === false) {
+        props.IsInformation('register-verify-email');
+      } else if (
+        !ProfilePicture ||
+        (ProfilePicture && ProfilePicture.length < 1)
+      ) {
+        props.IsInformation('register-profile-picture');
+      } else {
+        props.IsInformation('register-date-of-birth');
+      }
     },
     onError: (error: any) => {
       props.setLoading(false);
@@ -102,9 +123,6 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
                 user.email
               )
             : '';
-        const UserEmailAddressVerified = user.emailVerified
-          ? user.emailVerified
-          : false;
         const UserPhoneNumber =
           user.phoneNumber && user.phoneNumber.length > 0
             ? EncryptData(
@@ -119,6 +137,9 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
                 user.photoURL
               )
             : '';
+        const UserEmailAddressVerified = user.emailVerified
+          ? user.emailVerified
+          : false;
         const _data: IUserProfile = {
           _uid: user.uid,
           _data: {
@@ -188,7 +209,12 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
   };
 
   return (
-    <AuthTransitionContainer>
+    <m.div
+      className="w-full relative"
+      initial={props.Animation.Initial}
+      animate={props.Animation.Final}
+      transition={props.Animation.Transition}
+    >
       <div className="w-full flex flex-col space-y-4">
         <div className="w-full flex flex-col space-y-2">
           <CustomButton onClick={GoogleSignIn} Label="Google" />
@@ -203,7 +229,7 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
           />
         </div>
       </div>
-    </AuthTransitionContainer>
+    </m.div>
   );
 };
 

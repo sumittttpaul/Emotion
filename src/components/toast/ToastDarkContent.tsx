@@ -52,7 +52,7 @@ export const ToastDarkContent: FC<ToastDarkContentProps> = (props) => {
       }}
     >
       <div
-        className={`${props.Color} h-full text-white max-w-[500px] flex flex-col space-y-1 border border-solid border-white/20 rounded-xl overflow-hidden Toast-DropShadow`}
+        className={`${props.Color} h-full text-white md:max-w-[500px] flex flex-col space-y-1 border border-solid border-white/20 rounded-xl overflow-hidden Toast-DropShadow`}
       >
         <div className="w-full h-full flex space-x-3 p-1">
           <div className="flex h-full pl-2 py-3 items-start">

@@ -9,10 +9,10 @@ import React, {
 import { YellowBulbHint } from '../../../hint/YellowBulbHint';
 import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
-import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import IconPasswordTextFieldDark from '../../../textfield/IconPasswordTextFieldDark';
 import { LinkWithEmailAndPassword } from '../../../../algorithms/AuthAlgorithms';
-import { AuthType } from '../AuthType';
+import { AuthAnimationType, AuthType } from '../AuthType';
+import { m } from 'framer-motion';
 
 export interface RegisterPasswordAuthUIProps {
   ClassName?: string;
@@ -25,6 +25,7 @@ export interface RegisterPasswordAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
+  Animation: AuthAnimationType;
   IsInformationAfterEmailAndPassword: () => void;
 }
 
@@ -135,7 +136,12 @@ export const RegisterPasswordAuthUI: FC<RegisterPasswordAuthUIProps> = (
   };
 
   return (
-    <AuthTransitionContainer>
+    <m.div
+      className="w-full relative"
+      initial={props.Animation.Initial}
+      animate={props.Animation.Final}
+      transition={props.Animation.Transition}
+    >
       <div className={`${props.ClassName} w-full flex flex-col space-y-4`}>
         <IconPasswordTextFieldDark
           id={PasswordID}
@@ -165,6 +171,6 @@ export const RegisterPasswordAuthUI: FC<RegisterPasswordAuthUIProps> = (
           </AuthSubmitButton>
         </div>
       </div>
-    </AuthTransitionContainer>
+    </m.div>
   );
 };

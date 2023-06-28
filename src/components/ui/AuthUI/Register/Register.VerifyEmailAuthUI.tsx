@@ -6,18 +6,25 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { AuthType } from '../AuthType';
+import { AuthAnimationType, AuthType } from '../AuthType';
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
-import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import { VerifyEmailAddress } from '../../../../algorithms/AuthAlgorithms';
 import { CircularProgress } from '@mui/material';
 import { GreenSuccessHint } from '../../../hint/GreenSuccessHint';
 import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
+import { m } from 'framer-motion';
+import { useAuth } from '../../../../firebase/useAuth';
+import { IUserProfileDataUpdate } from '../../../../mongodb/schema/Schema.UserProfile';
+import { useQueryClient, useMutation } from 'react-query';
+import {
+  _userProfileEndURL as cacheKey,
+  putUserProfile,
+  getUserProfile,
+} from '../../../../mongodb/helper/Helper.UserProfile';
 
 export interface RegisterVerifyEmailAuthUIProps {
   ClassName?: string;
-  isEmailVerified: boolean;
   Loading: boolean;
   Toast: boolean;
   setLoading: Dispatch<SetStateAction<boolean>>;
@@ -26,6 +33,7 @@ export interface RegisterVerifyEmailAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
+  Animation: AuthAnimationType;
   IsInformationAfterVerifyEmail: () => void;
   IsInformationBeforeVerifyEmail: () => void;
 }
@@ -38,6 +46,24 @@ export interface RegisterVerifyEmailAuthUIProps {
 export const RegisterVerifyEmailAuthUI: FC<RegisterVerifyEmailAuthUIProps> = (
   props
 ) => {
+  const { FirebaseUser } = useAuth();
+  const queryClient = useQueryClient();
+  const updateUserProfile = useMutation(
+    (data: IUserProfileDataUpdate) => putUserProfile(FirebaseUser?.uid, data),
+    {
+      onSuccess: async () => {
+        await queryClient.prefetchQuery([cacheKey, FirebaseUser?.uid], () =>
+          getUserProfile(FirebaseUser?.uid)
+        );
+        props.IsInformationAfterVerifyEmail();
+      },
+      onError: (error: any) => {
+        props.setLoading(false);
+        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      },
+    }
+  );
+
   // State
   const [SubmitDisabled, setSubmitDisabled] = useState(false);
 
@@ -61,10 +87,34 @@ export const RegisterVerifyEmailAuthUI: FC<RegisterVerifyEmailAuthUIProps> = (
     setSubmitDisabled(true);
   };
 
+  // Database
+  const UpdateDataBase = () => {
+    if (FirebaseUser) {
+      try {
+        const _data: IUserProfileDataUpdate = {
+          '_data.isVerified.emailAddress': FirebaseUser.emailVerified,
+        };
+        updateUserProfile.mutate(_data);
+      } catch (error: any) {
+        props.setLoading(false);
+        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+        console.error('User profile data not updated because ' + error.message);
+      }
+    } else {
+      ShowToast(
+        'Something went wrong',
+        'It seems like user is not exist.',
+        'Error',
+        true
+      );
+    }
+  };
+
   // Submit
   const VerifyEmailClick = () => {
-    if (props.isEmailVerified) {
-      props.IsInformationAfterVerifyEmail();
+    if (FirebaseUser?.emailVerified) {
+      props.setLoading(true);
+      UpdateDataBase();
     } else {
       VerifyEmailAddress({
         Loading: props.setLoading,
@@ -75,26 +125,31 @@ export const RegisterVerifyEmailAuthUI: FC<RegisterVerifyEmailAuthUIProps> = (
   };
 
   useEffect(() => {
-    if (props.isEmailVerified) {
+    if (FirebaseUser?.emailVerified) {
       setSubmitDisabled(false);
     }
-  }, [props.isEmailVerified]);
+  }, [FirebaseUser?.emailVerified]);
 
   return (
-    <AuthTransitionContainer>
+    <m.div
+      className="w-full relative"
+      initial={props.Animation.Initial}
+      animate={props.Animation.Final}
+      transition={props.Animation.Transition}
+    >
       <div className={`${props.ClassName} w-full flex flex-col space-y-4`}>
-        {!props.isEmailVerified && (
+        {!FirebaseUser?.emailVerified && (
           <h6 className="font-normal  tracking-wide text-left w-full text-white/75 text-sm">
             To verify your email address, click Verify. A verification email
             will be sent to the email address you provided. Click the link in
             the email to verify your address.
           </h6>
         )}
-        {!props.isEmailVerified && (
+        {!FirebaseUser?.emailVerified && (
           <div className="w-full flex flex-col space-y-1">
             <div className="w-full flex justify-start">
               <SignInNextButton
-                Label="I will add later"
+                Label="I will verify later"
                 onClick={props.IsInformationAfterVerifyEmail}
               />
             </div>
@@ -106,7 +161,7 @@ export const RegisterVerifyEmailAuthUI: FC<RegisterVerifyEmailAuthUIProps> = (
             </div>
           </div>
         )}
-        {props.isEmailVerified && (
+        {FirebaseUser?.emailVerified && (
           <div className="flex justify-start">
             <GreenSuccessHint Label="Your email address has been verified successfully." />
           </div>
@@ -119,11 +174,11 @@ export const RegisterVerifyEmailAuthUI: FC<RegisterVerifyEmailAuthUIProps> = (
             Disabled={SubmitDisabled}
             onClick={VerifyEmailClick}
           >
-            {props.isEmailVerified ? 'Next' : 'Verify Email'}
+            {FirebaseUser?.emailVerified ? 'Next' : 'Verify Email'}
           </CustomSubmitButton>
         </div>
       </div>
-    </AuthTransitionContainer>
+    </m.div>
   );
 };
 

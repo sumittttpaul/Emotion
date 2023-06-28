@@ -8,11 +8,10 @@ import React, {
 } from 'react';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { RegisterSkipAllButton } from '../../../button/Auth/RegisterSkipAllButton';
-import { AuthTransitionContainer } from '../../../container/Auth/AuthTransitionContainer';
 import IconNumberTextFieldDark from '../../../textfield/IconNumberTextFieldDark';
 import { LinkWithPhoneNumber } from '../../../../algorithms/AuthAlgorithms';
 import { InputNumberOnly } from '../../../../algorithms/UIAlgorithms';
-import { AuthType } from '../AuthType';
+import { AuthAnimationType, AuthType } from '../AuthType';
 import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
 import { useAuth } from '../../../../firebase/useAuth';
@@ -26,6 +25,7 @@ import {
 } from '../../../../mongodb/helper/Helper.UserProfile';
 import { IUserProfileDataUpdate } from '../../../../mongodb/schema/Schema.UserProfile';
 import _uid from '../../../../pages/api/users/profile/[_uid]';
+import { m } from 'framer-motion';
 
 export interface RegisterPhoneAuthUIProps {
   ClassName?: string;
@@ -42,6 +42,7 @@ export interface RegisterPhoneAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
+  Animation: AuthAnimationType;
   IsInformationAfterPhoneAndOTP: () => void;
   IsInformationBeforePhoneAndOTP: () => void;
 }
@@ -207,7 +208,12 @@ export const RegisterPhoneAuthUI: FC<RegisterPhoneAuthUIProps> = (props) => {
   };
 
   return (
-    <AuthTransitionContainer>
+    <m.div
+      className="w-full relative"
+      initial={props.Animation.Initial}
+      animate={props.Animation.Final}
+      transition={props.Animation.Transition}
+    >
       <div className={`${props.ClassName} w-full flex flex-col space-y-4`}>
         <IconNumberTextFieldDark
           id={PhoneNumberID}
@@ -251,6 +257,6 @@ export const RegisterPhoneAuthUI: FC<RegisterPhoneAuthUIProps> = (props) => {
           </AuthSubmitButton>
         </div>
       </div>
-    </AuthTransitionContainer>
+    </m.div>
   );
 };

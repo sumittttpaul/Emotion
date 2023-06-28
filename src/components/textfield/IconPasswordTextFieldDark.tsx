@@ -141,7 +141,7 @@ const IconPasswordTextFieldDark: FC<IconPasswordTextFieldProps> = (props) => {
                 disableRipple
                 aria-label="toggle-password-visibility"
                 onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
+                onPointerDown={handleMouseDownPassword}
                 className="z-20 h-11 w-11 mb-[4px] passwordEyeButton"
                 style={{
                   borderRadius: 8,
@@ -166,7 +166,7 @@ const IconPasswordTextFieldDark: FC<IconPasswordTextFieldProps> = (props) => {
           readOnly: props.readonly,
         }}
       />
-      <div className="-mt-[46px] ml-[20px] mb-[16px] flex">
+      <div className="-mt-[46px] ml-[20px] mb-[16px] flex cursor-text">
         <Image
           height={30}
           width={30}

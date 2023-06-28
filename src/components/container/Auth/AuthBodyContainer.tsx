@@ -11,16 +11,15 @@ import Image from 'next/image';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import SwiperCore from 'swiper';
+import { m } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
 import { AuthLoadingProps } from '../../loader/Auth/AuthLoading';
 import { ToastDarkProps } from '../../toast/ToastDark';
-import { AuthTransitionContainer } from './AuthTransitionContainer';
-import { AuthType } from '../../ui/AuthUI/AuthType';
+import { AuthAnimationType, AuthType } from '../../ui/AuthUI/AuthType';
 import { FinishAuthUIProps } from '../../ui/AuthUI/Finish/FinishAuthUI';
 import { SkipDialogAuthUIProps } from '../../ui/AuthUI/Dialog/SkipDialogAuthUI';
 import { AuthSkeleton } from '../../loader/Auth/AuthSkeleton';
-import { GetServerSideProps } from 'next';
 
 const AuthLoading = dynamic<AuthLoadingProps>(
   () => import('../../loader/Auth/AuthLoading').then((x) => x.AuthLoading),
@@ -60,6 +59,7 @@ interface IProps {
   Finish: boolean;
   SkipDialogOpen: boolean;
   SkipDialogClose: () => void;
+  Animation: AuthAnimationType;
   Toast: {
     Open: boolean;
     onClose: Dispatch<SetStateAction<boolean>>;
@@ -151,7 +151,7 @@ const AuthBodyContainer: FC<IProps & ServerProps> = (props) => {
         <meta name="theme-color" content="#202020" />
       </Head>
       <LazyMotion features={domAnimation} strict>
-        <div className="bg-[#202020] md:bg-[#0f0f0f] flex md:p-[32px] items-start md:items-center justify-center md:h-screen w-screen main-auth overflow-hidden">
+        <div className="md:bg-[#0f0f0f] flex md:p-[32px] items-start md:items-center justify-center h-full md:h-screen w-screen main-auth overflow-hidden">
           <div className="relative bg-[#202020] md:rounded-xl w-full md:max-w-[1040px] flex items-center justify-center overflow-hidden">
             {props.InformationCheckLoading ? (
               <AuthSkeleton ClassName={props.ClassName} />
@@ -171,14 +171,19 @@ const AuthBodyContainer: FC<IProps & ServerProps> = (props) => {
                       {Illustrations.map((value, idx) => (
                         <Fragment key={idx}>
                           {props.AuthScreen === value.Alt && (
-                            <AuthTransitionContainer>
+                            <m.div
+                              className="w-full relative"
+                              initial={props.Animation.Initial}
+                              animate={props.Animation.Final}
+                              transition={props.Animation.Transition}
+                            >
                               <Image
                                 height={370}
                                 width={370}
                                 src={value.Image}
                                 alt={value.Alt}
                               />
-                            </AuthTransitionContainer>
+                            </m.div>
                           )}
                         </Fragment>
                       ))}
