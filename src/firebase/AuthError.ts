@@ -154,7 +154,7 @@ export const AuthError = (Code: string) => {
       return 'The custom token corresponds to a different audience.';
 
     case 'auth/requires-recent-login':
-      return 'This operation is sensitive and requires recent authentication. Log in again before retrying this request.';
+      return 'This action requires recent authentication. Please log in again and try again.';
 
     case 'auth/dependent-sdk-initialized-before-auth':
       return 'Another Firebase SDK was initialized and is trying to use Auth before Auth is initialized. Please be sure to call `initializeAuth` or `getAuth` before starting any other Firebase SDK.';

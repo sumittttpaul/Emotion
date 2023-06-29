@@ -9,7 +9,7 @@ import {
   styled,
 } from '@mui/material';
 import Image from 'next/image';
-import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
+import { EyeIcon, EyeOffIcon, CheckIcon } from '@heroicons/react/solid';
 import { IconPasswordTextFieldProps } from './AllTextFieldProps';
 
 const CustomTextField = styled((props: TextFieldProps) => (
@@ -113,7 +113,16 @@ const IconPasswordTextFieldDark: FC<IconPasswordTextFieldProps> = (props) => {
   };
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="relative flex flex-col w-full">
+      <div className="mt-[16px] ml-[20px] -mb-[46px] flex cursor-text pointer-events-none touch-none">
+        <Image
+          height={30}
+          width={30}
+          className="opacity-50"
+          src={props.icon}
+          alt=""
+        />
+      </div>
       <CustomTextField
         id={props.id}
         aria-label="password-textfield"
@@ -122,7 +131,6 @@ const IconPasswordTextFieldDark: FC<IconPasswordTextFieldProps> = (props) => {
         onChange={props.onChange}
         onKeyUp={props.onkeyUp}
         onKeyDown={props.onkeyDown}
-        onKeyPress={props.onKeyPress}
         value={props.value}
         error={props.error}
         onFocus={props.onFocus}
@@ -135,8 +143,14 @@ const IconPasswordTextFieldDark: FC<IconPasswordTextFieldProps> = (props) => {
         //   maxLength: 16,
         // }}
         InputProps={{
+          readOnly: props.readonly,
           endAdornment: (
             <InputAdornment position="end">
+              {props.valid && (
+                <div className="mb-1 flex cursor-text touch-none pointer-events-none">
+                  <CheckIcon className="h-5 text-green-400" />
+                </div>
+              )}
               <IconButton
                 disableRipple
                 aria-label="toggle-password-visibility"
@@ -151,30 +165,20 @@ const IconPasswordTextFieldDark: FC<IconPasswordTextFieldProps> = (props) => {
                   <EyeOffIcon
                     height={22}
                     width={22}
-                    className="opacity-[0.5] text-white"
+                    className="opacity-50 text-white"
                   />
                 ) : (
                   <EyeIcon
                     height={22}
                     width={22}
-                    className="opacity-[0.5] text-white"
+                    className="opacity-50 text-white"
                   />
                 )}
               </IconButton>
             </InputAdornment>
           ),
-          readOnly: props.readonly,
         }}
       />
-      <div className="-mt-[46px] ml-[20px] mb-[16px] flex cursor-text">
-        <Image
-          height={30}
-          width={30}
-          className="opacity-50"
-          src={props.icon}
-          alt=""
-        />
-      </div>
     </div>
   );
 };

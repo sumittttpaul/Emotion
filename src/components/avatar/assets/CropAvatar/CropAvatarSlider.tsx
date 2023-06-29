@@ -14,7 +14,7 @@ interface IProps {
 
 export const CropAvatarSlider: FC<IProps> = (props) => {
   return (
-    <div className="px-5 pt-5 w-full max-w-[650px] mx-auto relative">
+    <div className="px-5 pt-5 w-full sm:max-w-[470px] mx-auto relative">
       <RotateSlider
         SliderRef={props.SliderRef}
         getValue={(value) => {

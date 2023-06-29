@@ -150,6 +150,7 @@ export const LoginEmailAuthUI: FC<LoginEmailAuthUIProps> = (props) => {
           onBlur={EmailBlur}
           error={EmailError}
           readonly={props.Loading}
+          valid={!EmailSubmitDisabled}
         />
         <div className="w-full flex flex-col space-y-1">
           <div className="w-full flex justify-start">

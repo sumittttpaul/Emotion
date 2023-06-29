@@ -20,7 +20,7 @@ interface IProps {
 export const CropAvatarNavigation: FC<IProps> = (props) => {
   return (
     <div className="w-full flex justify-center p-5 items-center">
-      <div className="flex py-1 px-3 bg-white/10 h-[44px] items-center justify-center shadow-xl rounded-lg">
+      <div className="flex py-1 px-3 bg-white/10 h-[44px] items-center justify-center shadow-xl rounded-lg backdrop-blur-2xl">
         <SmallIconButtonDark
           onClick={props.RotateLeft}
           tooltip="Rotate image 90 degrees anti-clockwise"

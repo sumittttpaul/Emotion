@@ -12,8 +12,7 @@ export interface ResetPasswordUIProps {
   // PasswordReadOnly?: boolean;
   // PasswordChange: (event: ChangeEvent<HTMLInputElement>) => void;
   // PasswordKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  // PasswordKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  // PasswordKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  // PasswordkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   // PasswordError?: boolean;
   // PasswordFocus?: (event: FocusEvent<HTMLInputElement>) => void;
   // PasswordBlur?: (event: FocusEvent<HTMLInputElement>) => void;
@@ -35,8 +34,7 @@ export const ResetPasswordUI: FC<ResetPasswordUIProps> = (props) => {
         // id={props.PasswordID}
         value={''}
         onChange={() => {}}
-        // onkeyDown={props.PasswordKeyDown}
-        // onKeyPress={props.PasswordKeyPress}
+        // onkeyDown={props.PasswordkeyDown}
         // onkeyUp={props.PasswordKeyUp}
         // onFocus={props.PasswordFocus}
         // onBlur={props.PasswordBlur}

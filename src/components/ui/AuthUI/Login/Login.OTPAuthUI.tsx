@@ -178,7 +178,7 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
 
   // Handle Keys
   const NumberOnly = (event: KeyboardEvent<HTMLInputElement>) => {
-    InputNumberOnly(event);
+    if (event.key !== 'Backspace') InputNumberOnly(event);
   };
   const ChangeFocus = (event: KeyboardEvent<HTMLInputElement>) => {
     InputChangeFocus(event);
@@ -283,7 +283,7 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
             area-label="OTP1"
             value={OTP1}
             onChange={OTP1Change}
-            onKeyPress={NumberOnly}
+            onkeyDown={NumberOnly}
             onkeyUp={ChangeFocus}
           />
           <OTPTextFieldDark
@@ -293,7 +293,7 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
             area-label="OTP2"
             value={OTP2}
             onChange={OTP2Change}
-            onKeyPress={NumberOnly}
+            onkeyDown={NumberOnly}
             onkeyUp={ChangeFocus}
           />
           <OTPTextFieldDark
@@ -303,7 +303,7 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
             area-label="OTP3"
             value={OTP3}
             onChange={OTP3Change}
-            onKeyPress={NumberOnly}
+            onkeyDown={NumberOnly}
             onkeyUp={ChangeFocus}
           />
           <OTPTextFieldDark
@@ -313,7 +313,7 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
             area-label="OTP4"
             value={OTP4}
             onChange={OTP4Change}
-            onKeyPress={NumberOnly}
+            onkeyDown={NumberOnly}
             onkeyUp={ChangeFocus}
           />
           <OTPTextFieldDark
@@ -323,7 +323,7 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
             area-label="OTP5"
             value={OTP5}
             onChange={OTP5Change}
-            onKeyPress={NumberOnly}
+            onkeyDown={NumberOnly}
             onkeyUp={ChangeFocus}
           />
           <OTPTextFieldDark
@@ -333,7 +333,7 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
             area-label="OTP6"
             value={OTP6}
             onChange={OTP6Change}
-            onKeyPress={NumberOnly}
+            onkeyDown={NumberOnly}
             onkeyUp={ChangeFocus}
           />
         </div>

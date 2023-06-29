@@ -17,7 +17,6 @@ const OTPTextFieldDark: FC<OTPTextFieldProps> = (props) => {
       onChange={props.onChange}
       onKeyUp={props.onkeyUp}
       onKeyDown={props.onkeyDown}
-      onKeyPress={props.onKeyPress}
       onClick={props.onClick}
       value={props.value}
       className={`${'text-white rounded-lg focus:outline-none bg-[#0f0f0f] h-[50px] w-[40px] text-center items-center'} ${

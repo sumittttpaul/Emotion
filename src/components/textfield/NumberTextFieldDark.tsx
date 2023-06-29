@@ -99,7 +99,6 @@ const NumberTextFieldDark: FC<NumberTextFieldProps> = (props) => {
         onChange={props.onChange}
         onKeyUp={props.onkeyUp}
         onKeyDown={props.onkeyDown}
-        onKeyPress={props.onKeyPress}
         value={props.value}
         type={props.type}
         error={props.error}

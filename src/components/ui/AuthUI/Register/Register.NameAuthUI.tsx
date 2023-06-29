@@ -79,6 +79,7 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
 
   // Key
   const FullNameKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (ValidateFullName) ValidFullName();
     if (event.key === 'Enter') {
       if (ValidateFullName) {
         FullNameSubmitClick();
@@ -106,7 +107,7 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
     setFullNameError(true);
     ShowToast('Field empty', 'Please enter your Fullname.', 'Error', true);
   };
-  var ValidateFullName = props.FullName.length > 0;
+  var ValidateFullName = props.FullName.length > 2;
   const FullNameSubmitDisabled: boolean =
     props.FullName.length < 1 || !ValidateFullName;
 
@@ -196,6 +197,7 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
           onBlur={FullNameBlur}
           readonly={props.Loading}
           error={FullNameError}
+          valid={!FullNameSubmitDisabled}
         />
         <div className="w-full flex justify-start">
           <SignInNextButton

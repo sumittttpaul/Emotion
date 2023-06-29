@@ -121,7 +121,6 @@ const PasswordTextFieldDark: FC<PasswordTextFieldProps> = (props) => {
         onChange={props.onChange}
         onKeyUp={props.onkeyUp}
         onKeyDown={props.onkeyDown}
-        onKeyPress={props.onKeyPress}
         value={props.value}
         error={props.error}
         onFocus={props.onFocus}

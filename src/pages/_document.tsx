@@ -11,7 +11,6 @@ import { getInitColorSchemeScript } from '@mui/material';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '../utils/createEmotionCache';
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
-import { noto_sans } from '../utils/theme';
 
 interface MyDocumentProps extends DocumentProps {
   emotionStyleTags: EmotionJSX.Element[];
@@ -19,7 +18,7 @@ interface MyDocumentProps extends DocumentProps {
 
 function MyDocument({ emotionStyleTags }: MyDocumentProps) {
   return (
-    <Html lang="en" className={noto_sans.className}>
+    <Html lang="en">
       <Head>
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="emotion-insertion-point" content="" />

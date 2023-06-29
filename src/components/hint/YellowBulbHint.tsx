@@ -21,7 +21,7 @@ export const YellowBulbHint: FC<IProps> = (props) => {
           alt=""
         />
       </div>
-      <div className="text-[13px] font-normal block">{props.Label}</div>
+      <div className="text-[13px] font-medium block">{props.Label}</div>
     </div>
   );
 };

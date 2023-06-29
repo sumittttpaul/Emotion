@@ -77,9 +77,9 @@ export const LoginPasswordAuthUI: FC<LoginPasswordAuthUIProps> = (props) => {
 
   // Validation
   var passwordExpression =
-    /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+    /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
   var ValidatePassword =
-    passwordExpression.test(Password) && Password.length > 8;
+    passwordExpression.test(Password) && Password.length > 7;
   const PasswordSubmitDisabled: boolean =
     Password.length < 8 || !ValidatePassword;
 
@@ -177,6 +177,7 @@ export const LoginPasswordAuthUI: FC<LoginPasswordAuthUIProps> = (props) => {
           onBlur={PasswordBlur}
           error={PasswordError}
           readonly={props.Loading || Loader.show}
+          valid={!PasswordSubmitDisabled}
         />
         <div className="w-full flex flex-col space-y-1">
           <div className="w-full flex justify-start">

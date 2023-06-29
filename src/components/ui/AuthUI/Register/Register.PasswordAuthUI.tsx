@@ -72,9 +72,9 @@ export const RegisterPasswordAuthUI: FC<RegisterPasswordAuthUIProps> = (
 
   // Validation
   var passwordExpression =
-    /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+    /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
   var ValidatePassword =
-    passwordExpression.test(Password) && Password.length > 8;
+    passwordExpression.test(Password) && Password.length > 7;
   const PasswordSubmitDisabled: boolean =
     Password.length < 8 || !ValidatePassword;
 
@@ -153,9 +153,14 @@ export const RegisterPasswordAuthUI: FC<RegisterPasswordAuthUIProps> = (
           onBlur={PasswordBlur}
           error={PasswordError}
           readonly={props.Loading}
+          valid={!PasswordSubmitDisabled}
         />
+        <h6 className="font-normal tracking-wide text-left w-full text-white/75 text-sm">
+          Your password should contain atleast 8 or more characters with a mix
+          of letters, numbers & symbols.
+        </h6>
         <div className="flex justify-start">
-          <YellowBulbHint Label="Your password should contain atleast 8 or more characters with a mix of letters, numbers & symbols." />
+          <YellowBulbHint Label="Requires recent login / authentication" />
         </div>
         <div className="w-full flex justify-start">
           <SignInBackButton Label="Back" onClick={BackToEmailAddressScreen} />

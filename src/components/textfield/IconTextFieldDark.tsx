@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import { IconTextFieldProps } from './AllTextFieldProps';
+import { CheckIcon } from '@heroicons/react/solid';
 
 const CustomTextField = styled((props: TextFieldProps) => (
   <TextField
@@ -45,6 +46,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
     border: '1px solid #ffffff50',
     overflow: 'hidden',
     paddingLeft: 54,
+    paddingRight: 34,
     paddingTop: 4,
     backgroundColor: 'transparent',
     transition: theme.transitions.create([
@@ -92,7 +94,16 @@ const CustomTextField = styled((props: TextFieldProps) => (
 
 const IconTextFieldDark: FC<IconTextFieldProps> = (props) => {
   return (
-    <div className="flex flex-col w-full">
+    <div className="relative flex flex-col w-full">
+      <div className="mt-[16px] ml-[20px] -mb-[46px] flex cursor-text">
+        <Image
+          height={30}
+          width={30}
+          className="opacity-50"
+          src={props.icon}
+          alt=""
+        />
+      </div>
       <CustomTextField
         id={props.id}
         className="w-full"
@@ -100,7 +111,6 @@ const IconTextFieldDark: FC<IconTextFieldProps> = (props) => {
         onChange={props.onChange}
         onKeyUp={props.onkeyUp}
         onKeyDown={props.onkeyDown}
-        onKeyPress={props.onKeyPress}
         value={props.value}
         type={props.type}
         error={props.error}
@@ -113,15 +123,11 @@ const IconTextFieldDark: FC<IconTextFieldProps> = (props) => {
           readOnly: props.readonly,
         }}
       />
-      <div className="-mt-[46px] ml-[20px] mb-[16px] flex cursor-text">
-        <Image
-          height={30}
-          width={30}
-          className="opacity-50"
-          src={props.icon}
-          alt=""
-        />
-      </div>
+      {props.valid && (
+        <div className="absolute right-4 mt-5 flex cursor-text touch-none pointer-events-none">
+          <CheckIcon className="h-5 text-green-400" />
+        </div>
+      )}
     </div>
   );
 };

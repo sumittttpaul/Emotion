@@ -45,7 +45,7 @@ export const SignInBackButton: FC<IProps> = (props) => {
         className="group-hover:opacity-75 opacity-100 flex items-center space-x-2"
       >
         <ChevronLeftIcon className="h-4 text-sky-400" />
-        <div className="font-normal tracking-wide text-sky-400 text-[14px]">
+        <div className="font-mediumtracking-wide text-sky-400 text-sm">
           {props.Label}
         </div>
       </m.div>

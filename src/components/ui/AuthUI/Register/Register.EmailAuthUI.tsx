@@ -212,6 +212,7 @@ export const RegisterEmailAuthUI: FC<RegisterEmailAuthUIProps> = (props) => {
           onBlur={EmailAddressBlur}
           error={EmailAddressError}
           readonly={props.Loading}
+          valid={!EmailAddressSubmitDisabled}
         />
         <div className="w-full flex flex-col space-y-1">
           <div className="w-full flex justify-start">

@@ -150,14 +150,14 @@ export const SetupUI: FC<IProps> = (props) => {
   const [Finish, setFinish] = useState(false);
   const [Loading, setLoading] = useState(false);
   const [InitialLoading, setInitialLoading] = useState(true); // true
-  const [InformationCheckLoading, setInformationCheckLoading] = useState(true); // true
+  const [InformationCheckLoading, setInformationCheckLoading] = useState(false); // true
   const [Toast, setToast] = useState(false);
   const [ToastSetting, setToastSetting] = useState({
     Title: '',
     Description: '',
     Type: '',
   });
-  const [Screen, setScreen] = useState<AuthType>(null);
+  const [Screen, setScreen] = useState<AuthType>('register-phone');
 
   const { isLoading, data } = useQuery(
     [cacheKey, FirebaseUser?.uid],
@@ -294,9 +294,9 @@ export const SetupUI: FC<IProps> = (props) => {
   useEffect(() => {
     if (InitialLoading) return;
     if (FirebaseUser) {
-      IsInformation_InitialLoad('initial');
+      // IsInformation_InitialLoad('initial');
     } else {
-      handleIsInformationContent('login-phone');
+      // handleIsInformationContent('login-phone');
     }
   }, [InitialLoading]); // eslint-disable-line react-hooks/exhaustive-deps
 

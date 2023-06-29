@@ -9,10 +9,10 @@ export interface IconNumberTextFieldProps {
   dataPhonecode?: string;
   error?: boolean;
   readonly?: boolean;
+  valid?: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
 }
@@ -24,10 +24,10 @@ export interface IconPasswordTextFieldProps {
   icon: string;
   error?: boolean;
   readonly?: boolean;
+  valid?: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
 }
@@ -40,10 +40,10 @@ export interface IconTextFieldProps {
   type?: string;
   error?: boolean;
   readonly?: boolean;
+  valid?: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
 }
@@ -59,7 +59,6 @@ export interface NumberTextFieldProps {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
 }
@@ -74,7 +73,6 @@ export interface PlainTextFieldProps {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
 }
@@ -88,7 +86,6 @@ export interface PasswordTextFieldProps {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
 }
@@ -100,6 +97,5 @@ export interface OTPTextFieldProps {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
   onkeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
-  onKeyPress?: (event: KeyboardEvent<HTMLInputElement>) => void;
   className?: string;
 }

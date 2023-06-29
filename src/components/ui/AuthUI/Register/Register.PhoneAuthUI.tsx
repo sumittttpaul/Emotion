@@ -100,8 +100,8 @@ export const RegisterPhoneAuthUI: FC<RegisterPhoneAuthUIProps> = (props) => {
       }
     }
   };
-  const PhoneNumberKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
-    InputNumberOnly(event);
+  const PhoneNumberKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key !== 'Backspace') InputNumberOnly(event);
   };
   const PhoneNumberBlur = () => {
     if (ValidatePhoneNumber) {
@@ -224,11 +224,12 @@ export const RegisterPhoneAuthUI: FC<RegisterPhoneAuthUIProps> = (props) => {
           dataPhonecode="+91"
           value={props.PhoneNumber.slice(-10)}
           onChange={PhoneNumberChange}
-          onKeyPress={PhoneNumberKeyPress}
+          onkeyDown={PhoneNumberKeyDown}
           onkeyUp={PhoneNumberKeyUp}
           onBlur={PhoneNumberBlur}
           error={PhoneNumberError}
           readonly={props.Loading}
+          valid={!PhoneNumberSubmitDisabled}
         />
         <div className="w-full flex flex-col space-y-1">
           <div className="w-full flex justify-start">

@@ -42,7 +42,7 @@ export const SignInNextButton: FC<IProps> = (props) => {
         initial="open"
         animate={Animate}
         variants={Variants}
-        className="group-hover:opacity-75 opacity-100 font-normal text-sky-400 text-[14px]"
+        className="group-hover:opacity-75 opacity-100 font-medium text-sky-400 text-sm"
       >
         {props.Label}
       </m.div>
