@@ -16,7 +16,10 @@ import {
 } from '../../../../mongodb/helper/Helper.UserProfile';
 import { IUserProfileDataUpdate } from '../../../../mongodb/schema/Schema.UserProfile';
 import { m } from 'framer-motion';
-import { CalculateAge } from '../../../../algorithms/UIAlgorithms';
+import {
+  CalculateAge,
+  CalculateMonthNumber,
+} from '../../../../algorithms/UIAlgorithms';
 
 export interface RegisterBirthdayAuthUIProps {
   ClassName?: string;
@@ -80,20 +83,25 @@ export const RegisterBirthdayAuthUI: FC<RegisterBirthdayAuthUIProps> = (
 
   // Screens
   const BackToPhoto = () => {
-    props.setAuthScreen('register-profile-picture')
-  }
+    props.setAuthScreen('register-profile-picture');
+  };
 
   // Database
   const updateUserData = () => {
     if (FirebaseUser) {
       try {
+        const _dataDay = props.DateOfBirth.split('-')[0];
+        const _dataMonth = props.DateOfBirth.split('-')[1];
+        const _dataYear = props.DateOfBirth.split('-')[2];
         const UserDOB = EncryptData(
           UserProfileEncrytionKey(FirebaseUser.uid, 'DateOfBirth'),
           props.DateOfBirth
         );
         const UserAge = EncryptData(
           UserProfileEncrytionKey(FirebaseUser.uid, 'Age'),
-          CalculateAge(props.DateOfBirth).toString()
+          CalculateAge(
+            _dataDay + '-' + CalculateMonthNumber(_dataMonth) + '-' + _dataYear
+          ).toString()
         );
         const _data: IUserProfileDataUpdate = {
           '_data.dateOfBirth': UserDOB,
@@ -149,10 +157,7 @@ export const RegisterBirthdayAuthUI: FC<RegisterBirthdayAuthUIProps> = (
             />
           </div>
           <div className="w-full flex justify-start">
-            <SignInBackButton
-              Label="Back"
-              onClick={BackToPhoto}
-            />
+            <SignInBackButton Label="Back" onClick={BackToPhoto} />
           </div>
         </div>
       </div>

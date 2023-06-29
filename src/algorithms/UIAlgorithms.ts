@@ -60,3 +60,8 @@ export const CalculateAge = (DOB: string) => {
   var age = Math.abs(year - 1970);
   return age;
 };
+
+export const CalculateMonthNumber = (month: string) => {
+  var d = Date.parse(month + '16, 2002');
+  return new Date(d).getMonth() + 1;
+};

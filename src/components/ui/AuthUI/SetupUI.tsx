@@ -149,8 +149,8 @@ export const SetupUI: FC<IProps> = (props) => {
   const [SkipDialog, setSkipDialog] = useState(false);
   const [Finish, setFinish] = useState(false);
   const [Loading, setLoading] = useState(false);
-  const [InitialLoading, setInitialLoading] = useState(true);
-  const [InformationCheckLoading, setInformationCheckLoading] = useState(true);
+  const [InitialLoading, setInitialLoading] = useState(true); // true
+  const [InformationCheckLoading, setInformationCheckLoading] = useState(true); // true
   const [Toast, setToast] = useState(false);
   const [ToastSetting, setToastSetting] = useState({
     Title: '',

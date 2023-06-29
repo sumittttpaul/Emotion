@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 import { useState } from 'react';
 import { ToastDark } from '../components/toast/ToastDark';
 import { LazyMotion, domAnimation } from 'framer-motion';
-import { CalculateAge } from '../algorithms/UIAlgorithms';
+import { CalculateAge, CalculateMonthNumber } from '../algorithms/UIAlgorithms';
 
 interface IProps {}
 
