@@ -97,7 +97,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
 
 const IconNumberTextFieldDark: FC<IconNumberTextFieldProps> = (props) => {
   return (
-    <div className="relative flex flex-col w-full">
+    <div className="relative flex flex-col w-full mt-[2px]">
       <div className="mt-[16px] ml-[20px] -mb-[46px] flex cursor-text touch-none pointer-events-none">
         <Image
           height={30}

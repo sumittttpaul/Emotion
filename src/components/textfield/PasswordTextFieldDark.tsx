@@ -112,7 +112,7 @@ const PasswordTextFieldDark: FC<PasswordTextFieldProps> = (props) => {
   };
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full mt-[2px]">
       <CustomTextField
         id={props.id}
         aria-label="password-textfield"
