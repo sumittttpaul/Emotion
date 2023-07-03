@@ -15,8 +15,11 @@ import {
   LinkWithPhoneNumberProps,
   VerifyOTPForLinkWithPhoneProps,
   SignOutProps,
+  ConfirmPasswordResetProps,
+  ConfirmVerifyEmailAddressProps,
+  DeleteAccountProps,
 } from './Props/AuthProps';
-import { AuthError } from '../firebase/AuthError';
+import { AuthErrorMessage } from '../firebase/AuthErrorMessage';
 import { Home_Link } from '../routerLinks/RouterLinks';
 import {
   FirebaseAuth,
@@ -91,7 +94,7 @@ export const ResentOTP = ({
     })
     .catch((error) => {
       Loading(false);
-      const message = AuthError(error.code);
+      const message = AuthErrorMessage(error.code);
       ShowToast('Something went wrong', `${message}`, 'Error', true);
     });
 };
@@ -129,7 +132,7 @@ export const VerifyOTP = ({
     })
     .catch((error) => {
       Loading(false);
-      const message = AuthError(error.code);
+      const message = AuthErrorMessage(error.code);
       if (message == 'Invalid verification code') EmptyOTPBox();
       ShowToast('Something went wrong', `${message}`, 'Error', true);
     });
@@ -139,6 +142,7 @@ export const PasswordReset = ({
   EmailAddress,
   Loading,
   ShowToast,
+  Next,
 }: PasswordResentProps) => {
   Loading(true);
   _firebaseAuth
@@ -151,12 +155,83 @@ export const PasswordReset = ({
         'Success',
         true
       );
+      Next();
     })
     .catch((error) => {
       Loading(false);
-      const message = AuthError(error.code);
+      const message = AuthErrorMessage(error.code);
       ShowToast('Something went wrong', `${message}`, 'Error', true);
     });
+};
+
+export const ConfirmPasswordReset = ({
+  oobCode,
+  Password,
+  EmptyPassword,
+  Loading,
+  ShowToast,
+  Next,
+}: ConfirmPasswordResetProps) => {
+  Loading(true);
+  _firebaseAuth
+    .verifyPasswordResetCode(FirebaseAuth, oobCode)
+    .then((email) =>
+      _firebaseAuth
+        .confirmPasswordReset(FirebaseAuth, oobCode, Password)
+        .then(() =>
+          _firebaseAuth
+            .signInWithEmailAndPassword(FirebaseAuth, email, Password)
+            .then(() => {
+              Loading(false);
+              Next();
+            })
+            .catch((error) => {
+              Loading(false);
+              EmptyPassword();
+              const message = AuthErrorMessage(error.code);
+              ShowToast('Something went wrong', `${message}`, 'Error', true);
+            })
+        )
+        .catch((error) => {
+          Loading(false);
+          EmptyPassword();
+          const message = AuthErrorMessage(error.code);
+          ShowToast('Something went wrong', `${message}`, 'Error', true);
+        })
+    )
+    .catch((error) => {
+      Loading(false);
+      EmptyPassword();
+      const message = AuthErrorMessage(error.code);
+      ShowToast('Something went wrong', `${message}`, 'Error', true);
+    });
+};
+
+export const ConfirmVerifyEmailAddress = ({
+  oobCode,
+  Screen,
+  Loading,
+  ShowToast,
+  UpdateDataBase,
+}: ConfirmVerifyEmailAddressProps) => {
+  Loading(true);
+  Screen(null);
+  const user = FirebaseAuth.currentUser;
+  if (user) {
+    _firebaseAuth
+      .applyActionCode(FirebaseAuth, oobCode)
+      .then(() =>
+        user
+          .reload()
+          .then(() => user.getIdToken(true).then(() => UpdateDataBase()))
+      )
+      .catch((error) => {
+        Loading(false);
+        Screen('Error');
+        const message = AuthErrorMessage(error.code);
+        ShowToast('Something went wrong', `${message}`, 'Error', true);
+      });
+  }
 };
 
 // SignIn
@@ -192,7 +267,7 @@ export const SignInWithPhoneNumber = ({
     })
     .catch((error) => {
       Loading(false);
-      const message = AuthError(error.code);
+      const message = AuthErrorMessage(error.code);
       ShowToast('Something went wrong', `${message}`, 'Error', true);
       EmptyPhoneNumber();
       setResetCaptcha(true);
@@ -219,7 +294,7 @@ export const SignInWithEmailAndPassword = ({
     .catch((error) => {
       BackToEmailScreen();
       Loading(false);
-      const message = AuthError(error.code);
+      const message = AuthErrorMessage(error.code);
       ShowToast('Something went wrong', `${message}`, 'Error', true);
       EmptyPasswordTextField();
     });
@@ -249,12 +324,20 @@ export const SignInWithFacebook = ({
             Loading(false);
             Router.push(Home_Link);
           }
+        } else {
+          Loading(false);
+          ShowToast(
+            'Something went wrong',
+            'The user is currently not signed in.',
+            'Error',
+            true
+          );
         }
       }
     })
     .catch((error) => {
       Loading(false);
-      const message = AuthError(error.code);
+      const message = AuthErrorMessage(error.code);
       ShowToast('Something went wrong', `${message}`, 'Error', true);
     });
 };
@@ -286,7 +369,7 @@ export const SignInWithGoogle = ({
     })
     .catch((error) => {
       Loading(false);
-      const message = AuthError(error.code);
+      const message = AuthErrorMessage(error.code);
       ShowToast('Something went wrong', `${message}`, 'Error', true);
     });
 };
@@ -318,7 +401,7 @@ export const SignInWithApple = ({
     })
     .catch((error) => {
       Loading(false);
-      const message = AuthError(error.code);
+      const message = AuthErrorMessage(error.code);
       ShowToast('Something went wrong', `${message}`, 'Error', true);
     });
 };
@@ -350,7 +433,7 @@ export const SignInWithMicrosoft = ({
     })
     .catch((error) => {
       Loading(false);
-      const message = AuthError(error.code);
+      const message = AuthErrorMessage(error.code);
       ShowToast('Something went wrong', `${message}`, 'Error', true);
     });
 };
@@ -373,7 +456,7 @@ export const AddFullName = ({
       .then(() => UpdateDataBase())
       .catch((error) => {
         Loading(false);
-        const message = AuthError(error.code);
+        const message = AuthErrorMessage(error.code);
         ShowToast('Something went wrong', `${message}`, 'Error', true);
       });
   }
@@ -401,7 +484,7 @@ export const VerifyEmailAddress = ({
       })
       .catch((error) => {
         Loading(false);
-        const message = AuthError(error.code);
+        const message = AuthErrorMessage(error.code);
         ShowToast('Something went wrong', `${message}`, 'Error', true);
       });
   }
@@ -430,7 +513,7 @@ export const LinkWithEmailAndPassword = ({
         Loading(false);
         BackToEmailScreen();
         EmptyPasswordTextField();
-        const message = AuthError(error.code);
+        const message = AuthErrorMessage(error.code);
         ShowToast('Something went wrong', `${message}`, 'Error', true);
       });
   }
@@ -468,7 +551,7 @@ export const LinkWithPhoneNumber = ({
       })
       .catch((error) => {
         Loading(false);
-        const message = AuthError(error.code);
+        const message = AuthErrorMessage(error.code);
         ShowToast('Something went wrong', `${message}`, 'Error', true);
         EmptyPhoneNumber();
         setResetCaptcha(true);
@@ -496,7 +579,7 @@ export const VerifyOTPForLinkWithPhone = ({
       .then(() => UpdateDataBase())
       .catch((error) => {
         Loading(false);
-        const message = AuthError(error.code);
+        const message = AuthErrorMessage(error.code);
         if (message == 'Invalid verification code') EmptyOTPBox();
         ShowToast('Something went wrong', `${message}`, 'Error', true);
       });
@@ -530,7 +613,7 @@ export const ResentOTPForLinkWithPhone = ({
       })
       .catch((error) => {
         Loading(false);
-        const message = AuthError(error.code);
+        const message = AuthErrorMessage(error.code);
         ShowToast('Something went wrong', `${message}`, 'Error', true);
       });
   }
@@ -574,7 +657,7 @@ export const UploadAvatar = ({
         },
         (error) => {
           Loading(false);
-          const message = AuthError(error.code);
+          const message = AuthErrorMessage(error.code);
           ShowToast('Something went wrong', `${message}`, 'Error', true);
         },
         () => {
@@ -588,7 +671,7 @@ export const UploadAvatar = ({
                 .then(() => UpdateDataBaseWithURL(url))
                 .catch((error) => {
                   Loading(false);
-                  const message = AuthError(error.code);
+                  const message = AuthErrorMessage(error.code);
                   ShowToast(
                     'Something went wrong',
                     `${message}`,
@@ -599,7 +682,17 @@ export const UploadAvatar = ({
             });
         }
       );
+    } else {
+      Loading(false);
+      ShowToast(
+        'Something went wrong',
+        'The user is currently not signed in.',
+        'Error',
+        true
+      );
     }
+  } else {
+    ShowToast('Check file', 'File not found.', 'Error', true);
   }
 };
 
@@ -625,20 +718,52 @@ export const DeleteAvatar = ({
             .then(() => DeletePhotoURLFromDataBase())
             .catch((error) => {
               Loading(false);
-              const message = AuthError(error.code);
+              const message = AuthErrorMessage(error.code);
               ShowToast('Something went wrong', `${message}`, 'Error', true);
             });
         })
         .catch((error) => {
           Loading(false);
-          const message = AuthError(error.code);
+          const message = AuthErrorMessage(error.code);
           ShowToast('Something went wrong', `${message}`, 'Error', true);
         });
+    } else {
+      Loading(false);
+      ShowToast(
+        'Something went wrong',
+        'The user is currently not signed in.',
+        'Error',
+        true
+      );
     }
+  } else {
+    ShowToast('Check avatar', 'Avatar not found.', 'Error', true);
   }
 };
 
 export const SignOut = ({ Next }: SignOutProps) => {
   const user = FirebaseAuth.currentUser;
   if (user) _firebaseAuth.signOut(FirebaseAuth).then(() => Next());
+};
+
+export const DeleteAccount = ({
+  DeleteDataBase,
+  ShowToast,
+  Loading,
+}: DeleteAccountProps) => {
+  const user = FirebaseAuth.currentUser;
+  if (user) {
+    Loading(true);
+    const _uid = user.uid;
+    _firebaseAuth
+      .deleteUser(user)
+      .then(() => DeleteDataBase(_uid))
+      .catch((error) => {
+        Loading(false);
+        const message = AuthErrorMessage(error.code);
+        ShowToast('Something went wrong', `${message}`, 'Error', true);
+      });
+  } else {
+    ShowToast('User not found', 'User is not signed it.', 'Error', true);
+  }
 };

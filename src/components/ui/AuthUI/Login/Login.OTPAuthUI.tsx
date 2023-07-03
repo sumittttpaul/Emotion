@@ -18,7 +18,7 @@ import {
   _userProfileEndURL as cacheKey,
 } from '../../../../mongodb/helper/Helper.UserProfile';
 import { OTPTimer } from '../../../timer/OTPTimer';
-import { AuthAnimationType, AuthType } from '../AuthType';
+import { AuthAnimationType, AuthErrorType, AuthType } from '../AuthType';
 import { useQueryClient, useMutation } from 'react-query';
 import { useLoaderState } from '../../../../provider/LoadingState';
 import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
@@ -43,6 +43,7 @@ export interface LoginOTPAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
+  setError: Dispatch<SetStateAction<AuthErrorType>>;
   Animation: AuthAnimationType;
   IsInformation: (Screen: AuthType) => void;
 }
@@ -65,6 +66,7 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
     },
     onError: (error: any) => {
       props.setLoading(false);
+      props.setError({ show: true, type: 'database-not-created' });
       ShowToast('Something went wrong', `${error.message}`, 'Error', true);
     },
   });

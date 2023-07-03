@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import { useQuery } from 'react-query';
 import { AnimatePresence } from 'framer-motion';
 import React, { FC, useEffect, useState } from 'react';
-import { AuthType } from './AuthType';
+import { AuthErrorType, AuthType } from './AuthType';
 import { useAuth } from '../../../firebase/useAuth';
 import { IsInformationHandler } from './IsInformationHandler';
 import { IUserProfile } from '../../../mongodb/schema/Schema.UserProfile';
@@ -29,6 +29,7 @@ import AuthBodyContainer from '../../container/Auth/AuthBodyContainer';
 import AuthContentContainer from '../../container/Auth/AuthContentContainer';
 import { DecryptData } from '../../../algorithms/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from '../../../algorithms/security/CryptionKey';
+import { FirebaseAuth } from '../../../firebase/clientApp';
 
 // Dynamic Imports
 const LoginPhoneAuthUI = dynamic<LoginPhoneAuthUIProps>(
@@ -149,15 +150,19 @@ export const SetupUI: FC<IProps> = (props) => {
   const [SkipDialog, setSkipDialog] = useState(false);
   const [Finish, setFinish] = useState(false);
   const [Loading, setLoading] = useState(false);
-  const [InitialLoading, setInitialLoading] = useState(true); // true
-  const [InformationCheckLoading, setInformationCheckLoading] = useState(false); // true
   const [Toast, setToast] = useState(false);
+  const [InitialLoading, setInitialLoading] = useState(true); // true
+  const [InformationCheckLoading, setInformationCheckLoading] = useState(true); // true
+  const [Error, setError] = useState<AuthErrorType>({
+    show: false,
+    type: undefined, // undefined
+  });
   const [ToastSetting, setToastSetting] = useState({
     Title: '',
     Description: '',
     Type: '',
   });
-  const [Screen, setScreen] = useState<AuthType>('register-phone');
+  const [Screen, setScreen] = useState<AuthType>(null); // null
 
   const { isLoading, data } = useQuery(
     [cacheKey, FirebaseUser?.uid],
@@ -173,6 +178,9 @@ export const SetupUI: FC<IProps> = (props) => {
   const [DateOfBirth, setDateOfBirth] = useState('');
   const [Gender, setGender] = useState('');
   const [ResetCaptcha, setResetCaptcha] = useState(false);
+  const [isEmailVerified, setisEmailVerified] = useState<boolean | undefined>(
+    undefined
+  );
 
   const SkipDialogClose = () => setSkipDialog(false);
 
@@ -204,8 +212,10 @@ export const SetupUI: FC<IProps> = (props) => {
     isuserProfileLoading: isLoading,
     handleIsInformationContent: handleIsInformationContent,
     setInitialSlide: setInitialSlide,
+    setScreen: setScreen,
     setFinish: setFinish,
     setLoading: setLoading,
+    setError: setError,
     setInformationCheckLoading: setInformationCheckLoading,
     ShowToast: ShowToast,
   };
@@ -294,16 +304,16 @@ export const SetupUI: FC<IProps> = (props) => {
   useEffect(() => {
     if (InitialLoading) return;
     if (FirebaseUser) {
-      // IsInformation_InitialLoad('initial');
+      IsInformation_InitialLoad('initial');
     } else {
-      // handleIsInformationContent('login-phone');
+      handleIsInformationContent('login-phone');
     }
   }, [InitialLoading]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (data) {
       setFullName(
-        FirebaseUser?.uid && userProfile._data.fullName
+        FirebaseUser?.uid && userProfile._data && userProfile?._data.fullName
           ? DecryptData(
               UserProfileEncrytionKey(FirebaseUser.uid, 'FullName'),
               userProfile._data.fullName
@@ -311,7 +321,9 @@ export const SetupUI: FC<IProps> = (props) => {
           : ''
       );
       setEmailAddress(
-        FirebaseUser?.uid && userProfile?._data.emailAddress
+        FirebaseUser?.uid &&
+          userProfile._data &&
+          userProfile?._data.emailAddress
           ? DecryptData(
               UserProfileEncrytionKey(FirebaseUser.uid, 'EmailAddress'),
               userProfile._data.emailAddress
@@ -319,7 +331,7 @@ export const SetupUI: FC<IProps> = (props) => {
           : ''
       );
       setPhoneNumber(
-        FirebaseUser?.uid && userProfile?._data.phoneNumber
+        FirebaseUser?.uid && userProfile._data && userProfile?._data.phoneNumber
           ? DecryptData(
               UserProfileEncrytionKey(FirebaseUser.uid, 'PhoneNumber'),
               userProfile._data.phoneNumber
@@ -327,7 +339,7 @@ export const SetupUI: FC<IProps> = (props) => {
           : ''
       );
       setDateOfBirth(
-        FirebaseUser?.uid && userProfile?._data.dateOfBirth
+        FirebaseUser?.uid && userProfile._data && userProfile?._data.dateOfBirth
           ? DecryptData(
               UserProfileEncrytionKey(FirebaseUser.uid, 'DateOfBirth'),
               userProfile._data.dateOfBirth
@@ -335,7 +347,7 @@ export const SetupUI: FC<IProps> = (props) => {
           : ''
       );
       setGender(
-        FirebaseUser?.uid && userProfile?._data.gender
+        FirebaseUser?.uid && userProfile._data && userProfile?._data.gender
           ? DecryptData(
               UserProfileEncrytionKey(FirebaseUser.uid, 'Gender'),
               userProfile._data.gender
@@ -343,12 +355,20 @@ export const SetupUI: FC<IProps> = (props) => {
           : ''
       );
     }
-  }, [data]);
+  }, [data]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!FirebaseAuth) return;
+    return FirebaseAuth.onIdTokenChanged(async (user) => {
+      if (!user) return;
+      if (user.emailVerified) setisEmailVerified(true);
+    });
+  }, []);
 
   // Class
-  const BodyClassName = 'h-full md:h-[652px] ';
-  const ContentClassName = 'h-[300px]';
+  const BodyClassName = 'h-full md:h-[652px]';
   const ContainerClassName = 'h-[350px]';
+  const ContentClassName = 'h-[300px]';
 
   // Animation
   const Animation = {
@@ -365,9 +385,17 @@ export const SetupUI: FC<IProps> = (props) => {
       SkipDialogOpen={SkipDialog}
       SkipDialogClose={SkipDialogClose}
       Finish={Finish}
-      InformationCheckLoading={InformationCheckLoading}
+      Error={Error}
       Loading={Loading}
       AuthScreen={Screen}
+      ShowToast={Toast}
+      setAuthScreen={setScreen}
+      ToastSetting={ToastSetting}
+      setLoading={setLoading}
+      setToast={setToast}
+      setToastSetting={setToastSetting}
+      setError={setError}
+      InformationCheckLoading={InformationCheckLoading}
       Toast={{
         Open: Toast,
         onClose: setToast,
@@ -418,8 +446,9 @@ export const SetupUI: FC<IProps> = (props) => {
               Toast={Toast}
               Loading={Loading}
               setAuthScreen={setScreen}
-              setLoading={setLoading}
               setToast={setToast}
+              setLoading={setLoading}
+              setError={setError}
               setToastSetting={setToastSetting}
               IsInformation={IsInformation_AfterLogin}
             />
@@ -431,6 +460,7 @@ export const SetupUI: FC<IProps> = (props) => {
               PhoneNumber={PhoneNumber}
               Toast={Toast}
               Loading={Loading}
+              setError={setError}
               setResetCaptcha={setResetCaptcha}
               setAuthScreen={setScreen}
               setLoading={setLoading}
@@ -455,6 +485,7 @@ export const SetupUI: FC<IProps> = (props) => {
           {Screen === 'login-forgot-password' && (
             <LoginForgotPasswordAuthUI
               ClassName={ContentClassName}
+              Animation={Animation}
               EmailAddress={EmailAddress}
               Toast={Toast}
               Loading={Loading}
@@ -549,6 +580,7 @@ export const SetupUI: FC<IProps> = (props) => {
           )}
           {Screen === 'register-verify-email' && (
             <RegisterVerifyEmailAuthUI
+              isEmailVerified={isEmailVerified}
               ClassName={ContentClassName}
               Animation={Animation}
               Toast={Toast}

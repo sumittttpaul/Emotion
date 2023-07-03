@@ -1,4 +1,4 @@
-export const AuthError = (Code: string) => {
+export const AuthErrorMessage = (Code: string) => {
   switch (Code) {
     case 'auth/wrong-password':
       return 'Invalid password';
@@ -178,7 +178,7 @@ export const AuthError = (Code: string) => {
       return 'This operation has been cancelled due to another conflicting popup being opened.';
 
     case 'auth/internal-error':
-      return 'An internal AuthError has occurred.';
+      return 'An internal AuthErrorMessage has occurred.';
 
     case 'auth/invalid-app-credential':
       return 'Phone verification request contains an invalid application verifier. The reCAPTCHA token response is either invalid or expired.';
@@ -190,7 +190,7 @@ export const AuthError = (Code: string) => {
       return "This user's credential isn't valid for this project. This can happen if the user's token has been tampered with, or if the user isn't for the project associated with this API key.";
 
     case 'auth/invalid-auth-event':
-      return 'Internal AuthError has occurred.';
+      return 'Internal AuthErrorMessage has occurred.';
 
     case 'auth/invalid-verification-code':
       return 'Invalid verification code';
@@ -277,7 +277,7 @@ export const AuthError = (Code: string) => {
       return 'Continue URL must be provided in the request.';
 
     case 'auth/missing-iframe-start':
-      return 'Internal AuthError has occurred.';
+      return 'Internal AuthErrorMessage has occurred.';
 
     case 'auth/missing-ios-bundle-id':
       return 'IOS Bundle ID must be provided if an App Store ID is provided.';
@@ -310,10 +310,10 @@ export const AuthError = (Code: string) => {
       return 'Account already exists with the different user';
 
     case 'auth/network-request-failed':
-      return 'Network AuthError (such as timeout, interrupted connection or unreachable host) has occurred.';
+      return 'Network AuthErrorMessage (such as timeout, interrupted connection or unreachable host) has occurred.';
 
     case 'auth/no-auth-event':
-      return 'Internal AuthError has occurred.';
+      return 'Internal AuthErrorMessage has occurred.';
 
     case 'auth/no-such-provider':
       return 'User was not linked to an account with the given provider.';

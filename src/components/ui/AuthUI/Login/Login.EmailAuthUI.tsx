@@ -155,7 +155,7 @@ export const LoginEmailAuthUI: FC<LoginEmailAuthUIProps> = (props) => {
         <div className="w-full flex flex-col space-y-1">
           <div className="w-full flex justify-start">
             <SignInNextButton
-              Label="Sign in with Phone number"
+              Label="Sign in with phone number"
               onClick={BackToSignInWithPhoneNumber}
             />
           </div>
@@ -167,7 +167,13 @@ export const LoginEmailAuthUI: FC<LoginEmailAuthUIProps> = (props) => {
           </div>
         </div>
         <div className="flex justify-start">
-          <YellowBulbHint Label="Sign-in with email address only works for existing user." />
+          <YellowBulbHint
+            Tooltip
+            TooltipPlacement="top"
+            ToottipTitle="
+            When it comes to signing in, it is important to note that the option to sign in with an email address is exclusively available for existing users, meaning that individuals who have previously created an account on the Emotion platform can utilize this method as their primary or secondary means of authentication."
+            Label="Sign-in with email address only works for existing user."
+          />
         </div>
         <AuthFooter ButtonLabel="Next" />
       </div>

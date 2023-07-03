@@ -175,7 +175,7 @@ export const LoginPhoneAuthUI: FC<LoginPhoneAuthUIProps> = (props) => {
         <div className="w-full flex flex-col space-y-1">
           <div className="w-full flex justify-start">
             <SignInNextButton
-              Label="Sign in with Email address"
+              Label="Sign in with email address"
               onClick={MoveToSignInWithEmailAddress}
             />
           </div>
@@ -187,7 +187,12 @@ export const LoginPhoneAuthUI: FC<LoginPhoneAuthUIProps> = (props) => {
           </div>
         </div>
         <div className="flex justify-start">
-          <YellowBulbHint Label="New user continue with phone number or sign-in options." />
+          <YellowBulbHint
+            Tooltip
+            TooltipPlacement="top"
+            ToottipTitle="When creating an Emotion account for the first time, new users are often presented with two primary options to initiate the registration process: they can either continue by providing their phone number or explore alternative sign-in methods, such as google account, facebook account, apple account or microsoft account."
+            Label="New user continue with phone number or sign-in options."
+          />
         </div>
         <AuthFooter ButtonLabel="Send OTP" />
       </div>

@@ -59,10 +59,10 @@ export const ToastDarkContent: FC<ToastDarkContentProps> = (props) => {
             <Image height={40} width={40} src={props.Icon} alt="" />
           </div>
           <div className="flex flex-col py-2 w-full">
-            <h5 className="text-white text-[15px] font-medium">
+            <h5 className="text-white text-[15px] font-[600]">
               {props.MessageTitle}
             </h5>
-            <h6 className="text-white/75 text-[13px] leading-4 font-normal">
+            <h6 className="text-white/[0.85] text-[13px] leading-4 font-medium">
               {props.MessageDescription}
             </h6>
           </div>

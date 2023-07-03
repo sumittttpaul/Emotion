@@ -8,7 +8,12 @@ import React from 'react';
  **/
 
 export const TooltipDark = styled(({ className, ...props }: TooltipProps) => (
-  <Tooltip {...props} classes={{ popper: className }} />
+  <Tooltip
+    {...props}
+    classes={{ popper: className }}
+    enterDelay={500}
+    disableInteractive
+  />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.arrow}`]: {
     color: '#353535',
@@ -21,5 +26,6 @@ export const TooltipDark = styled(({ className, ...props }: TooltipProps) => (
     paddingLeft: 12,
     paddingRight: 12,
     borderRadius: 6,
+    textAlign: 'justify',
   },
 }));

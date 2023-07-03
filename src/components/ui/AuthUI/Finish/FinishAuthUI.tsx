@@ -30,7 +30,7 @@ export const FinishAuthUI: FC<FinishAuthUIProps> = (props) => {
         <Image
           height={275} //320
           width={600} //700
-          src="/vectors/register-finish.svg"
+          src="/vectors/register-finish-1.svg"
           alt="register-finish"
         />
       </div>

@@ -10,7 +10,6 @@ export const getUserProfile = async (_uid: string | undefined) => {
   try {
     const response = await fetch(`${_userProfileEndURL}/${_uid}`);
     const json = await response.json();
-    if (!json) return {};
     return json as IUserProfile;
   } catch (error) {
     return error;
@@ -27,7 +26,6 @@ export const postUserProfile = async (_data: IUserProfile) => {
     };
     const response = await fetch(`${_userProfileEndURL}`, options);
     const json = await response.json();
-    if (!json) return {};
     return json as IUserProfile;
   } catch (error) {
     return error;
@@ -63,7 +61,6 @@ export const deleteUserProfile = async (_uid: string | undefined) => {
     };
     const response = await fetch(`${_userProfileEndURL}/${_uid}`, options);
     const json = await response.json();
-    if (!json) return {};
     return json as IUserProfile;
   } catch (error) {
     return error;

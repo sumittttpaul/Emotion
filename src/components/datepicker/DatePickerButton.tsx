@@ -94,7 +94,7 @@ export const DatePickerButton: FC<IProps> = (props) => {
       setDOBMonth(_dataMonth);
       setDOBYear(_dataYear);
     }
-  }, [props.DOB]);
+  }, [props.DOB]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Fragment>

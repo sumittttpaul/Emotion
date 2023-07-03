@@ -82,7 +82,7 @@ const AuthContentContainer: FC<IProps> = (props) => {
           {props.AuthScreen === 'register-verify-email' &&
             `You can also use your email and password for login to your account.`}
           {props.AuthScreen === 'register-password' &&
-            `Make sure to pick something you'll absolutely remember.`}
+            `Choose a password that's as unique as you are, but make sure it's a secret only you can unlock.`}
           {props.AuthScreen === 'register-profile-picture' &&
             `We will use this picture in all your future orders and all across services.`}
           {props.AuthScreen === 'register-date-of-birth' &&

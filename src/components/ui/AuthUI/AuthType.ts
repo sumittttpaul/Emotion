@@ -29,3 +29,8 @@ export type AuthAnimationType = {
     type: string;
   };
 };
+
+export type AuthErrorType = {
+  show: boolean;
+  type: 'database-not-created' | 'get-user-failed' | undefined;
+};

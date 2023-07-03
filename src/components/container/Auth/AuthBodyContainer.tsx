@@ -16,13 +16,23 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
 import { AuthLoadingProps } from '../../loader/Auth/AuthLoading';
 import { ToastDarkProps } from '../../toast/ToastDark';
-import { AuthAnimationType, AuthType } from '../../ui/AuthUI/AuthType';
+import {
+  AuthAnimationType,
+  AuthErrorType,
+  AuthType,
+} from '../../ui/AuthUI/AuthType';
 import { FinishAuthUIProps } from '../../ui/AuthUI/Finish/FinishAuthUI';
 import { SkipDialogAuthUIProps } from '../../ui/AuthUI/Dialog/SkipDialogAuthUI';
 import { AuthSkeleton } from '../../loader/Auth/AuthSkeleton';
+import { AuthErrorProps } from '../../error/AuthError';
 
 const AuthLoading = dynamic<AuthLoadingProps>(
   () => import('../../loader/Auth/AuthLoading').then((x) => x.AuthLoading),
+  { ssr: false }
+);
+
+const AuthError = dynamic<AuthErrorProps>(
+  () => import('../../error/AuthError').then((x) => x.AuthError),
   { ssr: false }
 );
 
@@ -53,13 +63,23 @@ interface IProps {
   children: ReactNode;
   ClassName: string;
   InitialSlide: number;
+  Error: AuthErrorType;
+  setError: Dispatch<SetStateAction<AuthErrorType>>;
   Loading: boolean;
+  setLoading: Dispatch<SetStateAction<boolean>>;
   InformationCheckLoading: boolean;
   AuthScreen: AuthType;
+  setAuthScreen: Dispatch<SetStateAction<AuthType>>;
   Finish: boolean;
   SkipDialogOpen: boolean;
   SkipDialogClose: () => void;
   Animation: AuthAnimationType;
+  setToast: Dispatch<SetStateAction<boolean>>;
+  ShowToast: boolean;
+  ToastSetting: { Title: string; Description: string; Type: string };
+  setToastSetting: Dispatch<
+    SetStateAction<{ Title: string; Description: string; Type: string }>
+  >;
   Toast: {
     Open: boolean;
     onClose: Dispatch<SetStateAction<boolean>>;
@@ -92,7 +112,7 @@ const Illustrations = [
   },
   {
     Alt: 'login-forgot-password',
-    Image: '/vectors/login-register-otp-password.svg',
+    Image: '/vectors/login-forgot-password.svg',
   },
   {
     Alt: 'register-name',
@@ -153,9 +173,25 @@ const AuthBodyContainer: FC<IProps & ServerProps> = (props) => {
       <LazyMotion features={domAnimation} strict>
         <div className="md:bg-[#0f0f0f] flex md:p-[32px] items-start md:items-center justify-center h-full md:h-screen w-screen main-auth overflow-hidden">
           <div className="relative bg-[#202020] md:rounded-xl w-full md:max-w-[1040px] flex items-center justify-center overflow-hidden">
-            {props.InformationCheckLoading ? (
+            {props.Error.show && (
+              <AuthError
+                Type={props.Error.type}
+                ClassName={props.ClassName}
+                ToastTitle={props.Toast.MessageTitle}
+                ToastDescription={props.Toast.MessageDescription}
+                Toast={props.ShowToast}
+                ToastSetting={props.ToastSetting}
+                setLoading={props.setLoading}
+                setToast={props.setToast}
+                setToastSetting={props.setToastSetting}
+                setAuthScreen={props.setAuthScreen}
+                setError={props.setError}
+              />
+            )}
+            {props.InformationCheckLoading && (
               <AuthSkeleton ClassName={props.ClassName} />
-            ) : (
+            )}
+            {!props.Error.show && !props.InformationCheckLoading && (
               <Swiper
                 onSwiper={(e) => setSwiperInstance(e)}
                 slidesPerView={1}
@@ -216,7 +252,7 @@ const AuthBodyContainer: FC<IProps & ServerProps> = (props) => {
           SlideDirection="down"
           Vertical="top"
           Horizontal="center"
-          HideDuration={10}
+          HideDuration={6}
         />
       </LazyMotion>
     </Fragment>

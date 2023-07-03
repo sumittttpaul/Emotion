@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { UserType } from '../../../firebase/useAuth';
 import { IUserProfile } from '../../../mongodb/schema/Schema.UserProfile';
-import { AuthType } from './AuthType';
+import { AuthErrorType, AuthType } from './AuthType';
 
 interface IProps {
   AfterScreen:
@@ -22,6 +22,7 @@ interface IProps {
   setInitialSlide: Dispatch<SetStateAction<number>>;
   setFinish: Dispatch<SetStateAction<boolean>>;
   setLoading: Dispatch<SetStateAction<boolean>>;
+  setError: Dispatch<SetStateAction<AuthErrorType>>;
   setInformationCheckLoading: Dispatch<SetStateAction<boolean>>;
   ShowToast: (
     title: string,
@@ -47,8 +48,9 @@ export const IsInformationHandler = ({
   setInitialSlide,
   setFinish,
   setLoading,
-  setInformationCheckLoading,
+  setError,
   ShowToast,
+  setInformationCheckLoading,
 }: IProps) => {
   if (
     !FirebaseLoading &&
@@ -232,6 +234,7 @@ export const IsInformationHandler = ({
         setInformationCheckLoading(false);
       }
     } catch (error: any) {
+      setError({ show: true, type: 'get-user-failed' });
       ShowToast(
         'Something went wrong',
         `${error.message} in the database`,

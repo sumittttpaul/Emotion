@@ -9,7 +9,7 @@ import {
   SignInWithMicrosoft,
 } from '../../../../algorithms/AuthAlgorithms';
 import { useLoaderState } from '../../../../provider/LoadingState';
-import { AuthAnimationType, AuthType } from '../AuthType';
+import { AuthAnimationType, AuthErrorType, AuthType } from '../AuthType';
 import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
 import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
 import { useQueryClient, useMutation } from 'react-query';
@@ -31,6 +31,7 @@ export interface LoginOtherAccountAuthUIProps {
     SetStateAction<{ Title: string; Description: string; Type: string }>
   >;
   setAuthScreen: Dispatch<SetStateAction<AuthType>>;
+  setError: Dispatch<SetStateAction<AuthErrorType>>;
   Animation: AuthAnimationType;
   IsInformation: (Screen: AuthType) => void;
 }
@@ -75,6 +76,7 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
     },
     onError: (error: any) => {
       props.setLoading(false);
+      props.setError({ show: true, type: 'database-not-created' });
       ShowToast('Something went wrong', `${error.message}`, 'Error', true);
     },
   });

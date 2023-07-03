@@ -25,9 +25,22 @@ export interface ResendOTPProps {
 export interface VerifyOTPProps {
   OTP: number;
   EmptyOTPBox: () => void;
-  CreateDateBase: (value: string, ) => void;
+  CreateDateBase: (value: string) => void;
   Loading: Dispatch<SetStateAction<boolean>>;
   LoadingScreen: (value: boolean) => void;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
+}
+
+export interface ConfirmVerifyEmailAddressProps {
+  oobCode: string;
+  Loading: Dispatch<SetStateAction<boolean>>;
+  Screen: Dispatch<SetStateAction<'Success' | 'Error' | null>>;
+  UpdateDataBase: () => void;
   ShowToast: (
     title: string,
     description: string,
@@ -39,6 +52,21 @@ export interface VerifyOTPProps {
 export interface PasswordResentProps {
   EmailAddress: string;
   Loading: Dispatch<SetStateAction<boolean>>;
+  Next: () => void;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
+}
+
+export interface ConfirmPasswordResetProps {
+  oobCode: string;
+  Password: string;
+  EmptyPassword: () => void;
+  Loading: Dispatch<SetStateAction<boolean>>;
+  Next: () => void;
   ShowToast: (
     title: string,
     description: string,
@@ -196,4 +224,15 @@ export interface DeleteAvatarProps {
 
 export interface SignOutProps {
   Next: () => void;
+}
+
+export interface DeleteAccountProps {
+  Loading: Dispatch<SetStateAction<boolean>>;
+  DeleteDataBase: (value: string) => void;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: string,
+    show: boolean
+  ) => void;
 }

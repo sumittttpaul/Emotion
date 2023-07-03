@@ -6,7 +6,7 @@ import React, {
   SetStateAction,
   useEffect,
 } from 'react';
-import Router from 'next/router';
+import router from 'next/router';
 
 export interface LoaderStateInterface {
   show: boolean;
@@ -24,7 +24,6 @@ const LoaderState = ({
   children: React.ReactNode;
   value?: Partial<LoaderStateInterface>;
 }) => {
-  const router = Router;
   const [Loader, setLoader] = useState(value);
   useEffect(() => {
     const ShowLoading = () => {
@@ -43,7 +42,7 @@ const LoaderState = ({
         router.events.off('routeChangeError', HideLoading);
       };
     }
-  }, [setLoader, Loader, router]);
+  }, [setLoader, Loader]);
   return (
     <LoaderStateContext.Provider value={{ Loader, setLoader }}>
       {children}

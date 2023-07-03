@@ -13,6 +13,14 @@ import IconPasswordTextFieldDark from '../../../textfield/IconPasswordTextFieldD
 import { LinkWithEmailAndPassword } from '../../../../algorithms/AuthAlgorithms';
 import { AuthAnimationType, AuthType } from '../AuthType';
 import { m } from 'framer-motion';
+import { InformationCircleIcon } from '@heroicons/react/outline';
+import { TooltipProps } from '@mui/material';
+import dynamic from 'next/dynamic';
+
+const TooltipDark = dynamic<TooltipProps>(
+  () => import('../../../tooltip/TooltipDark').then((x) => x.TooltipDark),
+  { ssr: false }
+);
 
 export interface RegisterPasswordAuthUIProps {
   ClassName?: string;
@@ -155,12 +163,26 @@ export const RegisterPasswordAuthUI: FC<RegisterPasswordAuthUIProps> = (
           readonly={props.Loading}
           valid={!PasswordSubmitDisabled}
         />
-        <h6 className="font-normal tracking-wide text-left w-full text-white/75 text-sm">
-          Your password should contain atleast 8 or more characters with a mix
-          of letters, numbers & symbols.
-        </h6>
-        <div className="flex justify-start">
-          <YellowBulbHint Label="Requires recent login / authentication" />
+        <div className="opacity-75 flex space-x-2 w-full">
+          <TooltipDark
+            arrow
+            placement="top"
+            title="Use a variety of characters, including uppercase and lowercase letters, numbers, and symbols. Make your password at least 8 characters long. Avoid using common words or phrases. Don't use personal information that can be easily guessed, such as your name, birthday, or address. Don't use the same password for multiple accounts."
+          >
+            <InformationCircleIcon className="h-5 text-white" />
+          </TooltipDark>
+          <h6 className="font-normal text-left w-full text-white text-sm">
+            Your password should contain at least 8 or more characters with a
+            mix of letters of uppercase and lowercase, numbers & symbols.
+          </h6>
+        </div>
+        <div className="flex justify-start w-full">
+          <YellowBulbHint
+            Tooltip
+            TooltipPlacement="top"
+            ToottipTitle="Some security-sensitive actions, such as creating password and link email-password authentication to your account, require that you have recently logged in. If you have not logged in recently, you will be prompted to do so before you can continue."
+            Label="Requires recent login / authentication"
+          />
         </div>
         <div className="w-full flex justify-start">
           <SignInBackButton Label="Back" onClick={BackToEmailAddressScreen} />
