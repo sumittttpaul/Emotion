@@ -20,9 +20,7 @@ export interface UserMgmtErrorAuthUIProps {}
 export const UserMgmtErrorAuthUI: FC<UserMgmtErrorAuthUIProps> = (props) => {
   // Loading
   const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => {
-    setLoader({ show: value });
-  };
+  const LoadingScreen = (value: boolean) => setLoader({ show: value });
 
   const handleBackToHome = () => {
     LoadingScreen(true);
@@ -39,7 +37,7 @@ export const UserMgmtErrorAuthUI: FC<UserMgmtErrorAuthUIProps> = (props) => {
       <Image
         height={100}
         width={100}
-        className="opacity-30 pb-7"
+        className="opacity-30 pb-7 text-white text-xs"
         src="/vectors/emogi-face-error.svg"
         alt="setup-error"
       />

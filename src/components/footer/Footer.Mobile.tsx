@@ -16,9 +16,7 @@ interface FooterProps {}
  **/
 export const FooterMobile: FC<FooterProps> = (props) => {
   const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => {
-    setLoader({ show: value });
-  };
+  const LoadingScreen = (value: boolean) => setLoader({ show: value });
   return (
     <div className="w-full self-end pb-3 px-3 sm:pb-5 sm:px-5">
       <div className="w-full relative pb-5 sm:pb-8 sm:px-8 px-3 box-border rounded-3xl bg-gradient-to-t from-[#151515]">

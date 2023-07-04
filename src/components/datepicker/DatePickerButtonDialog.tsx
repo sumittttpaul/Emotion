@@ -34,7 +34,11 @@ export const DatePickerButtonDialog: FC<DatePickerButtonDialogProps> = (
   };
 
   return (
-    <DatePickerContainerDialog show={props.DOBShow} onClose={props.setDOBShow}>
+    <DatePickerContainerDialog
+      show={props.DOBShow}
+      onClose={props.setDOBShow}
+      disableClickAwayClose
+    >
       <div className="flex flex-col w-[330px] h-[525px]">
         <DatePickerDialogHeader setHeaderDates={setHeaderDates()} />
         {props.DOBScreen === 'year' && (

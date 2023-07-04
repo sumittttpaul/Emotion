@@ -1,8 +1,8 @@
 import { XIcon } from '@heroicons/react/solid';
 import { Snackbar } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import React, { FC, SyntheticEvent } from 'react';
-import { m } from 'framer-motion';
+import React, { FC, SyntheticEvent, useEffect, useRef } from 'react';
+import { m, useAnimationControls } from 'framer-motion';
 import Image from 'next/image';
 
 export interface ToastDarkContentProps {
@@ -28,6 +28,10 @@ export interface ToastDarkContentProps {
  **/
 
 export const ToastDarkContent: FC<ToastDarkContentProps> = (props) => {
+  const animate = useAnimationControls();
+  const progressRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const handleClose = (event: SyntheticEvent | Event, reason: string) => {
     if (reason === 'clickaway') {
       return;
@@ -39,10 +43,46 @@ export const ToastDarkContent: FC<ToastDarkContentProps> = (props) => {
     }
   };
 
+  const handlePointerEnter = () => {
+    animate.stop();
+  };
+
+  const handlePointerLeave = () => {
+    animate.start({
+      width: '0%',
+      transition: { duration: ResumeTime() },
+    });
+  };
+
+  const handleAnimationComplete = () => {
+    const progress = progressRef.current;
+    if (progress) {
+      const width = progress.offsetWidth;
+      if (width < 1 || width == 0) props.onClose();
+    }
+  };
+
+  const ResumeTime = () => {
+    const progress = progressRef.current;
+    const container = containerRef.current;
+    if (progress && container) {
+      const currentWidth = progress.offsetWidth;
+      const totalWidth = container.offsetWidth;
+      const getWidth = currentWidth / totalWidth;
+      const calculatedWidth = getWidth * 100;
+      const percentage = parseInt(calculatedWidth.toString().split('.')[0]);
+      const decible = percentage / 100;
+      return decible * props.HideDuration;
+    }
+  };
+
+  useEffect(() => {
+    animate.start({ width: '0%' });
+  }, [props.Open]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <Snackbar
       open={props.Open}
-      autoHideDuration={props.HideDuration * 1000 - 500}
       onClose={handleClose}
       TransitionComponent={props.Transition}
       disableWindowBlurListener
@@ -50,6 +90,8 @@ export const ToastDarkContent: FC<ToastDarkContentProps> = (props) => {
         vertical: props.Vertical,
         horizontal: props.Horizontal,
       }}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
     >
       <div
         className={`${props.Color} h-full text-white md:max-w-[500px] flex flex-col space-y-1 border border-solid border-white/20 rounded-xl overflow-hidden Toast-DropShadow`}
@@ -76,10 +118,12 @@ export const ToastDarkContent: FC<ToastDarkContentProps> = (props) => {
             </m.button>
           </div>
         </div>
-        <div className="w-full flex">
+        <div ref={containerRef} className="w-full flex">
           <m.div
+            ref={progressRef}
+            onAnimationComplete={handleAnimationComplete}
             initial={{ width: '100%' }}
-            animate={{ width: '0%' }}
+            animate={animate}
             transition={{ duration: props.HideDuration }}
             className="w-full h-[2px] bg-white/75"
           />

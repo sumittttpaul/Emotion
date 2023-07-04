@@ -32,6 +32,7 @@ export const FinishAuthUI: FC<FinishAuthUIProps> = (props) => {
           width={600} //700
           src="/vectors/register-finish-1.svg"
           alt="register-finish"
+          className="text-white text-xs"
         />
       </div>
       <div className="space-y-4 w-full flex flex-col items-center justify-center">
@@ -45,10 +46,10 @@ export const FinishAuthUI: FC<FinishAuthUIProps> = (props) => {
           <AuthHeaderLabel>You are all set</AuthHeaderLabel>
         </div>
         <div className="w-full flex flex-col max-w-[550px] space-y-3">
-          <h6 className="ml-3 font-normal line-clamp-2 text-center w-full text-white/75 text-[15px]">
+          <h6 className="ml-0 md:ml-3 font-normal line-clamp-2 text-center w-full text-white/75 text-[15px]">
             &quot;The only way to do great work is to love what you do.&quot;
           </h6>
-          <h6 className="ml-3 font-normal line-clamp-2 text-right w-full text-white/75 text-[15px]">
+          <h6 className="ml-0 md:ml-3 font-normal line-clamp-2 text-right w-full text-white/75 text-[15px]">
             - Steve Jobs
           </h6>
         </div>

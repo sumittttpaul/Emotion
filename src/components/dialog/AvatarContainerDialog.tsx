@@ -4,8 +4,9 @@ import { Dialog, Transition } from '@headlessui/react';
 interface IProps {
   children: ReactNode;
   className?: string;
-  show?: boolean;
-  close: () => void;
+  show: boolean;
+  onClose: () => void;
+  disableClickAwayClose?: true;
 }
 
 /**
@@ -16,7 +17,11 @@ interface IProps {
 const AvatarContainerDialog: FC<IProps> = (props) => {
   return (
     <Transition appear show={props.show} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={props.close}>
+      <Dialog
+        as="div"
+        className="relative z-20"
+        onClose={props.disableClickAwayClose ? () => {} : props.onClose}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

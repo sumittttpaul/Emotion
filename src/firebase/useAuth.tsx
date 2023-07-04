@@ -23,13 +23,13 @@ export const useAuth = () => {
     });
   }, []);
 
-  useEffect(() => {
-    const handle = setInterval(async () => {
-      const user = FirebaseAuth.currentUser;
-      if (user) await user.getIdToken(true);
-    }, 10 * 60 * 1000);
-    return () => clearInterval(handle);
-  }, []);
+  // useEffect(() => {
+  //   const handle = setInterval(async () => {
+  //     const user = FirebaseAuth.currentUser;
+  //     if (user) await user.getIdToken(true);
+  //   }, 10 * 60 * 1000);
+  //   return () => clearInterval(handle);
+  // }, []);
 
   return { FirebaseUser: user, FirebaseLoading: loading, FirebaseError: error };
 };

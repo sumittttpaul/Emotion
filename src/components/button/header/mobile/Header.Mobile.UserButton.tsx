@@ -25,9 +25,7 @@ export const HeaderMobileUserButton: FC<IProps> = (props) => {
   const { FirebaseUser, FirebaseLoading } = useAuth();
 
   const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => {
-    setLoader({ show: value });
-  };
+  const LoadingScreen = (value: boolean) => setLoader({ show: value });
 
   if (FirebaseLoading)
     return (
@@ -120,9 +118,7 @@ const UserButton: FC<UserButtonProps> = (props) => {
   const open = Boolean(anchorEl);
   const photoURL = props.user?.photoURL;
   const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => {
-    setLoader({ show: value });
-  };
+  const LoadingScreen = (value: boolean) => setLoader({ show: value });
 
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);

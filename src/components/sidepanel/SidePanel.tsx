@@ -20,9 +20,7 @@ interface SidePanelProps {
 
 export const SidePanel: FC<SidePanelProps> = (props) => {
   const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => {
-    setLoader({ show: value });
-  };
+  const LoadingScreen = (value: boolean) => setLoader({ show: value });
 
   return (
     <div className="flex flex-col py-1.5 w-[250px] fixed left-0 h-screen text-white bg-[#0f0f0f]">

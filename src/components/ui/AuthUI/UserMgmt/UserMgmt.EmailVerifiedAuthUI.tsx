@@ -76,9 +76,7 @@ export const UserMgmtEmailVerifiedAuthUI: FC<
 
   // Loading
   const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => {
-    setLoader({ show: value });
-  };
+  const LoadingScreen = (value: boolean) => setLoader({ show: value });
 
   // Toast
   const ShowToast = (
@@ -163,7 +161,7 @@ export const UserMgmtEmailVerifiedAuthUI: FC<
       if (props.isEmailVerified === true) setScreen('Success');
       if (props.isEmailVerified === false) setScreen('Error');
     }
-  }, [props.oobCode, props.isEmailVerified]);
+  }, [props.oobCode, props.isEmailVerified]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Fragment>
@@ -179,6 +177,7 @@ export const UserMgmtEmailVerifiedAuthUI: FC<
                 width={370}
                 src="/vectors/register-verify-email.svg"
                 alt="verify-email-success"
+                className="text-white text-xs"
               />
             </div>
           </div>
@@ -215,6 +214,7 @@ export const UserMgmtEmailVerifiedAuthUI: FC<
                 width={370}
                 src="/vectors/register-verify-email-error.svg"
                 alt="verify-email-error"
+                className="text-white text-xs"
               />
             </div>
           </div>

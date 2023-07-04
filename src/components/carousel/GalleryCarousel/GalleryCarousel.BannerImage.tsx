@@ -50,7 +50,7 @@ export class GalleryCarouselBannerImage extends Component<IProps> {
         {topSrc && (
           <Image
             fill
-            className={className}
+            className={`${className} text-white text-xs`}
             style={{
               objectFit: 'cover',
               objectPosition: objectPosition,
@@ -63,7 +63,7 @@ export class GalleryCarouselBannerImage extends Component<IProps> {
         {bottomSrc && (
           <Image
             fill
-            className={className}
+            className={`${className} text-white text-xs`}
             alt={alt}
             style={{
               objectFit: 'cover',

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { DialogContainerDark } from '../../../dialog/DialogContainerDark';
 import { Button } from '@mui/material';
-import Router from 'next/router';
+import router from 'next/router';
 import { useLoaderState } from '../../../../provider/LoadingState';
 
 export interface SkipDialogAuthUIProps {
@@ -20,11 +20,15 @@ export const SkipDialogAuthUI: FC<SkipDialogAuthUIProps> = (props) => {
   const handleContinue = () => {
     props.onClose();
     setLoader({ show: true });
-    Router.push('/');
+    router.push('/');
   };
 
   return (
-    <DialogContainerDark show={props.Open} close={props.onClose}>
+    <DialogContainerDark
+      show={props.Open}
+      onClose={props.onClose}
+      disableClickAwayClose
+    >
       <div className="p-5 max-w-[400px] w-full h-full relative space-y-4 flex flex-col items-center justify-center overflow-hidden">
         <h5 className="text-white text-xl truncate tracking-wide font-bold flex">
           Are you sure ?

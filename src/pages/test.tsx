@@ -87,7 +87,7 @@ const TestPage: NextPage<IProps> = (props) => {
           SlideDirection="down"
           Vertical="top"
           Horizontal="center"
-          HideDuration={10}
+          HideDuration={6}
         />
       </LazyMotion>
     </div>

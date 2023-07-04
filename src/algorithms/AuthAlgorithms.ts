@@ -302,9 +302,10 @@ export const SignInWithEmailAndPassword = ({
 
 // other account
 
+const OtherAccountHandler = (_uid: string) => {};
+
 export const SignInWithFacebook = ({
   Loading,
-  LoadingScreen,
   ShowToast,
   CreateDateBase,
 }: SignInWithOtherAccountsProps) => {
@@ -320,18 +321,10 @@ export const SignInWithFacebook = ({
         if (user) {
           if (IsNewUser) CreateDateBase(user);
           else {
-            LoadingScreen(true);
-            Loading(false);
-            Router.push(Home_Link);
+            // LoadingScreen(true);
+            // Loading(false);
+            // Router.push(Home_Link);
           }
-        } else {
-          Loading(false);
-          ShowToast(
-            'Something went wrong',
-            'The user is currently not signed in.',
-            'Error',
-            true
-          );
         }
       }
     })
@@ -344,9 +337,9 @@ export const SignInWithFacebook = ({
 
 export const SignInWithGoogle = ({
   Loading,
-  LoadingScreen,
   ShowToast,
   CreateDateBase,
+  CheckDataBase,
 }: SignInWithOtherAccountsProps) => {
   const googleProvider = new _firebaseAuth.GoogleAuthProvider();
   Loading(true);
@@ -359,11 +352,10 @@ export const SignInWithGoogle = ({
         const user = FirebaseAuth.currentUser;
         if (user) {
           if (IsNewUser) CreateDateBase(user);
-          else {
-            LoadingScreen(true);
-            Loading(false);
-            Router.push(Home_Link);
-          }
+          else CheckDataBase(user);
+          // LoadingScreen(true);
+          // Loading(false);
+          // Router.push(Home_Link);
         }
       }
     })
@@ -376,7 +368,6 @@ export const SignInWithGoogle = ({
 
 export const SignInWithApple = ({
   Loading,
-  LoadingScreen,
   ShowToast,
   CreateDateBase,
 }: SignInWithOtherAccountsProps) => {
@@ -392,9 +383,9 @@ export const SignInWithApple = ({
         if (user) {
           if (IsNewUser) CreateDateBase(user);
           else {
-            LoadingScreen(true);
-            Loading(false);
-            Router.push(Home_Link);
+            // LoadingScreen(true);
+            // Loading(false);
+            // Router.push(Home_Link);
           }
         }
       }
@@ -408,7 +399,6 @@ export const SignInWithApple = ({
 
 export const SignInWithMicrosoft = ({
   Loading,
-  LoadingScreen,
   ShowToast,
   CreateDateBase,
 }: SignInWithOtherAccountsProps) => {
@@ -424,9 +414,9 @@ export const SignInWithMicrosoft = ({
         if (user) {
           if (IsNewUser) CreateDateBase(user);
           else {
-            LoadingScreen(true);
-            Loading(false);
-            Router.push(Home_Link);
+            // LoadingScreen(true);
+            // Loading(false);
+            // Router.push(Home_Link);
           }
         }
       }

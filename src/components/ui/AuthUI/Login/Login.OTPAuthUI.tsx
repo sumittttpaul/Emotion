@@ -25,7 +25,11 @@ import { AuthSubmitButton } from '../../../button/Auth/AuthSubmitButton';
 import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
 import { SignInNextButton } from '../../../button/Auth/SignInNextButton';
 import { IUserProfile } from '../../../../mongodb/schema/Schema.UserProfile';
-import { ResentOTP, VerifyOTP } from '../../../../algorithms/AuthAlgorithms';
+import {
+  DeleteAccount,
+  ResentOTP,
+  VerifyOTP,
+} from '../../../../algorithms/AuthAlgorithms';
 import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
 import OTPTextFieldDark from '../../../textfield/OTPTextFieldDark';
@@ -65,9 +69,15 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
       props.IsInformation('register-name');
     },
     onError: (error: any) => {
-      props.setLoading(false);
-      props.setError({ show: true, type: 'database-not-created' });
       ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      DeleteAccount({
+        Loading: props.setLoading,
+        ShowToast: ShowToast,
+        DeleteDataBase: (uid: string) => {
+          props.setLoading(false);
+          props.setError({ show: true, type: 'database-not-created' });
+        },
+      });
     },
   });
 
@@ -110,9 +120,7 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
 
   // Loading
   const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => {
-    setLoader({ show: value });
-  };
+  const LoadingScreen = (value: boolean) => setLoader({ show: value });
 
   // Validation
   const OTPSubmitDisabled: boolean =

@@ -1,4 +1,11 @@
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import React, {
+  Dispatch,
+  FC,
+  Fragment,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 import { Button } from '@mui/material';
 import { ChevronRightIcon } from '@heroicons/react/outline';
 import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
@@ -7,11 +14,15 @@ import {
   SignInWithFacebook,
   SignInWithApple,
   SignInWithMicrosoft,
+  DeleteAccount,
 } from '../../../../algorithms/AuthAlgorithms';
 import { useLoaderState } from '../../../../provider/LoadingState';
 import { AuthAnimationType, AuthErrorType, AuthType } from '../AuthType';
 import { UserProfileEncrytionKey } from '../../../../algorithms/security/CryptionKey';
-import { EncryptData } from '../../../../algorithms/security/CryptionSecurity';
+import {
+  DecryptData,
+  EncryptData,
+} from '../../../../algorithms/security/CryptionSecurity';
 import { useQueryClient, useMutation } from 'react-query';
 import {
   postUserProfile,
@@ -21,6 +32,14 @@ import {
 import { IUserProfile } from '../../../../mongodb/schema/Schema.UserProfile';
 import { UserType } from '../../../../firebase/useAuth';
 import { m } from 'framer-motion';
+import { CheckDialogAuthUIProps } from '../Dialog/CheckDialogAuthUI';
+import dynamic from 'next/dynamic';
+import router from 'next/router';
+
+const CheckDialogAuthUI = dynamic<CheckDialogAuthUIProps>(
+  () => import('../Dialog/CheckDialogAuthUI').then((x) => x.CheckDialogAuthUI),
+  { ssr: false }
+);
 
 export interface LoginOtherAccountAuthUIProps {
   Loading: boolean;
@@ -75,17 +94,31 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
       }
     },
     onError: (error: any) => {
-      props.setLoading(false);
-      props.setError({ show: true, type: 'database-not-created' });
       ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      DeleteAccount({
+        Loading: props.setLoading,
+        ShowToast: ShowToast,
+        DeleteDataBase: (uid: string) => {
+          props.setLoading(false);
+          props.setError({ show: true, type: 'database-not-created' });
+        },
+      });
     },
   });
 
+  // Type
+  type StringType = string | undefined;
+
+  // State
+  const [CheckDialog, setCheckDialog] = useState(false);
+  const [PrevFullName, setPrevFullName] = useState<StringType>(undefined);
+  const [PrevPhotoUrl, setPrevPhotoUrl] = useState<StringType>(undefined);
+  const [NewFullName, setNewFullName] = useState<StringType>(undefined);
+  const [NewPhotoUrl, setNewPhotoUrl] = useState<StringType>(undefined);
+
   // Loading
   const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => {
-    setLoader({ show: value });
-  };
+  const LoadingScreen = (value: boolean) => setLoader({ show: value });
 
   // Toast
   const ShowToast = (
@@ -172,14 +205,53 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
       );
     }
   };
+  const CheckDataBase = async (user: UserType) => {
+    if (user) {
+      await getUserProfile(user.uid).then((value: any) => {
+        // Prev Value
+        setPrevFullName(
+          value && value._data && value._data.fullName
+            ? DecryptData(
+                UserProfileEncrytionKey(user.uid, 'FullName'),
+                value._data.fullName
+              )
+            : undefined
+        );
+        setPrevPhotoUrl(
+          value && value._data && value._data.photoURL
+            ? DecryptData(
+                UserProfileEncrytionKey(user.uid, 'PhotoURL'),
+                value._data.photoURL
+              )
+            : undefined
+        );
+        // New Value
+        setNewFullName(
+          user.displayName && user.displayName.length > 0
+            ? user.displayName
+            : undefined
+        );
+        setNewPhotoUrl(
+          user.photoURL && user.photoURL.length > 0 ? user.photoURL : undefined
+        );
+      });
+    } else {
+      ShowToast(
+        'Something went wrong',
+        'It seems like user is not exist.',
+        'Error',
+        true
+      );
+    }
+  };
 
   // Submit
   const GoogleSignIn = () => {
     SignInWithGoogle({
       ShowToast: ShowToast,
       Loading: props.setLoading,
-      LoadingScreen: LoadingScreen,
       CreateDateBase: CreateDateBase,
+      CheckDataBase: CheckDataBase,
     });
   };
 
@@ -187,8 +259,8 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
     SignInWithFacebook({
       ShowToast: ShowToast,
       Loading: props.setLoading,
-      LoadingScreen: LoadingScreen,
       CreateDateBase: CreateDateBase,
+      CheckDataBase: CheckDataBase,
     });
   };
 
@@ -196,8 +268,8 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
     SignInWithApple({
       ShowToast: ShowToast,
       Loading: props.setLoading,
-      LoadingScreen: LoadingScreen,
       CreateDateBase: CreateDateBase,
+      CheckDataBase: CheckDataBase,
     });
   };
 
@@ -205,33 +277,61 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
     SignInWithMicrosoft({
       ShowToast: ShowToast,
       Loading: props.setLoading,
-      LoadingScreen: LoadingScreen,
       CreateDateBase: CreateDateBase,
+      CheckDataBase: CheckDataBase,
     });
   };
 
+  useEffect(() => {
+    if (PrevFullName && NewFullName && PrevFullName !== NewFullName) {
+      setCheckDialog(true);
+      props.setLoading(false);
+    } else if (PrevPhotoUrl && NewPhotoUrl && PrevPhotoUrl !== NewPhotoUrl) {
+      setCheckDialog(true);
+      props.setLoading(false);
+    } else if (
+      (PrevFullName && NewFullName && PrevFullName === NewFullName) ||
+      (PrevPhotoUrl && NewPhotoUrl && PrevPhotoUrl === NewPhotoUrl)
+    ) {
+      LoadingScreen(true);
+      props.setLoading(false);
+      router.push('/');
+    }
+  }, [PrevFullName, PrevPhotoUrl, NewFullName, NewPhotoUrl]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
-    <m.div
-      className="w-full relative"
-      initial={props.Animation.Initial}
-      animate={props.Animation.Final}
-      transition={props.Animation.Transition}
-    >
-      <div className="w-full flex flex-col space-y-4">
-        <div className="w-full flex flex-col space-y-2">
-          <CustomButton onClick={GoogleSignIn} Label="Google" />
-          <CustomButton onClick={FacebookSignIn} Label="Facebook" />
-          <CustomButton onClick={AppleSignIn} Label="Apple" />
-          <CustomButton onClick={MicrosoftSignIn} Label="Microsoft" />
+    <Fragment>
+      <m.div
+        className="w-full relative"
+        initial={props.Animation.Initial}
+        animate={props.Animation.Final}
+        transition={props.Animation.Transition}
+      >
+        <div className="w-full flex flex-col space-y-4">
+          <div className="w-full flex flex-col space-y-2">
+            <CustomButton onClick={GoogleSignIn} Label="Google" />
+            <CustomButton onClick={FacebookSignIn} Label="Facebook" />
+            <CustomButton onClick={AppleSignIn} Label="Apple" />
+            <CustomButton onClick={MicrosoftSignIn} Label="Microsoft" />
+          </div>
+          <div className="w-full flex justify-start">
+            <SignInBackButton
+              Label="Back"
+              onClick={BackToSignInWithPhoneNumber}
+            />
+          </div>
         </div>
-        <div className="w-full flex justify-start">
-          <SignInBackButton
-            Label="Back"
-            onClick={BackToSignInWithPhoneNumber}
-          />
-        </div>
-      </div>
-    </m.div>
+      </m.div>
+      <CheckDialogAuthUI
+        Open={CheckDialog}
+        PrevFullName={PrevFullName}
+        PrevPhotoUrl={PrevPhotoUrl}
+        NewFullName={NewFullName}
+        NewPhotoUrl={NewPhotoUrl}
+        setToast={props.setToast}
+        setToastSetting={props.setToastSetting}
+      />
+    </Fragment>
   );
 };
 

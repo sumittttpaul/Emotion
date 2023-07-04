@@ -5,6 +5,7 @@ interface IProps {
   children: ReactNode;
   show?: boolean;
   onClose: () => void;
+  disableClickAwayClose?: true;
 }
 
 /**
@@ -15,7 +16,11 @@ interface IProps {
 export const DatePickerContainerDialog: FC<IProps> = (props) => {
   return (
     <Transition appear show={props.show} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={props.onClose}>
+      <Dialog
+        as="div"
+        className="relative z-10"
+        onClose={props.disableClickAwayClose ? () => {} : props.onClose}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

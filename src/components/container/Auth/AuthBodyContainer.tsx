@@ -25,6 +25,7 @@ import { FinishAuthUIProps } from '../../ui/AuthUI/Finish/FinishAuthUI';
 import { SkipDialogAuthUIProps } from '../../ui/AuthUI/Dialog/SkipDialogAuthUI';
 import { AuthSkeleton } from '../../loader/Auth/AuthSkeleton';
 import { AuthErrorProps } from '../../error/AuthError';
+import { CheckDialogAuthUI } from '../../ui/AuthUI/Dialog/CheckDialogAuthUI';
 
 const AuthLoading = dynamic<AuthLoadingProps>(
   () => import('../../loader/Auth/AuthLoading').then((x) => x.AuthLoading),
@@ -179,13 +180,6 @@ const AuthBodyContainer: FC<IProps & ServerProps> = (props) => {
                 ClassName={props.ClassName}
                 ToastTitle={props.Toast.MessageTitle}
                 ToastDescription={props.Toast.MessageDescription}
-                Toast={props.ShowToast}
-                ToastSetting={props.ToastSetting}
-                setLoading={props.setLoading}
-                setToast={props.setToast}
-                setToastSetting={props.setToastSetting}
-                setAuthScreen={props.setAuthScreen}
-                setError={props.setError}
               />
             )}
             {props.InformationCheckLoading && (
@@ -218,6 +212,7 @@ const AuthBodyContainer: FC<IProps & ServerProps> = (props) => {
                                 width={370}
                                 src={value.Image}
                                 alt={value.Alt}
+                                className="text-white text-xs"
                               />
                             </m.div>
                           )}

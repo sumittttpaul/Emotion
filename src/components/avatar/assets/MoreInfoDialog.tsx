@@ -51,7 +51,13 @@ export const MoreInfoDialog: FC<IProps> = (props) => {
             props.MenuContent.length === idx + 1 ? 'mb-1' : ''
           } mx-1 mt-1 py-2 px-3 rounded-md hover:bg-[#ffffff20] space-x-3 cursor-default`}
         >
-          <Image height={19} width={19} src={value.icon} alt={value.label} />
+          <Image
+            height={19}
+            width={19}
+            src={value.icon}
+            alt={value.label}
+            className="text-white text-xs"
+          />
           <div className="text-white text-left text-sm font-medium">
             {value.label}
           </div>

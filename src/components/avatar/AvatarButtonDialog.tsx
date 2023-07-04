@@ -62,9 +62,10 @@ export const AvatarButtonDialog: FC<AvatarButtonDialogProps> = (props) => {
   return (
     <Fragment>
       <AvatarContainerDialog
-        close={props.setAvatarDialog}
+        onClose={props.setAvatarDialog}
         show={props.AvatarDialog}
         className={props.AvatarContainer}
+        disableClickAwayClose
       >
         {props.AvatarScreen === 'show-avatar' && (
           <ShowAvatar

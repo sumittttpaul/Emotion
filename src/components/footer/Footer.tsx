@@ -16,9 +16,7 @@ interface FooterProps {}
 
 export const Footer: FC<FooterProps> = (props) => {
   const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => {
-    setLoader({ show: value });
-  };
+  const LoadingScreen = (value: boolean) => setLoader({ show: value });
   return (
     <div className="w-full self-end pr-3">
       <div className="w-full relative pb-5 sm:px-8 px-3 box-border rounded-3xl bg-transparent">

@@ -106,7 +106,7 @@ export interface SignInWithEmailAndPasswordProps {
 }
 export interface SignInWithOtherAccountsProps {
   Loading: Dispatch<SetStateAction<boolean>>;
-  LoadingScreen: (value: boolean) => void;
+  CheckDataBase: (user: UserType) => void;
   CreateDateBase: (user: UserType) => void;
   ShowToast: (
     title: string,

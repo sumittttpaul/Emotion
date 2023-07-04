@@ -45,9 +45,7 @@ export const LoginPasswordAuthUI: FC<LoginPasswordAuthUIProps> = (props) => {
 
   // Loading
   const { Loader, setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => {
-    setLoader({ show: value });
-  };
+  const LoadingScreen = (value: boolean) => setLoader({ show: value });
 
   // Change
   const PasswordChange = (event: ChangeEvent<HTMLInputElement>) => {

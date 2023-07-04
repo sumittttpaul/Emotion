@@ -118,9 +118,7 @@ export const UserMgmtResetPasswordAuthUI: FC<
 
   // Loading
   const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => {
-    setLoader({ show: value });
-  };
+  const LoadingScreen = (value: boolean) => setLoader({ show: value });
 
   // Screen
   const MoveToHome = () => {
@@ -170,6 +168,7 @@ export const UserMgmtResetPasswordAuthUI: FC<
           width={370}
           src="/vectors/login-register-otp-password.svg"
           alt="reset-password"
+          className="text-white text-xs"
         />
       </div>
       <div className="md:p-9 space-y-5 relative w-full md:min-w-[400px] md-1000:min-w-[500px] flex flex-col items-center justify-center overflow-hidden">
