@@ -114,8 +114,8 @@ export const CheckDialogAuthUI: FC<CheckDialogAuthUIProps> = (props) => {
 
   const handleUpdate = () => {
     if (FirebaseUser) {
-      setLoading(true);
       if (props.PrevPhotoUrl) {
+        setLoading(true);
         const storage = _firebaseStorage.getStorage();
         const avatarRef = _firebaseStorage.ref(storage, props.PrevPhotoUrl);
         _firebaseStorage.deleteObject(avatarRef).then(() => {
