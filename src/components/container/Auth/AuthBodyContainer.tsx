@@ -25,7 +25,6 @@ import { FinishAuthUIProps } from '../../ui/AuthUI/Finish/FinishAuthUI';
 import { SkipDialogAuthUIProps } from '../../ui/AuthUI/Dialog/SkipDialogAuthUI';
 import { AuthSkeleton } from '../../loader/Auth/AuthSkeleton';
 import { AuthErrorProps } from '../../error/AuthError';
-import { CheckDialogAuthUI } from '../../ui/AuthUI/Dialog/CheckDialogAuthUI';
 
 const AuthLoading = dynamic<AuthLoadingProps>(
   () => import('../../loader/Auth/AuthLoading').then((x) => x.AuthLoading),
@@ -234,10 +233,9 @@ const AuthBodyContainer: FC<IProps & ServerProps> = (props) => {
             {props.Loading && <AuthLoading />}
           </div>
         </div>
-        <div
-          id="verify-sign-in-recaptcha"
-          className="h-full sm:h-screen absolute top-0 flex items-center justify-center"
-        />
+        <div className="h-full sm:h-screen w-screen absolute top-0 z-[1] flex items-center justify-center">
+          <div id="verify-sign-in-recaptcha" />
+        </div>
         <SkipDialogAuthUI
           Open={props.SkipDialogOpen}
           onClose={props.SkipDialogClose}
