@@ -62,10 +62,10 @@ export const UserMgmtEmailVerifiedAuthUI: FC<
         setLoading(false);
         setScreen('Success');
       },
-      onError: (error: any) => {
+      onError: (error: Error) => {
         setLoading(false);
         setScreen('Error');
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+        ShowToast(error.name, error.message, 'Error', true);
       },
     }
   );
@@ -95,8 +95,7 @@ export const UserMgmtEmailVerifiedAuthUI: FC<
   const handleShowToast = (
     title: string,
     description: string,
-    type: string,
-    show: boolean
+    type: string
   ) => {
     props.setToastSetting({
       Title: title,
@@ -129,11 +128,12 @@ export const UserMgmtEmailVerifiedAuthUI: FC<
           '_data.isVerified.emailAddress': true,
         };
         updateUserProfile.mutate(_data);
-      } catch (error: any) {
-        setLoading(false);
-        setScreen('Error');
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
-        console.error('User profile data not updated because ' + error.message);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          setLoading(false);
+          setScreen('Error');
+          ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+        }
       }
     } else {
       setLoading(false);

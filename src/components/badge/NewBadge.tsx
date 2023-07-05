@@ -1,14 +1,12 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
 
-interface IProps {}
-
 /**
  * @author
  * @function @NewBadge
  **/
 
-export const NewBadge: FC<IProps> = (props) => {
+export const NewBadge: FC = () => {
   return (
     <div className="flex py-1 px-2 rounded-md space-x-1 items-center bg-[#b48a0090]">
       <div className="w-[15px] h-[15px] min-w-[15px] min-h-[15px]">

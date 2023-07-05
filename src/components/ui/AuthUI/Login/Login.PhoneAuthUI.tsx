@@ -80,7 +80,7 @@ export const LoginPhoneAuthUI: FC<LoginPhoneAuthUIProps> = (props) => {
   };
 
   // Validation
-  var ValidatePhoneNumber = props.PhoneNumber.length == 10;
+  const ValidatePhoneNumber = props.PhoneNumber.length == 10;
   const PhoneSubmitDisabled: boolean =
     props.PhoneNumber.length < 10 || !ValidatePhoneNumber;
 

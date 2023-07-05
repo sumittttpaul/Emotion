@@ -60,7 +60,7 @@ export interface LoginOTPAuthUIProps {
 export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
   const queryClient = useQueryClient();
   const createUserProfile = useMutation(postUserProfile, {
-    onSuccess: async (data: any) => {
+    onSuccess: async (data) => {
       const stringifyData = JSON.stringify(data);
       const _data: IUserProfile = JSON.parse(stringifyData);
       await queryClient.prefetchQuery([cacheKey, _data._uid], () =>
@@ -68,12 +68,12 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
       );
       props.IsInformation('register-name');
     },
-    onError: (error: any) => {
-      ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+    onError: (error: Error) => {
+      ShowToast(error.name, error.message, 'Error', true);
       DeleteAccount({
         Loading: props.setLoading,
         ShowToast: ShowToast,
-        DeleteDataBase: (uid: string) => {
+        DeleteDataBase: () => {
           props.setLoading(false);
           props.setError({ show: true, type: 'database-not-created' });
         },
@@ -226,9 +226,11 @@ export const LoginOTPAuthUI: FC<LoginOTPAuthUIProps> = (props) => {
         },
       };
       createUserProfile.mutate(_data);
-    } catch (error: any) {
-      props.setLoading(false);
-      ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        props.setLoading(false);
+        ShowToast(error.name, error.message, 'Error', true);
+      }
     }
   };
 

@@ -23,7 +23,9 @@ export const DiscoverCarouselPieTimer: FC<IProps> = (props) => {
     <>
       {!Hide && props.Hide === 'running' && (
         <div
-          className={`${props.Hide === 'running' ? 'block' : 'hidden'} relative`}
+          className={`${
+            props.Hide === 'running' ? 'block' : 'hidden'
+          } relative`}
         >
           <div className={styles.discover_carousel_timer_wrapper}>
             <div

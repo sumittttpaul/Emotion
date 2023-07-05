@@ -19,14 +19,12 @@ import { DiscoverBannerDeal } from '../banner/DiscoverBannerDeal';
 import { LightningBadge } from '../badge/LightningBadge';
 import { NewBadge } from '../badge/NewBadge';
 
-export interface DiscoverUIProps {}
-
 /**
  * @author
  * @function @DiscoverUI
  **/
 
-export const DiscoverUI: FC<DiscoverUIProps> = (props) => {
+export const DiscoverUI: FC = () => {
   return (
     <div className="relative z-10 w-full rounded-xl">
       <DiscoverCarousel ContentArray={DiscoverCarouselContent} />

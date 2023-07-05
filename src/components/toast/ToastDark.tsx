@@ -50,7 +50,7 @@ export const ToastDark: FC<ToastDarkProps> = (props) => {
     Open: boolean;
     Transition: React.ComponentType<
       TransitionProps & {
-        children: React.ReactElement<any, any>;
+        children: React.ReactElement<any, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
       }
     >;
   }>({

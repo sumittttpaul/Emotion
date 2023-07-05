@@ -17,7 +17,7 @@ export interface ToastDarkContentProps {
   onClose: () => void;
   Transition: React.ComponentType<
     TransitionProps & {
-      children: React.ReactElement<any, any>;
+      children: React.ReactElement<any, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
     }
   >;
 }

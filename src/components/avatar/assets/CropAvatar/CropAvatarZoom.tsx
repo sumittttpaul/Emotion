@@ -63,6 +63,7 @@ const CustomButton: FC<CustomButtonProps> = (props) => {
     <div className="h-[44px] w-full max-w-[110px] flex relative p-1 items-center justify-center">
       <TooltipDark title={props.Tooltip} placement="bottom" arrow>
         <m.button
+          // eslint-disable-next-line @typescript-eslint/no-empty-function
           onClick={props.Disabled ? () => {} : props.onClick}
           whileTap={{ scale: props.Disabled ? 1 : 0.9 }}
           className={`${

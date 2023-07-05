@@ -1,14 +1,12 @@
 import Image from 'next/image';
 import React, { FC } from 'react';
 
-export interface ProductDetailProps {}
-
 /**
  * @author
  * @function @ProductDetailUI
  **/
 
-export const ProductDetailUI: FC<ProductDetailProps> = (props) => {
+export const ProductDetailUI: FC = () => {
   return (
     <div className="relative z-10">
       <div className="flex pr-3 items-center justify-between w-full h-full relative overflow-x-hidden overflow-y-visible">

@@ -7,14 +7,12 @@ import { FooterBottom } from './assets/FooterBottom';
 import { setHomePage } from '../../redux/reducers/HomePageReducer';
 import ReduxStore from '../../redux/ReduxStore';
 
-interface FooterProps {}
-
 /**
  * @author
  * @function @Footer
  **/
 
-export const Footer: FC<FooterProps> = (props) => {
+export const Footer: FC = () => {
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => setLoader({ show: value });
   return (

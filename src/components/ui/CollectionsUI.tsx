@@ -1,13 +1,11 @@
 import React, { FC } from 'react';
 
-export interface CollectionsUIProps {}
-
 /**
  * @author
  * @function @CollectionsUI
  **/
 
-export const CollectionsUI: FC<CollectionsUIProps> = (props) => {
+export const CollectionsUI: FC = () => {
   return (
     <div className="relative z-10 pr-3">
       {/* Content */}

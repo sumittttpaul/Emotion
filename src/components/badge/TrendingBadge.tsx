@@ -1,14 +1,12 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
 
-interface IProps {}
-
 /**
  * @author
  * @function @TrendingBadge
  **/
 
-export const TrendingBadge: FC<IProps> = (props) => {
+export const TrendingBadge: FC = () => {
   return (
     <div className="flex py-1 px-2 rounded-md space-x-1 items-center bg-[#0063b490]">
       <div className="w-[15px] h-[15px] min-w-[15px] min-h-[15px]">

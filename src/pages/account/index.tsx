@@ -8,10 +8,6 @@ const Account: NextPage = () => {
   return null;
 };
 
-export const getServerSideProps = NoAccessToNullPages(() => {
-  return {
-    props: {},
-  };
-});
+export const getServerSideProps = NoAccessToNullPages();
 
 export default Account;

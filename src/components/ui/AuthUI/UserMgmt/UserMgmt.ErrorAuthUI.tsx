@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-interface */
 import React, { FC } from 'react';
 import Image from 'next/image';
 import { SignInBackButton } from '../../../button/Auth/SignInBackButton';
@@ -17,7 +18,7 @@ export interface UserMgmtErrorAuthUIProps {}
  * @function @UserMgmtErrorAuthUI
  **/
 
-export const UserMgmtErrorAuthUI: FC<UserMgmtErrorAuthUIProps> = (props) => {
+export const UserMgmtErrorAuthUI: FC<UserMgmtErrorAuthUIProps> = () => {
   // Loading
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => setLoader({ show: value });

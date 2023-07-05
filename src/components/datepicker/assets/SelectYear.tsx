@@ -16,7 +16,7 @@ export const SelectYear: FC<IProps> = (props) => {
     moment().endOf('year').format('YYYY')
   );
 
-  const yearRange = (start: any, end: any) => {
+  const yearRange = (start: number, end: number) => {
     const allyears = Array(end - start + 1)
       .fill(0)
       .map((_, _idx) => start + _idx);
@@ -25,7 +25,7 @@ export const SelectYear: FC<IProps> = (props) => {
 
   const Years = yearRange(1900, new Date().getFullYear());
 
-  const dayStyles = (Year: any) => {
+  const dayStyles = (Year: unknown) => {
     return selected == Year
       ? 'bg-[#ffffff1a] hover:bg-[#ffffff1a]'
       : 'bg-transparent hover:bg-white/5';
@@ -39,11 +39,11 @@ export const SelectYear: FC<IProps> = (props) => {
       exit={{ opacity: 0, scale: 0 }}
       transition={{ duration: 0.25 }}
     >
-      {Years.map((year: any) => (
+      {Years.map((year) => (
         <button
           onClick={() => {
-            setSelected(year);
-            props.setYear(`${year}`);
+            setSelected(year.toString());
+            props.setYear(year.toString());
           }}
           key={year}
           className={`${'text-white w-full flex justify-center text-[13px] m-1 p-4 rounded-md cursor-default transition-colors ease-in-out duration-200'} ${dayStyles(

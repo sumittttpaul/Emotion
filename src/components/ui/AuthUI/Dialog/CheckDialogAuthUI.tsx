@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import router from 'next/router';
 import React, { Dispatch, FC, SetStateAction, useState } from 'react';
 import { useLoaderState } from '../../../../provider/LoadingState';
@@ -55,9 +56,9 @@ export const CheckDialogAuthUI: FC<CheckDialogAuthUIProps> = (props) => {
         setLoading(false);
         router.push(Home_Link);
       },
-      onError: (error: any) => {
+      onError: (error: Error) => {
         setLoading(false);
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+        ShowToast(error.name, error.message, 'Error', true);
       },
     }
   );
@@ -97,10 +98,16 @@ export const CheckDialogAuthUI: FC<CheckDialogAuthUIProps> = (props) => {
           setLoading(false);
           router.push(Home_Link);
         })
-        .catch((error: any) => {
-          setLoading(false);
-          const message = AuthErrorMessage(error.code);
-          ShowToast('Something went wrong', `${message}`, 'Error', true);
+        .catch((error: unknown) => {
+          if (error instanceof Error) {
+            if ('code' in error) {
+              setLoading(false);
+              const message = AuthErrorMessage(
+                (error as { code: string }).code
+              );
+              ShowToast('Something went wrong', `${message}`, 'Error', true);
+            }
+          }
         });
     } else {
       ShowToast(
@@ -153,14 +160,11 @@ export const CheckDialogAuthUI: FC<CheckDialogAuthUIProps> = (props) => {
                 : UserPrevPhotoUrl,
             };
             updateUserProfile.mutate(_data);
-          } catch (error: any) {
-            setLoading(false);
-            ShowToast(
-              'Something went wrong',
-              `${error.message}`,
-              'Error',
-              true
-            );
+          } catch (error: unknown) {
+            if (error instanceof Error) {
+              setLoading(false);
+              ShowToast(error.name, error.message, 'Error', true);
+            }
           }
         });
       } else {

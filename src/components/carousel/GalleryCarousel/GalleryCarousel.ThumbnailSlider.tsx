@@ -48,10 +48,10 @@ export const GalleryCarouselThumbnailSlider: FC<
   const setIntervalTime =
     props.Duration && props.AutoPlay ? props.Duration * 1000 : undefined;
   let CarouselInterval: ReturnType<typeof setInterval> | undefined;
-  let intervalTime = setIntervalTime;
+  const intervalTime = setIntervalTime;
 
   const NextCarousel = () => {
-    let CarouselIndex =
+    const CarouselIndex =
       props.CarouselState === props.ThumbnailArray.length - 1
         ? 0
         : props.CarouselState + 1;
@@ -108,7 +108,7 @@ export const GalleryCarouselThumbnailSlider: FC<
 
   const LeftClick = () => {
     const xPos = x.get();
-    var width = props.ConstraintRef.current;
+    const width = props.ConstraintRef.current;
     if (width) {
       const newXPosition = xPos + width.offsetWidth;
       animation.start({
@@ -119,8 +119,8 @@ export const GalleryCarouselThumbnailSlider: FC<
   };
   const RightClick = () => {
     const xPos = x.get();
-    var width = props.ConstraintRef.current;
-    var scrollWidth = dragRef.current;
+    const width = props.ConstraintRef.current;
+    const scrollWidth = dragRef.current;
     if (width && scrollWidth) {
       const newXPosition = xPos - width.offsetWidth;
       const maxScroll = scrollWidth.scrollWidth - scrollWidth.offsetWidth;
@@ -165,8 +165,8 @@ export const GalleryCarouselThumbnailSlider: FC<
 
   const HideButton = () => {
     const xPos = x.get();
-    var width = props.ConstraintRef.current;
-    var scrollWidth = dragRef.current;
+    const width = props.ConstraintRef.current;
+    const scrollWidth = dragRef.current;
     // Hide Left Button
     if (xPos >= -5) {
       setLeftAnimate('closed');
@@ -190,8 +190,8 @@ export const GalleryCarouselThumbnailSlider: FC<
 
   const HideButtonInitialState = () => {
     const xPos = x.get();
-    var width = props.ConstraintRef.current;
-    var scrollWidth = dragRef.current;
+    const width = props.ConstraintRef.current;
+    const scrollWidth = dragRef.current;
     // Hide Arrow Left Button
     if (xPos >= -5) {
       setLeftHide(false);
@@ -242,10 +242,7 @@ export const GalleryCarouselThumbnailSlider: FC<
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    // const unsubscribeX = x.on("change", HideButton)
-    x.onChange((latest) => {
-      HideButton();
-    });
+    x.on('change', HideButton);
   });
 
   useEffect(() => {

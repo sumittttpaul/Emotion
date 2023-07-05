@@ -14,13 +14,11 @@ const HeaderNavMenu = dynamic<HeaderNavMenuProps>(
   { ssr: false }
 );
 
-interface HeaderProps {}
-
 /**
  * @author
  * @function @Header
  **/
-export const Header: FC<HeaderProps> = (props) => {
+export const Header: FC = () => {
   const { HomePage } = useReduxStore((state) => state);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

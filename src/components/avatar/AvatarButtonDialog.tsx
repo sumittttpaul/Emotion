@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React, { FC, Fragment, MouseEvent, useState } from 'react';
 import AvatarContainerDialog from '../dialog/AvatarContainerDialog';
 import ShowAvatar from './assets/ShowAvatar';

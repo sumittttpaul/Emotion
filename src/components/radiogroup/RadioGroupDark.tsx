@@ -5,7 +5,7 @@ interface IProps {
   theme: string;
   content: Array<string>;
   value?: string;
-  onChange: Dispatch<SetStateAction<any>>;
+  onChange: Dispatch<SetStateAction<unknown>>;
 }
 
 /**
@@ -13,9 +13,9 @@ interface IProps {
  * @function @RadioGroupDark
  **/
 
-const CheckIcon = (props: any) => {
+const CheckIcon = (props: { className: string }) => {
   return (
-    <svg viewBox="0 0 24 24" fill="none" {...props}>
+    <svg viewBox="0 0 24 24" fill="none" className={props.className}>
       <circle cx={12} cy={12} r={12} fill="#fff" opacity="0.25" />
       <path
         d="M7 13l3 3 7-7"
@@ -40,7 +40,7 @@ export const RadioGroupDark: FC<IProps> = (props) => {
           Radio Group Dark
         </RadioGroup.Label>
         <div className="space-x-1 w-full flex custom-webkit-focus">
-          {props.content.map((content,i) => (
+          {props.content.map((content, i) => (
             <RadioGroup.Option
               key={i}
               value={content}
@@ -54,7 +54,7 @@ export const RadioGroupDark: FC<IProps> = (props) => {
                   relative rounded-lg px-3 py-2.5 w-full cursor-pointer custom-webkit-focus flex outline-none transition-all ease-in-out duration-300`
               }
             >
-              {({ active, checked }) => (
+              {({ checked }) => (
                 <>
                   <div className="flex items-center custom-webkit-focus justify-between w-full">
                     <div className="flex items-center w-full">
@@ -96,7 +96,7 @@ export const RadioGroupDark: FC<IProps> = (props) => {
           Radio Group Dark
         </RadioGroup.Label>
         <div className="space-x-2 mx-auto w-full flex custom-webkit-focus">
-          {props.content.map((content,i) => (
+          {props.content.map((content, i) => (
             <RadioGroup.Option
               key={i}
               value={content}
@@ -110,7 +110,7 @@ export const RadioGroupDark: FC<IProps> = (props) => {
                   relative rounded-lg border border-solid border-white/10 px-3 py-2.5 w-full cursor-default custom-webkit-focus flex outline-none`
               }
             >
-              {({ active, checked }) => (
+              {({ checked }) => (
                 <>
                   <div className="flex items-center custom-webkit-focus justify-between w-full">
                     <div className="flex items-center w-full">

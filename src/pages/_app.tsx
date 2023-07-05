@@ -27,7 +27,7 @@ interface EmotionCacheProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
 };
 

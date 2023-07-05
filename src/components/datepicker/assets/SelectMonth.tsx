@@ -31,7 +31,7 @@ export const SelectMonth: FC<IProps> = (props) => {
     moment().endOf('month').format('MMM')
   );
 
-  const dayStyles = (month: any) => {
+  const dayStyles = (month: string) => {
     return selected == month
       ? 'bg-[#ffffff1a] hover:bg-[#ffffff1a]'
       : 'bg-transparent hover:bg-white/5';
@@ -45,7 +45,7 @@ export const SelectMonth: FC<IProps> = (props) => {
       exit={{ opacity: 0, scale: 0 }}
       transition={{ duration: 0.25 }}
     >
-      {Months.map((month: any) => (
+      {Months.map((month) => (
         <button
           onClick={() => {
             setSelected(month);

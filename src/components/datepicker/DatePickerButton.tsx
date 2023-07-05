@@ -3,7 +3,6 @@ import moment from 'moment';
 import dynamic from 'next/dynamic';
 import { DatePickerCustomButton } from './assets/DatePickerCustomButton';
 import { DatePickerButtonDialogProps } from './DatePickerButtonDialog';
-import { CalculateMonthNumber } from '../../algorithms/UIAlgorithms';
 
 const DatePickerButtonDialog = dynamic<DatePickerButtonDialogProps>(
   () =>
@@ -25,9 +24,9 @@ interface IProps {
  **/
 
 export const DatePickerButton: FC<IProps> = (props) => {
-  var MomentDay = moment().endOf('day').format('DD');
-  var MomentMonth = moment().endOf('month').format('MMM');
-  var MomentYear = moment().endOf('year').format('YYYY');
+  const MomentDay = moment().endOf('day').format('DD');
+  const MomentMonth = moment().endOf('month').format('MMM');
+  const MomentYear = moment().endOf('year').format('YYYY');
 
   const _dataDay = props.DOB.split('-')[0];
   const _dataMonth = props.DOB.split('-')[1];

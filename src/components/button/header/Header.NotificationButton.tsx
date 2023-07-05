@@ -14,9 +14,7 @@ const HeaderNotificationButtonMenu = dynamic<HeaderNotificationButtonMenuProps>(
   { ssr: false }
 );
 
-interface IProps {}
-
-const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+const StyledBadge = styled(Badge)<BadgeProps>(() => ({
   '& .MuiBadge-badge': {
     backgroundColor: '#0084FF',
     top: 3,
@@ -33,7 +31,7 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
  * @function @HeaderNotificationButton
  **/
 
-export const HeaderNotificationButton: FC<IProps> = (props) => {
+export const HeaderNotificationButton: FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 

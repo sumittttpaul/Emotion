@@ -14,7 +14,7 @@ export const TooltipDark = styled(({ className, ...props }: TooltipProps) => (
     enterDelay={500}
     disableInteractive
   />
-))(({ theme }) => ({
+))(() => ({
   [`& .${tooltipClasses.arrow}`]: {
     color: '#353535',
   },

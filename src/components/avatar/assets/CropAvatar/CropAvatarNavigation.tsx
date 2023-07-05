@@ -54,6 +54,7 @@ export const CropAvatarNavigation: FC<IProps> = (props) => {
           <Button
             aria-label="small-icon-button"
             disableFocusRipple
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
             onClick={!props.Changed ? () => {} : props.ResetClick}
             className={`${
               !props.Changed

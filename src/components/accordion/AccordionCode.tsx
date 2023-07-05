@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import {
   AccordionDetails as MuiAccordionDetails,
   AccordionSummary as MuiAccordionSummary,
@@ -8,11 +8,9 @@ import {
   styled,
 } from '@mui/material';
 
-interface IProps {}
-
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
-))(({ theme }) => ({
+))(() => ({
   '&:not(:last-child)': {},
   '&:before': {
     display: 'none',
@@ -21,24 +19,19 @@ const Accordion = styled((props: AccordionProps) => (
 
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
   <MuiAccordionSummary {...props} />
-))(({ theme }) => ({
+))(() => ({
   paddingLeft: 10,
 }));
 
-const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({}));
+const AccordionDetails = styled(MuiAccordionDetails)(() => ({}));
 
 /**
  * @author
  * @function @AccordionCode
  **/
 
-export const AccordionCode: FC<IProps> = (props) => {
-  const [expanded, setExpanded] = useState<string | false>('');
-
-  const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
-      setExpanded(newExpanded ? panel : false);
-    };
+export const AccordionCode: FC = () => {
+  // const [expanded, setExpanded] = useState<string | false>('');
 
   // If you are using mapping
   return (

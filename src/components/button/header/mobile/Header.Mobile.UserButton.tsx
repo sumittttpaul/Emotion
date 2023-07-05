@@ -15,13 +15,11 @@ const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
   { ssr: false }
 );
 
-interface IProps {}
-
 /**
  * @author
  * @function @HeaderMobileUserButton
  **/
-export const HeaderMobileUserButton: FC<IProps> = (props) => {
+export const HeaderMobileUserButton: FC = () => {
   const { FirebaseUser, FirebaseLoading } = useAuth();
 
   const { setLoader } = useLoaderState();
@@ -58,7 +56,6 @@ export const HeaderMobileUserButton: FC<IProps> = (props) => {
 interface LoginButtonProps {
   onClick: () => void;
 }
-interface LoadingButtonProps {}
 
 interface ContainerButtonProps {
   children: ReactNode;
@@ -92,7 +89,7 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
   );
 };
 
-const LoadingButton: FC<LoadingButtonProps> = (props) => {
+const LoadingButton: FC = () => {
   return (
     <Fragment>
       <IconButton

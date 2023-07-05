@@ -2,14 +2,12 @@ import { Link } from '@mui/material';
 import React, { FC } from 'react';
 import { Terms_Conditions_Link } from '../../routerLinks/RouterLinks';
 
-interface IProps {}
-
 /**
  * @author
  * @function @TermsAndCondition
  **/
 
-export const TermsAndCondition: FC<IProps> = (props) => {
+export const TermsAndCondition: FC = () => {
   return (
     <div className="flex items-center">
       <h6 className="ml-3 text-xs font-light text-[#ffffffbf]">

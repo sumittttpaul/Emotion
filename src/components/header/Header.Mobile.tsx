@@ -18,14 +18,12 @@ const HeaderMobileSearch = dynamic<HeaderMobileSearchProps>(
   { ssr: false }
 );
 
-interface IProps {}
-
 /**
  * @author
  * @function @HeaderMobile
  **/
 
-export const HeaderMobile: FC<IProps> = (props) => {
+export const HeaderMobile: FC = () => {
   const { HomePage } = useReduxStore((state) => state);
 
   useEffect(() => {

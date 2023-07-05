@@ -1,67 +1,66 @@
-import { KeyboardEvent } from 'react';
+import { KeyboardEvent, MouseEvent } from 'react';
 
-const FROM0 = 48;
-const TO9 = 57;
-const BACKSPACE = 8;
-const LEFT_ARROW = 37;
-const RIGHT_ARROW = 39;
-const DELETE = 46;
-const SPACEBAR = 32;
-
-export const InputNumberOnly = (evt: any) => {
-  var ch = String.fromCharCode(evt.which);
-  if (!/[0-9]/.test(ch)) {
+export const InputNumberOnly = (evt: KeyboardEvent<HTMLInputElement>) => {
+  if (!/[0-9]/.test(evt.key)) {
     evt.preventDefault();
   }
 };
 
-export const InputChangeFocus = (e: any) => {
-  var target = e.srcElement || e.target;
-  var maxLength = parseInt(target.attributes['maxlength'].value, 10);
-  var myLength = target.value.length;
+export const InputChangeFocus = (e: KeyboardEvent<HTMLInputElement>) => {
+  const target = e.currentTarget as HTMLInputElement;
+  const maxLength = parseInt(target.getAttribute('maxlength') ?? '0', 10);
+  const myLength = target.value.length;
   if (myLength >= maxLength) {
-    var next = target;
-    while ((next = next.nextElementSibling)) {
-      if (next == null) break;
+    let next: HTMLElement | null = target.nextElementSibling as EventTarget &
+      HTMLInputElement;
+    while (next) {
       if (next.tagName.toLowerCase() === 'input') {
-        next.focus();
-        next.select();
+        (next as HTMLInputElement).focus();
+        (next as HTMLInputElement).select();
         break;
       }
+      next = next.nextElementSibling as EventTarget & HTMLInputElement;
     }
   }
+
   if (myLength === 0) {
-    var previous = target;
-    while ((previous = previous.previousElementSibling)) {
-      if (previous == null) break;
+    let previous: HTMLElement | null =
+      target.previousElementSibling as EventTarget & HTMLInputElement;
+    while (previous) {
       if (previous.tagName.toLowerCase() === 'input') {
-        previous.focus();
-        previous.select();
+        (previous as HTMLInputElement).focus();
+        (previous as HTMLInputElement).select();
         break;
       }
+      previous = previous.previousElementSibling as EventTarget &
+        HTMLInputElement;
     }
   }
 };
 
-export const ClickToFocus = (e: any) => {
+export const ClickToFocus = (e: MouseEvent<HTMLInputElement>) => {
   e.preventDefault();
-  var target = e.srcElement || e.target;
+  const target = e.currentTarget;
   target.focus();
   target.select();
 };
 
 export const CalculateAge = (DOB: string) => {
-  var dateString = DOB;
-  var dateParts: any = dateString.split('-');
-  var dob = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
-  var month_diff = Date.now() - dob.getTime();
-  var age_dt = new Date(month_diff);
-  var year = age_dt.getUTCFullYear();
-  var age = Math.abs(year - 1970);
+  const dateString = DOB;
+  const dateParts: string[] = dateString.split('-');
+  const dob = new Date(
+    +dateParts[2],
+    parseInt(dateParts[1]) - 1,
+    +dateParts[0]
+  );
+  const month_diff = Date.now() - dob.getTime();
+  const age_dt = new Date(month_diff);
+  const year = age_dt.getUTCFullYear();
+  const age = Math.abs(year - 1970);
   return age;
 };
 
 export const CalculateMonthNumber = (month: string) => {
-  var d = Date.parse(month + '16, 2002');
+  const d = Date.parse(month + '16, 2002');
   return new Date(d).getMonth() + 1;
 };

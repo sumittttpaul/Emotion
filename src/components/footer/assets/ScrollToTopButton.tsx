@@ -3,16 +3,14 @@ import { IconButton } from '@mui/material';
 import React, { Component } from 'react';
 import { TooltipDark } from '../../tooltip/TooltipDark';
 
-interface IProps {}
-
 /**
  * @author
  * @class @ScrollToTopButton
  **/
 
-var ScrollButtonID = 'scroll-to-top-button';
+const ScrollButtonID = 'scroll-to-top-button';
 
-export class ScrollToTopButton extends Component<IProps> {
+export class ScrollToTopButton extends Component {
   state = {};
 
   componentDidMount() {

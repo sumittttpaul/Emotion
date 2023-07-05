@@ -1,13 +1,11 @@
 import React, { FC } from 'react';
 
-export interface WishlistUIProps {}
-
 /**
  * @author
  * @function @WishlistUI
  **/
 
-export const WishlistUI: FC<WishlistUIProps> = () => {
+export const WishlistUI: FC = () => {
   return (
     <div className="relative z-10 pr-3">
       {/* Content */}

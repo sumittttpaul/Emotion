@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import Image from 'next/image';
 import { Button, styled } from '@mui/material';
 
@@ -18,8 +18,8 @@ const Input = styled('input')({
 });
 
 const FromComputer: FC<IProps> = (props) => {
-  const handleUpload = (e: any) => {
-    const file = e.target.files[0];
+  const handleUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.currentTarget.files?.[0];
     if (file) {
       props.getURL(URL.createObjectURL(file));
       props.show();

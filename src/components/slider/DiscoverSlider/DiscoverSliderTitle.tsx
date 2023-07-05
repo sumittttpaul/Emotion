@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { IconButton } from '@mui/material';
 import React, { FC, RefObject } from 'react';
 import Image from 'next/image';

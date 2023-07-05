@@ -1,9 +1,6 @@
 import React, { FC, useRef, useState } from 'react';
 import { DiscoverSliderContentProps } from '../../contents/home/discover/Home.Discover.Slider';
-import {
-  DiscoverSliderBrowser,
-  DiscoverSliderMobile,
-} from './DiscoverSlider/DiscoverSlider.MultiScreen';
+import { DiscoverSliderBrowser } from './DiscoverSlider/DiscoverSlider.MultiScreen';
 import { DiscoverSliderTitle } from './DiscoverSlider/DiscoverSliderTitle';
 
 interface IProps {

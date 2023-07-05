@@ -3,15 +3,12 @@ import { Button } from '@mui/material';
 import { useState } from 'react';
 import { ToastDark } from '../components/toast/ToastDark';
 import { LazyMotion, domAnimation } from 'framer-motion';
-import { CalculateAge, CalculateMonthNumber } from '../algorithms/UIAlgorithms';
-
-interface IProps {}
 
 /**
  * @Test_Page
  **/
 
-const TestPage: NextPage<IProps> = (props) => {
+const TestPage: NextPage = () => {
   const [Toast, setToast] = useState(false);
   const [ToastSetting, setToastSetting] = useState({
     Title: '',

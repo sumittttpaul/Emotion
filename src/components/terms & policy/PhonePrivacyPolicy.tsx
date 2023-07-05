@@ -2,14 +2,12 @@ import { Link } from '@mui/material';
 import React, { FC } from 'react';
 import { Privacy_Policy_Link } from '../../routerLinks/RouterLinks';
 
-interface IProps {}
-
 /**
  * @author
  * @function @PhonePrivacyPolicy
  **/
 
-export const PhonePrivacyPolicy: FC<IProps> = (props) => {
+export const PhonePrivacyPolicy: FC = () => {
   return (
     <div className="flex items-center">
       <h6 className="ml-3 text-xs font-light text-[#ffffffbf]">

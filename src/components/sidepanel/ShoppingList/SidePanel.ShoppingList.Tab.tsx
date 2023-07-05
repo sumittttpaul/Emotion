@@ -21,9 +21,7 @@ const SidePanelShoppingListTabCart = dynamic<SidePanelShoppingListTabCartProps>(
   { ssr: false }
 );
 
-interface IProps {}
-
-function classNames(...classes: any) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
@@ -32,7 +30,7 @@ function classNames(...classes: any) {
  * @function @SidePanelShoppingListTab
  **/
 
-export const SidePanelShoppingListTab: FC<IProps> = (props) => {
+export const SidePanelShoppingListTab: FC = () => {
   const [Tabvalue, setTabValue] = useState(0);
   const theme = useTheme();
 

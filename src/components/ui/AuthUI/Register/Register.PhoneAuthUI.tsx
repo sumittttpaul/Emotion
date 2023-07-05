@@ -24,7 +24,6 @@ import {
   getUserProfile,
 } from '../../../../mongodb/helper/Helper.UserProfile';
 import { IUserProfileDataUpdate } from '../../../../mongodb/schema/Schema.UserProfile';
-import _uid from '../../../../pages/api/users/profile/[_uid]';
 import { m } from 'framer-motion';
 
 export interface RegisterPhoneAuthUIProps {
@@ -64,9 +63,9 @@ export const RegisterPhoneAuthUI: FC<RegisterPhoneAuthUIProps> = (props) => {
         props.setLoading(false);
         MoveToOTPScreen();
       },
-      onError: (error: any) => {
+      onError: (error: Error) => {
         props.setLoading(false);
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+        ShowToast(error.name, error.message, 'Error', true);
       },
     }
   );
@@ -112,7 +111,7 @@ export const RegisterPhoneAuthUI: FC<RegisterPhoneAuthUIProps> = (props) => {
   };
 
   // Validation
-  var ValidatePhoneNumber = props.PhoneNumber.length == 10;
+  const ValidatePhoneNumber = props.PhoneNumber.length == 10;
   const PhoneNumberSubmitDisabled: boolean =
     props.PhoneNumber.length < 10 || !ValidatePhoneNumber;
 
@@ -171,10 +170,11 @@ export const RegisterPhoneAuthUI: FC<RegisterPhoneAuthUIProps> = (props) => {
           '_data.phoneNumber': UserPhoneNumber,
         };
         updateUserProfile.mutate(_data);
-      } catch (error: any) {
-        props.setLoading(false);
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
-        console.error('User profile data not updated because ' + error.message);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          props.setLoading(false);
+          ShowToast(error.name, error.message, 'Error', true);
+        }
       }
     } else {
       ShowToast(

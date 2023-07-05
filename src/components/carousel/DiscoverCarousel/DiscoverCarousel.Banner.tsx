@@ -56,7 +56,7 @@ export const DiscoverCarouselBanner: FC<IProps> = (props) => {
   const setIntervalTime =
     props.Duration && props.AutoPlay ? props.Duration * 1000 : undefined;
   let CarouselInterval: ReturnType<typeof setInterval> | undefined;
-  let IntervalTime = setIntervalTime;
+  const IntervalTime = setIntervalTime;
 
   const StartCarousel = () => {
     CarouselInterval = setInterval(
@@ -111,13 +111,15 @@ export const DiscoverCarouselBanner: FC<IProps> = (props) => {
 
   const NextCarouselByLeftArrow = () => {
     setDisabledCarousel(true);
-    let CarouselIndex = props.CarouselState > 0 ? props.CarouselState - 1 : 19;
+    const CarouselIndex =
+      props.CarouselState > 0 ? props.CarouselState - 1 : 19;
     NextCarouselByIndex(CarouselIndex);
   };
 
   const NextCarouselByRightArrow = () => {
     setDisabledCarousel(true);
-    let CarouselIndex = props.CarouselState < 19 ? props.CarouselState + 1 : 0;
+    const CarouselIndex =
+      props.CarouselState < 19 ? props.CarouselState + 1 : 0;
     NextCarouselByIndex(CarouselIndex);
   };
 
@@ -132,7 +134,8 @@ export const DiscoverCarouselBanner: FC<IProps> = (props) => {
 
   const NextCarouselByAutoPlay = () => {
     setDisabledCarousel(true);
-    let CarouselIndex = props.CarouselState < 19 ? props.CarouselState + 1 : 0;
+    const CarouselIndex =
+      props.CarouselState < 19 ? props.CarouselState + 1 : 0;
     const LeftSpacing = 55;
     const TotalLeftCarouselValue = -3065 - LeftSpacing;
     const ZeroIndexCarouselAnimationValue =

@@ -7,6 +7,12 @@ import {
   isInitializedState,
   ImageRestriction,
   FixedCropperRef,
+  FixedCropperSettings,
+  DefaultSize,
+  ExtendedSettings,
+  CropperState,
+  Size,
+  StencilSize,
 } from 'react-advanced-cropper';
 import 'react-advanced-cropper/dist/style.css';
 import 'react-advanced-cropper/dist/themes/compact.css';
@@ -42,14 +48,20 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
   const cropperRef = useRef<FixedCropperRef>(null);
   const sliderRef = useRef<HTMLElement>(null);
 
-  const defaultSize = ({ imageSize, visibleArea }: any) => {
+  const defaultSize: DefaultSize<ExtendedSettings<FixedCropperSettings>> = (
+    state: CropperState
+  ): Size => {
+    const { imageSize, visibleArea } = state;
     return {
       width: (visibleArea || imageSize).width,
       height: (visibleArea || imageSize).height,
     };
   };
 
-  const stencilSize = ({ imageSize }: any) => {
+  const stencilSize: StencilSize<ExtendedSettings<FixedCropperSettings>> = (
+    state: CropperState
+  ): Size => {
+    const { imageSize } = state;
     return {
       width: imageSize.height,
       height: imageSize.height,
@@ -63,11 +75,12 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
     const defaultFlip = cropper.getDefaultState()?.transforms.flip;
     const currentRotate = cropper.getTransforms().rotate;
     const defaultRotate = cropper.getDefaultState()?.transforms.rotate;
-    setChanged(
-      isEqualState(currentCoordinates, defaultCoordinates) ||
-        isEqualState(currentFlip, defaultFlip) ||
-        currentRotate !== defaultRotate
-    );
+    if (currentCoordinates && defaultCoordinates && defaultFlip)
+      setChanged(
+        isEqualState(currentCoordinates, defaultCoordinates) ||
+          isEqualState(currentFlip, defaultFlip) ||
+          currentRotate !== defaultRotate
+      );
     ChangeZoomValue();
   };
 
@@ -154,8 +167,8 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
   const submit = () => {
     const cropper = cropperRef.current;
     if (cropper) {
-      cropper.getCanvas()?.toBlob((blob: any) => {
-        let ImageFile = new File([blob], 'userAvatar.png', {
+      cropper.getCanvas()?.toBlob((blob: unknown) => {
+        const ImageFile = new File([blob as BlobPart], 'userAvatar.png', {
           type: 'image/png',
         });
         if (ImageFile) {

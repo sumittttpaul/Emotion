@@ -233,14 +233,11 @@ export const IsInformationHandler = ({
         setLoading(false);
         setInformationCheckLoading(false);
       }
-    } catch (error: any) {
-      setError({ show: true, type: 'get-user-failed' });
-      ShowToast(
-        'Something went wrong',
-        `${error.message} in the database`,
-        'Error',
-        true
-      );
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError({ show: true, type: 'get-user-failed' });
+        ShowToast(error.name, error.message, 'Error', true);
+      }
     }
   }
 };

@@ -65,9 +65,9 @@ export const RegisterOTPAuthUI: FC<RegisterOTPAuthUIProps> = (props) => {
         );
         props.IsInformation();
       },
-      onError: (error: any) => {
+      onError: (error: Error) => {
         props.setLoading(false);
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+        ShowToast(error.name, error.message, 'Error', true);
       },
     }
   );
@@ -197,9 +197,11 @@ export const RegisterOTPAuthUI: FC<RegisterOTPAuthUIProps> = (props) => {
           '_data.isVerified.phoneNumber': true,
         };
         updateUserProfile.mutate(_data);
-      } catch (error: any) {
-        props.setLoading(false);
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          props.setLoading(false);
+          ShowToast(error.name, error.message, 'Error', true);
+        }
       }
     } else {
       ShowToast(

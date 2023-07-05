@@ -3,14 +3,12 @@ import Image from 'next/image';
 import { Button } from '@mui/material';
 import { SidePanelShoppingListTab } from './SidePanel.ShoppingList.Tab';
 
-interface IProps {}
-
 /**
  * @author
  * @function @SidePanelShoppingList
  **/
 
-export const SidePanelShoppingList: FC<IProps> = (props) => {
+export const SidePanelShoppingList: FC = () => {
   return (
     <div className="mx-2 mt-2.5 mb-2 bg-[#181818] rounded-xl w-full h-full overflow-hidden">
       <div className="flex flex-col w-full h-full overflow-hidden">

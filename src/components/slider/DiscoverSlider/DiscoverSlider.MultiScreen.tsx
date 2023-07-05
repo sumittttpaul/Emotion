@@ -72,7 +72,7 @@ export const DiscoverSliderBrowser: FC<DiscoverSliderBrowserProps> = (
       } else {
         props.setLeftDisabled(false);
       }
-      let maxScroll = slider.scrollWidth - slider.offsetWidth;
+      const maxScroll = slider.scrollWidth - slider.offsetWidth;
       if (slider.scrollLeft === maxScroll) {
         props.setRightDisabled(true);
       } else {

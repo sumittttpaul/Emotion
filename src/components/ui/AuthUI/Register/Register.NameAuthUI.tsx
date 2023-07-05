@@ -2,7 +2,6 @@ import React, {
   FC,
   ChangeEvent,
   KeyboardEvent,
-  FocusEvent,
   Dispatch,
   SetStateAction,
   useState,
@@ -59,9 +58,11 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
         );
         props.IsInformation();
       },
-      onError: (error: any) => {
-        props.setLoading(false);
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      onError: (error: unknown) => {
+        if (error instanceof Error) {
+          props.setLoading(false);
+          ShowToast(error.name, error.message, 'Error', true);
+        }
       },
     }
   );
@@ -90,7 +91,7 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
   };
 
   // Handle Blur
-  const FullNameBlur = (event: FocusEvent<HTMLInputElement>) => {
+  const FullNameBlur = () => {
     if (ValidateFullName) {
       ValidFullName();
     } else {
@@ -107,7 +108,7 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
     setFullNameError(true);
     ShowToast('Field empty', 'Please enter your Fullname.', 'Error', true);
   };
-  var ValidateFullName = props.FullName.length > 2;
+  const ValidateFullName = props.FullName.length > 2;
   const FullNameSubmitDisabled: boolean =
     props.FullName.length < 1 || !ValidateFullName;
 
@@ -145,9 +146,11 @@ export const RegisterNameAuthUI: FC<RegisterNameAuthUIProps> = (props) => {
           '_data.fullName': UserFullName,
         };
         updateUserProfile.mutate(_data);
-      } catch (error: any) {
-        props.setLoading(false);
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          props.setLoading(false);
+          ShowToast(error.name, error.message, 'Error', true);
+        }
       }
     } else {
       ShowToast(

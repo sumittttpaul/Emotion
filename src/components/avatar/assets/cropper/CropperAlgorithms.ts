@@ -88,7 +88,7 @@ function getMaximumVisibleAreaSize(
       sizeRestrictions.maxHeight = sizeRestrictions.maxWidth / aspectRatio;
     }
   }
-  let maximumVisibleAreaSize = {
+  const maximumVisibleAreaSize = {
     width: Infinity,
     height: Infinity,
   };
@@ -157,7 +157,7 @@ export function getAbsoluteZoom(
   }
 ) {
   const { coordinates, visibleArea } = state;
-  let size =
+  const size =
     ratio(visibleArea) > ratio(coordinates)
       ? visibleArea.height
       : visibleArea.width;
@@ -176,7 +176,7 @@ export function getVisibleAreaSize(
   return maxSize - absoluteZoom * (maxSize - minSize);
 }
 
-export function isEqualState(state1: any, state2: any): boolean {
+export function isEqualState(state1: object, state2: object): boolean {
   if (state1 === null || state2 === null) return false;
   if (state1 === state2) return true;
   const state1Copy = { ...state1 };
@@ -184,7 +184,8 @@ export function isEqualState(state1: any, state2: any): boolean {
   const keys = Object.getOwnPropertyNames(state1Copy);
   const changedKeys = [];
   for (const key of keys) {
-    if (state1Copy[key] !== state2Copy[key]) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if ((state1Copy as any)[key] !== (state2Copy as any)[key]) {
       changedKeys.push(key);
     }
   }

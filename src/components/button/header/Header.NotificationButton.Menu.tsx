@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { Button, Menu, MenuItem } from '@mui/material';
 import React, { FC } from 'react';
 import Image from 'next/image';

@@ -1,13 +1,11 @@
 import React, { FC } from 'react';
 
-export interface CartUIProps {}
-
 /**
  * @author
  * @function @CartUI
  **/
 
-export const CartUI: FC<CartUIProps> = () => {
+export const CartUI: FC = () => {
   return (
     <div className="relative z-10 pr-3">
       {/* Content */}

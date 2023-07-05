@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { m } from 'framer-motion';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 import { SelectDayHeader } from './selectDay/SelectDayHeader';
 import { WeekNames } from './selectDay/WeekNames';
 
@@ -13,13 +13,6 @@ interface IProps {
   setYear: (year: string) => void;
 }
 
-const getMonthNumber = (month: any) => {
-  var d = Date.parse(month + '10, 2002');
-  if (!isNaN(d)) {
-    return new Date(d).getMonth() + 1;
-  }
-};
-
 /**
  * @author
  * @function @CustomCalender
@@ -29,32 +22,32 @@ export const SelectDay: FC<IProps> = (props) => {
   const [value, setValue] = useState(
     moment(props.year + '-' + props.month, 'YYYY-MM')
   );
-  const [calender, setCalender] = useState([]);
+  const [calender, setCalender] = useState<Moment[][] | never[]>([]);
 
   const startDay = value.clone().startOf('month').startOf('week');
   const endDay = value.clone().endOf('month').startOf('week');
 
-  const isSelected = (day: any) => {
+  const isSelected = (day: Moment) => {
     return value.isSame(day, 'day');
   };
 
-  const afterTaday = (day: any) => {
+  const afterTaday = (day: Moment) => {
     return day.isAfter(new Date(), 'day');
   };
 
-  const isBefore1 = (day: any) => {
+  const isBefore1 = (day: Moment) => {
     return day.isSame(beforeMonth(), 'day');
   };
 
-  const isBefore2 = (day: any) => {
+  const isBefore2 = (day: Moment) => {
     return day.isBefore(beforeMonth(), 'day');
   };
 
-  const isAfter1 = (day: any) => {
+  const isAfter1 = (day: Moment) => {
     return day.isSame(afterMonth(), 'day');
   };
 
-  const isAfter2 = (day: any) => {
+  const isAfter2 = (day: Moment) => {
     return day.isAfter(afterMonth(), 'day');
   };
 
@@ -118,7 +111,7 @@ export const SelectDay: FC<IProps> = (props) => {
 
   const disableDay = 'opacity-30 select-none pointer-events-none touch-none';
 
-  const dayStyles = (day: any) => {
+  const dayStyles = (day: Moment) => {
     if (afterTaday(day)) return disableDay;
     if (isBefore1(day)) return disableDay;
     if (isBefore2(day)) return disableDay;
@@ -131,7 +124,7 @@ export const SelectDay: FC<IProps> = (props) => {
 
   useEffect(() => {
     const day = startDay.clone().subtract(1, 'day');
-    const a: any = [];
+    const a = [];
     while (day.isBefore(endDay, 'day')) {
       a.push(
         Array(7)
@@ -163,9 +156,9 @@ export const SelectDay: FC<IProps> = (props) => {
       />
       <WeekNames value={['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']} />
       <div className="relative w-full h-full text-center">
-        {calender.map((week: any) => (
-          <div key={week} className="grid grid-cols-7 relative">
-            {week.map((day: any) => (
+        {calender.map((week, idx) => (
+          <div key={idx} className="grid grid-cols-7 relative">
+            {week.map((day, idx) => (
               <button
                 onClick={() => {
                   setValue(day);
@@ -173,7 +166,7 @@ export const SelectDay: FC<IProps> = (props) => {
                 }}
                 className={`${'py-3 m-1 text-white text-[13px] rounded-md cursor-default text-center box-border relative inline-block transition-colors ease-in-out duration-200'} 
                 ${dayStyles(day)}`}
-                key={day}
+                key={idx}
               >
                 {day.format('D')}
               </button>

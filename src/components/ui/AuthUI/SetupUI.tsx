@@ -137,14 +137,12 @@ const RegisterGenderAuthUI = dynamic<RegisterGenderAuthUIProps>(
   { ssr: false }
 );
 
-interface IProps {}
-
 /**
  * @author
  * @function @SetupUI
  **/
 
-export const SetupUI: FC<IProps> = (props) => {
+export const SetupUI: FC = () => {
   const { FirebaseUser, FirebaseLoading } = useAuth();
   const [InitialSlide, setInitialSlide] = useState(0);
   const [SkipDialog, setSkipDialog] = useState(false);
@@ -312,48 +310,43 @@ export const SetupUI: FC<IProps> = (props) => {
 
   useEffect(() => {
     if (data) {
-      setFullName(
-        FirebaseUser?.uid && userProfile._data && userProfile?._data.fullName
-          ? DecryptData(
-              UserProfileEncrytionKey(FirebaseUser.uid, 'FullName'),
-              userProfile._data.fullName
-            )
-          : ''
-      );
-      setEmailAddress(
-        FirebaseUser?.uid &&
-          userProfile._data &&
-          userProfile?._data.emailAddress
-          ? DecryptData(
-              UserProfileEncrytionKey(FirebaseUser.uid, 'EmailAddress'),
-              userProfile._data.emailAddress
-            )
-          : ''
-      );
-      setPhoneNumber(
-        FirebaseUser?.uid && userProfile._data && userProfile?._data.phoneNumber
-          ? DecryptData(
-              UserProfileEncrytionKey(FirebaseUser.uid, 'PhoneNumber'),
-              userProfile._data.phoneNumber
-            )
-          : ''
-      );
-      setDateOfBirth(
-        FirebaseUser?.uid && userProfile._data && userProfile?._data.dateOfBirth
-          ? DecryptData(
-              UserProfileEncrytionKey(FirebaseUser.uid, 'DateOfBirth'),
-              userProfile._data.dateOfBirth
-            )
-          : ''
-      );
-      setGender(
-        FirebaseUser?.uid && userProfile._data && userProfile?._data.gender
-          ? DecryptData(
-              UserProfileEncrytionKey(FirebaseUser.uid, 'Gender'),
-              userProfile._data.gender
-            )
-          : ''
-      );
+      if (FirebaseUser) {
+        if (userProfile._data.fullName) {
+          const UserFullName = DecryptData(
+            UserProfileEncrytionKey(FirebaseUser.uid, 'FullName'),
+            userProfile._data.fullName
+          );
+          setFullName(UserFullName ? UserFullName : '');
+        }
+        if (userProfile._data.emailAddress) {
+          const UserEmailAddress = DecryptData(
+            UserProfileEncrytionKey(FirebaseUser.uid, 'EmailAddress'),
+            userProfile._data.emailAddress
+          );
+          setEmailAddress(UserEmailAddress ? UserEmailAddress : '');
+        }
+        if (userProfile._data.phoneNumber) {
+          const UserPhoneNumber = DecryptData(
+            UserProfileEncrytionKey(FirebaseUser.uid, 'PhoneNumber'),
+            userProfile._data.phoneNumber
+          );
+          setPhoneNumber(UserPhoneNumber ? UserPhoneNumber : '');
+        }
+        if (userProfile._data.dateOfBirth) {
+          const UserDateOfBirth = DecryptData(
+            UserProfileEncrytionKey(FirebaseUser.uid, 'DateOfBirth'),
+            userProfile._data.dateOfBirth
+          );
+          setDateOfBirth(UserDateOfBirth ? UserDateOfBirth : '');
+        }
+        if (userProfile._data.gender) {
+          const UserGender = DecryptData(
+            UserProfileEncrytionKey(FirebaseUser.uid, 'Gender'),
+            userProfile._data.gender
+          );
+          setGender(UserGender ? UserGender : '');
+        }
+      }
     }
   }, [data]); // eslint-disable-line react-hooks/exhaustive-deps
 

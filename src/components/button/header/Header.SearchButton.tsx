@@ -18,13 +18,11 @@ const HeaderSearchButtonMenu = dynamic<HeaderSearchButtonMenuProps>(
   { ssr: false }
 );
 
-interface IProps {}
-
 /**
  * @author
  * @function @HeaderSearchButton
  **/
-export const HeaderSearchButton: FC<IProps> = (props) => {
+export const HeaderSearchButton: FC = () => {
   const [SearchMenuOpen, setSearchMenuOpen] = useState(false);
   const [Search, setSearch] = useState(
     'Search by product, category, collection and more'

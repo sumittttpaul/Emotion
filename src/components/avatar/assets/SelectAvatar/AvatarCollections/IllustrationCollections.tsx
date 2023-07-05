@@ -123,7 +123,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
       } else {
         setLeftAnimate('open');
       }
-      let maxScroll = slider.scrollWidth - slider.clientWidth;
+      const maxScroll = slider.scrollWidth - slider.clientWidth;
       if (slider.scrollLeft === 0) {
         return;
       }
@@ -150,7 +150,7 @@ export const IllustrationCollections: FC<IProps> = (props) => {
   useEffect(() => {
     const slider = sliderRef.current;
     if (slider) {
-      let maxScroll = slider.scrollWidth - slider.clientWidth;
+      const maxScroll = slider.scrollWidth - slider.clientWidth;
       if (slider.scrollLeft === maxScroll) setRightAnimate('closed');
       else setRightAnimate('open');
     }

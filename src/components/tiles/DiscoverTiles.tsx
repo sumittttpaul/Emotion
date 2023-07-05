@@ -1,9 +1,6 @@
 import React, { FC } from 'react';
 import { DiscoverTilesContentProps } from '../../contents/home/discover/Home.Discover.Tiles';
-import {
-  DiscoverTilesBrowser,
-  DiscoverTilesMobile,
-} from './MultiScreen/DiscoverTiles.MultiScreen';
+import { DiscoverTilesBrowser } from './MultiScreen/DiscoverTiles.MultiScreen';
 
 interface IProps {
   ContentArray: DiscoverTilesContentProps[];

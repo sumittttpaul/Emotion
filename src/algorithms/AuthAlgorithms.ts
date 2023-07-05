@@ -29,9 +29,8 @@ import {
 
 declare global {
   interface Window {
-    recaptchaVerifier: any;
-    confirmationResult: any;
-    grecaptcha: any;
+    recaptchaVerifier: _firebaseAuth.RecaptchaVerifier;
+    confirmationResult: _firebaseAuth.ConfirmationResult;
   }
 }
 
@@ -40,7 +39,7 @@ declare global {
 const configureCaptcha = ({ ShowToast, ResetCaptcha }: RecaptchaProps) => {
   if (typeof window === 'object') {
     if (ResetCaptcha) {
-      window.recaptchaVerifier.render().then(function (widgetId: any) {
+      window.recaptchaVerifier.render().then(function (widgetId: number) {
         window.grecaptcha.reset(widgetId);
       });
     } else {
@@ -48,7 +47,7 @@ const configureCaptcha = ({ ShowToast, ResetCaptcha }: RecaptchaProps) => {
         'verify-sign-in-recaptcha',
         {
           size: 'invisible',
-          callback: (response: any) => {
+          callback: () => {
             // reCAPTCHA solved, allow signInWithPhoneNumber.
           },
           'expired-callback': () => {
@@ -75,7 +74,7 @@ export const ResentOTP = ({
   ShowToast,
 }: ResendOTPProps) => {
   Loading(true);
-  window.recaptchaVerifier.render().then(function (widgetId: any) {
+  window.recaptchaVerifier.render().then(function (widgetId: number) {
     window.grecaptcha.reset(widgetId);
   });
   const number = '+91' + PhoneNumber;
@@ -109,7 +108,7 @@ export const VerifyOTP = ({
 }: VerifyOTPProps) => {
   Loading(true);
   const code = OTP.toString();
-  var credential = _firebaseAuth.PhoneAuthProvider.credential(
+  const credential = _firebaseAuth.PhoneAuthProvider.credential(
     window.confirmationResult.verificationId,
     code
   );
@@ -302,8 +301,6 @@ export const SignInWithEmailAndPassword = ({
 
 // other account
 
-const OtherAccountHandler = (_uid: string) => {};
-
 export const SignInWithFacebook = ({
   Loading,
   ShowToast,
@@ -491,7 +488,7 @@ export const LinkWithEmailAndPassword = ({
 }: LinkWithEmailAndPasswordProps) => {
   Loading(true);
   const user = FirebaseAuth.currentUser;
-  var credential = _firebaseAuth.EmailAuthProvider.credential(
+  const credential = _firebaseAuth.EmailAuthProvider.credential(
     EmailAddress,
     Password
   );
@@ -559,7 +556,7 @@ export const VerifyOTPForLinkWithPhone = ({
   Loading(true);
   const code = OTP.toString();
   const user = FirebaseAuth.currentUser;
-  var credential = _firebaseAuth.PhoneAuthProvider.credential(
+  const credential = _firebaseAuth.PhoneAuthProvider.credential(
     window.confirmationResult.verificationId,
     code
   );
@@ -582,7 +579,7 @@ export const ResentOTPForLinkWithPhone = ({
   ShowToast,
 }: ResendOTPProps) => {
   Loading(true);
-  window.recaptchaVerifier.render().then(function (widgetId: any) {
+  window.recaptchaVerifier.render().then(function (widgetId: number) {
     window.grecaptcha.reset(widgetId);
   });
   const number = '+91' + PhoneNumber;

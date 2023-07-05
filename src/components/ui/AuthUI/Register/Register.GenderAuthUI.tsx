@@ -51,9 +51,9 @@ export const RegisterGenderAuthUI: FC<RegisterGenderAuthUIProps> = (props) => {
         );
         props.IsInformation();
       },
-      onError: (error: any) => {
+      onError: (error: Error) => {
         props.setLoading(false);
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+        ShowToast(error.name, error.message, 'Error', true);
       },
     }
   );
@@ -85,9 +85,11 @@ export const RegisterGenderAuthUI: FC<RegisterGenderAuthUIProps> = (props) => {
           '_data.gender': UserGender,
         };
         updateUserProfile.mutate(_data);
-      } catch (error: any) {
-        props.setLoading(false);
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          props.setLoading(false);
+          ShowToast(error.name, error.message, 'Error', true);
+        }
       }
     } else {
       ShowToast(
@@ -125,7 +127,7 @@ export const RegisterGenderAuthUI: FC<RegisterGenderAuthUIProps> = (props) => {
             theme="dark"
             content={['Male', 'Female', 'Others']}
             value={props.Gender}
-            onChange={props.setGender}
+            onChange={(value) => (value ? props.setGender(`${value}`) : '')}
           />
         </div>
         <div className="w-full flex flex-col space-y-1">

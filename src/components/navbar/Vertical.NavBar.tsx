@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion';
 import React, { FC, useState } from 'react';
 
-interface IProps {}
-
 const ContentArray = [{ name: 'Home' }, { name: 'Gallery' }];
 
 /**
@@ -10,7 +8,7 @@ const ContentArray = [{ name: 'Home' }, { name: 'Gallery' }];
  * @function @VerticalNavBar
  **/
 
-export const VerticalNavBar: FC<IProps> = (props) => {
+export const VerticalNavBar: FC = () => {
   const [Number, setNumber] = useState(0);
   const [Height, setHeight] = useState(0);
   const [MarginTop, setMarginTop] = useState(0);

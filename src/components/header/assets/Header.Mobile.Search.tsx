@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { Button, IconButton } from '@mui/material';
 import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
@@ -25,9 +26,9 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
     setSearch(event.target.value);
   };
 
-  const removeHash = () => {
-    history.pushState('', document.title, window.location.pathname);
-  };
+  // const removeHash = () => {
+  //   history.pushState('', document.title, window.location.pathname);
+  // };
 
   const clearSearch = () => {
     setSearch('');

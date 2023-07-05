@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import React, { FC } from 'react';
 import { DatePickerContainerDialog } from '../dialog/DatePickerContainerDialog';
 import { DatePickerDialogBottom } from './assets/Dialog/DatePickerDialogBottom';
 import { DatePickerDialogHeader } from './assets/Dialog/DatePickerDialogHeader';

@@ -1,9 +1,6 @@
 import React, { FC } from 'react';
 import { DiscoverBannerFiveContentProps } from '../../contents/home/discover/Home.Discover.Banner';
-import {
-  DiscoverBannerFiveMobile,
-  DiscoverBannerFiveBrowser,
-} from './MultiScreen/DiscoverBannerFive.MultiScreen';
+import { DiscoverBannerFiveBrowser } from './MultiScreen/DiscoverBannerFive.MultiScreen';
 
 interface IProps {
   ContentArray: DiscoverBannerFiveContentProps[];

@@ -15,14 +15,12 @@ const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
   { ssr: false }
 );
 
-interface IProps {}
-
 /**
  * @author
  * @function @HeaderUserButton
  **/
 
-export const HeaderUserButton: FC<IProps> = (props) => {
+export const HeaderUserButton: FC = () => {
   const { FirebaseUser, FirebaseLoading } = useAuth();
 
   const { setLoader } = useLoaderState();

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { Button } from '@mui/material';
 import React, { FC } from 'react';
 import { HomeWishlistContentProps } from '../../../contents/home/Home.ShoppingList';

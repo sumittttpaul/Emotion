@@ -1,11 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-const getDeepValue = <T extends object, K extends keyof T>(
-  obj: T,
-  path = 'Id'
-) => {
+const getDeepValue = <T extends object>(obj: T, path = 'Id') => {
   const pathArr = path.split('.');
-
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   return pathArr.reduce((acc: T, key) => acc && acc[key], obj);
 };

@@ -7,14 +7,12 @@ import {
 } from '../../../routerLinks/RouterLinks';
 import { FooterBottomLinks } from './FooterBottomLinks';
 
-interface IProps {}
-
 /**
  * @author
  * @function @FooterBottom
  **/
 
-export const FooterBottom: FC<IProps> = (props) => {
+export const FooterBottom: FC = () => {
   return (
     <div className="grid grid-cols-2 grid-rows-2 gap-y-3 sm:gap-y-2 w-full mt-2 items-center sm:grid-cols-2 sm:grid-rows-2 md-900:grid-cols-2 md-900:grid-rows-2 lg-1140:grid-cols-3 lg-1140:grid-rows-1">
       <div className="block sm:hidden col-span-2 row-span-2 h-[1px] w-full bg-[#ffffff1a]" />

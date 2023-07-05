@@ -1,13 +1,11 @@
 import React, { FC } from 'react';
 
-interface IProps {}
-
 /**
  * @author
  * @function @AuthDivider
  **/
 
-const AuthDivider: FC<IProps> = (props) => {
+const AuthDivider: FC = () => {
   return (
     <div className="flex w-full items-center space-x-3">
       <div className="h-[1px] bg-[#ffffff4d] w-full" />

@@ -1,7 +1,14 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { Button } from '@mui/material';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import React, { FC, Fragment, MouseEvent, useCallback, useState } from 'react';
+import React, {
+  FC,
+  Fragment,
+  MouseEvent,
+  useCallback,
+  useState,
+} from 'react';
 import { HomeCartContentProps } from '../../../contents/home/Home.ShoppingList';
 import { ProductContextMenuProps } from '../../button/ProductContextMenu';
 

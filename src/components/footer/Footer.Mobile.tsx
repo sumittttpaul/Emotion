@@ -8,13 +8,11 @@ import { ScrollToTopButton } from './assets/ScrollToTopButton';
 import { setHomePage } from '../../redux/reducers/HomePageReducer';
 import ReduxStore from '../../redux/ReduxStore';
 
-interface FooterProps {}
-
 /**
  * @author
  * @function @FooterMobile
  **/
-export const FooterMobile: FC<FooterProps> = (props) => {
+export const FooterMobile: FC = () => {
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => setLoader({ show: value });
   return (

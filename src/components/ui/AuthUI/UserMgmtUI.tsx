@@ -46,14 +46,12 @@ const AuthLoading = dynamic<AuthLoadingProps>(
   { ssr: false }
 );
 
-interface IProps {}
-
 /**
  * @author
  * @function @UserMgmtUI
  **/
 
-export const UserMgmtUI: FC<IProps> = (props) => {
+export const UserMgmtUI: FC = () => {
   const router = useRouter();
   const { mode, oobCode } = router.query;
   const { FirebaseUser } = useAuth();

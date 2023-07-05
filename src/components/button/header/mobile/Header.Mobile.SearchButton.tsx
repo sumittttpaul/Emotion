@@ -1,18 +1,13 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
 import { Button } from '@mui/material';
-import { useRouter } from 'next/router';
-
-interface IProps {}
 
 /**
  * @author
  * @function @HeaderMobileSearchButton
  **/
 
-export const HeaderMobileSearchButton: FC<IProps> = (props) => {
-  const router = useRouter();
-
+export const HeaderMobileSearchButton: FC = () => {
   const SearchClick = () => {
     // if (!SearchButtonState.show) {
     //   router.push({ hash: 'search' });

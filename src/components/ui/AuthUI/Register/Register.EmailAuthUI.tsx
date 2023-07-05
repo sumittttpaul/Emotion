@@ -59,9 +59,9 @@ export const RegisterEmailAuthUI: FC<RegisterEmailAuthUIProps> = (props) => {
         props.setLoading(false);
         MoveToPasswordScreen();
       },
-      onError: (error: any) => {
+      onError: (error: Error) => {
         props.setLoading(false);
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+        ShowToast(error.name, error.message, 'Error', true);
       },
     }
   );
@@ -99,9 +99,10 @@ export const RegisterEmailAuthUI: FC<RegisterEmailAuthUIProps> = (props) => {
   };
 
   // Validation
-  var emailAddressExpression =
+  const emailAddressExpression =
+    // eslint-disable-next-line no-useless-escape
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  var ValidateEmailAddress = props.EmailAddress.toLowerCase().match(
+  const ValidateEmailAddress = props.EmailAddress.toLowerCase().match(
     emailAddressExpression
   );
   const EmailAddressSubmitDisabled: boolean =
@@ -145,7 +146,7 @@ export const RegisterEmailAuthUI: FC<RegisterEmailAuthUIProps> = (props) => {
   };
   const BackToPhone = () => {
     props.setAuthScreen('register-phone');
-  }
+  };
   const SkipClick = () => {
     props.setSkipDialog(true);
   };
@@ -162,9 +163,11 @@ export const RegisterEmailAuthUI: FC<RegisterEmailAuthUIProps> = (props) => {
           '_data.emailAddress': UserEmailAddress,
         };
         updateUserProfile.mutate(_data);
-      } catch (error: any) {
-        props.setLoading(false);
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          props.setLoading(false);
+          ShowToast(error.name, error.message, 'Error', true);
+        }
       }
     } else {
       ShowToast(
@@ -222,10 +225,7 @@ export const RegisterEmailAuthUI: FC<RegisterEmailAuthUIProps> = (props) => {
             />
           </div>
           <div className="w-full flex justify-start">
-            <SignInBackButton
-              Label="Back"
-              onClick={BackToPhone}
-            />
+            <SignInBackButton Label="Back" onClick={BackToPhone} />
           </div>
         </div>
       </div>

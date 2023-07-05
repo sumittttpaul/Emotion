@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React, { FC, Fragment, ReactNode } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 

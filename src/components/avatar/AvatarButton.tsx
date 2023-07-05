@@ -54,9 +54,9 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
           getUserProfile(FirebaseUser?.uid)
         );
       },
-      onError: (error: any) => {
+      onError: (error: Error) => {
         setAvatarLoading(false);
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+        ShowToast(error.name, error.message, 'Error', true);
       },
     }
   );
@@ -225,9 +225,11 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
           'Success',
           true
         );
-      } catch (error: any) {
-        setAvatarLoading(false);
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          setAvatarLoading(false);
+          ShowToast(error.name, error.message, 'Error', true);
+        }
       }
     } else {
       ShowToast(
@@ -255,9 +257,11 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
           'Success',
           true
         );
-      } catch (error: any) {
-        setAvatarLoading(false);
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          setAvatarLoading(false);
+          ShowToast(error.name, error.message, 'Error', true);
+        }
       }
     } else {
       ShowToast(

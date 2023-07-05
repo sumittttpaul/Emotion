@@ -79,9 +79,9 @@ export const UserMgmtResetPasswordAuthUI: FC<
   };
 
   // Validation
-  var passwordExpression =
+  const passwordExpression =
     /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
-  var ValidatePassword =
+  const ValidatePassword =
     passwordExpression.test(Password) && Password.length > 7;
   const PasswordSubmitDisabled: boolean =
     Password.length < 8 || !ValidatePassword;

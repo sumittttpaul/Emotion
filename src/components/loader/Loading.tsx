@@ -6,13 +6,11 @@ import {
 import React, { FC } from 'react';
 import { useLoaderState } from '../../provider/LoadingState';
 
-interface IProps {}
-
 /**
  * @author
  * @function @Loading
  **/
-export const Loading: FC<IProps> = (props) => {
+export const Loading: FC = () => {
   const { Loader } = useLoaderState();
   const Show: boolean = Loader.show || false;
   return (

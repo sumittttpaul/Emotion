@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { Button } from '@mui/material';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';

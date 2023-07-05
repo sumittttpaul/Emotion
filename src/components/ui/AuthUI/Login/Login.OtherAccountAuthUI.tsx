@@ -65,7 +65,7 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
 ) => {
   const queryClient = useQueryClient();
   const createUserProfile = useMutation(postUserProfile, {
-    onSuccess: async (data: any) => {
+    onSuccess: async (data: unknown) => {
       const stringifyData = JSON.stringify(data);
       const _data: IUserProfile = JSON.parse(stringifyData);
       await queryClient.prefetchQuery([cacheKey, _data._uid], () =>
@@ -93,12 +93,12 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
         props.IsInformation('register-date-of-birth');
       }
     },
-    onError: (error: any) => {
-      ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+    onError: (error: Error) => {
+      ShowToast(error.name, error.message, 'Error', true);
       DeleteAccount({
         Loading: props.setLoading,
         ShowToast: ShowToast,
-        DeleteDataBase: (uid: string) => {
+        DeleteDataBase: () => {
           props.setLoading(false);
           props.setError({ show: true, type: 'database-not-created' });
         },
@@ -192,9 +192,11 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
           },
         };
         createUserProfile.mutate(_data);
-      } catch (error: any) {
-        props.setLoading(false);
-        ShowToast('Something went wrong', `${error.message}`, 'Error', true);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          props.setLoading(false);
+          ShowToast(error.name, error.message, 'Error', true);
+        }
       }
     } else {
       ShowToast(
@@ -207,7 +209,8 @@ export const LoginOtherAccountAuthUI: FC<LoginOtherAccountAuthUIProps> = (
   };
   const CheckDataBase = async (user: UserType) => {
     if (user) {
-      await getUserProfile(user.uid).then((value: any) => {
+      await getUserProfile(user.uid).then((_getData: unknown) => {
+        const value = _getData as IUserProfile;
         // Prev Value
         setPrevFullName(
           value && value._data && value._data.fullName

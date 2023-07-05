@@ -68,9 +68,10 @@ export const LoginEmailAuthUI: FC<LoginEmailAuthUIProps> = (props) => {
   };
 
   // Validation
-  var emailExpression =
+  const emailExpression =
+    // eslint-disable-next-line no-useless-escape
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  var ValidateEmail = props.EmailAddress.toLowerCase().match(emailExpression);
+  const ValidateEmail = props.EmailAddress.toLowerCase().match(emailExpression);
   const EmailSubmitDisabled: boolean =
     props.EmailAddress.length < 1 || !ValidateEmail;
 

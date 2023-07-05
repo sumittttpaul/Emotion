@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useRef } from 'react';
 import { TrendingBadge } from '../badge/TrendingBadge';
 import { Button } from '@mui/material';
 import ScrollContainer from 'react-indiana-drag-scroll';

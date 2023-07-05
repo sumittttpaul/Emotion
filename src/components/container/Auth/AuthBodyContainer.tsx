@@ -14,7 +14,6 @@ import SwiperCore from 'swiper';
 import { m } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
-import { AuthLoadingProps } from '../../loader/Auth/AuthLoading';
 import { ToastDarkProps } from '../../toast/ToastDark';
 import {
   AuthAnimationType,
@@ -25,6 +24,7 @@ import { FinishAuthUIProps } from '../../ui/AuthUI/Finish/FinishAuthUI';
 import { SkipDialogAuthUIProps } from '../../ui/AuthUI/Dialog/SkipDialogAuthUI';
 import { AuthSkeleton } from '../../loader/Auth/AuthSkeleton';
 import { AuthErrorProps } from '../../error/AuthError';
+import { AuthLoadingProps } from '../../loader/Auth/AuthLoading';
 
 const AuthLoading = dynamic<AuthLoadingProps>(
   () => import('../../loader/Auth/AuthLoading').then((x) => x.AuthLoading),
@@ -229,13 +229,14 @@ const AuthBodyContainer: FC<IProps & ServerProps> = (props) => {
                   </SwiperSlide>
                 )}
               </Swiper>
-            )}
+          )}
             {props.Loading && <AuthLoading />}
           </div>
         </div>
-        <div className="h-full sm:h-screen w-screen absolute top-0 z-[1] flex items-center justify-center">
-          <div id="verify-sign-in-recaptcha" />
-        </div>
+        <div
+          id="verify-sign-in-recaptcha"
+          className="h-full sm:h-screen absolute top-0 flex items-center justify-center"
+        ></div>
         <SkipDialogAuthUI
           Open={props.SkipDialogOpen}
           onClose={props.SkipDialogClose}
