@@ -1,11 +1,9 @@
-import React, { FC } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { TooltipProps } from '@mui/material';
 
-const TooltipDark = dynamic<TooltipProps>(
-  () => import('../tooltip/TooltipDark').then((x) => x.TooltipDark),
-  { ssr: false }
+const TooltipDark = dynamic<TooltipProps>(() =>
+  import('../tooltip/TooltipDark').then((x) => x.TooltipDark)
 );
 
 interface IProps {
@@ -27,12 +25,7 @@ interface IProps {
     | 'top-start';
 }
 
-/**
- * @author
- * @function @YellowBulbHint
- **/
-
-export const YellowBulbHint: FC<IProps> = (props) => {
+export function YellowBulbHint(props: IProps) {
   return (
     <div className="flex justify-start w-full">
       <div className="flex py-1 pl-1 pr-2 rounded-md space-x-1 items-center bg-[#b48a0090] text-white">
@@ -59,8 +52,10 @@ export const YellowBulbHint: FC<IProps> = (props) => {
             />
           )}
         </div>
-        <h6 className="text-[13px] font-medium flex text-white">{props.Label}</h6>
+        <h6 className="text-[13px] font-medium flex text-white">
+          {props.Label}
+        </h6>
       </div>
     </div>
   );
-};
+}

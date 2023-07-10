@@ -2,7 +2,6 @@ import React, {
   Dispatch,
   FC,
   Fragment,
-  SetStateAction,
   useEffect,
   useState,
 } from 'react';
@@ -23,10 +22,10 @@ export interface ToastDarkProps {
   HideDuration: number;
   Toast: {
     Open: boolean;
-    onClose: Dispatch<SetStateAction<boolean>>;
+    onClose: Dispatch<boolean>;
     MessageTitle: string;
     MessageDescription: string;
-    Type: string;
+    Type: 'Error' | 'Success' | 'Info' | 'Warning';
   };
 }
 
@@ -78,7 +77,7 @@ export const ToastDark: FC<ToastDarkProps> = (props) => {
 
   return (
     <Fragment>
-      {props.Toast.Type.toLowerCase() === 'error' && (
+      {props.Toast.Type === 'Error' && (
         <ToastDarkContent
           Open={state.Open}
           Color="bg-dark-red"
@@ -92,7 +91,7 @@ export const ToastDark: FC<ToastDarkProps> = (props) => {
           Horizontal={props.Horizontal}
         />
       )}
-      {props.Toast.Type.toLowerCase() === 'success' && (
+      {props.Toast.Type === 'Success' && (
         <ToastDarkContent
           Open={state.Open}
           Color="bg-dark-green"
@@ -106,7 +105,7 @@ export const ToastDark: FC<ToastDarkProps> = (props) => {
           Horizontal={props.Horizontal}
         />
       )}
-      {props.Toast.Type.toLowerCase() === 'info' && (
+      I{props.Toast.Type === 'Info' && (
         <ToastDarkContent
           Open={state.Open}
           Color="bg-dark-blue"
@@ -120,7 +119,7 @@ export const ToastDark: FC<ToastDarkProps> = (props) => {
           Horizontal={props.Horizontal}
         />
       )}
-      {props.Toast.Type.toLowerCase() === 'warning' && (
+      {props.Toast.Type === 'Warning' && (
         <ToastDarkContent
           Open={state.Open}
           Color="bg-dark-orange"

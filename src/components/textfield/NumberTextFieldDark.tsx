@@ -36,7 +36,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
   '& .MuiFilledInput-root': {
     height: 63,
     borderRadius: 12,
-    fontWeight: 400,
+    fontWeight: 600,
     fontSize: '14px',
     letterSpacing: '0.025em',
     // fontFamily: ['Poppins', 'sans-serif'].join(','),
@@ -57,11 +57,11 @@ const CustomTextField = styled((props: TextFieldProps) => (
     },
     '&:before': {
       transition: 'none !important',
-      borderBottom: 0,
+      borderBottom: '0 !important',
     },
     '&:after': {
       transition: 'none !important',
-      borderBottom: 0,
+      borderBottom: '0 !important',
     },
     '&.Mui-focused': {
       backgroundColor: 'transparent',
@@ -83,11 +83,6 @@ const CustomTextField = styled((props: TextFieldProps) => (
     },
   },
 }));
-
-/**
- * @author
- * @function @NumberTextFieldDark
- **/
 
 const NumberTextFieldDark: FC<NumberTextFieldProps> = (props) => {
   return (

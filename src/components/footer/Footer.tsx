@@ -1,7 +1,7 @@
 import Router from 'next/router';
 import React, { FC } from 'react';
-import { useLoaderState } from '../../provider/LoadingState';
-import { Home_Link } from '../../routerLinks/RouterLinks';
+import { useLoaderState } from '../../contexts/LoadingState';
+import { Home_Link } from '../../routers/RouterLinks';
 import { FooterLogo } from '../logo/CompanyLogo';
 import { FooterBottom } from './assets/FooterBottom';
 import { setHomePage } from '../../redux/reducers/HomePageReducer';

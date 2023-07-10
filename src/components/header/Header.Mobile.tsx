@@ -7,10 +7,12 @@ import { MobileLogo } from '../logo/CompanyLogo';
 import { HeaderNavMobile } from './assets/Header.Nav.Mobile';
 import { HeaderMobileSearchProps } from './assets/Header.Mobile.Search';
 import { SearchMobileContent } from '../../contents/home/search/Home.Search';
-import { setHomePage } from '../../redux/reducers/HomePageReducer';
+import {
+  SelectHomePage,
+  setHomePage,
+} from '../../redux/reducers/HomePageReducer';
 import dynamic from 'next/dynamic';
-import ReduxStore from '../../redux/ReduxStore';
-import { useReduxStore } from '../../redux/useReduxStore';
+import { useReduxDispatch, useReduxSelector } from '../../redux/ReduxHooks';
 
 const HeaderMobileSearch = dynamic<HeaderMobileSearchProps>(
   () =>
@@ -24,7 +26,8 @@ const HeaderMobileSearch = dynamic<HeaderMobileSearchProps>(
  **/
 
 export const HeaderMobile: FC = () => {
-  const { HomePage } = useReduxStore((state) => state);
+  const { Page } = useReduxSelector(SelectHomePage);
+  const dispatch = useReduxDispatch();
 
   useEffect(() => {
     history.pushState('', document.title, window.location.pathname);
@@ -34,9 +37,7 @@ export const HeaderMobile: FC = () => {
     <>
       <div className="overflow-hidden bg-primary-theme z-[999] flex w-full box-border text-white items-center px-3 pb-2">
         <div className="flex">
-          <MobileLogo
-            onValueChange={(value) => ReduxStore.dispatch(setHomePage(value))}
-          />
+          <MobileLogo onValueChange={(value) => dispatch(setHomePage(value))} />
         </div>
         <div className="flex w-full justify-end items-center">
           <HeaderMobileSearchButton />
@@ -48,8 +49,8 @@ export const HeaderMobile: FC = () => {
       </div>
       <HeaderMobileSearch ContentArray={SearchMobileContent} />
       <HeaderNavMobile
-        Value={HomePage.page}
-        onValueChange={(value) => ReduxStore.dispatch(setHomePage(value))}
+        Value={Page}
+        onValueChange={(value) => dispatch(setHomePage(value))}
       />
     </>
   );

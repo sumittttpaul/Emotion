@@ -3,7 +3,7 @@ import { DiscoverBannerLightingDealContentProps } from '../../../contents/home/d
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Poster_BlurDataURL } from '../../loader/BlurDataURL';
-import useScreenSize from '../../../algorithms/ScreenSizeDetection';
+import useScreenSize from '../../../functions/ScreenSizeDetection';
 
 const HeadingStyle =
   'text-[14px] w-full font-normal text-left overflow-hidden whitespace-nowrap text-ellipsis';

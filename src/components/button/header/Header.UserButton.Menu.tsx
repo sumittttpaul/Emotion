@@ -6,10 +6,10 @@ import {
   Track_Order_Link,
   Cart_Link,
   Redeem_Gift_Codes_Link,
-} from '../../../routerLinks/RouterLinks';
+} from '../../../routers/RouterLinks';
 import Image from 'next/image';
 import UserIcon from '../../../../public/icons/user-fill.svg';
-import { UserType } from '../../../firebase/useAuth';
+import { UserType } from '../../../authentication/useClientAuth';
 
 export interface HeaderUserButtonMenuProps {
   anchorEl: null | HTMLElement;

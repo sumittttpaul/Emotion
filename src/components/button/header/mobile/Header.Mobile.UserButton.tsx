@@ -1,14 +1,14 @@
 import UserIcon from '../../../../../public/icons/user-fill.svg';
 import { CircularProgress, IconButton } from '@mui/material';
 import React, { FC, Fragment, ReactNode, useState, MouseEvent } from 'react';
-import { useLoaderState } from '../../../../provider/LoadingState';
-import { Setup_Link } from '../../../../routerLinks/RouterLinks';
+import { useLoaderState } from '../../../../contexts/LoadingState';
+import { Setup_Link } from '../../../../routers/RouterLinks';
 import Router from 'next/router';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { HeaderUserButtonMenuProps } from '../Header.UserButton.Menu';
-import { UserType, useAuth } from '../../../../firebase/useAuth';
-import { SignOut } from '../../../../algorithms/AuthAlgorithms';
+import { UserType, useAuth } from '../../../../authentication/useClientAuth';
+import { SignOut } from '../../../../functions/AuthAlgorithms';
 
 const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
   () => import('../Header.UserButton.Menu').then((x) => x.HeaderUserButtonMenu),
@@ -20,7 +20,7 @@ const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
  * @function @HeaderMobileUserButton
  **/
 export const HeaderMobileUserButton: FC = () => {
-  const { FirebaseUser, FirebaseLoading } = useAuth();
+  const { FirebaseUser, FirebaseLoading } = useClientAuth();
 
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => setLoader({ show: value });

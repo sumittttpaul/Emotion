@@ -4,7 +4,7 @@ import {
   Return_Order_Link,
   Refund_Policy_Link,
   Terms_Conditions_Link,
-} from '../../../routerLinks/RouterLinks';
+} from '../../../routers/RouterLinks';
 import { FooterBottomLinks } from './FooterBottomLinks';
 
 /**

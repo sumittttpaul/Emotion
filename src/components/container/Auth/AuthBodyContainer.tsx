@@ -1,12 +1,4 @@
-import React, {
-  Dispatch,
-  FC,
-  Fragment,
-  ReactNode,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
+import React, { FC, Fragment, ReactNode, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
@@ -15,24 +7,23 @@ import { m } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
 import { ToastDarkProps } from '../../toast/ToastDark';
-import {
-  AuthAnimationType,
-  AuthErrorType,
-  AuthType,
-} from '../../ui/AuthUI/AuthType';
-import { FinishAuthUIProps } from '../../ui/AuthUI/Finish/FinishAuthUI';
-import { SkipDialogAuthUIProps } from '../../ui/AuthUI/Dialog/SkipDialogAuthUI';
-import { AuthSkeleton } from '../../loader/Auth/AuthSkeleton';
-import { AuthErrorProps } from '../../error/AuthError';
-import { AuthLoadingProps } from '../../loader/Auth/AuthLoading';
+import { FinishAuthUIProps } from '../../ui/SetupUI/Screen/Setup.FinishScreen';
+import { SkipDialogAuthUIProps } from '../../ui/SetupUI/Dialog/Setup.SkipDialog';
+import { AuthSkeleton } from '../../ui/SetupUI/Screen/Setup.LoadingScreen';
+import { AuthErrorProps } from '../../ui/SetupUI/Screen/Setup.ErrorScreen';
+import { AuthLoadingProps } from '../../loader/Loading.LinearProgress';
 
 const AuthLoading = dynamic<AuthLoadingProps>(
-  () => import('../../loader/Auth/AuthLoading').then((x) => x.AuthLoading),
+  () =>
+    import('../../loader/Loading.LinearProgress').then((x) => x.AuthLoading),
   { ssr: false }
 );
 
 const AuthError = dynamic<AuthErrorProps>(
-  () => import('../../error/AuthError').then((x) => x.AuthError),
+  () =>
+    import('../../ui/SetupUI/Screen/Setup.ErrorScreen').then(
+      (x) => x.AuthError
+    ),
   { ssr: false }
 );
 
@@ -43,13 +34,15 @@ const ToastDark = dynamic<ToastDarkProps>(
 
 const FinishAuthUI = dynamic<FinishAuthUIProps>(
   () =>
-    import('../../ui/AuthUI/Finish/FinishAuthUI').then((x) => x.FinishAuthUI),
+    import('../../ui/SetupUI/Screen/Setup.FinishScreen').then(
+      (x) => x.FinishAuthUI
+    ),
   { ssr: false }
 );
 
 const SkipDialogAuthUI = dynamic<SkipDialogAuthUIProps>(
   () =>
-    import('../../ui/AuthUI/Dialog/SkipDialogAuthUI').then(
+    import('../../ui/SetupUI/Dialog/Setup.SkipDialog').then(
       (x) => x.SkipDialogAuthUI
     ),
   { ssr: false }
@@ -64,25 +57,23 @@ interface IProps {
   ClassName: string;
   InitialSlide: number;
   Error: AuthErrorType;
-  setError: Dispatch<SetStateAction<AuthErrorType>>;
+  setError: Dispatch<AuthErrorType>;
   Loading: boolean;
-  setLoading: Dispatch<SetStateAction<boolean>>;
-  InformationCheckLoading: boolean;
-  AuthScreen: AuthType;
-  setAuthScreen: Dispatch<SetStateAction<AuthType>>;
+  setLoading: Dispatch<boolean>;
+  CheckInfoLoading: boolean;
+  AuthScreen: AuthScreenType;
+  setAuthScreen: Dispatch<AuthScreenType>;
   Finish: boolean;
   SkipDialogOpen: boolean;
   SkipDialogClose: () => void;
   Animation: AuthAnimationType;
-  setToast: Dispatch<SetStateAction<boolean>>;
+  setToast: Dispatch<boolean>;
   ShowToast: boolean;
-  ToastSetting: { Title: string; Description: string; Type: string };
-  setToastSetting: Dispatch<
-    SetStateAction<{ Title: string; Description: string; Type: string }>
-  >;
+  ToastSetting: ToastSettingType;
+  setToastSetting: Dispatch<ToastSettingType>;
   Toast: {
     Open: boolean;
-    onClose: Dispatch<SetStateAction<boolean>>;
+    onClose: Dispatch<boolean>;
     MessageTitle: string;
     MessageDescription: string;
     Type: string;
@@ -158,98 +149,55 @@ const Illustrations = [
  **/
 
 const AuthBodyContainer: FC<IProps & ServerProps> = (props) => {
-  const [swiperInstance, setSwiperInstance] = useState<SwiperCore>();
-
-  useEffect(() => {
-    if (swiperInstance && props.InitialSlide === 0)
-      props.Finish && swiperInstance.slideNext();
-  }, [props.Finish, props.InitialSlide, swiperInstance]);
-
   return (
-    <Fragment>
-      <Head>
-        <meta name="theme-color" content="#202020" />
-      </Head>
-      <LazyMotion features={domAnimation} strict>
-        <div className="md:bg-[#0f0f0f] flex md:p-[32px] items-start md:items-center justify-center h-full md:h-screen w-screen main-auth overflow-hidden">
-          <div className="relative bg-[#202020] md:rounded-xl w-full md:max-w-[1040px] flex items-center justify-center overflow-hidden">
-            {props.Error.show && (
-              <AuthError
-                Type={props.Error.type}
-                ClassName={props.ClassName}
-                ToastTitle={props.Toast.MessageTitle}
-                ToastDescription={props.Toast.MessageDescription}
-              />
-            )}
-            {props.InformationCheckLoading && (
-              <AuthSkeleton ClassName={props.ClassName} />
-            )}
-            {!props.Error.show && !props.InformationCheckLoading && (
-              <Swiper
-                onSwiper={(e) => setSwiperInstance(e)}
-                slidesPerView={1}
-                spaceBetween={0}
-                initialSlide={props.InitialSlide}
-                draggable={false}
-                allowTouchMove={false}
-                className={`${props.ClassName} flex w-full relative`}
-              >
-                <SwiperSlide className="relative items-center justify-center h-full w-full flex flex-col md:flex-row">
-                  <div className="p-14 ml-14 relative hidden md:flex w-full h-full justify-center items-center">
-                    <AnimatePresence mode="sync" initial={true}>
-                      {Illustrations.map((value, idx) => (
-                        <Fragment key={idx}>
-                          {props.AuthScreen === value.Alt && (
-                            <m.div
-                              className="w-full relative"
-                              initial={props.Animation.Initial}
-                              animate={props.Animation.Final}
-                              transition={props.Animation.Transition}
-                            >
-                              <Image
-                                height={370}
-                                width={370}
-                                src={value.Image}
-                                alt={value.Alt}
-                                className="text-white text-xs"
-                              />
-                            </m.div>
-                          )}
-                        </Fragment>
-                      ))}
-                    </AnimatePresence>
-                  </div>
-                  <div className="md:p-9 relative w-full md:min-w-[400px] md-1000:min-w-[500px] flex items-center justify-center overflow-hidden">
-                    {props.children}
-                  </div>
-                </SwiperSlide>
-                {props.Finish && (
-                  <SwiperSlide className="relative h-full w-full flex">
-                    <FinishAuthUI ClassName={props.ClassName} />
-                  </SwiperSlide>
+    <LazyMotion features={domAnimation} strict>
+      {props.Error.show && (
+        <AuthError
+          Type={props.Error.type}
+          ClassName={props.ClassName}
+          ToastTitle={props.Toast.MessageTitle}
+          ToastDescription={props.Toast.MessageDescription}
+        />
+      )}
+      {props.CheckInfoLoading && <AuthSkeleton ClassName={props.ClassName} />}
+      {!props.Error.show && !props.CheckInfoLoading && (
+        <main
+          className={`${props.ClassName} relative items-center justify-center h-full w-full flex flex-col md:flex-row box-border`}
+        >
+          <div className="p-14 ml-14 relative hidden md:flex w-full h-full justify-center items-center">
+            {Illustrations.map((value) => (
+              <>
+                {props.AuthScreen === value.Alt && (
+                  <Image
+                    height={370}
+                    width={370}
+                    src={value.Image}
+                    alt={value.Alt}
+                    className="text-white text-xs"
+                  />
                 )}
-              </Swiper>
-          )}
-            {props.Loading && <AuthLoading />}
+              </>
+            ))}
           </div>
-        </div>
-        <div
-          id="verify-sign-in-recaptcha"
-          className="h-full sm:h-screen absolute top-0 flex items-center justify-center"
-        ></div>
-        <SkipDialogAuthUI
-          Open={props.SkipDialogOpen}
-          onClose={props.SkipDialogClose}
-        />
-        <ToastDark
-          Toast={props.Toast}
-          SlideDirection="down"
-          Vertical="top"
-          Horizontal="center"
-          HideDuration={6}
-        />
-      </LazyMotion>
-    </Fragment>
+          <div className="md:p-9 md:min-w-[415px] md-1000:min-w-[500px] relative w-full flex items-center justify-center overflow-hidden">
+            {props.children}
+          </div>
+        </main>
+      )}
+      {props.Finish && <FinishAuthUI ClassName={props.ClassName} />}
+      {props.Loading && <AuthLoading />}
+      <SkipDialogAuthUI
+        Open={props.SkipDialogOpen}
+        onClose={props.SkipDialogClose}
+      />
+      <ToastDark
+        Toast={props.Toast}
+        SlideDirection="down"
+        Vertical="top"
+        Horizontal="center"
+        HideDuration={6}
+      />
+    </LazyMotion>
   );
 };
 

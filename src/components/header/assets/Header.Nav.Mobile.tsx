@@ -5,7 +5,7 @@ import {
   Discover_Link,
   Offers_Link,
   Collections_Link,
-} from '../../../routerLinks/RouterLinks';
+} from '../../../routers/RouterLinks';
 
 interface IProps {
   onValueChange: (value: string) => void;

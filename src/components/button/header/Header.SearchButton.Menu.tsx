@@ -7,7 +7,7 @@ import React, {
   SetStateAction,
   useState,
 } from 'react';
-import useNavigateList from '../../../algorithms/KeyboardNavigationList';
+import useNavigateList from '../../../functions/KeyboardNavigationList';
 import { SearchContentProps } from '../../../contents/home/search/Home.Search';
 
 export interface HeaderSearchButtonMenuProps {

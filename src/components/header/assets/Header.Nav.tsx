@@ -4,7 +4,7 @@ import {
   Collections_Link,
   Discover_Link,
   Offers_Link,
-} from '../../../routerLinks/RouterLinks';
+} from '../../../routers/RouterLinks';
 import Router from 'next/router';
 
 interface IProps {

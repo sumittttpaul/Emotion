@@ -93,6 +93,7 @@ export interface PasswordTextFieldProps {
 export interface OTPTextFieldProps {
   id?: string;
   value: string;
+  readonly?: boolean;
   onClick: (event: MouseEvent<HTMLInputElement>) => void;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onkeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;

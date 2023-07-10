@@ -1,18 +1,14 @@
+'use client';
+
 import {
   Backdrop,
   CircularProgress,
   circularProgressClasses,
 } from '@mui/material';
-import React, { FC } from 'react';
-import { useLoaderState } from '../../provider/LoadingState';
+import { LoaderHook } from 'hooks/Hooks.Loader';
 
-/**
- * @author
- * @function @Loading
- **/
-export const Loading: FC = () => {
-  const { Loader } = useLoaderState();
-  const Show: boolean = Loader.show || false;
+export function Loading() {
+  const { Loader } = LoaderHook();
   return (
     <Backdrop
       className="backdrop-blur-sm transition-all ease-out"
@@ -20,7 +16,7 @@ export const Loading: FC = () => {
         backgroundColor: '#000000a6',
         zIndex: (theme) => theme.zIndex.drawer + 1000,
       }}
-      open={Show}
+      open={Loader}
     >
       <div className="relative text-white flex flex-col opacity-[0.85] items-center justify-center h-[100px] w-[100px]">
         <div className="block relative items-center justify-center">
@@ -42,4 +38,4 @@ export const Loading: FC = () => {
       </div>
     </Backdrop>
   );
-};
+}

@@ -1,29 +1,23 @@
-import React, { FC, Fragment, useEffect, useState } from 'react';
+'use client';
+
+import { useEffect, useState } from 'react';
 import moment from 'moment';
 import dynamic from 'next/dynamic';
 import { DatePickerCustomButton } from './assets/DatePickerCustomButton';
 import { DatePickerButtonDialogProps } from './DatePickerButtonDialog';
 
-const DatePickerButtonDialog = dynamic<DatePickerButtonDialogProps>(
-  () =>
-    import('./DatePickerButtonDialog').then((x) => x.DatePickerButtonDialog),
-  { ssr: false }
+const DatePickerButtonDialog = dynamic<DatePickerButtonDialogProps>(() =>
+  import('./DatePickerButtonDialog').then((x) => x.DatePickerButtonDialog)
 );
 
 interface IProps {
-  theme: string;
   DOB: string;
-  getDOB: (value: string) => void;
+  getDOB: Dispatch<string>;
   SubmitDisabled: boolean;
-  setSubmitDisabled: (value: boolean) => void;
+  setSubmitDisabled: Dispatch<boolean>;
 }
 
-/**
- * @author
- * @function @DatePickerButton
- **/
-
-export const DatePickerButton: FC<IProps> = (props) => {
+function DatePickerButton(props: IProps) {
   const MomentDay = moment().endOf('day').format('DD');
   const MomentMonth = moment().endOf('month').format('MMM');
   const MomentYear = moment().endOf('year').format('YYYY');
@@ -36,9 +30,11 @@ export const DatePickerButton: FC<IProps> = (props) => {
   const [DOBDialog, setDOBDialog] = useState(false);
   const [DOBScreen, setDOBScreen] = useState<'year' | 'month' | 'day'>('year');
   const [DOBSubmitDisabled, setDOBSubmitDisabled] = useState(false);
-  const [DOBDay, setDOBDay] = useState(MomentDay);
-  const [DOBMonth, setDOBMonth] = useState(MomentMonth);
-  const [DOBYear, setDOBYear] = useState(MomentYear);
+  const [DOBMoment, setDOBMoment] = useState({
+    DOBDay: MomentDay,
+    DOBMonth: MomentMonth,
+    DOBYear: MomentYear,
+  });
 
   // Handle Dialog
   const ShowDOBDialog = () => {
@@ -47,24 +43,26 @@ export const DatePickerButton: FC<IProps> = (props) => {
   const HideDOBDialog = () => {
     setDOBDialog(false);
     setTimeout(() => {
-      setDOBDay(MomentDay);
-      setDOBMonth(MomentMonth);
-      setDOBYear(MomentYear);
+      setDOBMoment({
+        DOBDay: MomentDay,
+        DOBMonth: MomentMonth,
+        DOBYear: MomentYear,
+      });
     }, 200);
   };
 
   // DOB Get
   const GetDOBDay = (day: string) => {
-    setDOBDay(day);
+    setDOBMoment({ ...DOBMoment, DOBDay: day });
     setDOBSubmitDisabled(true);
   };
   const GetDOBMonth = (month: string) => {
-    setDOBMonth(month);
+    setDOBMoment({ ...DOBMoment, DOBMonth: month });
     setDOBScreen('day');
   };
 
   const GetDOBYear = (year: string) => {
-    setDOBYear(year);
+    setDOBMoment({ ...DOBMoment, DOBYear: year });
     setDOBScreen('month');
   };
 
@@ -72,43 +70,46 @@ export const DatePickerButton: FC<IProps> = (props) => {
   const DOBOpenhandle = () => {
     setDOBScreen('year');
     setDOBSubmitDisabled(false);
-    setDOBDay(MomentDay);
-    setDOBMonth(MomentMonth);
-    setDOBYear(MomentYear);
+    setDOBMoment({
+      DOBDay: MomentDay,
+      DOBMonth: MomentMonth,
+      DOBYear: MomentYear,
+    });
     ShowDOBDialog();
   };
   const DOBCancelhandle = () => {
     HideDOBDialog();
   };
   const DOBSubmithandle = () => {
-    props.getDOB(DOBDay + '-' + DOBMonth + '-' + DOBYear);
+    props.getDOB(
+      DOBMoment.DOBDay + '-' + DOBMoment.DOBMonth + '-' + DOBMoment.DOBYear
+    );
     props.setSubmitDisabled(false);
     setDOBDialog(false);
   };
-  const DOBLabel = DOBDay + ' ' + DOBMonth + ' , ' + DOBYear;
+  const DOBLabel =
+    DOBMoment.DOBDay + ' ' + DOBMoment.DOBMonth + ' , ' + DOBMoment.DOBYear;
 
   useEffect(() => {
     if (props.DOB) {
-      setDOBDay(_dataDay);
-      setDOBMonth(_dataMonth);
-      setDOBYear(_dataYear);
+      setDOBMoment({
+        DOBDay: _dataDay,
+        DOBMonth: _dataMonth,
+        DOBYear: _dataYear,
+      });
     }
   }, [props.DOB]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Fragment>
-      <DatePickerCustomButton
-        theme={props.theme}
-        label={`${DOBLabel}`}
-        onClick={DOBOpenhandle}
-      />
+    <>
+      <DatePickerCustomButton label={`${DOBLabel}`} onClick={DOBOpenhandle} />
       <DatePickerButtonDialog
         DOBShow={DOBDialog}
         setDOBShow={HideDOBDialog}
         DOBScreen={DOBScreen}
-        DOBDay={DOBDay}
-        DOBMonth={DOBMonth}
-        DOBYear={DOBYear}
+        DOBDay={DOBMoment.DOBDay}
+        DOBMonth={DOBMoment.DOBMonth}
+        DOBYear={DOBMoment.DOBYear}
         GetDOBDay={GetDOBDay}
         GetDOBMonth={GetDOBMonth}
         GetDOBYear={GetDOBYear}
@@ -116,6 +117,8 @@ export const DatePickerButton: FC<IProps> = (props) => {
         DOBSubmit={DOBSubmithandle}
         DOBSubmitDisabled={DOBSubmitDisabled}
       />
-    </Fragment>
+    </>
   );
-};
+}
+
+export default DatePickerButton;

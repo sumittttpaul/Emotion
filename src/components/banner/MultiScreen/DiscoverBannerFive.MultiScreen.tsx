@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { DiscoverBannerFiveContentProps } from '../../../contents/home/discover/Home.Discover.Banner';
 import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
 import { BannerSmallButtonForBannerFour } from '../../button/banner/Banner.SmallButton.ForBannerFour';
-import useScreenSize from '../../../algorithms/ScreenSizeDetection';
+import useScreenSize from '../../../functions/ScreenSizeDetection';
 import { BannerTitleButton } from '../../button/banner/Banner.TitleButton';
 import { BannerUnderlineButton } from '../../button/banner/Banner.UnderlineButton';
 

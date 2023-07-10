@@ -3,12 +3,12 @@ import Router from 'next/router';
 import dynamic from 'next/dynamic';
 import React, { FC, Fragment, MouseEvent, ReactNode, useState } from 'react';
 import { Button, CircularProgress } from '@mui/material';
-import { Setup_Link } from '../../../routerLinks/RouterLinks';
+import { Setup_Link } from '../../../routers/RouterLinks';
 import { HeaderUserButtonMenuProps } from './Header.UserButton.Menu';
 import { TooltipDark } from '../../tooltip/TooltipDark';
-import { UserType, useAuth } from '../../../firebase/useAuth';
-import { SignOut } from '../../../algorithms/AuthAlgorithms';
-import { useLoaderState } from '../../../provider/LoadingState';
+import { UserType, useAuth } from '../../../authentication/useClientAuth';
+import { SignOut } from '../../../functions/AuthAlgorithms';
+import { useLoaderState } from '../../../contexts/LoadingState';
 
 const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
   () => import('./Header.UserButton.Menu').then((x) => x.HeaderUserButtonMenu),
@@ -21,7 +21,7 @@ const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
  **/
 
 export const HeaderUserButton: FC = () => {
-  const { FirebaseUser, FirebaseLoading } = useAuth();
+  const { FirebaseUser, FirebaseLoading } = useClientAuth();
 
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => setLoader({ show: value });

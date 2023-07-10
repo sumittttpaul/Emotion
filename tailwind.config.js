@@ -1,12 +1,18 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'media',
   content: [
+    './src/app/*.{js,ts,jsx,tsx}',
+    './src/app/**/*.{js,ts,jsx,tsx}',
     './src/pages/*.{js,ts,jsx,tsx}',
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/components/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
   ],
-  media: true,
   theme: {
+    fontFamily: {
+      nunito: ['Nunito Sans'],
+    },
     extend: {
       colors: {
         'primary-blue': '#0076E4',
@@ -57,9 +63,9 @@ module.exports = {
         'xl-1400': '1400px',
         'large-screen': '1520px',
         'xl-1765': '1765px',
-        'xl-2000':'2000px',
+        'xl-2000': '2000px',
       },
     },
   },
-  plugins: ['postcss-import', 'tailwindcss', 'autoprefixer'],
+  plugins: [],
 };

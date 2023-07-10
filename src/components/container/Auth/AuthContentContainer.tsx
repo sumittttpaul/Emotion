@@ -1,14 +1,19 @@
+'use client';
+
 import React, { FC, ReactNode } from 'react';
-import { AuthHeaderLabel } from '../../label/AuthHeaderLabel';
-import { AuthHeaderDescription } from '../../label/AuthHeaderDescription';
-import { AuthContentHeader } from '../../label/AuthContentHeader';
-import { AuthAnimationType, AuthType } from '../../ui/AuthUI/AuthType';
+import { SetupHeaderLabel } from '../../label/SetupHeaderLabel';
+import { SetupHeaderDescription } from '../../label/SetupHeaderDescription';
+import { SetupContentHeader } from '../../label/SetupContentHeader';
+import {
+  AuthAnimationType,
+  AuthScreenType,
+} from '../../ui/SetupUI/AuthScreenType';
 import { m } from 'framer-motion';
 
 interface IProps {
   children: ReactNode;
   ClassName: string;
-  AuthScreen: AuthType;
+  AuthScreen: AuthScreenType;
   Animation: AuthAnimationType;
 }
 
@@ -26,7 +31,7 @@ const AuthContentContainer: FC<IProps> = (props) => {
         animate={props.Animation.Final}
         transition={props.Animation.Transition}
       >
-        <AuthHeaderLabel ClassName="px-5 pt-5">
+        <SetupHeaderLabel ClassName="px-5 pt-5">
           {props.AuthScreen === 'login-phone' &&
             `Let's add your Emotion account`}
           {props.AuthScreen === 'login-email' &&
@@ -57,8 +62,8 @@ const AuthContentContainer: FC<IProps> = (props) => {
             `Now add your birthday to get rewards`}
           {props.AuthScreen === 'register-gender' &&
             `Now add your gender for better search`}
-        </AuthHeaderLabel>
-        <AuthHeaderDescription ClassName="px-5">
+        </SetupHeaderLabel>
+        <SetupHeaderDescription ClassName="px-5">
           {props.AuthScreen === 'login-phone' &&
             `One account connects yourself across Emotion services and prodcuts.`}
           {props.AuthScreen === 'login-email' &&
@@ -89,8 +94,8 @@ const AuthContentContainer: FC<IProps> = (props) => {
             `We will add some additional rewards and disounts on your special day.`}
           {props.AuthScreen === 'register-gender' &&
             `Get personalized search and browsing results base on your info.`}
-        </AuthHeaderDescription>
-        <AuthContentHeader ClassName="px-5">
+        </SetupHeaderDescription>
+        <SetupContentHeader ClassName="px-5">
           {props.AuthScreen === 'login-phone' && 'Sign In'}
           {props.AuthScreen === 'login-email' && 'Sign In'}
           {props.AuthScreen === 'login-others' && 'Sign-In Options'}
@@ -106,7 +111,7 @@ const AuthContentContainer: FC<IProps> = (props) => {
           {props.AuthScreen === 'register-profile-picture' && 'Account setup'}
           {props.AuthScreen === 'register-date-of-birth' && 'Account setup'}
           {props.AuthScreen === 'register-gender' && 'Account setup'}
-        </AuthContentHeader>
+        </SetupContentHeader>
       </m.div>
       <div
         className={`${props.ClassName} px-5 w-full relative overflow-hidden`}

@@ -1,8 +1,8 @@
 import { HeaderLogo } from '../logo/CompanyLogo';
 import Router from 'next/router';
 import { Dispatch, FC, SetStateAction } from 'react';
-import { useLoaderState } from '../../provider/LoadingState';
-import { Home_Link } from '../../routerLinks/RouterLinks';
+import { useLoaderState } from '../../contexts/LoadingState';
+import { Home_Link } from '../../routers/RouterLinks';
 import { SidePanelVerticalNavBar } from './SidePanel.Vertical.NavBar';
 import { SidePanelShoppingList } from './ShoppingList/SidePanel.ShoppingList';
 import { setHomePage } from '../../redux/reducers/HomePageReducer';

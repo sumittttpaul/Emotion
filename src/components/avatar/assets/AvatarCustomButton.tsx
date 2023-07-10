@@ -1,7 +1,6 @@
+import Image from 'next/image';
 import { IconButton } from '@mui/material';
 import { CameraIcon } from '@heroicons/react/solid';
-import React, { FC } from 'react';
-import Image from 'next/image';
 import { Circle_BlurDataURL } from '../../loader/BlurDataURL';
 
 interface IProps {
@@ -9,12 +8,7 @@ interface IProps {
   ImageURL: string;
 }
 
-/**
- * @author
- * @function @AvatarCustomButton
- **/
-
-export const AvatarCustomButton: FC<IProps> = (props) => {
+export function AvatarCustomButton(props: IProps) {
   return (
     <IconButton
       onClick={props.onClick}
@@ -42,4 +36,4 @@ export const AvatarCustomButton: FC<IProps> = (props) => {
       </div>
     </IconButton>
   );
-};
+}

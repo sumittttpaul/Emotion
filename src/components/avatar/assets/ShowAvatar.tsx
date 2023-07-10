@@ -10,7 +10,7 @@ import {
 } from '@heroicons/react/outline';
 import { UsersIcon } from '@heroicons/react/solid';
 import { TooltipDark } from '../../tooltip/TooltipDark';
-import { AuthLoading } from '../../loader/Auth/AuthLoading';
+import { AuthLoading } from '../../loader/Loading.LinearProgress';
 import { Circle_BlurDataURL } from '../../loader/BlurDataURL';
 
 interface IProps {

@@ -1,19 +1,15 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { FC, Fragment, ReactNode } from 'react';
+import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
 interface IProps {
-  children: ReactNode;
+  children: React.ReactNode;
   show: boolean;
-  onClose: () => void;
+  onClose: VoidType;
   disableClickAwayClose?: true;
 }
 
-/**
- * @author
- * @function @DialogContainerDark
- **/
-export const DialogContainerDark: FC<IProps> = (props) => {
+export function DialogContainerDark(props: IProps) {
   return (
     <Transition appear show={props.show} as={Fragment}>
       <Dialog
@@ -53,4 +49,4 @@ export const DialogContainerDark: FC<IProps> = (props) => {
       </Dialog>
     </Transition>
   );
-};
+}

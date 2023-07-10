@@ -1,6 +1,6 @@
 import { Link } from '@mui/material';
 import React, { FC } from 'react';
-import { Privacy_Policy_Link } from '../../routerLinks/RouterLinks';
+import { Privacy_Policy_Link } from '../../routers/RouterLinks';
 
 /**
  * @author

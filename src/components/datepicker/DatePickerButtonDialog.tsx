@@ -1,34 +1,26 @@
-import React, { FC } from 'react';
-import { DatePickerContainerDialog } from '../dialog/DatePickerContainerDialog';
-import { DatePickerDialogBottom } from './assets/Dialog/DatePickerDialogBottom';
-import { DatePickerDialogHeader } from './assets/Dialog/DatePickerDialogHeader';
-import { SelectDay } from './assets/SelectDay';
-import { SelectMonth } from './assets/SelectMonth';
-import { SelectYear } from './assets/SelectYear';
+import { DatePickerContainerDialog } from 'components/dialog/DatePickerContainerDialog';
+import { DatePickerDialogBottom } from 'components/datepicker/assets/Dialog/DatePickerDialogBottom';
+import { DatePickerDialogHeader } from 'components/datepicker/assets/Dialog/DatePickerDialogHeader';
+import { SelectDay } from 'components/datepicker/assets/SelectDay';
+import { SelectMonth } from 'components/datepicker/assets/SelectMonth';
+import { SelectYear } from 'components/datepicker/assets/SelectYear';
 
 export interface DatePickerButtonDialogProps {
   DOBScreen: 'year' | 'month' | 'day';
   DOBShow: boolean;
-  setDOBShow: () => void;
+  setDOBShow: VoidType;
   DOBDay: string;
   DOBMonth: string;
   DOBYear: string;
-  GetDOBDay: (day: string) => void;
-  GetDOBMonth: (month: string) => void;
-  GetDOBYear: (year: string) => void;
-  DOBCancel: () => void;
-  DOBSubmit: () => void;
+  GetDOBDay: Dispatch<string>;
+  GetDOBMonth: Dispatch<string>;
+  GetDOBYear: Dispatch<string>;
+  DOBCancel: VoidType;
+  DOBSubmit: VoidType;
   DOBSubmitDisabled: boolean;
 }
 
-/**
- * @author
- * @function @DatePickerButtonDialog
- **/
-
-export const DatePickerButtonDialog: FC<DatePickerButtonDialogProps> = (
-  props
-) => {
+export function DatePickerButtonDialog(props: DatePickerButtonDialogProps) {
   const setHeaderDates = () => {
     return props.DOBYear + ', ' + props.DOBMonth + ' ' + props.DOBDay;
   };
@@ -65,4 +57,4 @@ export const DatePickerButtonDialog: FC<DatePickerButtonDialogProps> = (
       </div>
     </DatePickerContainerDialog>
   );
-};
+}

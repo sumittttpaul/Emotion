@@ -1,0 +1,44 @@
+<Swiper
+          onSwiper={(e) => setSwiperInstance(e)}
+          slidesPerView={1}
+          spaceBetween={0}
+          initialSlide={props.InitialSlide}
+          draggable={false}
+          allowTouchMove={false}
+          className={`${props.ClassName} flex w-full relative`}
+        >
+          <SwiperSlide className="relative items-center justify-center h-full w-full flex flex-col md:flex-row box-border">
+            <div className="p-14 ml-14 relative hidden md:flex w-full h-full justify-center items-center">
+              <AnimatePresence mode="sync" initial={true}>
+                {Illustrations.map((value, idx) => (
+                  <Fragment key={idx}>
+                    {props.AuthScreen === value.Alt && (
+                      <m.div
+                        className="w-full relative"
+                        initial={props.Animation.Initial}
+                        animate={props.Animation.Final}
+                        transition={props.Animation.Transition}
+                      >
+                        <Image
+                          height={370}
+                          width={370}
+                          src={value.Image}
+                          alt={value.Alt}
+                          className="text-white text-xs"
+                        />
+                      </m.div>
+                    )}
+                  </Fragment>
+                ))}
+              </AnimatePresence>
+            </div>
+            <div className="md:p-9 md:min-w-[415px] md-1000:min-w-[500px] relative w-full flex items-center justify-center overflow-hidden">
+              {props.children}
+            </div>
+          </SwiperSlide>
+          {props.Finish && (
+            <SwiperSlide className="relative h-full w-full flex">
+              <FinishAuthUI ClassName={props.ClassName} />
+            </SwiperSlide>
+          )}
+        </Swiper>

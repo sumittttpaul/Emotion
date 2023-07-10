@@ -1,66 +1,28 @@
+'use client';
+
 import dynamic from 'next/dynamic';
-import React, {
-  Dispatch,
-  FC,
-  Fragment,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
-import { UploadAvatar, DeleteAvatar } from '../../algorithms/AuthAlgorithms';
 import { AvatarCustomButton } from './assets/AvatarCustomButton';
 import { AvatarButtonDialogProps } from './AvatarButtonDialog';
 import { AvatarContainerType, AvatarScreenType } from './assets/AvatarType';
-import { useAuth } from '../../firebase/useAuth';
-import { useQueryClient, useMutation } from 'react-query';
-import {
-  putUserProfile,
-  getUserProfile,
-  _userProfileEndURL as cacheKey,
-} from '../../mongodb/helper/Helper.UserProfile';
-import { IUserProfileDataUpdate } from '../../mongodb/schema/Schema.UserProfile';
-import { UserProfileEncrytionKey } from '../../algorithms/security/CryptionKey';
-import { EncryptData } from '../../algorithms/security/CryptionSecurity';
 import {
   SetupAvatarContent,
   SetupAvatarContentProps,
 } from '../../contents/setup/Setup.Avatar';
+import { DeleteAvatar, UploadAvatar } from 'functions/AuthAlgorithms';
+import { useEffect, useState } from 'react';
+import useClientAuth from 'authentication/useClientAuth';
+import { EncryptData } from 'functions/security/CryptionSecurity';
+import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
+import { ToastHook } from 'hooks/Hooks.Toast';
+import OperateUserProfile from 'databases/controller/Controller.UserProfile';
 
-const AvatarButtonDialog = dynamic<AvatarButtonDialogProps>(
-  () => import('./AvatarButtonDialog').then((x) => x.AvatarButtonDialog),
-  { ssr: false }
+const AvatarButtonDialog = dynamic<AvatarButtonDialogProps>(() =>
+  import('./AvatarButtonDialog').then((x) => x.AvatarButtonDialog)
 );
 
-export interface AvatarButtonProps {
-  setToast: Dispatch<SetStateAction<boolean>>;
-  setToastSetting: Dispatch<
-    SetStateAction<{ Title: string; Description: string; Type: string }>
-  >;
-}
-
-/**
- * @author
- * @function @AvatarButton
- **/
-
-export const AvatarButton: FC<AvatarButtonProps> = (props) => {
-  const { FirebaseUser, FirebaseLoading } = useAuth();
-  const queryClient = useQueryClient();
-  const updateUserProfile = useMutation(
-    (data: IUserProfileDataUpdate) => putUserProfile(FirebaseUser?.uid, data),
-    {
-      onSuccess: async () => {
-        queryClient.prefetchQuery([cacheKey, FirebaseUser?.uid], () =>
-          getUserProfile(FirebaseUser?.uid)
-        );
-      },
-      onError: (error: Error) => {
-        setAvatarLoading(false);
-        ShowToast(error.name, error.message, 'Error', true);
-      },
-    }
-  );
-
+function AvatarButton() {
+  const { FirebaseUser, FirebaseLoading } = useClientAuth();
+  const { setToast } = ToastHook();
   const userPhoto = FirebaseUser?.photoURL?.toString();
 
   // State
@@ -181,21 +143,6 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
     setCollectionBackBool(value);
   };
 
-  // Toast
-  const ShowToast = (
-    title: string,
-    description: string,
-    type: string,
-    show: boolean
-  ) => {
-    props.setToastSetting({
-      Title: title,
-      Description: description,
-      Type: type,
-    });
-    props.setToast(show);
-  };
-
   // Avatar handle
   const AvatarUploadProgress = (value: string) => {
     setUploadProgess(value);
@@ -204,74 +151,88 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
     ShowAvatarScreen();
     ShowAvatarDialog();
   };
-  const UpdateDataBaseWithURL = (value: string) => {
+  function UpdatedatabaseWithURL(value: string) {
     if (FirebaseUser) {
-      try {
-        const UserPhotoURL = EncryptData(
-          UserProfileEncrytionKey(FirebaseUser?.uid, 'PhotoURL'),
-          value
-        );
-        const _data: IUserProfileDataUpdate = {
-          '_data.photoURL': UserPhotoURL,
-        };
-        updateUserProfile.mutate(_data);
-        GetServerImageURL(value);
-        RemoveImageDisabled(false);
-        ChangeImageDisabled(false);
-        setAvatarLoading(false);
-        ShowToast(
-          'Avatar updated successfully',
-          'You profile picture has been updated for your account.',
-          'Success',
-          true
-        );
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          setAvatarLoading(false);
-          ShowToast(error.name, error.message, 'Error', true);
-        }
-      }
-    } else {
-      ShowToast(
-        'Something went wrong',
-        'It seems like user is not exist.',
-        'Error',
-        true
+      const UserPhotoURL = EncryptData(
+        UserProfileEncrytionKey(FirebaseUser?.uid, 'PhotoURL'),
+        value
       );
+      const _data: IUserProfileDataUpdate = {
+        '_data.photoURL': UserPhotoURL,
+      };
+      OperateUserProfile('UPDATE', { uid: FirebaseUser.uid, update: _data })
+        .then(() => {
+          GetServerImageURL(value);
+          RemoveImageDisabled(false);
+          ChangeImageDisabled(false);
+          setAvatarLoading(false);
+          setToast({
+            Title: 'Avatar updated successfully',
+            Description:
+              'You profile picture has been updated for your account.',
+            Type: 'Success',
+            Show: true,
+          });
+        })
+        .catch((error) => {
+          if (error instanceof Error) {
+            setAvatarLoading(false);
+            setToast({
+              Title: error.name,
+              Description: error.message,
+              Type: 'Error',
+              Show: true,
+            });
+          }
+        });
+    } else {
+      setToast({
+        Title: 'Something went wrong',
+        Description: 'It seems like user is not exist.',
+        Type: 'Error',
+        Show: true,
+      });
     }
-  };
-  const DeletePhotoURLFromDataBase = () => {
+  }
+  function DeletePhotoURLFromdatabase() {
     if (FirebaseUser) {
-      try {
-        const _data: IUserProfileDataUpdate = {
-          '_data.photoURL': '',
-        };
-        updateUserProfile.mutate(_data);
-        setAvatarURL('/images/default/user.png');
-        ChangeImageDisabled(false);
-        RemoveImageDisabled(true);
-        setAvatarLoading(false);
-        ShowToast(
-          'Avatar deleted successfully',
-          'You profile picture has been removed from your account.',
-          'Success',
-          true
-        );
-      } catch (error: unknown) {
-        if (error instanceof Error) {
+      const _data: IUserProfileDataUpdate = {
+        '_data.photoURL': '',
+      };
+      OperateUserProfile('UPDATE', { uid: FirebaseUser.uid, update: _data })
+        .then(() => {
+          setAvatarURL('/images/default/user.png');
+          ChangeImageDisabled(false);
+          RemoveImageDisabled(true);
           setAvatarLoading(false);
-          ShowToast(error.name, error.message, 'Error', true);
-        }
-      }
+          setToast({
+            Title: 'Avatar deleted successfully',
+            Description:
+              'You profile picture has been removed from your account.',
+            Type: 'Success',
+            Show: true,
+          });
+        })
+        .catch((error) => {
+          if (error instanceof Error) {
+            setAvatarLoading(false);
+            setToast({
+              Title: error.name,
+              Description: error.message,
+              Type: 'Error',
+              Show: true,
+            });
+          }
+        });
     } else {
-      ShowToast(
-        'Something went wrong',
-        'It seems like user is not exist.',
-        'Error',
-        true
-      );
+      setToast({
+        Title: 'Something went wrong',
+        Description: 'It seems like user is not exist.',
+        Type: 'Error',
+        Show: true,
+      });
     }
-  };
+  }
   const AvatarSubmit = (value: File) => {
     if (value) {
       setChangeAvatar(false);
@@ -279,15 +240,21 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
       ChangeImageDisabled(true);
       ShowAvatarScreen();
       UploadAvatar({
-        Progress: AvatarUploadProgress,
         File: value,
-        UpdateDataBaseWithURL: UpdateDataBaseWithURL,
+        Progress: AvatarUploadProgress,
         Loading: setAvatarLoading,
-        ShowToast: ShowToast,
+        UpdatedatabaseWithURL: UpdatedatabaseWithURL,
+        ShowToast: (Title, Description, Type, Show) =>
+          setToast({
+            Title: Title,
+            Description: Description,
+            Type: Type,
+            Show: Show,
+          }),
       });
     }
   };
-  const RemoveImageClick = () => {
+  function RemoveImageClick() {
     if (FirebaseUser)
       if (FirebaseUser.photoURL) {
         RemoveImageDisabled(true);
@@ -296,11 +263,17 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
         DeleteAvatar({
           AvatarURL: FirebaseUser.photoURL,
           Loading: setAvatarLoading,
-          ShowToast: ShowToast,
-          DeletePhotoURLFromDataBase: DeletePhotoURLFromDataBase,
+          DeletePhotoURLFromdatabase: DeletePhotoURLFromdatabase,
+          ShowToast: (Title, Description, Type, Show) =>
+            setToast({
+              Title: Title,
+              Description: Description,
+              Type: Type,
+              Show: Show,
+            }),
         });
       }
-  };
+  }
 
   useEffect(() => {
     if (FirebaseUser) {
@@ -311,7 +284,7 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
   }, [AvatarURL, ChangeAvatar, FirebaseUser]);
 
   return (
-    <Fragment>
+    <>
       <AvatarCustomButton onClick={AvatarClick} ImageURL={AvatarURL} />
       <AvatarButtonDialog
         AvatarURL={AvatarURL}
@@ -347,6 +320,8 @@ export const AvatarButton: FC<AvatarButtonProps> = (props) => {
         CollectionBackBool={CollectionBool}
         AvatarSubmit={AvatarSubmit}
       />
-    </Fragment>
+    </>
   );
-};
+}
+
+export default AvatarButton;

@@ -1,6 +1,6 @@
 import { Link } from '@mui/material';
 import React, { FC } from 'react';
-import { Terms_Conditions_Link } from '../../routerLinks/RouterLinks';
+import { Terms_Conditions_Link } from '../../routers/RouterLinks';
 
 /**
  * @author

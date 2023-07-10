@@ -5,7 +5,7 @@ import { DiscoverTilesContentProps } from '../../../contents/home/discover/Home.
 import { UnderlineButtonDark } from '../../button/UnderlineButtonDark';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
-import useScreenSize from '../../../algorithms/ScreenSizeDetection';
+import useScreenSize from '../../../functions/ScreenSizeDetection';
 import { BannerTitleButton } from '../../button/banner/Banner.TitleButton';
 import { BannerSmallButton } from '../../button/banner/Banner.SmallButton';
 
