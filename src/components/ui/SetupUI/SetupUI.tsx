@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import React, { FC } from 'react';
-import { IsInformationHandler } from './IsInformationHandler';
+import { IsInformationHandler } from './CheckInfoHandler';
 import { LoginPhoneAuthUIProps } from './Screen/Login/Setup.Login.PhoneScreen';
 import { LoginEmailAuthUIProps } from './Screen/Login/Setup.Login.EmailScreen';
 import { LoginOtherAccountAuthUIProps } from './Screen/Login/Setup.Login.OtherAccountScreen';

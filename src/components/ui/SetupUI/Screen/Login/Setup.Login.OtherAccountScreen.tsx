@@ -33,17 +33,14 @@ export interface SetupLoginOtherAccountScreenProps {
   ContentClassName?: string;
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
-  CheckInfoHandler: Dispatch<AuthScreenType>;
   userProfile: IUserProfile;
+  CheckInfoHandler: VoidType;
 }
 
 function SetupLoginOtherAccountScreen(
   props: SetupLoginOtherAccountScreenProps
 ) {
-  // Type
   type StringType = string | undefined;
-
-  // State
   const [CheckDialog, setCheckDialog] = useState(false);
   const [PrevFullName, setPrevFullName] = useState<StringType>(undefined);
   const [PrevPhotoUrl, setPrevPhotoUrl] = useState<StringType>(undefined);
@@ -110,31 +107,32 @@ function SetupLoginOtherAccountScreen(
       };
       OperateUserProfile('CREATE', { create: _data })
         .then(async () => {
-          const _data = props.userProfile;
-          const FullName = _data._data.fullName;
-          const PhoneNumber = _data._data.phoneNumber;
-          const EmailAddress = _data._data.emailAddress;
-          const EmailAddressVerified = _data._data.isVerified?.emailAddress;
-          const ProfilePicture = _data._data.photoURL;
-          if (!FullName || (FullName && FullName.length < 1)) {
-            props.CheckInfoHandler('register-name');
-          } else if (!PhoneNumber || (PhoneNumber && PhoneNumber.length < 1)) {
-            props.CheckInfoHandler('register-phone');
-          } else if (
-            !EmailAddress ||
-            (EmailAddress && EmailAddress.length < 1)
-          ) {
-            props.CheckInfoHandler('register-email');
-          } else if (!EmailAddressVerified && EmailAddressVerified === false) {
-            props.CheckInfoHandler('register-verify-email');
-          } else if (
-            !ProfilePicture ||
-            (ProfilePicture && ProfilePicture.length < 1)
-          ) {
-            props.CheckInfoHandler('register-profile-picture');
-          } else {
-            props.CheckInfoHandler('register-date-of-birth');
-          }
+          props.CheckInfoHandler();
+          // const _data = props.userProfile;
+          // const FullName = _data._data.fullName;
+          // const PhoneNumber = _data._data.phoneNumber;
+          // const EmailAddress = _data._data.emailAddress;
+          // const EmailAddressVerified = _data._data.isVerified?.emailAddress;
+          // const ProfilePicture = _data._data.photoURL;
+          // if (!FullName || (FullName && FullName.length < 1)) {
+          //   setScreen('register-name');
+          // } else if (!PhoneNumber || (PhoneNumber && PhoneNumber.length < 1)) {
+          //   setScreen('register-phone');
+          // } else if (
+          //   !EmailAddress ||
+          //   (EmailAddress && EmailAddress.length < 1)
+          // ) {
+          //   setScreen('register-email');
+          // } else if (!EmailAddressVerified && EmailAddressVerified === false) {
+          //   setScreen('register-verify-email');
+          // } else if (
+          //   !ProfilePicture ||
+          //   (ProfilePicture && ProfilePicture.length < 1)
+          // ) {
+          //   setScreen('register-profile-picture');
+          // } else {
+          //   setScreen('register-date-of-birth');
+          // }
         })
         .catch((error) => {
           if (error instanceof Error)

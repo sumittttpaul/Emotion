@@ -19,7 +19,7 @@ export interface SetupLoginOTPScreenProps {
   ContentClassName?: string;
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
-  CheckInfoHandler: Dispatch<AuthScreenType>;
+  CheckInfoHandler: VoidType;
 }
 
 function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
@@ -103,7 +103,8 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
     };
     OperateUserProfile('CREATE', { create: _data })
       .then(() => {
-        props.CheckInfoHandler('register-name');
+        props.CheckInfoHandler();
+        // setScreen('resgister-name')
       })
       .catch((error) => {
         if (error instanceof Error)

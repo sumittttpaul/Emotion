@@ -107,8 +107,6 @@ interface IProps {
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
   userProfile: IUserProfile;
-  CheckInfoHandlerWithScreen: Dispatch<AuthScreenType>;
-  CheckInfoHandler: VoidType;
 }
 
 function SetupScreenContent({
@@ -116,10 +114,11 @@ function SetupScreenContent({
   AnimationDivClassName,
   Animation,
   userProfile,
-  CheckInfoHandler,
-  CheckInfoHandlerWithScreen,
 }: IProps) {
   const { Screen } = SetupHook();
+
+  const CheckInfo = () => {};
+
   return (
     <AnimatePresence mode="wait" initial={true}>
       {Screen === 'login-phone' && (
@@ -142,7 +141,7 @@ function SetupScreenContent({
           ContentClassName={ContentClassName}
           Animation={Animation}
           userProfile={userProfile}
-          CheckInfoHandler={CheckInfoHandlerWithScreen}
+          CheckInfoHandler={CheckInfo}
         />
       )}
       {Screen === 'login-otp' && (
@@ -150,7 +149,7 @@ function SetupScreenContent({
           AnimationDivClassName={AnimationDivClassName}
           ContentClassName={ContentClassName}
           Animation={Animation}
-          CheckInfoHandler={CheckInfoHandlerWithScreen}
+          CheckInfoHandler={CheckInfo}
         />
       )}
       {Screen === 'login-password' && (
@@ -172,7 +171,7 @@ function SetupScreenContent({
           AnimationDivClassName={AnimationDivClassName}
           ContentClassName={ContentClassName}
           Animation={Animation}
-          CheckInfoHandler={CheckInfoHandler}
+          CheckInfoHandler={CheckInfo}
         />
       )}
       {Screen === 'register-phone' && (
@@ -180,7 +179,7 @@ function SetupScreenContent({
           AnimationDivClassName={AnimationDivClassName}
           ContentClassName={ContentClassName}
           Animation={Animation}
-          CheckInfoHandler={CheckInfoHandler}
+          CheckInfoHandler={CheckInfo}
         />
       )}
       {Screen === 'register-otp' && (
@@ -188,7 +187,7 @@ function SetupScreenContent({
           AnimationDivClassName={AnimationDivClassName}
           ContentClassName={ContentClassName}
           Animation={Animation}
-          CheckInfoHandler={CheckInfoHandler}
+          CheckInfoHandler={CheckInfo}
         />
       )}
       {Screen === 'register-email' && (
@@ -196,7 +195,7 @@ function SetupScreenContent({
           AnimationDivClassName={AnimationDivClassName}
           ContentClassName={ContentClassName}
           Animation={Animation}
-          CheckInfoHandler={CheckInfoHandler}
+          CheckInfoHandler={CheckInfo}
         />
       )}
       {Screen === 'register-password' && (
@@ -204,7 +203,7 @@ function SetupScreenContent({
           AnimationDivClassName={AnimationDivClassName}
           ContentClassName={ContentClassName}
           Animation={Animation}
-          CheckInfoHandler={CheckInfoHandler}
+          CheckInfoHandler={CheckInfo}
         />
       )}
       {Screen === 'register-verify-email' && (
@@ -212,7 +211,7 @@ function SetupScreenContent({
           AnimationDivClassName={AnimationDivClassName}
           ContentClassName={ContentClassName}
           Animation={Animation}
-          CheckInfoHandler={CheckInfoHandler}
+          CheckInfoHandler={CheckInfo}
         />
       )}
       {Screen === 'register-profile-picture' && (
@@ -220,7 +219,7 @@ function SetupScreenContent({
           AnimationDivClassName={AnimationDivClassName}
           ContentClassName={ContentClassName}
           Animation={Animation}
-          CheckInfoHandler={CheckInfoHandler}
+          CheckInfoHandler={CheckInfo}
         />
       )}
       {Screen === 'register-date-of-birth' && (
@@ -228,7 +227,7 @@ function SetupScreenContent({
           AnimationDivClassName={AnimationDivClassName}
           ContentClassName={ContentClassName}
           Animation={Animation}
-          CheckInfoHandler={CheckInfoHandler}
+          CheckInfoHandler={CheckInfo}
         />
       )}
       {Screen === 'register-gender' && (
@@ -236,7 +235,7 @@ function SetupScreenContent({
           AnimationDivClassName={AnimationDivClassName}
           ContentClassName={ContentClassName}
           Animation={Animation}
-          CheckInfoHandler={CheckInfoHandler}
+          CheckInfoHandler={CheckInfo}
         />
       )}
     </AnimatePresence>

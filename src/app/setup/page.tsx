@@ -17,7 +17,6 @@ async function Setup() {
       <SetupScreenTitle />
       <SetupScreenContent
         // userProfile={}
-        // CheckInfoHandler={}
         AnimationDivClassName="h-[350px]"
         ContentClassName="h-[300px]"
         Animation={{
