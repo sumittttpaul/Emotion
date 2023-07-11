@@ -1,20 +1,14 @@
 import { ArrowLeftIcon, DotsVerticalIcon } from '@heroicons/react/outline';
 import { IconButton } from '@mui/material';
-import React, { FC, MouseEvent } from 'react';
-import { TooltipDark } from '../../../tooltip/TooltipDark';
+import { TooltipDark } from 'components/tooltip/TooltipDark';
 
 interface IProps {
   back: () => void;
-  moreInfo: (event: MouseEvent<HTMLElement>) => void;
+  moreInfo: (event: React.MouseEvent<HTMLElement>) => void;
   heading: string;
 }
 
-/**
- * @author
- * @function @CropAvatarTop
- **/
-
-export const CropAvatarTop: FC<IProps> = (props) => {
+export function CropAvatarTop(props: IProps) {
   return (
     <div className="flex w-full z-10 justify-between items-center p-1">
       <TooltipDark placement="bottom" title="Back" arrow>
@@ -42,4 +36,4 @@ export const CropAvatarTop: FC<IProps> = (props) => {
       </TooltipDark>
     </div>
   );
-};
+}

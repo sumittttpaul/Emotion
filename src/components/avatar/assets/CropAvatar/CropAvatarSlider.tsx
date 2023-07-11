@@ -1,18 +1,12 @@
-import React, { Dispatch, FC, RefObject, SetStateAction } from 'react';
-import { RotateSlider } from '../../../slider/RotateSlider';
+import { RotateSlider } from 'components/slider/RotateSlider';
 
 interface IProps {
-  setRotateValue: Dispatch<SetStateAction<number>>;
+  setRotateValue: React.Dispatch<React.SetStateAction<number>>;
   rotate: (value: number) => void;
-  SliderRef: RefObject<HTMLElement>;
+  SliderRef: React.RefObject<HTMLElement>;
 }
 
-/**
- * @author
- * @function @CropAvatarSlider
- **/
-
-export const CropAvatarSlider: FC<IProps> = (props) => {
+export function CropAvatarSlider(props: IProps) {
   return (
     <div className="px-5 pt-5 w-full sm:max-w-[470px] mx-auto relative">
       <RotateSlider
@@ -24,4 +18,4 @@ export const CropAvatarSlider: FC<IProps> = (props) => {
       />
     </div>
   );
-};
+}

@@ -5,24 +5,18 @@ import {
 } from '@heroicons/react/outline';
 import { Button } from '@mui/material';
 import { IconButton } from '@mui/material';
-import React, { FC, MouseEvent } from 'react';
 import { TooltipDark } from '../../tooltip/TooltipDark';
 import Image from 'next/image';
 import { Circle_BlurDataURL } from '../../loader/BlurDataURL';
 
 interface IProps {
   backward: () => void;
-  moreInfo: (event: MouseEvent<HTMLElement>) => void;
+  moreInfo: (event: React.MouseEvent<HTMLElement>) => void;
   URL: string;
   remove: () => void;
 }
 
-/**
- * @author
- * @function @RemoveAvatar
- **/
-
-export const RemoveAvatar: FC<IProps> = (props) => {
+export function RemoveAvatar(props: IProps) {
   return (
     <div className=" bg-secondary-theme Remove-Avatar-Container flex flex-col justify-between scroll-smooth overflow-auto items-center h-full w-full">
       {/* Header */}
@@ -112,4 +106,4 @@ export const RemoveAvatar: FC<IProps> = (props) => {
       </div>
     </div>
   );
-};
+}

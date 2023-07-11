@@ -33,7 +33,7 @@ export interface SetupLoginOtherAccountScreenProps {
   ContentClassName?: string;
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
-  userProfile: IUserProfile;
+  userProfile?: IUserProfile;
   CheckInfoHandler: VoidType;
 }
 

@@ -1,18 +1,12 @@
 import { CheckIcon } from '@heroicons/react/solid';
 import { Button } from '@mui/material';
-import React, { FC } from 'react';
 
 interface IProps {
   back: () => void;
   submitClick?: () => void;
 }
 
-/**
- * @author
- * @function @CropAvatarBottom
- **/
-
-export const CropAvatarBottom: FC<IProps> = (props) => {
+export function CropAvatarBottom(props: IProps) {
   return (
     <div className="flex w-full justify-center sm:justify-between px-5 pb-5 sm:px-6 sm:pb-6 relative box-border">
       <div className="hidden sm:flex w-full h-[40px] justify-center items-center relative sm:max-w-[165px]">
@@ -50,4 +44,4 @@ export const CropAvatarBottom: FC<IProps> = (props) => {
       </div>
     </div>
   );
-};
+}

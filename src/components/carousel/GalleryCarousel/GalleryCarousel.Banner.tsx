@@ -55,7 +55,6 @@ export const GalleryCarouselBanner: FC<GalleryCarouselBannerProps> = (
           className="-z-[2]"
           src={props.ContentArray[props.CarouselState].Image}
           alt=""
-          objectPosition="center"
         />
         <p className="-ml-2 mt-5 text-lg font-semibold">Home</p>
         <motion.div

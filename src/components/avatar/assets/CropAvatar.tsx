@@ -1,4 +1,4 @@
-import React, { useRef, useState, MouseEvent } from 'react';
+import { useRef, useState } from 'react';
 import {
   CircleStencil,
   FixedCropper,
@@ -32,15 +32,10 @@ export interface DefaultCropperProps extends CropperProps {
   getURL: (value: string) => void;
   back: () => void;
   submit: (value: File) => void;
-  moreInfo: (event: MouseEvent<HTMLElement>) => void;
+  moreInfo: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-/**
- * @author
- * @function @CropAvatar
- **/
-
-const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
+function CropAvatar({ URL, back, ...props }: DefaultCropperProps) {
   const [changed, setChanged] = useState(false);
   const [RotateValue, setRotateValue] = useState(0);
   const [ZoomValue, setZoomValue] = useState(0);
@@ -232,6 +227,6 @@ const CropAvatar = ({ URL, back, ...props }: DefaultCropperProps) => {
       </div>
     </div>
   );
-};
+}
 
 export default CropAvatar;

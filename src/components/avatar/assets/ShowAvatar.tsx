@@ -1,4 +1,3 @@
-import React, { FC, MouseEvent } from 'react';
 import Image from 'next/image';
 import { IconButton, Button } from '@mui/material';
 import {
@@ -9,13 +8,13 @@ import {
   XIcon,
 } from '@heroicons/react/outline';
 import { UsersIcon } from '@heroicons/react/solid';
-import { TooltipDark } from '../../tooltip/TooltipDark';
-import { AuthLoading } from '../../loader/Loading.LinearProgress';
-import { Circle_BlurDataURL } from '../../loader/BlurDataURL';
+import { TooltipDark } from 'components/tooltip/TooltipDark';
+import { Circle_BlurDataURL } from 'components/loader/BlurDataURL';
+import { LoadingLinearProgress } from 'components/loader/Loading.LinearProgress';
 
 interface IProps {
   backward: () => void;
-  moreInfo: (event: MouseEvent<HTMLElement>) => void;
+  moreInfo: (event: React.MouseEvent<HTMLElement>) => void;
   forward: () => void;
   URL: string;
   remove: () => void;
@@ -25,12 +24,7 @@ interface IProps {
   Progress: string;
 }
 
-/**
- * @author
- * @function @ShowAvatar
- **/
-
-const ShowAvatar: FC<IProps> = (props) => {
+function ShowAvatar(props: IProps) {
   return (
     <div className="bg-secondary-theme Show-Avatar-Container text-white flex flex-col w-full h-full scroll-smooth overflow-y-auto overflow-x-hidden items-center">
       {/* Header */}
@@ -145,9 +139,9 @@ const ShowAvatar: FC<IProps> = (props) => {
           </Button>
         )}
       </div>
-      {props.ShowProgress && <AuthLoading />}
+      {props.ShowProgress && <LoadingLinearProgress />}
     </div>
   );
-};
+}
 
 export default ShowAvatar;

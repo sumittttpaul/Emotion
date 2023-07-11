@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { IconButton } from '@mui/material';
 import { CameraIcon } from '@heroicons/react/solid';
-import { Circle_BlurDataURL } from '../../loader/BlurDataURL';
+import { Circle_BlurDataURL } from 'components/loader/BlurDataURL';
 
 interface IProps {
   onClick?: () => void;

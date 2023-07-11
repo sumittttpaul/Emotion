@@ -182,3 +182,13 @@ interface ILoaderHook {
   Loader: boolean;
   setLoader: Dispatch<boolean>;
 }
+
+type ICheckInfoScreen =
+  | 'initial-login-load'
+  | 'after-name'
+  | 'after-phone'
+  | 'after-email'
+  | 'after-verify-email'
+  | 'after-profile-picture'
+  | 'after-date-of-birth'
+  | 'after-gender';

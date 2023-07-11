@@ -18,6 +18,7 @@ import { SetupRegisterVerifyEmailScreenProps } from 'components/ui/SetupUI/Scree
 import { SetupRegisterProfilePictureScreenProps } from 'components/ui/SetupUI/Screen/Register/Setup.Register.ProfilePictureScreen';
 import { SetupRegisterBirthdayScreenProps } from 'components/ui/SetupUI/Screen/Register/Setup.Register.BirthdayScreen';
 import { SetupRegisterGenderScreenProps } from 'components/ui/SetupUI/Screen/Register/Setup.Register.GenderScreen';
+import CheckInfoHandler from './CheckInfoHandler';
 
 const SetupLoginPhoneScreen = dynamic<SetupLoginPhoneScreenProps>(
   () => import('components/ui/SetupUI/Screen/Login/Setup.Login.PhoneScreen')
@@ -106,7 +107,7 @@ interface IProps {
   ContentClassName?: string;
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
-  userProfile: IUserProfile;
+  userProfile?: IUserProfile;
 }
 
 function SetupScreenContent({
@@ -117,128 +118,132 @@ function SetupScreenContent({
 }: IProps) {
   const { Screen } = SetupHook();
 
-  const CheckInfo = () => {};
+  const CheckInfo = (Screen: ICheckInfoScreen) => {
+    CheckInfoHandler({ userProfile: userProfile, Screen: Screen });
+  };
 
   return (
-    <AnimatePresence mode="wait" initial={true}>
-      {Screen === 'login-phone' && (
-        <SetupLoginPhoneScreen
-          AnimationDivClassName={AnimationDivClassName}
-          ContentClassName={ContentClassName}
-          Animation={Animation}
-        />
-      )}
-      {Screen === 'login-email' && (
-        <SetupLoginEmailScreen
-          AnimationDivClassName={AnimationDivClassName}
-          ContentClassName={ContentClassName}
-          Animation={Animation}
-        />
-      )}
-      {Screen === 'login-others' && (
-        <SetupLoginOtherAccountScreen
-          AnimationDivClassName={AnimationDivClassName}
-          ContentClassName={ContentClassName}
-          Animation={Animation}
-          userProfile={userProfile}
-          CheckInfoHandler={CheckInfo}
-        />
-      )}
-      {Screen === 'login-otp' && (
-        <SetupLoginOTPScreen
-          AnimationDivClassName={AnimationDivClassName}
-          ContentClassName={ContentClassName}
-          Animation={Animation}
-          CheckInfoHandler={CheckInfo}
-        />
-      )}
-      {Screen === 'login-password' && (
-        <SetupLoginPasswordScreen
-          AnimationDivClassName={AnimationDivClassName}
-          ContentClassName={ContentClassName}
-          Animation={Animation}
-        />
-      )}
-      {Screen === 'login-forgot-password' && (
-        <SetupLoginForgotPasswordScreen
-          AnimationDivClassName={AnimationDivClassName}
-          ContentClassName={ContentClassName}
-          Animation={Animation}
-        />
-      )}
-      {Screen === 'register-name' && (
-        <SetupRegisterNameScreen
-          AnimationDivClassName={AnimationDivClassName}
-          ContentClassName={ContentClassName}
-          Animation={Animation}
-          CheckInfoHandler={CheckInfo}
-        />
-      )}
-      {Screen === 'register-phone' && (
-        <SetupRegisterPhoneScreen
-          AnimationDivClassName={AnimationDivClassName}
-          ContentClassName={ContentClassName}
-          Animation={Animation}
-          CheckInfoHandler={CheckInfo}
-        />
-      )}
-      {Screen === 'register-otp' && (
-        <SetupRegisterOTPScreen
-          AnimationDivClassName={AnimationDivClassName}
-          ContentClassName={ContentClassName}
-          Animation={Animation}
-          CheckInfoHandler={CheckInfo}
-        />
-      )}
-      {Screen === 'register-email' && (
-        <SetupRegisterEmailScreen
-          AnimationDivClassName={AnimationDivClassName}
-          ContentClassName={ContentClassName}
-          Animation={Animation}
-          CheckInfoHandler={CheckInfo}
-        />
-      )}
-      {Screen === 'register-password' && (
-        <SetupRegisterPasswordScreen
-          AnimationDivClassName={AnimationDivClassName}
-          ContentClassName={ContentClassName}
-          Animation={Animation}
-          CheckInfoHandler={CheckInfo}
-        />
-      )}
-      {Screen === 'register-verify-email' && (
-        <SetupRegisterVerifyEmailScreen
-          AnimationDivClassName={AnimationDivClassName}
-          ContentClassName={ContentClassName}
-          Animation={Animation}
-          CheckInfoHandler={CheckInfo}
-        />
-      )}
-      {Screen === 'register-profile-picture' && (
-        <SetupRegisterProfilePictureScreen
-          AnimationDivClassName={AnimationDivClassName}
-          ContentClassName={ContentClassName}
-          Animation={Animation}
-          CheckInfoHandler={CheckInfo}
-        />
-      )}
-      {Screen === 'register-date-of-birth' && (
-        <SetupRegisterBirthdayScreen
-          AnimationDivClassName={AnimationDivClassName}
-          ContentClassName={ContentClassName}
-          Animation={Animation}
-          CheckInfoHandler={CheckInfo}
-        />
-      )}
-      {Screen === 'register-gender' && (
-        <SetupRegisterGenderScreen
-          AnimationDivClassName={AnimationDivClassName}
-          ContentClassName={ContentClassName}
-          Animation={Animation}
-          CheckInfoHandler={CheckInfo}
-        />
-      )}
-    </AnimatePresence>
+    <div className={`${AnimationDivClassName} w-full flex`}>
+      <AnimatePresence mode="wait" initial={true}>
+        {Screen === 'login-phone' && (
+          <SetupLoginPhoneScreen
+            AnimationDivClassName={AnimationDivClassName}
+            ContentClassName={ContentClassName}
+            Animation={Animation}
+          />
+        )}
+        {Screen === 'login-email' && (
+          <SetupLoginEmailScreen
+            AnimationDivClassName={AnimationDivClassName}
+            ContentClassName={ContentClassName}
+            Animation={Animation}
+          />
+        )}
+        {Screen === 'login-others' && (
+          <SetupLoginOtherAccountScreen
+            AnimationDivClassName={AnimationDivClassName}
+            ContentClassName={ContentClassName}
+            Animation={Animation}
+            userProfile={userProfile}
+            CheckInfoHandler={() => CheckInfo('initial-login-load')}
+          />
+        )}
+        {Screen === 'login-otp' && (
+          <SetupLoginOTPScreen
+            AnimationDivClassName={AnimationDivClassName}
+            ContentClassName={ContentClassName}
+            Animation={Animation}
+            CheckInfoHandler={() => CheckInfo('initial-login-load')}
+          />
+        )}
+        {Screen === 'login-password' && (
+          <SetupLoginPasswordScreen
+            AnimationDivClassName={AnimationDivClassName}
+            ContentClassName={ContentClassName}
+            Animation={Animation}
+          />
+        )}
+        {Screen === 'login-forgot-password' && (
+          <SetupLoginForgotPasswordScreen
+            AnimationDivClassName={AnimationDivClassName}
+            ContentClassName={ContentClassName}
+            Animation={Animation}
+          />
+        )}
+        {Screen === 'register-name' && (
+          <SetupRegisterNameScreen
+            AnimationDivClassName={AnimationDivClassName}
+            ContentClassName={ContentClassName}
+            Animation={Animation}
+            CheckInfoHandler={() => CheckInfo('after-name')}
+          />
+        )}
+        {Screen === 'register-phone' && (
+          <SetupRegisterPhoneScreen
+            AnimationDivClassName={AnimationDivClassName}
+            ContentClassName={ContentClassName}
+            Animation={Animation}
+            CheckInfoHandler={() => CheckInfo('after-phone')} // For "I will add later" button
+          />
+        )}
+        {Screen === 'register-otp' && (
+          <SetupRegisterOTPScreen
+            AnimationDivClassName={AnimationDivClassName}
+            ContentClassName={ContentClassName}
+            Animation={Animation}
+            CheckInfoHandler={() => CheckInfo('after-phone')}
+          />
+        )}
+        {Screen === 'register-email' && (
+          <SetupRegisterEmailScreen
+            AnimationDivClassName={AnimationDivClassName}
+            ContentClassName={ContentClassName}
+            Animation={Animation}
+            CheckInfoHandler={() => CheckInfo('after-email')} // For "I will add later" button
+          />
+        )}
+        {Screen === 'register-password' && (
+          <SetupRegisterPasswordScreen
+            AnimationDivClassName={AnimationDivClassName}
+            ContentClassName={ContentClassName}
+            Animation={Animation}
+            CheckInfoHandler={() => CheckInfo('after-email')}
+          />
+        )}
+        {Screen === 'register-verify-email' && (
+          <SetupRegisterVerifyEmailScreen
+            AnimationDivClassName={AnimationDivClassName}
+            ContentClassName={ContentClassName}
+            Animation={Animation}
+            CheckInfoHandler={() => CheckInfo('after-verify-email')}
+          />
+        )}
+        {Screen === 'register-profile-picture' && (
+          <SetupRegisterProfilePictureScreen
+            AnimationDivClassName={AnimationDivClassName}
+            ContentClassName={ContentClassName}
+            Animation={Animation}
+            CheckInfoHandler={() => CheckInfo('after-profile-picture')}
+          />
+        )}
+        {Screen === 'register-date-of-birth' && (
+          <SetupRegisterBirthdayScreen
+            AnimationDivClassName={AnimationDivClassName}
+            ContentClassName={ContentClassName}
+            Animation={Animation}
+            CheckInfoHandler={() => CheckInfo('after-date-of-birth')}
+          />
+        )}
+        {Screen === 'register-gender' && (
+          <SetupRegisterGenderScreen
+            AnimationDivClassName={AnimationDivClassName}
+            ContentClassName={ContentClassName}
+            Animation={Animation}
+            CheckInfoHandler={() => CheckInfo('after-gender')}
+          />
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 

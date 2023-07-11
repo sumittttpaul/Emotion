@@ -1,11 +1,10 @@
-import React, { FC } from 'react';
 import { PhotographIcon } from '@heroicons/react/solid';
-import Image from 'next/image';
 import { Button } from '@mui/material';
 import {
   Banner_BlurDataURL,
   Square_BlurDataURL,
-} from '../../../../loader/BlurDataURL';
+} from 'components/loader/BlurDataURL';
+import Image from 'next/image';
 
 interface IProps {
   AnimalClick: () => void;
@@ -21,11 +20,6 @@ interface IProps {
   backBool: (value: boolean) => void;
   show: () => void;
 }
-
-/**
- * @author
- * @function @AvatarCollections
- **/
 
 const BlurDataUrl = Banner_BlurDataURL;
 const BlurDataUrlSquare = Square_BlurDataURL;
@@ -44,7 +38,7 @@ const PopularImage2 = '/images/avatar/popular/2.png';
 const PopularImage3 = '/images/avatar/popular/3.png';
 const PopularImage4 = '/images/avatar/popular/4.png';
 
-export const AvatarCollections: FC<IProps> = (props) => {
+export function AvatarCollections(props: IProps) {
   // Banner
   const AnimalClick = () => {
     props.AnimalClick();
@@ -401,4 +395,4 @@ export const AvatarCollections: FC<IProps> = (props) => {
       </div>
     </div>
   );
-};
+}

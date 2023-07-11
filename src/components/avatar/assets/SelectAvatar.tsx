@@ -1,5 +1,6 @@
-import React, { FC, SyntheticEvent, useState, MouseEvent } from 'react';
+import { useState } from 'react';
 import { IconButton, useTheme } from '@mui/material';
+import { TooltipDark } from 'components/tooltip/TooltipDark';
 import {
   SparklesIcon,
   DeviceTabletIcon,
@@ -8,15 +9,14 @@ import {
 } from '@heroicons/react/outline';
 import FromAvatars from './SelectAvatar/Options/FromAvatars';
 import FromComputer from './SelectAvatar/Options/FromComputer';
-import SelectAvatarTabItem from '../../tab/SelectAvatar/SelectAvatarTabItem';
-import SelectAvatarTabs from '../../tab/SelectAvatar/SelectAvatarTabs';
-import SelectAvatarTabPanel from '../../tab/SelectAvatar/SelectAvatarTabPanel';
+import SelectAvatarTabItem from 'components/tab/SelectAvatar/SelectAvatarTabItem';
+import SelectAvatarTabs from 'components/tab/SelectAvatar/SelectAvatarTabs';
+import SelectAvatarTabPanel from 'components/tab/SelectAvatar/SelectAvatarTabPanel';
 import SwipeableViews from '../../../../packages/react-swipeable-views/src/index';
-import { TooltipDark } from '../../tooltip/TooltipDark';
 
 interface IProps {
   backward: () => void;
-  moreInfo: (event: MouseEvent<HTMLElement>) => void;
+  moreInfo: (event: React.MouseEvent<HTMLElement>) => void;
   forward: () => void;
   getURL: (value: string) => void;
   ShowCollection: () => void;
@@ -25,16 +25,11 @@ interface IProps {
   backBool: (value: boolean) => void;
 }
 
-/**
- * @author
- * @function @SelectAvatar
- **/
-
-const SelectAvatar: FC<IProps> = (props) => {
+function SelectAvatar(props: IProps) {
   const [value, setValue] = useState(0);
   const theme = useTheme();
 
-  const handleChange = (event: SyntheticEvent, index: number) => {
+  const handleChange = (event: React.SyntheticEvent, index: number) => {
     setValue(index);
   };
 
@@ -125,6 +120,6 @@ const SelectAvatar: FC<IProps> = (props) => {
       </SwipeableViews>
     </div>
   );
-};
+}
 
 export default SelectAvatar;

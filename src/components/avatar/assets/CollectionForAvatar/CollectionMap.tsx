@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
-import { m } from 'framer-motion';
 import Image from 'next/image';
-import { Square_BlurDataURL } from '../../../loader/BlurDataURL';
-import { SetupAvatarContentProps } from '../../../../contents/setup/Setup.Avatar';
+import { m } from 'framer-motion';
+import { Square_BlurDataURL } from 'components/loader/BlurDataURL';
+import { SetupAvatarContentProps } from 'contents/setup/Setup.Avatar';
 
 interface IProps {
   AvatarReducer: SetupAvatarContentProps[];
@@ -10,12 +9,7 @@ interface IProps {
   getURL: (value: string) => void;
 }
 
-/**
- * @author
- * @function @CollectionMap
- **/
-
-export const CollectionMap: FC<IProps> = (props) => {
+export function CollectionMap(props: IProps) {
   return (
     <div className="h-full w-full items-center justify-center box-border relative overflow-scroll">
       <div
@@ -53,4 +47,4 @@ export const CollectionMap: FC<IProps> = (props) => {
       </div>
     </div>
   );
-};
+}

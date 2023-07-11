@@ -1,11 +1,12 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import { FilmIcon } from '@heroicons/react/solid';
 import { Button } from '@mui/material';
-import ScrollContainer from 'react-indiana-drag-scroll';
-import { Poster_BlurDataURL } from '../../../../loader/BlurDataURL';
+import { Poster_BlurDataURL } from 'components/loader/BlurDataURL';
 import { m } from 'framer-motion';
 import Image from 'next/image';
+import ScrollContainer from 'react-indiana-drag-scroll';
+
 interface IProps {
   show: () => void;
   getURL: (value: string) => void;
@@ -94,12 +95,7 @@ const RightVariants = {
   },
 };
 
-/**
- * @author
- * @function @IllustrationCollections
- **/
-
-export const IllustrationCollections: FC<IProps> = (props) => {
+export function IllustrationCollections(props: IProps) {
   const sliderRef = useRef<HTMLElement>(null);
   const [LeftAnimate, setLeftAnimate] = useState('closed');
   const [RightAnimate, setRightAnimate] = useState('closed');
@@ -231,4 +227,4 @@ export const IllustrationCollections: FC<IProps> = (props) => {
       </m.button>
     </div>
   );
-};
+}

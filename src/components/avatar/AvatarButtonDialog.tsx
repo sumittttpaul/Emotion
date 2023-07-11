@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { FC, Fragment, MouseEvent, useState } from 'react';
 import AvatarContainerDialog from '../dialog/AvatarContainerDialog';
 import ShowAvatar from './assets/ShowAvatar';
 import SelectAvatar from './assets/SelectAvatar';
 import CollectionForAvatar from './assets/CollectionForAvatar';
 import CropAvatar from './assets/CropAvatar';
+import { useState } from 'react';
 import { MoreInfoDialog } from './assets/MoreInfoDialog';
 import { AvatarContainerType, AvatarScreenType } from './assets/AvatarType';
 import { RemoveAvatar } from './assets/RemoveAvatar';
@@ -44,16 +44,11 @@ const MoreInfoContent = [
   { label: 'Feedback', icon: '/icons/feedback-message.svg', onClick: () => {} },
 ];
 
-/**
- * @author
- * @function @AvatarButtonDialog
- **/
-
-export const AvatarButtonDialog: FC<AvatarButtonDialogProps> = (props) => {
+function AvatarButtonDialog(props: AvatarButtonDialogProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const MoreInfoOpen = Boolean(anchorEl);
 
-  const MoreInfoClick = (event: MouseEvent<HTMLElement>) => {
+  const MoreInfoClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -61,7 +56,7 @@ export const AvatarButtonDialog: FC<AvatarButtonDialogProps> = (props) => {
     setAnchorEl(null);
   };
   return (
-    <Fragment>
+    <>
       <AvatarContainerDialog
         onClose={props.setAvatarDialog}
         show={props.AvatarDialog}
@@ -127,6 +122,8 @@ export const AvatarButtonDialog: FC<AvatarButtonDialogProps> = (props) => {
         handleClose={MoreInfoClose}
         MenuContent={MoreInfoContent}
       />
-    </Fragment>
+    </>
   );
-};
+}
+
+export default AvatarButtonDialog;

@@ -10,14 +10,14 @@ import {
 } from '../../contents/setup/Setup.Avatar';
 import { DeleteAvatar, UploadAvatar } from 'functions/AuthAlgorithms';
 import { useEffect, useState } from 'react';
-import useClientAuth from 'authentication/useClientAuth';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import { ToastHook } from 'hooks/Hooks.Toast';
+import useClientAuth from 'authentication/useClientAuth';
 import OperateUserProfile from 'databases/controller/Controller.UserProfile';
 
-const AvatarButtonDialog = dynamic<AvatarButtonDialogProps>(() =>
-  import('./AvatarButtonDialog').then((x) => x.AvatarButtonDialog)
+const AvatarButtonDialog = dynamic<AvatarButtonDialogProps>(
+  () => import('./AvatarButtonDialog')
 );
 
 function AvatarButton() {

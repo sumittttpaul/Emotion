@@ -1,6 +1,5 @@
 import { ZoomInIcon, ZoomOutIcon } from '@heroicons/react/outline';
-import { TooltipDark } from '../../../tooltip/TooltipDark';
-import React, { FC, ReactNode } from 'react';
+import { TooltipDark } from 'components/tooltip/TooltipDark';
 import { m } from 'framer-motion';
 
 interface IProps {
@@ -9,12 +8,7 @@ interface IProps {
   onZoomIn: () => void;
 }
 
-/**
- * @author
- * @function @CropAvatarZoom
- **/
-
-export const CropAvatarZoom: FC<IProps> = (props) => {
+export function CropAvatarZoom(props: IProps) {
   const toFixed = (x: string) => {
     return Number.parseFloat(x).toFixed(0);
   };
@@ -48,17 +42,17 @@ export const CropAvatarZoom: FC<IProps> = (props) => {
       />
     </div>
   );
-};
+}
 
 interface CustomButtonProps {
   Content: string;
   Tooltip: string;
-  Icon: ReactNode;
+  Icon: React.ReactNode;
   onClick: () => void;
   Disabled: boolean;
 }
 
-const CustomButton: FC<CustomButtonProps> = (props) => {
+function CustomButton(props: CustomButtonProps) {
   return (
     <div className="h-[44px] w-full max-w-[110px] flex relative p-1 items-center justify-center">
       <TooltipDark title={props.Tooltip} placement="bottom" arrow>
@@ -80,4 +74,4 @@ const CustomButton: FC<CustomButtonProps> = (props) => {
       </TooltipDark>
     </div>
   );
-};
+}

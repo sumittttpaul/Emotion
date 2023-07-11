@@ -1,5 +1,4 @@
 import { Menu, MenuItem } from '@mui/material';
-import React, { FC } from 'react';
 import Image from 'next/image';
 
 interface IProps {
@@ -9,12 +8,7 @@ interface IProps {
   MenuContent: { label: string; icon: string; onClick: () => void }[];
 }
 
-/**
- * @author
- * @function @MoreInfoDialog
- **/
-
-export const MoreInfoDialog: FC<IProps> = (props) => {
+export function MoreInfoDialog(props: IProps) {
   return (
     <Menu
       anchorEl={props.anchorEl}
@@ -65,4 +59,4 @@ export const MoreInfoDialog: FC<IProps> = (props) => {
       ))}
     </Menu>
   );
-};
+}

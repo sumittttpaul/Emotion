@@ -1,7 +1,6 @@
-import React, { FC } from 'react';
-import { SmallIconButtonDark } from '../../../button/SmallIconButtonDark';
+import { SmallIconButtonDark } from 'components/button/SmallIconButtonDark';
+import { TooltipDark } from 'components/tooltip/TooltipDark';
 import { Button } from '@mui/material';
-import { TooltipDark } from '../../../tooltip/TooltipDark';
 
 interface IProps {
   Changed: boolean;
@@ -12,12 +11,7 @@ interface IProps {
   FlipY: () => void;
 }
 
-/**
- * @author
- * @function @CropAvatarNavigation
- **/
-
-export const CropAvatarNavigation: FC<IProps> = (props) => {
+export function CropAvatarNavigation(props: IProps) {
   return (
     <div className="w-full flex justify-center p-5 items-center">
       <div className="flex py-1 px-3 bg-white/10 h-[44px] items-center justify-center shadow-xl rounded-lg backdrop-blur-2xl">
@@ -76,4 +70,4 @@ export const CropAvatarNavigation: FC<IProps> = (props) => {
       </div>
     </div>
   );
-};
+}

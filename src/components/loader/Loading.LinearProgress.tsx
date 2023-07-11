@@ -14,11 +14,6 @@ const LoadingLinearProgressUI = styled(LinearProgress)(() => ({
 
 export interface LoadingLinearProgressProps {}
 
-/**
- * @author
- * @function @LoadingLinearProgress
- **/
-
 export const LoadingLinearProgress: FC<LoadingLinearProgressProps> = () => {
   return (
     <div className="absolute z-10 top-0 w-full h-full bg-secondary-theme/50 cursor-wait">

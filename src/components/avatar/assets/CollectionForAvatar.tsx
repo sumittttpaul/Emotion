@@ -1,25 +1,19 @@
 import { ArrowLeftIcon, DotsVerticalIcon } from '@heroicons/react/outline';
 import { IconButton } from '@mui/material';
-import React, { FC, MouseEvent } from 'react';
 import { CollectionMap } from './CollectionForAvatar/CollectionMap';
-import { TooltipDark } from '../../tooltip/TooltipDark';
-import { SetupAvatarContentProps } from '../../../contents/setup/Setup.Avatar';
+import { TooltipDark } from 'components/tooltip/TooltipDark';
+import { SetupAvatarContentProps } from 'contents/setup/Setup.Avatar';
 
 interface IProps {
   AvatarReducer: SetupAvatarContentProps[];
   backward: () => void;
-  moreInfo: (event: MouseEvent<HTMLElement>) => void;
+  moreInfo: (event: React.MouseEvent<HTMLElement>) => void;
   forward: () => void;
   getURL: (value: string) => void;
   heading: string;
 }
 
-/**
- * @author
- * @function @CollectionForAvatar
- **/
-
-const CollectionForAvatar: FC<IProps> = (props) => {
+function CollectionForAvatar(props: IProps) {
   return (
     <div className=" bg-secondary-theme text-white flex flex-col scroll-smooth overflow-auto items-center h-full w-full">
       {/* Header */}
@@ -56,6 +50,6 @@ const CollectionForAvatar: FC<IProps> = (props) => {
       />
     </div>
   );
-};
+}
 
 export default CollectionForAvatar;

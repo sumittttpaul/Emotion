@@ -4,14 +4,13 @@ import Image from 'next/image';
 interface IProps {
   src: string;
   alt: string;
+  fill?: true;
   style?: object;
+  height?: number;
+  width?: number;
   className?: string;
 }
-
-/**
- * @Carousel_Banner_Image
- **/
-export class GalleryCarouselBannerImage extends Component<IProps> {
+class ImageFadeTransition extends Component<IProps> {
   state = {
     topSrc: this.props.src,
     bottomOpacity: 0,
@@ -42,13 +41,15 @@ export class GalleryCarouselBannerImage extends Component<IProps> {
     }
   }
   render() {
-    const { style, alt, className } = this.props;
+    const { style, alt, className, fill, height, width } = this.props;
     const { topSrc, bottomOpacity, bottomSrc } = this.state;
     return (
       <>
         {topSrc && (
           <Image
-            fill
+            fill={fill}
+            height={height}
+            width={width}
             className={`${className} text-white text-xs`}
             style={{
               objectFit: 'cover',
@@ -61,9 +62,10 @@ export class GalleryCarouselBannerImage extends Component<IProps> {
         )}
         {bottomSrc && (
           <Image
-            fill
+            fill={fill}
+            height={height}
+            width={width}
             className={`${className} text-white text-xs`}
-            alt={alt}
             style={{
               objectFit: 'cover',
               objectPosition: 'center',
@@ -74,9 +76,12 @@ export class GalleryCarouselBannerImage extends Component<IProps> {
               },
             }}
             src={bottomSrc}
+            alt={alt}
           />
         )}
       </>
     );
   }
 }
+
+export default ImageFadeTransition;

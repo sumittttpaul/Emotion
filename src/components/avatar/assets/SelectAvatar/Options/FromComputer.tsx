@@ -1,6 +1,5 @@
-import React, { FC, ChangeEvent } from 'react';
-import Image from 'next/image';
 import { Button, styled } from '@mui/material';
+import Image from 'next/image';
 
 interface IProps {
   show: () => void;
@@ -8,17 +7,12 @@ interface IProps {
   backBool: (value: boolean) => void;
 }
 
-/**
- * @author
- * @function @FromComputer
- **/
-
 const Input = styled('input')({
   display: 'none',
 });
 
-const FromComputer: FC<IProps> = (props) => {
-  const handleUpload = (e: ChangeEvent<HTMLInputElement>) => {
+function FromComputer(props: IProps) {
+  const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.currentTarget.files?.[0];
     if (file) {
       props.getURL(URL.createObjectURL(file));
@@ -82,6 +76,6 @@ const FromComputer: FC<IProps> = (props) => {
       </div>
     </div>
   );
-};
+}
 
 export default FromComputer;

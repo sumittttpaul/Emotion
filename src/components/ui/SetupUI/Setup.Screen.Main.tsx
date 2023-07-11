@@ -11,7 +11,7 @@ import { SetupImages } from 'contents/setup/Setup.Image';
 import { SetupHook } from 'hooks/Hooks.Setup';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
+import ImageFadeTransition from 'components/transition/ImageFadeTransition';
 
 const LoadingLinearProgress = dynamic<LoadingLinearProgressProps>(() =>
   import('components/loader/Loading.LinearProgress').then(
@@ -47,6 +47,11 @@ function SetupScreenMain({ children, MainClassName }: IProps) {
     SetupHook();
   const { Toast, setToast } = ToastHook();
 
+  const ActiveImageSrc =
+    SetupImages.find((value) => Screen === value.Alt)?.Image || '';
+  const ActiveImageAlt =
+    SetupImages.find((value) => Screen === value.Alt)?.Alt || '';
+
   return (
     <LazyMotion features={domAnimation} strict>
       {MainScreen === 'Error' && (
@@ -65,13 +70,16 @@ function SetupScreenMain({ children, MainClassName }: IProps) {
           className={`${MainClassName} relative items-center justify-center h-full w-full flex flex-col md:flex-row box-border`}
         >
           <div className="p-14 ml-14 relative hidden md:flex w-full h-full justify-center items-center">
-            <Image
-              height={370}
-              width={370}
-              src="/vectors/login-register-phone.svg"
-              alt=""
-              className="text-white text-xs"
-            />
+            {Screen !== null ? (
+              <ImageFadeTransition
+                height={370}
+                width={370}
+                src={ActiveImageSrc}
+                alt={ActiveImageAlt}
+              />
+            ) : (
+              <div className="h-[370px] w-[370px] flex" />
+            )}
           </div>
           <div className="p-5 md:p-14 md:min-w-[415px] md-1000:min-w-[500px] space-y-5 relative w-full flex flex-col items-center justify-center box-border overflow-hidden">
             {children}

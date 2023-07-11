@@ -1,6 +1,5 @@
-import React, { FC } from 'react';
-import { AvatarCollections } from '../AvatarCollections/AvatarCollections';
-import { IllustrationCollections } from '../AvatarCollections/IllustrationCollections';
+import { AvatarCollections } from 'components/avatar/assets/SelectAvatar/AvatarCollections/AvatarCollections';
+import { IllustrationCollections } from 'components/avatar/assets/SelectAvatar/AvatarCollections/IllustrationCollections';
 
 interface IProps {
   show: () => void;
@@ -11,12 +10,7 @@ interface IProps {
   avatarName: (value: string) => void;
 }
 
-/**
- * @author
- * @function @FromAvatars
- **/
-
-const FromAvatars: FC<IProps> = (props) => {
+function FromAvatars(props: IProps) {
   const AnimalClick = () => {
     props.heading('Animals');
     props.avatarName('Animal');
@@ -85,6 +79,6 @@ const FromAvatars: FC<IProps> = (props) => {
       />
     </div>
   );
-};
+}
 
 export default FromAvatars;

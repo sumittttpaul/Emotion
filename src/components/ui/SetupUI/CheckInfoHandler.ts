@@ -5,16 +5,8 @@ import { ToastHook } from 'hooks/Hooks.Toast';
 import useClientAuth from 'authentication/useClientAuth';
 
 interface IProps {
-  Screen:
-    | 'initial-load'
-    | 'after-name'
-    | 'after-phone'
-    | 'after-email'
-    | 'after-verify-email'
-    | 'after-profile-picture'
-    | 'after-date-of-birth'
-    | 'after-gender';
-  userProfile: IUserProfile | undefined;
+  Screen: ICheckInfoScreen;
+  userProfile?: IUserProfile;
 }
 
 function CheckInfoHandler({ userProfile, Screen }: IProps) {
@@ -31,7 +23,7 @@ function CheckInfoHandler({ userProfile, Screen }: IProps) {
       const ProfilePicture = userProfile._data.photoURL;
       const DateOfBirth = userProfile._data.dateOfBirth;
       const Gender = userProfile._data.gender;
-      if (Screen === 'initial-load') {
+      if (Screen === 'initial-login-load') {
         if (!FullName || (FullName && FullName.length < 1)) {
           setScreen('register-name');
         } else if (!PhoneNumber || (PhoneNumber && PhoneNumber.length < 1)) {
