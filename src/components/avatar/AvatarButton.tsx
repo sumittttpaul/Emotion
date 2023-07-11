@@ -17,7 +17,8 @@ import useClientAuth from 'authentication/useClientAuth';
 import OperateUserProfile from 'databases/controller/Controller.UserProfile';
 
 const AvatarButtonDialog = dynamic<AvatarButtonDialogProps>(
-  () => import('./AvatarButtonDialog')
+  () => import('./AvatarButtonDialog'),
+  { ssr: false }
 );
 
 function AvatarButton() {

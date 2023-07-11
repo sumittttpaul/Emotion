@@ -5,7 +5,8 @@ import { ToastDarkContentProps } from './ToastDarkContent';
 import dynamic from 'next/dynamic';
 
 const ToastDarkContent = dynamic<ToastDarkContentProps>(
-  () => import('./ToastDarkContent')
+  () => import('./ToastDarkContent'),
+  { ssr: false }
 );
 
 export interface ToastDarkProps {

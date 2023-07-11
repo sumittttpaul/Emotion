@@ -2,8 +2,9 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { TooltipProps } from '@mui/material';
 
-const TooltipDark = dynamic<TooltipProps>(() =>
-  import('../tooltip/TooltipDark').then((x) => x.TooltipDark)
+const TooltipDark = dynamic<TooltipProps>(
+  () => import('../tooltip/TooltipDark').then((x) => x.TooltipDark),
+  { ssr: false }
 );
 
 interface IProps {

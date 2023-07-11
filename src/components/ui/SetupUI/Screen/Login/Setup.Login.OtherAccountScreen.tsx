@@ -23,10 +23,9 @@ import { DecryptData, EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import OperateUserProfile from 'databases/controller/Controller.UserProfile';
 
-const SetupCheckDialog = dynamic<SetupCheckDialogProps>(() =>
-  import('components/ui/SetupUI/Dialog/Setup.CheckDialog').then(
-    (x) => x.SetupCheckDialog
-  )
+const SetupCheckDialog = dynamic<SetupCheckDialogProps>(
+  () => import('components/ui/SetupUI/Dialog/Setup.CheckDialog'),
+  { ssr: false }
 );
 
 export interface SetupLoginOtherAccountScreenProps {

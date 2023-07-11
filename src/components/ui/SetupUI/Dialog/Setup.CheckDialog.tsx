@@ -31,7 +31,7 @@ export interface SetupCheckDialogProps {
   NewPhotoUrl?: string;
 }
 
-export function SetupCheckDialog(props: SetupCheckDialogProps) {
+function SetupCheckDialog(props: SetupCheckDialogProps) {
   const [Loading, setLoading] = useState(false);
   const { FirebaseUser } = useClientAuth();
   const { setLoader } = LoaderHook();
@@ -306,3 +306,5 @@ function CustomCheckData_Image(props: {
     </div>
   );
 }
+
+export default SetupCheckDialog;

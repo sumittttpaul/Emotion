@@ -6,8 +6,10 @@ import dynamic from 'next/dynamic';
 import { DatePickerCustomButton } from './assets/DatePickerCustomButton';
 import { DatePickerButtonDialogProps } from './DatePickerButtonDialog';
 
-const DatePickerButtonDialog = dynamic<DatePickerButtonDialogProps>(() =>
-  import('./DatePickerButtonDialog').then((x) => x.DatePickerButtonDialog)
+const DatePickerButtonDialog = dynamic<DatePickerButtonDialogProps>(
+  () =>
+    import('./DatePickerButtonDialog').then((x) => x.DatePickerButtonDialog),
+  { ssr: false }
 );
 
 interface IProps {

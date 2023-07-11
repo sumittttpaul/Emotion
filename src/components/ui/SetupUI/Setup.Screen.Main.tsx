@@ -13,19 +13,24 @@ import dynamic from 'next/dynamic';
 import ImageFadeTransition from 'components/transition/ImageFadeTransition';
 
 const LoadingLinearProgress = dynamic(
-  () => import('components/loader/Loading.LinearProgress')
+  () => import('components/loader/Loading.LinearProgress'),
+  { ssr: false }
 );
 const ToastDark = dynamic<ToastDarkProps>(
-  () => import('components/toast/ToastDark')
+  () => import('components/toast/ToastDark'),
+  { ssr: false }
 );
 const SetupErrorScreen = dynamic<SetupErrorScreenProps>(
-  () => import('components/ui/SetupUI/Screen/Setup.ErrorScreen')
+  () => import('components/ui/SetupUI/Screen/Setup.ErrorScreen'),
+  { ssr: false }
 );
 const SetupFinishScreen = dynamic<SetupFinishScreenProps>(
-  () => import('components/ui/SetupUI/Screen/Setup.FinishScreen')
+  () => import('components/ui/SetupUI/Screen/Setup.FinishScreen'),
+  { ssr: false }
 );
 const SetupSkipDialog = dynamic<SetupSkipDialogProps>(
-  () => import('components/ui/SetupUI/Dialog/Setup.SkipDialog')
+  () => import('components/ui/SetupUI/Dialog/Setup.SkipDialog'),
+  { ssr: false }
 );
 
 interface IProps {
