@@ -1,5 +1,3 @@
-import { IError, IUserProfile } from 'databases/types/Type.UserProfile';
-
 export function instanceOfError(data: IError | IUserProfile): data is IError {
   return 'name' && 'message' in data;
 }
