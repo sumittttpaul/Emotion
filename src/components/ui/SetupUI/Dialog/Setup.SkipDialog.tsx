@@ -8,7 +8,7 @@ export interface SetupSkipDialogProps {
   onClose: () => void;
 }
 
-export function SetupSkipDialog(props: SetupSkipDialogProps) {
+function SetupSkipDialog(props: SetupSkipDialogProps) {
   const { setLoader } = useLoaderState();
   const handleContinue = () => {
     props.onClose();
@@ -64,3 +64,5 @@ export function SetupSkipDialog(props: SetupSkipDialogProps) {
     </DialogContainerDark>
   );
 }
+
+export default SetupSkipDialog;

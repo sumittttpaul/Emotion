@@ -17,13 +17,10 @@ import { ToastHook } from 'hooks/Hooks.Toast';
 import { Home_Link } from 'routers/RouterLinks';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
-import { LoadingLinearProgressProps } from 'components/loader/Loading.LinearProgress';
 import OperateUserProfile from 'databases/controller/Controller.UserProfile';
 
-const LoadingLinearProgress = dynamic<LoadingLinearProgressProps>(() =>
-  import('components/loader/Loading.LinearProgress').then(
-    (x) => x.LoadingLinearProgress
-  )
+const LoadingLinearProgress = dynamic(
+  () => import('components/loader/Loading.LinearProgress')
 );
 
 export interface SetupCheckDialogProps {

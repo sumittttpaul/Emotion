@@ -1,20 +1,14 @@
-import React, { FC } from 'react';
 import Image from 'next/image';
 import Router from 'next/router';
 import { SetupHeaderLabel } from '../../../label/SetupHeaderLabel';
 import { useLoaderState } from '../../../../contexts/LoadingState';
-import { AuthSubmitButton } from '../../../button/Setup/SetupSubmitButton';
+import { SetupSubmitButton } from '../../../button/Setup/SetupSubmitButton';
 
 export interface SetupFinishScreenProps {
   ClassName: string;
 }
 
-/**
- * @author
- * @function @SetupFinishScreen
- **/
-
-export const SetupFinishScreen: FC<SetupFinishScreenProps> = (props) => {
+function SetupFinishScreen(props: SetupFinishScreenProps) {
   const { setLoader } = useLoaderState();
 
   const handleFinish = () => {
@@ -55,10 +49,12 @@ export const SetupFinishScreen: FC<SetupFinishScreenProps> = (props) => {
         </div>
       </div>
       <div className="relative md:absolute p-5 md:p-14 flex h-full w-full items-end justify-end">
-        <AuthSubmitButton Disabled={false} onClick={handleFinish}>
+        <SetupSubmitButton Disabled={false} onClick={handleFinish}>
           Finish
-        </AuthSubmitButton>
+        </SetupSubmitButton>
       </div>
     </div>
   );
-};
+}
+
+export default SetupFinishScreen;

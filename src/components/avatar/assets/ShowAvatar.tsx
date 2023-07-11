@@ -10,7 +10,11 @@ import {
 import { UsersIcon } from '@heroicons/react/solid';
 import { TooltipDark } from 'components/tooltip/TooltipDark';
 import { Circle_BlurDataURL } from 'components/loader/BlurDataURL';
-import { LoadingLinearProgress } from 'components/loader/Loading.LinearProgress';
+import dynamic from 'next/dynamic';
+
+const LoadingLinearProgress = dynamic(
+  () => import('components/loader/Loading.LinearProgress')
+);
 
 interface IProps {
   backward: () => void;

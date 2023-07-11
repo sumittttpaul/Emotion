@@ -1,6 +1,5 @@
 'use client';
 
-import { LoadingLinearProgressProps } from 'components/loader/Loading.LinearProgress';
 import { ToastDarkProps } from 'components/toast/ToastDark';
 import { SetupSkipDialogProps } from 'components/ui/SetupUI/Dialog/Setup.SkipDialog';
 import { SetupErrorScreenProps } from 'components/ui/SetupUI/Screen/Setup.ErrorScreen';
@@ -13,28 +12,20 @@ import { ToastHook } from 'hooks/Hooks.Toast';
 import dynamic from 'next/dynamic';
 import ImageFadeTransition from 'components/transition/ImageFadeTransition';
 
-const LoadingLinearProgress = dynamic<LoadingLinearProgressProps>(() =>
-  import('components/loader/Loading.LinearProgress').then(
-    (x) => x.LoadingLinearProgress
-  )
+const LoadingLinearProgress = dynamic(
+  () => import('components/loader/Loading.LinearProgress')
 );
-const ToastDark = dynamic<ToastDarkProps>(() =>
-  import('components/toast/ToastDark').then((x) => x.ToastDark)
+const ToastDark = dynamic<ToastDarkProps>(
+  () => import('components/toast/ToastDark')
 );
-const SetupErrorScreen = dynamic<SetupErrorScreenProps>(() =>
-  import('components/ui/SetupUI/Screen/Setup.ErrorScreen').then(
-    (x) => x.SetupErrorScreen
-  )
+const SetupErrorScreen = dynamic<SetupErrorScreenProps>(
+  () => import('components/ui/SetupUI/Screen/Setup.ErrorScreen')
 );
-const SetupFinishScreen = dynamic<SetupFinishScreenProps>(() =>
-  import('components/ui/SetupUI/Screen/Setup.FinishScreen').then(
-    (x) => x.SetupFinishScreen
-  )
+const SetupFinishScreen = dynamic<SetupFinishScreenProps>(
+  () => import('components/ui/SetupUI/Screen/Setup.FinishScreen')
 );
-const SetupSkipDialog = dynamic<SetupSkipDialogProps>(() =>
-  import('components/ui/SetupUI/Dialog/Setup.SkipDialog').then(
-    (x) => x.SetupSkipDialog
-  )
+const SetupSkipDialog = dynamic<SetupSkipDialogProps>(
+  () => import('components/ui/SetupUI/Dialog/Setup.SkipDialog')
 );
 
 interface IProps {

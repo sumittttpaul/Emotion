@@ -1,7 +1,7 @@
 import { XIcon } from '@heroicons/react/solid';
 import { Snackbar } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import React, { FC, SyntheticEvent, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { m, useAnimationControls } from 'framer-motion';
 import Image from 'next/image';
 
@@ -22,17 +22,12 @@ export interface ToastDarkContentProps {
   >;
 }
 
-/**
- * @author
- * @function @ToastDarkContent
- **/
-
-export const ToastDarkContent: FC<ToastDarkContentProps> = (props) => {
+function ToastDarkContent(props: ToastDarkContentProps) {
   const animate = useAnimationControls();
   const progressRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleClose = (event: SyntheticEvent | Event, reason: string) => {
+  const handleClose = (event: React.SyntheticEvent | Event, reason: string) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -131,4 +126,6 @@ export const ToastDarkContent: FC<ToastDarkContentProps> = (props) => {
       </div>
     </Snackbar>
   );
-};
+}
+
+export default ToastDarkContent;

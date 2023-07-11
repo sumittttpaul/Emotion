@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import React, { FC } from 'react';
-import router from 'next/router';
+import router from 'next/navigation';
+import Router from 'next/router';
 import { SetupHeaderLabel } from '../../../label/SetupHeaderLabel';
 import { SignInBackButton } from '../../../button/Setup/SignInBackButton';
 import { SignInNextButton } from '../../../button/Setup/SignInNextButton';
@@ -18,28 +18,23 @@ export interface SetupErrorScreenProps {
   ClassName?: string;
 }
 
-/**
- * @author
- * @function @SetupErrorScreen
- **/
-
-export const SetupErrorScreen: FC<SetupErrorScreenProps> = (props) => {
+function SetupErrorScreen(props: SetupErrorScreenProps) {
   // Loading
   const { setLoader } = useLoaderState();
   const LoadingScreen = (value: boolean) => setLoader({ show: value });
 
   const handleBackToHome = () => {
     LoadingScreen(true);
-    router.push(Home_Link);
+    router.redirect(Home_Link);
   };
 
   const handleMoveToManageAccount = () => {
     LoadingScreen(true);
-    router.push(Manage_Your_Account_Link);
+    router.redirect(Manage_Your_Account_Link);
   };
 
   const handleReloadThePage = () => {
-    router.reload();
+    Router.reload();
   };
 
   return (
@@ -112,4 +107,6 @@ export const SetupErrorScreen: FC<SetupErrorScreenProps> = (props) => {
       </div>
     </div>
   );
-};
+}
+
+export default SetupErrorScreen;

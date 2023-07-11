@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import React, { FC } from 'react';
 import { LinearProgress, linearProgressClasses, styled } from '@mui/material';
 
 const LoadingLinearProgressUI = styled(LinearProgress)(() => ({
@@ -12,9 +11,7 @@ const LoadingLinearProgressUI = styled(LinearProgress)(() => ({
   },
 }));
 
-export interface LoadingLinearProgressProps {}
-
-export const LoadingLinearProgress: FC<LoadingLinearProgressProps> = () => {
+function LoadingLinearProgress() {
   return (
     <div className="absolute z-10 top-0 w-full h-full bg-secondary-theme/50 cursor-wait">
       <LoadingLinearProgressUI
@@ -24,4 +21,6 @@ export const LoadingLinearProgress: FC<LoadingLinearProgressProps> = () => {
       />
     </div>
   );
-};
+}
+
+export default LoadingLinearProgress;

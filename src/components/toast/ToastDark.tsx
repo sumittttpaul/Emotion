@@ -1,18 +1,11 @@
-import React, {
-  Dispatch,
-  FC,
-  Fragment,
-  useEffect,
-  useState,
-} from 'react';
+import { useEffect, useState } from 'react';
 import { Slide, SlideProps } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { ToastDarkContentProps } from './ToastDarkContent';
 import dynamic from 'next/dynamic';
 
 const ToastDarkContent = dynamic<ToastDarkContentProps>(
-  () => import('./ToastDarkContent').then((x) => x.ToastDarkContent),
-  { ssr: false }
+  () => import('./ToastDarkContent')
 );
 
 export interface ToastDarkProps {
@@ -29,12 +22,7 @@ export interface ToastDarkProps {
   };
 }
 
-/**
- * @author
- * @function @ToastDark
- **/
-
-export const ToastDark: FC<ToastDarkProps> = (props) => {
+function ToastDark(props: ToastDarkProps) {
   const SlideTransition = (prop: SlideProps) => {
     return (
       <Slide
@@ -76,7 +64,7 @@ export const ToastDark: FC<ToastDarkProps> = (props) => {
   }, [props.Toast.Open, state]);
 
   return (
-    <Fragment>
+    <>
       {props.Toast.Type === 'Error' && (
         <ToastDarkContent
           Open={state.Open}
@@ -105,7 +93,8 @@ export const ToastDark: FC<ToastDarkProps> = (props) => {
           Horizontal={props.Horizontal}
         />
       )}
-      I{props.Toast.Type === 'Info' && (
+      I
+      {props.Toast.Type === 'Info' && (
         <ToastDarkContent
           Open={state.Open}
           Color="bg-dark-blue"
@@ -133,6 +122,8 @@ export const ToastDark: FC<ToastDarkProps> = (props) => {
           Horizontal={props.Horizontal}
         />
       )}
-    </Fragment>
+    </>
   );
-};
+}
+
+export default ToastDark;
