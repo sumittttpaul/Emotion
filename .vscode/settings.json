@@ -1,5 +1,11 @@
 {
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.mouseWheelZoom": true,
     "editor.fontFamily": "Fira Code iScript, Menlo, Monaco, 'Courier New', monospace",
-    "files.autoSave": "afterDelay"
-    
+    "workbench.colorTheme": "Night Owl (No Italics)",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs":"active",
+    "files.autoSave": "afterDelay",
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
 }
