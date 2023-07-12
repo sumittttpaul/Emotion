@@ -2,9 +2,9 @@
 
 import { m } from 'framer-motion';
 import { CircularProgress } from '@mui/material';
-import { SetupSubmitButton } from 'components/button/Setup/SetupSubmitButton';
-import { SignInNextButton } from 'components/button/Setup/SignInNextButton';
-import { GreenSuccessHint } from 'components/hint/GreenSuccessHint';
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
+import SignInNextButton from 'components/button/Setup/SignInNextButton';
+import GreenSuccessHint from 'components/hint/GreenSuccessHint';
 import { VerifyEmailAddress } from 'functions/AuthAlgorithms';
 import { SetupHook } from 'hooks/Hooks.Setup';
 import { ToastHook } from 'hooks/Hooks.Toast';

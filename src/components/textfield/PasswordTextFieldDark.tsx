@@ -1,4 +1,4 @@
-import React, { FC, useState, MouseEvent } from 'react';
+import { useState } from 'react';
 import {
   IconButton,
   InputAdornment,
@@ -92,7 +92,7 @@ interface State {
   showPassword: boolean;
 }
 
-const PasswordTextFieldDark: FC<PasswordTextFieldProps> = (props) => {
+function PasswordTextFieldDark(props: PasswordTextFieldProps) {
   const [values, setValues] = useState<State>({ showPassword: false });
 
   const handleClickShowPassword = () => {
@@ -102,7 +102,9 @@ const PasswordTextFieldDark: FC<PasswordTextFieldProps> = (props) => {
     });
   };
 
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
   };
 
@@ -161,6 +163,6 @@ const PasswordTextFieldDark: FC<PasswordTextFieldProps> = (props) => {
       />
     </div>
   );
-};
+}
 
 export default PasswordTextFieldDark;

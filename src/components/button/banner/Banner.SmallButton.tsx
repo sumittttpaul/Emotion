@@ -6,7 +6,7 @@ interface IProps {
   className?: string;
 }
 
-export function BannerSmallButton(props: IProps) {
+function BannerSmallButton(props: IProps) {
   return (
     <Button
       onClick={props.onClick}
@@ -21,3 +21,5 @@ export function BannerSmallButton(props: IProps) {
     </Button>
   );
 }
+
+export default BannerSmallButton;

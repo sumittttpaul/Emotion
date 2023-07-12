@@ -1,27 +1,14 @@
-import React, {
-  Dispatch,
-  FC,
-  Fragment,
-  RefObject,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
-import ScrollContainer from 'react-indiana-drag-scroll';
 import { m } from 'framer-motion';
-import { TooltipDark } from '../tooltip/TooltipDark';
+import { useEffect, useState } from 'react';
+import ScrollContainer from 'react-indiana-drag-scroll';
+import TooltipDark from 'components/tooltip/TooltipDark';
 
 interface IProps {
-  getValue: Dispatch<SetStateAction<number>>;
-  SliderRef: RefObject<HTMLElement>;
+  getValue: React.Dispatch<React.SetStateAction<number>>;
+  SliderRef: React.RefObject<HTMLElement>;
 }
 
-/**
- * @author
- * @function @RotateSlider
- **/
-
-export const RotateSlider: FC<IProps> = (props) => {
+function RotateSlider(props: IProps) {
   const [Direction, setDirection] = useState<'left' | 'right' | null>(null);
   const [Degree, setDegree] = useState('0');
   const [LeftAnimate, setLeftAnimate] = useState('closed');
@@ -154,14 +141,14 @@ export const RotateSlider: FC<IProps> = (props) => {
       </div>
     </TooltipDark>
   );
-};
+}
 
 interface SliderComponentProps {
   value: string;
   direction: 'left' | 'right' | null;
 }
 
-const SliderComponent: FC<SliderComponentProps> = (props) => {
+function SliderComponent(props: SliderComponentProps) {
   const setLeftOpacity = (key: number) => {
     if (key > 45 - parseInt(props.value) && props.direction === 'left')
       return 'opacity-100' as string;
@@ -182,7 +169,7 @@ const SliderComponent: FC<SliderComponentProps> = (props) => {
     'h-4 w-2 min-w-1 min-h-4 inline-block rounded-full border-2 border-solid border-white';
 
   return (
-    <Fragment>
+    <>
       <li key={1} className={`${setLeftOpacity(1)} ${LineClassname}`} />
       <li key={2} className={`${setLeftOpacity(2)} ${DotClassname}`} />
       <li key={3} className={`${setLeftOpacity(3)} ${DotClassname}`} />
@@ -274,6 +261,8 @@ const SliderComponent: FC<SliderComponentProps> = (props) => {
       <li key={89} className={`${setRightOpacity(89)} ${DotClassname}`} />
       <li key={90} className={`${setRightOpacity(90)} ${DotClassname}`} />
       <li key={91} className={`${setRightOpacity(91)} ${LineClassname}`} />
-    </Fragment>
+    </>
   );
-};
+}
+
+export default RotateSlider;

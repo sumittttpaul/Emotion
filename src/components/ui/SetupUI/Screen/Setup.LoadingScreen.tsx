@@ -6,7 +6,7 @@ interface IProps {
 
 const backgroundColor = '#FFFFFF1F';
 
-export function SetupLoadingScreen(props: IProps) {
+function SetupLoadingScreen(props: IProps) {
   return (
     <div
       className={`${props.ClassName} flex w-full items-center justify-center`}
@@ -176,3 +176,5 @@ export function SetupConfirmEmailVerifySkeleton(props: IProps) {
     </div>
   );
 }
+
+export default SetupLoadingScreen;

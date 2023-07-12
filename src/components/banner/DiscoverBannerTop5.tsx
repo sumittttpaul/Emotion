@@ -9,7 +9,7 @@ interface IProps {
   ContentArray: DiscoverBannerTop5ContentProps[];
 }
 
-export function DiscoverBannerTop5(props: IProps) {
+function DiscoverBannerTop5(props: IProps) {
   const sliderRef = useRef<HTMLElement>(null);
   // const [LeftAnimate, setLeftAnimate] = useState('closed');
   // const [RightAnimate, setRightAnimate] = useState('closed');
@@ -140,3 +140,5 @@ export function DiscoverBannerTop5(props: IProps) {
     </div>
   );
 }
+
+export default DiscoverBannerTop5;

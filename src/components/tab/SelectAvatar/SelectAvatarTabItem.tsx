@@ -1,15 +1,10 @@
 import styled from '@emotion/styled';
 import { Tab } from '@mui/material';
-import React, { FC, ReactElement } from 'react';
 
 interface StyledTabProps {
   label: string;
-  icon: ReactElement;
+  icon: React.ReactElement;
 }
-/**
- * @author
- * @function @SelectAvatarTabItem
- **/
 
 const StyledTab = styled((props: StyledTabProps) => <Tab {...props} />)(() => ({
   textTransform: 'none',
@@ -27,8 +22,8 @@ const StyledTab = styled((props: StyledTabProps) => <Tab {...props} />)(() => ({
   },
 }));
 
-const SelectAvatarTabItem: FC<StyledTabProps> = (props) => {
+function SelectAvatarTabItem(props: StyledTabProps) {
   return <StyledTab {...props} />;
-};
+}
 
 export default SelectAvatarTabItem;

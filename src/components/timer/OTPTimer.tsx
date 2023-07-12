@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import { useTimer } from 'react-timer-hook';
 
 interface IProps {
@@ -7,12 +6,7 @@ interface IProps {
   resend: () => void;
 }
 
-/**
- * @author
- * @function @OTPTimer
- **/
-
-export const OTPTimer: FC<IProps> = (props) => {
+function OTPTimer(props: IProps) {
   const time = new Date();
   const GetMin = props.min * 60;
   const GetSec = props.sec;
@@ -37,4 +31,6 @@ export const OTPTimer: FC<IProps> = (props) => {
       )}
     </div>
   );
-};
+}
+
+export default OTPTimer;

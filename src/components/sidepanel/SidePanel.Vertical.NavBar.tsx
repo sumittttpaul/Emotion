@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import React, { Dispatch, FC, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 
 interface IProps {
   Active: string;
-  setActive: Dispatch<SetStateAction<string>>;
+  setActive: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const PanelContentArray = [
@@ -20,12 +20,7 @@ const PanelContentArray = [
   },
 ];
 
-/**
- * @author
- * @function @SidePanelVerticalNavBar
- **/
-
-export const SidePanelVerticalNavBar: FC<IProps> = (props) => {
+function SidePanelVerticalNavBar(props: IProps) {
   const [Number, setNumber] = useState(0);
   const [Height, setHeight] = useState(0);
   const [MarginTop, setMarginTop] = useState(0);
@@ -153,4 +148,6 @@ export const SidePanelVerticalNavBar: FC<IProps> = (props) => {
       )}
     </div>
   );
-};
+}
+
+export default SidePanelVerticalNavBar;

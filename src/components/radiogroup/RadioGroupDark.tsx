@@ -21,7 +21,7 @@ const CheckIcon = (props: { className: string }) => {
   );
 };
 
-export function RadioGroupDark(props: IProps) {
+function RadioGroupDark(props: IProps) {
   return (
     <RadioGroup
       value={props.value}
@@ -75,3 +75,5 @@ export function RadioGroupDark(props: IProps) {
     </RadioGroup>
   );
 }
+
+export default RadioGroupDark;

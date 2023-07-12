@@ -1,13 +1,7 @@
 import { Link } from '@mui/material';
-import React, { FC } from 'react';
-import { Terms_Conditions_Link } from '../../routers/RouterLinks';
+import { Terms_Conditions_Link } from 'routers/RouterLinks';
 
-/**
- * @author
- * @function @TermsAndCondition
- **/
-
-export const TermsAndCondition: FC = () => {
+function TermsAndCondition() {
   return (
     <div className="flex items-center">
       <h6 className="ml-3 text-xs font-light text-[#ffffffbf]">
@@ -23,4 +17,6 @@ export const TermsAndCondition: FC = () => {
       </h6>
     </div>
   );
-};
+}
+
+export default TermsAndCondition;

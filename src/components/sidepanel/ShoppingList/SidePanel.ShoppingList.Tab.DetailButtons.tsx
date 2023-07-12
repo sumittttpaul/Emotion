@@ -1,19 +1,13 @@
 import { Button } from '@mui/material';
-import React, { FC } from 'react';
 
 export interface SidePanelShoppingListTabDetailButtonsProps {
   Label: string;
   onClick: () => void;
 }
 
-/**
- * @author
- * @function @SidePanelShoppingListTabDetailButtons
- **/
-
-export const SidePanelShoppingListTabDetailButtons: FC<
-  SidePanelShoppingListTabDetailButtonsProps
-> = (props) => {
+function SidePanelShoppingListTabDetailButtons(
+  props: SidePanelShoppingListTabDetailButtonsProps
+) {
   return (
     <Button
       onClick={props.onClick}
@@ -27,4 +21,6 @@ export const SidePanelShoppingListTabDetailButtons: FC<
       {props.Label}
     </Button>
   );
-};
+}
+
+export default SidePanelShoppingListTabDetailButtons;

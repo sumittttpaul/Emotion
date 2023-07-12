@@ -2,13 +2,12 @@
 import { Button } from '@mui/material';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import React, { FC, Fragment, MouseEvent, useCallback, useState } from 'react';
-import { HomeWishlistContentProps } from '../../../contents/home/Home.ShoppingList';
-import { ProductContextMenuProps } from '../../button/ProductContextMenu';
+import { useCallback, useState } from 'react';
+import { HomeWishlistContentProps } from 'contents/home/Home.ShoppingList';
+import { ProductContextMenuProps } from 'components/button/ProductContextMenu';
 
 const ProductContextMenu = dynamic<ProductContextMenuProps>(
-  () =>
-    import('../../button/ProductContextMenu').then((x) => x.ProductContextMenu),
+  () => import('../../button/ProductContextMenu'),
   { ssr: false }
 );
 
@@ -16,16 +15,11 @@ interface IProps {
   ContentArray: HomeWishlistContentProps[];
 }
 
-/**
- * @author
- * @function @SidePanelShoppingListTabWishlist
- **/
-
-export const SidePanelShoppingListTabWishlist: FC<IProps> = (props) => {
+function SidePanelShoppingListTabWishlist(props: IProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = useCallback((event: MouseEvent<HTMLElement>) => {
+  const handleClick = useCallback((event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     // synthetic event
     switch (event.type) {
@@ -67,7 +61,7 @@ export const SidePanelShoppingListTabWishlist: FC<IProps> = (props) => {
     <div className="pb-3 px-1 w-full h-full flex flex-col relative">
       {props.ContentArray.length ? (
         <div className="flex flex-col w-full pb-[60px]">
-          <Fragment>
+          <>
             {props.ContentArray.map((value, idx) => (
               <Button
                 key={idx}
@@ -120,7 +114,7 @@ export const SidePanelShoppingListTabWishlist: FC<IProps> = (props) => {
               handleClose={handleClose}
               MenuContent={MenuContent}
             />
-          </Fragment>
+          </>
         </div>
       ) : (
         <div className="flex flex-col space-y-5 pt-[150px] h-full w-full items-center justify-center opacity-50">
@@ -137,4 +131,6 @@ export const SidePanelShoppingListTabWishlist: FC<IProps> = (props) => {
       )}
     </div>
   );
-};
+}
+
+export default SidePanelShoppingListTabWishlist;

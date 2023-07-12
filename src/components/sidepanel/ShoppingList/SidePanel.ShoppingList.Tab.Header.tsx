@@ -1,20 +1,14 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Button } from '@mui/material';
-import React, { FC } from 'react';
-import { HomeWishlistContentProps } from '../../../contents/home/Home.ShoppingList';
-import { MoreMenuButton } from '../../button/MoreMenuButton/MoreMenuButton';
+import { HomeWishlistContentProps } from 'contents/home/Home.ShoppingList';
+import MoreMenuButton from 'components/button/MoreMenuButton/MoreMenuButton';
 
 interface IProps {
   ContentArray: HomeWishlistContentProps[];
   MoreMenuValue: string;
 }
 
-/**
- * @author
- * @function @SidePanelShoppingListTabHeader
- **/
-
-export const SidePanelShoppingListTabHeader: FC<IProps> = (props) => {
+function SidePanelShoppingListTabHeader(props: IProps) {
   const MenuContent = (MoreMenuValue: string) => {
     if (MoreMenuValue === 'wishlist') {
       return [
@@ -58,4 +52,6 @@ export const SidePanelShoppingListTabHeader: FC<IProps> = (props) => {
       </Button>
     </div>
   );
-};
+}
+
+export default SidePanelShoppingListTabHeader;

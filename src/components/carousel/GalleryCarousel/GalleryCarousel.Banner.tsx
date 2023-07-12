@@ -1,8 +1,8 @@
 import { RefObject, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Button } from '@mui/material';
-import { GalleryCarouselBannerImage } from './GalleryCarousel.BannerImage';
 import { GalleryCarouselContentProps } from 'contents/gallery/Gallery.Carousel';
+import GalleryCarouselBannerImage from './GalleryCarousel.BannerImage';
 
 export interface GalleryCarouselBannerProps {
   ElementRef: RefObject<HTMLDivElement>;

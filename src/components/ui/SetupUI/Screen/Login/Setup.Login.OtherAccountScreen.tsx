@@ -7,7 +7,7 @@ import { m } from 'framer-motion';
 import { Button } from '@mui/material';
 import { SetupCheckDialogProps } from 'components/ui/SetupUI/Dialog/Setup.CheckDialog';
 import { ChevronRightIcon } from '@heroicons/react/solid';
-import { SignInBackButton } from 'components/button/Setup/SignInBackButton';
+import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import {
   DeleteAccount,
   SignInWithApple,

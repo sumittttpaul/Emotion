@@ -1,13 +1,7 @@
 import { Link } from '@mui/material';
-import React, { FC } from 'react';
-import { Privacy_Policy_Link } from '../../routers/RouterLinks';
+import { Privacy_Policy_Link } from 'routers/RouterLinks';
 
-/**
- * @author
- * @function @EmailPrivacyPolicy
- **/
-
-export const EmailPrivacyPolicy: FC = () => {
+function EmailPrivacyPolicy() {
   return (
     <div className="flex items-center">
       <h6 className="ml-3 text-xs font-light text-[#ffffffbf]">
@@ -23,4 +17,6 @@ export const EmailPrivacyPolicy: FC = () => {
       </h6>
     </div>
   );
-};
+}
+
+export default EmailPrivacyPolicy;

@@ -2,15 +2,15 @@
 
 import { m } from 'framer-motion';
 import { useState } from 'react';
-import { SetupSkipAllButton } from 'components/button/Setup/RegisterSkipAllButton';
-import { SetupSubmitButton } from 'components/button/Setup/SetupSubmitButton';
-import { SignInBackButton } from 'components/button/Setup/SignInBackButton';
-import { SignInNextButton } from 'components/button/Setup/SignInNextButton';
 import { CalculateAge, CalculateMonthNumber } from 'functions/UIAlgorithms';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { SetupHook } from 'hooks/Hooks.Setup';
 import { ToastHook } from 'hooks/Hooks.Toast';
+import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
+import SignInBackButton from 'components/button/Setup/SignInBackButton';
+import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import useClientAuth from 'authentication/useClientAuth';
 import DatePickerButton from 'components/datepicker/DatePickerButton';
 import OperateUserProfile from 'databases/controller/Controller.UserProfile';

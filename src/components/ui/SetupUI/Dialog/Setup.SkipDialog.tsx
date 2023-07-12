@@ -1,4 +1,4 @@
-import { DialogContainerDark } from 'components/dialog/DialogContainerDark';
+import DialogContainerDark from 'components/dialog/DialogContainerDark';
 import { Button } from '@mui/material';
 import { LoaderHook } from 'hooks/Hooks.Loader';
 import { useRouter } from 'next/navigation';

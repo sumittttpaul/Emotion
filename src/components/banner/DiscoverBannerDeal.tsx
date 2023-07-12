@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Button } from '@mui/material';
-import { DiscoverBannerLightingDealContentProps } from '../../contents/home/discover/Home.Discover.Banner';
+import { DiscoverBannerLightingDealContentProps } from 'contents/home/discover/Home.Discover.Banner';
 import { ChevronRightIcon } from '@heroicons/react/outline';
-import { ProductContextMenu } from '../button/ProductContextMenu';
+import ProductContextMenu from 'components/button/ProductContextMenu';
 
 interface IProps {
   ContentArray: DiscoverBannerLightingDealContentProps[];
@@ -13,7 +13,7 @@ interface IProps {
   Description: string;
 }
 
-export function DiscoverBannerDeal(props: IProps) {
+function DiscoverBannerDeal(props: IProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -157,3 +157,5 @@ export function DiscoverBannerDeal(props: IProps) {
     </div>
   );
 }
+
+export default DiscoverBannerDeal;

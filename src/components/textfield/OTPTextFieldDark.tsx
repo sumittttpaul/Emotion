@@ -1,7 +1,6 @@
-import React, { FC } from 'react';
 import { OTPTextFieldProps } from './AllTextFieldProps';
 
-const OTPTextFieldDark: FC<OTPTextFieldProps> = (props) => {
+function OTPTextFieldDark(props: OTPTextFieldProps) {
   return (
     <input
       id={props.id}
@@ -22,6 +21,6 @@ const OTPTextFieldDark: FC<OTPTextFieldProps> = (props) => {
       type="tel"
     />
   );
-};
+}
 
 export default OTPTextFieldDark;

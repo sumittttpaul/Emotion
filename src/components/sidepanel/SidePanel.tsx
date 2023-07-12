@@ -1,36 +1,29 @@
-import { HeaderLogo } from '../logo/CompanyLogo';
-import Router from 'next/router';
-import { Dispatch, FC, SetStateAction } from 'react';
-import { useLoaderState } from '../../contexts/ExampleState';
-import { Home_Link } from '../../routers/RouterLinks';
-import { SidePanelVerticalNavBar } from './SidePanel.Vertical.NavBar';
-import { SidePanelShoppingList } from './ShoppingList/SidePanel.ShoppingList';
-import { setHomePage } from '../../redux/reducers/HomePageReducer';
-import ReduxStore from '../../redux/ReduxStore';
+import { HeaderLogo } from 'components/logo/CompanyLogo';
+import { HomePageHook } from 'hooks/Hooks.HomePage';
+import { Home_Link } from 'routers/RouterLinks';
+import { LoaderHook } from 'hooks/Hooks.Loader';
+import { useRouter } from 'next/navigation';
+import SidePanelVerticalNavBar from './SidePanel.Vertical.NavBar';
+import SidePanelShoppingList from './ShoppingList/SidePanel.ShoppingList';
 
 interface SidePanelProps {
   Active: string;
-  setActive: Dispatch<SetStateAction<string>>;
+  setActive: React.Dispatch<React.SetStateAction<string>>;
 }
 
-/**
- * @author
- * @function @SidePanel
- **/
-
-export const SidePanel: FC<SidePanelProps> = (props) => {
-  const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => setLoader({ show: value });
-
+function SidePanel(props: SidePanelProps) {
+  const { setLoader } = LoaderHook();
+  const { setHomePage } = HomePageHook();
+  const router = useRouter();
   return (
     <div className="flex flex-col py-1.5 w-[250px] fixed left-0 h-screen text-white bg-[#0f0f0f]">
       {/* Logo */}
       <div className="flex py-3 ml-[27px] h-[65px] min-h-[65px] items-center justify-start">
         <HeaderLogo
           onValueChange={(value) => {
-            ReduxStore.dispatch(setHomePage(value));
-            LoadingScreen(true);
-            Router.push(Home_Link);
+            setHomePage(value);
+            setLoader(true);
+            router.push(Home_Link);
           }}
         />
       </div>
@@ -43,4 +36,6 @@ export const SidePanel: FC<SidePanelProps> = (props) => {
       <SidePanelShoppingList />
     </div>
   );
-};
+}
+
+export default SidePanel;

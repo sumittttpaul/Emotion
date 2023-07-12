@@ -5,11 +5,11 @@ import { m } from 'framer-motion';
 import { useState } from 'react';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
-import { SignInBackButton } from 'components/button/Setup/SignInBackButton';
-import { SetupSubmitButton } from 'components/button/Setup/SetupSubmitButton';
-import { TooltipDark } from 'components/tooltip/TooltipDark';
+import SignInBackButton from 'components/button/Setup/SignInBackButton';
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
+import TooltipDark from 'components/tooltip/TooltipDark';
 import { InformationCircleIcon } from '@heroicons/react/outline';
-import { YellowBulbHint } from 'components/hint/YellowBulbHint';
+import YellowBulbHint from 'components/hint/YellowBulbHint';
 import { LinkWithEmailAndPassword } from 'functions/AuthAlgorithms';
 import SetupIconPasswordTextField from '../../Input/Setup.IconPasswordTextField';
 
@@ -20,9 +20,7 @@ export interface SetupRegisterPasswordScreenProps {
   CheckInfoHandler: VoidType;
 }
 
-function SetupRegisterPasswordScreen(
-  props: SetupRegisterPasswordScreenProps
-) {
+function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
   const [Password, setPassword] = useState('');
   const { setLoading, setScreen } = SetupHook();
   const { EmailAddress } = userProfileHook();
@@ -142,4 +140,4 @@ function SetupRegisterPasswordScreen(
   );
 }
 
-export default SetupRegisterPasswordScreen
+export default SetupRegisterPasswordScreen;

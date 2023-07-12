@@ -2,17 +2,17 @@
 
 import { m } from 'framer-motion';
 import { useState } from 'react';
-import { SetupSkipAllButton } from 'components/button/Setup/RegisterSkipAllButton';
-import { SignInNextButton } from 'components/button/Setup/SignInNextButton';
 import { SetupHook } from 'hooks/Hooks.Setup';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { EncryptData } from 'functions/security/CryptionSecurity';
-import { SetupSubmitButton } from 'components/button/Setup/SetupSubmitButton';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
+import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
+import SignInNextButton from 'components/button/Setup/SignInNextButton';
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import useClientAuth from 'authentication/useClientAuth';
 import SetupIconTextField from '../../Input/Setup.IconTextField';
 import OperateUserProfile from 'databases/controller/Controller.UserProfile';
-import { SignInBackButton } from 'components/button/Setup/SignInBackButton';
+import SignInBackButton from 'components/button/Setup/SignInBackButton';
 
 export interface SetupRegisterEmailScreenProps {
   ContentClassName?: string;

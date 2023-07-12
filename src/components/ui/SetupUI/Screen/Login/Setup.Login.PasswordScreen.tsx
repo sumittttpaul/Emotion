@@ -6,11 +6,11 @@ import { useState } from 'react';
 import { LoaderHook } from 'hooks/Hooks.Loader';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
-import { SignInBackButton } from 'components/button/Setup/SignInBackButton';
-import { SignInNextButton } from 'components/button/Setup/SignInNextButton';
-import { SetupSubmitButton } from 'components/button/Setup/SetupSubmitButton';
 import { SignInWithEmailAndPassword } from 'functions/AuthAlgorithms';
-import SetupIconPasswordTextField from '../../Input/Setup.IconPasswordTextField';
+import SignInBackButton from 'components/button/Setup/SignInBackButton';
+import SignInNextButton from 'components/button/Setup/SignInNextButton';
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
+import SetupIconPasswordTextField from 'components/ui/SetupUI/Input/Setup.IconPasswordTextField';
 
 export interface SetupLoginPasswordScreenProps {
   ContentClassName?: string;

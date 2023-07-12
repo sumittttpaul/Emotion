@@ -1,18 +1,14 @@
-import React, { FC, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { DiscoverSliderContentProps } from '../../contents/home/discover/Home.Discover.Slider';
 import { DiscoverSliderBrowser } from './DiscoverSlider/DiscoverSlider.MultiScreen';
-import { DiscoverSliderTitle } from './DiscoverSlider/DiscoverSliderTitle';
+import DiscoverSliderTitle from './DiscoverSlider/DiscoverSliderTitle';
 
 interface IProps {
   ContentArray: DiscoverSliderContentProps[];
   Label: string;
 }
 
-/**
- * @author
- * @function @DiscoverSlider
- **/
-export const DiscoverSlider: FC<IProps> = (props) => {
+function DiscoverSlider(props: IProps) {
   const [LeftDisabled, setLeftDisabled] = useState(false);
   const [RightDisabled, setRightDisabled] = useState(false);
   const [Wishlist, setWishlist] = useState(-1);
@@ -40,4 +36,6 @@ export const DiscoverSlider: FC<IProps> = (props) => {
         /> */}
     </div>
   );
-};
+}
+
+export default DiscoverSlider;

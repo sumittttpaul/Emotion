@@ -16,7 +16,7 @@ const Variants = {
   },
 };
 
-export function BannerTitleButton(props: IProps) {
+function BannerTitleButton(props: IProps) {
   const [Animate, setAnimate] = useState('closed');
 
   const onHoverStart = () => {
@@ -47,3 +47,5 @@ export function BannerTitleButton(props: IProps) {
     </motion.button>
   );
 }
+
+export default BannerTitleButton;

@@ -1,22 +1,16 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { IconButton } from '@mui/material';
-import React, { FC, RefObject } from 'react';
+import BannerTitleButton from 'components/button/banner/Banner.TitleButton';
 import Image from 'next/image';
-import { BannerTitleButton } from '../../button/banner/Banner.TitleButton';
 
 export interface DiscoverSliderTitleProps {
   label: string;
-  sliderRef: RefObject<HTMLElement>;
+  sliderRef: React.RefObject<HTMLElement>;
   LeftDisabled: boolean;
   RightDisabled: boolean;
 }
 
-/**
- * @author
- * @function @DiscoverSliderTitle
- **/
-
-export const DiscoverSliderTitle: FC<DiscoverSliderTitleProps> = (props) => {
+function DiscoverSliderTitle(props: DiscoverSliderTitleProps) {
   const slideLeft = () => {
     const slider = props.sliderRef.current;
     if (slider) {
@@ -48,7 +42,7 @@ export const DiscoverSliderTitle: FC<DiscoverSliderTitleProps> = (props) => {
       </div>
     </div>
   );
-};
+}
 
 interface NavigationButtonProps {
   onClick: () => void;
@@ -59,7 +53,7 @@ interface NavigationButtonProps {
 const ArrowIconClasses =
   'relative h-[10px] w-[10px] group-hover:h-[12px] group-hover:w-[12px] flex items-center justify-center opacity-75 group-hover:opacity-90';
 
-const NavigationButton: FC<NavigationButtonProps> = (props) => {
+function NavigationButton(props: NavigationButtonProps) {
   return (
     <IconButton
       onClick={props.onClick}
@@ -84,4 +78,6 @@ const NavigationButton: FC<NavigationButtonProps> = (props) => {
       )}
     </IconButton>
   );
-};
+}
+
+export default DiscoverSliderTitle;

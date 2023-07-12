@@ -1,16 +1,9 @@
-import React, { ReactNode } from 'react';
-
 interface TabPanelProps {
-  children: ReactNode;
+  children: React.ReactNode;
   dir?: string;
   index: number;
   value: number;
 }
-
-/**
- * @author
- * @function @SelectAvatarTabPanel
- **/
 
 const SelectAvatarTabPanel = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
@@ -20,7 +13,7 @@ const SelectAvatarTabPanel = (props: TabPanelProps) => {
       hidden={value !== index}
       id={`avatar-tabpanel-${index}`}
       aria-labelledby={`avatar-tabpanel-${index}`}
-      className='w-full h-full'
+      className="w-full h-full"
       {...other}
     >
       {value === index && children}

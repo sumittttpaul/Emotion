@@ -1,23 +1,13 @@
-import { DiscoverSliderContentProps } from '../../../contents/home/discover/Home.Discover.Slider';
-import React, {
-  Dispatch,
-  FC,
-  Fragment,
-  RefObject,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useState,
-  MouseEvent,
-} from 'react';
-import ScrollContainer from 'react-indiana-drag-scroll';
+import { DiscoverSliderContentProps } from 'contents/home/discover/Home.Discover.Slider';
+import { useCallback, useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { HeartIcon as HeartIconOutline } from '@heroicons/react/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid';
-import { ProductContextMenu } from '../../button/ProductContextMenu';
+import Image from 'next/image';
+import ScrollContainer from 'react-indiana-drag-scroll';
+import ProductContextMenu from 'components/button/ProductContextMenu';
 
 const HeadingStyle =
   'text-[14px] font-[500] tracking-wide text-left w-full truncate';
@@ -31,20 +21,18 @@ const ImageStyle = 'rounded-xl';
 
 export interface DiscoverSliderBrowserProps {
   ContentArray: DiscoverSliderContentProps[];
-  sliderRef: RefObject<HTMLElement>;
+  sliderRef: React.RefObject<HTMLElement>;
   Wishlist: number;
-  setWishlist: Dispatch<SetStateAction<number>>;
-  setLeftDisabled: Dispatch<SetStateAction<boolean>>;
-  setRightDisabled: Dispatch<SetStateAction<boolean>>;
+  setWishlist: React.Dispatch<React.SetStateAction<number>>;
+  setLeftDisabled: React.Dispatch<React.SetStateAction<boolean>>;
+  setRightDisabled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const DiscoverSliderBrowser: FC<DiscoverSliderBrowserProps> = (
-  props
-) => {
+export function DiscoverSliderBrowser(props: DiscoverSliderBrowserProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = useCallback((event: MouseEvent<HTMLElement>) => {
+  const handleClick = useCallback((event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     // synthetic event
     switch (event.type) {
@@ -116,7 +104,7 @@ export const DiscoverSliderBrowser: FC<DiscoverSliderBrowserProps> = (
 
   return (
     <div className="flex w-full box-border">
-      <Fragment>
+      <>
         <ScrollContainer
           vertical={false}
           hideScrollbars={true}
@@ -189,17 +177,17 @@ export const DiscoverSliderBrowser: FC<DiscoverSliderBrowserProps> = (
           AnchorHorizontal={'center'}
           AnchorVertical={'center'}
         />
-      </Fragment>
+      </>
     </div>
   );
-};
+}
 
 export interface DiscoverSliderMobileProps {
   ContentArray: DiscoverSliderContentProps[];
   Wishlist: number;
-  setWishlist: Dispatch<SetStateAction<number>>;
+  setWishlist: React.Dispatch<React.SetStateAction<number>>;
 }
-export const DiscoverSliderMobile: FC<DiscoverSliderMobileProps> = (props) => {
+export function DiscoverSliderMobile(props: DiscoverSliderMobileProps) {
   return (
     <div className="w-full h-full flex">
       <Swiper
@@ -276,4 +264,4 @@ export const DiscoverSliderMobile: FC<DiscoverSliderMobileProps> = (props) => {
       </Swiper>
     </div>
   );
-};
+}

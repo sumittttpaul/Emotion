@@ -7,12 +7,7 @@ interface TabPanelProps {
   value: number;
 }
 
-/**
- * @author
- * @function @AuthTabPanel
- **/
-
-export const AuthTabPanel = (props: TabPanelProps) => {
+function AuthTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
   return (
     <div
@@ -26,4 +21,6 @@ export const AuthTabPanel = (props: TabPanelProps) => {
       {value === index && children}
     </div>
   );
-};
+}
+
+export default AuthTabPanel;

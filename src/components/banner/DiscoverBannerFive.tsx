@@ -1,4 +1,4 @@
-import { DiscoverBannerFiveContentProps } from '../../contents/home/discover/Home.Discover.Banner';
+import { DiscoverBannerFiveContentProps } from 'contents/home/discover/Home.Discover.Banner';
 import { DiscoverBannerFiveBrowser } from './MultiScreen/DiscoverBannerFive.MultiScreen';
 
 interface IProps {
@@ -6,7 +6,7 @@ interface IProps {
   Label: string;
 }
 
-export function DiscoverBannerFive(props: IProps) {
+function DiscoverBannerFive(props: IProps) {
   return (
     <div className="mt-[30px] flex flex-col text-white p-0 m-0 box-border overflow-y-visible overflow-x-hidden">
       <DiscoverBannerFiveBrowser
@@ -17,3 +17,5 @@ export function DiscoverBannerFive(props: IProps) {
     </div>
   );
 }
+
+export default DiscoverBannerFive;

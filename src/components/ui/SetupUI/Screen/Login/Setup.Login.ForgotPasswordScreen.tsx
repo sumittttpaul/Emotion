@@ -1,8 +1,8 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { SetupSubmitButton } from 'components/button/Setup/SetupSubmitButton';
-import { SignInBackButton } from 'components/button/Setup/SignInBackButton';
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
+import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import { PasswordReset } from 'functions/AuthAlgorithms';
 import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
 import { ToastHook } from 'hooks/Hooks.Toast';

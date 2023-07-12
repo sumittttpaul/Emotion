@@ -3,15 +3,15 @@
 import { m } from 'framer-motion';
 import { useState } from 'react';
 import { ToastHook } from 'hooks/Hooks.Toast';
-import { SignInBackButton } from 'components/button/Setup/SignInBackButton';
-import { SignInNextButton } from 'components/button/Setup/SignInNextButton';
-import { OTPTimer } from 'components/timer/OTPTimer';
+import SignInBackButton from 'components/button/Setup/SignInBackButton';
+import SignInNextButton from 'components/button/Setup/SignInNextButton';
+import OTPTimer from 'components/timer/OTPTimer';
 import {
   ResentOTPForLinkWithPhone,
   VerifyOTPForLinkWithPhone,
 } from 'functions/AuthAlgorithms';
 import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
-import { SetupSubmitButton } from 'components/button/Setup/SetupSubmitButton';
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SetupOTPTextField from '../../Input/Setup.OTPTextField';
 import OperateUserProfile from 'databases/controller/Controller.UserProfile';
 import useClientAuth from 'authentication/useClientAuth';

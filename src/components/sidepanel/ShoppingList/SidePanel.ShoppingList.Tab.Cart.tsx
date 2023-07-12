@@ -1,20 +1,13 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Button } from '@mui/material';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import React, {
-  FC,
-  Fragment,
-  MouseEvent,
-  useCallback,
-  useState,
-} from 'react';
-import { HomeCartContentProps } from '../../../contents/home/Home.ShoppingList';
-import { ProductContextMenuProps } from '../../button/ProductContextMenu';
+import { Button } from '@mui/material';
+import { useCallback, useState } from 'react';
+import { HomeCartContentProps } from 'contents/home/Home.ShoppingList';
+import { ProductContextMenuProps } from 'components/button/ProductContextMenu';
 
 const ProductContextMenu = dynamic<ProductContextMenuProps>(
-  () =>
-    import('../../button/ProductContextMenu').then((x) => x.ProductContextMenu),
+  () => import('components/button/ProductContextMenu'),
   { ssr: false }
 );
 
@@ -22,18 +15,13 @@ export interface SidePanelShoppingListTabCartProps {
   ContentArray: HomeCartContentProps[];
 }
 
-/**
- * @author
- * @function @SidePanelShoppingListTabCart
- **/
-
-export const SidePanelShoppingListTabCart: FC<
-  SidePanelShoppingListTabCartProps
-> = (props) => {
+function SidePanelShoppingListTabCart(
+  props: SidePanelShoppingListTabCartProps
+) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = useCallback((event: MouseEvent<HTMLElement>) => {
+  const handleClick = useCallback((event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     // synthetic event
     switch (event.type) {
@@ -92,7 +80,7 @@ export const SidePanelShoppingListTabCart: FC<
         </Button>
       </div>
       <div className="flex flex-col w-full pt-3 pb-[60px]">
-        <Fragment>
+        <>
           {props.ContentArray.map((value, idx) => (
             <Button
               key={idx}
@@ -143,8 +131,10 @@ export const SidePanelShoppingListTabCart: FC<
             handleClose={handleClose}
             MenuContent={MenuContent}
           />
-        </Fragment>
+        </>
       </div>
     </div>
   );
-};
+}
+
+export default SidePanelShoppingListTabCart;

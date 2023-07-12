@@ -2,10 +2,10 @@
 
 import { m } from 'framer-motion';
 import { SetupHook } from 'hooks/Hooks.Setup';
-import { SetupSkipAllButton } from 'components/button/Setup/RegisterSkipAllButton';
-import { SetupSubmitButton } from 'components/button/Setup/SetupSubmitButton';
-import { SignInBackButton } from 'components/button/Setup/SignInBackButton';
-import { SignInNextButton } from 'components/button/Setup/SignInNextButton';
+import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
+import SignInBackButton from 'components/button/Setup/SignInBackButton';
+import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import AvatarButton from 'components/avatar/AvatarButton';
 
 export interface SetupRegisterProfilePictureScreenProps {

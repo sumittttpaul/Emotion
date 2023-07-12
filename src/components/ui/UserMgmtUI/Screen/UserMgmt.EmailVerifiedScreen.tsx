@@ -8,9 +8,9 @@ import {
   Manage_Your_Account_Link,
   Setup_Link,
 } from 'routers/RouterLinks';
-import { SignInNextButton } from 'components/button/Setup/SignInNextButton';
-import { SignInBackButton } from 'components/button/Setup/SignInBackButton';
-import { SetupHeaderLabel } from 'components/label/SetupHeaderLabel';
+import SignInNextButton from 'components/button/Setup/SignInNextButton';
+import SignInBackButton from 'components/button/Setup/SignInBackButton';
+import SetupHeaderLabel from 'components/label/SetupHeaderLabel';
 import { SetupConfirmEmailVerifySkeleton } from 'components/ui/SetupUI/Screen/Setup.LoadingScreen';
 import { ConfirmVerifyEmailAddress } from 'functions/AuthAlgorithms';
 import { LoaderHook } from 'hooks/Hooks.Loader';

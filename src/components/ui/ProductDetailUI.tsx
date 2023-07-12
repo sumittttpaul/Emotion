@@ -1,12 +1,6 @@
 import Image from 'next/image';
-import React, { FC } from 'react';
 
-/**
- * @author
- * @function @ProductDetailUI
- **/
-
-export const ProductDetailUI: FC = () => {
+function ProductDetailUI() {
   return (
     <div className="relative z-10">
       <div className="flex pr-3 items-center justify-between w-full h-full relative overflow-x-hidden overflow-y-visible">
@@ -31,4 +25,6 @@ export const ProductDetailUI: FC = () => {
       </div>
     </div>
   );
-};
+}
+
+export default ProductDetailUI;

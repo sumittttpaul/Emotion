@@ -2,13 +2,13 @@
 
 import { m } from 'framer-motion';
 import { useState } from 'react';
-import { SignInNextButton } from 'components/button/Setup/SignInNextButton';
-import { SetupFooter } from 'components/footer/SetupFooter';
-import { YellowBulbHint } from 'components/hint/YellowBulbHint';
-import { SetupSubmitButton } from 'components/button/Setup/SetupSubmitButton';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { SetupHook } from 'hooks/Hooks.Setup';
-import SetupIconTextField from '../../Input/Setup.IconTextField';
+import SignInNextButton from 'components/button/Setup/SignInNextButton';
+import SetupFooter from 'components/footer/SetupFooter';
+import YellowBulbHint from 'components/hint/YellowBulbHint';
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
+import SetupIconTextField from 'components/ui/SetupUI/Input/Setup.IconTextField';
 
 export interface SetupLoginEmailScreenProps {
   ContentClassName?: string;

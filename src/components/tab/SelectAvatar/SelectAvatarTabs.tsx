@@ -1,17 +1,11 @@
-import styled from '@emotion/styled';
 import { Tabs } from '@mui/material';
-import React, { FC, ReactNode, SyntheticEvent } from 'react';
+import styled from '@emotion/styled';
 
 interface StyledTabsProps {
-  children?: ReactNode;
+  children?: React.ReactNode;
   value: number;
-  onChange: (event: SyntheticEvent, newValue: number) => void;
+  onChange: (event: React.SyntheticEvent, newValue: number) => void;
 }
-
-/**
- * @author
- * @function @SelectAvatarTabs
- **/
 
 const StyledTabs = styled((props: StyledTabsProps) => (
   <Tabs
@@ -37,8 +31,8 @@ const StyledTabs = styled((props: StyledTabsProps) => (
   },
 });
 
-const SelectAvatarTabs: FC<StyledTabsProps> = (props) => {
+function SelectAvatarTabs(props: StyledTabsProps) {
   return <StyledTabs {...props} />;
-};
+}
 
 export default SelectAvatarTabs;

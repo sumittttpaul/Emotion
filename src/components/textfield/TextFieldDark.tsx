@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import {
   FilledInputProps,
   TextField,
@@ -84,7 +83,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
 }));
 
-const TextFieldDark: FC<PlainTextFieldProps> = (props) => {
+function TextFieldDark(props: PlainTextFieldProps) {
   return (
     <div className="flex flex-col w-full mt-[2px]">
       <CustomTextField
@@ -106,6 +105,6 @@ const TextFieldDark: FC<PlainTextFieldProps> = (props) => {
       />
     </div>
   );
-};
+}
 
 export default TextFieldDark;

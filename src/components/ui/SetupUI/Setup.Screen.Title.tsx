@@ -1,8 +1,8 @@
 'use client';
 
-import { SetupContentHeader } from 'components/label/SetupContentHeader';
-import { SetupHeaderDescription } from 'components/label/SetupHeaderDescription';
-import { SetupHeaderLabel } from 'components/label/SetupHeaderLabel';
+import SetupContentHeader from 'components/label/SetupContentHeader';
+import SetupHeaderDescription from 'components/label/SetupHeaderDescription';
+import SetupHeaderLabel from 'components/label/SetupHeaderLabel';
 import { SetupHook } from 'hooks/Hooks.Setup';
 
 function SetupScreenTitle() {

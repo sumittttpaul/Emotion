@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { FC } from 'react';
-import Image from 'next/image';
-import { DiscoverTilesContentProps } from '../../../contents/home/discover/Home.Discover.Tiles';
-import { UnderlineButtonDark } from '../../button/UnderlineButtonDark';
+import { DiscoverTilesContentProps } from 'contents/home/discover/Home.Discover.Tiles';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
-import useScreenSize from '../../../functions/ScreenSizeDetection';
-import { BannerTitleButton } from '../../button/banner/Banner.TitleButton';
-import { BannerSmallButton } from '../../button/banner/Banner.SmallButton';
+import { Rectangle_BlurDataURL } from 'components/loader/BlurDataURL';
+import BannerSmallButton from 'components/button/banner/Banner.SmallButton';
+import useScreenSize from 'functions/ScreenSizeDetection';
+import UnderlineButtonDark from 'components/button/UnderlineButtonDark';
+import BannerTitleButton from 'components/button/banner/Banner.TitleButton';
+import Image from 'next/image';
 
 const SwiperSlideStyle =
   'h-full w-full flex relative m-0 p-0 text-white overflow-hidden rounded-xl bg-gradient-to-r';
@@ -34,7 +33,7 @@ export interface DiscoverTilesBrowserProps {
   ContentArray: DiscoverTilesContentProps[];
   Label: string;
 }
-export const DiscoverTilesBrowser: FC<DiscoverTilesBrowserProps> = (props) => {
+export function DiscoverTilesBrowser(props: DiscoverTilesBrowserProps) {
   const {
     LargeScreen,
     MediumLargeScreen,
@@ -96,12 +95,12 @@ export const DiscoverTilesBrowser: FC<DiscoverTilesBrowserProps> = (props) => {
       </Swiper>
     </div>
   );
-};
+}
 
 export interface DiscoverTilesMobileProps {
   ContentArray: DiscoverTilesContentProps[];
 }
-export const DiscoverTilesMobile: FC<DiscoverTilesMobileProps> = (props) => {
+export function DiscoverTilesMobile(props: DiscoverTilesMobileProps) {
   return (
     <div className="w-full flex sm:hidden flex-col space-y-5">
       <h6 className="text-[18px] mx-5">What&apos;s new</h6>
@@ -147,4 +146,4 @@ export const DiscoverTilesMobile: FC<DiscoverTilesMobileProps> = (props) => {
       </Swiper>
     </div>
   );
-};
+}

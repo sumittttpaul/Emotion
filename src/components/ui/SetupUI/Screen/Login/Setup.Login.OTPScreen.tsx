@@ -4,15 +4,15 @@ import { m } from 'framer-motion';
 import { useState } from 'react';
 import { LoaderHook } from 'hooks/Hooks.Loader';
 import { ToastHook } from 'hooks/Hooks.Toast';
-import { SignInBackButton } from 'components/button/Setup/SignInBackButton';
-import { SignInNextButton } from 'components/button/Setup/SignInNextButton';
-import { OTPTimer } from 'components/timer/OTPTimer';
+import SignInBackButton from 'components/button/Setup/SignInBackButton';
+import SignInNextButton from 'components/button/Setup/SignInNextButton';
+import OTPTimer from 'components/timer/OTPTimer';
 import { DeleteAccount, ResentOTP, VerifyOTP } from 'functions/AuthAlgorithms';
 import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
-import { SetupSubmitButton } from 'components/button/Setup/SetupSubmitButton';
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
-import SetupOTPTextField from '../../Input/Setup.OTPTextField';
+import SetupOTPTextField from 'components/ui/SetupUI/Input/Setup.OTPTextField';
 import OperateUserProfile from 'databases/controller/Controller.UserProfile';
 
 export interface SetupLoginOTPScreenProps {

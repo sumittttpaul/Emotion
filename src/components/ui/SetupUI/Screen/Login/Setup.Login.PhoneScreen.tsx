@@ -4,11 +4,11 @@ import { m } from 'framer-motion';
 import { useState } from 'react';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { SetupHook } from 'hooks/Hooks.Setup';
-import { SetupFooter } from 'components/footer/SetupFooter';
-import { YellowBulbHint } from 'components/hint/YellowBulbHint';
 import { SignInWithPhoneNumber } from 'functions/AuthAlgorithms';
-import { SignInNextButton } from 'components/button/Setup/SignInNextButton';
-import { SetupSubmitButton } from 'components/button/Setup/SetupSubmitButton';
+import SetupFooter from 'components/footer/SetupFooter';
+import YellowBulbHint from 'components/hint/YellowBulbHint';
+import SignInNextButton from 'components/button/Setup/SignInNextButton';
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SetupIconNumberTextField from 'components/ui/SetupUI/Input/Setup.IconNumberTextField';
 
 export interface SetupLoginPhoneScreenProps {

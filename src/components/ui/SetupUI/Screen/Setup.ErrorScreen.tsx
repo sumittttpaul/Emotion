@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { SetupHeaderLabel } from 'components/label/SetupHeaderLabel';
-import { SignInBackButton } from 'components/button/Setup/SignInBackButton';
-import { SignInNextButton } from 'components/button/Setup/SignInNextButton';
-import { YellowBulbHint } from 'components/hint/YellowBulbHint';
+import SetupHeaderLabel from 'components/label/SetupHeaderLabel';
+import SignInBackButton from 'components/button/Setup/SignInBackButton';
+import SignInNextButton from 'components/button/Setup/SignInNextButton';
+import YellowBulbHint from 'components/hint/YellowBulbHint';
 import { Home_Link, Manage_Your_Account_Link } from 'routers/RouterLinks';
 import { LoaderHook } from 'hooks/Hooks.Loader';
 

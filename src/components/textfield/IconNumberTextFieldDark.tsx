@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import {
   FilledInputProps,
   TextField,
@@ -90,7 +89,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
   },
 }));
 
-const IconNumberTextFieldDark: FC<IconNumberTextFieldProps> = (props) => {
+function IconNumberTextFieldDark(props: IconNumberTextFieldProps) {
   return (
     <div className="relative flex flex-col w-full mt-[2px]">
       <div className="mt-[16px] ml-[20px] -mb-[46px] flex cursor-text touch-none pointer-events-none">
@@ -128,6 +127,6 @@ const IconNumberTextFieldDark: FC<IconNumberTextFieldProps> = (props) => {
       )}
     </div>
   );
-};
+}
 
 export default IconNumberTextFieldDark;

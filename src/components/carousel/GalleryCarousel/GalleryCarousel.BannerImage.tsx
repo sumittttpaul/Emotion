@@ -8,7 +8,7 @@ interface IProps {
   className?: string;
 }
 
-export class GalleryCarouselBannerImage extends Component<IProps> {
+class GalleryCarouselBannerImage extends Component<IProps> {
   state = {
     topSrc: this.props.src,
     bottomOpacity: 0,
@@ -77,3 +77,5 @@ export class GalleryCarouselBannerImage extends Component<IProps> {
     );
   }
 }
+
+export default GalleryCarouselBannerImage;

@@ -2,17 +2,17 @@
 
 import { m } from 'framer-motion';
 import { useState } from 'react';
-import { SignInBackButton } from 'components/button/Setup/SignInBackButton';
-import { SignInNextButton } from 'components/button/Setup/SignInNextButton';
-import { RadioGroupDark } from 'components/radiogroup/RadioGroupDark';
-import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
-import { EncryptData } from 'functions/security/CryptionSecurity';
 import { SetupHook } from 'hooks/Hooks.Setup';
 import { ToastHook } from 'hooks/Hooks.Toast';
+import { EncryptData } from 'functions/security/CryptionSecurity';
+import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
+import SignInBackButton from 'components/button/Setup/SignInBackButton';
+import SignInNextButton from 'components/button/Setup/SignInNextButton';
+import RadioGroupDark from 'components/radiogroup/RadioGroupDark';
 import useClientAuth from 'authentication/useClientAuth';
 import OperateUserProfile from 'databases/controller/Controller.UserProfile';
-import { SetupSubmitButton } from 'components/button/Setup/SetupSubmitButton';
-import { SetupSkipAllButton } from 'components/button/Setup/RegisterSkipAllButton';
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
+import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 
 export interface SetupRegisterGenderScreenProps {
   ContentClassName?: string;

@@ -1,30 +1,24 @@
-import React, { FC } from 'react';
-import { DiscoverSliderContent } from '../../contents/home/discover/Home.Discover.Slider';
+import { DiscoverSliderContent } from 'contents/home/discover/Home.Discover.Slider';
+import { DiscoverCarouselContent } from 'contents/home/discover/Home.Discover.Carousel';
+import { DiscoverBannerFourContent } from 'contents/home/discover/Home.Discover.Banner';
+import { DiscoverTilesContent } from 'contents/home/discover/Home.Discover.Tiles';
 import {
   DiscoverBannerFiveContent,
   DiscoverBannerDealContent,
   DiscoverBannerTop5Content,
-} from '../../contents/home/discover/Home.Discover.Banner';
-import { DiscoverBannerFourContent } from '../../contents/home/discover/Home.Discover.Banner';
-import { DiscoverTilesContent } from '../../contents/home/discover/Home.Discover.Tiles';
-import { DiscoverSlider } from '../slider/DiscoverSlider';
-import { DiscoverBannerTop5 } from '../banner/DiscoverBannerTop5';
-import { DiscoverTiles } from '../tiles/DiscoverTiles';
-import { DiscoverBannerFour } from '../banner/DiscoverBannerFour';
-import { DiscoverBannerFive } from '../banner/DiscoverBannerFive';
-import { DiscoverCatelog } from '../catelog/DiscoverCatelog';
-import { DiscoverCarousel } from '../carousel/DiscoverCarousel';
-import { DiscoverCarouselContent } from '../../contents/home/discover/Home.Discover.Carousel';
-import { DiscoverBannerDeal } from '../banner/DiscoverBannerDeal';
-import { LightningBadge } from '../badge/LightningBadge';
-import { NewBadge } from '../badge/NewBadge';
+} from 'contents/home/discover/Home.Discover.Banner';
+import DiscoverSlider from 'components/slider/DiscoverSlider';
+import DiscoverBannerTop5 from 'components/banner/DiscoverBannerTop5';
+import DiscoverTiles from 'components/tiles/DiscoverTiles';
+import DiscoverBannerFour from 'components/banner/DiscoverBannerFour';
+import DiscoverBannerFive from 'components/banner/DiscoverBannerFive';
+import DiscoverCatelog from 'components/catelog/DiscoverCatelog';
+import DiscoverCarousel from 'components/carousel/DiscoverCarousel';
+import DiscoverBannerDeal from 'components/banner/DiscoverBannerDeal';
+import LightningBadge from 'components/badge/LightningBadge';
+import NewBadge from 'components/badge/NewBadge';
 
-/**
- * @author
- * @function @DiscoverUI
- **/
-
-export const DiscoverUI: FC = () => {
+function DiscoverUI() {
   return (
     <div className="relative z-10 w-full rounded-xl">
       <DiscoverCarousel ContentArray={DiscoverCarouselContent} />
@@ -60,4 +54,6 @@ export const DiscoverUI: FC = () => {
       <DiscoverCatelog />
     </div>
   );
-};
+}
+
+export default DiscoverUI;

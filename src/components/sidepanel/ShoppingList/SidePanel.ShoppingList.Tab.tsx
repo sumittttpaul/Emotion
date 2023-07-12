@@ -2,22 +2,19 @@ import { Tab } from '@headlessui/react';
 import { useTheme } from '@mui/material';
 import { LayoutGroup, motion } from 'framer-motion';
 import TabPanel from '../../tab/SelectAvatar/SelectAvatarTabPanel';
-import React, { FC, useState } from 'react';
-import { SidePanelShoppingListTabWishlist } from './SidePanel.ShoppingList.Tab.Wishlist';
+import { useState } from 'react';
 import { SidePanelShoppingListTabCartProps } from './SidePanel.ShoppingList.Tab.Cart';
 import {
   HomeCartContent,
   HomeWishlistContent,
-} from '../../../contents/home/Home.ShoppingList';
+} from 'contents/home/Home.ShoppingList';
 import dynamic from 'next/dynamic';
-import { SidePanelShoppingListTabHeader } from './SidePanel.ShoppingList.Tab.Header';
+import SidePanelShoppingListTabWishlist from './SidePanel.ShoppingList.Tab.Wishlist';
+import SidePanelShoppingListTabHeader from './SidePanel.ShoppingList.Tab.Header';
 import SwipeableViews from '../../../../packages/react-swipeable-views/src/index';
 
 const SidePanelShoppingListTabCart = dynamic<SidePanelShoppingListTabCartProps>(
-  () =>
-    import('./SidePanel.ShoppingList.Tab.Cart').then(
-      (x) => x.SidePanelShoppingListTabCart
-    ),
+  () => import('./SidePanel.ShoppingList.Tab.Cart'),
   { ssr: false }
 );
 
@@ -25,12 +22,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-/**
- * @author
- * @function @SidePanelShoppingListTab
- **/
-
-export const SidePanelShoppingListTab: FC = () => {
+function SidePanelShoppingListTab() {
   const [Tabvalue, setTabValue] = useState(0);
   const theme = useTheme();
 
@@ -119,4 +111,6 @@ export const SidePanelShoppingListTab: FC = () => {
       </SwipeableViews>
     </div>
   );
-};
+}
+
+export default SidePanelShoppingListTab;

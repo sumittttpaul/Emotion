@@ -15,7 +15,7 @@ const Variants = {
   },
 };
 
-export function SignInNextButton(props: IProps) {
+function SignInNextButton(props: IProps) {
   const [Animate, setAnimate] = useState('closed');
 
   const onHoverStart = () => {
@@ -44,3 +44,5 @@ export function SignInNextButton(props: IProps) {
     </m.button>
   );
 }
+
+export default SignInNextButton;

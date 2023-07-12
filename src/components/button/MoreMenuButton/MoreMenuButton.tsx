@@ -15,7 +15,7 @@ interface IProps {
   MenuContent: { label: string; icon: string; onClick: () => void }[];
 }
 
-export function MoreMenuButton(props: IProps) {
+function MoreMenuButton(props: IProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -55,3 +55,5 @@ export function MoreMenuButton(props: IProps) {
     </>
   );
 }
+
+export default MoreMenuButton;

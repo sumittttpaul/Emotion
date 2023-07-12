@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { SetupHeaderLabel } from 'components/label/SetupHeaderLabel';
-import { SetupSubmitButton } from 'components/button/Setup/SetupSubmitButton';
+import SetupHeaderLabel from 'components/label/SetupHeaderLabel';
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import { LoaderHook } from 'hooks/Hooks.Loader';
 
 export interface SetupFinishScreenProps {
