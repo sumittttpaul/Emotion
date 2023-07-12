@@ -4,7 +4,6 @@ import { ToastDarkProps } from 'components/toast/ToastDark';
 import { SetupSkipDialogProps } from 'components/ui/SetupUI/Dialog/Setup.SkipDialog';
 import { SetupErrorScreenProps } from 'components/ui/SetupUI/Screen/Setup.ErrorScreen';
 import { SetupFinishScreenProps } from 'components/ui/SetupUI/Screen/Setup.FinishScreen';
-import SetupLoadingScreen from './Screen/Setup.LoadingScreen';
 import { LazyMotion, domAnimation } from 'framer-motion';
 import { SetupImages } from 'contents/setup/Setup.Image';
 import { SetupHook } from 'hooks/Hooks.Setup';
@@ -12,6 +11,7 @@ import { ToastHook } from 'hooks/Hooks.Toast';
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import SetupLoadingScreen from './Screen/Setup.LoadingScreen';
 
 const LoadingLinearProgress = dynamic(
   () => import('components/loader/Loading.LinearProgress'),

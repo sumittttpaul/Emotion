@@ -94,7 +94,6 @@ function ToastDark(props: ToastDarkProps) {
           Horizontal={props.Horizontal}
         />
       )}
-      I
       {props.Toast.Type === 'Info' && (
         <ToastDarkContent
           Open={state.Open}
