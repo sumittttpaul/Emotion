@@ -1,9 +1,9 @@
-import { DatePickerContainerDialog } from 'components/dialog/DatePickerContainerDialog';
-import { DatePickerDialogBottom } from 'components/datepicker/assets/Dialog/DatePickerDialogBottom';
-import { DatePickerDialogHeader } from 'components/datepicker/assets/Dialog/DatePickerDialogHeader';
-import { SelectDay } from 'components/datepicker/assets/SelectDay';
-import { SelectMonth } from 'components/datepicker/assets/SelectMonth';
-import { SelectYear } from 'components/datepicker/assets/SelectYear';
+import DatePickerContainerDialog from 'components/dialog/DatePickerContainerDialog';
+import DatePickerDialogBottom from 'components/datepicker/assets/Dialog/DatePickerDialogBottom';
+import DatePickerDialogHeader from 'components/datepicker/assets/Dialog/DatePickerDialogHeader';
+import SelectDay from 'components/datepicker/assets/SelectDay';
+import SelectMonth from 'components/datepicker/assets/SelectMonth';
+import SelectYear from 'components/datepicker/assets/SelectYear';
 
 export interface DatePickerButtonDialogProps {
   DOBScreen: 'year' | 'month' | 'day';
@@ -20,7 +20,7 @@ export interface DatePickerButtonDialogProps {
   DOBSubmitDisabled: boolean;
 }
 
-export function DatePickerButtonDialog(props: DatePickerButtonDialogProps) {
+function DatePickerButtonDialog(props: DatePickerButtonDialogProps) {
   const setHeaderDates = () => {
     return props.DOBYear + ', ' + props.DOBMonth + ' ' + props.DOBDay;
   };
@@ -58,3 +58,5 @@ export function DatePickerButtonDialog(props: DatePickerButtonDialogProps) {
     </DatePickerContainerDialog>
   );
 }
+
+export default DatePickerButtonDialog;

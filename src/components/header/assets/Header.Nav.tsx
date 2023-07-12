@@ -1,20 +1,24 @@
-import React, { FC, MouseEvent } from 'react';
 import { Button } from '@mui/material';
 import {
   Collections_Link,
   Discover_Link,
   Offers_Link,
-} from '../../../routers/RouterLinks';
-import Router from 'next/router';
+} from 'routers/RouterLinks';
+import { useRouter } from 'next/navigation';
 
 interface IProps {
   open: boolean;
-  onOpen: (event: MouseEvent<HTMLElement>) => void;
-  onValueChange: (value: string) => void;
+  onOpen: (event: React.MouseEvent<HTMLElement>) => void;
+  onValueChange: (value: 'Discover' | 'Offers' | 'Collections') => void;
   Value: string;
 }
 
-const NavLabel = [
+interface INavLabel {
+  label: 'Discover' | 'Offers' | 'Collections';
+  to: string;
+}
+
+const NavLabel: INavLabel[] = [
   {
     label: 'Discover',
     to: Discover_Link,
@@ -29,12 +33,8 @@ const NavLabel = [
   },
 ];
 
-/**
- * @author
- * @function @HeaderNav
- **/
-
-export const HeaderNav: FC<IProps> = (props) => {
+function HeaderNav(props: IProps) {
+  const router = useRouter();
   return (
     <div className="hidden medium-screen:flex flex-col h-full">
       <ul className="flex flex-row space-x-2 h-full items-center">
@@ -44,7 +44,7 @@ export const HeaderNav: FC<IProps> = (props) => {
               onClick={() => {
                 if (props.Value !== value.label) {
                   props.onValueChange(value.label);
-                  Router.push(value.to);
+                  router.push(value.to);
                 }
               }}
               disableRipple
@@ -64,4 +64,6 @@ export const HeaderNav: FC<IProps> = (props) => {
       </ul>
     </div>
   );
-};
+}
+
+export default HeaderNav;

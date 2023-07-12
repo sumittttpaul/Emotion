@@ -18,7 +18,7 @@ import theme from 'utils/theme';
 import createEmotionCache from 'utils/old-createEmotionCache';
 import { Loading } from 'components/loader/Loading';
 import { NextPage } from 'next';
-import { LoaderState } from 'contexts/LoadingState';
+import { LoaderState } from 'contexts/ExampleState';
 import ReduxStore from 'redux/ReduxStore';
 
 const clientSideEmotionCache = createEmotionCache();

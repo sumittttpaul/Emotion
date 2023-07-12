@@ -1,5 +1,5 @@
-import React, { FC, useState } from 'react';
 import { ChevronLeftIcon } from '@heroicons/react/outline';
+import { useState } from 'react';
 import { m } from 'framer-motion';
 
 interface IProps {
@@ -16,12 +16,7 @@ const Variants = {
   },
 };
 
-/**
- * @author
- * @function @SignInBackButton
- **/
-
-export const SignInBackButton: FC<IProps> = (props) => {
+function SignInBackButton(props: IProps) {
   const [Animate, setAnimate] = useState('closed');
 
   const onHoverStart = () => {
@@ -51,4 +46,6 @@ export const SignInBackButton: FC<IProps> = (props) => {
       </m.div>
     </m.button>
   );
-};
+}
+
+export default SignInBackButton;

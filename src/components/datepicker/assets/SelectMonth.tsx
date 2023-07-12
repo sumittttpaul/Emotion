@@ -1,15 +1,10 @@
-import React, { FC, useState } from 'react';
+import { useState } from 'react';
 import { m } from 'framer-motion';
 import moment from 'moment';
 
 interface IProps {
   setMonth: (month: string) => void;
 }
-
-/**
- * @author
- * @function @SelectMonth
- **/
 
 const Months = [
   'Jan',
@@ -26,7 +21,7 @@ const Months = [
   'Dec',
 ];
 
-export const SelectMonth: FC<IProps> = (props) => {
+function SelectMonth(props: IProps) {
   const [selected, setSelected] = useState<string>(
     moment().endOf('month').format('MMM')
   );
@@ -61,4 +56,6 @@ export const SelectMonth: FC<IProps> = (props) => {
       ))}
     </m.div>
   );
-};
+}
+
+export default SelectMonth;

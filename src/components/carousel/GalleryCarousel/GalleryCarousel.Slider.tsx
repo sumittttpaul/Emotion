@@ -1,22 +1,16 @@
-import { GalleryCarouselContentProps } from '../../../contents/gallery/Gallery.Carousel';
-import React, { FC } from 'react';
+import { GalleryCarouselContentProps } from 'contents/gallery/Gallery.Carousel';
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Image from 'next/image';
-import { Poster_BlurDataURL } from '../../loader/BlurDataURL';
+import { Poster_BlurDataURL } from 'components/loader/BlurDataURL';
 import { Button } from '@mui/material';
 import { HeartIcon } from '@heroicons/react/outline';
+import Image from 'next/image';
 
 export interface GalleryCarouselSliderProps {
   ContentArray: GalleryCarouselContentProps[];
 }
 
-/**
- * @GalleryCarouselSlider
- **/
-export const GalleryCarouselSlider: FC<GalleryCarouselSliderProps> = (
-  props
-) => {
+function GalleryCarouselSlider(props: GalleryCarouselSliderProps) {
   return (
     <Swiper
       modules={[Pagination]}
@@ -125,4 +119,6 @@ export const GalleryCarouselSlider: FC<GalleryCarouselSliderProps> = (
       ))}
     </Swiper>
   );
-};
+}
+
+export default GalleryCarouselSlider;

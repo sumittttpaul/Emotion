@@ -1,5 +1,5 @@
 import { m } from 'framer-motion';
-import React, { FC, useState } from 'react';
+import { useState } from 'react';
 
 interface IProps {
   Label: string;
@@ -15,12 +15,7 @@ const Variants = {
   },
 };
 
-/**
- * @author
- * @function @SignInNextButton
- **/
-
-export const SignInNextButton: FC<IProps> = (props) => {
+export function SignInNextButton(props: IProps) {
   const [Animate, setAnimate] = useState('closed');
 
   const onHoverStart = () => {
@@ -48,4 +43,4 @@ export const SignInNextButton: FC<IProps> = (props) => {
       </m.div>
     </m.button>
   );
-};
+}

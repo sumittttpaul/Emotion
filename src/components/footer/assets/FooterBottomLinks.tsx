@@ -1,5 +1,4 @@
 import { Link } from '@mui/material';
-import React, { FC } from 'react';
 
 interface IProps {
   label: string;
@@ -7,12 +6,7 @@ interface IProps {
   className?: string;
 }
 
-/**
- * @author
- * @function @FooterBottomLinks
- **/
-
-export const FooterBottomLinks: FC<IProps> = (props) => {
+function FooterBottomLinks(props: IProps) {
   return (
     <Link
       href={props.to}
@@ -24,4 +18,6 @@ export const FooterBottomLinks: FC<IProps> = (props) => {
       {props.label}
     </Link>
   );
-};
+}
+
+export default FooterBottomLinks;

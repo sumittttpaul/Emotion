@@ -1,18 +1,13 @@
-import React, { FC, useState } from 'react';
+import { useState } from 'react';
 import { DiscoverCarouselContentProps } from '../../contents/home/discover/Home.Discover.Carousel';
-import { DiscoverCarouselBanner } from './DiscoverCarousel/DiscoverCarousel.Banner';
-import { DiscoverCarouselBulletPoints } from './DiscoverCarousel/DiscoverCarousel.BulletPoints';
+import DiscoverCarouselBanner from './DiscoverCarousel/DiscoverCarousel.Banner';
+import DiscoverCarouselBulletPoints from './DiscoverCarousel/DiscoverCarousel.BulletPoints';
 
 interface IProps {
   ContentArray: DiscoverCarouselContentProps[];
 }
 
-/**
- * @author
- * @function @DiscoverCarousel
- **/
-
-export const DiscoverCarousel: FC<IProps> = (props) => {
+function DiscoverCarousel(props: IProps) {
   const [CarouselState, setCarouselState] = useState(10); // Default
   return (
     <div className="relative w-full pt-8 overflow-hidden">
@@ -29,4 +24,6 @@ export const DiscoverCarousel: FC<IProps> = (props) => {
       />
     </div>
   );
-};
+}
+
+export default DiscoverCarousel;

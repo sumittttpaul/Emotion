@@ -1,11 +1,11 @@
 import { DotsHorizontalIcon, DotsVerticalIcon } from '@heroicons/react/outline';
-import React, { FC, useState, MouseEvent, Fragment } from 'react';
+import { useState } from 'react';
 import { IconButton } from '@mui/material';
 import { MoreMenuButtonMenuProps } from './MoreMenuButton.Menu';
 import dynamic from 'next/dynamic';
 
 const MoreMenuButtonMenu = dynamic<MoreMenuButtonMenuProps>(
-  () => import('./MoreMenuButton.Menu').then((x) => x.MoreMenuButtonMenu),
+  () => import('./MoreMenuButton.Menu'),
   { ssr: false }
 );
 
@@ -15,16 +15,11 @@ interface IProps {
   MenuContent: { label: string; icon: string; onClick: () => void }[];
 }
 
-/**
- * @author
- * @function @MoreMenuButton
- **/
-
-export const MoreMenuButton: FC<IProps> = (props) => {
+export function MoreMenuButton(props: IProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event: MouseEvent<HTMLElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -33,7 +28,7 @@ export const MoreMenuButton: FC<IProps> = (props) => {
   };
 
   return (
-    <Fragment>
+    <>
       <IconButton
         disableFocusRipple
         onClick={handleClick}
@@ -57,6 +52,6 @@ export const MoreMenuButton: FC<IProps> = (props) => {
         handleClose={handleClose}
         MenuContent={props.MenuContent}
       />
-    </Fragment>
+    </>
   );
-};
+}

@@ -1,16 +1,9 @@
-import React, { FC, ReactNode } from 'react';
-
 interface IProps {
   ClassName?: string;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
-/**
- * @author
- * @function @SetupContentHeader
- **/
-
-export const SetupContentHeader: FC<IProps> = (props) => {
+function SetupContentHeader(props: IProps) {
   return (
     <div className={`${props.ClassName} w-full h-7 justify-start space-y-3`}>
       {/* <div className="w-full justify-start">
@@ -21,4 +14,6 @@ export const SetupContentHeader: FC<IProps> = (props) => {
       </h6>
     </div>
   );
-};
+}
+
+export default SetupContentHeader;

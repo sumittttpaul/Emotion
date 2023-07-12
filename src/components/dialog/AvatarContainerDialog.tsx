@@ -1,21 +1,16 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { FC, ReactNode, Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
+import { Fragment } from 'react';
 
 interface IProps {
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
   show: boolean;
   onClose: () => void;
   disableClickAwayClose?: true;
 }
 
-/**
- * @author
- * @function @AvatarContainerDialog
- **/
-
-const AvatarContainerDialog: FC<IProps> = (props) => {
+function AvatarContainerDialog(props: IProps) {
   return (
     <Transition appear show={props.show} as={Fragment}>
       <Dialog
@@ -61,6 +56,6 @@ const AvatarContainerDialog: FC<IProps> = (props) => {
       </Dialog>
     </Transition>
   );
-};
+}
 
 export default AvatarContainerDialog;

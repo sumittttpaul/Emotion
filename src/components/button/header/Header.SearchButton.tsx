@@ -1,28 +1,16 @@
-import React, {
-  ChangeEvent,
-  KeyboardEvent,
-  FC,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { HeaderSearchButtonMenuProps } from './Header.SearchButton.Menu';
 import dynamic from 'next/dynamic';
+import { HeaderSearchButtonMenuProps } from './Header.SearchButton.Menu';
 import { IconButton } from '@mui/material';
-import { SearchContent } from '../../../contents/home/search/Home.Search';
+import { SearchContent } from 'contents/home/search/Home.Search';
 
 const HeaderSearchButtonMenu = dynamic<HeaderSearchButtonMenuProps>(
-  () =>
-    import('./Header.SearchButton.Menu').then((x) => x.HeaderSearchButtonMenu),
+  () => import('./Header.SearchButton.Menu'),
   { ssr: false }
 );
 
-/**
- * @author
- * @function @HeaderSearchButton
- **/
-export const HeaderSearchButton: FC = () => {
+function HeaderSearchButton() {
   const [SearchMenuOpen, setSearchMenuOpen] = useState(false);
   const [Search, setSearch] = useState(
     'Search by product, category, collection and more'
@@ -30,11 +18,13 @@ export const HeaderSearchButton: FC = () => {
   const SearchRef = useRef<HTMLInputElement>(null);
   const ContainerRef = useRef<HTMLDivElement>(null);
 
-  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
   };
 
-  const handleSearchKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+  const handleSearchKeyDown = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
     if (event.key === 'ArrowUp') {
       event.preventDefault();
       event.currentTarget.setSelectionRange(
@@ -165,4 +155,6 @@ export const HeaderSearchButton: FC = () => {
       />
     </div>
   );
-};
+}
+
+export default HeaderSearchButton;

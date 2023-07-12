@@ -1,25 +1,14 @@
-import React, { FC, ReactNode } from 'react';
-import { useReduxSelector } from '../../../redux/ReduxHooks';
-import { Footer } from '../../footer/Footer';
-import { Header } from '../../header/Header';
-import { HeaderMobile } from '../../header/Header.Mobile';
-import { SelectDevice } from '../../../redux/reducers/DeviceReducer';
+import { DeviceHook } from 'hooks/Hooks.Device';
+import Footer from 'components/footer/Footer';
+import Header from 'components/header/Header';
+import HeaderMobile from 'components/header/Header.Mobile';
 
-interface IProps {
-  children: ReactNode;
-}
+function HomeAndGalleryChildLayout({ children }: ChildrenType) {
+  const { isMobile } = DeviceHook();
 
-/**
- * @author
- * @function @HomeAndGalleryChildLayout
- **/
-
-export const HomeAndGalleryChildLayout: FC<IProps> = (props) => {
-  const { isMobile } = useReduxSelector(SelectDevice);
-
-  const Children = () => {
-    return <div className="w-full z-auto">{props.children}</div>;
-  };
+  function Children() {
+    return <div className="w-full z-auto">{children}</div>;
+  }
 
   if (isMobile)
     return (
@@ -45,4 +34,6 @@ export const HomeAndGalleryChildLayout: FC<IProps> = (props) => {
       </div>
     </main>
   );
-};
+}
+
+export default HomeAndGalleryChildLayout;

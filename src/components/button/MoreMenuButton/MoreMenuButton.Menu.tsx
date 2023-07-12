@@ -1,5 +1,4 @@
 import { Menu, MenuItem } from '@mui/material';
-import React, { FC } from 'react';
 import Image from 'next/image';
 
 export interface MoreMenuButtonMenuProps {
@@ -9,12 +8,7 @@ export interface MoreMenuButtonMenuProps {
   MenuContent: { label: string; icon: string; onClick: () => void }[];
 }
 
-/**
- * @author
- * @function @MoreMenuButtonMenu
- **/
-
-export const MoreMenuButtonMenu: FC<MoreMenuButtonMenuProps> = (props) => {
+function MoreMenuButtonMenu(props: MoreMenuButtonMenuProps) {
   return (
     <Menu
       anchorEl={props.anchorEl}
@@ -59,4 +53,6 @@ export const MoreMenuButtonMenu: FC<MoreMenuButtonMenuProps> = (props) => {
       ))}
     </Menu>
   );
-};
+}
+
+export default MoreMenuButtonMenu;

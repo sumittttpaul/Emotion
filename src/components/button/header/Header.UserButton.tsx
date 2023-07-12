@@ -1,30 +1,23 @@
 import Image from 'next/image';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
-import React, { FC, Fragment, MouseEvent, ReactNode, useState } from 'react';
+import { useState } from 'react';
 import { Button, CircularProgress } from '@mui/material';
-import { Setup_Link } from '../../../routers/RouterLinks';
+import { Setup_Link } from 'routers/RouterLinks';
 import { HeaderUserButtonMenuProps } from './Header.UserButton.Menu';
-import { TooltipDark } from '../../tooltip/TooltipDark';
-import { UserType, useAuth } from '../../../authentication/useClientAuth';
-import { SignOut } from '../../../functions/AuthAlgorithms';
-import { useLoaderState } from '../../../contexts/LoadingState';
+import { SignOut } from 'functions/AuthAlgorithms';
+import { LoaderHook } from 'hooks/Hooks.Loader';
+import useClientAuth, { ClientUser } from 'authentication/useClientAuth';
+import TooltipDark from 'components/tooltip/TooltipDark';
 
 const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
-  () => import('./Header.UserButton.Menu').then((x) => x.HeaderUserButtonMenu),
+  () => import('./Header.UserButton.Menu'),
   { ssr: false }
 );
 
-/**
- * @author
- * @function @HeaderUserButton
- **/
-
-export const HeaderUserButton: FC = () => {
+function HeaderUserButton() {
   const { FirebaseUser, FirebaseLoading } = useClientAuth();
-
-  const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => setLoader({ show: value });
+  const { setLoader } = LoaderHook();
 
   if (FirebaseLoading)
     return (
@@ -44,26 +37,26 @@ export const HeaderUserButton: FC = () => {
     <Container>
       <LoginButton
         onClick={() => {
-          LoadingScreen(true);
+          setLoader(true);
           Router.push(Setup_Link);
         }}
       />
     </Container>
   );
-};
+}
 
 interface LoginButtonProps {
   onClick: () => void;
 }
 
 interface ContainerProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 interface UserButtonProps {
-  user: UserType;
+  user: ClientUser;
 }
 
-const LoginButton: FC<LoginButtonProps> = (props) => {
+function LoginButton(props: LoginButtonProps) {
   return (
     <TooltipDark
       arrow
@@ -92,7 +85,7 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
       </Button>
     </TooltipDark>
   );
-};
+}
 
 const UserLoading = () => {
   return (
@@ -102,14 +95,12 @@ const UserLoading = () => {
   );
 };
 
-const UserButton: FC<UserButtonProps> = (props) => {
+function UserButton(props: UserButtonProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const { setLoader } = LoaderHook();
 
-  const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => setLoader({ show: value });
-
-  const handleClick = (event: MouseEvent<HTMLElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -122,7 +113,7 @@ const UserButton: FC<UserButtonProps> = (props) => {
   };
 
   return (
-    <Fragment>
+    <>
       <TooltipDark
         arrow
         placement="bottom"
@@ -169,16 +160,18 @@ const UserButton: FC<UserButtonProps> = (props) => {
         user={props.user}
         handleClose={handleClose}
         SignOutUser={SignOutUser}
-        LoadingScreen={(value) => LoadingScreen(value)}
+        LoadingScreen={(value) => setLoader(value)}
       />
-    </Fragment>
+    </>
   );
-};
+}
 
-const Container: FC<ContainerProps> = (props) => {
+function Container(props: ContainerProps) {
   return (
     <div className="flex relative box-border h-[47px] min-h-[47px] rounded-lg overflow-hidden">
       {props.children}
     </div>
   );
-};
+}
+
+export default HeaderUserButton;

@@ -1,18 +1,22 @@
 import { Button } from '@mui/material';
-import Router from 'next/router';
-import React, { FC } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Discover_Link,
   Offers_Link,
   Collections_Link,
-} from '../../../routers/RouterLinks';
+} from 'routers/RouterLinks';
 
 interface IProps {
-  onValueChange: (value: string) => void;
-  Value: string;
+  onValueChange: (value: 'Discover' | 'Offers' | 'Collections') => void;
+  Value: 'Discover' | 'Offers' | 'Collections';
 }
 
-const NavLabel = [
+interface INavLabel {
+  label: 'Discover' | 'Offers' | 'Collections';
+  to: string;
+}
+
+const NavLabel: INavLabel[] = [
   {
     label: 'Discover',
     to: Discover_Link,
@@ -27,12 +31,8 @@ const NavLabel = [
   },
 ];
 
-/**
- * @author
- * @function @HeaderNavMobile
- **/
-
-export const HeaderNavMobile: FC<IProps> = (props) => {
+function HeaderNavMobile(props: IProps) {
+  const router = useRouter();
   return (
     <div className="flex w-full sticky-top p-3 space-x-2 z-[998] bg-[#0f0f0f]">
       <ul className="flex flex-row space-x-2">
@@ -42,7 +42,7 @@ export const HeaderNavMobile: FC<IProps> = (props) => {
               onClick={() => {
                 if (props.Value !== value.label) {
                   props.onValueChange(value.label);
-                  Router.push(value.to);
+                  router.push(value.to);
                 }
               }}
               disableRipple
@@ -62,4 +62,6 @@ export const HeaderNavMobile: FC<IProps> = (props) => {
       </ul>
     </div>
   );
-};
+}
+
+export default HeaderNavMobile;

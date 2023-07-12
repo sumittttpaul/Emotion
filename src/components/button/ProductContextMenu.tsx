@@ -1,5 +1,4 @@
 import { Menu, MenuItem } from '@mui/material';
-import React, { FC } from 'react';
 import Image from 'next/image';
 
 export interface ProductContextMenuProps {
@@ -14,12 +13,7 @@ export interface ProductContextMenuProps {
   AnchorVertical?: 'top' | 'bottom' | 'center' | number;
 }
 
-/**
- * @author
- * @function @ProductContextMenu
- **/
-
-export const ProductContextMenu: FC<ProductContextMenuProps> = (props) => {
+function ProductContextMenu(props: ProductContextMenuProps) {
   return (
     <Menu
       anchorEl={props.anchorEl}
@@ -72,4 +66,6 @@ export const ProductContextMenu: FC<ProductContextMenuProps> = (props) => {
       ))}
     </Menu>
   );
-};
+}
+
+export default ProductContextMenu;

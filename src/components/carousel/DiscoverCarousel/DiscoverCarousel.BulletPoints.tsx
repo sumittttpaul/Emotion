@@ -1,18 +1,12 @@
 import { motion } from 'framer-motion';
-import React, { FC } from 'react';
-import { DiscoverCarouselContentProps } from '../../../contents/home/discover/Home.Discover.Carousel';
+import { DiscoverCarouselContentProps } from 'contents/home/discover/Home.Discover.Carousel';
 
 interface IProps {
   BulletArray: DiscoverCarouselContentProps[];
   CarouselState: number;
 }
 
-/**
- * @author
- * @function @DiscoverCarouselBulletPoints
- **/
-
-export const DiscoverCarouselBulletPoints: FC<IProps> = (props) => {
+function DiscoverCarouselBulletPoints(props: IProps) {
   const GetCarouselState = (index: number) => {
     if (index > 9) return (index - 10) as number;
     else return index as number;
@@ -38,4 +32,6 @@ export const DiscoverCarouselBulletPoints: FC<IProps> = (props) => {
       ))}
     </div>
   );
-};
+}
+
+export default DiscoverCarouselBulletPoints;

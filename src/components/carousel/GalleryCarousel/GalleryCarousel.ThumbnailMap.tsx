@@ -1,32 +1,27 @@
-import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
+import { GalleryCarouselContentProps } from 'contents/gallery/Gallery.Carousel';
+import { Rectangle_BlurDataURL } from 'components/loader/BlurDataURL';
 import { AnimationControls, motion } from 'framer-motion';
 import Image from 'next/image';
-import React, { Dispatch, FC, RefObject, SetStateAction } from 'react';
-import { GalleryCarouselContentProps } from '../../../contents/gallery/Gallery.Carousel';
 
 interface IProps {
   AutoPlay?: boolean;
   Duration?: number;
   Animation: AnimationControls;
-  ThumbnailRef: RefObject<HTMLButtonElement>;
-  ConstraintRef: RefObject<HTMLDivElement>;
+  ThumbnailRef: React.RefObject<HTMLButtonElement>;
+  ConstraintRef: React.RefObject<HTMLDivElement>;
   CarouselState: number;
-  setCarouselState: Dispatch<SetStateAction<number>>;
+  setCarouselState: React.Dispatch<React.SetStateAction<number>>;
   LeftIndicator: boolean;
   RightIndicator: boolean;
-  setLeftIndicator: Dispatch<SetStateAction<boolean>>;
-  setRightIndicator: Dispatch<SetStateAction<boolean>>;
-  setBannerTextTransition: Dispatch<SetStateAction<string>>;
+  setLeftIndicator: React.Dispatch<React.SetStateAction<boolean>>;
+  setRightIndicator: React.Dispatch<React.SetStateAction<boolean>>;
+  setBannerTextTransition: React.Dispatch<React.SetStateAction<string>>;
   ThumbnailArray: GalleryCarouselContentProps[];
 }
 
 const ThumbnailSizes = 'w-[220px] h-[120px] min-w-[220px] min-h-[120px]';
 
-/**
- * @Thumbnail_Button_Map
- **/
-
-export const GalleryCarouselThumbnailMap: FC<IProps> = (props) => {
+function GalleryCarouselThumbnailMap(props: IProps) {
   const CorouselClick = (idx: number) => {
     if (props.CarouselState !== idx) {
       const ThumbnailWidth = props.ThumbnailRef.current;
@@ -129,4 +124,6 @@ export const GalleryCarouselThumbnailMap: FC<IProps> = (props) => {
       ))}
     </>
   );
-};
+}
+
+export default GalleryCarouselThumbnailMap;

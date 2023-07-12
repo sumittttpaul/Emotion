@@ -1,13 +1,12 @@
 import { Button } from '@mui/material';
-import React, { FC, ReactNode } from 'react';
 
 interface IProps {
   onClick: () => void;
   ClassName?: string;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
-export const SetupSkipAllButton: FC<IProps> = (props) => {
+function SetupSkipAllButton(props: IProps) {
   return (
     <div className="flex h-10">
       <Button
@@ -24,4 +23,6 @@ export const SetupSkipAllButton: FC<IProps> = (props) => {
       </Button>
     </div>
   );
-};
+}
+
+export default SetupSkipAllButton;

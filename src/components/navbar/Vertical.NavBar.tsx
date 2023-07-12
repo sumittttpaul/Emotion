@@ -1,14 +1,9 @@
 import { motion } from 'framer-motion';
-import React, { FC, useState } from 'react';
+import { useState } from 'react';
 
 const ContentArray = [{ name: 'Home' }, { name: 'Gallery' }];
 
-/**
- * @author
- * @function @VerticalNavBar
- **/
-
-export const VerticalNavBar: FC = () => {
+function VerticalNavBar() {
   const [Number, setNumber] = useState(0);
   const [Height, setHeight] = useState(0);
   const [MarginTop, setMarginTop] = useState(0);
@@ -103,4 +98,6 @@ export const VerticalNavBar: FC = () => {
       </div>
     </div>
   );
-};
+}
+
+export default VerticalNavBar;

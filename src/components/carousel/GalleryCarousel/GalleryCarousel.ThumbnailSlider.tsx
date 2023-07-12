@@ -3,34 +3,23 @@ import {
   GalleryCarouselLeftArrowButton,
   GalleryCarouselRightArrowButton,
 } from './GalleryCarousel.ThumbnailArrow';
-import { GalleryCarouselThumbnailMap } from './GalleryCarousel.ThumbnailMap';
-import React, {
-  FC,
-  useEffect,
-  useRef,
-  RefObject,
-  useState,
-  SetStateAction,
-  Dispatch,
-} from 'react';
-import { GalleryCarouselContentProps } from '../../../contents/gallery/Gallery.Carousel';
+import { useEffect, useRef, useState } from 'react';
+import { GalleryCarouselContentProps } from 'contents/gallery/Gallery.Carousel';
+import GalleryCarouselThumbnailMap from './GalleryCarousel.ThumbnailMap';
 
 export interface GalleryCarouselThumbnailSliderProps {
   AutoPlay?: boolean;
   Duration?: number;
-  ConstraintRef: RefObject<HTMLDivElement>;
+  ConstraintRef: React.RefObject<HTMLDivElement>;
   CarouselState: number;
-  setCarouselState: Dispatch<SetStateAction<number>>;
-  setBannerTextTransition: Dispatch<SetStateAction<string>>;
+  setCarouselState: React.Dispatch<React.SetStateAction<number>>;
+  setBannerTextTransition: React.Dispatch<React.SetStateAction<string>>;
   ThumbnailArray: GalleryCarouselContentProps[];
 }
 
-/**
- * @GalleryCarousel_Thumbnail_Slider
- **/
-export const GalleryCarouselThumbnailSlider: FC<
-  GalleryCarouselThumbnailSliderProps
-> = (props) => {
+function GalleryCarouselThumbnailSlider(
+  props: GalleryCarouselThumbnailSliderProps
+) {
   const animation = useAnimation();
   const x = useMotionValue(0);
   const dragRef = useRef<HTMLDivElement>(null);
@@ -316,4 +305,6 @@ export const GalleryCarouselThumbnailSlider: FC<
       )}
     </motion.div>
   );
-};
+}
+
+export default GalleryCarouselThumbnailSlider;

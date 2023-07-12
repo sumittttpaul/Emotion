@@ -1,21 +1,15 @@
-import React, {
-  FC,
-  Dispatch,
-  SetStateAction,
-  RefObject,
-  useState,
-} from 'react';
+import { RefObject, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Button } from '@mui/material';
 import { GalleryCarouselBannerImage } from './GalleryCarousel.BannerImage';
-import { GalleryCarouselContentProps } from '../../../contents/gallery/Gallery.Carousel';
+import { GalleryCarouselContentProps } from 'contents/gallery/Gallery.Carousel';
 
 export interface GalleryCarouselBannerProps {
   ElementRef: RefObject<HTMLDivElement>;
   ContentArray: GalleryCarouselContentProps[];
   CarouselState: number;
   BannerTextTransition: string;
-  setBannerTextTransition: Dispatch<SetStateAction<string>>;
+  setBannerTextTransition: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const StaggerAnimationVariant = {
@@ -38,12 +32,7 @@ const ChildAnimationVariant = {
   },
 };
 
-/**
- * @Carousel_Banner
- **/
-export const GalleryCarouselBanner: FC<GalleryCarouselBannerProps> = (
-  props
-) => {
+function GalleryCarouselBanner(props: GalleryCarouselBannerProps) {
   const [CarouselState, setCarouselState] = useState(0);
   return (
     <AnimatePresence mode="wait">
@@ -123,4 +112,6 @@ export const GalleryCarouselBanner: FC<GalleryCarouselBannerProps> = (
       </motion.div>
     </AnimatePresence>
   );
-};
+}
+
+export default GalleryCarouselBanner;

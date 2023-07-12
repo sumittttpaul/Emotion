@@ -1,19 +1,14 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Button, IconButton } from '@mui/material';
-import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { SearchContentProps } from 'contents/home/search/Home.Search';
 import Image from 'next/image';
-import { SearchContentProps } from '../../../contents/home/search/Home.Search';
 
 export interface HeaderMobileSearchProps {
   ContentArray: SearchContentProps[];
 }
 
-/**
- * @author
- * @function @HeaderMobileSearch
- **/
-
-export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
+function HeaderMobileSearch(props: HeaderMobileSearchProps) {
   const [Search, setSearch] = useState('');
   const SearchRef = useRef<HTMLInputElement>(null);
   const [Data, setData] = useState(props.ContentArray);
@@ -22,7 +17,7 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
     if (index !== -1) setData(Data.filter((o, i) => index !== i));
   };
 
-  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
   };
 
@@ -184,4 +179,6 @@ export const HeaderMobileSearch: FC<HeaderMobileSearchProps> = (props) => {
       </div>
     </div>
   );
-};
+}
+
+export default HeaderMobileSearch;

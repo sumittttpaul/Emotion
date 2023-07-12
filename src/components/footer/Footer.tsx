@@ -1,29 +1,23 @@
-import Router from 'next/router';
-import React, { FC } from 'react';
-import { useLoaderState } from '../../contexts/LoadingState';
-import { Home_Link } from '../../routers/RouterLinks';
-import { FooterLogo } from '../logo/CompanyLogo';
-import { FooterBottom } from './assets/FooterBottom';
-import { setHomePage } from '../../redux/reducers/HomePageReducer';
-import ReduxStore from '../../redux/ReduxStore';
+import { useRouter } from 'next/navigation';
+import { Home_Link } from 'routers/RouterLinks';
+import { FooterLogo } from 'components/logo/CompanyLogo';
+import { LoaderHook } from 'hooks/Hooks.Loader';
+import { HomePageHook } from 'hooks/Hooks.HomePage';
+import FooterBottom from './assets/FooterBottom';
 
-/**
- * @author
- * @function @Footer
- **/
-
-export const Footer: FC = () => {
-  const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => setLoader({ show: value });
+function Footer() {
+  const { setLoader } = LoaderHook();
+  const { setHomePage } = HomePageHook();
+  const router = useRouter();
   return (
     <div className="w-full self-end pr-3">
       <div className="w-full relative pb-5 sm:px-8 px-3 box-border rounded-3xl bg-transparent">
         <div className="flex flex-col items-center justify-center">
           <FooterLogo
             onValueChange={(value) => {
-              ReduxStore.dispatch(setHomePage(value));
-              LoadingScreen(true);
-              Router.push(Home_Link);
+              setHomePage(value);
+              setLoader(true);
+              router.push(Home_Link);
             }}
           />
           <h6 className="text-[11.5px] text-center py-2 font-[300] leading-[22px] whitespace-normal lg:max-w-[70%] xl:max-w-[60%] 2xl:max-w-[55%] flex text-white opacity-80">
@@ -45,4 +39,6 @@ export const Footer: FC = () => {
       </div>
     </div>
   );
-};
+}
+
+export default Footer;

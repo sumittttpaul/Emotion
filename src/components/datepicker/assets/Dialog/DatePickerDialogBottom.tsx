@@ -1,6 +1,5 @@
 import { CheckIcon, XIcon } from '@heroicons/react/solid';
 import { Button } from '@mui/material';
-import React, { FC } from 'react';
 
 interface IProps {
   cancel: () => void;
@@ -8,12 +7,7 @@ interface IProps {
   submitActive: boolean;
 }
 
-/**
- * @author
- * @function @DatePickerDialogBottom
- **/
-
-export const DatePickerDialogBottom: FC<IProps> = (props) => {
+function DatePickerDialogBottom(props: IProps) {
   return (
     <div className="p-3 flex space-x-3 relative justify-end">
       <Button
@@ -45,4 +39,6 @@ export const DatePickerDialogBottom: FC<IProps> = (props) => {
       </Button>
     </div>
   );
-};
+}
+
+export default DatePickerDialogBottom;

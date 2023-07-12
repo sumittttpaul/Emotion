@@ -8,21 +8,21 @@ import React, {
 } from 'react';
 import router from 'next/router';
 
-export interface LoaderStateInterface {
+export interface ExampleStateInterface {
   show: boolean;
 }
 
-const LoaderStateContext = createContext({
-  Loader: {} as Partial<LoaderStateInterface>,
-  setLoader: {} as Dispatch<SetStateAction<Partial<LoaderStateInterface>>>,
+const ExampleStateContext = createContext({
+  Loader: {} as Partial<ExampleStateInterface>,
+  setLoader: {} as Dispatch<SetStateAction<Partial<ExampleStateInterface>>>,
 });
 
-const LoaderState = ({
+const ExampleState = ({
   children,
-  value = {} as LoaderStateInterface,
+  value = {} as ExampleStateInterface,
 }: {
   children: React.ReactNode;
-  value?: Partial<LoaderStateInterface>;
+  value?: Partial<ExampleStateInterface>;
 }) => {
   const [Loader, setLoader] = useState(value);
   useEffect(() => {
@@ -44,18 +44,20 @@ const LoaderState = ({
     }
   }, [setLoader, Loader]);
   return (
-    <LoaderStateContext.Provider value={{ Loader, setLoader }}>
+    <ExampleStateContext.Provider value={{ Loader, setLoader }}>
       {children}
-    </LoaderStateContext.Provider>
+    </ExampleStateContext.Provider>
   );
 };
 
-const useLoaderState = () => {
-  const context = useContext(LoaderStateContext);
+const useExampleState = () => {
+  const context = useContext(ExampleStateContext);
   if (!context) {
-    throw new Error('useLoaderState must be used within a LoaderStateContext');
+    throw new Error(
+      'useExampleState must be used within a ExampleStateContext'
+    );
   }
   return context;
 };
 
-export { LoaderState, useLoaderState };
+export { ExampleState, useExampleState };

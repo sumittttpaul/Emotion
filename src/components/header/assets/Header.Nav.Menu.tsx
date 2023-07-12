@@ -1,22 +1,26 @@
-import React, { FC } from 'react';
 import { Menu, MenuItem } from '@mui/material';
 import {
   Collections_Link,
   Discover_Link,
   Offers_Link,
-} from '../../../routers/RouterLinks';
+} from 'routers/RouterLinks';
 import Image from 'next/image';
-import Router from 'next/router';
+import { useRouter } from 'next/navigation';
 
 export interface HeaderNavMenuProps {
   anchorEl: null | HTMLElement;
   open: boolean;
   onClose: () => void;
-  onValueChange: (value: string) => void;
+  onValueChange: (value: 'Discover' | 'Offers' | 'Collections') => void;
   Value: string;
 }
 
-const Links = [
+interface INavLabel {
+  label: 'Discover' | 'Offers' | 'Collections';
+  to: string;
+}
+
+const Links: INavLabel[] = [
   {
     label: 'Discover',
     to: Discover_Link,
@@ -47,11 +51,8 @@ const ActiveContent = (props: string, value: string) => {
   }
 };
 
-/**
- * @author
- * @function @HeaderNavMenu
- **/
-export const HeaderNavMenu: FC<HeaderNavMenuProps> = (props) => {
+function HeaderNavMenu(props: HeaderNavMenuProps) {
+  const router = useRouter();
   return (
     <Menu
       anchorEl={props.anchorEl}
@@ -96,7 +97,7 @@ export const HeaderNavMenu: FC<HeaderNavMenuProps> = (props) => {
           onClick={() => {
             setTimeout(() => {
               if (props.Value != value.label) {
-                Router.push(value.to);
+                router.push(value.to);
                 props.onValueChange(value.label);
                 props.onClose();
               }
@@ -120,4 +121,6 @@ export const HeaderNavMenu: FC<HeaderNavMenuProps> = (props) => {
       ))}
     </Menu>
   );
-};
+}
+
+export default HeaderNavMenu;

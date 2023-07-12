@@ -1,16 +1,9 @@
-import React, { FC } from 'react';
-
 interface IProps {
   heading: string;
   subheading: string;
 }
 
-/**
- * @author
- * @function @SetupAccountLabel
- **/
-
-export const SetupAccountLabel: FC<IProps> = (props) => {
+function SetupAccountLabel(props: IProps) {
   return (
     <div className="flex w-full">
       <div className="w-full flex flex-col space-y-1">
@@ -21,4 +14,6 @@ export const SetupAccountLabel: FC<IProps> = (props) => {
       </div>
     </div>
   );
-};
+}
+
+export default SetupAccountLabel;

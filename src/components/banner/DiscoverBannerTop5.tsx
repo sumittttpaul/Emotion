@@ -1,19 +1,15 @@
-import Image from 'next/image';
-import React, { FC, useRef } from 'react';
-import { TrendingBadge } from '../badge/TrendingBadge';
+import { useRef } from 'react';
 import { Button } from '@mui/material';
+import Image from 'next/image';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import TrendingBadge from 'components/badge/TrendingBadge';
 import { DiscoverBannerTop5ContentProps } from '../../contents/home/discover/Home.Discover.Banner';
 
 interface IProps {
   ContentArray: DiscoverBannerTop5ContentProps[];
 }
-/**
- * @author
- * @function @DiscoverBannerTop5
- **/
 
-export const DiscoverBannerTop5: FC<IProps> = (props) => {
+export function DiscoverBannerTop5(props: IProps) {
   const sliderRef = useRef<HTMLElement>(null);
   // const [LeftAnimate, setLeftAnimate] = useState('closed');
   // const [RightAnimate, setRightAnimate] = useState('closed');
@@ -143,4 +139,4 @@ export const DiscoverBannerTop5: FC<IProps> = (props) => {
       </div>
     </div>
   );
-};
+}

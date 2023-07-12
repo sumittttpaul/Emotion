@@ -1,14 +1,8 @@
 import { IconButton } from '@mui/material';
 import Image from 'next/image';
-import React, {
-  Dispatch,
-  FC,
-  RefObject,
-  SetStateAction,
-  useState,
-} from 'react';
-import useNavigateList from '../../../functions/KeyboardNavigationList';
-import { SearchContentProps } from '../../../contents/home/search/Home.Search';
+import { RefObject, useState } from 'react';
+import useNavigateList from 'functions/KeyboardNavigationList';
+import { SearchContentProps } from 'contents/home/search/Home.Search';
 
 export interface HeaderSearchButtonMenuProps {
   Search: string;
@@ -16,19 +10,12 @@ export interface HeaderSearchButtonMenuProps {
   ContainerRef: RefObject<HTMLDivElement>;
   SearchMenu: boolean;
   GetEmptySearch: boolean;
-  setSearchMenu: Dispatch<SetStateAction<boolean>>;
-  setSearch: Dispatch<SetStateAction<string>>;
+  setSearchMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
   ContentArray: SearchContentProps[];
 }
 
-/**
- * @author
- * @function @HeaderSearchButtonMenu
- **/
-
-export const HeaderSearchButtonMenu: FC<HeaderSearchButtonMenuProps> = (
-  props
-) => {
+function HeaderSearchButtonMenu(props: HeaderSearchButtonMenuProps) {
   const [Data, setData] = useState(props.ContentArray);
 
   const removeItem = (index: number) => {
@@ -108,4 +95,6 @@ export const HeaderSearchButtonMenu: FC<HeaderSearchButtonMenuProps> = (
       ))}
     </div>
   );
-};
+}
+
+export default HeaderSearchButtonMenu;

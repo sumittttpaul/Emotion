@@ -1,33 +1,22 @@
-import React, { FC, useEffect } from 'react';
-import Image from 'next/image';
+import { useEffect } from 'react';
 import { IconButton } from '@mui/material';
 import { HeaderMobileSearchButton } from '../button/header/mobile/Header.Mobile.SearchButton';
 import { HeaderMobileUserButton } from '../button/header/mobile/Header.Mobile.UserButton';
 import { MobileLogo } from '../logo/CompanyLogo';
-import { HeaderNavMobile } from './assets/Header.Nav.Mobile';
 import { HeaderMobileSearchProps } from './assets/Header.Mobile.Search';
 import { SearchMobileContent } from '../../contents/home/search/Home.Search';
-import {
-  SelectHomePage,
-  setHomePage,
-} from '../../redux/reducers/HomePageReducer';
+import { HomePageHook } from 'hooks/Hooks.HomePage';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import { useReduxDispatch, useReduxSelector } from '../../redux/ReduxHooks';
+import HeaderNavMobile from './assets/Header.Nav.Mobile';
 
 const HeaderMobileSearch = dynamic<HeaderMobileSearchProps>(
-  () =>
-    import('./assets/Header.Mobile.Search').then((x) => x.HeaderMobileSearch),
+  () => import('./assets/Header.Mobile.Search'),
   { ssr: false }
 );
 
-/**
- * @author
- * @function @HeaderMobile
- **/
-
-export const HeaderMobile: FC = () => {
-  const { Page } = useReduxSelector(SelectHomePage);
-  const dispatch = useReduxDispatch();
+function HeaderMobile() {
+  const { HomePage, setHomePage } = HomePageHook();
 
   useEffect(() => {
     history.pushState('', document.title, window.location.pathname);
@@ -37,7 +26,7 @@ export const HeaderMobile: FC = () => {
     <>
       <div className="overflow-hidden bg-primary-theme z-[999] flex w-full box-border text-white items-center px-3 pb-2">
         <div className="flex">
-          <MobileLogo onValueChange={(value) => dispatch(setHomePage(value))} />
+          <MobileLogo onValueChange={(value) => setHomePage(value)} />
         </div>
         <div className="flex w-full justify-end items-center">
           <HeaderMobileSearchButton />
@@ -49,9 +38,11 @@ export const HeaderMobile: FC = () => {
       </div>
       <HeaderMobileSearch ContentArray={SearchMobileContent} />
       <HeaderNavMobile
-        Value={Page}
-        onValueChange={(value) => dispatch(setHomePage(value))}
+        Value={HomePage}
+        onValueChange={(value) => setHomePage(value)}
       />
     </>
   );
-};
+}
+
+export default HeaderMobile;

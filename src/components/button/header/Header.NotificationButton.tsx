@@ -1,16 +1,13 @@
 import { Badge, BadgeProps, IconButton, styled } from '@mui/material';
-import React, { FC, Fragment, useState, MouseEvent } from 'react';
-import { TooltipDark } from '../../tooltip/TooltipDark';
-import Image from 'next/image';
+import { useState } from 'react';
 import { HeaderNotificationButtonMenuProps } from './Header.NotificationButton.Menu';
-import { HomeNotificationContent } from '../../../contents/home/Home.Notification';
+import { HomeNotificationContent } from 'contents/home/Home.Notification';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import TooltipDark from 'components/tooltip/TooltipDark';
 
 const HeaderNotificationButtonMenu = dynamic<HeaderNotificationButtonMenuProps>(
-  () =>
-    import('./Header.NotificationButton.Menu').then(
-      (x) => x.HeaderNotificationButtonMenu
-    ),
+  () => import('./Header.NotificationButton.Menu'),
   { ssr: false }
 );
 
@@ -26,16 +23,11 @@ const StyledBadge = styled(Badge)<BadgeProps>(() => ({
   },
 }));
 
-/**
- * @author
- * @function @HeaderNotificationButton
- **/
-
-export const HeaderNotificationButton: FC = () => {
+function HeaderNotificationButton() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event: MouseEvent<HTMLElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -43,7 +35,7 @@ export const HeaderNotificationButton: FC = () => {
     setAnchorEl(null);
   };
   return (
-    <Fragment>
+    <>
       <TooltipDark
         arrow
         placement="bottom"
@@ -82,6 +74,8 @@ export const HeaderNotificationButton: FC = () => {
         open={open}
         handleClose={handleClose}
       />
-    </Fragment>
+    </>
   );
-};
+}
+
+export default HeaderNotificationButton;

@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { LoaderState } from 'contexts/LoadingState';
+import { LoaderState } from 'contexts/ExampleState';
 
 interface ContextProviderProps {
   children: ReactNode;

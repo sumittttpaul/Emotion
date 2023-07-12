@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import Link from 'next/link';
 
 interface IProps {
@@ -6,7 +5,7 @@ interface IProps {
   ButtonLabel: string;
 }
 
-export const SetupFooter: FC<IProps> = (props) => {
+function SetupFooter(props: IProps) {
   return (
     <div
       className={`${props.ClassName} py-2 h-14 w-full flex flex-col space-y-1`}
@@ -56,4 +55,6 @@ export const SetupFooter: FC<IProps> = (props) => {
       </div>
     </div>
   );
-};
+}
+
+export default SetupFooter;

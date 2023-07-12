@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import { DiscoverBannerFiveContentProps } from '../../contents/home/discover/Home.Discover.Banner';
 import { DiscoverBannerFiveBrowser } from './MultiScreen/DiscoverBannerFive.MultiScreen';
 
@@ -7,11 +6,7 @@ interface IProps {
   Label: string;
 }
 
-/**
- * @author
- * @function @DiscoverBannerFive
- **/
-export const DiscoverBannerFive: FC<IProps> = (props) => {
+export function DiscoverBannerFive(props: IProps) {
   return (
     <div className="mt-[30px] flex flex-col text-white p-0 m-0 box-border overflow-y-visible overflow-x-hidden">
       <DiscoverBannerFiveBrowser
@@ -21,4 +16,4 @@ export const DiscoverBannerFive: FC<IProps> = (props) => {
       {/* <DiscoverBannerFiveMobile ContentArray={props.ContentArray} /> */}
     </div>
   );
-};
+}

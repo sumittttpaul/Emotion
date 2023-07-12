@@ -183,6 +183,16 @@ interface ILoaderHook {
   setLoader: Dispatch<boolean>;
 }
 
+interface IDeviceHook {
+  isMobile: boolean;
+  setIsMobile: Dispatch<boolean>;
+}
+
+interface IHomePageHook {
+  HomePage: 'Discover' | 'Offers' | 'Collections';
+  setHomePage: Dispatch<'Discover' | 'Offers' | 'Collections'>;
+}
+
 type ICheckInfoScreen =
   | 'initial-login-load'
   | 'after-name'

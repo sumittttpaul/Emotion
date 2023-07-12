@@ -1,9 +1,8 @@
-import React, { FC } from 'react';
-import { DiscoverBannerLightingDealContentProps } from '../../../contents/home/discover/Home.Discover.Banner';
+import { DiscoverBannerLightingDealContentProps } from 'contents/home/discover/Home.Discover.Banner';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Poster_BlurDataURL } from '../../loader/BlurDataURL';
-import useScreenSize from '../../../functions/ScreenSizeDetection';
+import { Poster_BlurDataURL } from 'components/loader/BlurDataURL';
+import useScreenSize from 'functions/ScreenSizeDetection';
 
 const HeadingStyle =
   'text-[14px] w-full font-normal text-left overflow-hidden whitespace-nowrap text-ellipsis';
@@ -20,7 +19,7 @@ interface IProps {
   ContentArray: DiscoverBannerLightingDealContentProps[];
 }
 
-export const DiscoverBannerLightningDealBrowser: FC<IProps> = (props) => {
+export function DiscoverBannerLightningDealBrowser(props: IProps) {
   const { LargeScreen, MediumLargeScreen, MediumScreen, SmallMediumScreen } =
     useScreenSize();
   return (
@@ -78,9 +77,9 @@ export const DiscoverBannerLightningDealBrowser: FC<IProps> = (props) => {
       ))}
     </motion.ul>
   );
-};
+}
 
-export const DiscoverBannerLightningDealMobile: FC<IProps> = (props) => {
+export function DiscoverBannerLightningDealMobile(props: IProps) {
   return (
     <div className="w-full relative flex flex-col space-y-7">
       <motion.ul className="flex space-x-5 w-full">
@@ -173,4 +172,4 @@ export const DiscoverBannerLightningDealMobile: FC<IProps> = (props) => {
       </motion.ul>
     </div>
   );
-};
+}

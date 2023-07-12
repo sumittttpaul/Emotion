@@ -1,13 +1,6 @@
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import React, {
-  FC,
-  Fragment,
-  useCallback,
-  MouseEvent,
-  useState,
-  ReactNode,
-} from 'react';
+import React, { useCallback, useState } from 'react';
 import { Button } from '@mui/material';
 import { DiscoverBannerLightingDealContentProps } from '../../contents/home/discover/Home.Discover.Banner';
 import { ChevronRightIcon } from '@heroicons/react/outline';
@@ -15,21 +8,16 @@ import { ProductContextMenu } from '../button/ProductContextMenu';
 
 interface IProps {
   ContentArray: DiscoverBannerLightingDealContentProps[];
-  Badge: ReactNode;
+  Badge: React.ReactNode;
   Label: string;
   Description: string;
 }
 
-/**
- * @author
- * @function @DiscoverBannerDeal
- **/
-
-export const DiscoverBannerDeal: FC<IProps> = (props) => {
+export function DiscoverBannerDeal(props: IProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = useCallback((event: MouseEvent<HTMLElement>) => {
+  const handleClick = useCallback((event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     // synthetic event
     switch (event.type) {
@@ -97,7 +85,7 @@ export const DiscoverBannerDeal: FC<IProps> = (props) => {
           </div>
         </div>
         {/* Content */}
-        <Fragment>
+        <>
           <Swiper
             slidesPerView={5}
             spaceBetween={16}
@@ -164,8 +152,8 @@ export const DiscoverBannerDeal: FC<IProps> = (props) => {
             AnchorHorizontal={'center'}
             AnchorVertical={'center'}
           />
-        </Fragment>
+        </>
       </div>
     </div>
   );
-};
+}

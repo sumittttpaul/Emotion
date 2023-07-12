@@ -1,18 +1,13 @@
 import { Button } from '@mui/material';
 import Image from 'next/image';
-import React, { FC } from 'react';
-import { DiscoverBannerLightingDealContentProps } from '../../contents/home/discover/Home.Discover.Banner';
+import { DiscoverBannerLightingDealContentProps } from 'contents/home/discover/Home.Discover.Banner';
 import { DiscoverBannerArrivalsBrowser } from './MultiScreen/DiscoverBannerArrivals.MultiScreen';
 
 interface IProps {
   ContentArray: DiscoverBannerLightingDealContentProps[];
 }
 
-/**
- * @author
- * @function @DiscoverBannerArrivals
- **/
-export const DiscoverBannerArrivals: FC<IProps> = (props) => {
+export function DiscoverBannerArrivals(props: IProps) {
   return (
     <div className="relative flex box-border w-full pr-3 overflow-hidden">
       <div className="flex text-white w-full bg-gradient-to-l from-dark-green rounded-3xl space-x-7 px-7 p-10 mt-10">
@@ -39,4 +34,4 @@ export const DiscoverBannerArrivals: FC<IProps> = (props) => {
       </div>
     </div>
   );
-};
+}

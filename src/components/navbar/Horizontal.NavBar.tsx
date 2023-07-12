@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import React, { FC, useState } from 'react';
+import { useState } from 'react';
 
 const ContentArray = [
   { name: 'Discover' },
@@ -7,12 +7,7 @@ const ContentArray = [
   { name: 'Collections' },
 ];
 
-/**
- * @author
- * @function @HorizontalNavBar
- **/
-
-export const HorizontalNavBar: FC = () => {
+function HorizontalNavBar() {
   const [Number, setNumber] = useState(0);
   const [Width, setWidth] = useState(0);
   const [MarginLeft, setMarginLeft] = useState(0);
@@ -107,4 +102,6 @@ export const HorizontalNavBar: FC = () => {
       />
     </div>
   );
-};
+}
+
+export default HorizontalNavBar;

@@ -1,14 +1,13 @@
 'use client';
 
+import { DatePickerButtonDialogProps } from './DatePickerButtonDialog';
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 import dynamic from 'next/dynamic';
-import { DatePickerCustomButton } from './assets/DatePickerCustomButton';
-import { DatePickerButtonDialogProps } from './DatePickerButtonDialog';
+import DatePickerCustomButton from './assets/DatePickerCustomButton';
 
 const DatePickerButtonDialog = dynamic<DatePickerButtonDialogProps>(
-  () =>
-    import('./DatePickerButtonDialog').then((x) => x.DatePickerButtonDialog),
+  () => import('./DatePickerButtonDialog'),
   { ssr: false }
 );
 

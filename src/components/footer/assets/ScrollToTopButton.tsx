@@ -1,16 +1,11 @@
 import { ChevronUpIcon } from '@heroicons/react/solid';
 import { IconButton } from '@mui/material';
 import React, { Component } from 'react';
-import { TooltipDark } from '../../tooltip/TooltipDark';
-
-/**
- * @author
- * @class @ScrollToTopButton
- **/
+import TooltipDark from 'components/tooltip/TooltipDark';
 
 const ScrollButtonID = 'scroll-to-top-button';
 
-export class ScrollToTopButton extends Component {
+class ScrollToTopButton extends Component {
   state = {};
 
   componentDidMount() {
@@ -51,3 +46,5 @@ export class ScrollToTopButton extends Component {
     );
   }
 }
+
+export default ScrollToTopButton;

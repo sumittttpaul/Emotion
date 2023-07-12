@@ -1,6 +1,6 @@
 import { ChevronRightIcon } from '@heroicons/react/solid';
 import { motion } from 'framer-motion';
-import React, { FC, useState } from 'react';
+import { useState } from 'react';
 
 interface IProps {
   Label: string;
@@ -16,12 +16,7 @@ const Variants = {
   },
 };
 
-/**
- * @author
- * @function @BannerTitleButton
- **/
-
-export const BannerTitleButton: FC<IProps> = (props) => {
+export function BannerTitleButton(props: IProps) {
   const [Animate, setAnimate] = useState('closed');
 
   const onHoverStart = () => {
@@ -51,4 +46,4 @@ export const BannerTitleButton: FC<IProps> = (props) => {
       </motion.div>
     </motion.button>
   );
-};
+}

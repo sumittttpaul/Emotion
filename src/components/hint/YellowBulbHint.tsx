@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { TooltipProps } from '@mui/material';
 
 const TooltipDark = dynamic<TooltipProps>(
-  () => import('../tooltip/TooltipDark').then((x) => x.TooltipDark),
+  () => import('../tooltip/TooltipDark'),
   { ssr: false }
 );
 
@@ -26,7 +26,7 @@ interface IProps {
     | 'top-start';
 }
 
-export function YellowBulbHint(props: IProps) {
+function YellowBulbHint(props: IProps) {
   return (
     <div className="flex justify-start w-full">
       <div className="flex py-1 pl-1 pr-2 rounded-md space-x-1 items-center bg-[#b48a0090] text-white">
@@ -60,3 +60,5 @@ export function YellowBulbHint(props: IProps) {
     </div>
   );
 }
+
+export default YellowBulbHint;

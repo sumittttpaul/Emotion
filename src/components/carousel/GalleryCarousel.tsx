@@ -1,12 +1,11 @@
-import React, { FC, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { GalleryCarouselContentProps } from '../../contents/gallery/Gallery.Carousel';
 import dynamic from 'next/dynamic';
 import {
   GalleryCarouselDesktopProps,
   GalleryCarouselMobileProps,
 } from './GalleryCarousel/GalleryCarousel.MultiScreen';
-import { useReduxSelector } from '../../redux/ReduxHooks';
-import { SelectDevice } from '../../redux/reducers/DeviceReducer';
+import { DeviceHook } from 'hooks/Hooks.Device';
 
 const GalleryCarouselMobile = dynamic<GalleryCarouselMobileProps>(
   () =>
@@ -28,15 +27,11 @@ interface IProps {
   ContentArray: GalleryCarouselContentProps[];
 }
 
-/**
- * @author
- * @function @GalleryCarousel
- **/
-export const GalleryCarousel: FC<IProps> = (props) => {
+function GalleryCarousel(props: IProps) {
   const ContainerRef = useRef<HTMLDivElement>(null);
   const [CarouselState, setCarouselState] = useState(0);
   const [BannerTextTransition, setBannerTextTransition] = useState('open');
-  const { isMobile } = useReduxSelector(SelectDevice);
+  const { isMobile } = DeviceHook();
 
   if (isMobile)
     return <GalleryCarouselMobile ContentArray={props.ContentArray} />;
@@ -55,4 +50,6 @@ export const GalleryCarousel: FC<IProps> = (props) => {
       BannerTextTransition={BannerTextTransition}
     />
   );
-};
+}
+
+export default GalleryCarousel;

@@ -1,19 +1,13 @@
 import { Button, CircularProgress } from '@mui/material';
-import React, { FC, ReactEventHandler } from 'react';
 
 export interface LargeButtonBlueProps {
   content: string;
-  onClick: ReactEventHandler;
+  onClick: React.ReactEventHandler;
   Disabled: boolean;
   Loading: boolean;
 }
 
-/**
- * @author
- * @function @LargeButtonBlue
- **/
-
-const LargeButtonBlue: FC<LargeButtonBlueProps> = (props) => {
+function LargeButtonBlue(props: LargeButtonBlueProps) {
   return (
     <div className="w-full relative">
       <Button
@@ -41,6 +35,6 @@ const LargeButtonBlue: FC<LargeButtonBlueProps> = (props) => {
       )}
     </div>
   );
-};
+}
 
 export default LargeButtonBlue;

@@ -4,7 +4,7 @@ interface IProps {
   Label: string;
 }
 
-export function GreenSuccessHint(props: IProps) {
+function GreenSuccessHint(props: IProps) {
   return (
     <div className="flex justify-start w-full">
       <div className="flex py-1 pl-1 pr-2 rounded-md space-x-1 items-center bg-[#00B46090]">
@@ -16,3 +16,5 @@ export function GreenSuccessHint(props: IProps) {
     </div>
   );
 }
+
+export default GreenSuccessHint;

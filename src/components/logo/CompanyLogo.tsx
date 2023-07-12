@@ -1,13 +1,12 @@
-import React from 'react';
 import Image from 'next/image';
 import Logo from '../../../public/agewear_white.svg';
 import Logo_Full from '../../../public/agewear_full_white.svg';
 
 interface IProps {
-  onValueChange: (value: string) => void;
+  onValueChange: (value: 'Discover' | 'Offers' | 'Collections') => void;
 }
 
-export const HeaderLogo = (props: IProps) => {
+export function HeaderLogo(props: IProps) {
   return (
     <div className="flex relative">
       <Image
@@ -20,15 +19,15 @@ export const HeaderLogo = (props: IProps) => {
       />
     </div>
   );
-};
+}
 
-export const AuthHeaderLogo = () => {
+export function AuthHeaderLogo() {
   return (
     <Image height={45} width={45} className="opacity-90" src={Logo} alt="" />
   );
-};
+}
 
-export const MobileLogo = (props: IProps) => {
+export function MobileLogo(props: IProps) {
   return (
     <Image
       height={30}
@@ -39,13 +38,13 @@ export const MobileLogo = (props: IProps) => {
       alt=""
     />
   );
-};
+}
 
-export const MobileSearchLogo = () => {
+export function MobileSearchLogo() {
   return <Image height={25} width={25} src={Logo} alt="" />;
-};
+}
 
-export const FooterLogo = (props: IProps) => {
+export function FooterLogo(props: IProps) {
   return (
     <>
       <div className="hidden sm:block">
@@ -70,4 +69,4 @@ export const FooterLogo = (props: IProps) => {
       </div>
     </>
   );
-};
+}

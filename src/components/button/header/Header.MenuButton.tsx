@@ -1,5 +1,5 @@
 import { IconButton } from '@mui/material';
-import React, { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 interface IProps {
@@ -18,12 +18,7 @@ const path02Variants = {
   closed: { d: 'M0 14.5L15 14.5' },
 };
 
-/**
- * @author
- * @function @HeaderMenuButton
- **/
-
-export const HeaderMenuButton: FC<IProps> = (props) => {
+function HeaderMenuButton(props: IProps) {
   const [animation, setAnimation] = useState('closed');
   useEffect(() => {
     if (!props.Cycle) {
@@ -67,4 +62,6 @@ export const HeaderMenuButton: FC<IProps> = (props) => {
       </div>
     </IconButton>
   );
-};
+}
+
+export default HeaderMenuButton;

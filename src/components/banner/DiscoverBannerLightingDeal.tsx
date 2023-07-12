@@ -1,6 +1,5 @@
 import { Button } from '@mui/material';
 import Image from 'next/image';
-import React, { FC } from 'react';
 import { DiscoverBannerLightingDealContentProps } from '../../contents/home/discover/Home.Discover.Banner';
 import { DiscoverBannerLightningDealBrowser } from './MultiScreen/DiscoverBannerLightningDeal.MultiScreen';
 
@@ -8,11 +7,7 @@ interface IProps {
   ContentArray: DiscoverBannerLightingDealContentProps[];
 }
 
-/**
- * @author
- * @function @DiscoverBannerLightingDeal
- **/
-export const DiscoverBannerLightingDeal: FC<IProps> = (props) => {
+export function DiscoverBannerLightingDeal(props: IProps) {
   return (
     <div className="relative flex box-border w-full pr-3 overflow-hidden">
       <div className="flex text-white w-full bg-gradient-to-l from-dark-orange rounded-3xl space-x-7 px-7 p-10 mt-10">
@@ -46,4 +41,4 @@ export const DiscoverBannerLightingDeal: FC<IProps> = (props) => {
       </div>
     </div>
   );
-};
+}

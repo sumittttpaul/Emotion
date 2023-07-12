@@ -1,7 +1,7 @@
 import { HeaderLogo } from '../logo/CompanyLogo';
 import Router from 'next/router';
 import { Dispatch, FC, SetStateAction } from 'react';
-import { useLoaderState } from '../../contexts/LoadingState';
+import { useLoaderState } from '../../contexts/ExampleState';
 import { Home_Link } from '../../routers/RouterLinks';
 import { SidePanelVerticalNavBar } from './SidePanel.Vertical.NavBar';
 import { SidePanelShoppingList } from './ShoppingList/SidePanel.ShoppingList';

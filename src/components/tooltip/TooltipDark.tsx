@@ -1,13 +1,7 @@
-import styled from '@emotion/styled';
 import { TooltipProps, Tooltip, tooltipClasses } from '@mui/material';
-import React from 'react';
+import styled from '@emotion/styled';
 
-/**
- * @author
- * @function @TooltipDark
- **/
-
-export const TooltipDark = styled(({ className, ...props }: TooltipProps) => (
+const TooltipDark = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip
     {...props}
     classes={{ popper: className }}
@@ -29,3 +23,5 @@ export const TooltipDark = styled(({ className, ...props }: TooltipProps) => (
     textAlign: 'justify',
   },
 }));
+
+export default TooltipDark;

@@ -1,15 +1,8 @@
-import React, {
-  Dispatch,
-  FC,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useAnimation, useMotionValue } from 'framer-motion';
-import { DiscoverCarouselContentProps } from '../../../contents/home/discover/Home.Discover.Carousel';
-import { DiscoverCarouselBannerContent } from './DiscoverCarousel.BannerContent';
+import { DiscoverCarouselContentProps } from 'contents/home/discover/Home.Discover.Carousel';
 import { DiscoverCarouselArrowButtonProps } from './DiscoverCarousel.ArrowButton';
+import DiscoverCarouselBannerContent from './DiscoverCarousel.BannerContent';
 import dynamic from 'next/dynamic';
 
 const DiscoverCarouselLeftArrowButton =
@@ -35,15 +28,10 @@ interface IProps {
   Duration?: number;
   BannerArray: DiscoverCarouselContentProps[];
   CarouselState: number;
-  setCarouselState: Dispatch<SetStateAction<number>>;
+  setCarouselState: React.Dispatch<React.SetStateAction<number>>;
 }
 
-/**
- * @author
- * @function @DiscoverCarouselBanner
- **/
-
-export const DiscoverCarouselBanner: FC<IProps> = (props) => {
+function DiscoverCarouselBanner(props: IProps) {
   const x = useMotionValue(-3065);
   const animation = useAnimation();
   const ContainerRef = useRef<HTMLDivElement>(null);
@@ -311,4 +299,6 @@ export const DiscoverCarouselBanner: FC<IProps> = (props) => {
       )}
     </motion.div>
   );
-};
+}
+
+export default DiscoverCarouselBanner;

@@ -1,10 +1,9 @@
-import React, { FC } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { DiscoverBannerFourContentProps } from '../../../contents/home/discover/Home.Discover.Banner';
-import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
-import { BannerSmallButtonForBannerFour } from '../../button/banner/Banner.SmallButton.ForBannerFour';
-import useScreenSize from '../../../functions/ScreenSizeDetection';
+import { DiscoverBannerFourContentProps } from 'contents/home/discover/Home.Discover.Banner';
+import { Rectangle_BlurDataURL } from 'components/loader/BlurDataURL';
+import { BannerSmallButtonForBannerFour } from 'components/button/banner/Banner.SmallButton.ForBannerFour';
+import useScreenSize from 'functions/ScreenSizeDetection';
 
 const ContainerStyle =
   'text-white bg-white/5 relative button-text-lower p-0 m-0 rounded-xl overflow-hidden';
@@ -16,9 +15,9 @@ const DescriptionStyle =
 export interface DiscoverBannerFourBrowserProps {
   ContentArray: DiscoverBannerFourContentProps[];
 }
-export const DiscoverBannerFourBrowser: FC<DiscoverBannerFourBrowserProps> = (
-  props
-) => {
+export function DiscoverBannerFourBrowser(
+  props: DiscoverBannerFourBrowserProps
+) {
   const { LargeScreen, MediumLargeScreen, MediumScreen, SmallScreen } =
     useScreenSize();
   return (
@@ -67,14 +66,12 @@ export const DiscoverBannerFourBrowser: FC<DiscoverBannerFourBrowserProps> = (
       </Swiper>
     </div>
   );
-};
+}
 
 export interface DiscoverBannerFourMobileProps {
   ContentArray: DiscoverBannerFourContentProps[];
 }
-export const DiscoverBannerFourMobile: FC<DiscoverBannerFourMobileProps> = (
-  props
-) => {
+export function DiscoverBannerFourMobile(props: DiscoverBannerFourMobileProps) {
   return (
     <div className="flex w-full relative box-border space-x-5">
       <Swiper
@@ -116,4 +113,4 @@ export const DiscoverBannerFourMobile: FC<DiscoverBannerFourMobileProps> = (
       </Swiper>
     </div>
   );
-};
+}

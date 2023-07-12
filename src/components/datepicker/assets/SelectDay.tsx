@@ -1,8 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { m } from 'framer-motion';
 import moment, { Moment } from 'moment';
-import { SelectDayHeader } from './selectDay/SelectDayHeader';
-import { WeekNames } from './selectDay/WeekNames';
+import SelectDayHeader from './selectDay/SelectDayHeader';
+import WeekNames from './selectDay/WeekNames';
 
 interface IProps {
   year: string;
@@ -13,12 +13,7 @@ interface IProps {
   setYear: (year: string) => void;
 }
 
-/**
- * @author
- * @function @CustomCalender
- **/
-
-export const SelectDay: FC<IProps> = (props) => {
+function SelectDay(props: IProps) {
   const [value, setValue] = useState(
     moment(props.year + '-' + props.month, 'YYYY-MM')
   );
@@ -176,4 +171,6 @@ export const SelectDay: FC<IProps> = (props) => {
       </div>
     </m.div>
   );
-};
+}
+
+export default SelectDay;

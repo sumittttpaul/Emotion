@@ -1,31 +1,26 @@
 import { Menu, MenuItem, Button } from '@mui/material';
-import Router from 'next/router';
-import React, { FC } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Manage_Your_Account_Link,
   Track_Order_Link,
   Cart_Link,
   Redeem_Gift_Codes_Link,
-} from '../../../routers/RouterLinks';
+} from 'routers/RouterLinks';
 import Image from 'next/image';
 import UserIcon from '../../../../public/icons/user-fill.svg';
-import { UserType } from '../../../authentication/useClientAuth';
+import { ClientUser } from 'authentication/useClientAuth';
 
 export interface HeaderUserButtonMenuProps {
   anchorEl: null | HTMLElement;
   open: boolean;
-  user: UserType;
+  user: ClientUser;
   handleClose: () => void;
   SignOutUser: () => void;
   LoadingScreen: (value: boolean) => void;
 }
 
-/**
- * @author
- * @function @HeaderUserButtonMenu
- **/
-
-export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
+function HeaderUserButtonMenu(props: HeaderUserButtonMenuProps) {
+  const router = useRouter();
   return (
     <Menu
       anchorEl={props.anchorEl}
@@ -109,7 +104,7 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
           setTimeout(() => {
             props.handleClose();
             props.LoadingScreen(true);
-            Router.push(Manage_Your_Account_Link);
+            router.push(Manage_Your_Account_Link);
           }, 150);
         }}
         className="m-1 py-2 rounded-md hover:bg-[#ffffff15] cursor-default"
@@ -127,7 +122,7 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
           setTimeout(() => {
             props.handleClose();
             props.LoadingScreen(true);
-            Router.push(Track_Order_Link);
+            router.push(Track_Order_Link);
           }, 150);
         }}
         className="m-1 py-2 rounded-md hover:bg-[#ffffff15] cursor-default"
@@ -145,7 +140,7 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
           setTimeout(() => {
             props.handleClose();
             props.LoadingScreen(true);
-            Router.push(Cart_Link);
+            router.push(Cart_Link);
           }, 150);
         }}
         className="m-1 py-2 rounded-md hover:bg-[#ffffff15] cursor-default"
@@ -163,7 +158,7 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
           setTimeout(() => {
             props.handleClose();
             props.LoadingScreen(true);
-            Router.push(Redeem_Gift_Codes_Link);
+            router.push(Redeem_Gift_Codes_Link);
           }, 150);
         }}
         className="m-1 py-2 rounded-md hover:bg-[#ffffff15] cursor-default"
@@ -177,4 +172,6 @@ export const HeaderUserButtonMenu: FC<HeaderUserButtonMenuProps> = (props) => {
       </MenuItem>
     </Menu>
   );
-};
+}
+
+export default HeaderUserButtonMenu;

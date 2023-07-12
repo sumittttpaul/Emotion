@@ -1,15 +1,9 @@
-import React, { FC } from 'react';
 import Image from 'next/image';
 import { Button } from '@mui/material';
 import { Rectangle_BlurDataURL } from '../loader/BlurDataURL';
 import { ChevronRightIcon } from '@heroicons/react/outline';
 
-/**
- * @author
- * @function @DiscoverCatelog
- **/
-
-export const DiscoverCatelog: FC = () => {
+function DiscoverCatelog() {
   return (
     <div className="flex w-full h-full px-3 my-[50px] relative box-border overflow-x-hidden overflow-y-visible bg-transparent">
       <div className="flex flex-row w-full h-[250px] small-medium-screen:h-[300px] space-x-14 box-border relative">
@@ -59,4 +53,6 @@ export const DiscoverCatelog: FC = () => {
       </div>
     </div>
   );
-};
+}
+
+export default DiscoverCatelog;

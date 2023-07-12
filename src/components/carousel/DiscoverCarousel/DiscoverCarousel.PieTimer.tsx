@@ -1,16 +1,11 @@
-import React, { FC, useEffect, useState } from 'react';
-import styles from './../../../styles/modules/pietimer.module.css';
+import { useEffect, useState } from 'react';
+import styles from 'styles/modules/pietimer.module.css';
 
 interface IProps {
   Hide: string;
 }
 
-/**
- * @author
- * @function @DiscoverCarouselPieTimer
- **/
-
-export const DiscoverCarouselPieTimer: FC<IProps> = (props) => {
+function DiscoverCarouselPieTimer(props: IProps) {
   const [Hide, setHide] = useState(false);
 
   useEffect(() => {
@@ -44,4 +39,6 @@ export const DiscoverCarouselPieTimer: FC<IProps> = (props) => {
       )}
     </>
   );
-};
+}
+
+export default DiscoverCarouselPieTimer;

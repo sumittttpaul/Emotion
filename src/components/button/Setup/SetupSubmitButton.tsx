@@ -1,14 +1,13 @@
-import React, { FC, ReactNode } from 'react';
 import { Button } from '@mui/material';
 
 interface IProps {
   Disabled: boolean;
   onClick: () => void;
   ClassName?: string;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
-export const SetupSubmitButton: FC<IProps> = (props) => {
+function SetupSubmitButton(props: IProps) {
   return (
     <Button
       disableFocusRipple
@@ -24,4 +23,6 @@ export const SetupSubmitButton: FC<IProps> = (props) => {
       {props.children}
     </Button>
   );
-};
+}
+
+export default SetupSubmitButton;

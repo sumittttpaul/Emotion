@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import { LoaderHook } from 'hooks/Hooks.Loader';
 
-export function Loading() {
+function Loading() {
   const { Loader } = LoaderHook();
   return (
     <Backdrop
@@ -39,3 +39,5 @@ export function Loading() {
     </Backdrop>
   );
 }
+
+export default Loading;

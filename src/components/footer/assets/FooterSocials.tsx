@@ -1,18 +1,12 @@
 import { Link } from '@mui/material';
-import React, { FC } from 'react';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 
 interface IProps {
-  Content: { label: string; to: string; icon: StaticImageData }[];
+  Content: { label: string; to: string; icon: string }[];
   heading: string;
 }
 
-/**
- * @author
- * @function @FooterSocials
- **/
-
-export const FooterSocials: FC<IProps> = (props) => {
+function FooterSocials(props: IProps) {
   return (
     <div className="flex flex-col py-2">
       <h6 className="text-white text-sm opacity-50 py-1">{props.heading}</h6>
@@ -38,4 +32,6 @@ export const FooterSocials: FC<IProps> = (props) => {
       </div>
     </div>
   );
-};
+}
+
+export default FooterSocials;

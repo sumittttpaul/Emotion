@@ -1,13 +1,7 @@
-import React, { FC } from 'react';
 import Image from 'next/image';
 import { Button } from '@mui/material';
 
-/**
- * @author
- * @function @HeaderMobileSearchButton
- **/
-
-export const HeaderMobileSearchButton: FC = () => {
+export function HeaderMobileSearchButton() {
   const SearchClick = () => {
     // if (!SearchButtonState.show) {
     //   router.push({ hash: 'search' });
@@ -30,4 +24,4 @@ export const HeaderMobileSearchButton: FC = () => {
       </div>
     </Button>
   );
-};
+}

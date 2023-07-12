@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Button, Menu, MenuItem } from '@mui/material';
-import React, { FC } from 'react';
 import Image from 'next/image';
-import { HotBadge } from '../../badge/HotBadge';
-import { TrendingBadge } from '../../badge/TrendingBadge';
-import { NewBadge } from '../../badge/NewBadge';
+import HotBadge from 'components/badge/HotBadge';
+import TrendingBadge from 'components/badge/TrendingBadge';
+import NewBadge from 'components/badge/NewBadge';
 import { HomeNotificationContentProps } from '../../../contents/home/Home.Notification';
 import { MoreMenuButton } from '../MoreMenuButton/MoreMenuButton';
 
@@ -15,14 +14,9 @@ export interface HeaderNotificationButtonMenuProps {
   handleClose: () => void;
 }
 
-/**
- * @author
- * @function @HeaderNotificationButtonMenu
- **/
-
-export const HeaderNotificationButtonMenu: FC<
-  HeaderNotificationButtonMenuProps
-> = (props) => {
+function HeaderNotificationButtonMenu(
+  props: HeaderNotificationButtonMenuProps
+) {
   return (
     <Menu
       anchorEl={props.anchorEl}
@@ -139,4 +133,6 @@ export const HeaderNotificationButtonMenu: FC<
       ))}
     </Menu>
   );
-};
+}
+
+export default HeaderNotificationButtonMenu;

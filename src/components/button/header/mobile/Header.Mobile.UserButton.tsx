@@ -1,29 +1,24 @@
 import UserIcon from '../../../../../public/icons/user-fill.svg';
 import { CircularProgress, IconButton } from '@mui/material';
-import React, { FC, Fragment, ReactNode, useState, MouseEvent } from 'react';
-import { useLoaderState } from '../../../../contexts/LoadingState';
-import { Setup_Link } from '../../../../routers/RouterLinks';
-import Router from 'next/router';
+import { useState } from 'react';
+import { Setup_Link } from 'routers/RouterLinks';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { HeaderUserButtonMenuProps } from '../Header.UserButton.Menu';
-import { UserType, useAuth } from '../../../../authentication/useClientAuth';
-import { SignOut } from '../../../../functions/AuthAlgorithms';
+import { SignOut } from 'functions/AuthAlgorithms';
+import { LoaderHook } from 'hooks/Hooks.Loader';
+import useClientAuth, { ClientUser } from 'authentication/useClientAuth';
 
 const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
-  () => import('../Header.UserButton.Menu').then((x) => x.HeaderUserButtonMenu),
+  () => import('../Header.UserButton.Menu'),
   { ssr: false }
 );
 
-/**
- * @author
- * @function @HeaderMobileUserButton
- **/
-export const HeaderMobileUserButton: FC = () => {
+export function HeaderMobileUserButton() {
   const { FirebaseUser, FirebaseLoading } = useClientAuth();
-
-  const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => setLoader({ show: value });
+  const { setLoader } = LoaderHook();
+  const router = useRouter();
 
   if (FirebaseLoading)
     return (
@@ -44,27 +39,27 @@ export const HeaderMobileUserButton: FC = () => {
       <LoginButton
         onClick={() => {
           setTimeout(() => {
-            Router.push(Setup_Link);
-            LoadingScreen(true);
+            router.push(Setup_Link);
+            setLoader(true);
           }, 150);
         }}
       />
     </ContainerButton>
   );
-};
+}
 
 interface LoginButtonProps {
   onClick: () => void;
 }
 
 interface ContainerButtonProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 interface UserButtonProps {
-  user: UserType;
+  user: ClientUser;
 }
 
-const LoginButton: FC<LoginButtonProps> = (props) => {
+function LoginButton(props: LoginButtonProps) {
   return (
     <IconButton
       aria-label="user-login-button"
@@ -87,11 +82,11 @@ const LoginButton: FC<LoginButtonProps> = (props) => {
       />
     </IconButton>
   );
-};
+}
 
-const LoadingButton: FC = () => {
+function LoadingButton() {
   return (
-    <Fragment>
+    <>
       <IconButton
         disabled
         aria-label="user-button-loading"
@@ -106,18 +101,17 @@ const LoadingButton: FC = () => {
       >
         <CircularProgress className="text-white p-2.5 -ml-[5px]" />
       </IconButton>
-    </Fragment>
+    </>
   );
-};
+}
 
-const UserButton: FC<UserButtonProps> = (props) => {
+function UserButton(props: UserButtonProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const photoURL = props.user?.photoURL;
-  const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => setLoader({ show: value });
+  const { setLoader } = LoaderHook();
 
-  const handleClick = (event: MouseEvent<HTMLElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -130,7 +124,7 @@ const UserButton: FC<UserButtonProps> = (props) => {
   };
 
   return (
-    <Fragment>
+    <>
       <IconButton
         aria-label="user-popup-button"
         disableFocusRipple
@@ -167,16 +161,16 @@ const UserButton: FC<UserButtonProps> = (props) => {
         user={props.user}
         handleClose={handleClose}
         SignOutUser={SignOutUser}
-        LoadingScreen={(value) => LoadingScreen(value)}
+        LoadingScreen={(value) => setLoader(value)}
       />
-    </Fragment>
+    </>
   );
-};
+}
 
-const ContainerButton: FC<ContainerButtonProps> = (props) => {
+function ContainerButton(props: ContainerButtonProps) {
   return (
     <div className="flex relative h-[35px] w-[35px] overflow-hidden">
       {props.children}
     </div>
   );
-};
+}

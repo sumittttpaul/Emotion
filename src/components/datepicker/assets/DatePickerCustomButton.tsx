@@ -6,7 +6,7 @@ interface IProps {
   label: string;
 }
 
-export function DatePickerCustomButton(props: IProps) {
+function DatePickerCustomButton(props: IProps) {
   return (
     <Button
       aria-label="select-dob-button"
@@ -26,3 +26,5 @@ export function DatePickerCustomButton(props: IProps) {
     </Button>
   );
 }
+
+export default DatePickerCustomButton;

@@ -1,20 +1,15 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { FC, Fragment, ReactNode } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
+import { Fragment } from 'react';
 
 interface IProps {
-  children: ReactNode;
+  children: React.ReactNode;
   show?: boolean;
   onClose: () => void;
   disableClickAwayClose?: true;
 }
 
-/**
- * @author
- * @function @DatePickerContainerDialog
- **/
-
-export const DatePickerContainerDialog: FC<IProps> = (props) => {
+function DatePickerContainerDialog(props: IProps) {
   return (
     <Transition appear show={props.show} as={Fragment}>
       <Dialog
@@ -56,4 +51,6 @@ export const DatePickerContainerDialog: FC<IProps> = (props) => {
       </Dialog>
     </Transition>
   );
-};
+}
+
+export default DatePickerContainerDialog;

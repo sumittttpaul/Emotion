@@ -1,18 +1,12 @@
 import { Checkbox, alpha } from '@mui/material';
 import Image from 'next/image';
-import React, { ChangeEvent, FC } from 'react';
 
 interface IProps {
   Checked: boolean;
-  OnCnange: (event: ChangeEvent<HTMLInputElement>) => void;
+  OnCnange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-/**
- * @author
- * @function @CheckBoxBlue
- **/
-
-const CheckBoxBlue: FC<IProps> = (props) => {
+function CheckBoxBlue(props: IProps) {
   return (
     <Checkbox
       checked={props.Checked}
@@ -54,6 +48,6 @@ const CheckBoxBlue: FC<IProps> = (props) => {
       inputProps={{ 'aria-label': 'Privary Policy Checkbox' }}
     />
   );
-};
+}
 
 export default CheckBoxBlue;

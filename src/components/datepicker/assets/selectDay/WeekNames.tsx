@@ -1,15 +1,8 @@
-import React, { FC } from 'react';
-
 interface IProps {
   value: Array<string>;
 }
 
-/**
- * @author
- * @function @WeekNames
- **/
-
-export const WeekNames: FC<IProps> = (props) => {
+function WeekNames(props: IProps) {
   return (
     <div className="grid grid-cols-7 relative">
       {props.value.map((value) => (
@@ -22,4 +15,6 @@ export const WeekNames: FC<IProps> = (props) => {
       ))}
     </div>
   );
-};
+}
+
+export default WeekNames;

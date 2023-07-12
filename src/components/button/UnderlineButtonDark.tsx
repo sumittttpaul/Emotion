@@ -1,16 +1,10 @@
 import { Button } from '@mui/material';
-import React, { FC } from 'react';
 
 interface IProps {
   label: string;
 }
 
-/**
- * @author
- * @function @UnderlineButtonDark
- **/
-
-export const UnderlineButtonDark: FC<IProps> = (props) => {
+function UnderlineButtonDark(props: IProps) {
   return (
     <Button
       className="text-white block whitespace-nowrap p-0 m-0 text-[14px] hover:underline underline-offset-4 font-sans font-normal button-text-lower"
@@ -23,4 +17,6 @@ export const UnderlineButtonDark: FC<IProps> = (props) => {
       {props.label}
     </Button>
   );
-};
+}
+
+export default UnderlineButtonDark;

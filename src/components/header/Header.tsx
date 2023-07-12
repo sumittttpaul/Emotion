@@ -1,33 +1,24 @@
-import dynamic from 'next/dynamic';
-import React, { FC, MouseEvent, useState } from 'react';
-import { HeaderSearchButton } from '../button/header/Header.SearchButton';
-import { HeaderNav } from './assets/Header.Nav';
+import { useState } from 'react';
+import { HomePageHook } from 'hooks/Hooks.HomePage';
 import { HeaderNavMenuProps } from './assets/Header.Nav.Menu';
-import { HeaderUserButton } from '../button/header/Header.UserButton';
-import { HeaderNotificationButton } from '../button/header/Header.NotificationButton';
-import { useReduxDispatch, useReduxSelector } from '../../redux/ReduxHooks';
-import {
-  SelectHomePage,
-  setHomePage,
-} from '../../redux/reducers/HomePageReducer';
+import dynamic from 'next/dynamic';
+import HeaderNav from './assets/Header.Nav';
+import HeaderSearchButton from '../button/header/Header.SearchButton';
+import HeaderUserButton from '../button/header/Header.UserButton';
+import HeaderNotificationButton from '../button/header/Header.NotificationButton';
 
 const HeaderNavMenu = dynamic<HeaderNavMenuProps>(
-  () => import('./assets/Header.Nav.Menu').then((x) => x.HeaderNavMenu),
+  () => import('./assets/Header.Nav.Menu'),
   { ssr: false }
 );
 
-/**
- * @author
- * @function @Header
- **/
-export const Header: FC = () => {
-  const { Page } = useReduxSelector(SelectHomePage);
-  const dispatch = useReduxDispatch();
+function Header() {
+  const { HomePage, setHomePage } = HomePageHook();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const NavMenuOpen = Boolean(anchorEl);
 
-  const handleNavMenuClick = (event: MouseEvent<HTMLElement>) => {
+  const handleNavMenuClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -44,8 +35,8 @@ export const Header: FC = () => {
             <HeaderNav
               open={NavMenuOpen}
               onOpen={handleNavMenuClick}
-              Value={Page}
-              onValueChange={(value) => dispatch(setHomePage(value))}
+              Value={HomePage}
+              onValueChange={(value) => setHomePage(value)}
             />
           </div>
           {/* Search Button */}
@@ -65,9 +56,11 @@ export const Header: FC = () => {
         anchorEl={anchorEl}
         open={NavMenuOpen}
         onClose={handleNavMenuClose}
-        Value={Page}
-        onValueChange={(value) => dispatch(setHomePage(value))}
+        Value={HomePage}
+        onValueChange={(value) => setHomePage(value)}
       />
     </div>
   );
-};
+}
+
+export default Header;

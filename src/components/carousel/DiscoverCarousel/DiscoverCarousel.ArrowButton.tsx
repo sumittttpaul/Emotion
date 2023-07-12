@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import React, { FC } from 'react';
 import Image from 'next/image';
 
 export interface DiscoverCarouselArrowButtonProps {
@@ -36,13 +35,9 @@ const ArrowClasses =
 const ArrowIconClasses =
   'relative h-[10px] w-[10px] group-hover:h-[12px] group-hover:w-[12px] flex items-center justify-center opacity-75 group-hover:opacity-90';
 
-/**
- * @Discover_Carousel_Thumbnail_Left_Arrow_Button
- **/
-
-export const DiscoverCarouselLeftArrowButton: FC<
-  DiscoverCarouselArrowButtonProps
-> = (props) => {
+export function DiscoverCarouselLeftArrowButton(
+  props: DiscoverCarouselArrowButtonProps
+) {
   return (
     <motion.button
       variants={LeftVariants}
@@ -59,15 +54,11 @@ export const DiscoverCarouselLeftArrowButton: FC<
       </div>
     </motion.button>
   );
-};
+}
 
-/**
- * @Discover_Carousel_Thumbnail_Right_Arrow_Button
- **/
-
-export const DiscoverCarouselRightArrowButton: FC<
-  DiscoverCarouselArrowButtonProps
-> = (props) => {
+export function DiscoverCarouselRightArrowButton(
+  props: DiscoverCarouselArrowButtonProps
+) {
   return (
     <motion.button
       variants={RightVariants}
@@ -84,4 +75,4 @@ export const DiscoverCarouselRightArrowButton: FC<
       </div>
     </motion.button>
   );
-};
+}

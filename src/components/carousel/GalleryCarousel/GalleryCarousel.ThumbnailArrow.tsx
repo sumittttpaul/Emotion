@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import React, { FC } from 'react';
 import Image from 'next/image';
 
 interface IProps {
@@ -31,10 +30,7 @@ const ArrowClasses =
   'absolute p-0 z-[1] bottom-[48px] h-[32px] w-[20px] bg-white bg-opacity-70 hover:bg-white rounded-[4px] transition-colors color-transition Custom-DropShadow';
 const ArrowIconClasses = 'h-full w-full flex items-center justify-center';
 
-/**
- * @Gallery_Carousel_Thumbnail_Left_Arrow_Button
- **/
-export const GalleryCarouselLeftArrowButton: FC<IProps> = (props) => {
+export function GalleryCarouselLeftArrowButton(props: IProps) {
   return (
     <motion.button
       variants={LeftVariants}
@@ -51,12 +47,9 @@ export const GalleryCarouselLeftArrowButton: FC<IProps> = (props) => {
       </div>
     </motion.button>
   );
-};
+}
 
-/**
- * @Gallery_Carousel_Thumbnail_Right_Arrow_Button
- **/
-export const GalleryCarouselRightArrowButton: FC<IProps> = (props) => {
+export function GalleryCarouselRightArrowButton(props: IProps) {
   return (
     <motion.button
       variants={RightVariants}
@@ -78,4 +71,4 @@ export const GalleryCarouselRightArrowButton: FC<IProps> = (props) => {
       </div>
     </motion.button>
   );
-};
+}

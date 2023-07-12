@@ -1,6 +1,5 @@
 import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/solid';
 import { m } from 'framer-motion';
-import React, { FC } from 'react';
 
 interface IProps {
   currentMonth: () => void;
@@ -10,12 +9,7 @@ interface IProps {
   nextMonthClick: () => void;
 }
 
-/**
- * @author
- * @function @SelectDayHeader
- **/
-
-export const SelectDayHeader: FC<IProps> = (props) => {
+function SelectDayHeader(props: IProps) {
   const MonthAndYear = () => {
     return props.currentMonth() + ', ' + props.currentYear();
   };
@@ -45,4 +39,6 @@ export const SelectDayHeader: FC<IProps> = (props) => {
       </div>
     </div>
   );
-};
+}
+
+export default SelectDayHeader;

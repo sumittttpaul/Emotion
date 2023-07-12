@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import { Button } from '@mui/material';
 
 interface IProps {
@@ -7,12 +6,7 @@ interface IProps {
   className?: string;
 }
 
-/**
- * @author
- * @function @BannerSmallButton
- **/
-
-export const BannerSmallButton: FC<IProps> = (props) => {
+export function BannerSmallButton(props: IProps) {
   return (
     <Button
       onClick={props.onClick}
@@ -26,4 +20,4 @@ export const BannerSmallButton: FC<IProps> = (props) => {
       {props.label}
     </Button>
   );
-};
+}

@@ -1,21 +1,15 @@
 import { Button } from '@mui/material';
-import React, { FC, ReactEventHandler } from 'react';
 import Image from 'next/image';
-import { TooltipDark } from '../tooltip/TooltipDark';
+import TooltipDark from 'components/tooltip/TooltipDark';
 
 interface IProps {
   tooltip?: string;
   content: string;
   iconURL: string;
-  onClick: ReactEventHandler;
+  onClick: React.ReactEventHandler;
 }
 
-/**
- * @author
- * @function @SmallIconButtonDark
- **/
-
-export const SmallIconButtonDark: FC<IProps> = (props) => {
+function SmallIconButtonDark(props: IProps) {
   return (
     <TooltipDark title={props.tooltip} placement="top" arrow>
       <Button
@@ -40,4 +34,6 @@ export const SmallIconButtonDark: FC<IProps> = (props) => {
       </Button>
     </TooltipDark>
   );
-};
+}
+
+export default SmallIconButtonDark;

@@ -8,9 +8,6 @@ interface IProps {
   className?: string;
 }
 
-/**
- * @Carousel_Banner_Image
- **/
 export class GalleryCarouselBannerImage extends Component<IProps> {
   state = {
     topSrc: this.props.src,

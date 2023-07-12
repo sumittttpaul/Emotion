@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { useState } from 'react';
 import { m } from 'framer-motion';
 import moment from 'moment';
 
@@ -6,12 +6,7 @@ interface IProps {
   setYear: (year: string) => void;
 }
 
-/**
- * @author
- * @function @SelectYear
- **/
-
-export const SelectYear: FC<IProps> = (props) => {
+function SelectYear(props: IProps) {
   const [selected, setSelected] = useState<string>(
     moment().endOf('year').format('YYYY')
   );
@@ -55,4 +50,6 @@ export const SelectYear: FC<IProps> = (props) => {
       ))}
     </m.div>
   );
-};
+}
+
+export default SelectYear;

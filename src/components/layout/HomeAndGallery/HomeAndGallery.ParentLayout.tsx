@@ -1,28 +1,20 @@
-import React, { FC, ReactNode, useState } from 'react';
-import { useReduxSelector } from '../../../redux/ReduxHooks';
-import { ContainerDark } from '../../container/ContainerDark';
-import { SidePanel } from '../../sidepanel/SidePanel';
-import { SelectDevice } from '../../../redux/reducers/DeviceReducer';
+import { useState } from 'react';
+import { DeviceHook } from 'hooks/Hooks.Device';
+import { SidePanel } from 'components/sidepanel/SidePanel';
+import ContainerDark from 'components/container/ContainerDark';
 
-interface IProps {
-  children: ReactNode;
-}
-
-/**
- * @author
- * @function @HomeAndGalleryParentLayout
- **/
-
-export const HomeAndGalleryParentLayout: FC<IProps> = (props) => {
+function HomeAndGalleryParentLayout({ children }: ChildrenType) {
   const [Active, setActive] = useState('Home');
-  const { isMobile } = useReduxSelector(SelectDevice);
+  const { isMobile } = DeviceHook();
 
-  if (isMobile) return <ContainerDark>{props.children}</ContainerDark>;
+  if (isMobile) return <ContainerDark>{children}</ContainerDark>;
 
   return (
     <ContainerDark>
       <SidePanel Active={Active} setActive={setActive} />
-      {props.children}
+      {children}
     </ContainerDark>
   );
-};
+}
+
+export default HomeAndGalleryParentLayout;

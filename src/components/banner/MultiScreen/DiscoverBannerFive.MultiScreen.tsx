@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { FC } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { DiscoverBannerFiveContentProps } from '../../../contents/home/discover/Home.Discover.Banner';
-import { Rectangle_BlurDataURL } from '../../loader/BlurDataURL';
-import { BannerSmallButtonForBannerFour } from '../../button/banner/Banner.SmallButton.ForBannerFour';
-import useScreenSize from '../../../functions/ScreenSizeDetection';
-import { BannerTitleButton } from '../../button/banner/Banner.TitleButton';
-import { BannerUnderlineButton } from '../../button/banner/Banner.UnderlineButton';
+import { DiscoverBannerFiveContentProps } from 'contents/home/discover/Home.Discover.Banner';
+import { Rectangle_BlurDataURL } from 'components/loader/BlurDataURL';
+import { BannerSmallButtonForBannerFour } from 'components/button/banner/Banner.SmallButton.ForBannerFour';
+import { BannerTitleButton } from 'components/button/banner/Banner.TitleButton';
+import { BannerUnderlineButton } from 'components/button/banner/Banner.UnderlineButton';
+import useScreenSize from 'functions/ScreenSizeDetection';
 
 const ContainerStyle =
   'text-white group relative p-0 m-0 rounded-xl bg-gradient-to-b overflow-hidden';
@@ -27,9 +26,9 @@ export interface DiscoverBannerFiveBrowserProps {
   ContentArray: DiscoverBannerFiveContentProps[];
   Label: string;
 }
-export const DiscoverBannerFiveBrowser: FC<DiscoverBannerFiveBrowserProps> = (
-  props
-) => {
+export function DiscoverBannerFiveBrowser(
+  props: DiscoverBannerFiveBrowserProps
+) {
   const {
     LargeScreen,
     MediumLargeScreen,
@@ -82,14 +81,12 @@ export const DiscoverBannerFiveBrowser: FC<DiscoverBannerFiveBrowserProps> = (
       </div>
     </div>
   );
-};
+}
 
 export interface DiscoverBannerFiveMobileProps {
   ContentArray: DiscoverBannerFiveContentProps[];
 }
-export const DiscoverBannerFiveMobile: FC<DiscoverBannerFiveMobileProps> = (
-  props
-) => {
+export function DiscoverBannerFiveMobile(props: DiscoverBannerFiveMobileProps) {
   return (
     <div className="flex flex-col w-full relative p-0 m-0 space-y-5">
       <h6 className="text-[18px] mx-5">Our services</h6>
@@ -137,4 +134,4 @@ export const DiscoverBannerFiveMobile: FC<DiscoverBannerFiveMobileProps> = (
       </div>
     </div>
   );
-};
+}

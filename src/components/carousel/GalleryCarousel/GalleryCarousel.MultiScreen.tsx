@@ -1,8 +1,8 @@
 import React, { Dispatch, FC, RefObject, SetStateAction } from 'react';
 import { GalleryCarouselContentProps } from '../../../contents/gallery/Gallery.Carousel';
-import { GalleryCarouselBanner } from './GalleryCarousel.Banner';
-import { GalleryCarouselSlider } from './GalleryCarousel.Slider';
-import { GalleryCarouselThumbnailSlider } from './GalleryCarousel.ThumbnailSlider';
+import GalleryCarouselSlider from './GalleryCarousel.Slider';
+import GalleryCarouselThumbnailSlider from './GalleryCarousel.ThumbnailSlider';
+import GalleryCarouselBanner from './GalleryCarousel.Banner';
 
 export interface GalleryCarouselMobileProps {
   ContentArray: GalleryCarouselContentProps[];

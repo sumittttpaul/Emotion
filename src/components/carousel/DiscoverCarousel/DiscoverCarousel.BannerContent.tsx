@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion';
-import React, { FC } from 'react';
-import { DiscoverCarouselContentProps } from '../../../contents/home/discover/Home.Discover.Carousel';
-import { DiscoverCarouselPieTimer } from './DiscoverCarousel.PieTimer';
+import { DiscoverCarouselContentProps } from 'contents/home/discover/Home.Discover.Carousel';
 import { Button } from '@mui/material';
 import { ChevronRightIcon } from '@heroicons/react/outline';
+import DiscoverCarouselPieTimer from './DiscoverCarousel.PieTimer';
 import Image from 'next/image';
 
 interface IProps {
@@ -25,12 +24,7 @@ const Variants = {
   },
 };
 
-/**
- * @author
- * @function @DiscoverCarouselBannerContent
- **/
-
-export const DiscoverCarouselBannerContent: FC<IProps> = (props) => {
+function DiscoverCarouselBannerContent(props: IProps) {
   return (
     <>
       {props.CarouselOrder == 'left' && (
@@ -69,7 +63,7 @@ export const DiscoverCarouselBannerContent: FC<IProps> = (props) => {
       )}
     </>
   );
-};
+}
 
 interface BannerContentProps {
   Id: string;
@@ -108,7 +102,7 @@ const HeaderAnimationVariant = {
   },
 };
 
-const BannerContent: FC<BannerContentProps> = (props) => {
+function BannerContent(props: BannerContentProps) {
   return (
     <div id={props.Id} className="flex space-x-3">
       {props.BannerContentArray.map((value, idx) => (
@@ -233,4 +227,6 @@ const BannerContent: FC<BannerContentProps> = (props) => {
       ))}
     </div>
   );
-};
+}
+
+export default DiscoverCarouselBannerContent;
