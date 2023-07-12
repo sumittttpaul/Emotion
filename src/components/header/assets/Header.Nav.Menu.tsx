@@ -1,9 +1,5 @@
 import { Menu, MenuItem } from '@mui/material';
-import {
-  Collections_Link,
-  Discover_Link,
-  Offers_Link,
-} from 'routers/RouterLinks';
+import { Collections_Link, Home_Link, Offers_Link } from 'routers/RouterLinks';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -23,7 +19,7 @@ interface INavLabel {
 const Links: INavLabel[] = [
   {
     label: 'Discover',
-    to: Discover_Link,
+    to: Home_Link,
   },
   {
     label: 'Offers',

@@ -33,14 +33,14 @@ function SignInNextButton(props: IProps) {
       onHoverEnd={onHoverEnd}
       className="px-[12px] py-2 group cursor-default hover:bg-white/5 rounded-lg"
     >
-      <m.div
+      <m.label
         initial="open"
         animate={Animate}
         variants={Variants}
         className="group-hover:opacity-75 opacity-100 font-medium truncate text-sky-400 text-[14px]"
       >
         {props.Label}
-      </m.div>
+      </m.label>
     </m.button>
   );
 }

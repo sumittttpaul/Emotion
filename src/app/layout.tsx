@@ -7,7 +7,7 @@ import 'swiper/css/bundle';
 import { Metadata } from 'next';
 import EmotionCacheProvider from 'providers/EmotionCacheProvider';
 import CssVarsProvider from 'providers/CssVarsProvider';
-import LoadingComponent from 'utils/RootLayoutComponents';
+// import LoadingComponent from 'utils/RootLayoutComponents';
 // import ContextProvider from 'providers/ContextProvider';
 
 export const metadata: Metadata = {
@@ -20,13 +20,13 @@ export const metadata: Metadata = {
 
 function RootLayout({ children }: ChildrenType) {
   return (
-    <EmotionCacheProvider options={{ key: 'mui-emotion-style' }}>
+    <EmotionCacheProvider options={{ key: 'mui-emotion-style', prepend: true }}>
       <CssVarsProvider>
         {/* <ContextProvider> */}
         <html lang="en">
           <body>
             {children}
-            <LoadingComponent />
+            {/* <LoadingComponent /> */}
           </body>
         </html>
         {/* </ContextProvider> */}

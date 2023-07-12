@@ -40,9 +40,9 @@ function SignInBackButton(props: IProps) {
         className="group-hover:opacity-75 opacity-100 flex items-center space-x-2"
       >
         <ChevronLeftIcon className="h-4 mb-[2px] text-sky-400" />
-        <div className="font-medium text-sky-400 text-[14px] truncate">
+        <label className="font-medium text-sky-400 text-[14px] truncate">
           {props.Label}
-        </div>
+        </label>
       </m.div>
     </m.button>
   );

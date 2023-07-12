@@ -1,9 +1,5 @@
 import { Button } from '@mui/material';
-import {
-  Collections_Link,
-  Discover_Link,
-  Offers_Link,
-} from 'routers/RouterLinks';
+import { Collections_Link, Home_Link, Offers_Link } from 'routers/RouterLinks';
 import { useRouter } from 'next/navigation';
 
 interface IProps {
@@ -21,7 +17,7 @@ interface INavLabel {
 const NavLabel: INavLabel[] = [
   {
     label: 'Discover',
-    to: Discover_Link,
+    to: Home_Link,
   },
   {
     label: 'Offers',

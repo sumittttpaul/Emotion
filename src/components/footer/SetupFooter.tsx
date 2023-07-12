@@ -1,4 +1,8 @@
 import Link from 'next/link';
+import {
+  Privacy_Policy_Link,
+  Terms_Conditions_Link,
+} from 'routers/RouterLinks';
 
 interface IProps {
   ClassName?: string;
@@ -21,7 +25,7 @@ function SetupFooter(props: IProps) {
           means that you agree to the
         </h6>
         <Link
-          href=""
+          href={Privacy_Policy_Link}
           className="text-[13px] hidden xs-435:flex md:hidden md-1000:flex hover:underline underline-offset-2 cursor-pointer whitespace-nowrap font-medium text-sky-400 tracking-wide items-center"
         >
           priavcy policy
@@ -30,7 +34,7 @@ function SetupFooter(props: IProps) {
           and
         </h6>
         <Link
-          href=""
+          href={Terms_Conditions_Link}
           className="text-[13px] hidden sm-600:flex md:hidden hover:underline underline-offset-2 cursor-pointer whitespace-nowrap font-medium text-sky-400 tracking-wide items-center"
         >
           terms and conditions
@@ -38,7 +42,7 @@ function SetupFooter(props: IProps) {
       </div>
       <div className="flex space-x-1 xs-435:-ml-1 md:ml-0 md-1000:-ml-1">
         <Link
-          href=""
+          href={Privacy_Policy_Link}
           className="text-[13px] flex xs-435:hidden md:flex md-1000:hidden hover:underline underline-offset-2 cursor-pointer whitespace-nowrap font-medium text-sky-400 tracking-wide items-center"
         >
           priavcy policy
@@ -47,7 +51,7 @@ function SetupFooter(props: IProps) {
           and
         </h6>
         <Link
-          href=""
+          href={Terms_Conditions_Link}
           className="text-[13px] flex sm-600:hidden md:flex hover:underline underline-offset-2 cursor-pointer whitespace-nowrap font-medium text-sky-400 tracking-wide items-center"
         >
           terms and conditions
