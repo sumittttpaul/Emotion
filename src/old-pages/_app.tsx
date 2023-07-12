@@ -7,19 +7,14 @@ import 'swiper/css/bundle';
 import * as React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
-import { Provider } from 'react-redux';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-// import { QueryClient, QueryClientProvider } from 'react-query';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   CssBaseline,
 } from '@mui/material';
 import theme from 'utils/theme';
 import createEmotionCache from 'utils/old-createEmotionCache';
-import { Loading } from 'components/loader/Loading';
 import { NextPage } from 'next';
-import { LoaderState } from 'contexts/ExampleState';
-import ReduxStore from 'redux/ReduxStore';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -39,38 +34,20 @@ function MyApp(AppProps: AppPropsWithLayout, cache: EmotionCacheProps) {
   const { Component, pageProps } = AppProps;
   const { emotionCache = clientSideEmotionCache } = cache;
   const getLayout = Component.getLayout ?? ((page) => page);
-  const queryClient = new QueryClient();
   return (
-    <QueryClientProvider client={queryClient}>
-      <CacheProvider value={emotionCache}>
-        <Provider store={ReduxStore}>
-          <LoaderState value={{ show: false }}>
-            <Head>
-              <title>Emotion | Outfit</title>
-              <meta
-                property="og:title"
-                content="Emotion | Outfit"
-                key="title"
-              />
-              <meta
-                name="description"
-                content="Welcome to emotion-outfit.com"
-              />
-              <meta name="theme-color" content="#0f0f0f" />
-              <meta
-                name="viewport"
-                content="initial-scale=1, width=device-width"
-              />
-            </Head>
-            <CssVarsProvider theme={theme}>
-              <CssBaseline />
-              {getLayout(<Component {...pageProps} />)}
-              <Loading />
-            </CssVarsProvider>
-          </LoaderState>
-        </Provider>
-      </CacheProvider>
-    </QueryClientProvider>
+    <CacheProvider value={emotionCache}>
+      <Head>
+        <title>Emotion | Outfit</title>
+        <meta property="og:title" content="Emotion | Outfit" key="title" />
+        <meta name="description" content="Welcome to emotion-outfit.com" />
+        <meta name="theme-color" content="#0f0f0f" />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
+      <CssVarsProvider theme={theme}>
+        <CssBaseline />
+        {getLayout(<Component {...pageProps} />)}
+      </CssVarsProvider>
+    </CacheProvider>
   );
 }
 

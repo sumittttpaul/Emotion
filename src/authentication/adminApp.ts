@@ -7,7 +7,7 @@ export const verfyIdToken = async (token: string) => {
   if (!admin.apps.length) {
     admin.initializeApp({
       credential: applicationDefault(),
-      databasesURL: process.env.NEXT_PUBLIC_FIREBASE_databases_URL,
+      databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
     });
   }
   return await admin.auth().verifyIdToken(token);
