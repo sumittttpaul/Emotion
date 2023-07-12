@@ -76,14 +76,14 @@ function HeaderUserButtonMenu(props: HeaderUserButtonMenuProps) {
             )}
           </div>
           <div className="relative block">
-            <h6 className="text-[15px] whitespace-nowrap font-sans text-white">{`${
+            <h5 className="text-[15px] whitespace-nowrap font-sans text-white">{`${
               props.user?.displayName ? props.user.displayName : 'User'
-            }`}</h6>
-            <h6 className="text-[11px] mr-8 whitespace-nowrap text-white opacity-[0.85]">{`${
+            }`}</h5>
+            <p className="text-[11px] mr-8 whitespace-nowrap text-white opacity-[0.85]">{`${
               props.user?.email
                 ? props.user.email
                 : 'No email address has been added'
-            }`}</h6>
+            }`}</p>
             <div className="relative block">
               <Button
                 aria-label="user-sign-out-button"

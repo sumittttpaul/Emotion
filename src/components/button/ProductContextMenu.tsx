@@ -59,9 +59,9 @@ function ProductContextMenu(props: ProductContextMenuProps) {
           } mx-1 mt-1 py-2 px-3 rounded-md hover:bg-[#ffffff10] space-x-3 cursor-default`}
         >
           <Image height={19} width={19} src={value.icon} alt="" />
-          <div className="text-white text-left text-[13px] font-[400]">
+          <label className="text-white text-left text-[13px] font-[400]">
             {value.label}
-          </div>
+          </label>
         </MenuItem>
       ))}
     </Menu>

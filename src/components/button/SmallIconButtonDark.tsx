@@ -27,9 +27,9 @@ function SmallIconButtonDark(props: IProps) {
           <div className="flex min-w-[18px] max-w-[18px] min-h-[18px] max-h-[18px]">
             <Image height={18} width={18} src={props.iconURL} alt="" />
           </div>
-          <h6 className="text-[13px] text-white font-normal font-sans whitespace-nowrap hidden md:block">
+          <label className="text-[13px] text-white font-normal font-sans whitespace-nowrap hidden md:block">
             {props.content}
-          </h6>
+          </label>
         </div>
       </Button>
     </TooltipDark>

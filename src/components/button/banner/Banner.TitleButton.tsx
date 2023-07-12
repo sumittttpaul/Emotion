@@ -39,9 +39,9 @@ function BannerTitleButton(props: IProps) {
         variants={Variants}
         className="flex space-x-1 items-center justify-center"
       >
-        <h6 className="group-hover:opacity-75 opacity-100 text-[20px] font-[500] tracking-wide text-white">
+        <label className="group-hover:opacity-75 opacity-100 text-[20px] font-[500] tracking-wide text-white">
           {props.Label}
-        </h6>
+        </label>
         <ChevronRightIcon className="h-5 opacity-50" />
       </motion.div>
     </motion.button>

@@ -19,9 +19,9 @@ export function HeaderMobileSearchButton() {
       <div className="flex ml-[11px] justify-center h-[16px] w-[16px] opacity-60">
         <Image src="/icons/search-white-2.svg" height={16} width={16} alt="" />
       </div>
-      <div className="mx-2 flex font-normal pt-[10px] pb-[12px] truncate w-full h-full bg-transparent text-[13px] text-[#ffffffad]">
+      <label className="mx-2 flex font-normal pt-[10px] pb-[12px] truncate w-full h-full bg-transparent text-[13px] text-[#ffffffad]">
         Search
-      </div>
+      </label>
     </Button>
   );
 }

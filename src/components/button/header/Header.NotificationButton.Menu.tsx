@@ -54,18 +54,18 @@ function HeaderNotificationButtonMenu(
         className="p-0 flex flex-col rounded-md bg-transparent cursor-default hover:bg-transparent text-white w-full"
       >
         <div className="flex flex-col w-full px-6 py-3">
-          <div className="w-full text-left text-[18px] font-[600] truncate tracking-wide">
+          <h1 className="w-full text-left text-[18px] font-[600] truncate tracking-wide">
             What&apos;s New
-          </div>
-          <div className="w-full text-left text-[13px] opacity-90 tracking-wide">
+          </h1>
+          <p className="w-full text-left text-[13px] opacity-90 tracking-wide">
             The latest releases from emotion
-          </div>
+          </p>
         </div>
         <div className="flex pl-6 pr-[18px] pb-1 w-full justify-between items-center">
           <div className="flex items-center">
-            <div className="text-[13px] truncate cursor-default tracking-wide font-[400] text-white">
+            <p className="text-[13px] truncate cursor-default tracking-wide font-[400] text-white">
               {props.ContentArray.length} items
-            </div>
+            </p>
             <MoreMenuButton
               ClassName="ml-2"
               Orientation="horizontal"
@@ -114,12 +114,12 @@ function HeaderNotificationButtonMenu(
                   <Image fill src={value.Image} className="rounded-md" alt="" />
                 </div>
                 <div className="pl-3 w-full h-full items-center overflow-hidden">
-                  <div className="w-full text-left truncate text-[14px] font-[500]">
+                  <h2 className="w-full text-left truncate text-[14px] font-[500]">
                     {value.Heading}
-                  </div>
-                  <div className="text-[13px] opacity-75 truncate">
+                  </h2>
+                  <p className="text-[13px] opacity-75 truncate">
                     {value.Description}
-                  </div>
+                  </p>
                 </div>
               </div>
             </div>
