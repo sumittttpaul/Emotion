@@ -53,9 +53,9 @@ function YellowBulbHint(props: IProps) {
             />
           )}
         </div>
-        <h6 className="text-[13px] font-medium flex text-white">
+        <p className="text-[13px] font-medium flex text-white">
           {props.Label}
-        </h6>
+        </p>
       </div>
     </div>
   );
