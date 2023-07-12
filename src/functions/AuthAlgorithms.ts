@@ -894,7 +894,7 @@ export async function SignOut({ Next }: SignOutProps) {
 }
 
 export async function DeleteAccount({
-  Deletedatabases,
+  Deletedatabase,
   ShowToast,
   Loading,
 }: DeleteAccountProps) {
@@ -904,7 +904,7 @@ export async function DeleteAccount({
     const _uid = user.uid;
     _firebaseAuth
       .deleteUser(user)
-      .then(() => Deletedatabases(_uid))
+      .then(() => Deletedatabase(_uid))
       .catch((error) => {
         Loading(false);
         const message = AuthErrorMessage(error.code);

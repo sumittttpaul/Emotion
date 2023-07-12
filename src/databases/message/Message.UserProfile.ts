@@ -1,16 +1,16 @@
 export const DBCreateMessage: ISuccess = {
   name: 'Success',
-  message: 'databases has been created',
+  message: 'database has been created',
 };
 
 export const DBUpdateMessage: ISuccess = {
   name: 'Success',
-  message: 'databases has been updated',
+  message: 'database has been updated',
 };
 
 export const DBDeleteMessage: ISuccess = {
   name: 'Success',
-  message: 'databases has been deleted',
+  message: 'database has been deleted',
 };
 
 export const DBErrorMessage: IError = {

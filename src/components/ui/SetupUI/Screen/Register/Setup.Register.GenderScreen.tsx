@@ -30,7 +30,7 @@ function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
   // Validation
   const ValidateGender = Gender === '' && Gender.length < 1;
 
-  // databases
+  // database
   const updateUserData = () => {
     if (FirebaseUser) {
       try {

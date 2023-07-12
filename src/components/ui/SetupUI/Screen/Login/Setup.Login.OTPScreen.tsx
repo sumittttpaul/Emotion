@@ -79,7 +79,7 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
     setBool(true);
   };
 
-  // databases
+  // database
   function CreateDateBase(_uid: string) {
     const UserPhoneNumber = EncryptData(
       UserProfileEncrytionKey(_uid, 'PhoneNumber'),
@@ -123,11 +123,11 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
               Type: Type,
               Show: Show,
             }),
-          Deletedatabases: () => {
+          Deletedatabase: () => {
             // Delete database if by any change it has been created
             setLoading(false);
             setMainScreen('Error');
-            setErrorType('databases-not-created');
+            setErrorType('database-not-created');
           },
         });
       });

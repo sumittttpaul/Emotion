@@ -34,7 +34,7 @@ function SetupRegisterBirthdayScreen(props: SetupRegisterBirthdayScreenProps) {
     setScreen('register-profile-picture');
   };
 
-  // databases
+  // database
   const updateUserData = () => {
     if (FirebaseUser) {
       const _dataDay = DateOfBirth.split('-')[0];

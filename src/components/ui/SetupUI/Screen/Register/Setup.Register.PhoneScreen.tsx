@@ -50,7 +50,7 @@ function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
     setScreen('register-name');
   };
 
-  // databases
+  // database
   const Updatedatabase = () => {
     if (FirebaseUser) {
       const UserPhoneNumber = EncryptData(

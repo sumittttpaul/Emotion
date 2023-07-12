@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Setup',
-  description: 'Setup your Emotion Account',
+  title: 'Setup your Emotion Account',
+  description: 'Welcome to setup wizard of Emotion account | Emotion.store',
   themeColor: '#202020',
 };
 

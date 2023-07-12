@@ -8,7 +8,7 @@ import { Home_Link, Manage_Your_Account_Link } from 'routers/RouterLinks';
 import { LoaderHook } from 'hooks/Hooks.Loader';
 
 export interface SetupErrorScreenProps {
-  Type: 'databases-not-created' | 'get-user-failed' | undefined;
+  Type: 'database-not-created' | 'get-user-failed' | undefined;
   ToastTitle: string;
   ToastDescription: string;
   ClassName?: string;
@@ -46,14 +46,14 @@ function SetupErrorScreen(props: SetupErrorScreenProps) {
       <div className="max-w-[500px] space-y-5 relative w-full flex flex-col items-center justify-center overflow-hidden">
         <div className="flex">
           <SetupHeaderLabel>
-            {props.Type === 'databases-not-created' && 'Something went wrong'}
+            {props.Type === 'database-not-created' && 'Something went wrong'}
             {props.Type === 'get-user-failed' && 'Something went wrong'}
             {props.Type === undefined && props.ToastTitle}
           </SetupHeaderLabel>
         </div>
         <h6 className="font-normal text-center w-full text-white/75 text-[15px]">
-          {props.Type === 'databases-not-created' &&
-            'We apologize for the inconvenience, but there seems to be an error with the process of creation of databases.'}
+          {props.Type === 'database-not-created' &&
+            'We apologize for the inconvenience, but there seems to be an error with the process of creation of database.'}
           {props.Type === 'get-user-failed' &&
             'We apologize for the inconvenience, but there seems to be an error with the validating process.'}
           {props.Type === undefined && props.ToastDescription}
@@ -66,14 +66,14 @@ function SetupErrorScreen(props: SetupErrorScreenProps) {
               ToottipTitle={
                 (props.Type === 'get-user-failed' &&
                   'Encountered a content loading failure. To resolve the issue, we recommend refreshing the page for a fresh attempt at loading the content.') ||
-                (props.Type === 'databases-not-created' &&
+                (props.Type === 'database-not-created' &&
                   'To resolve the issue, please refresh your page to delete your account and then proceed to authenticate again. This will ensure a secure user experience.') ||
                 ''
               }
               Label={
                 (props.Type === 'get-user-failed' &&
                   'Pick up where you left off by simply reloading the page.') ||
-                (props.Type === 'databases-not-created' &&
+                (props.Type === 'database-not-created' &&
                   'Proceed a fresh start by simply reloading the page.') ||
                 ''
               }

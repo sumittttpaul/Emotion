@@ -228,7 +228,7 @@ export interface SignOutProps {
 
 export interface DeleteAccountProps {
   Loading: Dispatch<boolean>;
-  Deletedatabases: (value: string) => void;
+  Deletedatabase: (value: string) => void;
   ShowToast: (
     title: string,
     description: string,

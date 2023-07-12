@@ -139,7 +139,7 @@ type AuthAnimationType = {
   };
 };
 
-type AuthErrorType = 'databases-not-created' | 'get-user-failed' | undefined;
+type AuthErrorType = 'database-not-created' | 'get-user-failed' | undefined;
 
 type ToastSettingType = {
   Show: boolean;

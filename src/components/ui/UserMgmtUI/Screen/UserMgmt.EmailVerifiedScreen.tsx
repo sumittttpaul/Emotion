@@ -48,7 +48,7 @@ function UserMgmtEmailVerifiedScreen(props: UserMgmtEmailVerifiedScreenProps) {
     router.push(Setup_Link);
   };
 
-  // databases
+  // database
   const Updatedatabase = () => {
     if (FirebaseUser) {
       const _data: IUserProfileDataUpdate = {

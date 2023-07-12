@@ -44,8 +44,8 @@ function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
     setScreen('register-phone');
   };
 
-  // databases
-  const Updatedatabases = () => {
+  // database
+  const Updatedatabase = () => {
     if (FirebaseUser) {
       const UserEmailAddress = EncryptData(
         UserProfileEncrytionKey(FirebaseUser.uid, 'EmailAddress'),
@@ -85,7 +85,7 @@ function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
     if (ValidateEmailAddress) {
       if (FirebaseUser) {
         setLoading(true);
-        Updatedatabases();
+        Updatedatabase();
       }
     } else {
       setToast({

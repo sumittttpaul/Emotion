@@ -55,7 +55,7 @@ function SetupLoginOtherAccountScreen(
     setScreen('login-phone');
   };
 
-  // databases
+  // database
   function CreateDateBase(user: ClientUser) {
     if (user) {
       const UserFullName =
@@ -151,11 +151,11 @@ function SetupLoginOtherAccountScreen(
                 Type: Type,
                 Show: Show,
               }),
-            Deletedatabases: () => {
+            Deletedatabase: () => {
               // Delete database if by any change it has been created
               setLoading(false);
               setMainScreen('Error');
-              setErrorType('databases-not-created');
+              setErrorType('database-not-created');
             },
           });
         });

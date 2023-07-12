@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import connectdatabases from 'databases/ConnectDB';
+import connectdatabase from 'databases/ConnectDB';
 import userProfileDB from 'databases/schema/Schema.UserProfile';
 import {
   DBErrorMessage,
@@ -10,7 +10,7 @@ import { CatchError } from 'types/Error.Constructor';
 
 // GET (get a user) : http://localhost:3000/api/users/profile/[_uid]
 export async function GET(req: NextRequest, context: { params: ParamType }) {
-  connectdatabases().catch(() => {
+  connectdatabase().catch(() => {
     return NextResponse.json(DBErrorMessage, ServerErrorMessage);
   });
   try {

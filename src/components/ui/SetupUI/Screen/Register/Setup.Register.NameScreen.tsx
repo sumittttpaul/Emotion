@@ -30,7 +30,7 @@ function SetupRegisterNameScreen(props: SetupRegisterNameScreenProps) {
   // Validation
   const ValidateFullName = FullName.length > 2;
 
-  // databases
+  // database
   function Updatedatabase() {
     if (FirebaseUser) {
       const UserFullName = EncryptData(

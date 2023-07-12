@@ -9,9 +9,9 @@ function SetupContentHeader(props: IProps) {
       {/* <div className="w-full justify-start">
           <Image height={30} width={125} src="/agewear_full_white.svg" alt="" />
         </div> */}
-      <h6 className="font-[600] text-left w-full text-white text-[25px] md:text-[30px]">
+      <h2 className="font-[600] text-left w-full text-white text-[25px] md:text-[30px]">
         {props.children}
-      </h6>
+      </h2>
     </div>
   );
 }

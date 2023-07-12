@@ -11,7 +11,7 @@ import { SetupHook } from 'hooks/Hooks.Setup';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import ImageFadeTransition from 'components/transition/ImageFadeTransition';
+import Image from 'next/image';
 
 const LoadingLinearProgress = dynamic(
   () => import('components/loader/Loading.LinearProgress'),
@@ -91,15 +91,13 @@ function SetupScreenMain({
           className={`${MainClassName} relative items-center justify-center h-full w-full flex flex-col md:flex-row box-border`}
         >
           <div className="p-14 ml-14 relative hidden md:flex w-full h-full justify-center items-center">
-            {Screen !== null ? (
-              <ImageFadeTransition
+            {Screen !== null && (
+              <Image
                 height={370}
                 width={370}
                 src={ActiveImageSrc}
                 alt={ActiveImageAlt}
               />
-            ) : (
-              <div className="h-[370px] w-[370px] flex" />
             )}
           </div>
           <div className="p-5 md:p-14 md:min-w-[415px] md-1000:min-w-[500px] space-y-5 relative w-full flex flex-col items-center justify-center box-border overflow-hidden">

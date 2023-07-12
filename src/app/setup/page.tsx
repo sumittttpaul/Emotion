@@ -6,11 +6,11 @@ import SetupScreenTitle from 'components/ui/SetupUI/Setup.Screen.Title';
 import SetupScreenContent from 'components/ui/SetupUI/Setup.Screen.Content';
 
 async function Setup() {
-  const cookieStore = cookies();
-  const token = cookieStore.get('token');
-  const user = token ? await verfyIdToken(token.value) : undefined;
-  const uid = user ? user.uid : undefined;
-  const { userProfile, error } = await useUserProfile(uid); // eslint-disable-line react-hooks/rules-of-hooks
+  // const cookieStore = cookies();
+  // const token = cookieStore.get('token');
+  // const user = token ? await verfyIdToken(token.value) : undefined;
+  // const uid = user ? user.uid : undefined;
+  const { userProfile, error } = await useUserProfile(undefined); // eslint-disable-line react-hooks/rules-of-hooks
 
   return (
     <SetupScreenMain
