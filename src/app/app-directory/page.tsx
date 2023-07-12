@@ -2,7 +2,7 @@ import { ClientButton } from 'components/test/ClientButton';
 import { useUserProfile } from 'hooks/Hooks.UserProfile';
 
 async function Page() {
-  const { userProfile, error } = await useUserProfile('1234567890');
+  const { userProfile, error } = await useUserProfile('1234567890'); // eslint-disable-line react-hooks/rules-of-hooks
   return (
     <div
       id="App_Directory_Custom_Page"

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { DeviceHook } from 'hooks/Hooks.Device';
-import { SidePanel } from 'components/sidepanel/SidePanel';
+import SidePanel from 'components/sidepanel/SidePanel';
 import ContainerDark from 'components/container/ContainerDark';
 
 function HomeAndGalleryParentLayout({ children }: ChildrenType) {

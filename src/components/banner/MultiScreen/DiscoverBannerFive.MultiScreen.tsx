@@ -4,8 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { DiscoverBannerFiveContentProps } from 'contents/home/discover/Home.Discover.Banner';
 import { Rectangle_BlurDataURL } from 'components/loader/BlurDataURL';
 import { BannerSmallButtonForBannerFour } from 'components/button/banner/Banner.SmallButton.ForBannerFour';
-import { BannerTitleButton } from 'components/button/banner/Banner.TitleButton';
-import { BannerUnderlineButton } from 'components/button/banner/Banner.UnderlineButton';
+import BannerTitleButton from 'components/button/banner/Banner.TitleButton';
+import BannerUnderlineButton from 'components/button/banner/Banner.UnderlineButton';
 import useScreenSize from 'functions/ScreenSizeDetection';
 
 const ContainerStyle =

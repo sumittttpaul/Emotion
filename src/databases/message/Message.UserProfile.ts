@@ -1,9 +1,3 @@
-import {
-  IError,
-  IServerError,
-  ISuccess,
-} from 'databases/types/Type.UserProfile';
-
 export const DBCreateMessage: ISuccess = {
   name: 'Success',
   message: 'databases has been created',

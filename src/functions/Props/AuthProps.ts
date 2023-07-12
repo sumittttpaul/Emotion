@@ -5,7 +5,7 @@ export interface RecaptchaProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
   ResetCaptcha: boolean;
@@ -17,7 +17,7 @@ export interface ResendOTPProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }
@@ -31,7 +31,7 @@ export interface VerifyOTPProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }
@@ -44,7 +44,7 @@ export interface ConfirmVerifyEmailAddressProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }
@@ -56,7 +56,7 @@ export interface PasswordResentProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }
@@ -70,7 +70,7 @@ export interface ConfirmPasswordResetProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }
@@ -85,7 +85,7 @@ export interface SignInWithPhoneNumberProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }
@@ -100,7 +100,7 @@ export interface SignInWithEmailAndPasswordProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }
@@ -111,7 +111,7 @@ export interface SignInWithOtherAccountsProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }
@@ -123,7 +123,7 @@ export interface AddFullNameProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }
@@ -138,7 +138,7 @@ export interface LinkWithEmailAndPasswordProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }
@@ -153,7 +153,7 @@ export interface LinkWithPhoneNumberProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }
@@ -166,7 +166,7 @@ export interface VerifyOTPForLinkWithPhoneProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }
@@ -181,7 +181,7 @@ export interface AddPhoneNumberProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }
@@ -192,7 +192,7 @@ export interface VerifyEmailProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }
@@ -205,7 +205,7 @@ export interface UploadAvatarProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }
@@ -217,7 +217,7 @@ export interface DeleteAvatarProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }
@@ -232,7 +232,7 @@ export interface DeleteAccountProps {
   ShowToast: (
     title: string,
     description: string,
-    type: 'Error' | 'Success' | 'Info' | 'Warning',
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
     show: boolean
   ) => void;
 }

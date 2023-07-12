@@ -145,7 +145,7 @@ type ToastSettingType = {
   Show: boolean;
   Title: string;
   Description: string;
-  Type: 'Error' | 'Success' | 'Info' | 'Warning';
+  Type: 'Error' | 'Success' | 'Info' | 'Warning' | '' | '';
 };
 
 type MainScreenType = 'Error' | 'CheckInfo' | 'Finish' | 'Setup';

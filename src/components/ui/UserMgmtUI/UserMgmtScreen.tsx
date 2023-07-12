@@ -48,8 +48,8 @@ function UserMgmtScreen({
   const [PasswordResetLoading, setPasswordResetLoading] = useState(false);
   const [LoadingMode, setLoadingMode] = useState(true); // true
   const params = useSearchParams();
-  const mode = params.get('mode');
-  const oobCode = params.get('oobCode');
+  const mode = params ? params.get('mode') : null;
+  const oobCode = params ? params.get('oobCode') : null;
   const { Toast, setToast } = ToastHook();
 
   useEffect(() => {
@@ -81,7 +81,7 @@ function UserMgmtScreen({
             isEmailVerified={userProfile?._data.isVerified?.emailAddress}
           />
         )}
-        {mode === undefined && !LoadingMode && <UserMgmtErrorScreen />}
+        {!mode && !LoadingMode && <UserMgmtErrorScreen />}
         {PasswordResetLoading && <LinearProgressLaoding />}
       </main>
       <ToastDark

@@ -19,7 +19,7 @@ export interface ToastDarkProps {
     onClose: Dispatch<boolean>;
     MessageTitle: string;
     MessageDescription: string;
-    Type: 'Error' | 'Success' | 'Info' | 'Warning';
+    Type: 'Error' | 'Success' | 'Info' | 'Warning' | '';
   };
 }
 

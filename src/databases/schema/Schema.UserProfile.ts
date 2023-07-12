@@ -1,7 +1,6 @@
 'use server';
 
 import { Schema, models, model, Document, Model } from 'mongoose';
-import { IUserProfile } from 'databases/types/Type.UserProfile';
 
 export interface IUserProfileDocument extends IUserProfile, Document {}
 

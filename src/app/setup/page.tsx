@@ -10,7 +10,7 @@ async function Setup() {
   const token = cookieStore.get('token');
   const user = token ? await verfyIdToken(token.value) : undefined;
   const uid = user ? user.uid : undefined;
-  const { userProfile, error } = await useUserProfile(uid);
+  const { userProfile, error } = await useUserProfile(uid); // eslint-disable-line react-hooks/rules-of-hooks
 
   return (
     <SetupScreenMain

@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Button, Menu, MenuItem } from '@mui/material';
+import { HomeNotificationContentProps } from 'contents/home/Home.Notification';
 import Image from 'next/image';
 import HotBadge from 'components/badge/HotBadge';
 import TrendingBadge from 'components/badge/TrendingBadge';
 import NewBadge from 'components/badge/NewBadge';
-import { HomeNotificationContentProps } from '../../../contents/home/Home.Notification';
-import { MoreMenuButton } from '../MoreMenuButton/MoreMenuButton';
+import MoreMenuButton from 'components/button/MoreMenuButton/MoreMenuButton';
 
 export interface HeaderNotificationButtonMenuProps {
   ContentArray: HomeNotificationContentProps[];

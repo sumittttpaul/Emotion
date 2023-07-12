@@ -8,7 +8,7 @@ async function UserMgmt() {
   const token = cookieStore.get('token');
   const user = token ? await verfyIdToken(token.value) : undefined;
   const uid = user ? user.uid : undefined;
-  const { userProfile } = await useUserProfile(uid);
+  const { userProfile } = await useUserProfile(uid); // eslint-disable-line react-hooks/rules-of-hooks
 
   return (
     <UserMgmtScreen
