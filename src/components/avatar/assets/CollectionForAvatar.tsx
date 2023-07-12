@@ -1,8 +1,8 @@
 import { ArrowLeftIcon, DotsVerticalIcon } from '@heroicons/react/outline';
 import { IconButton } from '@mui/material';
 import { CollectionMap } from './CollectionForAvatar/CollectionMap';
-import { TooltipDark } from 'components/tooltip/TooltipDark';
 import { SetupAvatarContentProps } from 'contents/setup/Setup.Avatar';
+import TooltipDark from 'components/tooltip/TooltipDark';
 
 interface IProps {
   AvatarReducer: SetupAvatarContentProps[];

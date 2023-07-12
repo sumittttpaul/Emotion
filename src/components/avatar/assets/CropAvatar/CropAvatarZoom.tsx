@@ -1,5 +1,5 @@
 import { ZoomInIcon, ZoomOutIcon } from '@heroicons/react/outline';
-import { TooltipDark } from 'components/tooltip/TooltipDark';
+import TooltipDark from 'components/tooltip/TooltipDark';
 import { m } from 'framer-motion';
 
 interface IProps {

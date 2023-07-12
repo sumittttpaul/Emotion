@@ -1,19 +1,14 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { LoaderState } from 'contexts/ExampleState';
+import { ExampleState } from 'contexts/ExampleState';
 
 interface ContextProviderProps {
   children: ReactNode;
 }
 
-/**
- * @Layout
- * @function @ContextProvider
- **/
-
 function ContextProvider({ children }: ContextProviderProps) {
-  return <LoaderState value={{ show: false }}>{children}</LoaderState>;
+  return <ExampleState value={{ show: false }}>{children}</ExampleState>;
 }
 
 export default ContextProvider;

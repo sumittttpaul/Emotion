@@ -8,7 +8,7 @@ import {
   XIcon,
 } from '@heroicons/react/outline';
 import { UsersIcon } from '@heroicons/react/solid';
-import { TooltipDark } from 'components/tooltip/TooltipDark';
+import TooltipDark from 'components/tooltip/TooltipDark';
 import { Circle_BlurDataURL } from 'components/loader/BlurDataURL';
 import dynamic from 'next/dynamic';
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { IconButton, useTheme } from '@mui/material';
-import { TooltipDark } from 'components/tooltip/TooltipDark';
+import TooltipDark from 'components/tooltip/TooltipDark';
 import {
   SparklesIcon,
   DeviceTabletIcon,

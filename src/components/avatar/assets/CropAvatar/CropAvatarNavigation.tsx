@@ -1,5 +1,5 @@
-import { SmallIconButtonDark } from 'components/button/SmallIconButtonDark';
-import { TooltipDark } from 'components/tooltip/TooltipDark';
+import SmallIconButtonDark from 'components/button/SmallIconButtonDark';
+import TooltipDark from 'components/tooltip/TooltipDark';
 import { Button } from '@mui/material';
 
 interface IProps {

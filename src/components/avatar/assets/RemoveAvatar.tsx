@@ -5,7 +5,7 @@ import {
 } from '@heroicons/react/outline';
 import { Button } from '@mui/material';
 import { IconButton } from '@mui/material';
-import { TooltipDark } from '../../tooltip/TooltipDark';
+import TooltipDark from '../../tooltip/TooltipDark';
 import Image from 'next/image';
 import { Circle_BlurDataURL } from '../../loader/BlurDataURL';
 

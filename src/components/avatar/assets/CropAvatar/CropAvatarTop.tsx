@@ -1,6 +1,6 @@
 import { ArrowLeftIcon, DotsVerticalIcon } from '@heroicons/react/outline';
 import { IconButton } from '@mui/material';
-import { TooltipDark } from 'components/tooltip/TooltipDark';
+import TooltipDark from 'components/tooltip/TooltipDark';
 
 interface IProps {
   back: () => void;

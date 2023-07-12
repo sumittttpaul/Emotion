@@ -1,4 +1,4 @@
-import { RotateSlider } from 'components/slider/RotateSlider';
+import RotateSlider from 'components/slider/RotateSlider';
 
 interface IProps {
   setRotateValue: React.Dispatch<React.SetStateAction<number>>;

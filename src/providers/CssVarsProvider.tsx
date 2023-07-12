@@ -12,16 +12,11 @@ interface CssVarsProviderProps {
   children: ReactNode;
 }
 
-/**
- * @Layout
- * @function @CssVarsProvider
- **/
-
 function CssVarsProvider({ children }: CssVarsProviderProps) {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
-        {/* <CssBaseline /> */}
+        <CssBaseline />
         {children}
       </ThemeProvider>
     </StyledEngineProvider>

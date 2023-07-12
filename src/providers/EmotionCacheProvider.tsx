@@ -20,11 +20,6 @@ type EmotionCacheProviderProps = {
   children: React.ReactNode;
 };
 
-/**
- * @Layout
- * @function @EmotionCacheProvider
- **/
-
 function EmotionCacheProvider(props: EmotionCacheProviderProps) {
   const { options, CacheProvider = DefaultCacheProvider, children } = props;
 
