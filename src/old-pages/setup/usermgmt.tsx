@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { UserMgmtUI } from '../../components/ui/UserMgmtUI/UserMgmtUI';
+import { UserMgmtUI } from '../../components/ui/UserMgmtUI/UserMgmtScreen';
 
 /**
  * @author

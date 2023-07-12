@@ -77,7 +77,7 @@ export function SetupLoadingScreen(props: IProps) {
   );
 }
 
-export function AuthEmailVerifySkeleton(props: IProps) {
+export function SetupEmailVerifySkeleton(props: IProps) {
   return (
     <div
       className={`${props.ClassName} w-full flex space-y-3 flex-col items-center justify-center`}
@@ -114,7 +114,7 @@ export function AuthEmailVerifySkeleton(props: IProps) {
   );
 }
 
-export function AuthConfirmEmailVerifySkeleton(props: IProps) {
+export function SetupConfirmEmailVerifySkeleton(props: IProps) {
   return (
     <div
       className={`${props.ClassName} flex flex-col md:flex-row w-full items-center justify-center`}

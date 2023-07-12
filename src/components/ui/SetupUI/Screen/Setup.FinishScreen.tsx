@@ -1,19 +1,20 @@
 import Image from 'next/image';
-import Router from 'next/router';
-import { SetupHeaderLabel } from '../../../label/SetupHeaderLabel';
-import { useLoaderState } from '../../../../contexts/LoadingState';
-import { SetupSubmitButton } from '../../../button/Setup/SetupSubmitButton';
+import { useRouter } from 'next/navigation';
+import { SetupHeaderLabel } from 'components/label/SetupHeaderLabel';
+import { SetupSubmitButton } from 'components/button/Setup/SetupSubmitButton';
+import { LoaderHook } from 'hooks/Hooks.Loader';
 
 export interface SetupFinishScreenProps {
   ClassName: string;
 }
 
 function SetupFinishScreen(props: SetupFinishScreenProps) {
-  const { setLoader } = useLoaderState();
+  const { setLoader } = LoaderHook();
+  const router = useRouter();
 
   const handleFinish = () => {
-    setLoader({ show: true });
-    Router.push('/');
+    setLoader(true);
+    router.push('/');
   };
 
   return (

@@ -1,149 +1,85 @@
+'use client';
+
 import Image from 'next/image';
-import React, {
-  Dispatch,
-  FC,
-  Fragment,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
-import { SetupHeaderLabel } from '../../../label/SetupHeaderLabel';
-import { SignInBackButton } from '../../../button/Setup/SignInBackButton';
-import { AuthAnimationType } from '../AuthScreenType';
-import { SignInNextButton } from '../../../button/Setup/SignInNextButton';
-import { ConfirmVerifyEmailAddress } from '../../../../functions/AuthAlgorithms';
-// import { useQueryClient, useMutation } from 'react-query';
-import { useAuth } from '../../../../authentication/useClientAuth';
-import {
-  _userProfileEndURL as cacheKey,
-  putUserProfile,
-  getUserProfile,
-} from '../../../../databases/helper/Helper.UserProfile';
-import { IUserProfileDataUpdate } from '../../../../databases/schema/Schema.UserProfile';
-import { AuthConfirmEmailVerifySkeleton } from '../../SetupUI/Screen/Setup.LoadingScreen';
-import { useLoaderState } from '../../../../contexts/LoadingState';
-import router from 'next/router';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Home_Link,
   Manage_Your_Account_Link,
   Setup_Link,
-} from '../../../../routers/RouterLinks';
+} from 'routers/RouterLinks';
+import { SignInNextButton } from 'components/button/Setup/SignInNextButton';
+import { SignInBackButton } from 'components/button/Setup/SignInBackButton';
+import { SetupHeaderLabel } from 'components/label/SetupHeaderLabel';
+import { SetupConfirmEmailVerifySkeleton } from 'components/ui/SetupUI/Screen/Setup.LoadingScreen';
+import { ConfirmVerifyEmailAddress } from 'functions/AuthAlgorithms';
+import { LoaderHook } from 'hooks/Hooks.Loader';
+import { ToastHook } from 'hooks/Hooks.Toast';
+import useClientAuth from 'authentication/useClientAuth';
+import OperateUserProfile from 'databases/controller/Controller.UserProfile';
 
-export interface UserMgmtEmailVerifiedAuthUIProps {
-  BodyClassName: string;
-  oobCode: string | string[] | undefined;
-  isEmailVerified: boolean | undefined;
+export interface UserMgmtEmailVerifiedScreenProps {
+  MainClassName: string;
+  oobCode: string | null;
   Animation: AuthAnimationType;
-  Toast: boolean;
-  setToast: Dispatch<SetStateAction<boolean>>;
-  ToastSetting: { Title: string; Description: string; Type: string };
-  setToastSetting: Dispatch<
-    SetStateAction<{ Title: string; Description: string; Type: string }>
-  >;
+  isEmailVerified?: boolean;
 }
 
-/**
- * @author
- * @function @UserMgmtEmailVerifiedAuthUI
- **/
-
-export const UserMgmtEmailVerifiedAuthUI: FC<
-  UserMgmtEmailVerifiedAuthUIProps
-> = (props) => {
-  const { FirebaseUser } = useClientAuth();
-  const queryClient = useQueryClient();
-  const updateUserProfile = useMutation(
-    (data: IUserProfileDataUpdate) => putUserProfile(FirebaseUser?.uid, data),
-    {
-      onSuccess: async () => {
-        await queryClient.prefetchQuery([cacheKey, FirebaseUser?.uid], () =>
-          getUserProfile(FirebaseUser?.uid)
-        );
-        setLoading(false);
-        setScreen('Success');
-      },
-      onError: (error: Error) => {
-        setLoading(false);
-        setScreen('Error');
-        ShowToast(error.name, error.message, 'Error', true);
-      },
-    }
-  );
-
-  // State
+function UserMgmtEmailVerifiedScreen(props: UserMgmtEmailVerifiedScreenProps) {
   const [Loading, setLoading] = useState(true); // true
   const [Screen, setScreen] = useState<'Success' | 'Error' | null>(null);
-
-  // Loading
-  const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => setLoader({ show: value });
-
-  // Toast
-  const ShowToast = (
-    title: string,
-    description: string,
-    type: string,
-    show: boolean
-  ) => {
-    props.setToastSetting({
-      Title: title,
-      Description: description,
-      Type: type,
-    });
-    props.setToast(show);
-  };
-  const handleShowToast = (
-    title: string,
-    description: string,
-    type: string
-  ) => {
-    props.setToastSetting({
-      Title: title,
-      Description: description,
-      Type: type,
-    });
-    props.setToast(false);
-  };
+  const { FirebaseUser } = useClientAuth();
+  const { Toast, setToast } = ToastHook();
+  const { setLoader } = LoaderHook();
+  const router = useRouter();
 
   const handleBackToHome = () => {
-    LoadingScreen(true);
+    setLoader(true);
     router.push(Home_Link);
   };
 
   const handleMoveToManageAccount = () => {
-    LoadingScreen(true);
+    setLoader(true);
     router.push(Manage_Your_Account_Link);
   };
 
   const handleContinueWithSetup = () => {
-    LoadingScreen(true);
+    setLoader(true);
     router.push(Setup_Link);
   };
 
   // databases
-  const Updatedatabases = () => {
+  const Updatedatabase = () => {
     if (FirebaseUser) {
-      try {
-        const _data: IUserProfileDataUpdate = {
-          '_data.isVerified.emailAddress': true,
-        };
-        updateUserProfile.mutate(_data);
-      } catch (error: unknown) {
-        if (error instanceof Error) {
+      const _data: IUserProfileDataUpdate = {
+        '_data.isVerified.emailAddress': true,
+      };
+      OperateUserProfile('UPDATE', { uid: FirebaseUser.uid, update: _data })
+        .then(() => {
           setLoading(false);
-          setScreen('Error');
-          ShowToast('Something went wrong', `${error.message}`, 'Error', true);
-        }
-      }
+          setScreen('Success');
+        })
+        .catch((error) => {
+          if (error instanceof Error) {
+            setScreen('Error');
+            setLoading(false);
+            setToast({
+              Title: error.name,
+              Description: error.message,
+              Type: 'Error',
+              Show: true,
+            });
+          }
+        });
     } else {
       setLoading(false);
       setScreen('Error');
-      ShowToast(
-        'Something went wrong',
-        'It seems like user is not exist.',
-        'Error',
-        true
-      );
+      setToast({
+        Title: 'Something went wrong',
+        Description: 'It seems like user is not exist.',
+        Type: 'Error',
+        Show: true,
+      });
     }
   };
 
@@ -153,8 +89,14 @@ export const UserMgmtEmailVerifiedAuthUI: FC<
         oobCode: props.oobCode.toString(),
         Screen: setScreen,
         Loading: setLoading,
-        ShowToast: handleShowToast,
-        Updatedatabases: Updatedatabases,
+        Updatedatabase: Updatedatabase,
+        ShowToast: (Title, Description, Type, Show) =>
+          setToast({
+            Title: Title,
+            Description: Description,
+            Type: Type,
+            Show: Show,
+          }),
       });
     } else {
       if (props.isEmailVerified !== undefined) setLoading(false);
@@ -164,12 +106,12 @@ export const UserMgmtEmailVerifiedAuthUI: FC<
   }, [props.oobCode, props.isEmailVerified]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Fragment>
+    <>
       {Loading && (
-        <AuthConfirmEmailVerifySkeleton ClassName={props.BodyClassName} />
+        <SetupConfirmEmailVerifySkeleton ClassName={props.MainClassName} />
       )}
       {Screen === 'Success' && (
-        <Fragment>
+        <>
           <div className="pt-20 pb-7 md:p-14 md:ml-14 relative flex w-full h-full justify-center items-center">
             <div className="flex h-[125px] md:h-auto">
               <Image
@@ -203,10 +145,10 @@ export const UserMgmtEmailVerifiedAuthUI: FC<
               HomeClick={handleBackToHome}
             />
           </div>
-        </Fragment>
+        </>
       )}
       {Screen === 'Error' && (
-        <Fragment>
+        <>
           <div className="pt-20 pb-7 md:p-14 md:ml-14 relative flex w-full h-full justify-center items-center">
             <div className="flex h-[125px] md:h-auto">
               <Image
@@ -228,14 +170,14 @@ export const UserMgmtEmailVerifiedAuthUI: FC<
                 alt=""
               />
               <SetupHeaderLabel>
-                {props.ToastSetting?.Title
-                  ? props.ToastSetting.Title
+                {Toast?.Title && Toast.Title.length > 0
+                  ? Toast.Title
                   : 'Something went wrong'}
               </SetupHeaderLabel>
             </div>
             <h6 className="font-normal text-center w-full text-white/75 text-[15px] px-5">
-              {props.ToastSetting?.Description
-                ? props.ToastSetting.Description
+              {Toast?.Description && Toast.Description.length > 0
+                ? Toast.Description
                 : 'We apologize for the inconvenience, but there seems to be an error with the email verification process.'}
             </h6>
             <BottomLinkButton
@@ -244,17 +186,17 @@ export const UserMgmtEmailVerifiedAuthUI: FC<
               HomeClick={handleBackToHome}
             />
           </div>
-        </Fragment>
+        </>
       )}
-    </Fragment>
+    </>
   );
-};
+}
 
-const BottomLinkButton = (props: {
+function BottomLinkButton(props: {
   ManageAccountClick: () => void;
   SetupClick: () => void;
   HomeClick: () => void;
-}) => {
+}) {
   return (
     <div className="w-full flex-col space-y-2">
       <div className="px-5 w-full flex justify-start items-center">
@@ -274,4 +216,6 @@ const BottomLinkButton = (props: {
       </div>
     </div>
   );
-};
+}
+
+export default UserMgmtEmailVerifiedScreen;

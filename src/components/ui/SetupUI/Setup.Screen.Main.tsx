@@ -9,6 +9,7 @@ import { LazyMotion, domAnimation } from 'framer-motion';
 import { SetupImages } from 'contents/setup/Setup.Image';
 import { SetupHook } from 'hooks/Hooks.Setup';
 import { ToastHook } from 'hooks/Hooks.Toast';
+import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import ImageFadeTransition from 'components/transition/ImageFadeTransition';
 
@@ -36,17 +37,41 @@ const SetupSkipDialog = dynamic<SetupSkipDialogProps>(
 interface IProps {
   children: React.ReactNode;
   MainClassName: string;
+  userProfileError?: IError;
 }
 
-function SetupScreenMain({ children, MainClassName }: IProps) {
-  const { MainScreen, ErrorType, Screen, Loading, SkipDialog, setSkipDialog } =
-    SetupHook();
+function SetupScreenMain({
+  children,
+  MainClassName,
+  userProfileError,
+}: IProps) {
+  const {
+    MainScreen,
+    ErrorType,
+    Screen,
+    Loading,
+    SkipDialog,
+    setSkipDialog,
+    setMainScreen,
+  } = SetupHook();
   const { Toast, setToast } = ToastHook();
 
   const ActiveImageSrc =
     SetupImages.find((value) => Screen === value.Alt)?.Image || '';
   const ActiveImageAlt =
     SetupImages.find((value) => Screen === value.Alt)?.Alt || '';
+
+  useEffect(() => {
+    if (userProfileError) {
+      setMainScreen('Error');
+      setToast({
+        Title: userProfileError.name,
+        Description: userProfileError.message,
+        Type: 'Error',
+        Show: false,
+      });
+    }
+  }, [userProfileError]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <LazyMotion features={domAnimation} strict>

@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import router from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { m } from 'framer-motion';
 import { Button } from '@mui/material';
@@ -48,6 +48,7 @@ function SetupLoginOtherAccountScreen(
   const { setScreen, setLoading, setErrorType, setMainScreen } = SetupHook();
   const { setLoader } = LoaderHook();
   const { setToast } = ToastHook();
+  const router = useRouter();
 
   // Screens
   const BackToSignInWithPhoneNumber = () => {
@@ -285,7 +286,7 @@ function SetupLoginOtherAccountScreen(
     ) {
       setLoader(true);
       setLoading(false);
-      router.redirect('/');
+      router.push('/');
     }
   }, [PrevFullName, PrevPhotoUrl, NewFullName, NewPhotoUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 

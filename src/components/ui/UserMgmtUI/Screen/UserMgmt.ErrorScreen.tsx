@@ -1,35 +1,24 @@
-/* eslint-disable @typescript-eslint/no-empty-interface */
-import React, { FC } from 'react';
+'use client';
+
 import Image from 'next/image';
-import { SignInBackButton } from '../../button/Auth/SignInBackButton';
-import { SignInNextButton } from '../../button/Auth/SignInNextButton';
-import { SetupHeaderLabel } from '../../label/SetupHeaderLabel';
-import { useLoaderState } from '../../../contexts/LoadingState';
-import router from 'next/router';
-import {
-  Home_Link,
-  Manage_Your_Account_Link,
-} from '../../../routers/RouterLinks';
+import { useRouter } from 'next/navigation';
+import { SetupHeaderLabel } from 'components/label/SetupHeaderLabel';
+import { Home_Link, Manage_Your_Account_Link } from 'routers/RouterLinks';
+import { SignInBackButton } from 'components/button/Setup/SignInBackButton';
+import { SignInNextButton } from 'components/button/Setup/SignInNextButton';
+import { LoaderHook } from 'hooks/Hooks.Loader';
 
-export interface UserMgmtErrorAuthUIProps {}
-
-/**
- * @author
- * @function @UserMgmtErrorAuthUI
- **/
-
-export const UserMgmtErrorAuthUI: FC<UserMgmtErrorAuthUIProps> = () => {
-  // Loading
-  const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => setLoader({ show: value });
+function UserMgmtErrorScreen() {
+  const { setLoader } = LoaderHook();
+  const router = useRouter();
 
   const handleBackToHome = () => {
-    LoadingScreen(true);
+    setLoader(true);
     router.push(Home_Link);
   };
 
   const handleMoveToManageAccount = () => {
-    LoadingScreen(true);
+    setLoader(true);
     router.push(Manage_Your_Account_Link);
   };
 
@@ -64,4 +53,6 @@ export const UserMgmtErrorAuthUI: FC<UserMgmtErrorAuthUIProps> = () => {
       </div>
     </div>
   );
-};
+}
+
+export default UserMgmtErrorScreen;

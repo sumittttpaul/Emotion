@@ -1,7 +1,7 @@
 'use client';
 
 /* eslint-disable @typescript-eslint/no-empty-function */
-import router from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import useClientAuth from 'authentication/useClientAuth';
 import { useState } from 'react';
@@ -36,6 +36,7 @@ function SetupCheckDialog(props: SetupCheckDialogProps) {
   const { FirebaseUser } = useClientAuth();
   const { setLoader } = LoaderHook();
   const { setToast } = ToastHook();
+  const router = useRouter();
 
   const handleDontUpdate = () => {
     if (FirebaseUser) {
@@ -50,7 +51,7 @@ function SetupCheckDialog(props: SetupCheckDialogProps) {
         .then(() => {
           setLoader(true);
           setLoading(false);
-          router.redirect(Home_Link);
+          router.push(Home_Link);
         })
         .catch((error) => {
           setLoading(false);
@@ -121,7 +122,7 @@ function SetupCheckDialog(props: SetupCheckDialogProps) {
               .then(() => {
                 setLoader(true);
                 setLoading(false);
-                router.redirect(Home_Link);
+                router.push(Home_Link);
               })
               .catch((error: unknown) => {
                 if (error instanceof Error) {

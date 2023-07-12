@@ -1,15 +1,11 @@
 import Image from 'next/image';
-import router from 'next/navigation';
-import Router from 'next/router';
-import { SetupHeaderLabel } from '../../../label/SetupHeaderLabel';
-import { SignInBackButton } from '../../../button/Setup/SignInBackButton';
-import { SignInNextButton } from '../../../button/Setup/SignInNextButton';
-import { YellowBulbHint } from '../../../hint/YellowBulbHint';
-import {
-  Home_Link,
-  Manage_Your_Account_Link,
-} from '../../../../routers/RouterLinks';
-import { useLoaderState } from '../../../../contexts/LoadingState';
+import { useRouter } from 'next/navigation';
+import { SetupHeaderLabel } from 'components/label/SetupHeaderLabel';
+import { SignInBackButton } from 'components/button/Setup/SignInBackButton';
+import { SignInNextButton } from 'components/button/Setup/SignInNextButton';
+import { YellowBulbHint } from 'components/hint/YellowBulbHint';
+import { Home_Link, Manage_Your_Account_Link } from 'routers/RouterLinks';
+import { LoaderHook } from 'hooks/Hooks.Loader';
 
 export interface SetupErrorScreenProps {
   Type: 'databases-not-created' | 'get-user-failed' | undefined;
@@ -19,22 +15,21 @@ export interface SetupErrorScreenProps {
 }
 
 function SetupErrorScreen(props: SetupErrorScreenProps) {
-  // Loading
-  const { setLoader } = useLoaderState();
-  const LoadingScreen = (value: boolean) => setLoader({ show: value });
+  const { setLoader } = LoaderHook();
+  const router = useRouter();
 
   const handleBackToHome = () => {
-    LoadingScreen(true);
-    router.redirect(Home_Link);
+    setLoader(true);
+    router.push(Home_Link);
   };
 
   const handleMoveToManageAccount = () => {
-    LoadingScreen(true);
-    router.redirect(Manage_Your_Account_Link);
+    setLoader(true);
+    router.push(Manage_Your_Account_Link);
   };
 
   const handleReloadThePage = () => {
-    Router.reload();
+    router.refresh();
   };
 
   return (

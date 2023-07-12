@@ -10,10 +10,13 @@ async function Setup() {
   const token = cookieStore.get('token');
   const user = token ? await verfyIdToken(token.value) : undefined;
   const uid = user ? user.uid : undefined;
-  const { userProfile } = await useUserProfile(uid);
+  const { userProfile, error } = await useUserProfile(uid);
 
   return (
-    <SetupScreenMain MainClassName="h-full md:h-[652px]">
+    <SetupScreenMain
+      userProfileError={error}
+      MainClassName="h-full md:h-[652px]"
+    >
       <SetupScreenTitle />
       <SetupScreenContent
         userProfile={userProfile}

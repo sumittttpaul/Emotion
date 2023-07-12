@@ -135,7 +135,7 @@ export async function VerifyOTP({
           else {
             LoadingScreen(true);
             Loading(false);
-            router.redirect(Home_Link);
+            router.push(Home_Link);
           }
         }
       }
@@ -348,7 +348,7 @@ export async function SignInWithEmailAndPassword({
     .then(() => {
       LoadingScreen(true);
       Loading(false);
-      router.redirect(Home_Link);
+      router.push(Home_Link);
     })
     .catch((error) => {
       BackToEmailScreen();

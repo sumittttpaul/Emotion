@@ -10,9 +10,9 @@ function SetupLayout({ children }: ChildrenType) {
   return (
     <>
       <div className="md:bg-[#0f0f0f] flex md:p-[32px] items-start md:items-center justify-center h-full md:h-screen w-screen overflow-hidden">
-        <main className="relative bg-[#202020] md:rounded-xl w-full md:max-w-[1040px] flex items-center justify-center overflow-hidden">
+        <div className="relative bg-[#202020] md:rounded-xl w-full md:max-w-[1040px] flex items-center justify-center overflow-hidden">
           {children}
-        </main>
+        </div>
       </div>
       <div
         id="verify-sign-in-recaptcha"
