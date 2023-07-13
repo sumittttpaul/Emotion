@@ -244,6 +244,11 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            ResetCaptcha={ResetCaptcha}
+            setScreen={setScreen}
+            setLoading={setLoading}
+            setResetCaptcha={setResetCaptcha}
+            setSkipDialog={setSkipDialog}
             CheckInfoHandler={() => SetCheckInfo('after-phone')} // For "I will add later" button
           />
         )}
@@ -252,6 +257,9 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            setScreen={setScreen}
+            setLoading={setLoading}
+            setResetCaptcha={setResetCaptcha}
             CheckInfoHandler={() => SetCheckInfo('after-phone')}
           />
         )}
@@ -260,6 +268,9 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            setScreen={setScreen}
+            setLoading={setLoading}
+            setSkipDialog={setSkipDialog}
             CheckInfoHandler={() => SetCheckInfo('after-email')} // For "I will add later" button
           />
         )}
@@ -268,6 +279,8 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            setLoading={setLoading}
+            setScreen={setScreen}
             CheckInfoHandler={() => SetCheckInfo('after-email')}
           />
         )}
@@ -276,6 +289,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            setLoading={setLoading}
             CheckInfoHandler={() => SetCheckInfo('after-verify-email')}
           />
         )}
@@ -284,6 +298,8 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            setScreen={setScreen}
+            setSkipDialog={setSkipDialog}
             CheckInfoHandler={() => SetCheckInfo('after-profile-picture')}
           />
         )}
@@ -292,6 +308,9 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            setLoading={setLoading}
+            setScreen={setScreen}
+            setSkipDialog={setSkipDialog}
             CheckInfoHandler={() => SetCheckInfo('after-date-of-birth')}
           />
         )}
@@ -300,6 +319,9 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            setLoading={setLoading}
+            setScreen={setScreen}
+            setSkipDialog={setSkipDialog}
             CheckInfoHandler={() => SetCheckInfo('after-gender')}
           />
         )}

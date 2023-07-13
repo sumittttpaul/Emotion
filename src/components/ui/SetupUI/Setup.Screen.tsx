@@ -6,11 +6,10 @@ import SetupScreenContent from 'components/ui/SetupUI/Setup.Screen.Content';
 import { useState } from 'react';
 
 function SetupScreen() {
-  // IMP : Screen = null, MainScreen = CheckInfo
   const [ResetCaptcha, setResetCaptcha] = useState(false);
   const [SkipDialog, setSkipDialog] = useState(false);
   const [Loading, setLoading] = useState(false);
-  const [Screen, setScreen] = useState<AuthScreenType>(null); // null
+  const [Screen, setScreen] = useState<AuthScreenType>(undefined);
   const [ErrorType, setErrorType] = useState<AuthErrorType>(undefined);
   const [MainScreen, setMainScreen] = useState<AuthMainScreenType>('CheckInfo'); // CheckInfo
 
@@ -37,6 +36,8 @@ function SetupScreen() {
         ResetCaptcha={ResetCaptcha}
         setMainScreen={setMainScreen}
         setResetCaptcha={setResetCaptcha}
+        setSkipDialog={setSkipDialog}
+        setLoading={setLoading}
         Animation={{
           Initial: { x: 50, opacity: 0 },
           Final: { x: 0, opacity: 1 },
