@@ -25,6 +25,7 @@ export interface SetupLoginOTPScreenProps {
   setErrorType: Dispatch<AuthErrorType>;
   setMainScreen: Dispatch<AuthMainScreenType>;
   setResetCaptcha: Dispatch<boolean>;
+  Loading: boolean;
 }
 
 function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
@@ -200,6 +201,7 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
           setOTP5={(value) => setOTPs({ ...OTPs, OTP5: value })}
           setOTP6={(value) => setOTPs({ ...OTPs, OTP6: value })}
           HandleSubmit={OTPSubmitClick}
+          Loading={props.Loading}
         />
         <div className="w-full flex justify-start h-8">
           {Bool ? (

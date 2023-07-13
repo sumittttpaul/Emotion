@@ -18,6 +18,7 @@ export interface SetupLoginPhoneScreenProps {
   setLoading: Dispatch<boolean>;
   ResetCaptcha: boolean;
   setResetCaptcha: Dispatch<boolean>;
+  Loading: boolean;
 }
 
 function SetupLoginPhoneScreen(props: SetupLoginPhoneScreenProps) {
@@ -86,6 +87,7 @@ function SetupLoginPhoneScreen(props: SetupLoginPhoneScreenProps) {
           setValue={setPhoneNumber}
           HandleSubmit={PhoneSubmitClick}
           ValidateValue={ValidatePhoneNumber}
+          Loading={props.Loading}
         />
         <div className="w-full flex flex-col space-y-1">
           <div className="w-full flex justify-start">

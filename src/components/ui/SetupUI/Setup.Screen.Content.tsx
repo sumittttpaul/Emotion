@@ -126,6 +126,7 @@ interface IProps {
   Animation: AuthAnimationType;
   Screen: AuthScreenType;
   ResetCaptcha: boolean;
+  Loading: boolean;
   setLoading: Dispatch<boolean>;
   setSkipDialog: Dispatch<boolean>;
   setResetCaptcha: Dispatch<boolean>;
@@ -139,6 +140,7 @@ function SetupScreenContent({
   AnimationDivClassName,
   Animation,
   Screen,
+  Loading,
   ResetCaptcha,
   setSkipDialog,
   setScreen,
@@ -172,6 +174,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            Loading={Loading}
             ResetCaptcha={ResetCaptcha}
             setScreen={setScreen}
             setLoading={setLoading}
@@ -183,6 +186,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            Loading={Loading}
             setScreen={setScreen}
           />
         )}
@@ -203,6 +207,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            Loading={Loading}
             setScreen={setScreen}
             setLoading={setLoading}
             setErrorType={setErrorType}
@@ -216,6 +221,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            Loading={Loading}
             setScreen={setScreen}
             setLoading={setLoading}
           />
@@ -234,6 +240,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            Loading={Loading}
             setLoading={setLoading}
             setSkipDialog={setSkipDialog}
             CheckInfoHandler={() => SetCheckInfo('after-name')}
@@ -244,6 +251,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            Loading={Loading}
             ResetCaptcha={ResetCaptcha}
             setScreen={setScreen}
             setLoading={setLoading}
@@ -257,6 +265,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            Loading={Loading}
             setScreen={setScreen}
             setLoading={setLoading}
             setResetCaptcha={setResetCaptcha}
@@ -268,6 +277,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            Loading={Loading}
             setScreen={setScreen}
             setLoading={setLoading}
             setSkipDialog={setSkipDialog}
@@ -279,6 +289,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            Loading={Loading}
             setLoading={setLoading}
             setScreen={setScreen}
             CheckInfoHandler={() => SetCheckInfo('after-email')}

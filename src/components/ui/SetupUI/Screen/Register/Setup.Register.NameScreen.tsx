@@ -20,6 +20,7 @@ export interface SetupRegisterNameScreenProps {
   CheckInfoHandler: VoidType;
   setSkipDialog: Dispatch<boolean>;
   setLoading: Dispatch<boolean>;
+  Loading: boolean;
 }
 
 function SetupRegisterNameScreen(props: SetupRegisterNameScreenProps) {
@@ -106,6 +107,7 @@ function SetupRegisterNameScreen(props: SetupRegisterNameScreenProps) {
           setValue={setFullName}
           ValidateValue={ValidateFullName}
           HandleSubmit={FullNameSubmitClick}
+          Loading={props.Loading}
         />
         <div className="w-full flex justify-start">
           <SignInNextButton

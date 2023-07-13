@@ -20,6 +20,7 @@ export interface SetupRegisterPasswordScreenProps {
   CheckInfoHandler: VoidType;
   setScreen: Dispatch<AuthScreenType>;
   setLoading: Dispatch<boolean>;
+  Loading: boolean;
 }
 
 function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
@@ -99,6 +100,7 @@ function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
           setValue={setPassword}
           ValidateValue={ValidatePassword}
           HandleSubmit={PasswordSubmitClick}
+          Loading={props.Loading}
         />
         <div className="opacity-75 flex space-x-2 w-full">
           <TooltipDark

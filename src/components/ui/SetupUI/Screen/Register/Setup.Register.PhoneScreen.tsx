@@ -24,6 +24,7 @@ export interface SetupRegisterPhoneScreenProps {
   setResetCaptcha: Dispatch<boolean>;
   setSkipDialog: Dispatch<boolean>;
   setLoading: Dispatch<boolean>;
+  Loading: boolean;
 }
 
 function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
@@ -126,6 +127,7 @@ function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
           setValue={setPhoneNumber}
           HandleSubmit={PhoneSubmitClick}
           ValidateValue={ValidatePhoneNumber}
+          Loading={props.Loading}
         />
         <div className="w-full flex flex-col space-y-1">
           <div className="w-full flex justify-start">

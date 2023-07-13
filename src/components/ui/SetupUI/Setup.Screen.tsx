@@ -31,6 +31,7 @@ function SetupScreen() {
         AnimationDivClassName="h-[350px]"
         ContentClassName="h-[300px]"
         Screen={Screen}
+        Loading={Loading}
         setScreen={setScreen}
         setErrorType={setErrorType}
         ResetCaptcha={ResetCaptcha}

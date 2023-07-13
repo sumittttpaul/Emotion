@@ -21,6 +21,7 @@ export interface SetupRegisterEmailScreenProps {
   setScreen: Dispatch<AuthScreenType>;
   setSkipDialog: Dispatch<boolean>;
   setLoading: Dispatch<boolean>;
+  Loading: boolean;
 }
 
 function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
@@ -114,6 +115,7 @@ function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
           setValue={setEmailAddress}
           HandleSubmit={EmailSubmitClick}
           ValidateValue={ValidateEmailAddress}
+          Loading={props.Loading}
         />
         <div className="w-full flex flex-col space-y-1">
           <div className="w-full flex justify-start">

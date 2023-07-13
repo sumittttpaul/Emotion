@@ -1,6 +1,5 @@
 'use client';
 
-import { SetupHook } from 'hooks/Hooks.UserProfile';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { useState } from 'react';
 import IconTextFieldDark from 'components/textfield/IconTextFieldDark';
@@ -11,6 +10,7 @@ interface IProps {
   setValue: Dispatch<string>;
   ValidateValue: boolean;
   HandleSubmit: VoidType;
+  Loading: boolean;
 }
 
 function SetupIconTextField({
@@ -19,10 +19,10 @@ function SetupIconTextField({
   setValue,
   ValidateValue,
   HandleSubmit,
+  Loading,
 }: IProps) {
   const [ValueError, setValueError] = useState(false);
   const { Toast, setToast } = ToastHook();
-  const { Loading } = SetupHook();
 
   const ValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);

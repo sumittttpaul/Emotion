@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { SetupHook } from 'hooks/Hooks.UserProfile';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { InputNumberOnly } from 'functions/UIAlgorithms';
 import IconNumberTextFieldDark from 'components/textfield/IconNumberTextFieldDark';
@@ -11,6 +10,7 @@ interface IProps {
   setValue: Dispatch<string>;
   ValidateValue: boolean;
   HandleSubmit: VoidType;
+  Loading: boolean;
 }
 
 function SetupIconNumberTextField({
@@ -18,9 +18,9 @@ function SetupIconNumberTextField({
   setValue,
   ValidateValue,
   HandleSubmit,
+  Loading,
 }: IProps) {
   const [ValueError, setValueError] = useState(false);
-  const { Loading } = SetupHook();
   const { Toast, setToast } = ToastHook();
 
   const ValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {

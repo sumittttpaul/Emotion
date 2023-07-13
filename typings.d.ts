@@ -150,21 +150,6 @@ type ToastSettingType = {
 
 type AuthMainScreenType = 'Error' | 'CheckInfo' | 'Finish' | 'Setup';
 
-interface ISetupHook {
-  ResetCaptcha: boolean;
-  setResetCaptcha: Dispatch<boolean>;
-  SkipDialog: boolean;
-  setSkipDialog: Dispatch<boolean>;
-  Loading: boolean;
-  setLoading: Dispatch<boolean>;
-  MainScreen: AuthMainScreenType;
-  setMainScreen: Dispatch<AuthMainScreenType>;
-  ErrorType: AuthErrorType;
-  setErrorType: Dispatch<AuthErrorType>;
-  Screen: AuthScreenType;
-  setScreen: Dispatch<AuthScreenType>;
-}
-
 interface IToastHook {
   Toast: ToastSettingType;
   setToast: Dispatch<ToastSettingType>;

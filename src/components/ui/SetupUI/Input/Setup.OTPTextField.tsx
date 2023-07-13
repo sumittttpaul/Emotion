@@ -7,7 +7,6 @@ import {
   InputNumberOnly,
 } from 'functions/UIAlgorithms';
 import { LoaderHook } from 'hooks/Hooks.Loader';
-import { SetupHook } from 'hooks/Hooks.UserProfile';
 
 interface IProps {
   OTP1: string;
@@ -23,6 +22,7 @@ interface IProps {
   OTP6: string;
   setOTP6: Dispatch<string>;
   HandleSubmit: VoidType;
+  Loading: boolean;
 }
 
 function SetupOTPTextField({
@@ -39,9 +39,9 @@ function SetupOTPTextField({
   OTP6,
   setOTP6,
   HandleSubmit,
+  Loading,
 }: IProps) {
   const { Loader } = LoaderHook();
-  const { Loading } = SetupHook();
 
   const OTP1Change = (event: React.ChangeEvent<HTMLInputElement>) => {
     setOTP1(event.target.value.trim());

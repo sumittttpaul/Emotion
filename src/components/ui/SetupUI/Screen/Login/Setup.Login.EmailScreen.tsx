@@ -14,6 +14,7 @@ export interface SetupLoginEmailScreenProps {
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
   setScreen: Dispatch<AuthScreenType>;
+  Loading: boolean;
 }
 
 function SetupLoginEmailScreen(props: SetupLoginEmailScreenProps) {
@@ -70,6 +71,7 @@ function SetupLoginEmailScreen(props: SetupLoginEmailScreenProps) {
           setValue={setEmailAddress}
           HandleSubmit={EmailSubmitClick}
           ValidateValue={ValidateEmailAddress}
+          Loading={props.Loading}
         />
         <div className="w-full flex flex-col space-y-1">
           <div className="w-full flex justify-start">

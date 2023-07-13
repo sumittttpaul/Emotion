@@ -18,6 +18,7 @@ export interface SetupLoginPasswordScreenProps {
   Animation: AuthAnimationType;
   setScreen: Dispatch<AuthScreenType>;
   setLoading: Dispatch<boolean>;
+  Loading: boolean;
 }
 
 function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
@@ -101,6 +102,7 @@ function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
           setValue={setPassword}
           ValidateValue={ValidatePassword}
           HandleSubmit={PasswordSubmitClick}
+          Loading={props.Loading}
         />
         <div className="w-full flex flex-col space-y-1">
           <div className="w-full flex justify-start">
