@@ -8,12 +8,12 @@ import {
 } from 'routers/RouterLinks';
 import Image from 'next/image';
 import UserIcon from '../../../../public/icons/user-fill.svg';
-import { ClientUser } from 'authentication/useClientAuth';
+import { ClientUserType } from 'authentication/useClientAuth';
 
 export interface HeaderUserButtonMenuProps {
   anchorEl: null | HTMLElement;
   open: boolean;
-  user: ClientUser;
+  user: ClientUserType;
   handleClose: () => void;
   SignOutUser: () => void;
   LoadingScreen: (value: boolean) => void;

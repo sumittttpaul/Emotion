@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic';
 import { HeaderUserButtonMenuProps } from '../Header.UserButton.Menu';
 import { SignOut } from 'functions/AuthAlgorithms';
 import { LoaderHook } from 'hooks/Hooks.Loader';
-import useClientAuth, { ClientUser } from 'authentication/useClientAuth';
+import useClientAuth, { ClientUserType } from 'authentication/useClientAuth';
 
 const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
   () => import('../Header.UserButton.Menu'),
@@ -56,7 +56,7 @@ interface ContainerButtonProps {
   children: React.ReactNode;
 }
 interface UserButtonProps {
-  user: ClientUser;
+  user: ClientUserType;
 }
 
 function LoginButton(props: LoginButtonProps) {

@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { ClientUser } from '../../authentication/useClientAuth';
+import { ClientUserType } from '../../authentication/useClientAuth';
 
 export interface RecaptchaProps {
   ShowToast: (
@@ -106,8 +106,8 @@ export interface SignInWithEmailAndPasswordProps {
 }
 export interface SignInWithOtherAccountsProps {
   Loading: Dispatch<boolean>;
-  Checkdatabase: (user: ClientUser) => void;
-  CreateDateBase: (user: ClientUser) => void;
+  Checkdatabase: (user: ClientUserType) => void;
+  CreateDateBase: (user: ClientUserType) => void;
   ShowToast: (
     title: string,
     description: string,

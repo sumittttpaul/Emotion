@@ -18,7 +18,9 @@ import { SetupRegisterVerifyEmailScreenProps } from 'components/ui/SetupUI/Scree
 import { SetupRegisterProfilePictureScreenProps } from 'components/ui/SetupUI/Screen/Register/Setup.Register.ProfilePictureScreen';
 import { SetupRegisterBirthdayScreenProps } from 'components/ui/SetupUI/Screen/Register/Setup.Register.BirthdayScreen';
 import { SetupRegisterGenderScreenProps } from 'components/ui/SetupUI/Screen/Register/Setup.Register.GenderScreen';
-import CheckInfoHandler from './CheckInfoHandler';
+import CheckInfoHandler from 'functions/CheckInfoHandler';
+import useClientAuth from 'authentication/useClientAuth';
+import { ToastHook } from 'hooks/Hooks.Toast';
 
 const SetupLoginPhoneScreen = dynamic<SetupLoginPhoneScreenProps>(
   () => import('components/ui/SetupUI/Screen/Login/Setup.Login.PhoneScreen'),
@@ -123,19 +125,29 @@ interface IProps {
   ContentClassName?: string;
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
-  userProfile?: IUserProfile;
 }
 
 function SetupScreenContent({
   ContentClassName,
   AnimationDivClassName,
   Animation,
-  userProfile,
 }: IProps) {
-  const { Screen } = SetupHook();
+  const { FirebaseUser, FirebaseLoading, FirebaseError } = useClientAuth();
+  const { Screen, setErrorType, setScreen, setMainScreen } = SetupHook();
+  const { setToast } = ToastHook();
 
-  const CheckInfo = (Screen: ICheckInfoScreen) => {
-    CheckInfoHandler({ userProfile: userProfile, Screen: Screen });
+  const CheckInfoData = {
+    FirebaseUser: FirebaseUser,
+    FirebaseLoading: FirebaseLoading,
+    FirebaseError: FirebaseError,
+    setErrorType: setErrorType,
+    setScreen: setScreen,
+    setMainScreen: setMainScreen,
+    setToast: setToast,
+  };
+
+  const SetCheckInfo = (Screen: ICheckInfoScreen) => {
+    CheckInfoHandler({ ...CheckInfoData, Screen: Screen });
   };
 
   return (
@@ -160,8 +172,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
-            userProfile={userProfile}
-            CheckInfoHandler={() => CheckInfo('initial-login-load')}
+            CheckInfoHandler={() => SetCheckInfo('initial-login-load')}
           />
         )}
         {Screen === 'login-otp' && (
@@ -169,7 +180,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
-            CheckInfoHandler={() => CheckInfo('initial-login-load')}
+            CheckInfoHandler={() => SetCheckInfo('initial-login-load')}
           />
         )}
         {Screen === 'login-password' && (
@@ -191,7 +202,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
-            CheckInfoHandler={() => CheckInfo('after-name')}
+            CheckInfoHandler={() => SetCheckInfo('after-name')}
           />
         )}
         {Screen === 'register-phone' && (
@@ -199,7 +210,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
-            CheckInfoHandler={() => CheckInfo('after-phone')} // For "I will add later" button
+            CheckInfoHandler={() => SetCheckInfo('after-phone')} // For "I will add later" button
           />
         )}
         {Screen === 'register-otp' && (
@@ -207,7 +218,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
-            CheckInfoHandler={() => CheckInfo('after-phone')}
+            CheckInfoHandler={() => SetCheckInfo('after-phone')}
           />
         )}
         {Screen === 'register-email' && (
@@ -215,7 +226,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
-            CheckInfoHandler={() => CheckInfo('after-email')} // For "I will add later" button
+            CheckInfoHandler={() => SetCheckInfo('after-email')} // For "I will add later" button
           />
         )}
         {Screen === 'register-password' && (
@@ -223,7 +234,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
-            CheckInfoHandler={() => CheckInfo('after-email')}
+            CheckInfoHandler={() => SetCheckInfo('after-email')}
           />
         )}
         {Screen === 'register-verify-email' && (
@@ -231,7 +242,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
-            CheckInfoHandler={() => CheckInfo('after-verify-email')}
+            CheckInfoHandler={() => SetCheckInfo('after-verify-email')}
           />
         )}
         {Screen === 'register-profile-picture' && (
@@ -239,7 +250,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
-            CheckInfoHandler={() => CheckInfo('after-profile-picture')}
+            CheckInfoHandler={() => SetCheckInfo('after-profile-picture')}
           />
         )}
         {Screen === 'register-date-of-birth' && (
@@ -247,7 +258,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
-            CheckInfoHandler={() => CheckInfo('after-date-of-birth')}
+            CheckInfoHandler={() => SetCheckInfo('after-date-of-birth')}
           />
         )}
         {Screen === 'register-gender' && (
@@ -255,7 +266,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
-            CheckInfoHandler={() => CheckInfo('after-gender')}
+            CheckInfoHandler={() => SetCheckInfo('after-gender')}
           />
         )}
       </AnimatePresence>

@@ -1,9 +1,8 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useState } from 'react';
 import { ToastHook } from 'hooks/Hooks.Toast';
-import { SetupHook } from 'hooks/Hooks.Setup';
+import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
 import { SignInWithPhoneNumber } from 'functions/AuthAlgorithms';
 import SetupFooter from 'components/footer/SetupFooter';
 import YellowBulbHint from 'components/hint/YellowBulbHint';
@@ -18,8 +17,8 @@ export interface SetupLoginPhoneScreenProps {
 }
 
 function SetupLoginPhoneScreen(props: SetupLoginPhoneScreenProps) {
-  const [PhoneNumber, setPhoneNumber] = useState('');
   const { ResetCaptcha, setLoading, setResetCaptcha, setScreen } = SetupHook();
+  const { PhoneNumber, setPhoneNumber } = userProfileHook();
   const { setToast } = ToastHook();
 
   const EmptyPhoneNumber = () => {

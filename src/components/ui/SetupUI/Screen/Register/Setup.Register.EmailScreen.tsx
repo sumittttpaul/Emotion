@@ -1,8 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useState } from 'react';
-import { SetupHook } from 'hooks/Hooks.Setup';
+import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
@@ -23,7 +22,7 @@ export interface SetupRegisterEmailScreenProps {
 
 function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
   const { FirebaseUser } = useClientAuth();
-  const [EmailAddress, setEmailAddress] = useState('');
+  const { EmailAddress, setEmailAddress } = userProfileHook();
   const { setScreen, setSkipDialog, setLoading } = SetupHook();
   const { setToast } = ToastHook();
 

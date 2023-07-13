@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@mui/material';
-import React, { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import OperateUserProfile from 'databases/controller/Controller.UserProfile';
 
 interface IProps {
@@ -9,12 +9,7 @@ interface IProps {
   Error?: IError;
 }
 
-/**
- * @author
- * @function @ClientButton
- **/
-
-export const ClientButton: FC<IProps> = (props) => {
+function ClientDatabaseTest(props: IProps) {
   const [User, setUser] = useState<IUserProfile | undefined>(undefined);
   const [Error, setError] = useState<IError | undefined>(undefined);
 
@@ -49,8 +44,8 @@ export const ClientButton: FC<IProps> = (props) => {
   const createUser: IUserProfile = {
     _uid: '1234567890',
     _data: {
-      fullName: 'ABC',
-      emailAddress: 'ABC@emotion.com',
+      fullName: 'Sumit Paul',
+      emailAddress: 'sumitpaul16102002@gmail.com',
       phoneNumber: '+9199999999',
       photoURL: '---photo-url----',
       dateOfBirth: '09-90-1200',
@@ -65,6 +60,7 @@ export const ClientButton: FC<IProps> = (props) => {
 
   const updateUser: IUserProfileDataUpdate = {
     '_data.fullName': 'Sumeet Kumar Paul',
+    '_data.emailAddress': 'sumitpaul.informal@gmail.com',
   };
 
   useEffect(() => {
@@ -76,14 +72,19 @@ export const ClientButton: FC<IProps> = (props) => {
 
   return (
     <>
-      <div className="h-5 py-5 flex w-full justify-center">
+      <div className="h-14 py-5 flex w-full justify-center box-border">
         {User && (
-          <h6 className="text-xl h-5 font-bold text-green-400">
-            {User._data?.fullName}
-          </h6>
+          <div className='h-12 flex flex-col space-y-2 box-border'>
+            <h6 className="text-xl h-5 font-bold text-green-400">
+              {User._data?.fullName}
+            </h6>
+            <p className="text-[14px] h-5 font-[600] text-green-400">
+              {User._data?.emailAddress}
+            </p>
+          </div>
         )}
         {Error && (
-          <h6 className="text-xl h-5 font-bold text-red-600">
+          <h6 className="text-xl h-12 items-end flex font-bold text-red-600">
             {Error.message}
           </h6>
         )}
@@ -111,4 +112,6 @@ export const ClientButton: FC<IProps> = (props) => {
       </div>
     </>
   );
-};
+}
+
+export default ClientDatabaseTest;

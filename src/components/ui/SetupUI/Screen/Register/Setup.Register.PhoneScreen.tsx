@@ -1,9 +1,8 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useState } from 'react';
 import { ToastHook } from 'hooks/Hooks.Toast';
-import { SetupHook } from 'hooks/Hooks.Setup';
+import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
 import { LinkWithPhoneNumber } from 'functions/AuthAlgorithms';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
@@ -24,7 +23,7 @@ export interface SetupRegisterPhoneScreenProps {
 
 function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
   const { FirebaseUser } = useClientAuth();
-  const [PhoneNumber, setPhoneNumber] = useState('');
+  const { PhoneNumber, setPhoneNumber } = userProfileHook();
   const {
     setLoading,
     ResetCaptcha,

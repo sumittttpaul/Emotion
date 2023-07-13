@@ -7,7 +7,7 @@ import { Setup_Link } from 'routers/RouterLinks';
 import { HeaderUserButtonMenuProps } from './Header.UserButton.Menu';
 import { SignOut } from 'functions/AuthAlgorithms';
 import { LoaderHook } from 'hooks/Hooks.Loader';
-import useClientAuth, { ClientUser } from 'authentication/useClientAuth';
+import useClientAuth, { ClientUserType } from 'authentication/useClientAuth';
 import TooltipDark from 'components/tooltip/TooltipDark';
 
 const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
@@ -53,7 +53,7 @@ interface ContainerProps {
   children: React.ReactNode;
 }
 interface UserButtonProps {
-  user: ClientUser;
+  user: ClientUserType;
 }
 
 function LoginButton(props: LoginButtonProps) {

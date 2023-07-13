@@ -104,7 +104,7 @@ interface IUserProfileHook {
   setPhotoUrl: Dispatch<string>;
   setDateOfBirth: Dispatch<string>;
   setGender: Dispatch<string>;
-  setisEmailVerified: Dispatch<boolean | undefined>;
+  setIsEmailVerified: Dispatch<boolean | undefined>;
 }
 
 type AuthScreenType =

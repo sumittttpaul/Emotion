@@ -124,7 +124,7 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
               Show: Show,
             }),
           Deletedatabase: () => {
-            // Delete database if by any change it has been created
+            // Delete database if by any change it has been created,
             setLoading(false);
             setMainScreen('Error');
             setErrorType('database-not-created');

@@ -14,7 +14,7 @@ export const userProfileHook = create<IUserProfileHook>()((set) => ({
   setPhotoUrl: (value) => set(() => ({ PhotoUrl: value })),
   setDateOfBirth: (value) => set(() => ({ DateOfBirth: value })),
   setGender: (value) => set(() => ({ Gender: value })),
-  setisEmailVerified: (value) => set(() => ({ isEmailVerified: value })),
+  setIsEmailVerified: (value) => set(() => ({ isEmailVerified: value })),
 }));
 
 // IMP : Screen = null, MainScreen = CheckInfo
@@ -25,10 +25,10 @@ export const SetupHook = create<ISetupHook>()((set) => ({
   setSkipDialog: (value) => set(() => ({ SkipDialog: value })),
   Loading: false,
   setLoading: (value) => set(() => ({ Loading: value })),
-  Screen: 'login-phone', // null
+  Screen: null, // null
   setScreen: (value) => set(() => ({ Screen: value })),
   ErrorType: undefined,
   setErrorType: (value) => set(() => ({ ErrorType: value })),
-  MainScreen: 'Setup', // CheckInfo
+  MainScreen: 'CheckInfo', // CheckInfo
   setMainScreen: (value) => set(() => ({ MainScreen: value })),
 }));

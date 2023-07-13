@@ -8,7 +8,7 @@ import IconTextFieldDark from 'components/textfield/IconTextFieldDark';
 interface IProps {
   Type: 'Email' | 'Name';
   Value: string;
-  setValue: Dispatch<React.SetStateAction<string>>;
+  setValue: Dispatch<string>;
   ValidateValue: boolean;
   HandleSubmit: VoidType;
 }

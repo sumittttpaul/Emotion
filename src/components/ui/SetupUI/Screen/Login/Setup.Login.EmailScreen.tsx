@@ -1,9 +1,8 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useState } from 'react';
 import { ToastHook } from 'hooks/Hooks.Toast';
-import { SetupHook } from 'hooks/Hooks.Setup';
+import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupFooter from 'components/footer/SetupFooter';
 import YellowBulbHint from 'components/hint/YellowBulbHint';
@@ -17,7 +16,7 @@ export interface SetupLoginEmailScreenProps {
 }
 
 function SetupLoginEmailScreen(props: SetupLoginEmailScreenProps) {
-  const [EmailAddress, setEmailAddress] = useState('');
+  const { EmailAddress, setEmailAddress } = userProfileHook();
   const { setScreen } = SetupHook();
   const { setToast } = ToastHook();
 

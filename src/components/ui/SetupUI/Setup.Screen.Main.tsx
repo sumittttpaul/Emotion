@@ -8,10 +8,12 @@ import { LazyMotion, domAnimation } from 'framer-motion';
 import { SetupImages } from 'contents/setup/Setup.Image';
 import { SetupHook } from 'hooks/Hooks.Setup';
 import { ToastHook } from 'hooks/Hooks.Toast';
-import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import SetupLoadingScreen from './Screen/Setup.LoadingScreen';
+import { useEffect } from 'react';
+import CheckInfoHandler from 'functions/CheckInfoHandler';
+import useClientAuth from 'authentication/useClientAuth';
 
 const LoadingLinearProgress = dynamic(
   () => import('components/loader/Loading.LinearProgress'),
@@ -37,22 +39,20 @@ const SetupSkipDialog = dynamic<SetupSkipDialogProps>(
 interface IProps {
   children: React.ReactNode;
   MainClassName: string;
-  userProfileError?: IError;
 }
 
-function SetupScreenMain({
-  children,
-  MainClassName,
-  userProfileError,
-}: IProps) {
+function SetupScreenMain({ children, MainClassName }: IProps) {
+  const { FirebaseUser, FirebaseLoading, FirebaseError } = useClientAuth();
   const {
     MainScreen,
+    setMainScreen,
     ErrorType,
+    setErrorType,
     Screen,
+    setScreen,
     Loading,
     SkipDialog,
     setSkipDialog,
-    setMainScreen,
   } = SetupHook();
   const { Toast, setToast } = ToastHook();
 
@@ -61,17 +61,29 @@ function SetupScreenMain({
   const ActiveImageAlt =
     SetupImages.find((value) => Screen === value.Alt)?.Alt || '';
 
+  const CheckInfoData = {
+    FirebaseUser: FirebaseUser,
+    FirebaseLoading: FirebaseLoading,
+    FirebaseError: FirebaseError,
+    setErrorType: setErrorType,
+    setScreen: setScreen,
+    setMainScreen: setMainScreen,
+    setToast: setToast,
+  };
+
+  const SetCheckInfo = (Screen: ICheckInfoScreen) => {
+    CheckInfoHandler({ ...CheckInfoData, Screen: Screen });
+  };
+
+  const ProceedLogin = () => {
+    setMainScreen('Setup');
+    setScreen('login-phone');
+  };
+
   useEffect(() => {
-    if (userProfileError) {
-      setMainScreen('Error');
-      setToast({
-        Title: userProfileError.name,
-        Description: userProfileError.message,
-        Type: 'Error',
-        Show: false,
-      });
-    }
-  }, [userProfileError]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (!FirebaseUser) ProceedLogin();
+    else SetCheckInfo('initial-login-load');
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <LazyMotion features={domAnimation} strict>

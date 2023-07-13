@@ -1,8 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useState } from 'react';
-import { SetupHook } from 'hooks/Hooks.Setup';
+import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
@@ -22,7 +21,7 @@ export interface SetupRegisterGenderScreenProps {
 }
 
 function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
-  const [Gender, setGender] = useState('');
+  const { Gender, setGender } = userProfileHook();
   const { setScreen, setSkipDialog, setLoading } = SetupHook();
   const { setToast } = ToastHook();
   const { FirebaseUser } = useClientAuth();

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { CalculateAge, CalculateMonthNumber } from 'functions/UIAlgorithms';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import { EncryptData } from 'functions/security/CryptionSecurity';
-import { SetupHook } from 'hooks/Hooks.Setup';
+import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
@@ -23,7 +23,7 @@ export interface SetupRegisterBirthdayScreenProps {
 }
 
 function SetupRegisterBirthdayScreen(props: SetupRegisterBirthdayScreenProps) {
-  const [DateOfBirth, setDateOfBirth] = useState('');
+  const { DateOfBirth, setDateOfBirth } = userProfileHook();
   const [SubmitDisabled, setSubmitDisabled] = useState(true);
   const { setScreen, setSkipDialog, setLoading } = SetupHook();
   const { setToast } = ToastHook();

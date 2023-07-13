@@ -8,7 +8,7 @@ import IconNumberTextFieldDark from 'components/textfield/IconNumberTextFieldDar
 
 interface IProps {
   Value: string;
-  setValue: Dispatch<React.SetStateAction<string>>;
+  setValue: Dispatch<string>;
   ValidateValue: boolean;
   HandleSubmit: VoidType;
 }

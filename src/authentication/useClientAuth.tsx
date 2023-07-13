@@ -6,7 +6,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { FirebaseAuth, _firebaseAuth } from 'authentication/clientApp';
 
 function useClientAuth() {
-  const [user, loading, error] = useAuthState(FirebaseAuth);
+  const [FirebaseUser, FirebaseLoading, FirebaseError] =
+    useAuthState(FirebaseAuth);
 
   useEffect(() => {
     if (!FirebaseAuth) {
@@ -33,9 +34,9 @@ function useClientAuth() {
   //   return () => clearInterval(handle);
   // }, []);
 
-  return { FirebaseUser: user, FirebaseLoading: loading, FirebaseError: error };
+  return { FirebaseUser, FirebaseLoading, FirebaseError };
 }
 
-export type ClientUser = _firebaseAuth.User | null | undefined;
+export type ClientUserType = _firebaseAuth.User | null | undefined;
 
 export default useClientAuth;

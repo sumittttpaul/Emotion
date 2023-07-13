@@ -17,11 +17,12 @@ import {
 } from 'functions/AuthAlgorithms';
 import { SetupHook } from 'hooks/Hooks.Setup';
 import { LoaderHook } from 'hooks/Hooks.Loader';
-import { ClientUser } from 'authentication/useClientAuth';
+import { ClientUserType } from 'authentication/useClientAuth';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { DecryptData, EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import OperateUserProfile from 'databases/controller/Controller.UserProfile';
+import { useUserProfile } from 'hooks/Hooks.UserProfile';
 
 const SetupCheckDialog = dynamic<SetupCheckDialogProps>(
   () => import('components/ui/SetupUI/Dialog/Setup.CheckDialog'),
@@ -32,19 +33,25 @@ export interface SetupLoginOtherAccountScreenProps {
   ContentClassName?: string;
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
-  userProfile?: IUserProfile;
   CheckInfoHandler: VoidType;
 }
 
 function SetupLoginOtherAccountScreen(
   props: SetupLoginOtherAccountScreenProps
 ) {
-  type StringType = string | undefined;
+  type StringType = {
+    FullName: string | undefined;
+    PhotoUrl: string | undefined;
+  };
   const [CheckDialog, setCheckDialog] = useState(false);
-  const [PrevFullName, setPrevFullName] = useState<StringType>(undefined);
-  const [PrevPhotoUrl, setPrevPhotoUrl] = useState<StringType>(undefined);
-  const [NewFullName, setNewFullName] = useState<StringType>(undefined);
-  const [NewPhotoUrl, setNewPhotoUrl] = useState<StringType>(undefined);
+  const [PrevData, setPrevData] = useState<StringType>({
+    FullName: undefined,
+    PhotoUrl: undefined,
+  });
+  const [NewData, setNewData] = useState<StringType>({
+    FullName: undefined,
+    PhotoUrl: undefined,
+  });
   const { setScreen, setLoading, setErrorType, setMainScreen } = SetupHook();
   const { setLoader } = LoaderHook();
   const { setToast } = ToastHook();
@@ -56,7 +63,7 @@ function SetupLoginOtherAccountScreen(
   };
 
   // database
-  function CreateDateBase(user: ClientUser) {
+  function CreateDateBase(user: ClientUserType) {
     if (user) {
       const UserFullName =
         user.displayName && user.displayName.length > 0
@@ -169,36 +176,60 @@ function SetupLoginOtherAccountScreen(
     }
   }
 
-  function Checkdatabase(user: ClientUser) {
-    if (user) {
-      const value = props.userProfile;
-      // Prev Value
-      setPrevFullName(
-        value && value._data && value._data.fullName
-          ? DecryptData(
-              UserProfileEncrytionKey(user.uid, 'FullName'),
-              value._data.fullName
-            )
-          : undefined
-      );
-      setPrevPhotoUrl(
-        value && value._data && value._data.photoURL
-          ? DecryptData(
-              UserProfileEncrytionKey(user.uid, 'PhotoURL'),
-              value._data.photoURL
-            )
-          : undefined
-      );
-      // New Value
-      setNewFullName(
-        user.displayName && user.displayName.length > 0
-          ? user.displayName
-          : undefined
-      );
-      setNewPhotoUrl(
-        user.photoURL && user.photoURL.length > 0 ? user.photoURL : undefined
-      );
-    } else {
+  function Checkdatabase(user: ClientUserType) {
+    useUserProfile(user ? user.uid : undefined).then((getData) => {
+      const value = getData.userProfile;
+      const error = getData.error;
+      // PrevData. Value
+      if (user && value) {
+        setPrevData({
+          ...PrevData,
+          FullName:
+            value && value._data && value._data.fullName
+              ? DecryptData(
+                  UserProfileEncrytionKey(user.uid, 'FullName'),
+                  value._data.fullName
+                )
+              : undefined,
+        });
+        setPrevData({
+          ...PrevData,
+          PhotoUrl:
+            value && value._data && value._data.photoURL
+              ? DecryptData(
+                  UserProfileEncrytionKey(user.uid, 'PhotoURL'),
+                  value._data.photoURL
+                )
+              : undefined,
+        });
+        // NewData. Value
+        setNewData({
+          ...NewData,
+          FullName:
+            user.displayName && user.displayName.length > 0
+              ? user.displayName
+              : undefined,
+        });
+        setNewData({
+          ...NewData,
+          PhotoUrl:
+            user.photoURL && user.photoURL.length > 0
+              ? user.photoURL
+              : undefined,
+        });
+      } else {
+        if (error) {
+          setMainScreen('Error');
+          setToast({
+            Title: error.name,
+            Description: error.message,
+            Type: 'Error',
+            Show: false,
+          });
+        }
+      }
+    });
+    if (!user) {
       setToast({
         Title: 'Something went wrong',
         Description: 'It seems like user is not exist.',
@@ -270,25 +301,39 @@ function SetupLoginOtherAccountScreen(
   };
 
   useEffect(() => {
-    if (PrevFullName && NewFullName && PrevFullName !== NewFullName) {
-      setCheckDialog(true);
-      setLoading(false);
-    } else if (PrevPhotoUrl && NewPhotoUrl && PrevPhotoUrl !== NewPhotoUrl) {
+    if (
+      PrevData.FullName &&
+      NewData.FullName &&
+      PrevData.FullName !== NewData.FullName
+    ) {
       setCheckDialog(true);
       setLoading(false);
     } else if (
-      PrevFullName &&
-      NewFullName &&
-      PrevPhotoUrl &&
-      NewPhotoUrl &&
-      PrevFullName === NewFullName &&
-      PrevPhotoUrl === NewPhotoUrl
+      PrevData.PhotoUrl &&
+      NewData.PhotoUrl &&
+      PrevData.PhotoUrl !== NewData.PhotoUrl
+    ) {
+      setCheckDialog(true);
+      setLoading(false);
+    } else if (
+      PrevData.FullName &&
+      NewData.FullName &&
+      PrevData.PhotoUrl &&
+      NewData.PhotoUrl &&
+      PrevData.FullName === NewData.FullName &&
+      PrevData.PhotoUrl === NewData.PhotoUrl
     ) {
       setLoader(true);
       setLoading(false);
       router.push('/');
     }
-  }, [PrevFullName, PrevPhotoUrl, NewFullName, NewPhotoUrl]); // eslint-disable-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    PrevData.FullName,
+    PrevData.PhotoUrl,
+    NewData.FullName,
+    NewData.PhotoUrl,
+  ]);
 
   return (
     <>
@@ -317,10 +362,10 @@ function SetupLoginOtherAccountScreen(
       </m.div>
       <SetupCheckDialog
         Open={CheckDialog}
-        PrevFullName={PrevFullName}
-        PrevPhotoUrl={PrevPhotoUrl}
-        NewFullName={NewFullName}
-        NewPhotoUrl={NewPhotoUrl}
+        PrevFullName={PrevData.FullName}
+        PrevPhotoUrl={PrevData.PhotoUrl}
+        NewFullName={NewData.FullName}
+        NewPhotoUrl={NewData.PhotoUrl}
       />
     </>
   );

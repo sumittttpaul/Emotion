@@ -6,7 +6,7 @@ import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import GreenSuccessHint from 'components/hint/GreenSuccessHint';
 import { VerifyEmailAddress } from 'functions/AuthAlgorithms';
-import { SetupHook } from 'hooks/Hooks.Setup';
+import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { useState, useEffect } from 'react';
 import { FirebaseAuth } from 'authentication/clientApp';
@@ -21,9 +21,7 @@ export interface SetupRegisterVerifyEmailScreenProps {
 function SetupRegisterVerifyEmailScreen(
   props: SetupRegisterVerifyEmailScreenProps
 ) {
-  const [isEmailVerified, setIsEmailVerified] = useState<boolean | undefined>(
-    undefined
-  );
+  const { isEmailVerified, setIsEmailVerified } = userProfileHook();
   const [SubmitDisabled, setSubmitDisabled] = useState(false);
   const { setLoading } = SetupHook();
   const { setToast } = ToastHook();
@@ -59,7 +57,7 @@ function SetupRegisterVerifyEmailScreen(
       if (!user) return;
       if (user.emailVerified) setIsEmailVerified(true);
     });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <m.div

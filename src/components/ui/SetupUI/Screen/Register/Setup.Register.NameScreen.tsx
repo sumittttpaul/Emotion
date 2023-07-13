@@ -2,14 +2,13 @@
 
 import { m } from 'framer-motion';
 import { AddFullName } from 'functions/AuthAlgorithms';
-import { useState } from 'react';
-import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
-import SignInNextButton from 'components/button/Setup/SignInNextButton';
-import { SetupHook } from 'hooks/Hooks.Setup';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { EncryptData } from 'functions/security/CryptionSecurity';
-import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
+import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
+import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
+import SignInNextButton from 'components/button/Setup/SignInNextButton';
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import useClientAuth from 'authentication/useClientAuth';
 import SetupIconTextField from '../../Input/Setup.IconTextField';
 import OperateUserProfile from 'databases/controller/Controller.UserProfile';
@@ -23,7 +22,7 @@ export interface SetupRegisterNameScreenProps {
 
 function SetupRegisterNameScreen(props: SetupRegisterNameScreenProps) {
   const { FirebaseUser } = useClientAuth();
-  const [FullName, setFullName] = useState('');
+  const { FullName, setFullName } = userProfileHook();
   const { setLoading, setSkipDialog } = SetupHook();
   const { setToast } = ToastHook();
 
