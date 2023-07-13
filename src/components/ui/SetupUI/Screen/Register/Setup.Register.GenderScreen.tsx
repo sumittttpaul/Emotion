@@ -1,7 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
+import { userProfileHook } from 'hooks/Hooks.UserProfile';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
@@ -18,11 +18,13 @@ export interface SetupRegisterGenderScreenProps {
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
+  setScreen: Dispatch<AuthScreenType>;
+  setSkipDialog: Dispatch<boolean>;
+  setLoading: Dispatch<boolean>;
 }
 
 function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
   const { Gender, setGender } = userProfileHook();
-  const { setScreen, setSkipDialog, setLoading } = SetupHook();
   const { setToast } = ToastHook();
   const { FirebaseUser } = useClientAuth();
 
@@ -46,7 +48,7 @@ function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
           })
           .catch((error) => {
             if (error instanceof Error) {
-              setLoading(false);
+              props.setLoading(false);
               setToast({
                 Title: error.name,
                 Description: error.message,
@@ -57,7 +59,7 @@ function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
           });
       } catch (error: unknown) {
         if (error instanceof Error) {
-          setLoading(false);
+          props.setLoading(false);
           setToast({
             Title: error.name,
             Description: error.message,
@@ -77,12 +79,12 @@ function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
   };
 
   const BackToBirthday = () => {
-    setScreen('register-date-of-birth');
+    props.setScreen('register-date-of-birth');
   };
 
   // Submit
   const SubmitClick = () => {
-    setLoading(true);
+    props.setLoading(true);
     updateUserData();
   };
 
@@ -117,7 +119,7 @@ function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
       </div>
       <div className="flex w-full justify-end">
         <div className="flex space-x-2">
-          <SetupSkipAllButton onClick={() => setSkipDialog(true)}>
+          <SetupSkipAllButton onClick={() => props.setSkipDialog(true)}>
             Skip all
           </SetupSkipAllButton>
           <SetupSubmitButton Disabled={ValidateGender} onClick={SubmitClick}>

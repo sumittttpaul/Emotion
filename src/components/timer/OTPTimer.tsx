@@ -21,13 +21,13 @@ function OTPTimer(props: IProps) {
   return (
     <div>
       {minutes === 0 && seconds === 0 ? null : (
-        <div className="text-white/75 text-[13px] font-normal flex">
+        <label className="text-white/75 text-[13px] font-normal flex">
           {'Resend OTP in '}
-          <div className="text-white/75 text-[13px] font-normal pl-1">
+          <label className="text-white/75 text-[13px] font-normal pl-1">
             {minutes} : {seconds < 10 ? `0${seconds}` : seconds}
             {' min'}
-          </div>
-        </div>
+          </label>
+        </label>
       )}
     </div>
   );

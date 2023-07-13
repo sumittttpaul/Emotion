@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { CalculateAge, CalculateMonthNumber } from 'functions/UIAlgorithms';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import { EncryptData } from 'functions/security/CryptionSecurity';
-import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
+import { userProfileHook } from 'hooks/Hooks.UserProfile';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
@@ -20,18 +20,20 @@ export interface SetupRegisterBirthdayScreenProps {
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
+  setScreen: Dispatch<AuthScreenType>;
+  setSkipDialog: Dispatch<boolean>;
+  setLoading: Dispatch<boolean>;
 }
 
 function SetupRegisterBirthdayScreen(props: SetupRegisterBirthdayScreenProps) {
   const { DateOfBirth, setDateOfBirth } = userProfileHook();
   const [SubmitDisabled, setSubmitDisabled] = useState(true);
-  const { setScreen, setSkipDialog, setLoading } = SetupHook();
   const { setToast } = ToastHook();
   const { FirebaseUser } = useClientAuth();
 
   // Screens
   const BackToPhoto = () => {
-    setScreen('register-profile-picture');
+    props.setScreen('register-profile-picture');
   };
 
   // database
@@ -60,7 +62,7 @@ function SetupRegisterBirthdayScreen(props: SetupRegisterBirthdayScreenProps) {
         })
         .catch((error) => {
           if (error instanceof Error) {
-            setLoading(false);
+            props.setLoading(false);
             setToast({
               Title: error.name,
               Description: error.message,
@@ -81,7 +83,7 @@ function SetupRegisterBirthdayScreen(props: SetupRegisterBirthdayScreenProps) {
 
   // Submit
   const SubmitClick = () => {
-    setLoading(true);
+    props.setLoading(true);
     updateUserData();
   };
 
@@ -117,7 +119,7 @@ function SetupRegisterBirthdayScreen(props: SetupRegisterBirthdayScreenProps) {
       </div>
       <div className="flex w-full justify-end">
         <div className="flex space-x-2">
-          <SetupSkipAllButton onClick={() => setSkipDialog(true)}>
+          <SetupSkipAllButton onClick={() => props.setSkipDialog(true)}>
             Skip all
           </SetupSkipAllButton>
           <SetupSubmitButton Disabled={SubmitDisabled} onClick={SubmitClick}>

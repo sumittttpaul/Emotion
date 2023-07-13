@@ -1,7 +1,6 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { SetupHook } from 'hooks/Hooks.Setup';
 import { AnimatePresence } from 'framer-motion';
 import { SetupLoginPhoneScreenProps } from 'components/ui/SetupUI/Screen/Login/Setup.Login.PhoneScreen';
 import { SetupLoginEmailScreenProps } from 'components/ui/SetupUI/Screen/Login/Setup.Login.EmailScreen';
@@ -125,15 +124,30 @@ interface IProps {
   ContentClassName?: string;
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
+  Screen: AuthScreenType;
+  ResetCaptcha: boolean;
+  setLoading: Dispatch<boolean>;
+  setSkipDialog: Dispatch<boolean>;
+  setResetCaptcha: Dispatch<boolean>;
+  setScreen: Dispatch<AuthScreenType>;
+  setErrorType: Dispatch<AuthErrorType>;
+  setMainScreen: Dispatch<AuthMainScreenType>;
 }
 
 function SetupScreenContent({
   ContentClassName,
   AnimationDivClassName,
   Animation,
+  Screen,
+  ResetCaptcha,
+  setSkipDialog,
+  setScreen,
+  setErrorType,
+  setMainScreen,
+  setLoading,
+  setResetCaptcha,
 }: IProps) {
   const { FirebaseUser, FirebaseLoading, FirebaseError } = useClientAuth();
-  const { Screen, setErrorType, setScreen, setMainScreen } = SetupHook();
   const { setToast } = ToastHook();
 
   const CheckInfoData = {
@@ -158,6 +172,10 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            ResetCaptcha={ResetCaptcha}
+            setScreen={setScreen}
+            setLoading={setLoading}
+            setResetCaptcha={setResetCaptcha}
           />
         )}
         {Screen === 'login-email' && (
@@ -165,6 +183,7 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            setScreen={setScreen}
           />
         )}
         {Screen === 'login-others' && (
@@ -172,6 +191,10 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            setScreen={setScreen}
+            setLoading={setLoading}
+            setErrorType={setErrorType}
+            setMainScreen={setMainScreen}
             CheckInfoHandler={() => SetCheckInfo('initial-login-load')}
           />
         )}
@@ -180,6 +203,11 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            setScreen={setScreen}
+            setLoading={setLoading}
+            setErrorType={setErrorType}
+            setMainScreen={setMainScreen}
+            setResetCaptcha={setResetCaptcha}
             CheckInfoHandler={() => SetCheckInfo('initial-login-load')}
           />
         )}
@@ -188,6 +216,8 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            setScreen={setScreen}
+            setLoading={setLoading}
           />
         )}
         {Screen === 'login-forgot-password' && (
@@ -195,6 +225,8 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            setScreen={setScreen}
+            setLoading={setLoading}
           />
         )}
         {Screen === 'register-name' && (
@@ -202,6 +234,8 @@ function SetupScreenContent({
             AnimationDivClassName={AnimationDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            setLoading={setLoading}
+            setSkipDialog={setSkipDialog}
             CheckInfoHandler={() => SetCheckInfo('after-name')}
           />
         )}

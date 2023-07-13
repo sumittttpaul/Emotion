@@ -10,7 +10,7 @@ import {
   ResentOTPForLinkWithPhone,
   VerifyOTPForLinkWithPhone,
 } from 'functions/AuthAlgorithms';
-import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
+import { userProfileHook } from 'hooks/Hooks.UserProfile';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SetupOTPTextField from '../../Input/Setup.OTPTextField';
 import OperateUserProfile from 'databases/controller/Controller.UserProfile';
@@ -21,6 +21,9 @@ export interface SetupRegisterOTPScreenProps {
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
+  setScreen: Dispatch<AuthScreenType>;
+  setResetCaptcha: Dispatch<boolean>;
+  setLoading: Dispatch<boolean>;
 }
 
 function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
@@ -34,7 +37,6 @@ function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
     OTP6: '',
   });
   const [Bool, setBool] = useState(false);
-  const { setScreen, setLoading, setResetCaptcha } = SetupHook();
   const { Toast, setToast } = ToastHook();
   const { PhoneNumber } = userProfileHook();
 
@@ -58,8 +60,8 @@ function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
     setToast({ ...Toast, Show: false });
     clearOTP();
     setBool(false);
-    setResetCaptcha(true);
-    setScreen('login-phone');
+    props.setResetCaptcha(true);
+    props.setScreen('login-phone');
     setToast({
       Title: 'Verification process failed',
       Description: 'You have cancelled the otp verificaiton.',
@@ -86,7 +88,7 @@ function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
         })
         .catch((error) => {
           if (error instanceof Error) {
-            setLoading(false);
+            props.setLoading(false);
             setToast({
               Title: error.name,
               Description: error.message,
@@ -109,7 +111,7 @@ function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
   const OTPResend = () => {
     ResentOTPForLinkWithPhone({
       PhoneNumber: parseInt(PhoneNumber),
-      Loading: setLoading,
+      Loading: props.setLoading,
       ShowToast: (Title, Description, Type, Show) =>
         setToast({
           Title: Title,
@@ -128,7 +130,7 @@ function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
           OTPs.OTP1 + OTPs.OTP2 + OTPs.OTP3 + OTPs.OTP4 + OTPs.OTP5 + OTPs.OTP6
         ),
         EmptyOTPBox: clearOTP,
-        Loading: setLoading,
+        Loading: props.setLoading,
         Updatedatabase: Updatedatabase,
         ShowToast: (Title, Description, Type, Show) =>
           setToast({

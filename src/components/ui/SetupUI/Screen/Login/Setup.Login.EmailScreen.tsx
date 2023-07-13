@@ -2,7 +2,7 @@
 
 import { m } from 'framer-motion';
 import { ToastHook } from 'hooks/Hooks.Toast';
-import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
+import { userProfileHook } from 'hooks/Hooks.UserProfile';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupFooter from 'components/footer/SetupFooter';
 import YellowBulbHint from 'components/hint/YellowBulbHint';
@@ -13,11 +13,11 @@ export interface SetupLoginEmailScreenProps {
   ContentClassName?: string;
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
+  setScreen: Dispatch<AuthScreenType>;
 }
 
 function SetupLoginEmailScreen(props: SetupLoginEmailScreenProps) {
   const { EmailAddress, setEmailAddress } = userProfileHook();
-  const { setScreen } = SetupHook();
   const { setToast } = ToastHook();
 
   // Validation
@@ -31,13 +31,13 @@ function SetupLoginEmailScreen(props: SetupLoginEmailScreenProps) {
 
   // Screens
   const MoveToPasswordScreen = () => {
-    setScreen('login-password');
+    props.setScreen('login-password');
   };
   const BackToSignInWithPhoneNumber = () => {
-    setScreen('login-phone');
+    props.setScreen('login-phone');
   };
   const MoveToOtherSignInOptions = () => {
-    setScreen('login-others');
+    props.setScreen('login-others');
   };
 
   // Submit

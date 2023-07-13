@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { m } from 'framer-motion';
 import { useState } from 'react';
 import { ToastHook } from 'hooks/Hooks.Toast';
-import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
+import { userProfileHook } from 'hooks/Hooks.UserProfile';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import TooltipDark from 'components/tooltip/TooltipDark';
@@ -18,11 +18,12 @@ export interface SetupRegisterPasswordScreenProps {
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
+  setScreen: Dispatch<AuthScreenType>;
+  setLoading: Dispatch<boolean>;
 }
 
 function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
   const [Password, setPassword] = useState('');
-  const { setLoading, setScreen } = SetupHook();
   const { EmailAddress } = userProfileHook();
   const { setToast } = ToastHook();
 
@@ -38,7 +39,7 @@ function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
 
   // Screens
   const BackToEmailAddressScreen = () => {
-    setScreen('register-email');
+    props.setScreen('register-email');
   };
 
   // Submit
@@ -47,7 +48,7 @@ function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
       LinkWithEmailAndPassword({
         EmailAddress: EmailAddress,
         Password: Password,
-        Loading: setLoading,
+        Loading: props.setLoading,
         EmptyPasswordTextField: EmptyPassword,
         BackToEmailScreen: BackToEmailAddressScreen,
         Next: props.CheckInfoHandler,
@@ -90,9 +91,7 @@ function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
                 alt=""
               />
             </div>
-            <p className="text-white text-[13px] font-[300]">
-              {EmailAddress}
-            </p>
+            <p className="text-white text-[13px] font-[300]">{EmailAddress}</p>
           </div>
         </div>
         <SetupIconPasswordTextField

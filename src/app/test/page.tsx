@@ -1,8 +1,8 @@
-import { useUserProfile } from 'hooks/Hooks.UserProfile';
+import { FetchUserProfile } from 'hooks/Hooks.FetchUserProfile';
 import ClientDatabaseTest from 'components/test/ClientDatabaseTest';
 
 async function Page() {
-  const { userProfile, error } = await useUserProfile('1234567890'); // eslint-disable-line react-hooks/rules-of-hooks
+  const { userProfile, error } = await FetchUserProfile('1234567890'); // eslint-disable-line react-hooks/rules-of-hooks
   return (
     <div
       id="App_Directory_Custom_Page"

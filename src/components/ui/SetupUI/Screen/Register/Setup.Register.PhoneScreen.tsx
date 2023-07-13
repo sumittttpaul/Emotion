@@ -2,14 +2,14 @@
 
 import { m } from 'framer-motion';
 import { ToastHook } from 'hooks/Hooks.Toast';
-import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
+import { EncryptData } from 'functions/security/CryptionSecurity';
+import { userProfileHook } from 'hooks/Hooks.UserProfile';
 import { LinkWithPhoneNumber } from 'functions/AuthAlgorithms';
+import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
-import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
-import { EncryptData } from 'functions/security/CryptionSecurity';
 import useClientAuth from 'authentication/useClientAuth';
 import SetupIconNumberTextField from 'components/ui/SetupUI/Input/Setup.IconNumberTextField';
 import OperateUserProfile from 'databases/controller/Controller.UserProfile';
@@ -19,18 +19,16 @@ export interface SetupRegisterPhoneScreenProps {
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
+  setScreen: Dispatch<AuthScreenType>;
+  ResetCaptcha: boolean;
+  setResetCaptcha: Dispatch<boolean>;
+  setSkipDialog: Dispatch<boolean>;
+  setLoading: Dispatch<boolean>;
 }
 
 function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
   const { FirebaseUser } = useClientAuth();
   const { PhoneNumber, setPhoneNumber } = userProfileHook();
-  const {
-    setLoading,
-    ResetCaptcha,
-    setResetCaptcha,
-    setScreen,
-    setSkipDialog,
-  } = SetupHook();
   const { setToast } = ToastHook();
 
   const EmptyPhoneNumber = () => {
@@ -43,10 +41,10 @@ function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
 
   // Screens
   const MoveToOTPScreen = () => {
-    setScreen('register-otp');
+    props.setScreen('register-otp');
   };
   const BackToName = () => {
-    setScreen('register-name');
+    props.setScreen('register-name');
   };
 
   // database
@@ -61,12 +59,12 @@ function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
       };
       OperateUserProfile('UPDATE', { uid: FirebaseUser.uid, update: _data })
         .then(() => {
-          setLoading(false);
+          props.setLoading(false);
           MoveToOTPScreen();
         })
         .catch((error) => {
           if (error instanceof Error) {
-            setLoading(false);
+            props.setLoading(false);
             setToast({
               Title: error.name,
               Description: error.message,
@@ -91,9 +89,9 @@ function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
       LinkWithPhoneNumber({
         PhoneNumber: parseInt(PhoneNumber),
         EmptyPhoneNumber: EmptyPhoneNumber,
-        Loading: setLoading,
-        ResetCaptcha: ResetCaptcha,
-        setResetCaptcha: setResetCaptcha,
+        Loading: props.setLoading,
+        ResetCaptcha: props.ResetCaptcha,
+        setResetCaptcha: props.setResetCaptcha,
         Updatedatabase: Updatedatabase,
         ShowToast: (Title, Description, Type, Show) =>
           setToast({
@@ -143,7 +141,7 @@ function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
       </div>
       <div className="flex w-full justify-end">
         <div className="flex space-x-2">
-          <SetupSkipAllButton onClick={() => setSkipDialog(true)}>
+          <SetupSkipAllButton onClick={() => props.setSkipDialog(true)}>
             Skip all
           </SetupSkipAllButton>
           <SetupSubmitButton

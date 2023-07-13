@@ -2,7 +2,7 @@
 
 import { m } from 'framer-motion';
 import { ToastHook } from 'hooks/Hooks.Toast';
-import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
+import { userProfileHook } from 'hooks/Hooks.UserProfile';
 import { SignInWithPhoneNumber } from 'functions/AuthAlgorithms';
 import SetupFooter from 'components/footer/SetupFooter';
 import YellowBulbHint from 'components/hint/YellowBulbHint';
@@ -14,10 +14,13 @@ export interface SetupLoginPhoneScreenProps {
   ContentClassName?: string;
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
+  setScreen: Dispatch<AuthScreenType>;
+  setLoading: Dispatch<boolean>;
+  ResetCaptcha: boolean;
+  setResetCaptcha: Dispatch<boolean>;
 }
 
 function SetupLoginPhoneScreen(props: SetupLoginPhoneScreenProps) {
-  const { ResetCaptcha, setLoading, setResetCaptcha, setScreen } = SetupHook();
   const { PhoneNumber, setPhoneNumber } = userProfileHook();
   const { setToast } = ToastHook();
 
@@ -31,13 +34,13 @@ function SetupLoginPhoneScreen(props: SetupLoginPhoneScreenProps) {
 
   // Screens
   const MoveToOTPScreen = () => {
-    setScreen('login-otp');
+    props.setScreen('login-otp');
   };
   const MoveToSignInWithEmailAddress = () => {
-    setScreen('login-email');
+    props.setScreen('login-email');
   };
   const MoveToOtherSignInOptions = () => {
-    setScreen('login-others');
+    props.setScreen('login-others');
   };
 
   // Submit
@@ -46,9 +49,9 @@ function SetupLoginPhoneScreen(props: SetupLoginPhoneScreenProps) {
       SignInWithPhoneNumber({
         PhoneNumber: parseInt(PhoneNumber),
         EmptyPhoneNumber: EmptyPhoneNumber,
-        Loading: setLoading,
-        ResetCaptcha: ResetCaptcha,
-        setResetCaptcha: setResetCaptcha,
+        Loading: props.setLoading,
+        ResetCaptcha: props.ResetCaptcha,
+        setResetCaptcha: props.setResetCaptcha,
         MoveToOTPScreen: MoveToOTPScreen,
         ShowToast: (Title, Description, Type, Show) =>
           setToast({

@@ -5,7 +5,7 @@ import { m } from 'framer-motion';
 import { useState } from 'react';
 import { LoaderHook } from 'hooks/Hooks.Loader';
 import { ToastHook } from 'hooks/Hooks.Toast';
-import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
+import { userProfileHook } from 'hooks/Hooks.UserProfile';
 import { SignInWithEmailAndPassword } from 'functions/AuthAlgorithms';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
@@ -16,11 +16,12 @@ export interface SetupLoginPasswordScreenProps {
   ContentClassName?: string;
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
+  setScreen: Dispatch<AuthScreenType>;
+  setLoading: Dispatch<boolean>;
 }
 
 function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
   const [Password, setPassword] = useState('');
-  const { setLoading, setScreen } = SetupHook();
   const { EmailAddress } = userProfileHook();
   const { setLoader } = LoaderHook();
   const { setToast } = ToastHook();
@@ -37,10 +38,10 @@ function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
 
   // Screens
   const BackToEmailScreen = () => {
-    setScreen('login-email');
+    props.setScreen('login-email');
   };
   const MoveToForgotPassword = () => {
-    setScreen('login-forgot-password');
+    props.setScreen('login-forgot-password');
   };
 
   // Submit
@@ -50,7 +51,7 @@ function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
         EmailAddress: EmailAddress,
         Password: Password,
         EmptyPasswordTextField: EmptyPassword,
-        Loading: setLoading,
+        Loading: props.setLoading,
         BackToEmailScreen: BackToEmailScreen,
         LoadingScreen: (value) => setLoader(value),
         ShowToast: (Title, Description, Type, Show) =>
@@ -92,9 +93,7 @@ function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
                 alt=""
               />
             </div>
-            <p className="text-white text-[13px] font-[300]">
-              {EmailAddress}
-            </p>
+            <p className="text-white text-[13px] font-[300]">{EmailAddress}</p>
           </div>
         </div>
         <SetupIconPasswordTextField

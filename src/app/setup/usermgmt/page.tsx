@@ -1,14 +1,14 @@
-import { useUserProfile } from 'hooks/Hooks.UserProfile';
+import { FetchUserProfile } from 'hooks/Hooks.FetchUserProfile';
 import { verfyIdToken } from 'authentication/adminApp';
 import { cookies } from 'next/headers';
-import UserMgmtScreen from 'components/ui/UserMgmtUI/UserMgmtScreen';
+import UserMgmtScreen from 'components/ui/UserMgmtUI/UserMgmt.Screen';
 
 async function UserMgmt() {
   const cookieStore = cookies();
   const token = cookieStore.get('token');
   const user = token ? await verfyIdToken(token.value) : undefined;
   const uid = user ? user.uid : undefined;
-  const { userProfile } = await useUserProfile(uid); // eslint-disable-line react-hooks/rules-of-hooks
+  const { userProfile } = await FetchUserProfile(uid); // eslint-disable-line react-hooks/rules-of-hooks
 
   return (
     <UserMgmtScreen

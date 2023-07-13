@@ -2,7 +2,7 @@
 
 import IconPasswordTextFieldDark from 'components/textfield/IconPasswordTextFieldDark';
 import { LoaderHook } from 'hooks/Hooks.Loader';
-import { SetupHook } from 'hooks/Hooks.Setup';
+import { SetupHook } from 'hooks/Hooks.UserProfile';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { useState } from 'react';
 

@@ -5,7 +5,7 @@ import { AddFullName } from 'functions/AuthAlgorithms';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
-import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
+import { userProfileHook } from 'hooks/Hooks.UserProfile';
 import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
@@ -18,12 +18,13 @@ export interface SetupRegisterNameScreenProps {
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
+  setSkipDialog: Dispatch<boolean>;
+  setLoading: Dispatch<boolean>;
 }
 
 function SetupRegisterNameScreen(props: SetupRegisterNameScreenProps) {
   const { FirebaseUser } = useClientAuth();
   const { FullName, setFullName } = userProfileHook();
-  const { setLoading, setSkipDialog } = SetupHook();
   const { setToast } = ToastHook();
 
   // Validation
@@ -45,7 +46,7 @@ function SetupRegisterNameScreen(props: SetupRegisterNameScreenProps) {
         })
         .catch((error) => {
           if (error instanceof Error) {
-            setLoading(false);
+            props.setLoading(false);
             setToast({
               Title: error.name,
               Description: error.message,
@@ -69,7 +70,7 @@ function SetupRegisterNameScreen(props: SetupRegisterNameScreenProps) {
     if (ValidateFullName) {
       AddFullName({
         FullName: FullName,
-        Loading: setLoading,
+        Loading: props.setLoading,
         Updatedatabase: Updatedatabase,
         ShowToast: (Title, Description, Type, Show) =>
           setToast({
@@ -115,7 +116,7 @@ function SetupRegisterNameScreen(props: SetupRegisterNameScreenProps) {
       </div>
       <div className="flex w-full justify-end">
         <div className="flex space-x-2">
-          <SetupSkipAllButton onClick={() => setSkipDialog(true)}>
+          <SetupSkipAllButton onClick={() => props.setSkipDialog(true)}>
             Skip all
           </SetupSkipAllButton>
           <SetupSubmitButton

@@ -7,7 +7,7 @@ import {
   InputNumberOnly,
 } from 'functions/UIAlgorithms';
 import { LoaderHook } from 'hooks/Hooks.Loader';
-import { SetupHook } from 'hooks/Hooks.Setup';
+import { SetupHook } from 'hooks/Hooks.UserProfile';
 
 interface IProps {
   OTP1: string;

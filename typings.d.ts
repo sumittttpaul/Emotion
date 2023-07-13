@@ -123,7 +123,7 @@ type AuthScreenType =
   | 'register-profile-picture'
   | 'register-date-of-birth'
   | 'register-gender'
-  | null;
+  | undefined;
 
 type AuthAnimationType = {
   Initial: {
@@ -148,7 +148,7 @@ type ToastSettingType = {
   Type: 'Error' | 'Success' | 'Info' | 'Warning' | '' | '';
 };
 
-type MainScreenType = 'Error' | 'CheckInfo' | 'Finish' | 'Setup';
+type AuthMainScreenType = 'Error' | 'CheckInfo' | 'Finish' | 'Setup';
 
 interface ISetupHook {
   ResetCaptcha: boolean;
@@ -157,8 +157,8 @@ interface ISetupHook {
   setSkipDialog: Dispatch<boolean>;
   Loading: boolean;
   setLoading: Dispatch<boolean>;
-  MainScreen: MainScreenType;
-  setMainScreen: Dispatch<MainScreenType>;
+  MainScreen: AuthMainScreenType;
+  setMainScreen: Dispatch<AuthMainScreenType>;
   ErrorType: AuthErrorType;
   setErrorType: Dispatch<AuthErrorType>;
   Screen: AuthScreenType;

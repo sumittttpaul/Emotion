@@ -15,14 +15,13 @@ import {
   SignInWithGoogle,
   SignInWithMicrosoft,
 } from 'functions/AuthAlgorithms';
-import { SetupHook } from 'hooks/Hooks.Setup';
 import { LoaderHook } from 'hooks/Hooks.Loader';
 import { ClientUserType } from 'authentication/useClientAuth';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { DecryptData, EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import OperateUserProfile from 'databases/controller/Controller.UserProfile';
-import { useUserProfile } from 'hooks/Hooks.UserProfile';
+import { FetchUserProfile } from 'hooks/Hooks.FetchUserProfile';
 
 const SetupCheckDialog = dynamic<SetupCheckDialogProps>(
   () => import('components/ui/SetupUI/Dialog/Setup.CheckDialog'),
@@ -34,6 +33,10 @@ export interface SetupLoginOtherAccountScreenProps {
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
+  setScreen: Dispatch<AuthScreenType>;
+  setLoading: Dispatch<boolean>;
+  setErrorType: Dispatch<AuthErrorType>;
+  setMainScreen: Dispatch<AuthMainScreenType>;
 }
 
 function SetupLoginOtherAccountScreen(
@@ -52,14 +55,13 @@ function SetupLoginOtherAccountScreen(
     FullName: undefined,
     PhotoUrl: undefined,
   });
-  const { setScreen, setLoading, setErrorType, setMainScreen } = SetupHook();
   const { setLoader } = LoaderHook();
   const { setToast } = ToastHook();
   const router = useRouter();
 
   // Screens
   const BackToSignInWithPhoneNumber = () => {
-    setScreen('login-phone');
+    props.setScreen('login-phone');
   };
 
   // database
@@ -150,7 +152,7 @@ function SetupLoginOtherAccountScreen(
               Show: true,
             });
           DeleteAccount({
-            Loading: setLoading,
+            Loading: props.setLoading,
             ShowToast: (Title, Description, Type, Show) =>
               setToast({
                 Title: Title,
@@ -160,9 +162,9 @@ function SetupLoginOtherAccountScreen(
               }),
             Deletedatabase: () => {
               // Delete database if by any change it has been created
-              setLoading(false);
-              setMainScreen('Error');
-              setErrorType('database-not-created');
+              props.setLoading(false);
+              props.setMainScreen('Error');
+              props.setErrorType('database-not-created');
             },
           });
         });
@@ -177,7 +179,7 @@ function SetupLoginOtherAccountScreen(
   }
 
   function Checkdatabase(user: ClientUserType) {
-    useUserProfile(user ? user.uid : undefined).then((getData) => {
+    FetchUserProfile(user ? user.uid : undefined).then((getData) => {
       const value = getData.userProfile;
       const error = getData.error;
       // PrevData. Value
@@ -219,7 +221,7 @@ function SetupLoginOtherAccountScreen(
         });
       } else {
         if (error) {
-          setMainScreen('Error');
+          props.setMainScreen('Error');
           setToast({
             Title: error.name,
             Description: error.message,
@@ -242,7 +244,7 @@ function SetupLoginOtherAccountScreen(
   // Submit
   const GoogleSignIn = () => {
     SignInWithGoogle({
-      Loading: setLoading,
+      Loading: props.setLoading,
       CreateDateBase: CreateDateBase,
       Checkdatabase: Checkdatabase,
       ShowToast: (Title, Description, Type, Show) =>
@@ -257,7 +259,7 @@ function SetupLoginOtherAccountScreen(
 
   const FacebookSignIn = () => {
     SignInWithFacebook({
-      Loading: setLoading,
+      Loading: props.setLoading,
       CreateDateBase: CreateDateBase,
       Checkdatabase: Checkdatabase,
       ShowToast: (Title, Description, Type, Show) =>
@@ -272,7 +274,7 @@ function SetupLoginOtherAccountScreen(
 
   const AppleSignIn = () => {
     SignInWithApple({
-      Loading: setLoading,
+      Loading: props.setLoading,
       CreateDateBase: CreateDateBase,
       Checkdatabase: Checkdatabase,
       ShowToast: (Title, Description, Type, Show) =>
@@ -287,7 +289,7 @@ function SetupLoginOtherAccountScreen(
 
   const MicrosoftSignIn = () => {
     SignInWithMicrosoft({
-      Loading: setLoading,
+      Loading: props.setLoading,
       CreateDateBase: CreateDateBase,
       Checkdatabase: Checkdatabase,
       ShowToast: (Title, Description, Type, Show) =>
@@ -307,14 +309,14 @@ function SetupLoginOtherAccountScreen(
       PrevData.FullName !== NewData.FullName
     ) {
       setCheckDialog(true);
-      setLoading(false);
+      props.setLoading(false);
     } else if (
       PrevData.PhotoUrl &&
       NewData.PhotoUrl &&
       PrevData.PhotoUrl !== NewData.PhotoUrl
     ) {
       setCheckDialog(true);
-      setLoading(false);
+      props.setLoading(false);
     } else if (
       PrevData.FullName &&
       NewData.FullName &&
@@ -324,7 +326,7 @@ function SetupLoginOtherAccountScreen(
       PrevData.PhotoUrl === NewData.PhotoUrl
     ) {
       setLoader(true);
-      setLoading(false);
+      props.setLoading(false);
       router.push('/');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

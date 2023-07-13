@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { SetupHook } from 'hooks/Hooks.Setup';
+import { SetupHook } from 'hooks/Hooks.UserProfile';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { InputNumberOnly } from 'functions/UIAlgorithms';
 import IconNumberTextFieldDark from 'components/textfield/IconNumberTextFieldDark';

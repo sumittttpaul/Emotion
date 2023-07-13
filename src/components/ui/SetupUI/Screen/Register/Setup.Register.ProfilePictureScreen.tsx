@@ -1,7 +1,6 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { SetupHook } from 'hooks/Hooks.Setup';
 import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
@@ -13,19 +12,19 @@ export interface SetupRegisterProfilePictureScreenProps {
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
+  setScreen: Dispatch<AuthScreenType>;
+  setSkipDialog: Dispatch<boolean>;
 }
 
 function SetupRegisterProfilePictureScreen(
   props: SetupRegisterProfilePictureScreenProps
 ) {
-  const { setScreen, setSkipDialog } = SetupHook();
-
   // Screen
   const BackToEmail = () => {
-    setScreen('register-email');
+    props.setScreen('register-email');
   };
   const MoveToBirthday = () => {
-    setScreen('register-date-of-birth');
+    props.setScreen('register-date-of-birth');
   };
 
   return (
@@ -55,7 +54,7 @@ function SetupRegisterProfilePictureScreen(
       </div>
       <div className="flex w-full justify-end">
         <div className="flex space-x-2">
-          <SetupSkipAllButton onClick={() => setSkipDialog(true)}>
+          <SetupSkipAllButton onClick={() => props.setSkipDialog(true)}>
             Skip all
           </SetupSkipAllButton>
           <SetupSubmitButton Disabled={false} onClick={MoveToBirthday}>

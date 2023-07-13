@@ -5,20 +5,20 @@ import { ToastHook } from 'hooks/Hooks.Toast';
 import { useEffect, useState } from 'react';
 import { LazyMotion, domAnimation } from 'framer-motion';
 import { ToastDarkProps } from 'components/toast/ToastDark';
-import { UserMgmtResetPasswordScreenProps } from './Screen/UserMgmt.ResetPasswordScreen';
-import { UserMgmtEmailVerifiedScreenProps } from './Screen/UserMgmt.EmailVerifiedScreen';
+import { UserMgmtResetPasswordScreenProps } from './Screen/UserMgmt.Screen.ResetPassword';
+import { UserMgmtEmailVerifiedScreenProps } from './Screen/UserMgmt.Screen.EmailVerified';
 import { useSearchParams } from 'next/navigation';
 
 const UserMgmtErrorScreen = dynamic(
-  () => import('./Screen/UserMgmt.ErrorScreen'),
+  () => import('./Screen/UserMgmt.Screen.Error'),
   { ssr: false }
 );
 const UserMgmtResetPasswordScreen = dynamic<UserMgmtResetPasswordScreenProps>(
-  () => import('./Screen/UserMgmt.ResetPasswordScreen'),
+  () => import('./Screen/UserMgmt.Screen.ResetPassword'),
   { ssr: false }
 );
 const UserMgmtEmailVerifiedScreen = dynamic<UserMgmtEmailVerifiedScreenProps>(
-  () => import('./Screen/UserMgmt.EmailVerifiedScreen'),
+  () => import('./Screen/UserMgmt.Screen.EmailVerified'),
   { ssr: false }
 );
 const ToastDark = dynamic<ToastDarkProps>(

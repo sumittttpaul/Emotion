@@ -6,12 +6,11 @@ import { SetupErrorScreenProps } from 'components/ui/SetupUI/Screen/Setup.ErrorS
 import { SetupFinishScreenProps } from 'components/ui/SetupUI/Screen/Setup.FinishScreen';
 import { LazyMotion, domAnimation } from 'framer-motion';
 import { SetupImages } from 'contents/setup/Setup.Image';
-import { SetupHook } from 'hooks/Hooks.Setup';
 import { ToastHook } from 'hooks/Hooks.Toast';
+import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import SetupLoadingScreen from './Screen/Setup.LoadingScreen';
-import { useEffect } from 'react';
 import CheckInfoHandler from 'functions/CheckInfoHandler';
 import useClientAuth from 'authentication/useClientAuth';
 
@@ -39,21 +38,31 @@ const SetupSkipDialog = dynamic<SetupSkipDialogProps>(
 interface IProps {
   children: React.ReactNode;
   MainClassName: string;
+  MainScreen: AuthMainScreenType;
+  setMainScreen: Dispatch<AuthMainScreenType>;
+  ErrorType: AuthErrorType;
+  setErrorType: Dispatch<AuthErrorType>;
+  Screen: AuthScreenType;
+  setScreen: Dispatch<AuthScreenType>;
+  SkipDialog: boolean;
+  setSkipDialog: Dispatch<boolean>;
+  Loading: boolean;
 }
 
-function SetupScreenMain({ children, MainClassName }: IProps) {
+function SetupScreenMain({
+  children,
+  MainClassName,
+  MainScreen,
+  setMainScreen,
+  ErrorType,
+  setErrorType,
+  Screen,
+  setScreen,
+  SkipDialog,
+  setSkipDialog,
+  Loading,
+}: IProps) {
   const { FirebaseUser, FirebaseLoading, FirebaseError } = useClientAuth();
-  const {
-    MainScreen,
-    setMainScreen,
-    ErrorType,
-    setErrorType,
-    Screen,
-    setScreen,
-    Loading,
-    SkipDialog,
-    setSkipDialog,
-  } = SetupHook();
   const { Toast, setToast } = ToastHook();
 
   const ActiveImageSrc =
@@ -103,7 +112,7 @@ function SetupScreenMain({ children, MainClassName }: IProps) {
           className={`${MainClassName} relative items-center justify-center h-full w-full flex flex-col md:flex-row box-border`}
         >
           <div className="p-14 ml-14 relative hidden md:flex w-full h-full justify-center items-center">
-            {Screen !== null && (
+            {Screen && (
               <Image
                 height={370}
                 width={370}

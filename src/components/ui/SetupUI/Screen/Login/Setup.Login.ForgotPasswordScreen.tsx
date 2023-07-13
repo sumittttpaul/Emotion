@@ -4,7 +4,7 @@ import { m } from 'framer-motion';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import { PasswordReset } from 'functions/AuthAlgorithms';
-import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
+import { userProfileHook } from 'hooks/Hooks.UserProfile';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { useState } from 'react';
 
@@ -12,12 +12,13 @@ export interface SetupLoginForgotPasswordScreenProps {
   ContentClassName?: string;
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
+  setScreen: Dispatch<AuthScreenType>;
+  setLoading: Dispatch<boolean>;
 }
 
 function SetupLoginForgotPasswordScreen(
   props: SetupLoginForgotPasswordScreenProps
 ) {
-  const { setScreen, setLoading } = SetupHook();
   const { EmailAddress } = userProfileHook();
   const { setToast } = ToastHook();
 
@@ -25,14 +26,14 @@ function SetupLoginForgotPasswordScreen(
 
   // Screens
   const BackToPasswordScreen = () => {
-    setScreen('login-password');
+    props.setScreen('login-password');
   };
 
   const PasswordResetClick = () => {
     if (EmailAddress) {
       PasswordReset({
         EmailAddress: EmailAddress,
-        Loading: setLoading,
+        Loading: props.setLoading,
         Next: () => setSubmitHide(true),
         ShowToast: (Title, Description, Type, Show) =>
           setToast({
@@ -73,7 +74,7 @@ function SetupLoginForgotPasswordScreen(
       </div>
       <div className="flex w-full justify-end">
         <div className="flex">
-          {SubmitHide && (
+          {SubmitHide === false && (
             <SetupSubmitButton
               Disabled={SubmitHide}
               onClick={PasswordResetClick}

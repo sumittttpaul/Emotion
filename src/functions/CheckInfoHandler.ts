@@ -1,7 +1,7 @@
 'use client';
 
 import { ClientUserType } from 'authentication/useClientAuth';
-import { useUserProfile } from 'hooks/Hooks.UserProfile';
+import { FetchUserProfile } from 'hooks/Hooks.FetchUserProfile';
 
 interface IProps {
   Screen: ICheckInfoScreen;
@@ -10,7 +10,7 @@ interface IProps {
   FirebaseError?: Error;
   setErrorType: Dispatch<AuthErrorType>;
   setScreen: Dispatch<AuthScreenType>;
-  setMainScreen: Dispatch<MainScreenType>;
+  setMainScreen: Dispatch<AuthMainScreenType>;
   setToast: Dispatch<ToastSettingType>;
 }
 
@@ -24,7 +24,7 @@ function CheckInfoHandler({
   setMainScreen,
   setToast,
 }: IProps) {
-  useUserProfile(
+  FetchUserProfile(
     !FirebaseLoading && FirebaseUser ? FirebaseUser.uid : undefined
   ).then((value) => {
     if (value.userProfile) {

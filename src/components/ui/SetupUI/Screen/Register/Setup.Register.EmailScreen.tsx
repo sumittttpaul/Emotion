@@ -1,7 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
+import { userProfileHook } from 'hooks/Hooks.UserProfile';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
@@ -18,12 +18,14 @@ export interface SetupRegisterEmailScreenProps {
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
+  setScreen: Dispatch<AuthScreenType>;
+  setSkipDialog: Dispatch<boolean>;
+  setLoading: Dispatch<boolean>;
 }
 
 function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
   const { FirebaseUser } = useClientAuth();
   const { EmailAddress, setEmailAddress } = userProfileHook();
-  const { setScreen, setSkipDialog, setLoading } = SetupHook();
   const { setToast } = ToastHook();
 
   // Validation
@@ -37,10 +39,10 @@ function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
 
   // Screens
   const MoveToPasswordScreen = () => {
-    setScreen('register-password');
+    props.setScreen('register-password');
   };
   const BackToPhone = () => {
-    setScreen('register-phone');
+    props.setScreen('register-phone');
   };
 
   // database
@@ -55,12 +57,12 @@ function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
       };
       OperateUserProfile('UPDATE', { uid: FirebaseUser.uid, update: _data })
         .then(() => {
-          setLoading(false);
+          props.setLoading(false);
           MoveToPasswordScreen();
         })
         .catch((error) => {
           if (error instanceof Error) {
-            setLoading(false);
+            props.setLoading(false);
             setToast({
               Title: error.name,
               Description: error.message,
@@ -83,7 +85,7 @@ function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
   const EmailSubmitClick = () => {
     if (ValidateEmailAddress) {
       if (FirebaseUser) {
-        setLoading(true);
+        props.setLoading(true);
         Updatedatabase();
       }
     } else {
@@ -127,7 +129,7 @@ function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
       </div>
       <div className="flex w-full justify-end">
         <div className="flex space-x-2">
-          <SetupSkipAllButton onClick={() => setSkipDialog(true)}>
+          <SetupSkipAllButton onClick={() => props.setSkipDialog(true)}>
             Skip all
           </SetupSkipAllButton>
           <SetupSubmitButton

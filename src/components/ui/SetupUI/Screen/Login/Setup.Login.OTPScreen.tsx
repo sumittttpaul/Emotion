@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { LoaderHook } from 'hooks/Hooks.Loader';
 import { EncryptData } from 'functions/security/CryptionSecurity';
-import { SetupHook, userProfileHook } from 'hooks/Hooks.Setup';
+import { userProfileHook } from 'hooks/Hooks.UserProfile';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import { DeleteAccount, ResentOTP, VerifyOTP } from 'functions/AuthAlgorithms';
 import OTPTimer from 'components/timer/OTPTimer';
@@ -20,6 +20,11 @@ export interface SetupLoginOTPScreenProps {
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
+  setScreen: Dispatch<AuthScreenType>;
+  setLoading: Dispatch<boolean>;
+  setErrorType: Dispatch<AuthErrorType>;
+  setMainScreen: Dispatch<AuthMainScreenType>;
+  setResetCaptcha: Dispatch<boolean>;
 }
 
 function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
@@ -32,13 +37,6 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
     OTP6: '',
   });
   const [Bool, setBool] = useState(false);
-  const {
-    setScreen,
-    setLoading,
-    setErrorType,
-    setMainScreen,
-    setResetCaptcha,
-  } = SetupHook();
   const { setLoader } = LoaderHook();
   const { Toast, setToast } = ToastHook();
   const { PhoneNumber } = userProfileHook();
@@ -63,8 +61,8 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
     setToast({ ...Toast, Show: false });
     clearOTP();
     setBool(false);
-    setResetCaptcha(true);
-    setScreen('login-phone');
+    props.setResetCaptcha(true);
+    props.setScreen('login-phone');
     setToast({
       Title: 'Verification process failed',
       Description: 'You have cancelled the otp verificaiton.',
@@ -115,7 +113,7 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
             Show: true,
           });
         DeleteAccount({
-          Loading: setLoading,
+          Loading: props.setLoading,
           ShowToast: (Title, Description, Type, Show) =>
             setToast({
               Title: Title,
@@ -125,9 +123,9 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
             }),
           Deletedatabase: () => {
             // Delete database if by any change it has been created,
-            setLoading(false);
-            setMainScreen('Error');
-            setErrorType('database-not-created');
+            props.setLoading(false);
+            props.setMainScreen('Error');
+            props.setErrorType('database-not-created');
           },
         });
       });
@@ -137,7 +135,7 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
   const OTPResend = () => {
     ResentOTP({
       PhoneNumber: parseInt(PhoneNumber),
-      Loading: setLoading,
+      Loading: props.setLoading,
       ShowToast: (Title, Description, Type, Show) =>
         setToast({
           Title: Title,
@@ -156,7 +154,7 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
           OTPs.OTP1 + OTPs.OTP2 + OTPs.OTP3 + OTPs.OTP4 + OTPs.OTP5 + OTPs.OTP6
         ),
         EmptyOTPBox: clearOTP,
-        Loading: setLoading,
+        Loading: props.setLoading,
         LoadingScreen: (value) => setLoader(value),
         CreateDateBase: CreateDateBase,
         ShowToast: (Title, Description, Type, Show) =>
