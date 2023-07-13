@@ -1,9 +1,9 @@
 'use server';
 
-import connectdatabase from 'databases/ConnectDB';
+import { revalidateTag } from 'next/cache';
 import { TagForUserProfile } from 'databases/TagDB';
 import { DBCreateMessage } from 'databases/message/Message.UserProfile';
-import { revalidateTag } from 'next/cache';
+import connectdatabase from 'databases/ConnectDB';
 import userProfileDB from 'databases/schema/Schema.UserProfile';
 
 export async function CREATE_USER_PROFILE({ _data }: POSTType) {
