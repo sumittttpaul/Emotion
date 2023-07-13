@@ -11,7 +11,7 @@ async function Setup() {
   // const user = token ? await verfyIdToken(token.value) : undefined;
   // const uid = user ? user.uid : undefined;
   const { userProfile, error } = await useUserProfile(undefined); // eslint-disable-line react-hooks/rules-of-hooks
-
+  
   return (
     <SetupScreenMain
       userProfileError={error}

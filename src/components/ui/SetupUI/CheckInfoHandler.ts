@@ -175,7 +175,7 @@ function CheckInfoHandler({ userProfile, Screen }: IProps) {
           Title: error.name,
           Description: error.message,
           Type: 'Error',
-          Show: true,
+          Show: false,
         });
       }
     }
