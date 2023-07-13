@@ -66,8 +66,8 @@ function SetupIconPasswordTextField({
 
   return (
     <IconPasswordTextFieldDark
-      placeholder="Value"
-      icon="/icons/Value.svg"
+      placeholder="Password"
+      icon="/icons/Password.svg"
       value={Value}
       onChange={ValueChange}
       onkeyUp={ValueKeyUp}
