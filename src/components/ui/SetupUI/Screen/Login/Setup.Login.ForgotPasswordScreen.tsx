@@ -63,10 +63,10 @@ function SetupLoginForgotPasswordScreen(
       <div
         className={`${props.ContentClassName} w-full flex flex-col space-y-4`}
       >
-        <h6 className="font-normal tracking-wide text-left w-full text-white/75 text-sm">
+        <p className="font-normal tracking-wide text-left w-full text-white/75 text-sm">
           An email will be sent to the email address you provided earlier. You
           can use the link in the email to reset your password.
-        </h6>
+        </p>
         <div className="w-full flex justify-start">
           <SignInBackButton Label="Back" onClick={BackToPasswordScreen} />
         </div>

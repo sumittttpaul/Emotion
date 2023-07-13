@@ -90,9 +90,9 @@ function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
                 alt=""
               />
             </div>
-            <div className="text-white text-[13px] font-[300]">
+            <p className="text-white text-[13px] font-[300]">
               {EmailAddress}
-            </div>
+            </p>
           </div>
         </div>
         <SetupIconPasswordTextField
@@ -109,10 +109,10 @@ function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
           >
             <InformationCircleIcon className="h-5 text-white" />
           </TooltipDark>
-          <h6 className="font-normal text-left w-full text-white text-sm">
+          <p className="font-normal text-left w-full text-white text-sm">
             Your password should contain at least 8 or more characters with a
             mix of letters of uppercase and lowercase, numbers & symbols.
-          </h6>
+          </p>
         </div>
         <div className="flex justify-start w-full">
           <YellowBulbHint

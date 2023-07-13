@@ -51,13 +51,13 @@ function SetupErrorScreen(props: SetupErrorScreenProps) {
             {props.Type === undefined && props.ToastTitle}
           </SetupHeaderLabel>
         </div>
-        <h6 className="font-normal text-center w-full text-white/75 text-[15px]">
+        <p className="font-normal text-center w-full text-white/75 text-[15px]">
           {props.Type === 'database-not-created' &&
             'We apologize for the inconvenience, but there seems to be an error with the process of creation of database.'}
           {props.Type === 'get-user-failed' &&
             'We apologize for the inconvenience, but there seems to be an error with the validating process.'}
           {props.Type === undefined && props.ToastDescription}
-        </h6>
+        </p>
         {props.Type !== undefined && (
           <div className="flex">
             <YellowBulbHint

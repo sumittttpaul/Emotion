@@ -41,12 +41,12 @@ function SetupFinishScreen(props: SetupFinishScreenProps) {
           <SetupHeaderLabel>You are all set</SetupHeaderLabel>
         </div>
         <div className="w-full flex flex-col max-w-[550px] space-y-3">
-          <h6 className="ml-0 md:ml-3 font-normal line-clamp-2 text-center w-full text-white/75 text-[15px]">
+          <p className="ml-0 md:ml-3 font-normal line-clamp-2 text-center w-full text-white/75 text-[15px]">
             &quot;The only way to do great work is to love what you do.&quot;
-          </h6>
-          <h6 className="ml-0 md:ml-3 font-normal line-clamp-2 text-right w-full text-white/75 text-[15px]">
+          </p>
+          <p className="ml-0 md:ml-3 font-normal line-clamp-2 text-right w-full text-white/75 text-[15px]">
             - Steve Jobs
-          </h6>
+          </p>
         </div>
       </div>
       <div className="relative md:absolute p-5 md:p-14 flex h-full w-full items-end justify-end">

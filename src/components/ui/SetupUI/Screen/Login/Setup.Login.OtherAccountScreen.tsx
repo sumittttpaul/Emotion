@@ -397,12 +397,12 @@ function CustomButton(props: CustomButtonProps) {
             props.Description ? '-space-y-1 ?' : ''
           } w-full flex flex-col`}
         >
-          <div className="w-full text-start text-[13px] font-normal tracking-wide">
+          <label className="w-full text-start text-[13px] font-normal tracking-wide">
             {props.Label}
-          </div>
-          <div className="w-full text-start text-[12px] font-normal text-white/75">
+          </label>
+          <p className="w-full text-start text-[12px] font-normal text-white/75">
             {props.Description}
-          </div>
+          </p>
         </div>
         <div className="flex h-full items-center justify-center">
           <ChevronRightIcon

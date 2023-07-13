@@ -73,11 +73,11 @@ function SetupRegisterVerifyEmailScreen(
           <GreenSuccessHint Label="Your email address has been verified successfully." />
         ) : (
           <>
-            <h6 className="font-normal  tracking-wide text-left w-full text-white/75 text-sm">
+            <p className="font-normal  tracking-wide text-left w-full text-white/75 text-sm">
               To verify your email address, click Verify Email. A verification
               email will be sent to the email address you provided. Click the
               link in the email to verify your address.
-            </h6>
+            </p>
             <div className="w-full flex justify-start">
               <SignInNextButton
                 Label="I will verify later"

@@ -152,12 +152,12 @@ function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
         className={`${props.ContentClassName} w-full flex flex-col space-y-4`}
       >
         <div className="pb-1.5 flex space-x-1 items-center">
-          <div className="text-white/75 text-[14px] tracking-wide font-normal">
+          <p className="text-white/75 text-[14px] tracking-wide font-normal">
             Verification code sent to
-          </div>
-          <div className="text-white font-[500] text-[14px] tracking-wide">
+          </p>
+          <p className="text-white font-[500] text-[14px] tracking-wide">
             {PhoneNumber}
-          </div>
+          </p>
         </div>
         <SetupOTPTextField
           OTP1={OTPs.OTP1}

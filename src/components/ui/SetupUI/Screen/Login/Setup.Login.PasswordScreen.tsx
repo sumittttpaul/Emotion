@@ -92,9 +92,9 @@ function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
                 alt=""
               />
             </div>
-            <div className="text-white text-[13px] font-[300]">
+            <p className="text-white text-[13px] font-[300]">
               {EmailAddress}
-            </div>
+            </p>
           </div>
         </div>
         <SetupIconPasswordTextField
