@@ -15,7 +15,7 @@ import SetupContentHeader from 'components/label/SetupContentHeader';
 import SetupHeaderDescription from 'components/label/SetupHeaderDescription';
 import SetupHeaderLabel from 'components/label/SetupHeaderLabel';
 import { Home_Link, Setup_Link } from 'routers/RouterLinks';
-import SetupIconPasswordTextField from 'components/ui/SetupUI/Input/Setup.IconPasswordTextField';
+import SetupIconPasswordTextField from 'interfaces/Setup/Input/Setup.Input.IconPassword';
 
 export interface UserMgmtResetPasswordScreenProps {
   AnimationDivClassName: string;

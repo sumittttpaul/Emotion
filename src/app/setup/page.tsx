@@ -1,7 +1,7 @@
-import SetupScreen from 'components/ui/SetupUI/Setup.Screen';
+import SetupInterface from 'interfaces/Setup/Setup.Interface';
 
 async function Setup() {
-  return <SetupScreen />;
+  return <SetupInterface />;
 }
 
 export default Setup;

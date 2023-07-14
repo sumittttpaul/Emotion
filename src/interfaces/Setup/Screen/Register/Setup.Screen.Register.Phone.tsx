@@ -9,7 +9,7 @@ import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import useClientAuth from 'authentication/useClientAuth';
-import SetupIconNumberTextField from 'components/ui/SetupUI/Input/Setup.IconNumberTextField';
+import SetupIconNumberTextField from 'interfaces/Setup/Input/Setup.Input.IconNumber';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
 export interface SetupRegisterPhoneScreenProps {

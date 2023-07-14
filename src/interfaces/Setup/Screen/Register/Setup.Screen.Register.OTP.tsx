@@ -1,32 +1,32 @@
 import { m } from 'framer-motion';
 import { useState } from 'react';
 import { ToastHook } from 'hooks/Hooks.Toast';
-import { LoaderHook } from 'hooks/Hooks.Loader';
-import { EncryptData } from 'functions/security/CryptionSecurity';
-import { userProfileHook } from 'hooks/Hooks.UserProfile';
-import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
-import { DeleteAccount, ResentOTP, VerifyOTP } from 'functions/AuthAlgorithms';
-import OTPTimer from 'components/timer/OTPTimer';
-import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
-import SetupOTPTextField from 'components/ui/SetupUI/Input/Setup.OTPTextField';
+import OTPTimer from 'components/timer/OTPTimer';
+import {
+  ResentOTPForLinkWithPhone,
+  VerifyOTPForLinkWithPhone,
+} from 'functions/AuthAlgorithms';
+import { userProfileHook } from 'hooks/Hooks.UserProfile';
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
+import SetupOTPTextField from '../../Input/Setup.Input.OTP';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
+import useClientAuth from 'authentication/useClientAuth';
 
-export interface SetupLoginOTPScreenProps {
+export interface SetupRegisterOTPScreenProps {
   ContentClassName?: string;
   AnimationDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
   setScreen: Dispatch<AuthScreenType>;
-  setLoading: Dispatch<boolean>;
-  setErrorType: Dispatch<AuthErrorType>;
-  setMainScreen: Dispatch<AuthMainScreenType>;
   setResetCaptcha: Dispatch<boolean>;
+  setLoading: Dispatch<boolean>;
   Loading: boolean;
 }
 
-function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
+function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
+  const { FirebaseUser } = useClientAuth();
   const [OTPs, setOTPs] = useState({
     OTP1: '',
     OTP2: '',
@@ -36,7 +36,6 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
     OTP6: '',
   });
   const [Bool, setBool] = useState(false);
-  const { setLoader } = LoaderHook();
   const { Toast, setToast } = ToastHook();
   const { PhoneNumber } = userProfileHook();
 
@@ -77,62 +76,39 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
   };
 
   // database
-  function CreateDateBase(_uid: string) {
-    const UserPhoneNumber = EncryptData(
-      UserProfileEncrytionKey(_uid, 'PhoneNumber'),
-      PhoneNumber
-    );
-    const _data: IUserProfile = {
-      _uid: _uid,
-      _data: {
-        fullName: '',
-        emailAddress: '',
-        phoneNumber: UserPhoneNumber,
-        photoURL: '',
-        dateOfBirth: '',
-        age: '',
-        gender: '',
-        isVerified: {
-          phoneNumber: true,
-          emailAddress: false,
-        },
-      },
-    };
-    OperateUserProfile('CREATE', { create: _data })
-      .then(() => {
-        props.CheckInfoHandler();
-        // setScreen('resgister-name')
-      })
-      .catch((error) => {
-        if (error instanceof Error)
-          setToast({
-            Title: error.name,
-            Description: error.message,
-            Type: 'Error',
-            Show: true,
-          });
-        DeleteAccount({
-          Loading: props.setLoading,
-          ShowToast: (Title, Description, Type, Show) =>
-            setToast({
-              Title: Title,
-              Description: Description,
-              Type: Type,
-              Show: Show,
-            }),
-          Deletedatabase: () => {
-            // Delete database if by any change it has been created,
+  const Updatedatabase = () => {
+    if (FirebaseUser) {
+      const _data: IUserProfileDataUpdate = {
+        '_data.isVerified.phoneNumber': true,
+      };
+      OperateUserProfile('UPDATE', { uid: FirebaseUser.uid, update: _data })
+        .then(() => {
+          props.CheckInfoHandler();
+        })
+        .catch((error) => {
+          if (error instanceof Error) {
             props.setLoading(false);
-            props.setMainScreen('Error');
-            props.setErrorType('database-not-created');
-          },
+            setToast({
+              Title: error.name,
+              Description: error.message,
+              Type: 'Error',
+              Show: true,
+            });
+          }
         });
+    } else {
+      setToast({
+        Title: 'Something went wrong',
+        Description: 'It seems like user is not exist.',
+        Type: 'Error',
+        Show: true,
       });
-  }
+    }
+  };
 
   // OTP Submit
   const OTPResend = () => {
-    ResentOTP({
+    ResentOTPForLinkWithPhone({
       PhoneNumber: parseInt(PhoneNumber),
       Loading: props.setLoading,
       ShowToast: (Title, Description, Type, Show) =>
@@ -148,14 +124,13 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
 
   const OTPSubmitClick = () => {
     if (ValidateOTP) {
-      VerifyOTP({
+      VerifyOTPForLinkWithPhone({
         OTP: parseInt(
           OTPs.OTP1 + OTPs.OTP2 + OTPs.OTP3 + OTPs.OTP4 + OTPs.OTP5 + OTPs.OTP6
         ),
         EmptyOTPBox: clearOTP,
         Loading: props.setLoading,
-        LoadingScreen: (value) => setLoader(value),
-        CreateDateBase: CreateDateBase,
+        Updatedatabase: Updatedatabase,
         ShowToast: (Title, Description, Type, Show) =>
           setToast({
             Title: Title,
@@ -223,4 +198,4 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
   );
 }
 
-export default SetupLoginOTPScreen;
+export default SetupRegisterOTPScreen;

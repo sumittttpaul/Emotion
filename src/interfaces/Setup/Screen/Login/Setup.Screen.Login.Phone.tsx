@@ -6,7 +6,7 @@ import SetupFooter from 'components/footer/SetupFooter';
 import YellowBulbHint from 'components/hint/YellowBulbHint';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
-import SetupIconNumberTextField from 'components/ui/SetupUI/Input/Setup.IconNumberTextField';
+import SetupIconNumberTextField from 'interfaces/Setup/Input/Setup.Input.IconNumber';
 
 export interface SetupLoginPhoneScreenProps {
   ContentClassName?: string;

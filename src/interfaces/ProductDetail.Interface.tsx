@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-function ProductDetailUI() {
+function ProductDetailInterface() {
   return (
     <div className="relative z-10">
       <div className="flex pr-3 items-center justify-between w-full h-full relative overflow-x-hidden overflow-y-visible">
@@ -27,4 +27,4 @@ function ProductDetailUI() {
   );
 }
 
-export default ProductDetailUI;
+export default ProductDetailInterface;

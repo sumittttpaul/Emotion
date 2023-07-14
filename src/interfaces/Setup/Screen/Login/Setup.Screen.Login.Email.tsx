@@ -5,7 +5,7 @@ import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupFooter from 'components/footer/SetupFooter';
 import YellowBulbHint from 'components/hint/YellowBulbHint';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
-import SetupIconTextField from 'components/ui/SetupUI/Input/Setup.IconTextField';
+import SetupIconTextField from 'interfaces/Setup/Input/Setup.Input.Icon';
 
 export interface SetupLoginEmailScreenProps {
   ContentClassName?: string;

@@ -1,4 +1,4 @@
-function OffersUI() {
+function OffersInterface() {
   return (
     <div className="relative z-10 pr-3">
       {/* Content */}
@@ -7,4 +7,4 @@ function OffersUI() {
   );
 }
 
-export default OffersUI;
+export default OffersInterface;

@@ -1,14 +1,14 @@
 import { ToastDarkProps } from 'components/toast/ToastDark';
-import { SetupSkipDialogProps } from 'components/ui/SetupUI/Dialog/Setup.SkipDialog';
-import { SetupErrorScreenProps } from 'components/ui/SetupUI/Screen/Setup.ErrorScreen';
-import { SetupFinishScreenProps } from 'components/ui/SetupUI/Screen/Setup.FinishScreen';
+import { SetupSkipDialogProps } from 'interfaces/Setup/Dialog/Setup.Dialog.Skip';
+import { SetupErrorScreenProps } from 'interfaces/Setup/Screen/Setup.Screen.Error';
+import { SetupFinishScreenProps } from 'interfaces/Setup/Screen/Setup.Screen.Finish';
 import { LazyMotion, domAnimation } from 'framer-motion';
 import { SetupImages } from 'contents/setup/Setup.Image';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import SetupLoadingScreen from './Screen/Setup.LoadingScreen';
+import SetupLoadingScreen from 'interfaces/Setup/Screen/Setup.Screen.Loading';
 import CheckInfoHandler from 'functions/CheckInfoHandler';
 import useClientAuth from 'authentication/useClientAuth';
 
@@ -21,15 +21,15 @@ const ToastDark = dynamic<ToastDarkProps>(
   { ssr: false }
 );
 const SetupErrorScreen = dynamic<SetupErrorScreenProps>(
-  () => import('components/ui/SetupUI/Screen/Setup.ErrorScreen'),
+  () => import('interfaces/Setup/Screen/Setup.Screen.Error'),
   { ssr: false }
 );
 const SetupFinishScreen = dynamic<SetupFinishScreenProps>(
-  () => import('components/ui/SetupUI/Screen/Setup.FinishScreen'),
+  () => import('interfaces/Setup/Screen/Setup.Screen.Finish'),
   { ssr: false }
 );
 const SetupSkipDialog = dynamic<SetupSkipDialogProps>(
-  () => import('components/ui/SetupUI/Dialog/Setup.SkipDialog'),
+  () => import('interfaces/Setup/Dialog/Setup.Dialog.Skip'),
   { ssr: false }
 );
 
@@ -107,7 +107,7 @@ function SetupScreenMain({
       )}
       {MainScreen === 'Setup' && (
         <main
-          className={`${MainClassName} relative items-center justify-center h-full w-full flex flex-col md:flex-row box-border`}
+          className={`${MainClassName} relative items-center justify-center w-full flex flex-col md:flex-row box-border`}
         >
           <div className="p-14 ml-14 relative hidden md:flex w-full h-full justify-center items-center">
             {Screen && (

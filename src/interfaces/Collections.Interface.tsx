@@ -1,4 +1,4 @@
-function CollectionsUI() {
+function CollectionsInterface() {
   return (
     <div className="relative z-10 pr-3">
       {/* Content */}
@@ -7,4 +7,4 @@ function CollectionsUI() {
   );
 }
 
-export default CollectionsUI;
+export default CollectionsInterface;

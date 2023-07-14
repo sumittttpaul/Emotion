@@ -1,11 +1,11 @@
 'use client';
 
-import SetupScreenMain from 'components/ui/SetupUI/Setup.Screen.Main';
-import SetupScreenTitle from 'components/ui/SetupUI/Setup.Screen.Title';
-import SetupScreenContent from 'components/ui/SetupUI/Setup.Screen.Content';
+import SetupScreenMain from 'interfaces/Setup/Screen/Setup.Screen.Main';
+import SetupScreenTitle from 'interfaces/Setup/Screen/Setup.Screen.Title';
+import SetupScreenContent from 'interfaces/Setup/Screen/Setup.Screen.Content';
 import { useState } from 'react';
 
-function SetupScreen() {
+function SetupInterface() {
   const [ResetCaptcha, setResetCaptcha] = useState(false);
   const [SkipDialog, setSkipDialog] = useState(false);
   const [Loading, setLoading] = useState(false);
@@ -49,4 +49,4 @@ function SetupScreen() {
   );
 }
 
-export default SetupScreen;
+export default SetupInterface;

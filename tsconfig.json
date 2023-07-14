@@ -34,6 +34,7 @@
       "databases/*": ["databases/*"],
       "firebase/*": ["firebase/*"],
       "hooks/*": ["hooks/*"],
+      "interfaces/*": ["interfaces/*"],
       "pages/*": ["pages/*"],
       "providers/*": ["providers/*"],
       "routers/*": ["routers/*"],

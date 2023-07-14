@@ -9,7 +9,7 @@ import TooltipDark from 'components/tooltip/TooltipDark';
 import { InformationCircleIcon } from '@heroicons/react/outline';
 import YellowBulbHint from 'components/hint/YellowBulbHint';
 import { LinkWithEmailAndPassword } from 'functions/AuthAlgorithms';
-import SetupIconPasswordTextField from '../../Input/Setup.IconPasswordTextField';
+import SetupIconPasswordTextField from '../../Input/Setup.Input.IconPassword';
 
 export interface SetupRegisterPasswordScreenProps {
   ContentClassName?: string;

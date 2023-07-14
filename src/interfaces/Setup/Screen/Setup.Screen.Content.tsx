@@ -1,88 +1,79 @@
 import dynamic from 'next/dynamic';
 import { AnimatePresence } from 'framer-motion';
-import { SetupLoginPhoneScreenProps } from 'components/ui/SetupUI/Screen/Login/Setup.Login.PhoneScreen';
-import { SetupLoginEmailScreenProps } from 'components/ui/SetupUI/Screen/Login/Setup.Login.EmailScreen';
-import { SetupLoginOtherAccountScreenProps } from 'components/ui/SetupUI/Screen/Login/Setup.Login.OtherAccountScreen';
-import { SetupLoginOTPScreenProps } from 'components/ui/SetupUI/Screen/Login/Setup.Login.OTPScreen';
-import { SetupLoginPasswordScreenProps } from 'components/ui/SetupUI/Screen/Login/Setup.Login.PasswordScreen';
-import { SetupLoginForgotPasswordScreenProps } from 'components/ui/SetupUI/Screen/Login/Setup.Login.ForgotPasswordScreen';
-import { SetupRegisterNameScreenProps } from 'components/ui/SetupUI/Screen/Register/Setup.Register.NameScreen';
-import { SetupRegisterPhoneScreenProps } from 'components/ui/SetupUI/Screen/Register/Setup.Register.PhoneScreen';
-import { SetupRegisterOTPScreenProps } from 'components/ui/SetupUI/Screen/Register/Setup.Register.OTPScreen';
-import { SetupRegisterEmailScreenProps } from 'components/ui/SetupUI/Screen/Register/Setup.Register.EmailScreen';
-import { SetupRegisterPasswordScreenProps } from 'components/ui/SetupUI/Screen/Register/Setup.Register.PasswordScreen';
-import { SetupRegisterVerifyEmailScreenProps } from 'components/ui/SetupUI/Screen/Register/Setup.Register.VerifyEmailScreen';
-import { SetupRegisterProfilePictureScreenProps } from 'components/ui/SetupUI/Screen/Register/Setup.Register.ProfilePictureScreen';
-import { SetupRegisterBirthdayScreenProps } from 'components/ui/SetupUI/Screen/Register/Setup.Register.BirthdayScreen';
-import { SetupRegisterGenderScreenProps } from 'components/ui/SetupUI/Screen/Register/Setup.Register.GenderScreen';
+import { SetupLoginPhoneScreenProps } from 'interfaces/Setup/Screen/Login/Setup.Screen.Login.Phone';
+import { SetupLoginEmailScreenProps } from 'interfaces/Setup/Screen/Login/Setup.Screen.Login.Email';
+import { SetupLoginOtherAccountScreenProps } from 'interfaces/Setup/Screen/Login/Setup.Screen.Login.OtherAccount';
+import { SetupLoginOTPScreenProps } from 'interfaces/Setup/Screen/Login/Setup.Screen.Login.OTP';
+import { SetupLoginPasswordScreenProps } from 'interfaces/Setup/Screen/Login/Setup.Screen.Login.Password';
+import { SetupLoginForgotPasswordScreenProps } from 'interfaces/Setup/Screen/Login/Setup.Screen.Login.ForgotPassword';
+import { SetupRegisterNameScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.Name';
+import { SetupRegisterPhoneScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.Phone';
+import { SetupRegisterOTPScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.OTP';
+import { SetupRegisterEmailScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.Email';
+import { SetupRegisterPasswordScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.Password';
+import { SetupRegisterVerifyEmailScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.VerifyEmail';
+import { SetupRegisterProfilePictureScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.ProfilePicture';
+import { SetupRegisterBirthdayScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.Birthday';
+import { SetupRegisterGenderScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.Gender';
 import CheckInfoHandler from 'functions/CheckInfoHandler';
 import useClientAuth from 'authentication/useClientAuth';
 import { ToastHook } from 'hooks/Hooks.Toast';
 
 const SetupLoginPhoneScreen = dynamic<SetupLoginPhoneScreenProps>(
-  () => import('components/ui/SetupUI/Screen/Login/Setup.Login.PhoneScreen'),
+  () => import('interfaces/Setup/Screen/Login/Setup.Screen.Login.Phone'),
   { ssr: false }
 );
 
 const SetupLoginEmailScreen = dynamic<SetupLoginEmailScreenProps>(
-  () => import('components/ui/SetupUI/Screen/Login/Setup.Login.EmailScreen'),
+  () => import('interfaces/Setup/Screen/Login/Setup.Screen.Login.Email'),
   { ssr: false }
 );
 
 const SetupLoginOtherAccountScreen = dynamic<SetupLoginOtherAccountScreenProps>(
-  () =>
-    import('components/ui/SetupUI/Screen/Login/Setup.Login.OtherAccountScreen'),
+  () => import('interfaces/Setup/Screen/Login/Setup.Screen.Login.OtherAccount'),
   { ssr: false }
 );
 
 const SetupLoginOTPScreen = dynamic<SetupLoginOTPScreenProps>(
-  () => import('components/ui/SetupUI/Screen/Login/Setup.Login.OTPScreen'),
+  () => import('interfaces/Setup/Screen/Login/Setup.Screen.Login.OTP'),
   { ssr: false }
 );
 
 const SetupLoginPasswordScreen = dynamic<SetupLoginPasswordScreenProps>(
-  () => import('components/ui/SetupUI/Screen/Login/Setup.Login.PasswordScreen'),
+  () => import('interfaces/Setup/Screen/Login/Setup.Screen.Login.Password'),
   { ssr: false }
 );
 
 const SetupLoginForgotPasswordScreen =
   dynamic<SetupLoginForgotPasswordScreenProps>(
     () =>
-      import(
-        'components/ui/SetupUI/Screen/Login/Setup.Login.ForgotPasswordScreen'
-      ),
+      import('interfaces/Setup/Screen/Login/Setup.Screen.Login.ForgotPassword'),
     { ssr: false }
   );
 
 const SetupRegisterNameScreen = dynamic<SetupRegisterNameScreenProps>(
-  () =>
-    import('components/ui/SetupUI/Screen/Register/Setup.Register.NameScreen'),
+  () => import('interfaces/Setup/Screen/Register/Setup.Screen.Register.Name'),
   { ssr: false }
 );
 
 const SetupRegisterPhoneScreen = dynamic<SetupRegisterPhoneScreenProps>(
-  () =>
-    import('components/ui/SetupUI/Screen/Register/Setup.Register.PhoneScreen'),
+  () => import('interfaces/Setup/Screen/Register/Setup.Screen.Register.Phone'),
   { ssr: false }
 );
 
 const SetupRegisterOTPScreen = dynamic<SetupRegisterOTPScreenProps>(
-  () =>
-    import('components/ui/SetupUI/Screen/Register/Setup.Register.OTPScreen'),
+  () => import('interfaces/Setup/Screen/Register/Setup.Screen.Register.OTP'),
   { ssr: false }
 );
 
 const SetupRegisterEmailScreen = dynamic<SetupRegisterEmailScreenProps>(
-  () =>
-    import('components/ui/SetupUI/Screen/Register/Setup.Register.EmailScreen'),
+  () => import('interfaces/Setup/Screen/Register/Setup.Screen.Register.Email'),
   { ssr: false }
 );
 
 const SetupRegisterPasswordScreen = dynamic<SetupRegisterPasswordScreenProps>(
   () =>
-    import(
-      'components/ui/SetupUI/Screen/Register/Setup.Register.PasswordScreen'
-    ),
+    import('interfaces/Setup/Screen/Register/Setup.Screen.Register.Password'),
   { ssr: false }
 );
 
@@ -90,7 +81,7 @@ const SetupRegisterVerifyEmailScreen =
   dynamic<SetupRegisterVerifyEmailScreenProps>(
     () =>
       import(
-        'components/ui/SetupUI/Screen/Register/Setup.Register.VerifyEmailScreen'
+        'interfaces/Setup/Screen/Register/Setup.Screen.Register.VerifyEmail'
       ),
     { ssr: false }
   );
@@ -99,22 +90,19 @@ const SetupRegisterProfilePictureScreen =
   dynamic<SetupRegisterProfilePictureScreenProps>(
     () =>
       import(
-        'components/ui/SetupUI/Screen/Register/Setup.Register.ProfilePictureScreen'
+        'interfaces/Setup/Screen/Register/Setup.Screen.Register.ProfilePicture'
       ),
     { ssr: false }
   );
 
 const SetupRegisterBirthdayScreen = dynamic<SetupRegisterBirthdayScreenProps>(
   () =>
-    import(
-      'components/ui/SetupUI/Screen/Register/Setup.Register.BirthdayScreen'
-    ),
+    import('interfaces/Setup/Screen/Register/Setup.Screen.Register.Birthday'),
   { ssr: false }
 );
 
 const SetupRegisterGenderScreen = dynamic<SetupRegisterGenderScreenProps>(
-  () =>
-    import('components/ui/SetupUI/Screen/Register/Setup.Register.GenderScreen'),
+  () => import('interfaces/Setup/Screen/Register/Setup.Screen.Register.Gender'),
   { ssr: false }
 );
 

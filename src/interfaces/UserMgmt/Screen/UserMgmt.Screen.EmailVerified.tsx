@@ -11,7 +11,7 @@ import {
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SetupHeaderLabel from 'components/label/SetupHeaderLabel';
-import { SetupConfirmEmailVerifySkeleton } from 'components/ui/SetupUI/Screen/Setup.LoadingScreen';
+import { SetupConfirmEmailVerifySkeleton } from 'interfaces/Setup/Screen/Setup.Screen.Loading';
 import { ConfirmVerifyEmailAddress } from 'functions/AuthAlgorithms';
 import { LoaderHook } from 'hooks/Hooks.Loader';
 import { ToastHook } from 'hooks/Hooks.Toast';

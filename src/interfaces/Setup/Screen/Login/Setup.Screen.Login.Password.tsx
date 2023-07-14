@@ -8,7 +8,7 @@ import { SignInWithEmailAndPassword } from 'functions/AuthAlgorithms';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
-import SetupIconPasswordTextField from 'components/ui/SetupUI/Input/Setup.IconPasswordTextField';
+import SetupIconPasswordTextField from 'interfaces/Setup/Input/Setup.Input.IconPassword';
 
 export interface SetupLoginPasswordScreenProps {
   ContentClassName?: string;

@@ -22,7 +22,7 @@ const UserMgmtEmailVerifiedScreen = dynamic<UserMgmtEmailVerifiedScreenProps>(
   { ssr: false }
 );
 const ToastDark = dynamic<ToastDarkProps>(
-  () => import('../../toast/ToastDark'),
+  () => import('components/toast/ToastDark'),
   { ssr: false }
 );
 const LinearProgressLaoding = dynamic(
@@ -38,7 +38,7 @@ interface IProps {
   Animation: AuthAnimationType;
 }
 
-function UserMgmtScreen({
+function UserMgmtInterface({
   userProfile,
   MainClassName,
   AnimationDivClassName,
@@ -102,4 +102,4 @@ function UserMgmtScreen({
   );
 }
 
-export default UserMgmtScreen;
+export default UserMgmtInterface;

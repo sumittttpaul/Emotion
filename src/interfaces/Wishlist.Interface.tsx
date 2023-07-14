@@ -1,4 +1,4 @@
-function WishlistUI() {
+function WishlistInterface() {
   return (
     <div className="relative z-10 pr-3">
       {/* Content */}
@@ -7,4 +7,4 @@ function WishlistUI() {
   );
 }
 
-export default WishlistUI;
+export default WishlistInterface;

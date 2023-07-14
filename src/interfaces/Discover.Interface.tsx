@@ -18,7 +18,7 @@ import DiscoverBannerDeal from 'components/banner/DiscoverBannerDeal';
 import LightningBadge from 'components/badge/LightningBadge';
 import NewBadge from 'components/badge/NewBadge';
 
-function DiscoverUI() {
+function DiscoverInterface() {
   return (
     <div className="relative z-10 w-full rounded-xl">
       <DiscoverCarousel ContentArray={DiscoverCarouselContent} />
@@ -56,4 +56,4 @@ function DiscoverUI() {
   );
 }
 
-export default DiscoverUI;
+export default DiscoverInterface;

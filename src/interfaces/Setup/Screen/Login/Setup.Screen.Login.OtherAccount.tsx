@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { m } from 'framer-motion';
 import { Button } from '@mui/material';
-import { SetupCheckDialogProps } from 'components/ui/SetupUI/Dialog/Setup.CheckDialog';
+import { SetupCheckDialogProps } from 'interfaces/Setup/Dialog/Setup.Dialog.Check';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import {
@@ -22,7 +22,7 @@ import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 import { FetchUserProfile } from 'hooks/Hooks.FetchUserProfile';
 
 const SetupCheckDialog = dynamic<SetupCheckDialogProps>(
-  () => import('components/ui/SetupUI/Dialog/Setup.CheckDialog'),
+  () => import('interfaces/Setup/Dialog/Setup.Dialog.Check'),
   { ssr: false }
 );
 
