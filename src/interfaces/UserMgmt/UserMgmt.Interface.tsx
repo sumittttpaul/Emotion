@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { useEffect, useState } from 'react';
 import { LazyMotion, domAnimation } from 'framer-motion';
-import { ToastDarkProps } from 'components/toast/ToastDark';
 import { useSearchParams } from 'next/navigation';
 
 const UserMgmtErrorScreen = dynamic(

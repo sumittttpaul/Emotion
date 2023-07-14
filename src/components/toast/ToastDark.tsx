@@ -9,20 +9,6 @@ const ToastDarkContent = dynamic<ToastDarkContentProps>(
   { ssr: false },
 );
 
-export interface ToastDarkProps {
-  SlideDirection: 'left' | 'right' | 'up' | 'down';
-  Vertical: 'top' | 'bottom';
-  Horizontal: 'left' | 'center' | 'right';
-  HideDuration: number;
-  Toast: {
-    Open: boolean;
-    onClose: Dispatch<boolean>;
-    MessageTitle: string;
-    MessageDescription: string;
-    Type: 'Error' | 'Success' | 'Info' | 'Warning' | '';
-  };
-}
-
 function ToastDark(props: ToastDarkProps) {
   const SlideTransition = (prop: SlideProps) => {
     return (

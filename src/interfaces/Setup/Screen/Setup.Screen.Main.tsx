@@ -1,4 +1,3 @@
-import { ToastDarkProps } from 'components/toast/ToastDark';
 import { LazyMotion, domAnimation } from 'framer-motion';
 import { SetupImages } from 'contents/setup/Setup.Image';
 import { ToastHook } from 'hooks/Hooks.Toast';
