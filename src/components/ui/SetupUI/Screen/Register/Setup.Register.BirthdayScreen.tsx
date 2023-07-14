@@ -11,7 +11,7 @@ import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import useClientAuth from 'authentication/useClientAuth';
 import DatePickerButton from 'components/datepicker/DatePickerButton';
-import OperateUserProfile from 'databases/controller/Controller.UserProfile';
+import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
 export interface SetupRegisterBirthdayScreenProps {
   ContentClassName?: string;

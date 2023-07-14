@@ -11,7 +11,7 @@ import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupOTPTextField from 'components/ui/SetupUI/Input/Setup.OTPTextField';
-import OperateUserProfile from 'databases/controller/Controller.UserProfile';
+import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
 export interface SetupLoginOTPScreenProps {
   ContentClassName?: string;

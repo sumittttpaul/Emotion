@@ -14,7 +14,7 @@ import { EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import useClientAuth from 'authentication/useClientAuth';
-import OperateUserProfile from 'databases/controller/Controller.UserProfile';
+import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
 const AvatarButtonDialog = dynamic<AvatarButtonDialogProps>(
   () => import('./AvatarButtonDialog'),

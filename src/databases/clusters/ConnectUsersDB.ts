@@ -5,7 +5,7 @@ import { IError } from 'types/Error.Constructor';
 
 const { EMOTION_CLOUD_CLUSTER_MONGO_USERDB_URI } = process.env;
 
-const connectdatabase = async () => {
+const ConnectUsersDatabase = async () => {
   try {
     if (!EMOTION_CLOUD_CLUSTER_MONGO_USERDB_URI) {
       throw new IError({
@@ -29,4 +29,4 @@ const connectdatabase = async () => {
   }
 };
 
-export default connectdatabase;
+export default ConnectUsersDatabase;

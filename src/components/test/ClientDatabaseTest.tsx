@@ -2,7 +2,7 @@
 
 import { Button } from '@mui/material';
 import { useEffect, useState } from 'react';
-import OperateUserProfile from 'databases/controller/Controller.UserProfile';
+import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
 interface IProps {
   User?: IUserProfile;
@@ -74,7 +74,7 @@ function ClientDatabaseTest(props: IProps) {
     <>
       <div className="h-14 py-5 flex w-full justify-center box-border">
         {User && (
-          <div className='h-12 flex flex-col space-y-2 box-border'>
+          <div className="h-12 flex flex-col space-y-2 box-border">
             <h6 className="text-xl h-5 font-bold text-green-400">
               {User._data?.fullName}
             </h6>

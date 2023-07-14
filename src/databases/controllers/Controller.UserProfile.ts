@@ -5,7 +5,7 @@ import {
   DELETE_USER_PROFILE,
   CREATE_USER_PROFILE,
   UPDATE_USER_PROFILE,
-} from '../helper/Helper.UserProfile';
+} from '../helpers/Helper.UserProfile';
 
 const ErrorMessage: IError = {
   name: 'Internal Server Error',

@@ -10,7 +10,7 @@ import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import useClientAuth from 'authentication/useClientAuth';
 import SetupIconNumberTextField from 'components/ui/SetupUI/Input/Setup.IconNumberTextField';
-import OperateUserProfile from 'databases/controller/Controller.UserProfile';
+import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
 export interface SetupRegisterPhoneScreenProps {
   ContentClassName?: string;

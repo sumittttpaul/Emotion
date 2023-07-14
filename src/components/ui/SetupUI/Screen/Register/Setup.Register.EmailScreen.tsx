@@ -8,7 +8,7 @@ import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import useClientAuth from 'authentication/useClientAuth';
 import SetupIconTextField from '../../Input/Setup.IconTextField';
-import OperateUserProfile from 'databases/controller/Controller.UserProfile';
+import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 
 export interface SetupRegisterEmailScreenProps {

@@ -15,7 +15,7 @@ import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import useClientAuth from 'authentication/useClientAuth';
-import OperateUserProfile from 'databases/controller/Controller.UserProfile';
+import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 import TooltipDark from 'components/tooltip/TooltipDark';
 import DialogContainerDark from 'components/dialog/DialogContainerDark';
 

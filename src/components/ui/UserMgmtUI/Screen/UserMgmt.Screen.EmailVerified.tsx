@@ -16,7 +16,7 @@ import { ConfirmVerifyEmailAddress } from 'functions/AuthAlgorithms';
 import { LoaderHook } from 'hooks/Hooks.Loader';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import useClientAuth from 'authentication/useClientAuth';
-import OperateUserProfile from 'databases/controller/Controller.UserProfile';
+import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
 export interface UserMgmtEmailVerifiedScreenProps {
   MainClassName: string;

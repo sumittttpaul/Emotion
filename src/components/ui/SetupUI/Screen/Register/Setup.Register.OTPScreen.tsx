@@ -11,7 +11,7 @@ import {
 import { userProfileHook } from 'hooks/Hooks.UserProfile';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SetupOTPTextField from '../../Input/Setup.OTPTextField';
-import OperateUserProfile from 'databases/controller/Controller.UserProfile';
+import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 import useClientAuth from 'authentication/useClientAuth';
 
 export interface SetupRegisterOTPScreenProps {

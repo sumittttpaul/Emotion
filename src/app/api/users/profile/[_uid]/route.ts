@@ -1,16 +1,16 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import connectdatabase from 'databases/ConnectDB';
-import userProfileDB from 'databases/schema/Schema.UserProfile';
+import ConnectUsersDatabase from 'databases/clusters/ConnectUsersDB';
+import userProfileDB from 'databases/schemas/Schema.UserProfile';
 import {
   DBErrorMessage,
   DataNullMessage,
   ServerErrorMessage,
-} from 'databases/message/Message.UserProfile';
+} from 'databases/messages/Message.UserProfile';
 import { CatchError } from 'types/Error.Constructor';
 
 // GET (get a user) : http://localhost:3000/api/users/profile/[_uid]
 export async function GET(req: NextRequest, context: { params: ParamType }) {
-  connectdatabase().catch(() => {
+  ConnectUsersDatabase().catch(() => {
     return NextResponse.json(DBErrorMessage, ServerErrorMessage);
   });
   try {
