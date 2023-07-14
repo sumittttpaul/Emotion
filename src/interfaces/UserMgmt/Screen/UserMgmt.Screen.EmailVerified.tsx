@@ -13,8 +13,8 @@ import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SetupHeaderLabel from 'components/label/SetupHeaderLabel';
 import { SetupConfirmEmailVerifySkeleton } from 'interfaces/Setup/Screen/Setup.Screen.Loading';
 import { ConfirmVerifyEmailAddress } from 'functions/AuthAlgorithms';
-import { LoaderHook } from 'hooks/Hooks.Loader';
-import { ToastHook } from 'hooks/Hooks.Toast';
+import { LoaderHook } from 'hooks/global/Hooks.Loader';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
 import useClientAuth from 'authentication/useClientAuth';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 

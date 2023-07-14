@@ -1,4 +1,4 @@
-import { FetchUserProfile } from 'hooks/Hooks.FetchUserProfile';
+import { FetchUserProfile } from 'hooks/global/Hooks.FetchUserProfile';
 import { verfyIdToken } from 'authentication/adminApp';
 import { cookies } from 'next/headers';
 import UserMgmtInterface from 'interfaces/UserMgmt/UserMgmt.Interface';

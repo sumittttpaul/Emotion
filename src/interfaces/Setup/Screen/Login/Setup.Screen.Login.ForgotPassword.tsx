@@ -2,8 +2,8 @@ import { m } from 'framer-motion';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import { PasswordReset } from 'functions/AuthAlgorithms';
-import { userProfileHook } from 'hooks/Hooks.UserProfile';
-import { ToastHook } from 'hooks/Hooks.Toast';
+import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { useState } from 'react';
 
 function SetupLoginForgotPasswordScreen(

@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { m } from 'framer-motion';
 import { useState } from 'react';
-import { ToastHook } from 'hooks/Hooks.Toast';
-import { userProfileHook } from 'hooks/Hooks.UserProfile';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
+import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import TooltipDark from 'components/tooltip/TooltipDark';

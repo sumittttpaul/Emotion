@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DeviceHook } from 'hooks/Hooks.Device';
+import { DeviceHook } from 'hooks/global/Hooks.Device';
 import SidePanel from 'components/sidepanel/SidePanel';
 import ContainerDark from 'components/container/ContainerDark';
 

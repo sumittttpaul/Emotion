@@ -1,6 +1,6 @@
 'use client';
 
-import { ToastHook } from 'hooks/Hooks.Toast';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { useState } from 'react';
 import IconTextFieldDark from 'components/textfield/IconTextFieldDark';
 

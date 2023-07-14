@@ -1,8 +1,8 @@
 'use client';
 
 import IconPasswordTextFieldDark from 'components/textfield/IconPasswordTextFieldDark';
-import { LoaderHook } from 'hooks/Hooks.Loader';
-import { ToastHook } from 'hooks/Hooks.Toast';
+import { LoaderHook } from 'hooks/global/Hooks.Loader';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { useState } from 'react';
 
 interface IProps {

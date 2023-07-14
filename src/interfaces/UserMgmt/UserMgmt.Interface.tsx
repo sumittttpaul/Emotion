@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { ToastHook } from 'hooks/Hooks.Toast';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { useEffect, useState } from 'react';
 import { LazyMotion, domAnimation } from 'framer-motion';
 import { useSearchParams } from 'next/navigation';

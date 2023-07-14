@@ -6,7 +6,7 @@ import {
   InputChangeFocus,
   InputNumberOnly,
 } from 'functions/UIAlgorithms';
-import { LoaderHook } from 'hooks/Hooks.Loader';
+import { LoaderHook } from 'hooks/global/Hooks.Loader';
 
 interface IProps {
   OTP1: string;

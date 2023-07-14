@@ -1,7 +1,7 @@
 import { HeaderLogo } from 'components/logo/CompanyLogo';
-import { HomePageHook } from 'hooks/Hooks.HomePage';
+import { HomePageHook } from 'hooks/target/Hooks.Page.Home';
 import { Home_Link } from 'routers/RouterLinks';
-import { LoaderHook } from 'hooks/Hooks.Loader';
+import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { useRouter } from 'next/navigation';
 import SidePanelVerticalNavBar from './SidePanel.Vertical.NavBar';
 import SidePanelShoppingList from './ShoppingList/SidePanel.ShoppingList';

@@ -1,6 +1,8 @@
+'use client';
+
 import { LazyMotion, domAnimation } from 'framer-motion';
 import { SetupImages } from 'contents/setup/Setup.Image';
-import { ToastHook } from 'hooks/Hooks.Toast';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';

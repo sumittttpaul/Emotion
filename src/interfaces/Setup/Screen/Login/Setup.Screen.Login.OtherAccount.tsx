@@ -12,13 +12,13 @@ import {
   SignInWithGoogle,
   SignInWithMicrosoft,
 } from 'functions/AuthAlgorithms';
-import { LoaderHook } from 'hooks/Hooks.Loader';
+import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { ClientUserType } from 'authentication/useClientAuth';
-import { ToastHook } from 'hooks/Hooks.Toast';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { DecryptData, EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
-import { FetchUserProfile } from 'hooks/Hooks.FetchUserProfile';
+import { FetchUserProfile } from 'hooks/global/Hooks.FetchUserProfile';
 
 const SetupCheckDialog = dynamic<SetupCheckDialogProps>(
   () => import('interfaces/Setup/Dialog/Setup.Dialog.Check'),

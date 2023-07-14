@@ -1,5 +1,7 @@
+'use client';
+
 import dynamic from 'next/dynamic';
-import { ToastHook } from 'hooks/Hooks.Toast';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { AnimatePresence } from 'framer-motion';
 import CheckInfoHandler from 'functions/CheckInfoHandler';
 import useClientAuth from 'authentication/useClientAuth';

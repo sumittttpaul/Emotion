@@ -6,7 +6,7 @@ import { Button, CircularProgress } from '@mui/material';
 import { Setup_Link } from 'routers/RouterLinks';
 import { HeaderUserButtonMenuProps } from './Header.UserButton.Menu';
 import { SignOut } from 'functions/AuthAlgorithms';
-import { LoaderHook } from 'hooks/Hooks.Loader';
+import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import useClientAuth, { ClientUserType } from 'authentication/useClientAuth';
 import TooltipDark from 'components/tooltip/TooltipDark';
 

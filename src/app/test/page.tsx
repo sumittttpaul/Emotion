@@ -1,4 +1,4 @@
-import { FetchUserProfile } from 'hooks/Hooks.FetchUserProfile';
+import { FetchUserProfile } from 'hooks/global/Hooks.FetchUserProfile';
 import ClientDatabaseTest from 'components/test/ClientDatabaseTest';
 
 async function Page() {

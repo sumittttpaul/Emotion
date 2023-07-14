@@ -1,8 +1,8 @@
 import { useRouter } from 'next/navigation';
 import { Home_Link } from 'routers/RouterLinks';
 import { FooterLogo } from 'components/logo/CompanyLogo';
-import { LoaderHook } from 'hooks/Hooks.Loader';
-import { HomePageHook } from 'hooks/Hooks.HomePage';
+import { LoaderHook } from 'hooks/global/Hooks.Loader';
+import { HomePageHook } from 'hooks/target/Hooks.Page.Home';
 import FooterBottom from './assets/FooterBottom';
 import ScrollToTopButton from './assets/ScrollToTopButton';
 

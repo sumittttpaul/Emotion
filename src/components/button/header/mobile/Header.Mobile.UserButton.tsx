@@ -7,7 +7,7 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { HeaderUserButtonMenuProps } from '../Header.UserButton.Menu';
 import { SignOut } from 'functions/AuthAlgorithms';
-import { LoaderHook } from 'hooks/Hooks.Loader';
+import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import useClientAuth, { ClientUserType } from 'authentication/useClientAuth';
 
 const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(

@@ -1,4 +1,4 @@
-import { DeviceHook } from 'hooks/Hooks.Device';
+import { DeviceHook } from 'hooks/global/Hooks.Device';
 import Footer from 'components/footer/Footer';
 import Header from 'components/header/Header';
 import HeaderMobile from 'components/header/Header.Mobile';

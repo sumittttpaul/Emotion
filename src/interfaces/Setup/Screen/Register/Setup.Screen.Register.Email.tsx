@@ -1,6 +1,6 @@
 import { m } from 'framer-motion';
-import { userProfileHook } from 'hooks/Hooks.UserProfile';
-import { ToastHook } from 'hooks/Hooks.Toast';
+import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';

@@ -5,7 +5,7 @@ import { HeaderMobileUserButton } from '../button/header/mobile/Header.Mobile.Us
 import { MobileLogo } from '../logo/CompanyLogo';
 import { HeaderMobileSearchProps } from './assets/Header.Mobile.Search';
 import { SearchMobileContent } from '../../contents/home/search/Home.Search';
-import { HomePageHook } from 'hooks/Hooks.HomePage';
+import { HomePageHook } from 'hooks/target/Hooks.Page.Home';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import HeaderNavMobile from './assets/Header.Nav.Mobile';

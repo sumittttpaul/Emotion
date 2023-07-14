@@ -90,23 +90,6 @@ interface IUserProfileID {
 
 interface IUserProfile extends IUserProfileID, IUserProfileDataConstructor {}
 
-interface IUserProfileHook {
-  FullName: string;
-  EmailAddress: string;
-  PhoneNumber: string;
-  PhotoUrl: string;
-  DateOfBirth: string;
-  Gender: string;
-  isEmailVerified: boolean | undefined;
-  setFullName: Dispatch<string>;
-  setEmailAddress: Dispatch<string>;
-  setPhoneNumber: Dispatch<string>;
-  setPhotoUrl: Dispatch<string>;
-  setDateOfBirth: Dispatch<string>;
-  setGender: Dispatch<string>;
-  setIsEmailVerified: Dispatch<boolean | undefined>;
-}
-
 type AuthScreenType =
   | 'login-phone'
   | 'login-email'
@@ -150,32 +133,12 @@ type ToastSettingType = {
 
 type AuthMainScreenType = 'Error' | 'CheckInfo' | 'Finish' | 'Setup';
 
-interface IToastHook {
-  Toast: ToastSettingType;
-  setToast: Dispatch<ToastSettingType>;
-}
-
 interface IToastDark {
   Open: boolean;
   onClose: Dispatch<boolean>;
   MessageTitle: string;
   MessageDescription: string;
   Type: string;
-}
-
-interface ILoaderHook {
-  Loader: boolean;
-  setLoader: Dispatch<boolean>;
-}
-
-interface IDeviceHook {
-  isMobile: boolean;
-  setIsMobile: Dispatch<boolean>;
-}
-
-interface IHomePageHook {
-  HomePage: 'Discover' | 'Offers' | 'Collections';
-  setHomePage: Dispatch<'Discover' | 'Offers' | 'Collections'>;
 }
 
 type ICheckInfoScreen =

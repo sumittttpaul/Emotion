@@ -1,9 +1,9 @@
 import { m } from 'framer-motion';
 import { useState } from 'react';
-import { ToastHook } from 'hooks/Hooks.Toast';
-import { LoaderHook } from 'hooks/Hooks.Loader';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
+import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { EncryptData } from 'functions/security/CryptionSecurity';
-import { userProfileHook } from 'hooks/Hooks.UserProfile';
+import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import { DeleteAccount, ResentOTP, VerifyOTP } from 'functions/AuthAlgorithms';
 import OTPTimer from 'components/timer/OTPTimer';

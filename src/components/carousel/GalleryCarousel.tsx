@@ -5,7 +5,7 @@ import {
   GalleryCarouselDesktopProps,
   GalleryCarouselMobileProps,
 } from './GalleryCarousel/GalleryCarousel.MultiScreen';
-import { DeviceHook } from 'hooks/Hooks.Device';
+import { DeviceHook } from 'hooks/global/Hooks.Device';
 
 const GalleryCarouselMobile = dynamic<GalleryCarouselMobileProps>(
   () =>

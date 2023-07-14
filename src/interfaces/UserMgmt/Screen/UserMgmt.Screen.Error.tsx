@@ -6,7 +6,7 @@ import SetupHeaderLabel from 'components/label/SetupHeaderLabel';
 import { Home_Link, Manage_Your_Account_Link } from 'routers/RouterLinks';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
-import { LoaderHook } from 'hooks/Hooks.Loader';
+import { LoaderHook } from 'hooks/global/Hooks.Loader';
 
 function UserMgmtErrorScreen() {
   const { setLoader } = LoaderHook();

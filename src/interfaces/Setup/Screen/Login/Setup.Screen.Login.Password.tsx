@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { m } from 'framer-motion';
 import { useState } from 'react';
-import { LoaderHook } from 'hooks/Hooks.Loader';
-import { ToastHook } from 'hooks/Hooks.Toast';
-import { userProfileHook } from 'hooks/Hooks.UserProfile';
+import { LoaderHook } from 'hooks/global/Hooks.Loader';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
+import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import { SignInWithEmailAndPassword } from 'functions/AuthAlgorithms';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';

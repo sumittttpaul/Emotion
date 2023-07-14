@@ -1,6 +1,6 @@
 import { m } from 'framer-motion';
-import { ToastHook } from 'hooks/Hooks.Toast';
-import { userProfileHook } from 'hooks/Hooks.UserProfile';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
+import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import { SignInWithPhoneNumber } from 'functions/AuthAlgorithms';
 import SetupFooter from 'components/footer/SetupFooter';
 import YellowBulbHint from 'components/hint/YellowBulbHint';

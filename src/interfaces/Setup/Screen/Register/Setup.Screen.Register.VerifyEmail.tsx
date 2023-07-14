@@ -1,8 +1,8 @@
 import { m } from 'framer-motion';
 import { CircularProgress } from '@mui/material';
 import { VerifyEmailAddress } from 'functions/AuthAlgorithms';
-import { userProfileHook } from 'hooks/Hooks.UserProfile';
-import { ToastHook } from 'hooks/Hooks.Toast';
+import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { useState, useEffect } from 'react';
 import { FirebaseAuth } from 'authentication/clientApp';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';

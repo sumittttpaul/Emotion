@@ -5,7 +5,7 @@ import {
   CircularProgress,
   circularProgressClasses,
 } from '@mui/material';
-import { LoaderHook } from 'hooks/Hooks.Loader';
+import { LoaderHook } from 'hooks/global/Hooks.Loader';
 
 function Loading() {
   const { Loader } = LoaderHook();

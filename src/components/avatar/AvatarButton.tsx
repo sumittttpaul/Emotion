@@ -11,7 +11,7 @@ import { DeleteAvatar, UploadAvatar } from 'functions/AuthAlgorithms';
 import { useEffect, useState } from 'react';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
-import { ToastHook } from 'hooks/Hooks.Toast';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
 import useClientAuth from 'authentication/useClientAuth';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 

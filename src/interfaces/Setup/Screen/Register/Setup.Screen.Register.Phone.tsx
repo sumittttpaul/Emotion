@@ -1,7 +1,7 @@
 import { m } from 'framer-motion';
-import { ToastHook } from 'hooks/Hooks.Toast';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { EncryptData } from 'functions/security/CryptionSecurity';
-import { userProfileHook } from 'hooks/Hooks.UserProfile';
+import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import { LinkWithPhoneNumber } from 'functions/AuthAlgorithms';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';

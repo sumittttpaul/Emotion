@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HomePageHook } from 'hooks/Hooks.HomePage';
+import { HomePageHook } from 'hooks/target/Hooks.Page.Home';
 import { HeaderNavMenuProps } from './assets/Header.Nav.Menu';
 import dynamic from 'next/dynamic';
 import HeaderNav from './assets/Header.Nav';
