@@ -12,19 +12,6 @@ import useClientAuth from 'authentication/useClientAuth';
 import SetupIconNumberTextField from 'interfaces/Setup/Input/Setup.Input.IconNumber';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
-export interface SetupRegisterPhoneScreenProps {
-  ContentClassName?: string;
-  AnimationDivClassName?: string;
-  Animation: AuthAnimationType;
-  CheckInfoHandler: VoidType;
-  setScreen: Dispatch<AuthScreenType>;
-  ResetCaptcha: boolean;
-  setResetCaptcha: Dispatch<boolean>;
-  setSkipDialog: Dispatch<boolean>;
-  setLoading: Dispatch<boolean>;
-  Loading: boolean;
-}
-
 function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
   const { FirebaseUser } = useClientAuth();
   const { PhoneNumber, setPhoneNumber } = userProfileHook();

@@ -18,13 +18,6 @@ import { ToastHook } from 'hooks/Hooks.Toast';
 import useClientAuth from 'authentication/useClientAuth';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
-export interface UserMgmtEmailVerifiedScreenProps {
-  MainClassName: string;
-  oobCode: string | null;
-  Animation: AuthAnimationType;
-  isEmailVerified?: boolean;
-}
-
 function UserMgmtEmailVerifiedScreen(props: UserMgmtEmailVerifiedScreenProps) {
   const [Loading, setLoading] = useState(true); // true
   const [Screen, setScreen] = useState<'Success' | 'Error' | null>(null);

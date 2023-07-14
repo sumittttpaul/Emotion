@@ -11,16 +11,6 @@ import useClientAuth from 'authentication/useClientAuth';
 import SetupIconTextField from '../../Input/Setup.Input.Icon';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
-export interface SetupRegisterNameScreenProps {
-  ContentClassName?: string;
-  AnimationDivClassName?: string;
-  Animation: AuthAnimationType;
-  CheckInfoHandler: VoidType;
-  setSkipDialog: Dispatch<boolean>;
-  setLoading: Dispatch<boolean>;
-  Loading: boolean;
-}
-
 function SetupRegisterNameScreen(props: SetupRegisterNameScreenProps) {
   const { FirebaseUser } = useClientAuth();
   const { FullName, setFullName } = userProfileHook();

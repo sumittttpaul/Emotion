@@ -5,8 +5,6 @@ import { ToastHook } from 'hooks/Hooks.Toast';
 import { useEffect, useState } from 'react';
 import { LazyMotion, domAnimation } from 'framer-motion';
 import { ToastDarkProps } from 'components/toast/ToastDark';
-import { UserMgmtResetPasswordScreenProps } from './Screen/UserMgmt.Screen.ResetPassword';
-import { UserMgmtEmailVerifiedScreenProps } from './Screen/UserMgmt.Screen.EmailVerified';
 import { useSearchParams } from 'next/navigation';
 
 const UserMgmtErrorScreen = dynamic(

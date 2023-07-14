@@ -11,16 +11,6 @@ import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 
-export interface SetupRegisterGenderScreenProps {
-  ContentClassName?: string;
-  AnimationDivClassName?: string;
-  Animation: AuthAnimationType;
-  CheckInfoHandler: VoidType;
-  setScreen: Dispatch<AuthScreenType>;
-  setSkipDialog: Dispatch<boolean>;
-  setLoading: Dispatch<boolean>;
-}
-
 function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
   const { Gender, setGender } = userProfileHook();
   const { setToast } = ToastHook();

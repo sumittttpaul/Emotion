@@ -7,14 +7,6 @@ import YellowBulbHint from 'components/hint/YellowBulbHint';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SetupIconTextField from 'interfaces/Setup/Input/Setup.Input.Icon';
 
-export interface SetupLoginEmailScreenProps {
-  ContentClassName?: string;
-  AnimationDivClassName?: string;
-  Animation: AuthAnimationType;
-  setScreen: Dispatch<AuthScreenType>;
-  Loading: boolean;
-}
-
 function SetupLoginEmailScreen(props: SetupLoginEmailScreenProps) {
   const { EmailAddress, setEmailAddress } = userProfileHook();
   const { setToast } = ToastHook();

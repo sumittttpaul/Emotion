@@ -23,14 +23,6 @@ const LoadingLinearProgress = dynamic(
   () => import('components/loader/Loading.LinearProgress')
 );
 
-export interface SetupCheckDialogProps {
-  Open: boolean;
-  PrevFullName?: string;
-  PrevPhotoUrl?: string;
-  NewFullName?: string;
-  NewPhotoUrl?: string;
-}
-
 function SetupCheckDialog(props: SetupCheckDialogProps) {
   const [Loading, setLoading] = useState(false);
   const { FirebaseUser } = useClientAuth();

@@ -13,16 +13,6 @@ import useClientAuth from 'authentication/useClientAuth';
 import DatePickerButton from 'components/datepicker/DatePickerButton';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
-export interface SetupRegisterBirthdayScreenProps {
-  ContentClassName?: string;
-  AnimationDivClassName?: string;
-  Animation: AuthAnimationType;
-  CheckInfoHandler: VoidType;
-  setScreen: Dispatch<AuthScreenType>;
-  setSkipDialog: Dispatch<boolean>;
-  setLoading: Dispatch<boolean>;
-}
-
 function SetupRegisterBirthdayScreen(props: SetupRegisterBirthdayScreenProps) {
   const { DateOfBirth, setDateOfBirth } = userProfileHook();
   const [SubmitDisabled, setSubmitDisabled] = useState(true);

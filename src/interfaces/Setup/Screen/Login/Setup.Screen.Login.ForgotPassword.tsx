@@ -6,14 +6,6 @@ import { userProfileHook } from 'hooks/Hooks.UserProfile';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { useState } from 'react';
 
-export interface SetupLoginForgotPasswordScreenProps {
-  ContentClassName?: string;
-  AnimationDivClassName?: string;
-  Animation: AuthAnimationType;
-  setScreen: Dispatch<AuthScreenType>;
-  setLoading: Dispatch<boolean>;
-}
-
 function SetupLoginForgotPasswordScreen(
   props: SetupLoginForgotPasswordScreenProps
 ) {

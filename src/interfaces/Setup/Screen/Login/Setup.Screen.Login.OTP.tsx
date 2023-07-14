@@ -13,19 +13,6 @@ import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupOTPTextField from 'interfaces/Setup/Input/Setup.Input.OTP';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
-export interface SetupLoginOTPScreenProps {
-  ContentClassName?: string;
-  AnimationDivClassName?: string;
-  Animation: AuthAnimationType;
-  CheckInfoHandler: VoidType;
-  setScreen: Dispatch<AuthScreenType>;
-  setLoading: Dispatch<boolean>;
-  setErrorType: Dispatch<AuthErrorType>;
-  setMainScreen: Dispatch<AuthMainScreenType>;
-  setResetCaptcha: Dispatch<boolean>;
-  Loading: boolean;
-}
-
 function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
   const [OTPs, setOTPs] = useState({
     OTP1: '',

@@ -8,17 +8,6 @@ import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SetupIconNumberTextField from 'interfaces/Setup/Input/Setup.Input.IconNumber';
 
-export interface SetupLoginPhoneScreenProps {
-  ContentClassName?: string;
-  AnimationDivClassName?: string;
-  Animation: AuthAnimationType;
-  setScreen: Dispatch<AuthScreenType>;
-  setLoading: Dispatch<boolean>;
-  ResetCaptcha: boolean;
-  setResetCaptcha: Dispatch<boolean>;
-  Loading: boolean;
-}
-
 function SetupLoginPhoneScreen(props: SetupLoginPhoneScreenProps) {
   const { PhoneNumber, setPhoneNumber } = userProfileHook();
   const { setToast } = ToastHook();

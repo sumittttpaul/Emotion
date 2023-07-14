@@ -10,15 +10,6 @@ import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SetupIconPasswordTextField from 'interfaces/Setup/Input/Setup.Input.IconPassword';
 
-export interface SetupLoginPasswordScreenProps {
-  ContentClassName?: string;
-  AnimationDivClassName?: string;
-  Animation: AuthAnimationType;
-  setScreen: Dispatch<AuthScreenType>;
-  setLoading: Dispatch<boolean>;
-  Loading: boolean;
-}
-
 function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
   const [Password, setPassword] = useState('');
   const { EmailAddress } = userProfileHook();

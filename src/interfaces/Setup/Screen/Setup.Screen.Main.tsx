@@ -1,7 +1,4 @@
 import { ToastDarkProps } from 'components/toast/ToastDark';
-import { SetupSkipDialogProps } from 'interfaces/Setup/Dialog/Setup.Dialog.Skip';
-import { SetupErrorScreenProps } from 'interfaces/Setup/Screen/Setup.Screen.Error';
-import { SetupFinishScreenProps } from 'interfaces/Setup/Screen/Setup.Screen.Finish';
 import { LazyMotion, domAnimation } from 'framer-motion';
 import { SetupImages } from 'contents/setup/Setup.Image';
 import { ToastHook } from 'hooks/Hooks.Toast';

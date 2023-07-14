@@ -1,21 +1,13 @@
 import { m } from 'framer-motion';
 import { CircularProgress } from '@mui/material';
-import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
-import SignInNextButton from 'components/button/Setup/SignInNextButton';
-import GreenSuccessHint from 'components/hint/GreenSuccessHint';
 import { VerifyEmailAddress } from 'functions/AuthAlgorithms';
 import { userProfileHook } from 'hooks/Hooks.UserProfile';
 import { ToastHook } from 'hooks/Hooks.Toast';
 import { useState, useEffect } from 'react';
 import { FirebaseAuth } from 'authentication/clientApp';
-
-export interface SetupRegisterVerifyEmailScreenProps {
-  ContentClassName?: string;
-  AnimationDivClassName?: string;
-  Animation: AuthAnimationType;
-  CheckInfoHandler: VoidType;
-  setLoading: Dispatch<boolean>;
-}
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
+import SignInNextButton from 'components/button/Setup/SignInNextButton';
+import GreenSuccessHint from 'components/hint/GreenSuccessHint';
 
 function SetupRegisterVerifyEmailScreen(
   props: SetupRegisterVerifyEmailScreenProps

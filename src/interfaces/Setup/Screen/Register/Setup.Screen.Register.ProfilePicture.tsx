@@ -5,15 +5,6 @@ import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import AvatarButton from 'components/avatar/AvatarButton';
 
-export interface SetupRegisterProfilePictureScreenProps {
-  ContentClassName?: string;
-  AnimationDivClassName?: string;
-  Animation: AuthAnimationType;
-  CheckInfoHandler: VoidType;
-  setScreen: Dispatch<AuthScreenType>;
-  setSkipDialog: Dispatch<boolean>;
-}
-
 function SetupRegisterProfilePictureScreen(
   props: SetupRegisterProfilePictureScreenProps
 ) {

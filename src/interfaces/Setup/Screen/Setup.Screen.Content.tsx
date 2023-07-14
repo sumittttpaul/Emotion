@@ -1,23 +1,8 @@
 import dynamic from 'next/dynamic';
+import { ToastHook } from 'hooks/Hooks.Toast';
 import { AnimatePresence } from 'framer-motion';
-import { SetupLoginPhoneScreenProps } from 'interfaces/Setup/Screen/Login/Setup.Screen.Login.Phone';
-import { SetupLoginEmailScreenProps } from 'interfaces/Setup/Screen/Login/Setup.Screen.Login.Email';
-import { SetupLoginOtherAccountScreenProps } from 'interfaces/Setup/Screen/Login/Setup.Screen.Login.OtherAccount';
-import { SetupLoginOTPScreenProps } from 'interfaces/Setup/Screen/Login/Setup.Screen.Login.OTP';
-import { SetupLoginPasswordScreenProps } from 'interfaces/Setup/Screen/Login/Setup.Screen.Login.Password';
-import { SetupLoginForgotPasswordScreenProps } from 'interfaces/Setup/Screen/Login/Setup.Screen.Login.ForgotPassword';
-import { SetupRegisterNameScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.Name';
-import { SetupRegisterPhoneScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.Phone';
-import { SetupRegisterOTPScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.OTP';
-import { SetupRegisterEmailScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.Email';
-import { SetupRegisterPasswordScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.Password';
-import { SetupRegisterVerifyEmailScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.VerifyEmail';
-import { SetupRegisterProfilePictureScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.ProfilePicture';
-import { SetupRegisterBirthdayScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.Birthday';
-import { SetupRegisterGenderScreenProps } from 'interfaces/Setup/Screen/Register/Setup.Screen.Register.Gender';
 import CheckInfoHandler from 'functions/CheckInfoHandler';
 import useClientAuth from 'authentication/useClientAuth';
-import { ToastHook } from 'hooks/Hooks.Toast';
 
 const SetupLoginPhoneScreen = dynamic<SetupLoginPhoneScreenProps>(
   () => import('interfaces/Setup/Screen/Login/Setup.Screen.Login.Phone'),

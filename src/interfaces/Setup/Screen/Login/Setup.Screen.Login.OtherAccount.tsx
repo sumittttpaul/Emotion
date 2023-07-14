@@ -3,7 +3,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { m } from 'framer-motion';
 import { Button } from '@mui/material';
-import { SetupCheckDialogProps } from 'interfaces/Setup/Dialog/Setup.Dialog.Check';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import {
@@ -25,17 +24,6 @@ const SetupCheckDialog = dynamic<SetupCheckDialogProps>(
   () => import('interfaces/Setup/Dialog/Setup.Dialog.Check'),
   { ssr: false }
 );
-
-export interface SetupLoginOtherAccountScreenProps {
-  ContentClassName?: string;
-  AnimationDivClassName?: string;
-  Animation: AuthAnimationType;
-  CheckInfoHandler: VoidType;
-  setScreen: Dispatch<AuthScreenType>;
-  setLoading: Dispatch<boolean>;
-  setErrorType: Dispatch<AuthErrorType>;
-  setMainScreen: Dispatch<AuthMainScreenType>;
-}
 
 function SetupLoginOtherAccountScreen(
   props: SetupLoginOtherAccountScreenProps

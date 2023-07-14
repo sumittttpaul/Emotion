@@ -7,13 +7,6 @@ import YellowBulbHint from 'components/hint/YellowBulbHint';
 import { Home_Link, Manage_Your_Account_Link } from 'routers/RouterLinks';
 import { LoaderHook } from 'hooks/Hooks.Loader';
 
-export interface SetupErrorScreenProps {
-  Type: 'database-not-created' | 'get-user-failed' | undefined;
-  ToastTitle: string;
-  ToastDescription: string;
-  ClassName?: string;
-}
-
 function SetupErrorScreen(props: SetupErrorScreenProps) {
   const { setLoader } = LoaderHook();
   const router = useRouter();

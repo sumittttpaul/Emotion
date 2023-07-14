@@ -11,16 +11,6 @@ import YellowBulbHint from 'components/hint/YellowBulbHint';
 import { LinkWithEmailAndPassword } from 'functions/AuthAlgorithms';
 import SetupIconPasswordTextField from '../../Input/Setup.Input.IconPassword';
 
-export interface SetupRegisterPasswordScreenProps {
-  ContentClassName?: string;
-  AnimationDivClassName?: string;
-  Animation: AuthAnimationType;
-  CheckInfoHandler: VoidType;
-  setScreen: Dispatch<AuthScreenType>;
-  setLoading: Dispatch<boolean>;
-  Loading: boolean;
-}
-
 function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
   const [Password, setPassword] = useState('');
   const { EmailAddress } = userProfileHook();

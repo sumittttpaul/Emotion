@@ -11,17 +11,6 @@ import SetupIconTextField from '../../Input/Setup.Input.Icon';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 
-export interface SetupRegisterEmailScreenProps {
-  ContentClassName?: string;
-  AnimationDivClassName?: string;
-  Animation: AuthAnimationType;
-  CheckInfoHandler: VoidType;
-  setScreen: Dispatch<AuthScreenType>;
-  setSkipDialog: Dispatch<boolean>;
-  setLoading: Dispatch<boolean>;
-  Loading: boolean;
-}
-
 function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
   const { FirebaseUser } = useClientAuth();
   const { EmailAddress, setEmailAddress } = userProfileHook();

@@ -3,11 +3,6 @@ import { Button } from '@mui/material';
 import { LoaderHook } from 'hooks/Hooks.Loader';
 import { useRouter } from 'next/navigation';
 
-export interface SetupSkipDialogProps {
-  Open: boolean;
-  onClose: () => void;
-}
-
 function SetupSkipDialog(props: SetupSkipDialogProps) {
   const { setLoader } = LoaderHook();
   const router = useRouter();

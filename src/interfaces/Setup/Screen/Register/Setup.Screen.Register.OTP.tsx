@@ -14,17 +14,6 @@ import SetupOTPTextField from '../../Input/Setup.Input.OTP';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 import useClientAuth from 'authentication/useClientAuth';
 
-export interface SetupRegisterOTPScreenProps {
-  ContentClassName?: string;
-  AnimationDivClassName?: string;
-  Animation: AuthAnimationType;
-  CheckInfoHandler: VoidType;
-  setScreen: Dispatch<AuthScreenType>;
-  setResetCaptcha: Dispatch<boolean>;
-  setLoading: Dispatch<boolean>;
-  Loading: boolean;
-}
-
 function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
   const { FirebaseUser } = useClientAuth();
   const [OTPs, setOTPs] = useState({

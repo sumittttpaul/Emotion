@@ -17,15 +17,6 @@ import SetupHeaderLabel from 'components/label/SetupHeaderLabel';
 import { Home_Link, Setup_Link } from 'routers/RouterLinks';
 import SetupIconPasswordTextField from 'interfaces/Setup/Input/Setup.Input.IconPassword';
 
-export interface UserMgmtResetPasswordScreenProps {
-  AnimationDivClassName: string;
-  ContentClassName: string;
-  oobCode: string | null;
-  Animation: AuthAnimationType;
-  setLoading: Dispatch<boolean>;
-  Loading: boolean;
-}
-
 function UserMgmtResetPasswordScreen(props: UserMgmtResetPasswordScreenProps) {
   const [Password, setPassword] = useState('');
   const { setLoader } = LoaderHook();
