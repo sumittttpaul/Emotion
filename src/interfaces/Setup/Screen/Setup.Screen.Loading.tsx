@@ -1,6 +1,4 @@
-'use client';
-
-import { Skeleton } from '@mui/material';
+import { Skeleton } from 'utils/ExportMui';
 
 interface IProps {
   ClassName?: string;
