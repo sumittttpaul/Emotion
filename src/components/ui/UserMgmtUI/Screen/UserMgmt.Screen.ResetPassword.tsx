@@ -23,6 +23,7 @@ export interface UserMgmtResetPasswordScreenProps {
   oobCode: string | null;
   Animation: AuthAnimationType;
   setLoading: Dispatch<boolean>;
+  Loading: boolean;
 }
 
 function UserMgmtResetPasswordScreen(props: UserMgmtResetPasswordScreenProps) {
@@ -121,6 +122,7 @@ function UserMgmtResetPasswordScreen(props: UserMgmtResetPasswordScreenProps) {
               setValue={setPassword}
               ValidateValue={ValidatePassword}
               HandleSubmit={PasswordSubmitClick}
+              Loading={props.Loading}
             />
             <div className="opacity-75 flex space-x-2 w-full">
               <TooltipDark

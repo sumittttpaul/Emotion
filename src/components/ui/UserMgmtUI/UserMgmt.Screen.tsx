@@ -70,6 +70,7 @@ function UserMgmtScreen({
             ContentClassName={ContentClassName}
             oobCode={oobCode}
             Animation={Animation}
+            Loading={PasswordResetLoading}
             setLoading={(value) => setPasswordResetLoading(value)}
           />
         )}
