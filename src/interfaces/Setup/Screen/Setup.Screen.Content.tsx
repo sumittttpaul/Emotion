@@ -1,5 +1,3 @@
-'use client';
-
 import dynamic from 'next/dynamic';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { AnimatePresence } from 'framer-motion';

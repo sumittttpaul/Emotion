@@ -1,78 +1,17 @@
-'use client'
+'use client';
 
 import SetupScreenMain from 'interfaces/Setup/Screen/Setup.Screen.Main';
 import SetupScreenTitle from 'interfaces/Setup/Screen/Setup.Screen.Title';
 import SetupScreenContent from 'interfaces/Setup/Screen/Setup.Screen.Content';
-import { SetupPageHook } from 'hooks/target/Hooks.Page.Setup';
+import { useState } from 'react';
 
 function SetupInterface() {
-  const ResetCaptcha = SetupPageHook.getState().ResetCaptcha;
-  const SkipDialog = SetupPageHook.getState().SkipDialog;
-  const Loading = SetupPageHook.getState().Loading;
-  const Screen = SetupPageHook.getState().Screen;
-  const ErrorType = SetupPageHook.getState().ErrorType;
-  const MainScreen = SetupPageHook.getState().MainScreen;
-
-  const setResetCaptcha = async (value: boolean) => {
-    SetupPageHook.setState({
-      ResetCaptcha: value,
-      SkipDialog: SkipDialog,
-      Loading: Loading,
-      Screen: Screen,
-      ErrorType: ErrorType,
-      MainScreen: MainScreen,
-    });
-  };
-  const setSkipDialog = async (value: boolean) => {
-    SetupPageHook.setState({
-      ResetCaptcha: ResetCaptcha,
-      SkipDialog: value,
-      Loading: Loading,
-      Screen: Screen,
-      ErrorType: ErrorType,
-      MainScreen: MainScreen,
-    });
-  };
-  const setLoading = async (value: boolean) => {
-    SetupPageHook.setState({
-      ResetCaptcha: ResetCaptcha,
-      SkipDialog: SkipDialog,
-      Loading: value,
-      Screen: Screen,
-      ErrorType: ErrorType,
-      MainScreen: MainScreen,
-    });
-  };
-  const setScreen = (value: AuthScreenType) => {
-    SetupPageHook.setState({
-      // ResetCaptcha: ResetCaptcha,
-      // SkipDialog: SkipDialog,
-      // Loading: Loading,
-      Screen: value,
-      // ErrorType: ErrorType,
-      // MainScreen: MainScreen,
-    });
-  };
-  const setErrorType = async (value: AuthErrorType) => {
-    SetupPageHook.setState({
-      ResetCaptcha: ResetCaptcha,
-      SkipDialog: SkipDialog,
-      Loading: Loading,
-      Screen: Screen,
-      ErrorType: value,
-      MainScreen: MainScreen,
-    });
-  };
-  const setMainScreen = (value: AuthMainScreenType) => {
-    SetupPageHook.setState({
-      // ResetCaptcha: ResetCaptcha,
-      // SkipDialog: SkipDialog,
-      // Loading: Loading,
-      // Screen: Screen,
-      // ErrorType: ErrorType,
-      MainScreen: value,
-    });
-  };
+  const [ResetCaptcha, setResetCaptcha] = useState(false);
+  const [SkipDialog, setSkipDialog] = useState(false);
+  const [Loading, setLoading] = useState(false);
+  const [Screen, setScreen] = useState<AuthScreenType>(undefined);
+  const [ErrorType, setErrorType] = useState<AuthErrorType>(undefined);
+  const [MainScreen, setMainScreen] = useState<AuthMainScreenType>('CheckInfo'); // CheckInfo
 
   const Animation = {
     Initial: { x: 50, opacity: 0 },
