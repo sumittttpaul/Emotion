@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 function SetupLayout({ children }: ChildrenType) {
   return (
     <>
-      <div className="md:bg-[#0f0f0f] flex md:p-[32px] items-start md:items-center justify-center h-full md:h-screen w-screen overflow-hidden">
-        <div className="relative bg-[#202020] md:rounded-xl h-full md:h-[652px] w-full md:max-w-[1040px] flex items-center justify-center Setup-DropShadow overflow-hidden">
+      <div className="md:bg-[#0f0f0f] flex md:p-[32px] items-start md:items-center justify-center h-full md:h-screen w-screen box-border overflow-hidden">
+        <div className="relative bg-[#202020] md:rounded-xl h-full md:h-[652px] w-full md:max-w-[1040px] flex items-center justify-center box-border Setup-DropShadow overflow-hidden">
           {children}
         </div>
       </div>
