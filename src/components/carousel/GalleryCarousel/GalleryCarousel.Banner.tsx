@@ -38,7 +38,7 @@ function GalleryCarouselBanner(props: GalleryCarouselBannerProps) {
     <AnimatePresence mode="wait">
       <motion.div
         ref={props.ElementRef}
-        className="text-white -[z-1] relative box-border items-start justify-end w-full h-[350px] small-screen:h-[500px] medium-screen:h-[660px] px-8 pb-[130px] flex flex-col overflow-hidden rounded-tl-xl bg-gradient-to-r from-[#000000b3]"
+        className="-[z-1] relative box-border flex h-[350px] w-full flex-col items-start justify-end overflow-hidden rounded-tl-xl bg-gradient-to-r from-[#000000b3] px-8 pb-[130px] text-white small-screen:h-[500px] medium-screen:h-[660px]"
       >
         <GalleryCarouselBannerImage
           className="-z-[2]"
@@ -55,9 +55,9 @@ function GalleryCarouselBanner(props: GalleryCarouselBannerProps) {
             }, 20);
           }}
           variants={StaggerAnimationVariant}
-          className="box-border flex flex-col h-full justify-center"
+          className="box-border flex h-full flex-col justify-center"
         >
-          <div className="flex flex-col mt-20">
+          <div className="mt-20 flex flex-col">
             <motion.div
               transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
               variants={ChildAnimationVariant}
@@ -68,7 +68,7 @@ function GalleryCarouselBanner(props: GalleryCarouselBannerProps) {
                   : 'hidden'
               }`}
             >
-              <div className="text-[14px] flex items-center space-x-[4px]">
+              <div className="flex items-center space-x-[4px] text-[14px]">
                 <h6 className="line-through opacity-70">{`₹${props.ContentArray[CarouselState].OriginalPrice}`}</h6>
                 <h6>{`₹${props.ContentArray[CarouselState].DiscountedPrice}`}</h6>
               </div>
@@ -77,16 +77,16 @@ function GalleryCarouselBanner(props: GalleryCarouselBannerProps) {
               transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
               variants={ChildAnimationVariant}
             >
-              <h6 className="text-[25px] small-screen:text-[35px] font-[600] mt-3">
+              <h6 className="mt-3 text-[25px] font-[600] small-screen:text-[35px]">
                 {props.ContentArray[CarouselState].Heading}
               </h6>
             </motion.div>
             <motion.div
               transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
               variants={ChildAnimationVariant}
-              className="max-w-[500px] w-full hidden small-screen:flex"
+              className="hidden w-full max-w-[500px] small-screen:flex"
             >
-              <h6 className="text-[15px] leading-6 opacity-80 mt-2">
+              <h6 className="mt-2 text-[15px] leading-6 opacity-80">
                 {props.ContentArray[CarouselState].Description}
               </h6>
             </motion.div>
@@ -97,7 +97,7 @@ function GalleryCarouselBanner(props: GalleryCarouselBannerProps) {
             >
               <Button
                 disableFocusRipple
-                className="rounded-lg py-3 cursor-default px-12 text-[13px] font-[500] tracking-[0.075em] button-text-lower hover:ring-1 ring-[#ffffff30] bg-gradient-to-l from-[#ffffff30] bg-[#ffffff00] text-white transition-all"
+                className="button-text-lower cursor-default rounded-lg bg-[#ffffff00] bg-gradient-to-l from-[#ffffff30] px-12 py-3 text-[13px] font-[500] tracking-[0.075em] text-white ring-[#ffffff30] transition-all hover:ring-1"
                 sx={{
                   '.MuiTouchRipple-child': {
                     backgroundColor: '#ffffff20 !important',

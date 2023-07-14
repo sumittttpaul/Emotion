@@ -99,20 +99,20 @@ export function AvatarCollections(props: IProps) {
   };
 
   return (
-    <div className="text-white relative flex flex-col p-3  space-y-2 box-border w-full">
+    <div className="relative box-border flex w-full flex-col  space-y-2 p-3 text-white">
       {/* Heading */}
-      <div className="flex space-x-2 items-center">
+      <div className="flex items-center space-x-2">
         <PhotographIcon className="h-6" />
-        <h6 className="text-sm font-medium text-center">Start exploring</h6>
+        <h6 className="text-center text-sm font-medium">Start exploring</h6>
       </div>
       {/* Main */}
       <div className="relative box-border w-full space-y-[7px]">
-        <div className="sm:flex relative space-y-[7px] sm:space-y-0 sm:space-x-[6px] w-full">
+        <div className="relative w-full space-y-[7px] sm:flex sm:space-x-[6px] sm:space-y-0">
           <Button
             aria-label="animal-banner-button"
             disableFocusRipple
             onClick={AnimalClick}
-            className="p-0 relative w-full flex cursor-default rounded-md opacity-100 hover:opacity-50 transition-opacity"
+            className="relative flex w-full cursor-default rounded-md p-0 opacity-100 transition-opacity hover:opacity-50"
             sx={{
               '.MuiTouchRipple-child': {
                 backgroundColor: '#ffffff80 !important',
@@ -133,7 +133,7 @@ export function AvatarCollections(props: IProps) {
             aria-label="emoji-banner-button"
             disableFocusRipple
             onClick={EmojiClick}
-            className="p-0 relative w-full flex cursor-default rounded-md opacity-100 hover:opacity-50 transition-opacity"
+            className="relative flex w-full cursor-default rounded-md p-0 opacity-100 transition-opacity hover:opacity-50"
             sx={{
               '.MuiTouchRipple-child': {
                 backgroundColor: '#ffffff80 !important',
@@ -151,12 +151,12 @@ export function AvatarCollections(props: IProps) {
             />
           </Button>
         </div>
-        <div className="sm:flex relative space-y-[7px] sm:space-y-0 sm:space-x-[6px] w-full">
+        <div className="relative w-full space-y-[7px] sm:flex sm:space-x-[6px] sm:space-y-0">
           <Button
             aria-label="festival-banner-button"
             disableFocusRipple
             onClick={FestivalClick}
-            className="p-0 relative w-full flex cursor-default rounded-md opacity-100 hover:opacity-50 transition-opacity"
+            className="relative flex w-full cursor-default rounded-md p-0 opacity-100 transition-opacity hover:opacity-50"
             sx={{
               '.MuiTouchRipple-child': {
                 backgroundColor: '#ffffff80 !important',
@@ -177,7 +177,7 @@ export function AvatarCollections(props: IProps) {
             aria-label="hand-drawing-banner-button"
             disableFocusRipple
             onClick={HandDrawingClick}
-            className="p-0 relative w-full flex cursor-default rounded-md opacity-100 hover:opacity-50 transition-opacity"
+            className="relative flex w-full cursor-default rounded-md p-0 opacity-100 transition-opacity hover:opacity-50"
             sx={{
               '.MuiTouchRipple-child': {
                 backgroundColor: '#ffffff80 !important',
@@ -195,12 +195,12 @@ export function AvatarCollections(props: IProps) {
             />
           </Button>
         </div>
-        <div className="sm:flex relative space-y-[7px] sm:space-y-0 sm:space-x-[6px] w-full">
+        <div className="relative w-full space-y-[7px] sm:flex sm:space-x-[6px] sm:space-y-0">
           <Button
             aria-label="flat-banner-button"
             disableFocusRipple
             onClick={FlatClick}
-            className="p-0 relative w-full flex cursor-default rounded-md opacity-100 hover:opacity-50 transition-opacity"
+            className="relative flex w-full cursor-default rounded-md p-0 opacity-100 transition-opacity hover:opacity-50"
             sx={{
               '.MuiTouchRipple-child': {
                 backgroundColor: '#ffffff80 !important',
@@ -221,7 +221,7 @@ export function AvatarCollections(props: IProps) {
             aria-label="hipster-banner-button"
             disableFocusRipple
             onClick={HispterClick}
-            className="p-0 relative w-full flex cursor-default rounded-md opacity-100 hover:opacity-50 transition-opacity"
+            className="relative flex w-full cursor-default rounded-md p-0 opacity-100 transition-opacity hover:opacity-50"
             sx={{
               '.MuiTouchRipple-child': {
                 backgroundColor: '#ffffff80 !important',
@@ -239,12 +239,12 @@ export function AvatarCollections(props: IProps) {
             />
           </Button>
         </div>
-        <div className="sm:flex relative space-y-[7px] sm:space-y-0 sm:space-x-[6px] w-full">
+        <div className="relative w-full space-y-[7px] sm:flex sm:space-x-[6px] sm:space-y-0">
           <Button
             aria-label="paint-banner-button"
             disableFocusRipple
             onClick={PaintClick}
-            className="p-0 relative w-full flex cursor-default rounded-md opacity-100 hover:opacity-50 transition-opacity"
+            className="relative flex w-full cursor-default rounded-md p-0 opacity-100 transition-opacity hover:opacity-50"
             sx={{
               '.MuiTouchRipple-child': {
                 backgroundColor: '#ffffff80 !important',
@@ -265,7 +265,7 @@ export function AvatarCollections(props: IProps) {
             aria-label="minimal-banner-button"
             disableFocusRipple
             onClick={MinimalClick}
-            className="p-0 relative w-full flex cursor-default rounded-md opacity-100 hover:opacity-50 transition-opacity"
+            className="relative flex w-full cursor-default rounded-md p-0 opacity-100 transition-opacity hover:opacity-50"
             sx={{
               '.MuiTouchRipple-child': {
                 backgroundColor: '#ffffff80 !important',
@@ -283,12 +283,12 @@ export function AvatarCollections(props: IProps) {
             />
           </Button>
         </div>
-        <div className="sm:flex relative space-y-[7px] sm:space-y-0 sm:space-x-[6px] w-full">
+        <div className="relative w-full space-y-[7px] sm:flex sm:space-x-[6px] sm:space-y-0">
           <Button
             aria-label="plain-banner-button"
             disableFocusRipple
             onClick={PlainClick}
-            className="p-0 relative w-full flex cursor-default rounded-md opacity-100 hover:opacity-50 transition-opacity"
+            className="relative flex w-full cursor-default rounded-md p-0 opacity-100 transition-opacity hover:opacity-50"
             sx={{
               '.MuiTouchRipple-child': {
                 backgroundColor: '#ffffff80 !important',
@@ -305,12 +305,12 @@ export function AvatarCollections(props: IProps) {
               alt=""
             />
           </Button>
-          <div className="flex w-full relative sm:max-w-[50%] space-x-[6px]">
+          <div className="relative flex w-full space-x-[6px] sm:max-w-[50%]">
             <Button
               aria-label="popular-image-1-button"
               disableFocusRipple
               onClick={Popular1Click}
-              className="p-0 relative w-full flex cursor-default rounded-md opacity-100 hover:opacity-50 transition-opacity"
+              className="relative flex w-full cursor-default rounded-md p-0 opacity-100 transition-opacity hover:opacity-50"
               sx={{
                 '.MuiTouchRipple-child': {
                   backgroundColor: '#ffffff80 !important',
@@ -331,7 +331,7 @@ export function AvatarCollections(props: IProps) {
               aria-label="popular-image-2-button"
               disableFocusRipple
               onClick={Popular2Click}
-              className="p-0 relative w-full flex cursor-default rounded-md opacity-100 hover:opacity-50 transition-opacity"
+              className="relative flex w-full cursor-default rounded-md p-0 opacity-100 transition-opacity hover:opacity-50"
               sx={{
                 '.MuiTouchRipple-child': {
                   backgroundColor: '#ffffff80 !important',
@@ -352,7 +352,7 @@ export function AvatarCollections(props: IProps) {
               aria-label="popular-image-3-button"
               disableFocusRipple
               onClick={Popular3Click}
-              className="p-0 relative w-full flex cursor-default rounded-md opacity-100 hover:opacity-50 transition-opacity"
+              className="relative flex w-full cursor-default rounded-md p-0 opacity-100 transition-opacity hover:opacity-50"
               sx={{
                 '.MuiTouchRipple-child': {
                   backgroundColor: '#ffffff80 !important',
@@ -373,7 +373,7 @@ export function AvatarCollections(props: IProps) {
               aria-label="popular-image-4-button"
               disableFocusRipple
               onClick={Popular4Click}
-              className="p-0 relative w-full flex cursor-default rounded-md opacity-100 hover:opacity-50 transition-opacity"
+              className="relative flex w-full cursor-default rounded-md p-0 opacity-100 transition-opacity hover:opacity-50"
               sx={{
                 '.MuiTouchRipple-child': {
                   backgroundColor: '#ffffff80 !important',

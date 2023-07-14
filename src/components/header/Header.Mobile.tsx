@@ -12,7 +12,7 @@ import HeaderNavMobile from './assets/Header.Nav.Mobile';
 
 const HeaderMobileSearch = dynamic<HeaderMobileSearchProps>(
   () => import('./assets/Header.Mobile.Search'),
-  { ssr: false }
+  { ssr: false },
 );
 
 function HeaderMobile() {
@@ -24,13 +24,13 @@ function HeaderMobile() {
 
   return (
     <>
-      <div className="overflow-hidden bg-primary-theme z-[999] flex w-full box-border text-white items-center px-3 pb-2">
+      <div className="z-[999] box-border flex w-full items-center overflow-hidden bg-primary-theme px-3 pb-2 text-white">
         <div className="flex">
           <MobileLogo onValueChange={(value) => setHomePage(value)} />
         </div>
-        <div className="flex w-full justify-end items-center">
+        <div className="flex w-full items-center justify-end">
           <HeaderMobileSearchButton />
-          <IconButton className="p-0 mx-5">
+          <IconButton className="mx-5 p-0">
             <Image height={22} width={22} src="/icons/bell-2.svg" alt="" />
           </IconButton>
           <HeaderMobileUserButton />

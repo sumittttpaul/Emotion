@@ -59,7 +59,7 @@ function RotateSlider(props: IProps) {
         setRightAnimate('closed');
       } else if (slider.scrollLeft > 557) {
         const getDegreeValue = Math.abs(
-          44.6 - parseInt(ScrollToDegree.toString().split('.')[0])
+          44.6 - parseInt(ScrollToDegree.toString().split('.')[0]),
         );
         setDegree(getDegreeValue.toString().split('.')[0]);
         setDirection('right');
@@ -104,9 +104,9 @@ function RotateSlider(props: IProps) {
 
   return (
     <TooltipDark title="Drag to rotate the image" placement="top" arrow>
-      <div className="w-full flex flex-col h-[71px] min-h-[71px] relative items-center justify-center box-border overflow-hidden">
-        <div className="w-full text-center cursor-default font-normal text-md ml-3 text-white">{`${Degree} °`}</div>
-        <div className="w-full max-w-[700px] opacity-gradient relative justify-center items-center flex flex-col box-border overflow-hidden">
+      <div className="relative box-border flex h-[71px] min-h-[71px] w-full flex-col items-center justify-center overflow-hidden">
+        <div className="text-md ml-3 w-full cursor-default text-center font-normal text-white">{`${Degree} °`}</div>
+        <div className="opacity-gradient relative box-border flex w-full max-w-[700px] flex-col items-center justify-center overflow-hidden">
           <ScrollContainer
             component="ul"
             vertical={false}
@@ -114,19 +114,19 @@ function RotateSlider(props: IProps) {
             hideScrollbars={true}
             innerRef={props.SliderRef}
             onEndScroll={handleScrollEnd}
-            className="w-full relative box-border px-[50%] py-4 space-x-2 whitespace-nowrap cursor-ew-resize scroll-smooth scrollbar-hide items-center justify-center"
+            className="scrollbar-hide relative box-border w-full cursor-ew-resize items-center justify-center space-x-2 scroll-smooth whitespace-nowrap px-[50%] py-4"
           >
             <SliderComponent value={Degree} direction={Direction} />
           </ScrollContainer>
-          <div className="absolute touch-none pointer-events-none h-full left-0 top-0 w-full flex items-center justify-center">
-            <div className="flex touch-none pointer-events-none h-6 w-2 bg-white rounded-full" />
+          <div className="pointer-events-none absolute left-0 top-0 flex h-full w-full touch-none items-center justify-center">
+            <div className="pointer-events-none flex h-6 w-2 touch-none rounded-full bg-white" />
           </div>
         </div>
         <m.div
           initial="closed"
           animate={LeftAnimate}
           variants={LeftVariant}
-          className="absolute cursor-default top-0 text-sm text-white mt-[3px] block"
+          className="absolute top-0 mt-[3px] block cursor-default text-sm text-white"
         >
           Rotate left
         </m.div>
@@ -134,7 +134,7 @@ function RotateSlider(props: IProps) {
           initial="closed"
           animate={RightAnimate}
           variants={RightVariant}
-          className="absolute cursor-default top-0 text-sm text-white mt-[3px] block"
+          className="absolute top-0 mt-[3px] block cursor-default text-sm text-white"
         >
           Rotate right
         </m.div>

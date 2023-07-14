@@ -38,7 +38,7 @@ function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
     if (FirebaseUser) {
       const UserPhoneNumber = EncryptData(
         UserProfileEncrytionKey(FirebaseUser.uid, 'PhoneNumber'),
-        PhoneNumber.toString()
+        PhoneNumber.toString(),
       );
       const _data: IUserProfileDataUpdate = {
         '_data.phoneNumber': UserPhoneNumber,
@@ -99,13 +99,13 @@ function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
 
   return (
     <m.div
-      className={`${props.AnimationDivClassName} w-full relative`}
+      className={`${props.AnimationDivClassName} relative w-full`}
       initial={props.Animation.Initial}
       animate={props.Animation.Final}
       transition={props.Animation.Transition}
     >
       <div
-        className={`${props.ContentClassName} w-full flex flex-col space-y-4`}
+        className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
         <SetupIconNumberTextField
           Value={PhoneNumber}
@@ -114,14 +114,14 @@ function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
           ValidateValue={ValidatePhoneNumber}
           Loading={props.Loading}
         />
-        <div className="w-full flex flex-col space-y-1">
-          <div className="w-full flex justify-start">
+        <div className="flex w-full flex-col space-y-1">
+          <div className="flex w-full justify-start">
             <SignInNextButton
               Label="I will add later"
               onClick={props.CheckInfoHandler}
             />
           </div>
-          <div className="w-full flex justify-start">
+          <div className="flex w-full justify-start">
             <SignInBackButton Label="Back" onClick={BackToName} />
           </div>
         </div>

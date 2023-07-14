@@ -18,8 +18,8 @@ function Loading() {
       }}
       open={Loader}
     >
-      <div className="relative text-white flex flex-col opacity-[0.85] items-center justify-center h-[100px] w-[100px]">
-        <div className="block relative items-center justify-center">
+      <div className="relative flex h-[100px] w-[100px] flex-col items-center justify-center text-white opacity-[0.85]">
+        <div className="relative block items-center justify-center">
           <h6 className="text-xs">Loading</h6>
         </div>
         <CircularProgress

@@ -103,14 +103,14 @@ export function DiscoverSliderBrowser(props: DiscoverSliderBrowserProps) {
   ];
 
   return (
-    <div className="flex w-full box-border">
+    <div className="box-border flex w-full">
       <>
         <ScrollContainer
           vertical={false}
           hideScrollbars={true}
           innerRef={props.sliderRef}
           component="ul"
-          className="w-full flex px-0 space-x-4 box-border scroll-smooth"
+          className="box-border flex w-full space-x-4 scroll-smooth px-0"
           style={{
             paddingRight: 12,
             paddingLeft: 12,
@@ -123,14 +123,14 @@ export function DiscoverSliderBrowser(props: DiscoverSliderBrowserProps) {
               disableFocusRipple
               onClick={handleClick}
               onContextMenu={handleClick}
-              className="text-white cursor-default group m-0 p-4 space-y-1 min-w-[220px] button-text-lower rounded-xl bg-white/5 hover:bg-white/10 transition-all"
+              className="button-text-lower group m-0 min-w-[220px] cursor-default space-y-1 rounded-xl bg-white/5 p-4 text-white transition-all hover:bg-white/10"
               sx={{
                 '.MuiTouchRipple-child': {
                   backgroundColor: '#ffffff80 !important',
                 },
               }}
             >
-              <div className="w-full space-y-2.5 flex flex-col relative">
+              <div className="relative flex w-full flex-col space-y-2.5">
                 <div className="relative w-full overflow-hidden">
                   <Image
                     height={240}
@@ -146,13 +146,13 @@ export function DiscoverSliderBrowser(props: DiscoverSliderBrowserProps) {
                     alt=""
                   />
                 </div>
-                <div className="flex flex-col w-full">
+                <div className="flex w-full flex-col">
                   <div className={HeadingStyle}>{value.Heading}</div>
                   <h6 className={DescriptionStyle}>{value.Description}</h6>
                   <div className="block h-5 w-full" />
-                  <div className="text-xs flex items-center space-x-2 pt-1">
+                  <div className="flex items-center space-x-2 pt-1 text-xs">
                     <h6 className={DiscountStyle}>{value.Discount}</h6>
-                    <div className="py-[5px] px-[8px] flex space-x-2 bg-white/5 rounded-md">
+                    <div className="flex space-x-2 rounded-md bg-white/5 px-[8px] py-[5px]">
                       <h6 className={OriginalPriceStyle}>
                         {`₹${value.OriginalPrice}`}
                       </h6>
@@ -189,13 +189,13 @@ export interface DiscoverSliderMobileProps {
 }
 export function DiscoverSliderMobile(props: DiscoverSliderMobileProps) {
   return (
-    <div className="w-full h-full flex">
+    <div className="flex h-full w-full">
       <Swiper
         slidesPerView={2}
         spaceBetween={15}
         loop={true}
         wrapperTag="ul"
-        className="w-full flex"
+        className="flex w-full"
         style={{
           paddingLeft: 20,
           paddingRight: 20,
@@ -205,20 +205,20 @@ export function DiscoverSliderMobile(props: DiscoverSliderMobileProps) {
           <SwiperSlide
             key={index}
             tag="li"
-            className="flex w-full h-full box-border p-0 m-0"
+            className="m-0 box-border flex h-full w-full p-0"
           >
             <Button
               disableFocusRipple
-              className="text-white group h-full w-full flex m-0 p-0 space-y-1 button-text-lower"
+              className="button-text-lower group m-0 flex h-full w-full space-y-1 p-0 text-white"
               sx={{
                 '.MuiTouchRipple-child': {
                   backgroundColor: '#ffffff80 !important',
                 },
               }}
             >
-              <div className="w-full flex flex-col">
+              <div className="flex w-full flex-col">
                 <div className="relative w-full overflow-hidden">
-                  <div className="opacity-0 flex items-start justify-end group-hover:opacity-100 absolute z-[1] transition-opacity duration-300 rounded-md h-[98%] w-full bg-gradient-to-bl from-[#0000004d]">
+                  <div className="absolute z-[1] flex h-[98%] w-full items-start justify-end rounded-md bg-gradient-to-bl from-[#0000004d] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <motion.button
                       onClick={() => props.setWishlist(index)}
                       whileTap={{ scale: 0.9 }}
@@ -246,7 +246,7 @@ export function DiscoverSliderMobile(props: DiscoverSliderMobileProps) {
                   />
                 </div>
                 <h6 className={HeadingStyle}>{value.Heading}</h6>
-                <div className="text-xs flex items-center space-x-1 sm-500:space-x-2 pt-2">
+                <div className="flex items-center space-x-1 pt-2 text-xs sm-500:space-x-2">
                   <h6 className={`hidden xs-400:block ${DiscountStyle}`}>
                     {value.Discount}
                   </h6>

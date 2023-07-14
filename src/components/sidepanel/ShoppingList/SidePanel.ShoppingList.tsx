@@ -4,10 +4,10 @@ import SidePanelShoppingListTab from './SidePanel.ShoppingList.Tab';
 
 function SidePanelShoppingList() {
   return (
-    <div className="mx-2 mt-2.5 mb-2 bg-[#181818] rounded-xl w-full h-full overflow-hidden">
-      <div className="flex flex-col w-full h-full overflow-hidden">
+    <div className="mx-2 mb-2 mt-2.5 h-full w-full overflow-hidden rounded-xl bg-[#181818]">
+      <div className="flex h-full w-full flex-col overflow-hidden">
         <Button
-          className="text-white group p-0 my-5 pl-6 pr-5 button-text-lower cursor-pointer flex space-x-4 justify-start items-center w-full bg-transparent hover:bg-transparent"
+          className="button-text-lower group my-5 flex w-full cursor-pointer items-center justify-start space-x-4 bg-transparent p-0 pl-6 pr-5 text-white hover:bg-transparent"
           sx={{
             '.MuiTouchRipple-child': {
               backgroundColor: '#ffffff00 !important',
@@ -21,18 +21,18 @@ function SidePanelShoppingList() {
             src="/icons/shopping-cart-fill.svg"
             alt=""
           />
-          <p className="opacity-60 group-hover:opacity-100 group-hover:transition-opacity trunacate text-[14px] text-white tracking-wide font-[600] w-full text-left">
+          <p className="trunacate w-full text-left text-[14px] font-[600] tracking-wide text-white opacity-60 group-hover:opacity-100 group-hover:transition-opacity">
             Shopping List
           </p>
           <Image
             height={22}
             width={22}
             src="/icons/arrow-right.svg"
-            className="group-hover:opacity-100 opacity-60 group-hover:transition-opacity"
+            className="opacity-60 group-hover:opacity-100 group-hover:transition-opacity"
             alt=""
           />
         </Button>
-        <div className="flex w-full h-full">
+        <div className="flex h-full w-full">
           <SidePanelShoppingListTab />
         </div>
       </div>

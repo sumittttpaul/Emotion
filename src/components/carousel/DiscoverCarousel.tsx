@@ -10,7 +10,7 @@ interface IProps {
 function DiscoverCarousel(props: IProps) {
   const [CarouselState, setCarouselState] = useState(10); // Default
   return (
-    <div className="relative w-full pt-8 overflow-hidden">
+    <div className="relative w-full overflow-hidden pt-8">
       <DiscoverCarouselBanner
         AutoPlay={false}
         Duration={11} // Default

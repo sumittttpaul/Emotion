@@ -12,7 +12,7 @@ import TooltipDark from 'components/tooltip/TooltipDark';
 
 const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
   () => import('./Header.UserButton.Menu'),
-  { ssr: false }
+  { ssr: false },
 );
 
 function HeaderUserButton() {
@@ -67,7 +67,7 @@ function LoginButton(props: LoginButtonProps) {
         aria-label="user-login-button"
         disableFocusRipple
         onClick={props.onClick}
-        className="flex items-center justify-center button-text-lower h-full bg-transparent hover:bg-[#202020]"
+        className="button-text-lower flex h-full items-center justify-center bg-transparent hover:bg-[#202020]"
         sx={{
           minWidth: 47,
           '.MuiTouchRipple-child': {
@@ -89,8 +89,8 @@ function LoginButton(props: LoginButtonProps) {
 
 const UserLoading = () => {
   return (
-    <div className="flex items-center justify-center button-text-lower h-full min-w-[47px] bg-transparent">
-      <CircularProgress className="text-white p-2.5" thickness={4} />
+    <div className="button-text-lower flex h-full min-w-[47px] items-center justify-center bg-transparent">
+      <CircularProgress className="p-2.5 text-white" thickness={4} />
     </div>
   );
 };
@@ -123,7 +123,7 @@ function UserButton(props: UserButtonProps) {
           aria-label="user-popup-button"
           disableFocusRipple
           onClick={handleClick}
-          className="flex items-center justify-center button-text-lower h-full bg-transparent hover:bg-[#202020]"
+          className="button-text-lower flex h-full items-center justify-center bg-transparent hover:bg-[#202020]"
           sx={{
             minWidth: 47,
             '.MuiTouchRipple-child': {
@@ -168,7 +168,7 @@ function UserButton(props: UserButtonProps) {
 
 function Container(props: ContainerProps) {
   return (
-    <div className="flex relative box-border h-[47px] min-h-[47px] rounded-lg overflow-hidden">
+    <div className="relative box-border flex h-[47px] min-h-[47px] overflow-hidden rounded-lg">
       {props.children}
     </div>
   );

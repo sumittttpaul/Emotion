@@ -7,7 +7,7 @@ interface IProps {
 function BannerUnderlineButton(props: IProps) {
   return (
     <Button
-      className="text-white absolute bottom-0 block whitespace-nowrap mx-5 mb-4 p-0 text-[14px] hover:underline underline-offset-4 font-sans font-normal button-text-lower"
+      className="font-sans button-text-lower absolute bottom-0 mx-5 mb-4 block whitespace-nowrap p-0 text-[14px] font-normal text-white underline-offset-4 hover:underline"
       sx={{
         '.MuiTouchRipple-child': {
           backgroundColor: '#ffffff00 !important',

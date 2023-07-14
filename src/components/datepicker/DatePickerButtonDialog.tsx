@@ -31,7 +31,7 @@ function DatePickerButtonDialog(props: DatePickerButtonDialogProps) {
       onClose={props.setDOBShow}
       disableClickAwayClose
     >
-      <div className="flex flex-col w-[330px] h-[525px]">
+      <div className="flex h-[525px] w-[330px] flex-col">
         <DatePickerDialogHeader setHeaderDates={setHeaderDates()} />
         {props.DOBScreen === 'year' && (
           <SelectYear setYear={props.GetDOBYear} />

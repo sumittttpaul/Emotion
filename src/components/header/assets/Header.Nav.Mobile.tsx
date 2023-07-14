@@ -30,7 +30,7 @@ const NavLabel: INavLabel[] = [
 function HeaderNavMobile(props: IProps) {
   const router = useRouter();
   return (
-    <div className="flex w-full sticky-top p-3 space-x-2 z-[998] bg-[#0f0f0f]">
+    <div className="sticky-top z-[998] flex w-full space-x-2 bg-[#0f0f0f] p-3">
       <ul className="flex flex-row space-x-2">
         {NavLabel.map((value) => (
           <li key={value.label} className="relative box-border">
@@ -47,9 +47,9 @@ function HeaderNavMobile(props: IProps) {
               aria-label="desktop-main-header-nav-button"
               className={`${
                 props.Value == value.label
-                  ? 'text-[#ffffff] bg-[#202020] hover:bg-[#202020]'
-                  : 'text-[#ffffff75] bg-transparent hove:bg-transparent'
-              } cursor-default text-[12px] py-[6px] px-4 border-solid border-[2px] font-normal rounded-full border-[#1f1f1f] transition-all duration-300 hover:text-[#ffffff] button-text-lower`}
+                  ? 'bg-[#202020] text-[#ffffff] hover:bg-[#202020]'
+                  : 'hove:bg-transparent bg-transparent text-[#ffffff75]'
+              } button-text-lower cursor-default rounded-full border-[2px] border-solid border-[#1f1f1f] px-4 py-[6px] text-[12px] font-normal transition-all duration-300 hover:text-[#ffffff]`}
             >
               {value.label}
             </Button>

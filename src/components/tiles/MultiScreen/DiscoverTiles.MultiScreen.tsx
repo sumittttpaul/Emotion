@@ -43,7 +43,7 @@ export function DiscoverTilesBrowser(props: DiscoverTilesBrowserProps) {
   } = useScreenSize();
 
   return (
-    <div className="w-full flex flex-col space-y-2.5">
+    <div className="flex w-full flex-col space-y-2.5">
       <div className="flex justify-start">
         <BannerTitleButton Label={props.Label} onClick={() => {}} />
       </div>
@@ -59,7 +59,7 @@ export function DiscoverTilesBrowser(props: DiscoverTilesBrowserProps) {
         }
         spaceBetween={20}
         wrapperTag="ul"
-        className="w-full h-[140px]"
+        className="h-[140px] w-full"
         style={{
           paddingRight: 12,
         }}
@@ -71,17 +71,17 @@ export function DiscoverTilesBrowser(props: DiscoverTilesBrowserProps) {
             className={`${SwiperSlideStyle} ${GetColor(index)}`}
           >
             <div className={`space-y-5 ${TopHeadingContainerStyle}`}>
-              <div className="space-y-1 flex flex-col">
+              <div className="flex flex-col space-y-1">
                 <div className="font-[500] tracking-wide">{value.Heading}</div>
-                <h6 className="text-[13px] opacity-[0.75] font-normal">
+                <h6 className="text-[13px] font-normal opacity-[0.75]">
                   {value.Description}
                 </h6>
               </div>
               <div className={BottomHeadingContainerStyle}>
                 <div
                   className={`${GetColorDark(
-                    index
-                  )} text-xs flex space-x-1 bg-super-dark-red px-3 py-2 rounded-md`}
+                    index,
+                  )} flex space-x-1 rounded-md bg-super-dark-red px-3 py-2 text-xs`}
                 >
                   <h6 className="block whitespace-nowrap">Starts from</h6>
                   <h6 className="whitespace-nowrap">{`₹${value.Price}`}</h6>
@@ -102,13 +102,13 @@ export interface DiscoverTilesMobileProps {
 }
 export function DiscoverTilesMobile(props: DiscoverTilesMobileProps) {
   return (
-    <div className="w-full flex sm:hidden flex-col space-y-5">
-      <h6 className="text-[18px] mx-5">What&apos;s new</h6>
+    <div className="flex w-full flex-col space-y-5 sm:hidden">
+      <h6 className="mx-5 text-[18px]">What&apos;s new</h6>
       <Swiper
         slidesPerView={1.1}
         spaceBetween={15}
         wrapperTag="ul"
-        className="w-full h-[125px]"
+        className="h-[125px] w-full"
         style={{
           paddingLeft: 20,
           paddingRight: 20,
@@ -132,8 +132,8 @@ export function DiscoverTilesMobile(props: DiscoverTilesMobileProps) {
                 </h6>
               </div>
               <div className={BottomHeadingContainerStyle}>
-                <div className="text-xs flex space-x-1">
-                  <h6 className="hidden xs-400:block whitespace-nowrap">
+                <div className="flex space-x-1 text-xs">
+                  <h6 className="hidden whitespace-nowrap xs-400:block">
                     Starts at
                   </h6>
                   <h6 className="whitespace-nowrap">{`₹${value.Price}`}</h6>

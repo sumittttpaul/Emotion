@@ -58,15 +58,15 @@ function GalleryCarouselThumbnailMap(props: IProps) {
             props.CarouselState === idx
               ? 'ring-[3.5px]'
               : 'ring-0 hover:ring-[3.5px]'
-          } ${ThumbnailSizes} ${'group relative p-0 m-0 transition-shadow duration-300 ring-white ring-opacity-50 rounded-xl box-border flex items-center justify-center overflow-hidden'}`}
+          } ${ThumbnailSizes} ${'group relative m-0 box-border flex items-center justify-center overflow-hidden rounded-xl p-0 ring-white ring-opacity-50 transition-shadow duration-300'}`}
         >
           <Image
             fill
             className={`${
               props.CarouselState === idx
-                ? 'scale-100 translate-x-0'
-                : 'scale-[1.2] -translate-x-3 group-hover:scale-100 group-hover:translate-x-0'
-            } ${' transform-gpu ease-out transition-all duration-300'}`}
+                ? 'translate-x-0 scale-100'
+                : '-translate-x-3 scale-[1.2] group-hover:translate-x-0 group-hover:scale-100'
+            } ${' transform-gpu transition-all duration-300 ease-out'}`}
             src={value.Image}
             placeholder="blur"
             blurDataURL={Rectangle_BlurDataURL}
@@ -76,12 +76,12 @@ function GalleryCarouselThumbnailMap(props: IProps) {
             className={`${
               props.CarouselState === idx
                 ? 'opacity-100'
-                : 'group-hover:opacity-100 opacity-0'
-            } ${'text-white z-[1] flex items-center text-left text-xs font-medium backdrop-blur-[2px] ease-out transition-all duration-300 p-5 bg-gradient-to-r from-[#000000b3] h-full w-full pr-[30%]'}`}
+                : 'opacity-0 group-hover:opacity-100'
+            } ${'z-[1] flex h-full w-full items-center bg-gradient-to-r from-[#000000b3] p-5 pr-[30%] text-left text-xs font-medium text-white backdrop-blur-[2px] transition-all duration-300 ease-out'}`}
           >
             {value.ThumbnailHeading}
           </h6>
-          <div className="absolute bottom-0 w-full z-[2] p-[2px] h-auto bg-transparent">
+          <div className="absolute bottom-0 z-[2] h-auto w-full bg-transparent p-[2px]">
             {props.CarouselState === idx &&
               props.AutoPlay &&
               props.LeftIndicator && (
@@ -98,7 +98,7 @@ function GalleryCarouselThumbnailMap(props: IProps) {
                   }}
                   className={`${
                     props.LeftIndicator ? 'flex' : 'hidden'
-                  } ${'w-0 mr-auto opacity-0 h-[3px] rounded-b-3xl bg-white'}`}
+                  } ${'mr-auto h-[3px] w-0 rounded-b-3xl bg-white opacity-0'}`}
                 />
               )}
             {props.CarouselState === idx &&
@@ -116,7 +116,7 @@ function GalleryCarouselThumbnailMap(props: IProps) {
                   }}
                   className={`${
                     props.RightIndicator ? 'flex' : 'hidden'
-                  } ${'w-full ml-auto opacity-100 h-[3px] rounded-b-3xl bg-white'}`}
+                  } ${'ml-auto h-[3px] w-full rounded-b-3xl bg-white opacity-100'}`}
                 />
               )}
           </div>

@@ -4,11 +4,11 @@ interface IProps {
 
 function WeekNames(props: IProps) {
   return (
-    <div className="grid grid-cols-7 relative">
+    <div className="relative grid grid-cols-7">
       {props.value.map((value) => (
         <div
           key={value}
-          className="m-1 justify-center flex opacity-60 text-white text-[12px]"
+          className="m-1 flex justify-center text-[12px] text-white opacity-60"
         >
           {value}
         </div>

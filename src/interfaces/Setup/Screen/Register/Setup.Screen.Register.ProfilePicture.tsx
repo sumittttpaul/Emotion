@@ -6,7 +6,7 @@ import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import AvatarButton from 'components/avatar/AvatarButton';
 
 function SetupRegisterProfilePictureScreen(
-  props: SetupRegisterProfilePictureScreenProps
+  props: SetupRegisterProfilePictureScreenProps,
 ) {
   // Screen
   const BackToEmail = () => {
@@ -18,25 +18,25 @@ function SetupRegisterProfilePictureScreen(
 
   return (
     <m.div
-      className={`${props.AnimationDivClassName} w-full relative`}
+      className={`${props.AnimationDivClassName} relative w-full`}
       initial={props.Animation.Initial}
       animate={props.Animation.Final}
       transition={props.Animation.Transition}
     >
       <div
-        className={`${props.ContentClassName} w-full flex flex-col space-y-4`}
+        className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
-        <div className="w-full flex items-start justify-center pt-2">
+        <div className="flex w-full items-start justify-center pt-2">
           <AvatarButton />
         </div>
-        <div className="w-full flex flex-col space-y-1">
-          <div className="w-full flex justify-start">
+        <div className="flex w-full flex-col space-y-1">
+          <div className="flex w-full justify-start">
             <SignInNextButton
               Label="I will add later"
               onClick={props.CheckInfoHandler}
             />
           </div>
-          <div className="w-full flex justify-start">
+          <div className="flex w-full justify-start">
             <SignInBackButton Label="Back" onClick={BackToEmail} />
           </div>
         </div>

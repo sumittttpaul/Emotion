@@ -4,7 +4,7 @@ import { TooltipProps } from '@mui/material';
 
 const TooltipDark = dynamic<TooltipProps>(
   () => import('../tooltip/TooltipDark'),
-  { ssr: false }
+  { ssr: false },
 );
 
 interface IProps {
@@ -28,9 +28,9 @@ interface IProps {
 
 function YellowBulbHint(props: IProps) {
   return (
-    <div className="flex justify-start w-full">
-      <div className="flex py-1 pl-1 pr-2 rounded-md space-x-1 items-center bg-[#b48a0090] text-white">
-        <div className="items-start h-full min-w-[15px] mt-1">
+    <div className="flex w-full justify-start">
+      <div className="flex items-center space-x-1 rounded-md bg-[#b48a0090] py-1 pl-1 pr-2 text-white">
+        <div className="mt-1 h-full min-w-[15px] items-start">
           {props.Tooltip ? (
             <TooltipDark
               arrow
@@ -53,9 +53,7 @@ function YellowBulbHint(props: IProps) {
             />
           )}
         </div>
-        <p className="text-[13px] font-medium flex text-white">
-          {props.Label}
-        </p>
+        <p className="flex text-[13px] font-medium text-white">{props.Label}</p>
       </div>
     </div>
   );

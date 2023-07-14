@@ -152,11 +152,11 @@ export function IllustrationCollections(props: IProps) {
     }
   }, []);
   return (
-    <div className="text-white relative flex flex-col space-y-2 pb-1 box-border w-full">
+    <div className="relative box-border flex w-full flex-col space-y-2 pb-1 text-white">
       {/* Heading */}
-      <div className="flex space-x-2 items-center pl-3">
+      <div className="flex items-center space-x-2 pl-3">
         <FilmIcon className="h-6" />
-        <h6 className="text-sm font-medium text-center">
+        <h6 className="text-center text-sm font-medium">
           Explore Illustrations
         </h6>
       </div>
@@ -167,7 +167,7 @@ export function IllustrationCollections(props: IProps) {
         hideScrollbars={true}
         component="ul"
         innerRef={sliderRef}
-        className="px-3 relative box-border h-full w-full space-x-[6px] whitespace-nowrap scroll-smooth scrollbar-hide"
+        className="scrollbar-hide relative box-border h-full w-full space-x-[6px] scroll-smooth whitespace-nowrap px-3"
       >
         {Illustrations.map((illustrationURL) => (
           <Button
@@ -180,7 +180,7 @@ export function IllustrationCollections(props: IProps) {
               props.show();
               props.backBool(true);
             }}
-            className="p-0 inline-block w-[150px] cursor-default rounded-md opacity-100 hover:opacity-50 transition-opacity"
+            className="inline-block w-[150px] cursor-default rounded-md p-0 opacity-100 transition-opacity hover:opacity-50"
             sx={{
               '.MuiTouchRipple-child': {
                 backgroundColor: '#ffffff80 !important',
@@ -206,9 +206,9 @@ export function IllustrationCollections(props: IProps) {
         variants={LeftVariants}
         animate={LeftAnimate}
         transition={{ duration: 0.15 }}
-        className="bg-black/80 backdrop-blur-lg hover:bg-black/80 group cursor-default rounded-[50%] absolute h-9 w-9 p-0 left-3 z-[1] top-[calc(50%-15px)] Custom-DropShadow"
+        className="Custom-DropShadow group absolute left-3 top-[calc(50%-15px)] z-[1] h-9 w-9 cursor-default rounded-[50%] bg-black/80 p-0 backdrop-blur-lg hover:bg-black/80"
       >
-        <div className="h-full w-full flex items-center justify-center">
+        <div className="flex h-full w-full items-center justify-center">
           <ChevronLeftIcon className="h-5 group-hover:h-6" />
         </div>
       </m.button>
@@ -219,9 +219,9 @@ export function IllustrationCollections(props: IProps) {
         variants={RightVariants}
         animate={RightAnimate}
         transition={{ duration: 0.15 }}
-        className="bg-black/80 backdrop-blur-lg hover:bg-black/80 group cursor-default rounded-[50%] absolute h-9 w-9 p-0 right-3 z-[1] top-[calc(50%-15px)] Custom-DropShadow"
+        className="Custom-DropShadow group absolute right-3 top-[calc(50%-15px)] z-[1] h-9 w-9 cursor-default rounded-[50%] bg-black/80 p-0 backdrop-blur-lg hover:bg-black/80"
       >
-        <div className="h-full w-full flex items-center justify-center">
+        <div className="flex h-full w-full items-center justify-center">
           <ChevronRightIcon className="h-5 group-hover:h-6" />
         </div>
       </m.button>

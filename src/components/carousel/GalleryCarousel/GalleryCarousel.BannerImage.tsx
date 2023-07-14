@@ -31,10 +31,10 @@ class GalleryCarouselBannerImage extends Component<IProps> {
             if (!this.timeout) clearTimeout(this.timeout);
             this.timeout = setTimeout(
               () => this.setState({ bottomOpacity: 0 }),
-              20
+              20,
             );
-          }
-        )
+          },
+        ),
       );
     }
   }
@@ -46,7 +46,7 @@ class GalleryCarouselBannerImage extends Component<IProps> {
         {topSrc && (
           <Image
             fill
-            className={`${className} text-white text-xs`}
+            className={`${className} text-xs text-white`}
             style={{
               objectFit: 'cover',
               objectPosition: 'center',
@@ -59,7 +59,7 @@ class GalleryCarouselBannerImage extends Component<IProps> {
         {bottomSrc && (
           <Image
             fill
-            className={`${className} text-white text-xs`}
+            className={`${className} text-xs text-white`}
             alt={alt}
             style={{
               objectFit: 'cover',

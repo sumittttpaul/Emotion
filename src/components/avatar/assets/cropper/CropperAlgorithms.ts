@@ -17,7 +17,7 @@ function getMinimumVisibleAreaSize(
     stencilSize?: StencilSize;
     minWidth?: number;
     minHeight?: number;
-  }
+  },
 ) {
   const minimumSize = getMinimumSize(state);
   settings = {
@@ -34,7 +34,7 @@ function getMinimumVisibleAreaSize(
     if (
       isGreater(
         aspectRatio,
-        sizeRestrictions.minWidth / sizeRestrictions.minHeight
+        sizeRestrictions.minWidth / sizeRestrictions.minHeight,
       )
     ) {
       sizeRestrictions.minWidth = sizeRestrictions.minHeight * aspectRatio;
@@ -47,7 +47,7 @@ function getMinimumVisibleAreaSize(
     : visibleArea.width / coordinates.width;
   let minSize = isGreater(
     ratio(visibleArea),
-    sizeRestrictions.minWidth / sizeRestrictions.minHeight
+    sizeRestrictions.minWidth / sizeRestrictions.minHeight,
   )
     ? sizeRestrictions.minHeight
     : sizeRestrictions.minWidth;
@@ -66,7 +66,7 @@ function getMaximumVisibleAreaSize(
     stencilSize?: StencilSize;
     minWidth?: number;
     minHeight?: number;
-  }
+  },
 ) {
   const { imageSize, boundary, coordinates, visibleArea } = state;
   const { imageRestriction, adjustStencil, stencilSize } = settings;
@@ -80,7 +80,7 @@ function getMaximumVisibleAreaSize(
     if (
       isGreater(
         sizeRestrictions.maxWidth / sizeRestrictions.maxHeight,
-        aspectRatio
+        aspectRatio,
       )
     ) {
       sizeRestrictions.maxWidth = sizeRestrictions.maxHeight * aspectRatio;
@@ -130,7 +130,7 @@ function getMaximumVisibleAreaSize(
 
   let maxSize = isGreater(
     ratio(visibleArea),
-    sizeRestrictions.maxWidth / sizeRestrictions.maxHeight
+    sizeRestrictions.maxWidth / sizeRestrictions.maxHeight,
   )
     ? sizeRestrictions.maxHeight
     : sizeRestrictions.maxWidth;
@@ -141,7 +141,7 @@ function getMaximumVisibleAreaSize(
     maxSize,
     isGreater(ratio(visibleArea), ratio(coordinates))
       ? maximumVisibleAreaSize.height
-      : maximumVisibleAreaSize.width
+      : maximumVisibleAreaSize.width,
   );
   return maxSize;
 }
@@ -154,7 +154,7 @@ export function getAbsoluteZoom(
     stencilSize?: StencilSize;
     minWidth?: number;
     minHeight?: number;
-  }
+  },
 ) {
   const { coordinates, visibleArea } = state;
   const size =
@@ -169,7 +169,7 @@ export function getAbsoluteZoom(
 export function getVisibleAreaSize(
   state: InitializedCropperState,
   settings: CoreSettings,
-  absoluteZoom: number
+  absoluteZoom: number,
 ) {
   const minSize = getMinimumVisibleAreaSize(state, settings);
   const maxSize = getMaximumVisibleAreaSize(state, settings);

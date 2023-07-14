@@ -31,16 +31,16 @@ function SignInBackButton(props: IProps) {
       onClick={props.onClick}
       onHoverStart={onHoverStart}
       onHoverEnd={onHoverEnd}
-      className="px-[12px] py-2 group cursor-default hover:bg-white/5 rounded-lg"
+      className="group cursor-default rounded-lg px-[12px] py-2 hover:bg-white/5"
     >
       <m.div
         initial="open"
         animate={Animate}
         variants={Variants}
-        className="group-hover:opacity-75 opacity-100 flex items-center space-x-2"
+        className="flex items-center space-x-2 opacity-100 group-hover:opacity-75"
       >
-        <ChevronLeftIcon className="h-4 mb-[2px] text-sky-400" />
-        <label className="font-medium text-sky-400 text-[14px] truncate">
+        <ChevronLeftIcon className="mb-[2px] h-4 text-sky-400" />
+        <label className="truncate text-[14px] font-medium text-sky-400">
           {props.Label}
         </label>
       </m.div>

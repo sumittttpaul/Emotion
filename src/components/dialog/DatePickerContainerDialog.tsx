@@ -40,8 +40,8 @@ function DatePickerContainerDialog(props: IProps) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-75"
             >
-              <Dialog.Panel className="h-auto w-auto relative">
-                <div className="relative w-auto h-auto transform scroll-smooth overflow-auto rounded-lg bg-[#202020] text-center align-middle shadow-xl transition-all ease-in">
+              <Dialog.Panel className="relative h-auto w-auto">
+                <div className="relative h-auto w-auto transform overflow-auto scroll-smooth rounded-lg bg-[#202020] text-center align-middle shadow-xl transition-all ease-in">
                   {props.children}
                 </div>
               </Dialog.Panel>

@@ -27,16 +27,16 @@ function SetupErrorScreen(props: SetupErrorScreenProps) {
 
   return (
     <div
-      className={`${props.ClassName}  px-5 pt-20 md:p-14 relative flex flex-col w-full justify-center items-center`}
+      className={`${props.ClassName}  relative flex w-full flex-col items-center justify-center px-5 pt-20 md:p-14`}
     >
       <Image
         height={100}
         width={100}
-        className="opacity-30 pb-7"
+        className="pb-7 opacity-30"
         src="/vectors/emogi-face-error.svg"
         alt="setup-error"
       />
-      <div className="max-w-[500px] space-y-5 relative w-full flex flex-col items-center justify-center overflow-hidden">
+      <div className="relative flex w-full max-w-[500px] flex-col items-center justify-center space-y-5 overflow-hidden">
         <div className="flex">
           <SetupHeaderLabel>
             {props.Type === 'database-not-created' && 'Something went wrong'}
@@ -44,7 +44,7 @@ function SetupErrorScreen(props: SetupErrorScreenProps) {
             {props.Type === undefined && props.ToastTitle}
           </SetupHeaderLabel>
         </div>
-        <p className="font-normal text-center w-full text-white/75 text-[15px]">
+        <p className="w-full text-center text-[15px] font-normal text-white/75">
           {props.Type === 'database-not-created' &&
             'We apologize for the inconvenience, but there seems to be an error with the process of creation of database.'}
           {props.Type === 'get-user-failed' &&
@@ -74,22 +74,22 @@ function SetupErrorScreen(props: SetupErrorScreenProps) {
           </div>
         )}
       </div>
-      <div className="w-full flex-col space-y-2 mt-7 max-w-[750px]">
+      <div className="mt-7 w-full max-w-[750px] flex-col space-y-2">
         {props.Type !== undefined && (
-          <div className="w-full flex justify-start items-center">
+          <div className="flex w-full items-center justify-start">
             <SignInNextButton
               onClick={handleReloadThePage}
               Label="Reload the page"
             />
           </div>
         )}
-        <div className="w-full flex justify-start items-center">
+        <div className="flex w-full items-center justify-start">
           <SignInNextButton
             onClick={handleMoveToManageAccount}
             Label="Move to manage account"
           />
         </div>
-        <div className="w-full flex justify-start items-center">
+        <div className="flex w-full items-center justify-start">
           <SignInBackButton onClick={handleBackToHome} Label="Back to home" />
         </div>
       </div>

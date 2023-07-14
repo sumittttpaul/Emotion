@@ -7,7 +7,7 @@ interface IProps {
 
 function DiscoverBannerFour(props: IProps) {
   return (
-    <div className="flex w-full overflow-x-hidden overflow-y-visible mt-10">
+    <div className="mt-10 flex w-full overflow-x-hidden overflow-y-visible">
       <DiscoverBannerFourBrowser ContentArray={props.ContentArray} />
       {/* <DiscoverBannerFourMobile ContentArray={props.ContentArray} /> */}
     </div>

@@ -6,7 +6,7 @@ interface IProps {
 function SetupHeaderDescription(props: IProps) {
   return (
     <p
-      className={`${props.ClassName} font-normal line-clamp-2 text-left w-full text-white/75 text-[15px]`}
+      className={`${props.ClassName} line-clamp-2 w-full text-left text-[15px] font-normal text-white/75`}
     >
       {props.children}
     </p>

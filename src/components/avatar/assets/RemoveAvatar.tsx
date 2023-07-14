@@ -18,14 +18,14 @@ interface IProps {
 
 export function RemoveAvatar(props: IProps) {
   return (
-    <div className=" bg-secondary-theme Remove-Avatar-Container flex flex-col justify-between scroll-smooth overflow-auto items-center h-full w-full">
+    <div className=" Remove-Avatar-Container flex h-full w-full flex-col items-center justify-between overflow-auto scroll-smooth bg-secondary-theme">
       {/* Header */}
-      <div className="flex w-full z-10 justify-between items-center p-1">
+      <div className="z-10 flex w-full items-center justify-between p-1">
         <TooltipDark placement="bottom" title="Back" arrow>
           <IconButton
             disableFocusRipple
             onClick={props.backward}
-            className="hover:bg-white/5 p-3"
+            className="p-3 hover:bg-white/5"
           >
             <ArrowLeftIcon className="h-5 text-white" />
           </IconButton>
@@ -34,21 +34,21 @@ export function RemoveAvatar(props: IProps) {
           <IconButton
             disableFocusRipple
             onClick={props.moreInfo}
-            className="hover:bg-white/5 p-3"
+            className="p-3 hover:bg-white/5"
           >
             <DotsVerticalIcon className="h-5 text-white" />
           </IconButton>
         </TooltipDark>
       </div>
       {/* Main */}
-      <div className="flex h-full w-full justify-center items-center relative">
-        <div className="px-5 overflow-y-auto overflow-x-hidden scroll-smooth flex flex-col items-center w-full">
+      <div className="relative flex h-full w-full items-center justify-center">
+        <div className="flex w-full flex-col items-center overflow-y-auto overflow-x-hidden scroll-smooth px-5">
           {/* Center */}
-          <div className="flex box-content rounded-[50%] overflow-hidden relative justify-center min-h-[96px] min-w-[96px] remove-avatar-profile-photo">
-            <div className="rounded-full relative w-full h-full">
+          <div className="remove-avatar-profile-photo relative box-content flex min-h-[96px] min-w-[96px] justify-center overflow-hidden rounded-[50%]">
+            <div className="relative h-full w-full rounded-full">
               <Image
                 fill
-                className="cursor-default rounded-[50%] overflow-hidden transition-all"
+                className="cursor-default overflow-hidden rounded-[50%] transition-all"
                 src={props.URL ? props.URL : '/images/loader/dark-circle.png'}
                 style={{
                   objectFit: 'fill',
@@ -60,23 +60,23 @@ export function RemoveAvatar(props: IProps) {
             </div>
           </div>
           {/* Heading */}
-          <h6 className="mt-5 w-full text-center text-white text-xl font-normal">
+          <h6 className="mt-5 w-full text-center text-xl font-normal text-white">
             Remove profile picture ?
           </h6>
           {/* Sub Heading */}
-          <h6 className="mt-1 text-sm text-center text-white/75 w-full max-w-[300px]">
+          <h6 className="mt-1 w-full max-w-[300px] text-center text-sm text-white/75">
             A picture helps people recognize you and lets you know when
             you&apos;re signed in to your account.
           </h6>
         </div>
       </div>
       {/* Bottom */}
-      <div className="flex space-x-2 w-full px-5 pb-5 pt-2">
+      <div className="flex w-full space-x-2 px-5 pb-5 pt-2">
         <Button
           disableFocusRipple
           onClick={props.backward}
           aria-label="cancel-image-button"
-          className="cursor-default button-text-lower py-2 text-red-400 text-sm font-[600]  w-full rounded-lg bg-white/5 hover:bg-white/[0.03]"
+          className="button-text-lower w-full cursor-default rounded-lg bg-white/5 py-2  text-sm font-[600] text-red-400 hover:bg-white/[0.03]"
           sx={{
             '.MuiTouchRipple-child': {
               backgroundColor: '#ffffff80 !important',
@@ -89,16 +89,16 @@ export function RemoveAvatar(props: IProps) {
           disableFocusRipple
           onClick={props.remove}
           aria-label="remove-image-button"
-          className="cursor-default button-text-lower py-2 text-sky-400 w-full rounded-lg bg-dark-blue hover:bg-dark-blue/70"
+          className="button-text-lower w-full cursor-default rounded-lg bg-dark-blue py-2 text-sky-400 hover:bg-dark-blue/70"
           sx={{
             '.MuiTouchRipple-child': {
               backgroundColor: '#38bdf880 !important',
             },
           }}
         >
-          <div className="flex space-x-2 items-center justify-center">
-            <TrashIcon className="h-[18px] block" />
-            <h6 className="text-sm flex truncate pt-[2px] font-[700]">
+          <div className="flex items-center justify-center space-x-2">
+            <TrashIcon className="block h-[18px]" />
+            <h6 className="flex truncate pt-[2px] text-sm font-[700]">
               Remove
             </h6>
           </div>

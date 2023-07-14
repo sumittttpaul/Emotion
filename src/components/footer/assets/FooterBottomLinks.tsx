@@ -13,7 +13,7 @@ function FooterBottomLinks(props: IProps) {
       underline="hover"
       className={`${
         props.className
-      } ${'text-[11.5px] font-[300] underline-offset-2 whitespace-nowrap flex text-white opacity-80'}`}
+      } ${'flex whitespace-nowrap text-[11.5px] font-[300] text-white underline-offset-2 opacity-80'}`}
     >
       {props.label}
     </Link>

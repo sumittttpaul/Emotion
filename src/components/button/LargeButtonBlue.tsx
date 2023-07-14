@@ -9,7 +9,7 @@ export interface LargeButtonBlueProps {
 
 function LargeButtonBlue(props: LargeButtonBlueProps) {
   return (
-    <div className="w-full relative">
+    <div className="relative w-full">
       <Button
         aria-label="all-purpose-blue-button"
         disableFocusRipple
@@ -20,12 +20,12 @@ function LargeButtonBlue(props: LargeButtonBlueProps) {
         }}
         disabled={props.Disabled}
         onClick={props.onClick}
-        className="bg-primary-blue hover:bg-primary-blue disabled:cursor-not-allowed disabled:opacity-50 disabled:text-white rounded-md text-white h-[60px] w-full text-xs transition-all ease-in"
+        className="h-[60px] w-full rounded-md bg-primary-blue text-xs text-white transition-all ease-in hover:bg-primary-blue disabled:cursor-not-allowed disabled:text-white disabled:opacity-50"
       >
         {props.content}
       </Button>
       {props.Loading && (
-        <div className="absolute h-full w-full top-0 bg-[#104A82] transition-all ease-in rounded-md flex items-center justify-center">
+        <div className="absolute top-0 flex h-full w-full items-center justify-center rounded-md bg-[#104A82] transition-all ease-in">
           <CircularProgress
             className="text-white opacity-75"
             size={20}

@@ -20,7 +20,7 @@ function LoadingLinearProgress({ backDrop }: IProps) {
     <div
       className={`${
         backDrop
-          ? 'absolute z-10 top-0 w-full h-full bg-secondary-theme/50'
+          ? 'absolute top-0 z-10 h-full w-full bg-secondary-theme/50'
           : 'absolute top-[50%] w-full'
       }`}
     >

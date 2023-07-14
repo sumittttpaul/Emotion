@@ -104,14 +104,14 @@ function IconPasswordTextFieldDark(props: IconPasswordTextFieldProps) {
   };
 
   const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault();
   };
 
   return (
-    <div className="relative flex flex-col w-full mt-[2px]">
-      <div className="mt-[16px] ml-[20px] -mb-[46px] flex cursor-text pointer-events-none touch-none">
+    <div className="relative mt-[2px] flex w-full flex-col">
+      <div className="pointer-events-none -mb-[46px] ml-[20px] mt-[16px] flex cursor-text touch-none">
         <Image
           height={30}
           width={30}
@@ -144,7 +144,7 @@ function IconPasswordTextFieldDark(props: IconPasswordTextFieldProps) {
           endAdornment: (
             <InputAdornment position="end">
               {props.valid && (
-                <div className="mb-1 flex cursor-text touch-none pointer-events-none">
+                <div className="pointer-events-none mb-1 flex cursor-text touch-none">
                   <CheckIcon className="h-5 text-green-400" />
                 </div>
               )}
@@ -153,7 +153,7 @@ function IconPasswordTextFieldDark(props: IconPasswordTextFieldProps) {
                 aria-label="toggle-password-visibility"
                 onClick={handleClickShowPassword}
                 onPointerDown={handleMouseDownPassword}
-                className="z-20 h-11 w-11 mb-[4px] passwordEyeButton"
+                className="passwordEyeButton z-20 mb-[4px] h-11 w-11"
                 style={{
                   borderRadius: 8,
                 }}
@@ -162,13 +162,13 @@ function IconPasswordTextFieldDark(props: IconPasswordTextFieldProps) {
                   <EyeOffIcon
                     height={22}
                     width={22}
-                    className="opacity-50 text-white"
+                    className="text-white opacity-50"
                   />
                 ) : (
                   <EyeIcon
                     height={22}
                     width={22}
-                    className="opacity-50 text-white"
+                    className="text-white opacity-50"
                   />
                 )}
               </IconButton>

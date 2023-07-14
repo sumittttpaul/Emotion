@@ -24,7 +24,7 @@ function DiscoverSliderTitle(props: DiscoverSliderTitleProps) {
     }
   };
   return (
-    <div className="w-full px-3 flex space-y-2.5 text-white items-center justify-between">
+    <div className="flex w-full items-center justify-between space-y-2.5 px-3 text-white">
       <div className="flex justify-start">
         <BannerTitleButton Label={props.label} onClick={() => {}} />
       </div>
@@ -59,7 +59,7 @@ function NavigationButton(props: NavigationButtonProps) {
       onClick={props.onClick}
       disabled={props.Disabled}
       disableFocusRipple
-      className="flex group transition-all duration-300 button-text-lower h-[35px] w-[35px] bg-white/5 hover:bg-white/5 disabled:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40 opacity-100 cursor-default"
+      className="button-text-lower group flex h-[35px] w-[35px] cursor-default bg-white/5 opacity-100 transition-all duration-300 hover:bg-white/5 disabled:cursor-not-allowed disabled:bg-white/10 disabled:opacity-40"
       sx={{
         '.MuiTouchRipple-child': {
           backgroundColor: '#ffffff80 !important',

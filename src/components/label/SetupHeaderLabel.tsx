@@ -6,7 +6,7 @@ interface IProps {
 function SetupHeaderLabel(props: IProps) {
   return (
     <h1
-      className={`${props.ClassName} font-[700] line-clamp-2 text-left w-full text-white text-[25px] md:text-[30px]`}
+      className={`${props.ClassName} line-clamp-2 w-full text-left text-[25px] font-[700] text-white md:text-[30px]`}
     >
       {props.children}
     </h1>

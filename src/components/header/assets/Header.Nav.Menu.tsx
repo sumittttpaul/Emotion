@@ -88,8 +88,8 @@ function HeaderNavMenu(props: HeaderNavMenuProps) {
           disableTouchRipple={Boolean(DisableButton(props.Value, value.label))}
           className={`${ActiveContent(
             props.Value,
-            value.label
-          )} ${'text-white cursor-default p-0 m-0 bg-transparent rounded-lg disabled:cursor-not-allowed disabled:text-white w-full transition-opacity ease-in whitespace-nowrap font-normal text-[13px] h-full justify-start items-center button-text-lower'}`}
+            value.label,
+          )} ${'button-text-lower m-0 h-full w-full cursor-default items-center justify-start whitespace-nowrap rounded-lg bg-transparent p-0 text-[13px] font-normal text-white transition-opacity ease-in disabled:cursor-not-allowed disabled:text-white'}`}
           onClick={() => {
             setTimeout(() => {
               if (props.Value != value.label) {
@@ -100,7 +100,7 @@ function HeaderNavMenu(props: HeaderNavMenuProps) {
             }, 200);
           }}
         >
-          <div className="flex text-left w-[180px] justify-start items-center p-3">
+          <div className="flex w-[180px] items-center justify-start p-3 text-left">
             <p className="block w-full">{value.label}</p>
             {Boolean(DisableButton(props.Value, value.label)) && (
               <div className="block h-5 w-5 opacity-70">

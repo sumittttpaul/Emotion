@@ -16,12 +16,12 @@ export interface DiscoverBannerFourBrowserProps {
   ContentArray: DiscoverBannerFourContentProps[];
 }
 export function DiscoverBannerFourBrowser(
-  props: DiscoverBannerFourBrowserProps
+  props: DiscoverBannerFourBrowserProps,
 ) {
   const { LargeScreen, MediumLargeScreen, MediumScreen, SmallScreen } =
     useScreenSize();
   return (
-    <div className="w-full relative box-border">
+    <div className="relative box-border w-full">
       <Swiper
         slidesPerView={
           LargeScreen || MediumLargeScreen
@@ -34,7 +34,7 @@ export function DiscoverBannerFourBrowser(
         }
         spaceBetween={MediumLargeScreen ? 24 : 15}
         wrapperTag="ul"
-        className="w-full h-full flex"
+        className="flex h-full w-full"
         style={{
           paddingRight: 12,
           paddingLeft: 12,
@@ -42,8 +42,8 @@ export function DiscoverBannerFourBrowser(
       >
         {props.ContentArray.map((value, index) => (
           <SwiperSlide key={index} tag="li" className={ContainerStyle}>
-            <div className="p-0 m-0">
-              <div className="relative w-full h-full">
+            <div className="m-0 p-0">
+              <div className="relative h-full w-full">
                 <div className="absolute z-[1] h-full w-full bg-gradient-to-t from-[#242424]" />
                 <Image
                   className="rounded-t-xl"
@@ -73,13 +73,13 @@ export interface DiscoverBannerFourMobileProps {
 }
 export function DiscoverBannerFourMobile(props: DiscoverBannerFourMobileProps) {
   return (
-    <div className="flex w-full relative box-border space-x-5">
+    <div className="relative box-border flex w-full space-x-5">
       <Swiper
         slidesPerView={1.2}
         spaceBetween={15}
         centeredSlides={true}
         wrapperTag="ul"
-        className="w-full flex"
+        className="flex w-full"
         style={{
           paddingLeft: 20,
           paddingRight: 20,
@@ -87,8 +87,8 @@ export function DiscoverBannerFourMobile(props: DiscoverBannerFourMobileProps) {
       >
         {props.ContentArray.map((value, index) => (
           <SwiperSlide key={index} tag="li" className={ContainerStyle}>
-            <div className="p-0 m-0">
-              <div className="relative w-full h-full">
+            <div className="m-0 p-0">
+              <div className="relative h-full w-full">
                 <div className="absolute z-[1] h-full w-full bg-transparent" />
                 <Image
                   className="rounded-xl"

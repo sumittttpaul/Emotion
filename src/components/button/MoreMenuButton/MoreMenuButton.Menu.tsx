@@ -43,10 +43,10 @@ function MoreMenuButtonMenu(props: MoreMenuButtonMenuProps) {
           onClick={value.onClick}
           className={`${
             props.MenuContent.length === idx + 1 ? 'mb-1' : ''
-          } mx-1 mt-1 py-2 px-3 rounded-md hover:bg-[#ffffff20] space-x-3 cursor-default`}
+          } mx-1 mt-1 cursor-default space-x-3 rounded-md px-3 py-2 hover:bg-[#ffffff20]`}
         >
           <Image height={19} width={19} src={value.icon} alt="" />
-          <label className="text-white text-left text-[13px] font-[400]">
+          <label className="text-left text-[13px] font-[400] text-white">
             {value.label}
           </label>
         </MenuItem>

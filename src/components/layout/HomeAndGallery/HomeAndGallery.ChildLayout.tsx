@@ -7,12 +7,12 @@ function HomeAndGalleryChildLayout({ children }: ChildrenType) {
   const { isMobile } = DeviceHook();
 
   function Children() {
-    return <div className="w-full z-auto">{children}</div>;
+    return <div className="z-auto w-full">{children}</div>;
   }
 
   if (isMobile)
     return (
-      <main className="w-full z-auto mx-auto">
+      <main className="z-auto mx-auto w-full">
         <HeaderMobile />
         <Children />
         {/* <FooterMobile /> */}
@@ -20,12 +20,12 @@ function HomeAndGalleryChildLayout({ children }: ChildrenType) {
     );
 
   return (
-    <main className="pl-[268px] w-full h-screen z-auto">
-      <div className="w-full h-full">
+    <main className="z-auto h-screen w-full pl-[268px]">
+      <div className="h-full w-full">
         <Header />
-        <div className="pt-[70px] pr-[278px] pb-3 fixed w-full h-full overflow-hidden">
-          <div className=" flex flex-col w-full h-full mx-auto max-w-[2000px] bg-[#181818] rounded-xl overflow-hidden">
-            <div className="flex flex-col w-full overflow-auto">
+        <div className="fixed h-full w-full overflow-hidden pb-3 pr-[278px] pt-[70px]">
+          <div className=" mx-auto flex h-full w-full max-w-[2000px] flex-col overflow-hidden rounded-xl bg-[#181818]">
+            <div className="flex w-full flex-col overflow-auto">
               <Children />
               <Footer />
             </div>

@@ -32,14 +32,14 @@ function BannerTitleButton(props: IProps) {
       onClick={props.onClick}
       onHoverStart={onHoverStart}
       onHoverEnd={onHoverEnd}
-      className="group flex cursor-default items-center justify-center hover:bg-white/5 py-2 pr-3 pl-[17px] rounded-xl"
+      className="group flex cursor-default items-center justify-center rounded-xl py-2 pl-[17px] pr-3 hover:bg-white/5"
     >
       <motion.div
         animate={Animate}
         variants={Variants}
-        className="flex space-x-1 items-center justify-center"
+        className="flex items-center justify-center space-x-1"
       >
-        <label className="group-hover:opacity-75 opacity-100 text-[20px] font-[500] tracking-wide text-white">
+        <label className="text-[20px] font-[500] tracking-wide text-white opacity-100 group-hover:opacity-75">
           {props.Label}
         </label>
         <ChevronRightIcon className="h-5 opacity-50" />

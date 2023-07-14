@@ -22,21 +22,21 @@ export interface GalleryCarouselDesktopProps {
 }
 
 export const GalleryCarouselMobile: FC<GalleryCarouselMobileProps> = (
-  props
+  props,
 ) => {
   return (
-    <div className="w-full flex flex-col relative box-border p-0 m-0 overflow-y-visible overflow-x-hidden">
+    <div className="relative m-0 box-border flex w-full flex-col overflow-x-hidden overflow-y-visible p-0">
       <GalleryCarouselSlider ContentArray={props.ContentArray} />
     </div>
   );
 };
 
 export const GalleryCarouselDesktop: FC<GalleryCarouselDesktopProps> = (
-  props
+  props,
 ) => {
   return (
     <div className="relative">
-      <div className="w-full block relative box-border p-0 m-0 bg-transparent overflow-y-visible overflow-x-hidden">
+      <div className="relative m-0 box-border block w-full overflow-x-hidden overflow-y-visible bg-transparent p-0">
         <GalleryCarouselBanner
           ContentArray={props.ContentArray}
           ElementRef={props.ElementRef}
@@ -44,7 +44,7 @@ export const GalleryCarouselDesktop: FC<GalleryCarouselDesktopProps> = (
           BannerTextTransition={props.BannerTextTransition}
           setBannerTextTransition={props.setBannerTextTransition}
         />
-        <div className="absolute bg-gradient-to-t from-[#181818] w-full h-[130px] -mt-[130px] block" />
+        <div className="absolute -mt-[130px] block h-[130px] w-full bg-gradient-to-t from-[#181818]" />
         <GalleryCarouselThumbnailSlider
           AutoPlay={props.AutoPlay}
           Duration={props.Duration}

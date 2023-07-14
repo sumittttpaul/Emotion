@@ -13,19 +13,19 @@ function DiscoverCarouselBulletPoints(props: IProps) {
   };
 
   return (
-    <div className="w-full flex p-3 items-center justify-center">
+    <div className="flex w-full items-center justify-center p-3">
       {props.BulletArray.map((value, idx) => (
         <motion.button
           key={idx}
           className={`${
             GetCarouselState(props.CarouselState) === idx ? 'px-1' : 'px-1'
-          } py-3 group block cursor-default bg-transparent`}
+          } group block cursor-default bg-transparent py-3`}
         >
           <div
             className={`${
               GetCarouselState(props.CarouselState) === idx
-                ? 'h-[6px] w-[6px] min-w-[6px] min-h-[6px] opacity-90'
-                : 'w-[4px] min-w-[4px] h-[4px] min-h-[4px] opacity-50'
+                ? 'h-[6px] min-h-[6px] w-[6px] min-w-[6px] opacity-90'
+                : 'h-[4px] min-h-[4px] w-[4px] min-w-[4px] opacity-50'
             } block rounded-full bg-white`}
           />
         </motion.button>

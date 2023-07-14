@@ -5,10 +5,10 @@ import { ChevronRightIcon } from '@heroicons/react/outline';
 
 function DiscoverCatelog() {
   return (
-    <div className="flex w-full h-full px-3 my-[50px] relative box-border overflow-x-hidden overflow-y-visible bg-transparent">
-      <div className="flex flex-row w-full h-[250px] small-medium-screen:h-[300px] space-x-14 box-border relative">
-        <div className="medium-screen:max-w-[65%] small-medium-screen:max-w-[50%] max-w-[0%] w-full h-full flex">
-          <div className="z-[1] absolute w-full h-full bg-gradient-to-l from-dark-orange rounded-xl" />
+    <div className="relative my-[50px] box-border flex h-full w-full overflow-x-hidden overflow-y-visible bg-transparent px-3">
+      <div className="relative box-border flex h-[250px] w-full flex-row space-x-14 small-medium-screen:h-[300px]">
+        <div className="flex h-full w-full max-w-[0%] small-medium-screen:max-w-[50%] medium-screen:max-w-[65%]">
+          <div className="absolute z-[1] h-full w-full rounded-xl bg-gradient-to-l from-dark-orange" />
           <Image
             className="rounded-xl"
             fill
@@ -21,28 +21,28 @@ function DiscoverCatelog() {
             alt=""
           />
         </div>
-        <div className="medium-screen:max-w-[35%] small-medium-screen:max-w-[50%] max-w-[65%] h-full w-full z-[2] flex relative justify-start items-center">
-          <div className="text-white flex flex-col w-full space-y-2">
-            <div className="text-[14px] font-[500] small-screen:text-[30px] w-full">
+        <div className="relative z-[2] flex h-full w-full max-w-[65%] items-center justify-start small-medium-screen:max-w-[50%] medium-screen:max-w-[35%]">
+          <div className="flex w-full flex-col space-y-2 text-white">
+            <div className="w-full text-[14px] font-[500] small-screen:text-[30px]">
               Explore our Gallery
             </div>
-            <h6 className="text-[13px] small-screen:text-[16px] whitespace-normal leading-[18px] font-normal text-left w-full opacity-[0.75]">
+            <h6 className="w-full whitespace-normal text-left text-[13px] font-normal leading-[18px] opacity-[0.75] small-screen:text-[16px]">
               Browse by genre, features, price and more to find your next
               favorite look.
             </h6>
-            <div className="w-full justify-start flex">
+            <div className="flex w-full justify-start">
               <Button
                 disableFocusRipple
-                className="rounded-lg py-2 px-8 small-screen:px-10 small-screen:mt-3 small-medium-screen:mt-10 text-[12px] font-[500] tracking-wide button-text-lower bg-super-dark-orange text-white transition-all cursor-default"
+                className="button-text-lower cursor-default rounded-lg bg-super-dark-orange px-8 py-2 text-[12px] font-[500] tracking-wide text-white transition-all small-screen:mt-3 small-screen:px-10 small-medium-screen:mt-10"
                 sx={{
                   '.MuiTouchRipple-child': {
                     backgroundColor: '#ffffff30 !important',
                   },
                 }}
               >
-                <div className="flex space-x-2 items-center justify-center">
+                <div className="flex items-center justify-center space-x-2">
                   <ChevronRightIcon className="h-4" />
-                  <p className="text-[12px] tracking-wide font-[400]">
+                  <p className="text-[12px] font-[400] tracking-wide">
                     See details
                   </p>
                 </div>

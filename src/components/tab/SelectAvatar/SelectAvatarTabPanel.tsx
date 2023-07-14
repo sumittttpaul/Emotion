@@ -13,7 +13,7 @@ const SelectAvatarTabPanel = (props: TabPanelProps) => {
       hidden={value !== index}
       id={`avatar-tabpanel-${index}`}
       aria-labelledby={`avatar-tabpanel-${index}`}
-      className="w-full h-full"
+      className="h-full w-full"
       {...other}
     >
       {value === index && children}

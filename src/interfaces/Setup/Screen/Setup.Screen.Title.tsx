@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 
 const LoadingLinearProgress = dynamic(
   () => import('components/loader/Loading.LinearProgress'),
-  { ssr: false }
+  { ssr: false },
 );
 
 interface IProps {
@@ -68,9 +68,9 @@ function SetupScreenTitle({ Screen, Loading }: IProps) {
         {Screen === 'register-gender' &&
           `Get personalized search and browsing results base on your info.`}
       </SetupHeaderDescription>
-      <div className="relative w-full h-full">
+      <div className="relative h-full w-full">
         {Loading ? (
-          <div className="relative h-7 w-full flex">
+          <div className="relative flex h-7 w-full">
             <LoadingLinearProgress />
           </div>
         ) : (

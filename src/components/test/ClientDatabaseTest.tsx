@@ -28,7 +28,7 @@ function ClientDatabaseTest(props: IProps) {
       (value: IError) => {
         setUser(undefined);
         setError(value);
-      }
+      },
     );
   };
 
@@ -37,7 +37,7 @@ function ClientDatabaseTest(props: IProps) {
       (value: IError) => {
         setUser(undefined);
         setError(value);
-      }
+      },
     );
   };
 
@@ -72,40 +72,40 @@ function ClientDatabaseTest(props: IProps) {
 
   return (
     <>
-      <div className="h-14 py-5 flex w-full justify-center box-border">
+      <div className="box-border flex h-14 w-full justify-center py-5">
         {User && (
-          <div className="h-12 flex flex-col space-y-2 box-border">
-            <h6 className="text-xl h-5 font-bold text-green-400">
+          <div className="box-border flex h-12 flex-col space-y-2">
+            <h6 className="h-5 text-xl font-bold text-green-400">
               {User._data?.fullName}
             </h6>
-            <p className="text-[14px] h-5 font-[600] text-green-400">
+            <p className="h-5 text-[14px] font-[600] text-green-400">
               {User._data?.emailAddress}
             </p>
           </div>
         )}
         {Error && (
-          <h6 className="text-xl h-12 items-end flex font-bold text-red-600">
+          <h6 className="flex h-12 items-end text-xl font-bold text-red-600">
             {Error.message}
           </h6>
         )}
       </div>
       <h1 className="text-[20px]">Welcome to Emotion</h1>
-      <div className="w-full flex space-x-3 max-w-[500px]">
+      <div className="flex w-full max-w-[500px] space-x-3">
         <Button
           onClick={Create}
-          className="relative button-text-lower !cursor-default h-10 hover:!bg-green-400/10 !text-green-400 !bg-green-400/[0.075] flex p-2 !rounded-lg w-full"
+          className="button-text-lower relative flex h-10 w-full !cursor-default !rounded-lg !bg-green-400/[0.075] p-2 !text-green-400 hover:!bg-green-400/10"
         >
           Create
         </Button>
         <Button
           onClick={Update}
-          className="relative button-text-lower !cursor-default h-10 hover:!bg-sky-400/10 !text-sky-400 !bg-sky-400/[0.075] flex p-2 !rounded-lg w-full"
+          className="button-text-lower relative flex h-10 w-full !cursor-default !rounded-lg !bg-sky-400/[0.075] p-2 !text-sky-400 hover:!bg-sky-400/10"
         >
           Update
         </Button>
         <Button
           onClick={Delete}
-          className="relative button-text-lower !cursor-default h-10 hover:!bg-red-400/10 !text-red-400 !bg-red-400/[0.075] flex p-2 !rounded-lg w-full"
+          className="button-text-lower relative flex h-10 w-full !cursor-default !rounded-lg !bg-red-400/[0.075] p-2 !text-red-400 hover:!bg-red-400/10"
         >
           Delete
         </Button>

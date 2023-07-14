@@ -23,7 +23,7 @@ const Months = [
 
 function SelectMonth(props: IProps) {
   const [selected, setSelected] = useState<string>(
-    moment().endOf('month').format('MMM')
+    moment().endOf('month').format('MMM'),
   );
 
   const dayStyles = (month: string) => {
@@ -34,7 +34,7 @@ function SelectMonth(props: IProps) {
 
   return (
     <m.div
-      className="p-5 h-full items-center justify-center grid grid-cols-3 scroll"
+      className="scroll grid h-full grid-cols-3 items-center justify-center p-5"
       animate={{ opacity: 1, scale: 1 }}
       initial={{ opacity: 0, scale: 1 }}
       exit={{ opacity: 0, scale: 0 }}
@@ -47,8 +47,8 @@ function SelectMonth(props: IProps) {
             props.setMonth(month);
           }}
           key={month}
-          className={`${'text-white text-[13px] m-1 p-4 rounded-md cursor-default transition-colors ease-in-out duration-150'} ${dayStyles(
-            month
+          className={`${'m-1 cursor-default rounded-md p-4 text-[13px] text-white transition-colors duration-150 ease-in-out'} ${dayStyles(
+            month,
           )}`}
         >
           {month}

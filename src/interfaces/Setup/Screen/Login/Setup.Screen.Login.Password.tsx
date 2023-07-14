@@ -64,16 +64,16 @@ function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
 
   return (
     <m.div
-      className={`${props.AnimationDivClassName} w-full relative`}
+      className={`${props.AnimationDivClassName} relative w-full`}
       initial={props.Animation.Initial}
       animate={props.Animation.Final}
       transition={props.Animation.Transition}
     >
       <div
-        className={`${props.ContentClassName} w-full flex flex-col space-y-4`}
+        className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
-        <div className="flex justify-center items-center w-full">
-          <div className="flex space-x-2 items-center justify-center bg-white/5 py-1 pl-1 pr-3 rounded-full">
+        <div className="flex w-full items-center justify-center">
+          <div className="flex items-center justify-center space-x-2 rounded-full bg-white/5 py-1 pl-1 pr-3">
             <div className="min-h-[20px] min-w-[20px]">
               <Image
                 height={20}
@@ -83,7 +83,7 @@ function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
                 alt=""
               />
             </div>
-            <p className="text-white text-[13px] font-[300]">{EmailAddress}</p>
+            <p className="text-[13px] font-[300] text-white">{EmailAddress}</p>
           </div>
         </div>
         <SetupIconPasswordTextField
@@ -93,14 +93,14 @@ function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
           HandleSubmit={PasswordSubmitClick}
           Loading={props.Loading}
         />
-        <div className="w-full flex flex-col space-y-1">
-          <div className="w-full flex justify-start">
+        <div className="flex w-full flex-col space-y-1">
+          <div className="flex w-full justify-start">
             <SignInNextButton
               Label="Forgot password ?"
               onClick={MoveToForgotPassword}
             />
           </div>
-          <div className="w-full flex justify-start">
+          <div className="flex w-full justify-start">
             <SignInBackButton Label="Back" onClick={BackToEmailScreen} />
           </div>
         </div>

@@ -11,7 +11,7 @@ function Footer() {
   const router = useRouter();
   return (
     <div className="w-full self-end pr-3">
-      <div className="w-full relative pb-5 sm:px-8 px-3 box-border rounded-3xl bg-transparent">
+      <div className="relative box-border w-full rounded-3xl bg-transparent px-3 pb-5 sm:px-8">
         <div className="flex flex-col items-center justify-center">
           <FooterLogo
             onValueChange={(value) => {
@@ -20,7 +20,7 @@ function Footer() {
               router.push(Home_Link);
             }}
           />
-          <h6 className="text-[11.5px] text-center py-2 font-[300] leading-[22px] whitespace-normal lg:max-w-[70%] xl:max-w-[60%] 2xl:max-w-[55%] flex text-white opacity-80">
+          <h6 className="flex whitespace-normal py-2 text-center text-[11.5px] font-[300] leading-[22px] text-white opacity-80 lg:max-w-[70%] xl:max-w-[60%] 2xl:max-w-[55%]">
             Founded in 2023, Emotion is a outfit fashion brand that makes
             creative, distinctive fashion for the trendy, contemporary Indian.
             Emotion-outfit was created on the principle of creating impact
@@ -30,7 +30,7 @@ function Footer() {
             always fresh and up-to-date. Discover the new you with
             Emotion-outfit.
           </h6>
-          <h6 className="text-[11.5px] py-2 font-[300] whitespace-normal flex text-white">
+          <h6 className="flex whitespace-normal py-2 text-[11.5px] font-[300] text-white">
             Discover the new you with Emotion-outfit.
           </h6>
         </div>

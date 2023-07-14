@@ -8,12 +8,12 @@ interface IProps {
 
 export function HeaderLogo(props: IProps) {
   return (
-    <div className="flex relative">
+    <div className="relative flex">
       <Image
         height={32.5}
         width={32.5}
         onClick={() => props.onValueChange('Discover')}
-        className="opacity-90 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
+        className="opacity-90 transition-all duration-300 hover:cursor-pointer hover:opacity-100"
         src={Logo}
         alt=""
       />
@@ -33,7 +33,7 @@ export function MobileLogo(props: IProps) {
       height={30}
       width={30}
       onClick={() => props.onValueChange('Discover')}
-      className="opacity-90 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
+      className="opacity-90 transition-all duration-300 hover:cursor-pointer hover:opacity-100"
       src={Logo}
       alt=""
     />
@@ -52,7 +52,7 @@ export function FooterLogo(props: IProps) {
           height={30}
           width={125}
           onClick={() => props.onValueChange('Discover')}
-          className="opacity-90 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
+          className="opacity-90 transition-all duration-300 hover:cursor-pointer hover:opacity-100"
           src={Logo_Full}
           alt=""
         />
@@ -62,7 +62,7 @@ export function FooterLogo(props: IProps) {
           height={25}
           width={100}
           onClick={() => props.onValueChange('Discover')}
-          className="opacity-90 hover:opacity-100 hover:cursor-pointer transition-all duration-300"
+          className="opacity-90 transition-all duration-300 hover:cursor-pointer hover:opacity-100"
           src={Logo_Full}
           alt=""
         />

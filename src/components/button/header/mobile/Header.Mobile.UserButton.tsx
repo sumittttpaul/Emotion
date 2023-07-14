@@ -12,7 +12,7 @@ import useClientAuth, { ClientUserType } from 'authentication/useClientAuth';
 
 const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
   () => import('../Header.UserButton.Menu'),
-  { ssr: false }
+  { ssr: false },
 );
 
 export function HeaderMobileUserButton() {
@@ -65,7 +65,7 @@ function LoginButton(props: LoginButtonProps) {
       aria-label="user-login-button"
       disableFocusRipple
       onClick={props.onClick}
-      className="flex items-center justify-center h-[35px] w-[35px] p-0"
+      className="flex h-[35px] w-[35px] items-center justify-center p-0"
       sx={{
         '.MuiTouchRipple-child': {
           backgroundColor: 'transparent !important',
@@ -76,7 +76,7 @@ function LoginButton(props: LoginButtonProps) {
       <Image
         height={25}
         width={25}
-        className="opacity-70 rounded-[50%]"
+        className="rounded-[50%] opacity-70"
         src={UserIcon}
         alt=""
       />
@@ -91,7 +91,7 @@ function LoadingButton() {
         disabled
         aria-label="user-button-loading"
         disableFocusRipple
-        className="flex items-center justify-center h-[35px] w-[35px] p-0"
+        className="flex h-[35px] w-[35px] items-center justify-center p-0"
         sx={{
           '.MuiTouchRipple-child': {
             backgroundColor: 'transparent !important',
@@ -99,7 +99,7 @@ function LoadingButton() {
         }}
         style={{ minWidth: 35, width: 35, maxWidth: 35 }}
       >
-        <CircularProgress className="text-white p-2.5 -ml-[5px]" />
+        <CircularProgress className="-ml-[5px] p-2.5 text-white" />
       </IconButton>
     </>
   );
@@ -129,7 +129,7 @@ function UserButton(props: UserButtonProps) {
         aria-label="user-popup-button"
         disableFocusRipple
         onClick={handleClick}
-        className="flex items-center justify-center h-[35px] w-[35px] p-0"
+        className="flex h-[35px] w-[35px] items-center justify-center p-0"
         sx={{
           '.MuiTouchRipple-child': {
             backgroundColor: 'transparent !important',
@@ -149,7 +149,7 @@ function UserButton(props: UserButtonProps) {
           <Image
             height={25}
             width={25}
-            className="opacity-70 rounded-[50%]"
+            className="rounded-[50%] opacity-70"
             src={UserIcon}
             alt=""
           />
@@ -169,7 +169,7 @@ function UserButton(props: UserButtonProps) {
 
 function ContainerButton(props: ContainerButtonProps) {
   return (
-    <div className="flex relative h-[35px] w-[35px] overflow-hidden">
+    <div className="relative flex h-[35px] w-[35px] overflow-hidden">
       {props.children}
     </div>
   );

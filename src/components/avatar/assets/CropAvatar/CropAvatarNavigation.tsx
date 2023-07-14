@@ -13,8 +13,8 @@ interface IProps {
 
 export function CropAvatarNavigation(props: IProps) {
   return (
-    <div className="w-full flex justify-center p-5 items-center">
-      <div className="flex py-1 px-3 bg-white/10 h-[44px] items-center justify-center shadow-xl rounded-lg backdrop-blur-2xl">
+    <div className="flex w-full items-center justify-center p-5">
+      <div className="flex h-[44px] items-center justify-center rounded-lg bg-white/10 px-3 py-1 shadow-xl backdrop-blur-2xl">
         <SmallIconButtonDark
           onClick={props.RotateLeft}
           tooltip="Rotate image 90 degrees anti-clockwise"
@@ -39,7 +39,7 @@ export function CropAvatarNavigation(props: IProps) {
           content="Flip horizontal"
           iconURL="/icons/flip-y.svg"
         />
-        <div className="h-7 mx-3 block w-[2px] bg-white/50" />
+        <div className="mx-3 block h-7 w-[2px] bg-white/50" />
         <TooltipDark
           title="Reset all edits performed on the image"
           placement="top"
@@ -54,7 +54,7 @@ export function CropAvatarNavigation(props: IProps) {
               !props.Changed
                 ? 'opacity-50 hover:bg-transparent'
                 : 'opacity-100 hover:bg-white/10'
-            } button-text-lower text-white h-9 py-2 px-4 text-[13px] rounded-md cursor-default`}
+            } button-text-lower h-9 cursor-default rounded-md px-4 py-2 text-[13px] text-white`}
             sx={{
               minWidth: 0,
               '.MuiTouchRipple-child': {

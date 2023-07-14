@@ -41,9 +41,9 @@ function AvatarContainerDialog(props: IProps) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-90"
             >
-              <Dialog.Panel className="absolute h-full w-full sm:relative sm:h-suto sm:w-auto">
+              <Dialog.Panel className="sm:h-suto absolute h-full w-full sm:relative sm:w-auto">
                 <div
-                  className={`${'box-border absolute sm:relative h-full w-full transform overflow-hidden sm:rounded-xl bg-secondary-theme text-center align-middle shadow-xl transition-all ease-in'} ${
+                  className={`${'absolute box-border h-full w-full transform overflow-hidden bg-secondary-theme text-center align-middle shadow-xl transition-all ease-in sm:relative sm:rounded-xl'} ${
                     props.className
                   }`}
                 >

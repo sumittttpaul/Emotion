@@ -11,19 +11,19 @@ import useClientAuth from 'authentication/useClientAuth';
 
 const ToastDark = dynamic<ToastDarkProps>(
   () => import('components/toast/ToastDark'),
-  { ssr: false }
+  { ssr: false },
 );
 const SetupErrorScreen = dynamic<SetupErrorScreenProps>(
   () => import('interfaces/Setup/Screen/Setup.Screen.Error'),
-  { ssr: false }
+  { ssr: false },
 );
 const SetupFinishScreen = dynamic<SetupFinishScreenProps>(
   () => import('interfaces/Setup/Screen/Setup.Screen.Finish'),
-  { ssr: false }
+  { ssr: false },
 );
 const SetupSkipDialog = dynamic<SetupSkipDialogProps>(
   () => import('interfaces/Setup/Dialog/Setup.Dialog.Skip'),
-  { ssr: false }
+  { ssr: false },
 );
 
 interface IProps {
@@ -37,7 +37,6 @@ interface IProps {
   setScreen: Dispatch<AuthScreenType>;
   SkipDialog: boolean;
   setSkipDialog: Dispatch<boolean>;
-  Loading: boolean;
 }
 
 function SetupScreenMain({
@@ -51,7 +50,6 @@ function SetupScreenMain({
   setScreen,
   SkipDialog,
   setSkipDialog,
-  Loading,
 }: IProps) {
   const { FirebaseUser, FirebaseLoading, FirebaseError } = useClientAuth();
   const { Toast, setToast } = ToastHook();
@@ -100,9 +98,9 @@ function SetupScreenMain({
       )}
       {MainScreen === 'Setup' && (
         <main
-          className={`${MainClassName} relative items-center justify-center w-full flex flex-col md:flex-row box-border`}
+          className={`${MainClassName} relative box-border flex w-full flex-col items-center justify-center md:flex-row`}
         >
-          <div className="p-14 ml-14 relative hidden md:flex w-full h-full justify-center items-center">
+          <div className="relative ml-14 hidden h-full w-full items-center justify-center p-14 md:flex">
             {Screen && (
               <Image
                 height={370}
@@ -112,7 +110,7 @@ function SetupScreenMain({
               />
             )}
           </div>
-          <div className="p-5 md:p-14 md:min-w-[415px] md-1000:min-w-[500px] space-y-5 relative w-full flex flex-col items-center justify-center box-border overflow-hidden">
+          <div className="relative box-border flex w-full flex-col items-center justify-center space-y-5 overflow-hidden p-5 md:min-w-[415px] md:p-14 md-1000:min-w-[500px]">
             {children}
           </div>
         </main>

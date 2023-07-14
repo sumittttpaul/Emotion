@@ -6,12 +6,12 @@ interface IProps {
 
 function GreenSuccessHint(props: IProps) {
   return (
-    <div className="flex justify-start w-full">
-      <div className="flex py-1 pl-1 pr-2 rounded-md space-x-1 items-center bg-[#00B46090]">
-        <div className="items-start h-full min-w-[15px] mt-1">
+    <div className="flex w-full justify-start">
+      <div className="flex items-center space-x-1 rounded-md bg-[#00B46090] py-1 pl-1 pr-2">
+        <div className="mt-1 h-full min-w-[15px] items-start">
           <Image height={15} width={15} src="/icons/success-color.svg" alt="" />
         </div>
-        <p className="text-[13px] font-normal block">{props.Label}</p>
+        <p className="block text-[13px] font-normal">{props.Label}</p>
       </div>
     </div>
   );

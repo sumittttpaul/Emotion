@@ -89,38 +89,38 @@ function ToastDarkContent(props: ToastDarkContentProps) {
       onPointerLeave={handlePointerLeave}
     >
       <div
-        className={`${props.Color} h-full text-white md:max-w-[500px] flex flex-col space-y-1 border border-solid border-white/20 rounded-xl overflow-hidden Toast-DropShadow`}
+        className={`${props.Color} Toast-DropShadow flex h-full flex-col space-y-1 overflow-hidden rounded-xl border border-solid border-white/20 text-white md:max-w-[500px]`}
       >
-        <div className="w-full h-full flex space-x-3 p-1">
-          <div className="flex h-full pl-2 py-3 items-start">
+        <div className="flex h-full w-full space-x-3 p-1">
+          <div className="flex h-full items-start py-3 pl-2">
             <Image height={40} width={40} src={props.Icon} alt="" />
           </div>
-          <div className="flex flex-col py-2 w-full">
-            <h5 className="text-white text-[15px] font-[600]">
+          <div className="flex w-full flex-col py-2">
+            <h5 className="text-[15px] font-[600] text-white">
               {props.MessageTitle}
             </h5>
-            <h6 className="text-white/[0.85] text-[13px] leading-4 font-medium">
+            <h6 className="text-[13px] font-medium leading-4 text-white/[0.85]">
               {props.MessageDescription}
             </h6>
           </div>
-          <div className="h-full flex flex-col items-start justify-center">
+          <div className="flex h-full flex-col items-start justify-center">
             <m.button
               onClick={props.onClose}
               whileTap={{ scale: 0.9 }}
-              className="bg-transparent hover:bg-white/10 cursor-default p-2.5 m-0 rounded-full"
+              className="m-0 cursor-default rounded-full bg-transparent p-2.5 hover:bg-white/10"
             >
-              <XIcon className="text-white h-4 w-4" />
+              <XIcon className="h-4 w-4 text-white" />
             </m.button>
           </div>
         </div>
-        <div ref={containerRef} className="w-full flex">
+        <div ref={containerRef} className="flex w-full">
           <m.div
             ref={progressRef}
             onAnimationComplete={handleAnimationComplete}
             initial={{ width: '100%' }}
             animate={animate}
             transition={{ duration: props.HideDuration }}
-            className="w-full h-[2px] bg-white/75"
+            className="h-[2px] w-full bg-white/75"
           />
         </div>
       </div>

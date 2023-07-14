@@ -9,23 +9,23 @@ import { useSearchParams } from 'next/navigation';
 
 const UserMgmtErrorScreen = dynamic(
   () => import('./Screen/UserMgmt.Screen.Error'),
-  { ssr: false }
+  { ssr: false },
 );
 const UserMgmtResetPasswordScreen = dynamic<UserMgmtResetPasswordScreenProps>(
   () => import('./Screen/UserMgmt.Screen.ResetPassword'),
-  { ssr: false }
+  { ssr: false },
 );
 const UserMgmtEmailVerifiedScreen = dynamic<UserMgmtEmailVerifiedScreenProps>(
   () => import('./Screen/UserMgmt.Screen.EmailVerified'),
-  { ssr: false }
+  { ssr: false },
 );
 const ToastDark = dynamic<ToastDarkProps>(
   () => import('components/toast/ToastDark'),
-  { ssr: false }
+  { ssr: false },
 );
 const LinearProgressLaoding = dynamic(
   () => import('components/loader/Loading.LinearProgress'),
-  { ssr: false }
+  { ssr: false },
 );
 
 interface IProps {
@@ -60,7 +60,7 @@ function UserMgmtInterface({
   return (
     <LazyMotion features={domAnimation} strict>
       <main
-        className={`${MainClassName} relative items-center justify-center h-full w-full flex flex-col md:flex-row box-border`}
+        className={`${MainClassName} relative box-border flex h-full w-full flex-col items-center justify-center md:flex-row`}
       >
         {mode === 'resetPassword' && (
           <UserMgmtResetPasswordScreen

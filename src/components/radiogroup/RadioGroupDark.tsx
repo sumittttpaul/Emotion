@@ -25,13 +25,13 @@ function RadioGroupDark(props: IProps) {
   return (
     <RadioGroup
       value={props.value}
-      className="custom-webkit-focus w-full flex max-w-[300px] mx-auto"
+      className="custom-webkit-focus mx-auto flex w-full max-w-[300px]"
       onChange={props.onChange}
     >
-      <RadioGroup.Label className="sr-only flex w-full custom-webkit-focus">
+      <RadioGroup.Label className="custom-webkit-focus sr-only flex w-full">
         Radio Group Dark
       </RadioGroup.Label>
-      <div className="space-x-2 mx-auto w-full flex custom-webkit-focus">
+      <div className="custom-webkit-focus mx-auto flex w-full space-x-2">
         {props.content.map((content, i) => (
           <RadioGroup.Option
             key={i}
@@ -43,17 +43,17 @@ function RadioGroupDark(props: IProps) {
                     ? 'bg-[#0f0f0f] text-white'
                     : 'bg-[#191919] text-white transition-colors hover:bg-[#101010]'
                 }
-                  relative rounded-lg border border-solid border-white/10 px-3 py-2.5 w-full cursor-default custom-webkit-focus flex outline-none`
+                  custom-webkit-focus relative flex w-full cursor-default rounded-lg border border-solid border-white/10 px-3 py-2.5 outline-none`
             }
           >
             {({ checked }) => (
               <>
-                <div className="flex items-center custom-webkit-focus justify-between w-full">
-                  <div className="flex items-center w-full">
-                    <div className="text-sm w-full">
+                <div className="custom-webkit-focus flex w-full items-center justify-between">
+                  <div className="flex w-full items-center">
+                    <div className="w-full text-sm">
                       <RadioGroup.Label
                         as="p"
-                        className={`font-normal text-sm text-center ${
+                        className={`text-center text-sm font-normal ${
                           checked ? 'text-white' : 'text-[#ffffffb3]'
                         }`}
                       >
@@ -62,8 +62,8 @@ function RadioGroupDark(props: IProps) {
                     </div>
                   </div>
                   {checked && (
-                    <div className="flex-shrink-0 custom-webkit-focus text-white pl-2">
-                      <CheckIcon className="w-4 h-4" />
+                    <div className="custom-webkit-focus flex-shrink-0 pl-2 text-white">
+                      <CheckIcon className="h-4 w-4" />
                     </div>
                   )}
                 </div>

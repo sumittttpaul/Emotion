@@ -8,7 +8,7 @@ import DatePickerCustomButton from './assets/DatePickerCustomButton';
 
 const DatePickerButtonDialog = dynamic<DatePickerButtonDialogProps>(
   () => import('./DatePickerButtonDialog'),
-  { ssr: false }
+  { ssr: false },
 );
 
 interface IProps {
@@ -83,7 +83,7 @@ function DatePickerButton(props: IProps) {
   };
   const DOBSubmithandle = () => {
     props.getDOB(
-      DOBMoment.DOBDay + '-' + DOBMoment.DOBMonth + '-' + DOBMoment.DOBYear
+      DOBMoment.DOBDay + '-' + DOBMoment.DOBMonth + '-' + DOBMoment.DOBYear,
     );
     props.setSubmitDisabled(false);
     setDOBDialog(false);

@@ -16,7 +16,7 @@ export function CropAvatarZoom(props: IProps) {
   const Zoom = parseInt(toFixed(`${props.ZoomValue * 100}`));
 
   return (
-    <div className="flex w-full relative justify-between py-4 px-5 sm:max-w-[470px] mx-auto">
+    <div className="relative mx-auto flex w-full justify-between px-5 py-4 sm:max-w-[470px]">
       <CustomButton
         Content="Zoom Out"
         Tooltip="Zoom out of the image"
@@ -54,7 +54,7 @@ interface CustomButtonProps {
 
 function CustomButton(props: CustomButtonProps) {
   return (
-    <div className="h-[44px] w-full max-w-[110px] flex relative p-1 items-center justify-center">
+    <div className="relative flex h-[44px] w-full max-w-[110px] items-center justify-center p-1">
       <TooltipDark title={props.Tooltip} placement="bottom" arrow>
         <m.button
           // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -62,7 +62,7 @@ function CustomButton(props: CustomButtonProps) {
           whileTap={{ scale: props.Disabled ? 1 : 0.9 }}
           className={`${
             props.Disabled ? 'opacity-50' : 'opacity-100'
-          } bg-white/10 h-full w-full rounded-lg cursor-default relative flex items-center justify-center backdrop-blur-2xl`}
+          } relative flex h-full w-full cursor-default items-center justify-center rounded-lg bg-white/10 backdrop-blur-2xl`}
         >
           <div className="flex items-center">
             {props.Icon}

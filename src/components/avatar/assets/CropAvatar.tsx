@@ -44,7 +44,7 @@ function CropAvatar({ URL, back, ...props }: DefaultCropperProps) {
   const sliderRef = useRef<HTMLElement>(null);
 
   const defaultSize: DefaultSize<ExtendedSettings<FixedCropperSettings>> = (
-    state: CropperState
+    state: CropperState,
   ): Size => {
     const { imageSize, visibleArea } = state;
     return {
@@ -54,7 +54,7 @@ function CropAvatar({ URL, back, ...props }: DefaultCropperProps) {
   };
 
   const stencilSize: StencilSize<ExtendedSettings<FixedCropperSettings>> = (
-    state: CropperState
+    state: CropperState,
   ): Size => {
     const { imageSize } = state;
     return {
@@ -74,7 +74,7 @@ function CropAvatar({ URL, back, ...props }: DefaultCropperProps) {
       setChanged(
         isEqualState(currentCoordinates, defaultCoordinates) ||
           isEqualState(currentFlip, defaultFlip) ||
-          currentRotate !== defaultRotate
+          currentRotate !== defaultRotate,
       );
     ChangeZoomValue();
   };
@@ -107,7 +107,7 @@ function CropAvatar({ URL, back, ...props }: DefaultCropperProps) {
             getVisibleAreaSize(state, settings, value),
           {
             transitions: !!true,
-          }
+          },
         );
       }
     }
@@ -175,8 +175,8 @@ function CropAvatar({ URL, back, ...props }: DefaultCropperProps) {
   };
 
   return (
-    <div className="bg-secondary-theme Select-And-Crop-Avatar-Container relative box-border flex flex-col overflow-hidden overscroll-none items-center h-full w-full">
-      <div className="z-[1] w-full h-[150px] flex flex-col">
+    <div className="Select-And-Crop-Avatar-Container relative box-border flex h-full w-full flex-col items-center overflow-hidden overscroll-none bg-secondary-theme">
+      <div className="z-[1] flex h-[150px] w-full flex-col">
         <CropAvatarTop
           heading="Edit profile picture"
           back={back}
@@ -209,10 +209,10 @@ function CropAvatar({ URL, back, ...props }: DefaultCropperProps) {
           lineClassNames: { default: 'CropAvatar-Stencil-line' },
         }}
         className={
-          'cropper circle-stencil px-5 -mt-[150px] -mb-[228px] pt-[156px] pb-[234px] cursor-grab active:cursor-grabbing CropAvatar-background flex relative w-full h-full'
+          'cropper circle-stencil CropAvatar-background relative -mb-[228px] -mt-[150px] flex h-full w-full cursor-grab px-5 pb-[234px] pt-[156px] active:cursor-grabbing'
         }
       />
-      <div className="z-[1] flex flex-col h-[228px] w-full relative">
+      <div className="relative z-[1] flex h-[228px] w-full flex-col">
         <CropAvatarSlider
           rotate={rotate}
           SliderRef={sliderRef}

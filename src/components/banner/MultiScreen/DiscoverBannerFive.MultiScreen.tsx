@@ -27,7 +27,7 @@ export interface DiscoverBannerFiveBrowserProps {
   Label: string;
 }
 export function DiscoverBannerFiveBrowser(
-  props: DiscoverBannerFiveBrowserProps
+  props: DiscoverBannerFiveBrowserProps,
 ) {
   const {
     LargeScreen,
@@ -37,11 +37,11 @@ export function DiscoverBannerFiveBrowser(
     SmallScreen,
   } = useScreenSize();
   return (
-    <div className="flex-col w-full relative p-0 m-0 space-y-2.5">
+    <div className="relative m-0 w-full flex-col space-y-2.5 p-0">
       <div className="flex justify-start pl-3">
         <BannerTitleButton Label={props.Label} onClick={() => {}} />
       </div>
-      <div className="w-full flex relative box-border space-x-5">
+      <div className="relative box-border flex w-full space-x-5">
         <Swiper
           slidesPerView={
             LargeScreen || MediumLargeScreen
@@ -56,7 +56,7 @@ export function DiscoverBannerFiveBrowser(
           }
           spaceBetween={MediumLargeScreen ? 24 : 15}
           wrapperTag="ul"
-          className="w-full flex"
+          className="flex w-full"
           style={{
             paddingRight: 12,
             paddingLeft: 12,
@@ -68,7 +68,7 @@ export function DiscoverBannerFiveBrowser(
               tag="li"
               className={`${GetColor(index)} ${ContainerStyle}`}
             >
-              <div className="p-0 m-0">
+              <div className="m-0 p-0">
                 <div className={TextContainerStyle}>
                   <div className={HeadingStyle}>{value.Heading}</div>
                   <h6 className={DescriptionStyle}>{value.Description}</h6>
@@ -88,14 +88,14 @@ export interface DiscoverBannerFiveMobileProps {
 }
 export function DiscoverBannerFiveMobile(props: DiscoverBannerFiveMobileProps) {
   return (
-    <div className="flex flex-col w-full relative p-0 m-0 space-y-5">
-      <h6 className="text-[18px] mx-5">Our services</h6>
-      <div className="w-full flex relative box-border space-x-5">
+    <div className="relative m-0 flex w-full flex-col space-y-5 p-0">
+      <h6 className="mx-5 text-[18px]">Our services</h6>
+      <div className="relative box-border flex w-full space-x-5">
         <Swiper
           slidesPerView={1.5}
           spaceBetween={15}
           wrapperTag="ul"
-          className="w-full flex"
+          className="flex w-full"
           style={{
             paddingLeft: 20,
             paddingRight: 20,
@@ -107,8 +107,8 @@ export function DiscoverBannerFiveMobile(props: DiscoverBannerFiveMobileProps) {
               tag="li"
               className={`rounded-xl ${ContainerStyle}`}
             >
-              <div className="p-0 m-0">
-                <div className="relative w-full h-full">
+              <div className="m-0 p-0">
+                <div className="relative h-full w-full">
                   <div className="absolute z-[1] h-full w-full bg-transparent" />
                   <Image
                     className="rounded-xl"

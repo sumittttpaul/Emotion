@@ -36,7 +36,7 @@ const ArrowIconClasses =
   'relative h-[10px] w-[10px] group-hover:h-[12px] group-hover:w-[12px] flex items-center justify-center opacity-75 group-hover:opacity-90';
 
 export function DiscoverCarouselLeftArrowButton(
-  props: DiscoverCarouselArrowButtonProps
+  props: DiscoverCarouselArrowButtonProps,
 ) {
   return (
     <motion.button
@@ -57,7 +57,7 @@ export function DiscoverCarouselLeftArrowButton(
 }
 
 export function DiscoverCarouselRightArrowButton(
-  props: DiscoverCarouselArrowButtonProps
+  props: DiscoverCarouselArrowButtonProps,
 ) {
   return (
     <motion.button

@@ -15,20 +15,20 @@ interface IProps {
 
 function CollectionForAvatar(props: IProps) {
   return (
-    <div className=" bg-secondary-theme text-white flex flex-col scroll-smooth overflow-auto items-center h-full w-full">
+    <div className=" flex h-full w-full flex-col items-center overflow-auto scroll-smooth bg-secondary-theme text-white">
       {/* Header */}
-      <div className="flex w-full z-10 justify-between items-center p-1">
+      <div className="z-10 flex w-full items-center justify-between p-1">
         <TooltipDark placement="bottom" title="Back" arrow>
           <IconButton
             disableFocusRipple
             onClick={props.backward}
-            className="hover:bg-white/5 p-3"
+            className="p-3 hover:bg-white/5"
           >
             <ArrowLeftIcon className="h-5 text-white" />
           </IconButton>
         </TooltipDark>
-        <div className="flex items-center justify-start sm:justify-center w-full px-1 space-x-1.5">
-          <h6 className="text-white text-lg tracking-wide font-normal">
+        <div className="flex w-full items-center justify-start space-x-1.5 px-1 sm:justify-center">
+          <h6 className="text-lg font-normal tracking-wide text-white">
             {props.heading}
           </h6>
         </div>
@@ -36,7 +36,7 @@ function CollectionForAvatar(props: IProps) {
           <IconButton
             disableFocusRipple
             onClick={props.moreInfo}
-            className="hover:bg-white/5 p-3"
+            className="p-3 hover:bg-white/5"
           >
             <DotsVerticalIcon className="h-5 text-white" />
           </IconButton>

@@ -103,13 +103,13 @@ function PasswordTextFieldDark(props: PasswordTextFieldProps) {
   };
 
   const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault();
   };
 
   return (
-    <div className="flex flex-col w-full mt-[2px]">
+    <div className="mt-[2px] flex w-full flex-col">
       <CustomTextField
         id={props.id}
         aria-label="password-textfield"
@@ -137,7 +137,7 @@ function PasswordTextFieldDark(props: PasswordTextFieldProps) {
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
                 onPointerDown={handleMouseDownPassword}
-                className="z-20 h-11 w-11 mb-[3px] rounded-md passwordEyeButton"
+                className="passwordEyeButton z-20 mb-[3px] h-11 w-11 rounded-md"
                 style={{
                   borderRadius: 8,
                 }}
@@ -146,13 +146,13 @@ function PasswordTextFieldDark(props: PasswordTextFieldProps) {
                   <EyeOffIcon
                     height={22}
                     width={22}
-                    className="opacity-50 text-white"
+                    className="text-white opacity-50"
                   />
                 ) : (
                   <EyeIcon
                     height={22}
                     width={22}
-                    className="opacity-50 text-white"
+                    className="text-white opacity-50"
                   />
                 )}
               </IconButton>

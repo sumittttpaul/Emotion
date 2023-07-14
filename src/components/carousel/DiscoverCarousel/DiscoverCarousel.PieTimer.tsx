@@ -9,9 +9,12 @@ function DiscoverCarouselPieTimer(props: IProps) {
   const [Hide, setHide] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      setHide(true);
-    }, 10 * 1000 - 250);
+    setTimeout(
+      () => {
+        setHide(true);
+      },
+      10 * 1000 - 250,
+    );
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

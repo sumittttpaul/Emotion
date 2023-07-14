@@ -19,11 +19,11 @@ function SetupSkipDialog(props: SetupSkipDialogProps) {
       onClose={props.onClose}
       disableClickAwayClose
     >
-      <div className="p-5 max-w-[400px] w-full h-full relative space-y-4 flex flex-col items-center justify-center overflow-hidden">
-        <h5 className="text-white text-xl truncate tracking-wide font-bold flex">
+      <div className="relative flex h-full w-full max-w-[400px] flex-col items-center justify-center space-y-4 overflow-hidden p-5">
+        <h5 className="flex truncate text-xl font-bold tracking-wide text-white">
           Are you sure ?
         </h5>
-        <h6 className="text-white/75 px-5 text-sm font-normal flex space-x-1">
+        <h6 className="flex space-x-1 px-5 text-sm font-normal text-white/75">
           It is important to add your details to get personalized results. You
           can do this later in the Manage My Account section.
         </h6>
@@ -32,7 +32,7 @@ function SetupSkipDialog(props: SetupSkipDialogProps) {
             <Button
               disableFocusRipple
               onClick={props.onClose}
-              className="text-sm w-full truncate text-red-400 bg-transparent hover:bg-white/5 rounded-lg px-7 py-2 font-medium cursor-default tracking-wide button-text-lower transition-all"
+              className="button-text-lower w-full cursor-default truncate rounded-lg bg-transparent px-7 py-2 text-sm font-medium tracking-wide text-red-400 transition-all hover:bg-white/5"
               sx={{
                 '.MuiTouchRipple-child': {
                   backgroundColor: '#ffffff80 !important',
@@ -46,7 +46,7 @@ function SetupSkipDialog(props: SetupSkipDialogProps) {
             <Button
               disableFocusRipple
               onClick={handleContinue}
-              className="text-sm w-full truncate text-sky-400 bg-dark-blue hover:bg-dark-blue/70 rounded-lg px-7 py-2 font-medium cursor-default tracking-wide button-text-lower transition-all"
+              className="button-text-lower w-full cursor-default truncate rounded-lg bg-dark-blue px-7 py-2 text-sm font-medium tracking-wide text-sky-400 transition-all hover:bg-dark-blue/70"
               sx={{
                 '.MuiTouchRipple-child': {
                   backgroundColor: '#38bdf880 !important',

@@ -34,7 +34,7 @@ export function DiscoverBannerLightningDealBrowser(props: IProps) {
           ? 3
           : SmallMediumScreen
           ? 2
-          : 0
+          : 0,
       ).map((value, index) => (
         <motion.li
           whileTap={{ scale: 0.9 }}
@@ -64,7 +64,7 @@ export function DiscoverBannerLightningDealBrowser(props: IProps) {
           <div className="mt-3 space-y-1 overflow-hidden text-white">
             <h6 className={HeadingStyle}>{value.Heading}</h6>
             <h6 className={DescriptionStyle}>{value.Description}</h6>
-            <div className="text-xs flex items-center space-x-2 pt-1">
+            <div className="flex items-center space-x-2 pt-1 text-xs">
               <h6
                 className={OriginalPriceStyle}
               >{`₹${value.OriginalPrice}`}</h6>
@@ -81,8 +81,8 @@ export function DiscoverBannerLightningDealBrowser(props: IProps) {
 
 export function DiscoverBannerLightningDealMobile(props: IProps) {
   return (
-    <div className="w-full relative flex flex-col space-y-7">
-      <motion.ul className="flex space-x-5 w-full">
+    <div className="relative flex w-full flex-col space-y-7">
+      <motion.ul className="flex w-full space-x-5">
         {props.ContentArray.slice(0, 2).map((value, index) => (
           <motion.li
             whileTap={{ scale: 0.9 }}
@@ -90,7 +90,7 @@ export function DiscoverBannerLightningDealMobile(props: IProps) {
             className={ContainerStyle}
           >
             <Image
-              className="rounded-t-md absolute h-full w-full"
+              className="absolute h-full w-full rounded-t-md"
               height={320}
               width={240}
               style={{
@@ -114,7 +114,7 @@ export function DiscoverBannerLightningDealMobile(props: IProps) {
             <div className="mt-6 space-y-1 overflow-hidden text-white">
               <h6 className={HeadingStyle}>{value.Heading}</h6>
               <h6 className={DescriptionStyle}>{value.Description}</h6>
-              <div className="text-xs flex items-center space-x-2 pt-1">
+              <div className="flex items-center space-x-2 pt-1 text-xs">
                 <h6
                   className={OriginalPriceStyle}
                 >{`₹${value.OriginalPrice}`}</h6>
@@ -126,7 +126,7 @@ export function DiscoverBannerLightningDealMobile(props: IProps) {
           </motion.li>
         ))}
       </motion.ul>
-      <motion.ul className="flex space-x-5 w-full">
+      <motion.ul className="flex w-full space-x-5">
         {props.ContentArray.slice(2, 4).map((value, index) => (
           <motion.li
             whileTap={{ scale: 0.9 }}
@@ -134,7 +134,7 @@ export function DiscoverBannerLightningDealMobile(props: IProps) {
             className={ContainerStyle}
           >
             <Image
-              className="rounded-t-md absolute h-full w-full"
+              className="absolute h-full w-full rounded-t-md"
               height={320}
               width={240}
               style={{
@@ -158,7 +158,7 @@ export function DiscoverBannerLightningDealMobile(props: IProps) {
             <div className="mt-6 space-y-1 overflow-hidden text-white">
               <h6 className={HeadingStyle}>{value.Heading}</h6>
               <h6 className={DescriptionStyle}>{value.Description}</h6>
-              <div className="text-xs flex items-center space-x-2 pt-1">
+              <div className="flex items-center space-x-2 pt-1 text-xs">
                 <h6
                   className={OriginalPriceStyle}
                 >{`₹${value.OriginalPrice}`}</h6>

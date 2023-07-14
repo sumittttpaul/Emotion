@@ -6,7 +6,6 @@ import CollectionForAvatar from './assets/CollectionForAvatar';
 import CropAvatar from './assets/CropAvatar';
 import { useState } from 'react';
 import { MoreInfoDialog } from './assets/MoreInfoDialog';
-import { AvatarContainerType, AvatarScreenType } from './assets/AvatarType';
 import { RemoveAvatar } from './assets/RemoveAvatar';
 import { SetupAvatarContentProps } from '../../contents/setup/Setup.Avatar';
 

@@ -15,7 +15,7 @@ interface IProps {
 
 function SelectDay(props: IProps) {
   const [value, setValue] = useState(
-    moment(props.year + '-' + props.month, 'YYYY-MM')
+    moment(props.year + '-' + props.month, 'YYYY-MM'),
   );
   const [calender, setCalender] = useState<Moment[][] | never[]>([]);
 
@@ -124,7 +124,7 @@ function SelectDay(props: IProps) {
       a.push(
         Array(7)
           .fill(0)
-          .map(() => day.add(1, 'day').clone())
+          .map(() => day.add(1, 'day').clone()),
       );
     }
     setCalender(a);
@@ -136,7 +136,7 @@ function SelectDay(props: IProps) {
 
   return (
     <m.div
-      className="w-full h-full relative box-border px-5 pt-5"
+      className="relative box-border h-full w-full px-5 pt-5"
       animate={{ opacity: 1, scale: 1 }}
       initial={{ opacity: 0, scale: 1 }}
       exit={{ opacity: 0, scale: 0 }}
@@ -150,16 +150,16 @@ function SelectDay(props: IProps) {
         nextMonthClick={nextMonthClick}
       />
       <WeekNames value={['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']} />
-      <div className="relative w-full h-full text-center">
+      <div className="relative h-full w-full text-center">
         {calender.map((week, idx) => (
-          <div key={idx} className="grid grid-cols-7 relative">
+          <div key={idx} className="relative grid grid-cols-7">
             {week.map((day, idx) => (
               <button
                 onClick={() => {
                   setValue(day);
                   props.setDay(day.format('DD'));
                 }}
-                className={`${'py-3 m-1 text-white text-[13px] rounded-md cursor-default text-center box-border relative inline-block transition-colors ease-in-out duration-200'} 
+                className={`${'relative m-1 box-border inline-block cursor-default rounded-md py-3 text-center text-[13px] text-white transition-colors duration-200 ease-in-out'} 
                 ${dayStyles(day)}`}
                 key={idx}
               >

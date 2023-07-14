@@ -81,16 +81,16 @@ function UserMgmtResetPasswordScreen(props: UserMgmtResetPasswordScreenProps) {
 
   return (
     <>
-      <div className="p-14 ml-14 relative hidden md:flex w-full h-full justify-center items-center">
+      <div className="relative ml-14 hidden h-full w-full items-center justify-center p-14 md:flex">
         <Image
           height={370}
           width={370}
           src="/vectors/login-register-otp-password.svg"
           alt="reset-password"
-          className="text-white text-xs"
+          className="text-xs text-white"
         />
       </div>
-      <div className="md:p-9 space-y-5 relative w-full md:min-w-[400px] md-1000:min-w-[500px] flex flex-col items-center justify-center overflow-hidden">
+      <div className="relative flex w-full flex-col items-center justify-center space-y-5 overflow-hidden md:min-w-[400px] md:p-9 md-1000:min-w-[500px]">
         <SetupHeaderLabel ClassName="px-5 pt-5">
           Create a super memorable password
         </SetupHeaderLabel>
@@ -103,10 +103,10 @@ function UserMgmtResetPasswordScreen(props: UserMgmtResetPasswordScreenProps) {
           initial={props.Animation.Initial}
           animate={props.Animation.Final}
           transition={props.Animation.Transition}
-          className={`${props.AnimationDivClassName} px-5 w-full relative overflow-hidden`}
+          className={`${props.AnimationDivClassName} relative w-full overflow-hidden px-5`}
         >
           <div
-            className={`${props.ContentClassName} w-full flex flex-col space-y-4`}
+            className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
           >
             <SetupIconPasswordTextField
               Value={Password}
@@ -115,7 +115,7 @@ function UserMgmtResetPasswordScreen(props: UserMgmtResetPasswordScreenProps) {
               HandleSubmit={PasswordSubmitClick}
               Loading={props.Loading}
             />
-            <div className="opacity-75 flex space-x-2 w-full">
+            <div className="flex w-full space-x-2 opacity-75">
               <TooltipDark
                 arrow
                 placement="top"
@@ -123,12 +123,12 @@ function UserMgmtResetPasswordScreen(props: UserMgmtResetPasswordScreenProps) {
               >
                 <InformationCircleIcon className="h-5 text-white" />
               </TooltipDark>
-              <h6 className="font-normal text-left w-full text-white text-sm">
+              <h6 className="w-full text-left text-sm font-normal text-white">
                 Your password should contain at least 8 or more characters with
                 a mix of letters of uppercase and lowercase, numbers & symbols.
               </h6>
             </div>
-            <div className="w-full flex justify-start">
+            <div className="flex w-full justify-start">
               <SignInBackButton Label="Back" onClick={MoveToSetup} />
             </div>
           </div>

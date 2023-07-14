@@ -67,7 +67,7 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
   function CreateDateBase(_uid: string) {
     const UserPhoneNumber = EncryptData(
       UserProfileEncrytionKey(_uid, 'PhoneNumber'),
-      PhoneNumber
+      PhoneNumber,
     );
     const _data: IUserProfile = {
       _uid: _uid,
@@ -137,7 +137,7 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
     if (ValidateOTP) {
       VerifyOTP({
         OTP: parseInt(
-          OTPs.OTP1 + OTPs.OTP2 + OTPs.OTP3 + OTPs.OTP4 + OTPs.OTP5 + OTPs.OTP6
+          OTPs.OTP1 + OTPs.OTP2 + OTPs.OTP3 + OTPs.OTP4 + OTPs.OTP5 + OTPs.OTP6,
         ),
         EmptyOTPBox: clearOTP,
         Loading: props.setLoading,
@@ -156,19 +156,19 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
 
   return (
     <m.div
-      className={`${props.AnimationDivClassName} w-full relative`}
+      className={`${props.AnimationDivClassName} relative w-full`}
       initial={props.Animation.Initial}
       animate={props.Animation.Final}
       transition={props.Animation.Transition}
     >
       <div
-        className={`${props.ContentClassName} w-full flex flex-col space-y-4`}
+        className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
-        <div className="pb-1.5 flex space-x-1 items-center">
-          <p className="text-white/75 text-[14px] tracking-wide font-normal">
+        <div className="flex items-center space-x-1 pb-1.5">
+          <p className="text-[14px] font-normal tracking-wide text-white/75">
             Verification code sent to
           </p>
-          <p className="text-white font-[500] text-[14px] tracking-wide">
+          <p className="text-[14px] font-[500] tracking-wide text-white">
             {PhoneNumber}
           </p>
         </div>
@@ -188,7 +188,7 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
           HandleSubmit={OTPSubmitClick}
           Loading={props.Loading}
         />
-        <div className="w-full flex justify-start h-8">
+        <div className="flex h-8 w-full justify-start">
           {Bool ? (
             <SignInNextButton onClick={OTPResend} Label="Resend OTP" />
           ) : (
@@ -197,7 +197,7 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
             </div>
           )}
         </div>
-        <div className="w-full flex justify-start">
+        <div className="flex w-full justify-start">
           <SignInBackButton Label="Back" onClick={CancelOTPVerification} />
         </div>
       </div>

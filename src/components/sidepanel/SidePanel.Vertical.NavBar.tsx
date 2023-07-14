@@ -33,19 +33,19 @@ function SidePanelVerticalNavBar(props: IProps) {
   const onClick = (idx: number) => {
     if (Number != idx) {
       const PrevButtonHeight = document.getElementById(
-        `sidepanel-vertical-navbar-button-id-${Number}`
+        `sidepanel-vertical-navbar-button-id-${Number}`,
       )?.offsetHeight;
       const PrevButtonOffsetTop = document.getElementById(
-        `sidepanel-vertical-navbar-button-id-${Number}`
+        `sidepanel-vertical-navbar-button-id-${Number}`,
       )?.offsetTop;
       const NextButtonHeight = document.getElementById(
-        `sidepanel-vertical-navbar-button-id-${idx}`
+        `sidepanel-vertical-navbar-button-id-${idx}`,
       )?.offsetHeight;
       const NextButtonOffsetTop = document.getElementById(
-        `sidepanel-vertical-navbar-button-id-${idx}`
+        `sidepanel-vertical-navbar-button-id-${idx}`,
       )?.offsetTop;
       const ContainerMarginTop = document.getElementById(
-        'sidepanel-vertical-navbar-container-div'
+        'sidepanel-vertical-navbar-container-div',
       )?.offsetTop;
       if (
         PrevButtonHeight &&
@@ -75,13 +75,13 @@ function SidePanelVerticalNavBar(props: IProps) {
 
   const onAnimationComplete = () => {
     const ButtonHeight = document.getElementById(
-      `sidepanel-vertical-navbar-button-id-${Number}`
+      `sidepanel-vertical-navbar-button-id-${Number}`,
     )?.offsetHeight;
     const ButtonOffsetTop = document.getElementById(
-      `sidepanel-vertical-navbar-button-id-${Number}`
+      `sidepanel-vertical-navbar-button-id-${Number}`,
     )?.offsetTop;
     const ContainerMarginTop = document.getElementById(
-      'sidepanel-vertical-navbar-container-div'
+      'sidepanel-vertical-navbar-container-div',
     )?.offsetTop;
     if (ButtonHeight && ButtonOffsetTop && ContainerMarginTop) {
       const FinalMargin = ButtonOffsetTop - ContainerMarginTop;
@@ -92,7 +92,7 @@ function SidePanelVerticalNavBar(props: IProps) {
   };
 
   return (
-    <div className="py-5 pr-5 mx-2 bg-[#181818] rounded-xl w-full">
+    <div className="mx-2 w-full rounded-xl bg-[#181818] py-5 pr-5">
       <div id="sidepanel-vertical-navbar-container-div" className="flex w-full">
         <motion.div
           animate="animate"
@@ -100,14 +100,14 @@ function SidePanelVerticalNavBar(props: IProps) {
           variants={variants}
           onAnimationComplete={onAnimationComplete}
           transition={{ type: 'twin', duration: 0.125 }}
-          className="ml-[3px] w-[3px] bg-white opacity-50 z-10"
+          className="z-10 ml-[3px] w-[3px] bg-white opacity-50"
         />
-        <div className="flex flex-col space-y-10 w-full z-10">
+        <div className="z-10 flex w-full flex-col space-y-10">
           {PanelContentArray.map((value, idx) => (
             <motion.button
               key={idx}
               id={`sidepanel-vertical-navbar-button-id-${idx}`}
-              className="ml-5 group cursor-pointer flex space-x-4 w-full"
+              className="group ml-5 flex w-full cursor-pointer space-x-4"
               onClick={() => {
                 onClick(idx);
                 props.setActive(value.Name);
@@ -132,7 +132,7 @@ function SidePanelVerticalNavBar(props: IProps) {
                   props.Active == value.Name
                     ? 'opacity-100'
                     : 'opacity-60 group-hover:opacity-100 group-hover:transition-opacity'
-                } trunacate text-[14px] text-white tracking-wide font-[600]`}
+                } trunacate text-[14px] font-[600] tracking-wide text-white`}
               >
                 {value.Name}
               </p>
@@ -141,10 +141,10 @@ function SidePanelVerticalNavBar(props: IProps) {
         </div>
       </div>
       {props.Active === 'Home' && (
-        <div className="absolute top-[75px] left-[11px] rounded-lg h-[55px] w-[97%] bg-white opacity-[0.04]" />
+        <div className="absolute left-[11px] top-[75px] h-[55px] w-[97%] rounded-lg bg-white opacity-[0.04]" />
       )}
       {props.Active === 'Gallery' && (
-        <div className="absolute top-[135px] left-[11px] rounded-lg h-[55px] w-[97%] bg-white opacity-[0.04]" />
+        <div className="absolute left-[11px] top-[135px] h-[55px] w-[97%] rounded-lg bg-white opacity-[0.04]" />
       )}
     </div>
   );

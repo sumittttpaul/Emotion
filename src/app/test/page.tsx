@@ -6,7 +6,7 @@ async function Page() {
   return (
     <div
       id="App_Directory_Custom_Page"
-      className="text-white relative space-y-10 flex flex-col h-screen w-full items-center justify-center text-center"
+      className="relative flex h-screen w-full flex-col items-center justify-center space-y-10 text-center text-white"
     >
       <ClientDatabaseTest User={userProfile} Error={error} />
     </div>

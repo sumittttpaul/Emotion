@@ -9,16 +9,16 @@ interface IProps {
 
 export function DiscoverBannerArrivals(props: IProps) {
   return (
-    <div className="relative flex box-border w-full pr-3 overflow-hidden">
-      <div className="flex text-white w-full bg-gradient-to-l from-dark-green rounded-3xl space-x-7 px-7 p-10 mt-10">
-        <div className="flex flex-col items-center justify-center w-full">
-          <div className="flex flex-col space-y-3 items-center small-medium-screen:items-start justify-center">
-            <div className="space-x-3 flex items-center justify-center">
+    <div className="relative box-border flex w-full overflow-hidden pr-3">
+      <div className="mt-10 flex w-full space-x-7 rounded-3xl bg-gradient-to-l from-dark-green p-10 px-7 text-white">
+        <div className="flex w-full flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center space-y-3 small-medium-screen:items-start">
+            <div className="flex items-center justify-center space-x-3">
               <Image height={30} width={30} src="/icons/arrivals.svg" alt="" />
               <h6 className="text-[18px]">New arrivals</h6>
             </div>
             <Button
-              className="rounded-lg text-white px-[42px] py-3 cursor-default button-text-lower text-xs font-normal tracking-[1px] bg-gradient-to-l from-[#ffffff20] transition-colors duration-300 ease-out"
+              className="button-text-lower cursor-default rounded-lg bg-gradient-to-l from-[#ffffff20] px-[42px] py-3 text-xs font-normal tracking-[1px] text-white transition-colors duration-300 ease-out"
               sx={{
                 '.MuiTouchRipple-child': {
                   backgroundColor: '#ffffff20 !important',

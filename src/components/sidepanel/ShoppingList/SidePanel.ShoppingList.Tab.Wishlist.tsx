@@ -8,7 +8,7 @@ import { ProductContextMenuProps } from 'components/button/ProductContextMenu';
 
 const ProductContextMenu = dynamic<ProductContextMenuProps>(
   () => import('../../button/ProductContextMenu'),
-  { ssr: false }
+  { ssr: false },
 );
 
 interface IProps {
@@ -58,9 +58,9 @@ function SidePanelShoppingListTabWishlist(props: IProps) {
   ];
 
   return (
-    <div className="pb-3 px-1 w-full h-full flex flex-col relative">
+    <div className="relative flex h-full w-full flex-col px-1 pb-3">
       {props.ContentArray.length ? (
-        <div className="flex flex-col w-full pb-[60px]">
+        <div className="flex w-full flex-col pb-[60px]">
           <>
             {props.ContentArray.map((value, idx) => (
               <Button
@@ -68,7 +68,7 @@ function SidePanelShoppingListTabWishlist(props: IProps) {
                 disableFocusRipple
                 onClick={handleClick}
                 onContextMenu={handleClick}
-                className="cursor-default p-3 bg-transparent hover:bg-[#FFFFFF0A] text-white items-center justify-center relative rounded-lg button-text-lower"
+                className="button-text-lower relative cursor-default items-center justify-center rounded-lg bg-transparent p-3 text-white hover:bg-[#FFFFFF0A]"
                 sx={{
                   '.MuiTouchRipple-child': {
                     backgroundColor: '#ffffff30 !important',
@@ -91,12 +91,12 @@ function SidePanelShoppingListTabWishlist(props: IProps) {
                     src={value.Image}
                     alt=""
                   />
-                  <div className="pl-3 w-full h-full -space-y-[2px] items-center overflow-hidden">
-                    <div className="w-full text-left truncate tracking-wide text-[14px] font-[500]">
+                  <div className="h-full w-full items-center -space-y-[2px] overflow-hidden pl-3">
+                    <div className="w-full truncate text-left text-[14px] font-[500] tracking-wide">
                       {value.Heading}
                     </div>
                     <div className="flex w-full justify-start space-x-2">
-                      <div className="text-[13px] opacity-75 truncate">
+                      <div className="truncate text-[13px] opacity-75">
                         {value.Category}
                       </div>
                       <div className="text-[13px] opacity-75">•</div>
@@ -117,14 +117,14 @@ function SidePanelShoppingListTabWishlist(props: IProps) {
           </>
         </div>
       ) : (
-        <div className="flex flex-col space-y-5 pt-[150px] h-full w-full items-center justify-center opacity-50">
+        <div className="flex h-full w-full flex-col items-center justify-center space-y-5 pt-[150px] opacity-50">
           <Image
             height={100}
             width={100}
             src="/vectors/empty-wishlist-vector-white.svg"
             alt=""
           />
-          <p className="text-[12px] font-[400] tracking-wide truncate">
+          <p className="truncate text-[12px] font-[400] tracking-wide">
             You haven&apos;t saved anything yet
           </p>
         </div>

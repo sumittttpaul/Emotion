@@ -88,8 +88,8 @@ const CustomTextField = styled((props: TextFieldProps) => (
 
 function IconTextFieldDark(props: IconTextFieldProps) {
   return (
-    <div className="relative flex flex-col w-full mt-[2px]">
-      <div className="mt-[16px] ml-[20px] -mb-[46px] flex cursor-text">
+    <div className="relative mt-[2px] flex w-full flex-col">
+      <div className="-mb-[46px] ml-[20px] mt-[16px] flex cursor-text">
         <Image
           height={30}
           width={30}
@@ -118,7 +118,7 @@ function IconTextFieldDark(props: IconTextFieldProps) {
         }}
       />
       {props.valid && (
-        <div className="absolute right-4 mt-5 flex cursor-text touch-none pointer-events-none">
+        <div className="pointer-events-none absolute right-4 mt-5 flex cursor-text touch-none">
           <CheckIcon className="h-5 text-green-400" />
         </div>
       )}

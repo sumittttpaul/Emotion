@@ -78,7 +78,7 @@ function SetupOTPTextField({
   const spaceBetween = 'ml-2';
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex items-center justify-center">
       <OTPTextFieldDark
         onClick={OTPClick}
         area-label="OTP1"

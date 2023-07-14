@@ -12,7 +12,7 @@ function DatePickerCustomButton(props: IProps) {
       aria-label="select-dob-button"
       disableFocusRipple
       onClick={props.onClick}
-      className="rounded-lg py-3 px-4 button-text-lower text-white bg-[#0f0f0f] hover:bg-[#0f0f0f] opacity-100 hover:opacity-75 transition-opacity cursor-default"
+      className="button-text-lower cursor-default rounded-lg bg-[#0f0f0f] px-4 py-3 text-white opacity-100 transition-opacity hover:bg-[#0f0f0f] hover:opacity-75"
       sx={{
         '.MuiTouchRipple-child': {
           backgroundColor: '#ffffff80 !important',
@@ -21,7 +21,7 @@ function DatePickerCustomButton(props: IProps) {
     >
       <div className="flex space-x-3">
         <CalendarIcon className="h-5 text-white" />
-        <h6 className="text-white text-sm font-[600]">{props.label}</h6>
+        <h6 className="text-sm font-[600] text-white">{props.label}</h6>
       </div>
     </Button>
   );

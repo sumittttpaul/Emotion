@@ -20,7 +20,7 @@ import TooltipDark from 'components/tooltip/TooltipDark';
 import DialogContainerDark from 'components/dialog/DialogContainerDark';
 
 const LoadingLinearProgress = dynamic(
-  () => import('components/loader/Loading.LinearProgress')
+  () => import('components/loader/Loading.LinearProgress'),
 );
 
 function SetupCheckDialog(props: SetupCheckDialogProps) {
@@ -78,25 +78,25 @@ function SetupCheckDialog(props: SetupCheckDialogProps) {
             const UserPrevFullName = props.PrevFullName
               ? EncryptData(
                   UserProfileEncrytionKey(FirebaseUser.uid, 'FullName'),
-                  props.PrevFullName
+                  props.PrevFullName,
                 )
               : '';
             const UserPrevPhotoUrl = props.PrevPhotoUrl
               ? EncryptData(
                   UserProfileEncrytionKey(FirebaseUser.uid, 'PhotoURL'),
-                  props.PrevPhotoUrl
+                  props.PrevPhotoUrl,
                 )
               : '';
             const UserNewFullName = props.NewFullName
               ? EncryptData(
                   UserProfileEncrytionKey(FirebaseUser.uid, 'FullName'),
-                  props.NewFullName
+                  props.NewFullName,
                 )
               : undefined;
             const UserNewPhotoUrl = props.NewPhotoUrl
               ? EncryptData(
                   UserProfileEncrytionKey(FirebaseUser.uid, 'PhotoURL'),
-                  props.NewPhotoUrl
+                  props.NewPhotoUrl,
                 )
               : undefined;
             const _data: IUserProfileDataUpdate = {
@@ -163,17 +163,17 @@ function SetupCheckDialog(props: SetupCheckDialogProps) {
       onClose={() => {}}
       disableClickAwayClose
     >
-      <div className="p-5 max-w-[500px] w-full h-full relative space-y-4 flex flex-col items-center justify-center overflow-hidden">
-        <h5 className="text-white pt-2 text-xl truncate tracking-wide font-bold flex">
+      <div className="relative flex h-full w-full max-w-[500px] flex-col items-center justify-center space-y-4 overflow-hidden p-5">
+        <h5 className="flex truncate pt-2 text-xl font-bold tracking-wide text-white">
           Want to update ?
         </h5>
-        <h6 className="text-white/75 px-5 text-sm text-justify font-normal flex w-full">
+        <h6 className="flex w-full px-5 text-justify text-sm font-normal text-white/75">
           It appears that the latest information you&apos;ve provided does not
           align with the previously recorded data. Do you prefer to proceed with
           the most recent updates or maintain the continuity of the existing
           information ?
         </h6>
-        <h6 className="text-white/75 px-5 text-sm text-left font-normal flex w-full">
+        <h6 className="flex w-full px-5 text-left text-sm font-normal text-white/75">
           Here is how your data will appear after the updates :
         </h6>
         {props.PrevPhotoUrl && props.NewPhotoUrl && (
@@ -197,7 +197,7 @@ function SetupCheckDialog(props: SetupCheckDialogProps) {
             <Button
               disableFocusRipple
               onClick={handleDontUpdate}
-              className="text-sm w-full truncate text-red-400 bg-transparent hover:bg-white/5 rounded-lg px-7 py-2 font-medium cursor-default tracking-wide button-text-lower transition-all"
+              className="button-text-lower w-full cursor-default truncate rounded-lg bg-transparent px-7 py-2 text-sm font-medium tracking-wide text-red-400 transition-all hover:bg-white/5"
               sx={{
                 '.MuiTouchRipple-child': {
                   backgroundColor: '#ffffff80 !important',
@@ -211,7 +211,7 @@ function SetupCheckDialog(props: SetupCheckDialogProps) {
             <Button
               disableFocusRipple
               onClick={handleUpdate}
-              className="text-sm w-full truncate text-sky-400 bg-dark-blue hover:bg-dark-blue/70 rounded-lg px-7 py-2 font-medium cursor-default tracking-wide button-text-lower transition-all"
+              className="button-text-lower w-full cursor-default truncate rounded-lg bg-dark-blue px-7 py-2 text-sm font-medium tracking-wide text-sky-400 transition-all hover:bg-dark-blue/70"
               sx={{
                 '.MuiTouchRipple-child': {
                   backgroundColor: '#38bdf880 !important',
@@ -236,19 +236,19 @@ function CustomCheckData_String(props: {
   ToolTipNewValue: string;
 }) {
   return (
-    <div className="px-5 flex flex-col w-full space-y-2 cursor-default">
-      <div className="text-white w-full text-left text-sm">{props.Label} :</div>
-      <div className="w-full flex relative space-x-3">
+    <div className="flex w-full cursor-default flex-col space-y-2 px-5">
+      <div className="w-full text-left text-sm text-white">{props.Label} :</div>
+      <div className="relative flex w-full space-x-3">
         <TooltipDark arrow placement="top" title={props.ToolTipPrevValue}>
-          <div className="text-white/75 text-[15px] truncate font-normal w-full px-3 py-2 bg-white/10 rounded-lg">
+          <div className="w-full truncate rounded-lg bg-white/10 px-3 py-2 text-[15px] font-normal text-white/75">
             {props.PrevValue}
           </div>
         </TooltipDark>
         <div className="flex items-center justify-center">
-          <ArrowRightIcon className="text-white h-4 " />
+          <ArrowRightIcon className="h-4 text-white " />
         </div>
         <TooltipDark arrow placement="top" title={props.ToolTipNewValue}>
-          <div className="text-white text-[15px] truncate font-normal w-full px-3 py-2 bg-green-600/30 rounded-lg">
+          <div className="w-full truncate rounded-lg bg-green-600/30 px-3 py-2 text-[15px] font-normal text-white">
             {props.NewValue}
           </div>
         </TooltipDark>
@@ -263,9 +263,9 @@ function CustomCheckData_Image(props: {
   NewValue: string;
 }) {
   return (
-    <div className="px-5 flex flex-col w-full space-y-2 cursor-default">
-      <div className="text-white w-full text-left text-sm">{props.Label} :</div>
-      <div className="w-full flex relative space-x-3 justify-center">
+    <div className="flex w-full cursor-default flex-col space-y-2 px-5">
+      <div className="w-full text-left text-sm text-white">{props.Label} :</div>
+      <div className="relative flex w-full justify-center space-x-3">
         <TooltipDark
           arrow
           placement="top"
@@ -276,11 +276,11 @@ function CustomCheckData_Image(props: {
             width={100}
             src={props.PrevValue}
             alt="previous image"
-            className="text-white text-xs rounded-full opacity-75"
+            className="rounded-full text-xs text-white opacity-75"
           />
         </TooltipDark>
         <div className="flex items-center justify-center">
-          <ArrowRightIcon className="text-white h-4" />
+          <ArrowRightIcon className="h-4 text-white" />
         </div>
         <TooltipDark
           arrow
@@ -292,7 +292,7 @@ function CustomCheckData_Image(props: {
             width={100}
             src={props.NewValue}
             alt="new image"
-            className="text-white text-xs rounded-full"
+            className="rounded-full text-xs text-white"
           />
         </TooltipDark>
       </div>

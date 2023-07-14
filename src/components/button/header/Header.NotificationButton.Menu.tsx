@@ -15,7 +15,7 @@ export interface HeaderNotificationButtonMenuProps {
 }
 
 function HeaderNotificationButtonMenu(
-  props: HeaderNotificationButtonMenuProps
+  props: HeaderNotificationButtonMenuProps,
 ) {
   return (
     <Menu
@@ -51,19 +51,19 @@ function HeaderNotificationButtonMenu(
         key={0}
         disableRipple
         disableTouchRipple
-        className="p-0 flex flex-col rounded-md bg-transparent cursor-default hover:bg-transparent text-white w-full"
+        className="flex w-full cursor-default flex-col rounded-md bg-transparent p-0 text-white hover:bg-transparent"
       >
-        <div className="flex flex-col w-full px-6 py-3">
-          <h1 className="w-full text-left text-[18px] font-[600] truncate tracking-wide">
+        <div className="flex w-full flex-col px-6 py-3">
+          <h1 className="w-full truncate text-left text-[18px] font-[600] tracking-wide">
             What&apos;s New
           </h1>
-          <p className="w-full text-left text-[13px] opacity-90 tracking-wide">
+          <p className="w-full text-left text-[13px] tracking-wide opacity-90">
             The latest releases from emotion
           </p>
         </div>
-        <div className="flex pl-6 pr-[18px] pb-1 w-full justify-between items-center">
+        <div className="flex w-full items-center justify-between pb-1 pl-6 pr-[18px]">
           <div className="flex items-center">
-            <p className="text-[13px] truncate cursor-default tracking-wide font-[400] text-white">
+            <p className="cursor-default truncate text-[13px] font-[400] tracking-wide text-white">
               {props.ContentArray.length} items
             </p>
             <MoreMenuButton
@@ -84,7 +84,7 @@ function HeaderNotificationButtonMenu(
             />
           </div>
           <Button
-            className="px-2 m-0 cursor-default block truncate text-white button-text-lower tracking-wide rounded-md text-[12px] font-[400] opacity-90 hover:opacity-100 bg-transparent hover:bg-[#ffffff20]"
+            className="button-text-lower m-0 block cursor-default truncate rounded-md bg-transparent px-2 text-[12px] font-[400] tracking-wide text-white opacity-90 hover:bg-[#ffffff20] hover:opacity-100"
             sx={{
               '.MuiTouchRipple-child': {
                 backgroundColor: '#ffffff75 !important',
@@ -100,24 +100,24 @@ function HeaderNotificationButtonMenu(
           key={idx + 1}
           className={`${
             props.ContentArray.length === idx + 1 ? 'mb-1' : ''
-          } mx-1 px-2 rounded-md cursor-default text-white hover:bg-[#ffffff15]`}
+          } mx-1 cursor-default rounded-md px-2 text-white hover:bg-[#ffffff15]`}
         >
-          <div className="w-full h-full flex">
-            <div className="flex py-2 w-full items-center">
+          <div className="flex h-full w-full">
+            <div className="flex w-full items-center py-2">
               {value.isRead === 'no' && (
                 <div className="absolute left-0 pl-3">
-                  <div className="bg-[#369eff] h-[6px] w-[6px] min-w-[6px] min-h-[6px] rounded-full" />
+                  <div className="h-[6px] min-h-[6px] w-[6px] min-w-[6px] rounded-full bg-[#369eff]" />
                 </div>
               )}
               <div className="flex w-full pl-6">
-                <div className="min-w-[50px] min-h-[50px] w-[50px] h-[50px] relative overflow-hidden">
+                <div className="relative h-[50px] min-h-[50px] w-[50px] min-w-[50px] overflow-hidden">
                   <Image fill src={value.Image} className="rounded-md" alt="" />
                 </div>
-                <div className="pl-3 w-full h-full items-center overflow-hidden">
-                  <h2 className="w-full text-left truncate text-[14px] font-[500]">
+                <div className="h-full w-full items-center overflow-hidden pl-3">
+                  <h2 className="w-full truncate text-left text-[14px] font-[500]">
                     {value.Heading}
                   </h2>
-                  <p className="text-[13px] opacity-75 truncate">
+                  <p className="truncate text-[13px] opacity-75">
                     {value.Description}
                   </p>
                 </div>

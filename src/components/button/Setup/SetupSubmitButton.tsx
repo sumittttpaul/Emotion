@@ -13,7 +13,7 @@ function SetupSubmitButton(props: IProps) {
       disableFocusRipple
       disabled={props.Disabled}
       onClick={props.onClick}
-      className={`${props.ClassName} !relative !text-[13px] !rounded-lg disabled:!opacity-50 !bg-primary-blue hover:!bg-primary-blue/70 !px-14 !py-2 !font-[700] !text-white !cursor-default !tracking-wide button-text-lower`}
+      className={`${props.ClassName} button-text-lower !relative !cursor-default !rounded-lg !bg-primary-blue !px-14 !py-2 !text-[13px] !font-[700] !tracking-wide !text-white hover:!bg-primary-blue/70 disabled:!opacity-50`}
       sx={{
         '.MuiTouchRipple-child': {
           backgroundColor: '#ffffff80 !important',

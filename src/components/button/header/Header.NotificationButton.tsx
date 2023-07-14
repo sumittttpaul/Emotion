@@ -8,7 +8,7 @@ import TooltipDark from 'components/tooltip/TooltipDark';
 
 const HeaderNotificationButtonMenu = dynamic<HeaderNotificationButtonMenuProps>(
   () => import('./Header.NotificationButton.Menu'),
-  { ssr: false }
+  { ssr: false },
 );
 
 const StyledBadge = styled(Badge)<BadgeProps>(() => ({
@@ -45,7 +45,7 @@ function HeaderNotificationButton() {
           disableFocusRipple
           onClick={handleClick}
           aria-label="desktop-wishlist-button"
-          className="flex transition-all duration-300 text-white h-[47px] w-[47px] items-center justify-center rounded-lg button-text-lower bg-transparent hover:bg-[#202020]"
+          className="button-text-lower flex h-[47px] w-[47px] items-center justify-center rounded-lg bg-transparent text-white transition-all duration-300 hover:bg-[#202020]"
           sx={{
             minWidth: 47,
             '.MuiTouchRipple-child': {

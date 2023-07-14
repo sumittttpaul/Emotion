@@ -6,12 +6,12 @@ export interface SidePanelShoppingListTabDetailButtonsProps {
 }
 
 function SidePanelShoppingListTabDetailButtons(
-  props: SidePanelShoppingListTabDetailButtonsProps
+  props: SidePanelShoppingListTabDetailButtonsProps,
 ) {
   return (
     <Button
       onClick={props.onClick}
-      className="w-full py-1 text-white text-[12px] font-[300] button-text-lower bg-[#ffffff10] hover:bg-[#ffffff20]"
+      className="button-text-lower w-full bg-[#ffffff10] py-1 text-[12px] font-[300] text-white hover:bg-[#ffffff20]"
       sx={{
         '.MuiTouchRipple-child': {
           backgroundColor: '#ffffff40 !important',

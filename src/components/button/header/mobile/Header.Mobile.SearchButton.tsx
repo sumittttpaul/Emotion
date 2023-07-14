@@ -14,12 +14,12 @@ export function HeaderMobileSearchButton() {
       id="mobile-header-search-button"
       aria-label="mobile-search-button"
       onClick={SearchClick}
-      className="min-w-[92px] w-[92px] flex p-0 m-0 z-10 rounded-full cursor-text justify-start items-center button-text-lower outline-none bg-[#202020] hover:bg-[#202020]"
+      className="button-text-lower z-10 m-0 flex w-[92px] min-w-[92px] cursor-text items-center justify-start rounded-full bg-[#202020] p-0 outline-none hover:bg-[#202020]"
     >
-      <div className="flex ml-[11px] justify-center h-[16px] w-[16px] opacity-60">
+      <div className="ml-[11px] flex h-[16px] w-[16px] justify-center opacity-60">
         <Image src="/icons/search-white-2.svg" height={16} width={16} alt="" />
       </div>
-      <label className="mx-2 flex font-normal pt-[10px] pb-[12px] truncate w-full h-full bg-transparent text-[13px] text-[#ffffffad]">
+      <label className="mx-2 flex h-full w-full truncate bg-transparent pb-[12px] pt-[10px] text-[13px] font-normal text-[#ffffffad]">
         Search
       </label>
     </Button>

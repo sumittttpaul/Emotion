@@ -8,7 +8,7 @@ interface IProps {
 
 function DiscoverBannerFive(props: IProps) {
   return (
-    <div className="mt-[30px] flex flex-col text-white p-0 m-0 box-border overflow-y-visible overflow-x-hidden">
+    <div className="m-0 mt-[30px] box-border flex flex-col overflow-x-hidden overflow-y-visible p-0 text-white">
       <DiscoverBannerFiveBrowser
         Label={props.Label}
         ContentArray={props.ContentArray}

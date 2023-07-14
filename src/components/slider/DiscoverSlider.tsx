@@ -14,7 +14,7 @@ function DiscoverSlider(props: IProps) {
   const [Wishlist, setWishlist] = useState(-1);
   const sliderRef = useRef<HTMLElement>(null);
   return (
-    <div className="flex flex-col space-y-2.5 overflow-x-hidden overflow-y-visible mt-5">
+    <div className="mt-5 flex flex-col space-y-2.5 overflow-x-hidden overflow-y-visible">
       <DiscoverSliderTitle
         label={props.Label}
         sliderRef={sliderRef}

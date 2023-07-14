@@ -25,7 +25,7 @@ function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
       try {
         const UserGender = EncryptData(
           UserProfileEncrytionKey(FirebaseUser.uid, 'Gender'),
-          Gender
+          Gender,
         );
         const _data: IUserProfileDataUpdate = {
           '_data.gender': UserGender,
@@ -78,29 +78,29 @@ function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
 
   return (
     <m.div
-      className={`${props.AnimationDivClassName} w-full relative`}
+      className={`${props.AnimationDivClassName} relative w-full`}
       initial={props.Animation.Initial}
       animate={props.Animation.Final}
       transition={props.Animation.Transition}
     >
       <div
-        className={`${props.ContentClassName} w-full flex flex-col space-y-4`}
+        className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
-        <div className="w-full flex items-start pt-2">
+        <div className="flex w-full items-start pt-2">
           <RadioGroupDark
             content={['Male', 'Female', 'Others']}
             value={Gender}
             onChange={(value) => (value ? setGender(value as string) : '')}
           />
         </div>
-        <div className="w-full flex flex-col space-y-1">
-          <div className="w-full flex justify-start">
+        <div className="flex w-full flex-col space-y-1">
+          <div className="flex w-full justify-start">
             <SignInNextButton
               Label="I will add later"
               onClick={props.CheckInfoHandler}
             />
           </div>
-          <div className="w-full flex justify-start">
+          <div className="flex w-full justify-start">
             <SignInBackButton Label="Back" onClick={BackToBirthday} />
           </div>
         </div>

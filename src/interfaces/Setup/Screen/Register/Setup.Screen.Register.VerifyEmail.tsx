@@ -10,7 +10,7 @@ import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import GreenSuccessHint from 'components/hint/GreenSuccessHint';
 
 function SetupRegisterVerifyEmailScreen(
-  props: SetupRegisterVerifyEmailScreenProps
+  props: SetupRegisterVerifyEmailScreenProps,
 ) {
   const { isEmailVerified, setIsEmailVerified } = userProfileHook();
   const [SubmitDisabled, setSubmitDisabled] = useState(false);
@@ -51,24 +51,24 @@ function SetupRegisterVerifyEmailScreen(
 
   return (
     <m.div
-      className={`${props.AnimationDivClassName} w-full relative`}
+      className={`${props.AnimationDivClassName} relative w-full`}
       initial={props.Animation.Initial}
       animate={props.Animation.Final}
       transition={props.Animation.Transition}
     >
       <div
-        className={`${props.ContentClassName} w-full flex flex-col space-y-4`}
+        className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
         {isEmailVerified ? (
           <GreenSuccessHint Label="Your email address has been verified successfully." />
         ) : (
           <>
-            <p className="font-normal  tracking-wide text-left w-full text-white/75 text-sm">
+            <p className="w-full  text-left text-sm font-normal tracking-wide text-white/75">
               To verify your email address, click Verify Email. A verification
               email will be sent to the email address you provided. Click the
               link in the email to verify your address.
             </p>
-            <div className="w-full flex justify-start">
+            <div className="flex w-full justify-start">
               <SignInNextButton
                 Label="I will verify later"
                 onClick={props.CheckInfoHandler}
@@ -104,7 +104,7 @@ function CustomSubmitButton(props: CustomSubmitButtonProps) {
     <SetupSubmitButton Disabled={props.Disabled} onClick={props.onClick}>
       {props.children}
       {props.Loading && (
-        <div className="absolute w-full h-full rounded-lg flex items-center justify-center bg-[#104A82] text-white cursor-default">
+        <div className="absolute flex h-full w-full cursor-default items-center justify-center rounded-lg bg-[#104A82] text-white">
           <CircularProgress className="text-white" size={20} />
         </div>
       )}

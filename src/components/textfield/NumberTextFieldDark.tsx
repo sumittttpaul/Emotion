@@ -85,7 +85,7 @@ const CustomTextField = styled((props: TextFieldProps) => (
 
 function NumberTextFieldDark(props: NumberTextFieldProps) {
   return (
-    <div className="flex flex-col w-full mt-[2px]">
+    <div className="mt-[2px] flex w-full flex-col">
       <CustomTextField
         id={props.id}
         className="w-full"

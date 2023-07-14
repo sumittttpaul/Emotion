@@ -9,18 +9,18 @@ const DiscoverCarouselLeftArrowButton =
   dynamic<DiscoverCarouselArrowButtonProps>(
     () =>
       import('./DiscoverCarousel.ArrowButton').then(
-        (x) => x.DiscoverCarouselLeftArrowButton
+        (x) => x.DiscoverCarouselLeftArrowButton,
       ),
-    { ssr: false }
+    { ssr: false },
   );
 
 const DiscoverCarouselRightArrowButton =
   dynamic<DiscoverCarouselArrowButtonProps>(
     () =>
       import('./DiscoverCarousel.ArrowButton').then(
-        (x) => x.DiscoverCarouselRightArrowButton
+        (x) => x.DiscoverCarouselRightArrowButton,
       ),
-    { ssr: false }
+    { ssr: false },
   );
 
 interface IProps {
@@ -49,7 +49,7 @@ function DiscoverCarouselBanner(props: IProps) {
   const StartCarousel = () => {
     CarouselInterval = setInterval(
       () => NextCarouselByAutoPlay(),
-      IntervalTime
+      IntervalTime,
     );
   };
 
@@ -261,7 +261,7 @@ function DiscoverCarouselBanner(props: IProps) {
       ref={ContainerRef}
       onHoverStart={CarouselHoverStart}
       onHoverEnd={CarouselHoverEnd}
-      className="relative w-full h-[500px] min-h-[500px] flex"
+      className="relative flex h-[500px] min-h-[500px] w-full"
     >
       <motion.div className="relative box-content h-full">
         <motion.div
@@ -269,7 +269,7 @@ function DiscoverCarouselBanner(props: IProps) {
           animate={animation}
           onAnimationComplete={LoopCarousel}
           transition={{ type: 'spring', bounce: 0 }}
-          className="flex w-full h-full space-x-3 px-3"
+          className="flex h-full w-full space-x-3 px-3"
         >
           <DiscoverCarouselBannerContent
             AutoPlay={props.AutoPlay}

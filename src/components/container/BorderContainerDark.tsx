@@ -1,6 +1,6 @@
 function BorderContainerDark({ children }: ChildrenType) {
   return (
-    <div className="border-color-dark border border-solid hover:border bg-transparent w-full p-3 rounded-md flex items-center justify-center">
+    <div className="flex w-full items-center justify-center rounded-md border border-solid border-color-dark bg-transparent p-3 hover:border">
       {children}
     </div>
   );

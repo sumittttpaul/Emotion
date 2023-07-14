@@ -28,13 +28,13 @@ function GalleryCarouselSlider(props: GalleryCarouselSliderProps) {
       // onSwiper={(swiper) => console.log(swiper)}
       style={{ color: '#ffffff' }}
       wrapperTag="ul"
-      className="w-full h-auto"
+      className="h-auto w-full"
     >
       {props.ContentArray.map((content, index) => (
         <SwiperSlide
           key={index}
           tag="li"
-          className="p-5 box-border flex items-end justify-start bg-gradient-to-t from-[#000000cc]"
+          className="box-border flex items-end justify-start bg-gradient-to-t from-[#000000cc] p-5"
           style={{
             width: '85%',
             height: 450,
@@ -54,7 +54,7 @@ function GalleryCarouselSlider(props: GalleryCarouselSliderProps) {
             blurDataURL={Poster_BlurDataURL}
             alt=""
           />
-          <div className="space-y-5 box-border z-[1] mb-3">
+          <div className="z-[1] mb-3 box-border space-y-5">
             <div>
               <h6 className="text-xl font-[500]">
                 {props.ContentArray[index].Heading}
@@ -69,8 +69,8 @@ function GalleryCarouselSlider(props: GalleryCarouselSliderProps) {
               </h6>
             </div>
             {props.ContentArray[index].Button.toLowerCase() === 'order now' ? (
-              <div className="space-y-3 box-border">
-                <div className="text-xs flex items-center space-x-[4px] my-1">
+              <div className="box-border space-y-3">
+                <div className="my-1 flex items-center space-x-[4px] text-xs">
                   {/* <h6 className="bg-primary-blue-rgb text-[11px] py-1 px-2.5 mr-[2px] rounded-[4px]">
                     {props.ContentArray[index].Discount}
                   </h6> */}
@@ -81,13 +81,13 @@ function GalleryCarouselSlider(props: GalleryCarouselSliderProps) {
                 <div className="flex space-x-2">
                   <Button
                     disableFocusRipple
-                    className="py-3 px-3 cursor-default text-[11.5px] font-[600] tracking-[0.075em] bg-white hover:bg-white text-black"
+                    className="cursor-default bg-white px-3 py-3 text-[11.5px] font-[600] tracking-[0.075em] text-black hover:bg-white"
                   >
                     order now
                   </Button>
                   <Button
                     disableFocusRipple
-                    className="p-3 cursor-default tracking-[0.075em] bg-transparent hover:bg-white hover:bg-opacity-10 text-white"
+                    className="cursor-default bg-transparent p-3 tracking-[0.075em] text-white hover:bg-white hover:bg-opacity-10"
                   >
                     <div className="flex space-x-2">
                       <HeartIcon className="h-4 w-4" />
@@ -97,8 +97,8 @@ function GalleryCarouselSlider(props: GalleryCarouselSliderProps) {
                 </div>
               </div>
             ) : (
-              <div className="space-y-3 box-border">
-                <div className="text-xs flex items-center space-x-[4px] my-1">
+              <div className="box-border space-y-3">
+                <div className="my-1 flex items-center space-x-[4px] text-xs">
                   {/* <h6 className="bg-primary-blue-rgb text-[11px] py-1 px-2.5 mr-[2px] rounded-[4px]">
                 {props.ContentArray[index].Discount}
               </h6> */}
@@ -108,7 +108,7 @@ function GalleryCarouselSlider(props: GalleryCarouselSliderProps) {
                 </div>
                 <Button
                   disableFocusRipple
-                  className="py-3 px-3 cursor-default text-[11.5px] font-[600] tracking-[0.075em] bg-white hover:bg-white text-black"
+                  className="cursor-default bg-white px-3 py-3 text-[11.5px] font-[600] tracking-[0.075em] text-black hover:bg-white"
                 >
                   Explore
                 </Button>

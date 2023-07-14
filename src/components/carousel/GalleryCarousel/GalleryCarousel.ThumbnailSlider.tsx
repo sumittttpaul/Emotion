@@ -18,7 +18,7 @@ export interface GalleryCarouselThumbnailSliderProps {
 }
 
 function GalleryCarouselThumbnailSlider(
-  props: GalleryCarouselThumbnailSliderProps
+  props: GalleryCarouselThumbnailSliderProps,
 ) {
   const animation = useAnimation();
   const x = useMotionValue(0);
@@ -253,7 +253,7 @@ function GalleryCarouselThumbnailSlider(
       }}
       className={`${
         ContentExceed ? 'ml-auto' : 'mr-auto'
-      } ${'z-[1] relative box-content'}`}
+      } ${'relative z-[1] box-content'}`}
     >
       <motion.div
         ref={dragRef}
@@ -269,7 +269,7 @@ function GalleryCarouselThumbnailSlider(
         style={{ x }}
         className={`${
           ContentExceed ? 'ml-auto' : 'mr-auto'
-        } ${'w-auto space-x-4 flex px-8 pb-1 -mt-[80px]'}`}
+        } ${'-mt-[80px] flex w-auto space-x-4 px-8 pb-1'}`}
       >
         <GalleryCarouselThumbnailMap
           AutoPlay={props.AutoPlay}

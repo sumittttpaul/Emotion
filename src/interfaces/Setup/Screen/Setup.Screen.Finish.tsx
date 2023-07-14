@@ -15,19 +15,19 @@ function SetupFinishScreen(props: SetupFinishScreenProps) {
 
   return (
     <div
-      className={`${props.ClassName} p-5 md:p-14 space-y-7 w-full flex flex-col relative items-center justify-center`}
+      className={`${props.ClassName} relative flex w-full flex-col items-center justify-center space-y-7 p-5 md:p-14`}
     >
-      <div className="pt-14 md:pt-0 w-full relative flex justify-center items-center">
+      <div className="relative flex w-full items-center justify-center pt-14 md:pt-0">
         <Image
           height={275} //320
           width={600} //700
           src="/vectors/register-finish-1.svg"
           alt="register-finish"
-          className="text-white text-xs"
+          className="text-xs text-white"
         />
       </div>
-      <div className="space-y-4 w-full flex flex-col items-center justify-center">
-        <div className="relative flex space-x-5 items-center">
+      <div className="flex w-full flex-col items-center justify-center space-y-4">
+        <div className="relative flex items-center space-x-5">
           <Image
             height={30}
             width={30}
@@ -36,16 +36,16 @@ function SetupFinishScreen(props: SetupFinishScreenProps) {
           />
           <SetupHeaderLabel>You are all set</SetupHeaderLabel>
         </div>
-        <div className="w-full flex flex-col max-w-[550px] space-y-3">
-          <p className="ml-0 md:ml-3 font-normal line-clamp-2 text-center w-full text-white/75 text-[15px]">
+        <div className="flex w-full max-w-[550px] flex-col space-y-3">
+          <p className="ml-0 line-clamp-2 w-full text-center text-[15px] font-normal text-white/75 md:ml-3">
             &quot;The only way to do great work is to love what you do.&quot;
           </p>
-          <p className="ml-0 md:ml-3 font-normal line-clamp-2 text-right w-full text-white/75 text-[15px]">
+          <p className="ml-0 line-clamp-2 w-full text-right text-[15px] font-normal text-white/75 md:ml-3">
             - Steve Jobs
           </p>
         </div>
       </div>
-      <div className="relative md:absolute p-5 md:p-14 flex h-full w-full items-end justify-end">
+      <div className="relative flex h-full w-full items-end justify-end p-5 md:absolute md:p-14">
         <SetupSubmitButton Disabled={false} onClick={handleFinish}>
           Finish
         </SetupSubmitButton>

@@ -33,10 +33,10 @@ class ImageFadeTransition extends Component<IProps> {
             if (!this.timeout) clearTimeout(this.timeout);
             this.timeout = setTimeout(
               () => this.setState({ bottomOpacity: 0 }),
-              20
+              20,
             );
-          }
-        )
+          },
+        ),
       );
     }
   }
@@ -50,7 +50,7 @@ class ImageFadeTransition extends Component<IProps> {
             fill={fill}
             height={height}
             width={width}
-            className={`${className} text-white text-xs`}
+            className={`${className} text-xs text-white`}
             style={{
               objectFit: 'cover',
               objectPosition: 'center',
@@ -65,7 +65,7 @@ class ImageFadeTransition extends Component<IProps> {
             fill={fill}
             height={height}
             width={width}
-            className={`${className} text-white text-xs`}
+            className={`${className} text-xs text-white`}
             style={{
               objectFit: 'cover',
               objectPosition: 'center',

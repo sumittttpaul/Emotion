@@ -3,7 +3,6 @@
 import dynamic from 'next/dynamic';
 import { AvatarCustomButton } from './assets/AvatarCustomButton';
 import { AvatarButtonDialogProps } from './AvatarButtonDialog';
-import { AvatarContainerType, AvatarScreenType } from './assets/AvatarType';
 import {
   SetupAvatarContent,
   SetupAvatarContentProps,
@@ -18,7 +17,7 @@ import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
 const AvatarButtonDialog = dynamic<AvatarButtonDialogProps>(
   () => import('./AvatarButtonDialog'),
-  { ssr: false }
+  { ssr: false },
 );
 
 function AvatarButton() {
@@ -34,11 +33,11 @@ function AvatarButton() {
       ? '/images/loader/dark-circle.png'
       : userPhoto && ChangeAvatar
       ? userPhoto
-      : '/images/default/user.png'
+      : '/images/default/user.png',
   );
   const [CropAvatarURL, setCropAvatarURL] = useState('');
   const [AvatarContainer, setAvatarContainer] = useState<AvatarContainerType>(
-    'Remove-Avatar-Container'
+    'Remove-Avatar-Container',
   );
   const [Collection, setCollection] = useState<SetupAvatarContentProps[]>([]);
   const [Collectionheading, setCollectionHeading] = useState('');
@@ -156,7 +155,7 @@ function AvatarButton() {
     if (FirebaseUser) {
       const UserPhotoURL = EncryptData(
         UserProfileEncrytionKey(FirebaseUser?.uid, 'PhotoURL'),
-        value
+        value,
       );
       const _data: IUserProfileDataUpdate = {
         '_data.photoURL': UserPhotoURL,

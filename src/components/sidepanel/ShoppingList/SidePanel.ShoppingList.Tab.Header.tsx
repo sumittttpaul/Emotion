@@ -29,9 +29,9 @@ function SidePanelShoppingListTabHeader(props: IProps) {
     }
   };
   return (
-    <div className="flex w-full justify-between pl-4 pr-2 pb-2 items-center">
+    <div className="flex w-full items-center justify-between pb-2 pl-4 pr-2">
       <div className="flex items-center">
-        <div className="text-[13px] truncate cursor-default tracking-wide font-[400] text-white">
+        <div className="cursor-default truncate text-[13px] font-[400] tracking-wide text-white">
           {props.ContentArray.length} items
         </div>
         <MoreMenuButton
@@ -41,7 +41,7 @@ function SidePanelShoppingListTabHeader(props: IProps) {
         />
       </div>
       <Button
-        className="px-2 m-0 cursor-default block truncate text-white button-text-lower tracking-wide rounded-md text-[12px] font-[400] opacity-75 hover:opacity-100 bg-transparent hover:bg-[#ffffff10]"
+        className="button-text-lower m-0 block cursor-default truncate rounded-md bg-transparent px-2 text-[12px] font-[400] tracking-wide text-white opacity-75 hover:bg-[#ffffff10] hover:opacity-100"
         sx={{
           '.MuiTouchRipple-child': {
             backgroundColor: '#ffffff40 !important',

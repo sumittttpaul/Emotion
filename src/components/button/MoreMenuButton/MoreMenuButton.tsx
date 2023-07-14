@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 
 const MoreMenuButtonMenu = dynamic<MoreMenuButtonMenuProps>(
   () => import('./MoreMenuButton.Menu'),
-  { ssr: false }
+  { ssr: false },
 );
 
 interface IProps {
@@ -32,7 +32,7 @@ function MoreMenuButton(props: IProps) {
       <IconButton
         disableFocusRipple
         onClick={handleClick}
-        className={`${props.ClassName} p-1 cursor-default block text-white items-center justify-center rounded-md opacity-75 hover:opacity-100 bg-transparent hover:bg-[#ffffff15]`}
+        className={`${props.ClassName} block cursor-default items-center justify-center rounded-md bg-transparent p-1 text-white opacity-75 hover:bg-[#ffffff15] hover:opacity-100`}
         sx={{
           '.MuiTouchRipple-child': {
             borderRadius: '2px',

@@ -14,26 +14,26 @@ function SelectDayHeader(props: IProps) {
     return props.currentMonth() + ', ' + props.currentYear();
   };
   return (
-    <div className="w-full flex justify-between">
-      <h6 className="text-white text-xs font-medium px-2.5 pb-3">
+    <div className="flex w-full justify-between">
+      <h6 className="px-2.5 pb-3 text-xs font-medium text-white">
         {MonthAndYear()}
       </h6>
-      <div className="block relative -mt-2 -mr-2">
+      <div className="relative -mr-2 -mt-2 block">
         <div className="flex space-x-3">
           <m.button
             onClick={props.prevMonthClick}
             whileTap={{ scale: 0.9 }}
-            className="text-white p-[4px] rounded-md bg-[#ffffff1a] opacity-100 hover:opacity-75 relative block cursor-default"
+            className="relative block cursor-default rounded-md bg-[#ffffff1a] p-[4px] text-white opacity-100 hover:opacity-75"
           >
-            <ChevronUpIcon className="text-white h-[16px]" />
+            <ChevronUpIcon className="h-[16px] text-white" />
           </m.button>
           <m.button
             onClick={props.nextMonthClick}
             whileTap={{ scale: props.isthisMonth ? 1 : 0.9 }}
             disabled={props.isthisMonth}
-            className="text-white disabled:opacity-50 p-[4px] rounded-md bg-[#ffffff1a] opacity-100 hover:opacity-75 relative block cursor-default"
+            className="relative block cursor-default rounded-md bg-[#ffffff1a] p-[4px] text-white opacity-100 hover:opacity-75 disabled:opacity-50"
           >
-            <ChevronDownIcon className="text-white h-[16px]" />
+            <ChevronDownIcon className="h-[16px] text-white" />
           </m.button>
         </div>
       </div>

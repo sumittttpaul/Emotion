@@ -53,9 +53,9 @@ function HeaderUserButtonMenu(props: HeaderUserButtonMenuProps) {
         key={1}
         disableRipple
         disableTouchRipple
-        className="m-1 p-2 pr-10 rounded-md cursor-default hover:bg-[transparent]"
+        className="m-1 cursor-default rounded-md p-2 pr-10 hover:bg-[transparent]"
       >
-        <div className="flex relative space-x-3">
+        <div className="relative flex space-x-3">
           <div className="relative block">
             {props.user?.photoURL ? (
               <Image
@@ -76,10 +76,10 @@ function HeaderUserButtonMenu(props: HeaderUserButtonMenuProps) {
             )}
           </div>
           <div className="relative block">
-            <h5 className="text-[15px] whitespace-nowrap font-sans text-white">{`${
+            <h5 className="font-sans whitespace-nowrap text-[15px] text-white">{`${
               props.user?.displayName ? props.user.displayName : 'User'
             }`}</h5>
-            <p className="text-[11px] mr-8 whitespace-nowrap text-white opacity-[0.85]">{`${
+            <p className="mr-8 whitespace-nowrap text-[11px] text-white opacity-[0.85]">{`${
               props.user?.email
                 ? props.user.email
                 : 'No email address has been added'
@@ -89,7 +89,7 @@ function HeaderUserButtonMenu(props: HeaderUserButtonMenuProps) {
                 aria-label="user-sign-out-button"
                 disableFocusRipple
                 onClick={props.SignOutUser}
-                className="mt-[8px] p-[2px] relative block bg-[#ffffff15] hover:bg-[#ffffff30] button-text-lower font-normal text-white text-[11px]"
+                className="button-text-lower relative mt-[8px] block bg-[#ffffff15] p-[2px] text-[11px] font-normal text-white hover:bg-[#ffffff30]"
               >
                 Sign out
               </Button>
@@ -107,11 +107,11 @@ function HeaderUserButtonMenu(props: HeaderUserButtonMenuProps) {
             router.push(Manage_Your_Account_Link);
           }, 150);
         }}
-        className="m-1 py-2 rounded-md hover:bg-[#ffffff15] cursor-default"
+        className="m-1 cursor-default rounded-md py-2 hover:bg-[#ffffff15]"
       >
-        <div className="flex relative space-x-[10px] opacity-90">
+        <div className="relative flex space-x-[10px] opacity-90">
           <Image height={17} width={17} src="/icons/folder.svg" alt="" />
-          <h6 className="text-[14px] font-sans font-[400] text-white">
+          <h6 className="font-sans text-[14px] font-[400] text-white">
             Manage your account
           </h6>
         </div>
@@ -125,11 +125,11 @@ function HeaderUserButtonMenu(props: HeaderUserButtonMenuProps) {
             router.push(Track_Order_Link);
           }, 150);
         }}
-        className="m-1 py-2 rounded-md hover:bg-[#ffffff15] cursor-default"
+        className="m-1 cursor-default rounded-md py-2 hover:bg-[#ffffff15]"
       >
-        <div className="flex relative space-x-[10px] opacity-90">
+        <div className="relative flex space-x-[10px] opacity-90">
           <Image height={18} width={18} src="/icons/truck.svg" alt="" />
-          <h6 className="text-[14px] font-sans font-[400] text-white">
+          <h6 className="font-sans text-[14px] font-[400] text-white">
             Track orders
           </h6>
         </div>
@@ -143,11 +143,11 @@ function HeaderUserButtonMenu(props: HeaderUserButtonMenuProps) {
             router.push(Cart_Link);
           }, 150);
         }}
-        className="m-1 py-2 rounded-md hover:bg-[#ffffff15] cursor-default"
+        className="m-1 cursor-default rounded-md py-2 hover:bg-[#ffffff15]"
       >
-        <div className="flex relative space-x-[10px] opacity-90">
+        <div className="relative flex space-x-[10px] opacity-90">
           <Image height={17} width={17} src="/icons/shopping-bag.svg" alt="" />
-          <h6 className="text-[14px] font-sans font-[400] text-white">
+          <h6 className="font-sans text-[14px] font-[400] text-white">
             View all orders
           </h6>
         </div>
@@ -161,11 +161,11 @@ function HeaderUserButtonMenu(props: HeaderUserButtonMenuProps) {
             router.push(Redeem_Gift_Codes_Link);
           }, 150);
         }}
-        className="m-1 py-2 rounded-md hover:bg-[#ffffff15] cursor-default"
+        className="m-1 cursor-default rounded-md py-2 hover:bg-[#ffffff15]"
       >
-        <div className="flex relative space-x-[10px] opacity-90">
+        <div className="relative flex space-x-[10px] opacity-90">
           <Image height={17} width={17} src="/icons/gift.svg" alt="" />
-          <h6 className="text-[14px] font-sans font-[400] text-white">
+          <h6 className="font-sans text-[14px] font-[400] text-white">
             Redeem code or gift cards
           </h6>
         </div>

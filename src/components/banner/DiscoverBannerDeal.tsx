@@ -53,31 +53,31 @@ function DiscoverBannerDeal(props: IProps) {
   ];
 
   return (
-    <div className="relative flex w-full p-3 mt-8">
-      <div className="relative w-full items-center space-x-5 flex bg-white/5 rounded-xl overflow-hidden">
+    <div className="relative mt-8 flex w-full p-3">
+      <div className="relative flex w-full items-center space-x-5 overflow-hidden rounded-xl bg-white/5">
         {/* Title */}
-        <div className="flex flex-col space-y-4 text-white min-w-[300px] max-w-[300px] mx-auto w-full cursor-default py-10 pl-10">
+        <div className="mx-auto flex w-full min-w-[300px] max-w-[300px] cursor-default flex-col space-y-4 py-10 pl-10 text-white">
           <div className="flex justify-start">{props.Badge}</div>
-          <div className="flex flex-col w-full space-y-2">
-            <div className="text-[30px] text-white tracking-wide font-[500] leading-[35px]">
+          <div className="flex w-full flex-col space-y-2">
+            <div className="text-[30px] font-[500] leading-[35px] tracking-wide text-white">
               {props.Label}
             </div>
-            <div className="text-[13px] text-white tracking-wide font-[300] opacity-[0.85]">
+            <div className="text-[13px] font-[300] tracking-wide text-white opacity-[0.85]">
               {props.Description}
             </div>
           </div>
-          <div className="pt-2 w-full justify-start flex">
+          <div className="flex w-full justify-start pt-2">
             <Button
-              className={`bg-white/5 hover:bg-white/10 h-8 z-[1] flex px-8 cursor-default items-center rounded-lg text-white button-text-lower`}
+              className={`button-text-lower z-[1] flex h-8 cursor-default items-center rounded-lg bg-white/5 px-8 text-white hover:bg-white/10`}
               sx={{
                 '.MuiTouchRipple-child': {
                   backgroundColor: '#ffffff50 !important',
                 },
               }}
             >
-              <div className="flex space-x-2 items-center justify-center">
+              <div className="flex items-center justify-center space-x-2">
                 <ChevronRightIcon className="h-4" />
-                <p className="text-[12px] tracking-wide font-[400]">
+                <p className="text-[12px] font-[400] tracking-wide">
                   See details
                 </p>
               </div>
@@ -90,7 +90,7 @@ function DiscoverBannerDeal(props: IProps) {
             slidesPerView={5}
             spaceBetween={16}
             wrapperTag="ul"
-            className="relative h-full flex"
+            className="relative flex h-full"
             style={{
               paddingTop: 16,
               paddingBottom: 16,
@@ -104,9 +104,9 @@ function DiscoverBannerDeal(props: IProps) {
                 tag="li"
                 onClick={handleClick}
                 onContextMenu={handleClick}
-                className={`bg-${value.Color}-shadow text-white cursor-default group p-4 space-y-1 max-w-[220px] button-text-lower rounded-xl bg-white/5 hover:bg-white/10 transition-all`}
+                className={`bg-${value.Color}-shadow button-text-lower group max-w-[220px] cursor-default space-y-1 rounded-xl bg-white/5 p-4 text-white transition-all hover:bg-white/10`}
               >
-                <div className="w-full flex flex-col relative">
+                <div className="relative flex w-full flex-col">
                   <div className="relative w-full overflow-hidden">
                     <Image
                       height={240}
@@ -122,16 +122,16 @@ function DiscoverBannerDeal(props: IProps) {
                       alt=""
                     />
                   </div>
-                  <div className="mt-2.5 text-[14px] font-[500] tracking-wide text-left w-full truncate">
+                  <div className="mt-2.5 w-full truncate text-left text-[14px] font-[500] tracking-wide">
                     {value.Heading}
                   </div>
-                  <h6 className="mt-1 text-[13px] font-normal text-left w-full opacity-[0.75] leading-[18px] line-clamp-2">
+                  <h6 className="mt-1 line-clamp-2 w-full text-left text-[13px] font-normal leading-[18px] opacity-[0.75]">
                     {value.Description}
                   </h6>
                   <div className="block h-5 w-full" />
-                  <div className="text-xs flex items-center space-x-2 pt-1">
-                    <div className="py-[5px] px-[8px] flex space-x-2 bg-white/5 rounded-md">
-                      <h6 className="line-through text-[12px] opacity-70">
+                  <div className="flex items-center space-x-2 pt-1 text-xs">
+                    <div className="flex space-x-2 rounded-md bg-white/5 px-[8px] py-[5px]">
+                      <h6 className="text-[12px] line-through opacity-70">
                         {`₹${value.OriginalPrice}`}
                       </h6>
                       <h6 className="text-[13px]">{`₹${value.DiscountedPrice}`}</h6>

@@ -16,19 +16,19 @@ function VerticalNavBar() {
   const onClick = (idx: number) => {
     if (Number != idx) {
       const PrevButtonHeight = document.getElementById(
-        `vertical-navbar-button-id-${Number}`
+        `vertical-navbar-button-id-${Number}`,
       )?.offsetHeight;
       const PrevButtonOffsetTop = document.getElementById(
-        `vertical-navbar-button-id-${Number}`
+        `vertical-navbar-button-id-${Number}`,
       )?.offsetTop;
       const NextButtonHeight = document.getElementById(
-        `vertical-navbar-button-id-${idx}`
+        `vertical-navbar-button-id-${idx}`,
       )?.offsetHeight;
       const NextButtonOffsetTop = document.getElementById(
-        `vertical-navbar-button-id-${idx}`
+        `vertical-navbar-button-id-${idx}`,
       )?.offsetTop;
       const ContainerMarginTop = document.getElementById(
-        'vertical-navbar-container-div'
+        'vertical-navbar-container-div',
       )?.offsetTop;
       if (
         PrevButtonHeight &&
@@ -58,13 +58,13 @@ function VerticalNavBar() {
 
   const onAnimationComplete = () => {
     const ButtonHeight = document.getElementById(
-      `vertical-navbar-button-id-${Number}`
+      `vertical-navbar-button-id-${Number}`,
     )?.offsetHeight;
     const ButtonOffsetTop = document.getElementById(
-      `vertical-navbar-button-id-${Number}`
+      `vertical-navbar-button-id-${Number}`,
     )?.offsetTop;
     const ContainerMarginTop = document.getElementById(
-      'vertical-navbar-container-div'
+      'vertical-navbar-container-div',
     )?.offsetTop;
     if (ButtonHeight && ButtonOffsetTop && ContainerMarginTop) {
       const FinalMargin = ButtonOffsetTop - ContainerMarginTop;

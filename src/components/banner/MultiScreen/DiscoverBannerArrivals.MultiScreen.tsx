@@ -32,7 +32,7 @@ export function DiscoverBannerArrivalsBrowser(props: IProps) {
           ? 3
           : SmallMediumScreen
           ? 2
-          : 0
+          : 0,
       ).map((value, index) => (
         <motion.li
           whileTap={{ scale: 0.9 }}
@@ -64,8 +64,8 @@ export function DiscoverBannerArrivalsBrowser(props: IProps) {
 
 export function DiscoverBannerArrivalsMobile(props: IProps) {
   return (
-    <div className="w-full relative flex flex-col space-y-7">
-      <motion.ul className="flex space-x-5 w-full">
+    <div className="relative flex w-full flex-col space-y-7">
+      <motion.ul className="flex w-full space-x-5">
         {props.ContentArray.slice(0, 2).map((value, index) => (
           <motion.li
             whileTap={{ scale: 0.9 }}
@@ -73,7 +73,7 @@ export function DiscoverBannerArrivalsMobile(props: IProps) {
             className={ContainerStyle}
           >
             <Image
-              className="rounded-t-md absolute h-full w-full"
+              className="absolute h-full w-full rounded-t-md"
               height={320}
               width={240}
               style={{
@@ -101,7 +101,7 @@ export function DiscoverBannerArrivalsMobile(props: IProps) {
           </motion.li>
         ))}
       </motion.ul>
-      <motion.ul className="flex space-x-5 w-full">
+      <motion.ul className="flex w-full space-x-5">
         {props.ContentArray.slice(2, 4).map((value, index) => (
           <motion.li
             whileTap={{ scale: 0.9 }}
@@ -109,7 +109,7 @@ export function DiscoverBannerArrivalsMobile(props: IProps) {
             className={ContainerStyle}
           >
             <Image
-              className="rounded-t-md absolute h-full w-full"
+              className="absolute h-full w-full rounded-t-md"
               height={320}
               width={240}
               style={{

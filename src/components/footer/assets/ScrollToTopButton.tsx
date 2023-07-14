@@ -22,7 +22,7 @@ class ScrollToTopButton extends Component {
 
   render() {
     return (
-      <div className="absolute top-0 right-0 -mt-6">
+      <div className="absolute right-0 top-0 -mt-6">
         <TooltipDark
           arrow
           placement="top"
@@ -32,7 +32,7 @@ class ScrollToTopButton extends Component {
             id={ScrollButtonID}
             aria-label="scroll-to-top-button"
             disableFocusRipple
-            className="flex group opacity-80 hover:opacity-100 transition-all duration-300 text-white h-[47px] w-[47px] items-center justify-center rounded-lg button-text-lower bg-[#2E2E2E] hover:bg-[#303030]"
+            className="button-text-lower group flex h-[47px] w-[47px] items-center justify-center rounded-lg bg-[#2E2E2E] text-white opacity-80 transition-all duration-300 hover:bg-[#303030] hover:opacity-100"
             sx={{
               '.MuiTouchRipple-child': {
                 backgroundColor: '#ffffff50 !important',

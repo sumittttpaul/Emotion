@@ -15,11 +15,11 @@ export function AvatarCustomButton(props: IProps) {
       disableRipple
       disableFocusRipple
       disableTouchRipple
-      className="p-0 flex-grow-0 hover:opacity-50 opacity-100 transition-opacity flex-shrink-0 rounded-[50%] cursor-default"
+      className="flex-shrink-0 flex-grow-0 cursor-default rounded-[50%] p-0 opacity-100 transition-opacity hover:opacity-50"
       sx={{ borderRadius: '50%' }}
     >
       <div className="relative flex">
-        <div className="relative flex rounded-[50%] overflow-hidden">
+        <div className="relative flex overflow-hidden rounded-[50%]">
           <Image
             height={125}
             width={125}
@@ -30,8 +30,8 @@ export function AvatarCustomButton(props: IProps) {
             alt=""
           />
         </div>
-        <div className="absolute bg-secondary-theme flex justify-center items-center right-0 bottom-0 p-1.5 rounded-[50%]">
-          <CameraIcon className="text-white h-[25px] w-[25px]" />
+        <div className="absolute bottom-0 right-0 flex items-center justify-center rounded-[50%] bg-secondary-theme p-1.5">
+          <CameraIcon className="h-[25px] w-[25px] text-white" />
         </div>
       </div>
     </IconButton>

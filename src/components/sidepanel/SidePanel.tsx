@@ -16,9 +16,9 @@ function SidePanel(props: SidePanelProps) {
   const { setHomePage } = HomePageHook();
   const router = useRouter();
   return (
-    <div className="flex flex-col py-1.5 w-[250px] fixed left-0 h-screen text-white bg-[#0f0f0f]">
+    <div className="fixed left-0 flex h-screen w-[250px] flex-col bg-[#0f0f0f] py-1.5 text-white">
       {/* Logo */}
-      <div className="flex py-3 ml-[27px] h-[65px] min-h-[65px] items-center justify-start">
+      <div className="ml-[27px] flex h-[65px] min-h-[65px] items-center justify-start py-3">
         <HeaderLogo
           onValueChange={(value) => {
             setHomePage(value);

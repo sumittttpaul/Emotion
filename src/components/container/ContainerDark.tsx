@@ -1,6 +1,6 @@
 function ContainerDark({ children }: ChildrenType) {
   return (
-    <div className="p-0 m-0 flex flex-grow relative w-full h-full bg-[#0f0f0f]">
+    <div className="relative m-0 flex h-full w-full flex-grow bg-[#0f0f0f] p-0">
       {children}
     </div>
   );

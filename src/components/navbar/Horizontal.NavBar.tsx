@@ -20,19 +20,19 @@ function HorizontalNavBar() {
   const onClick = (idx: number) => {
     if (Number != idx) {
       const PrevButtonWidth = document.getElementById(
-        `horizontal-navbar-button-id-${Number}`
+        `horizontal-navbar-button-id-${Number}`,
       )?.offsetWidth;
       const PrevButtonOffsetLeft = document.getElementById(
-        `horizontal-navbar-button-id-${Number}`
+        `horizontal-navbar-button-id-${Number}`,
       )?.offsetLeft;
       const NextButtonWidth = document.getElementById(
-        `horizontal-navbar-button-id-${idx}`
+        `horizontal-navbar-button-id-${idx}`,
       )?.offsetWidth;
       const NextButtonOffsetLeft = document.getElementById(
-        `horizontal-navbar-button-id-${idx}`
+        `horizontal-navbar-button-id-${idx}`,
       )?.offsetLeft;
       const ContainerMarginLeft = document.getElementById(
-        'horizontal-navbar-container-div'
+        'horizontal-navbar-container-div',
       )?.offsetLeft;
       if (
         PrevButtonWidth &&
@@ -62,13 +62,13 @@ function HorizontalNavBar() {
 
   const onAnimationComplete = () => {
     const ButtonWidth = document.getElementById(
-      `horizontal-navbar-button-id-${Number}`
+      `horizontal-navbar-button-id-${Number}`,
     )?.offsetWidth;
     const ButtonOffsetLeft = document.getElementById(
-      `horizontal-navbar-button-id-${Number}`
+      `horizontal-navbar-button-id-${Number}`,
     )?.offsetLeft;
     const ContainerMarginLeft = document.getElementById(
-      'horizontal-navbar-container-div'
+      'horizontal-navbar-container-div',
     )?.offsetLeft;
     if (ButtonWidth && ButtonOffsetLeft && ContainerMarginLeft) {
       const FinalMargin = ButtonOffsetLeft - ContainerMarginLeft;
@@ -79,13 +79,13 @@ function HorizontalNavBar() {
   };
 
   return (
-    <div id="horizontal-navbar-container-div" className="w-full flex flex-col">
+    <div id="horizontal-navbar-container-div" className="flex w-full flex-col">
       <div className="flex justify-between">
         {ContentArray.map((value, idx) => (
           <div
             key={idx}
             id={`horizontal-navbar-button-id-${idx}`}
-            className="py-3 cursor-default"
+            className="cursor-default py-3"
             onClick={() => onClick(idx)}
           >
             {value.name}

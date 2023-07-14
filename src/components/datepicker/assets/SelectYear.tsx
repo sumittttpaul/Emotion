@@ -8,7 +8,7 @@ interface IProps {
 
 function SelectYear(props: IProps) {
   const [selected, setSelected] = useState<string>(
-    moment().endOf('year').format('YYYY')
+    moment().endOf('year').format('YYYY'),
   );
 
   const yearRange = (start: number, end: number) => {
@@ -28,7 +28,7 @@ function SelectYear(props: IProps) {
 
   return (
     <m.div
-      className="p-5 grid grid-cols-4 scroll"
+      className="scroll grid grid-cols-4 p-5"
       animate={{ opacity: 1, scale: 1 }}
       initial={{ opacity: 0, scale: 1 }}
       exit={{ opacity: 0, scale: 0 }}
@@ -41,8 +41,8 @@ function SelectYear(props: IProps) {
             props.setYear(year.toString());
           }}
           key={year}
-          className={`${'text-white w-full flex justify-center text-[13px] m-1 p-4 rounded-md cursor-default transition-colors ease-in-out duration-200'} ${dayStyles(
-            year
+          className={`${'m-1 flex w-full cursor-default justify-center rounded-md p-4 text-[13px] text-white transition-colors duration-200 ease-in-out'} ${dayStyles(
+            year,
           )}`}
         >
           {year}

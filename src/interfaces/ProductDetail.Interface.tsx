@@ -3,7 +3,7 @@ import Image from 'next/image';
 function ProductDetailInterface() {
   return (
     <div className="relative z-10">
-      <div className="flex pr-3 items-center justify-between w-full h-full relative overflow-x-hidden overflow-y-visible">
+      <div className="relative flex h-full w-full items-center justify-between overflow-x-hidden overflow-y-visible pr-3">
         <div>
           <Image
             height={1080}
@@ -12,8 +12,8 @@ function ProductDetailInterface() {
             alt=""
           />
         </div>
-        <div className="flex flex-col w-full h-full items-center justify-center max-w-[30%]">
-          <div className="flex relative">
+        <div className="flex h-full w-full max-w-[30%] flex-col items-center justify-center">
+          <div className="relative flex">
             <Image
               height={260}
               width={200}

@@ -37,7 +37,7 @@ function HeaderSearchButtonMenu(props: HeaderSearchButtonMenuProps) {
     <div
       className={`${
         props.SearchMenu ? 'block' : 'hidden'
-      } z-10 absolute w-full top-[45px] px-1.5 py-2.5 bg-[#1A1A1ABD] backdrop-blur-[50px] rounded-lg text-white shadow-2xl`}
+      } absolute top-[45px] z-10 w-full rounded-lg bg-[#1A1A1ABD] px-1.5 py-2.5 text-white shadow-2xl backdrop-blur-[50px]`}
     >
       {Data.map((value, idx) => (
         <div
@@ -45,10 +45,10 @@ function HeaderSearchButtonMenu(props: HeaderSearchButtonMenuProps) {
           className={` ${
             activeIndex === idx ? 'bg-[#ffffff15]' : 'bg-transparent'
           }
-        rounded-lg p-1 h-[40px] w-full flex cursor-default items-center`}
+        flex h-[40px] w-full cursor-default items-center rounded-lg p-1`}
           {...itemProps(value)}
         >
-          <div className="block h-5 ml-2 pr-4 opacity-70">
+          <div className="ml-2 block h-5 pr-4 opacity-70">
             <Image
               height={18}
               width={18}
@@ -60,8 +60,8 @@ function HeaderSearchButtonMenu(props: HeaderSearchButtonMenuProps) {
               alt=""
             />
           </div>
-          <div className="items-center pr-1 w-full overflow-hidden">
-            <p className="block text-[13px] truncate font-[400px] tracking-wide text-left">
+          <div className="w-full items-center overflow-hidden pr-1">
+            <p className="block truncate text-left text-[13px] font-[400px] tracking-wide">
               {value.Name}
             </p>
           </div>
@@ -69,7 +69,7 @@ function HeaderSearchButtonMenu(props: HeaderSearchButtonMenuProps) {
             <IconButton
               onPointerDown={() => removeItem(idx)}
               className={`${activeIndex === idx ? 'flex' : 'hidden'} 
-                  items-center justify-center w-[30px] h-[30px] p-0 m-0 cursor-pointer opacity-70 hover:bg-[#ffffff30]`}
+                  m-0 h-[30px] w-[30px] cursor-pointer items-center justify-center p-0 opacity-70 hover:bg-[#ffffff30]`}
               style={{
                 borderRadius: 4,
               }}

@@ -14,7 +14,7 @@ function OTPTextFieldDark(props: OTPTextFieldProps) {
       onClick={props.onClick}
       value={props.value}
       readOnly={props.readonly}
-      className={`${'text-white rounded-lg font-[600] focus:outline-none bg-[#0f0f0f] h-[50px] w-[40px] text-center items-center'} ${
+      className={`${'h-[50px] w-[40px] items-center rounded-lg bg-[#0f0f0f] text-center font-[600] text-white focus:outline-none'} ${
         props.className
       }`}
       aria-label="otp box"

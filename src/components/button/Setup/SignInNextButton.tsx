@@ -31,13 +31,13 @@ function SignInNextButton(props: IProps) {
       onClick={props.onClick}
       onHoverStart={onHoverStart}
       onHoverEnd={onHoverEnd}
-      className="px-[12px] py-2 group cursor-default hover:bg-white/5 rounded-lg"
+      className="group cursor-default rounded-lg px-[12px] py-2 hover:bg-white/5"
     >
       <m.label
         initial="open"
         animate={Animate}
         variants={Variants}
-        className="group-hover:opacity-75 opacity-100 font-medium truncate text-sky-400 text-[14px]"
+        className="truncate text-[14px] font-medium text-sky-400 opacity-100 group-hover:opacity-75"
       >
         {props.Label}
       </m.label>

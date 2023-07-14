@@ -9,12 +9,12 @@ interface IProps {
 
 function DatePickerDialogBottom(props: IProps) {
   return (
-    <div className="p-3 flex space-x-3 relative justify-end">
+    <div className="relative flex justify-end space-x-3 p-3">
       <Button
         aria-label="dob-cancel-button"
         disableFocusRipple
         onClick={props.cancel}
-        className="group rounded-lg h-8 w-[calc(100%/3)] bg-white/5 hover:bg-white/5 outline-none cursor-default"
+        className="group h-8 w-[calc(100%/3)] cursor-default rounded-lg bg-white/5 outline-none hover:bg-white/5"
         sx={{
           '.MuiTouchRipple-child': {
             backgroundColor: '#ffffff80 !important',
@@ -28,7 +28,7 @@ function DatePickerDialogBottom(props: IProps) {
         disableFocusRipple
         disabled={!props.submitActive}
         onClick={props.submit}
-        className="disabled:opacity-50 disabled:cursor-not-allowed group rounded-lg h-8 w-[calc(100%/3)] bg-dark-blue hover:bg-dark-blue outline-none cursor-default"
+        className="group h-8 w-[calc(100%/3)] cursor-default rounded-lg bg-dark-blue outline-none hover:bg-dark-blue disabled:cursor-not-allowed disabled:opacity-50"
         sx={{
           '.MuiTouchRipple-child': {
             backgroundColor: '#ffffff80 !important',

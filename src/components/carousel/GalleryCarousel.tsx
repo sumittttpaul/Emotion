@@ -10,17 +10,17 @@ import { DeviceHook } from 'hooks/Hooks.Device';
 const GalleryCarouselMobile = dynamic<GalleryCarouselMobileProps>(
   () =>
     import('./GalleryCarousel/GalleryCarousel.MultiScreen').then(
-      (x) => x.GalleryCarouselMobile
+      (x) => x.GalleryCarouselMobile,
     ),
-  { ssr: false }
+  { ssr: false },
 );
 
 const GalleryCarouselDesktop = dynamic<GalleryCarouselDesktopProps>(
   () =>
     import('./GalleryCarousel/GalleryCarousel.MultiScreen').then(
-      (x) => x.GalleryCarouselDesktop
+      (x) => x.GalleryCarouselDesktop,
     ),
-  { ssr: false }
+  { ssr: false },
 );
 
 interface IProps {

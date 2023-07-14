@@ -40,7 +40,7 @@ function DialogContainerDark(props: IProps) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-90"
             >
-              <Dialog.Panel className="relative w-auto h-auto rounded-2xl transform scroll-smooth overflow-auto bg-[#202020] text-center align-middle  shadow-2xl transition-all">
+              <Dialog.Panel className="relative h-auto w-auto transform overflow-auto scroll-smooth rounded-2xl bg-[#202020] text-center align-middle  shadow-2xl transition-all">
                 {props.children}
               </Dialog.Panel>
             </Transition.Child>

@@ -118,7 +118,7 @@ function BannerContent(props: BannerContentProps) {
           variants={Variants}
           onClick={() => props.onClick(idx + props.CustomIndex)}
           transition={{ type: 'tween' }}
-          className={`bg-${value.Color}-shadow relative inline-block rounded-xl overflow-hidden w-[300px] min-w-[300px] text-white`}
+          className={`bg-${value.Color}-shadow relative inline-block w-[300px] min-w-[300px] overflow-hidden rounded-xl text-white`}
         >
           {/* Image */}
           <div className="flex h-full w-full">
@@ -140,17 +140,17 @@ function BannerContent(props: BannerContentProps) {
               props.CarouselState === idx + props.CustomIndex
                 ? `bg-gradient-to-r from-${value.Color}`
                 : `bg-${value.Color}-50`
-            } absolute flex items-end w-full h-full left-0 bottom-0 px-10 pb-[150px] z-[10] overflow-hidden`}
+            } absolute bottom-0 left-0 z-[10] flex h-full w-full items-end overflow-hidden px-10 pb-[150px]`}
           >
-            <div className="flex flex-col w-full space-y-10 z-[20]">
+            <div className="z-[20] flex w-full flex-col space-y-10">
               {/* Content */}
-              <div className="flex flex-col w-full space-y-2">
+              <div className="flex w-full flex-col space-y-2">
                 {/* Price */}
-                <div className="flex justify-start w-full space-x-2">
+                <div className="flex w-full justify-start space-x-2">
                   <div
-                    className={`bg-${value.ColorDark} flex text-[11px] rounded-md space-x-2 px-3 py-1`}
+                    className={`bg-${value.ColorDark} flex space-x-2 rounded-md px-3 py-1 text-[11px]`}
                   >
-                    <p className="line-through text-[#CFCFCF]">
+                    <p className="text-[#CFCFCF] line-through">
                       ₹{value.OriginalPrice}
                     </p>
                     <p>₹{value.DiscountedPrice}</p>
@@ -189,25 +189,25 @@ function BannerContent(props: BannerContentProps) {
                   }
                   variants={DescriptionAnimationVariant}
                   transition={{ type: 'tween', duration: 0.4 }}
-                  className="truncate text-[13px] font-[400] tracking-wide w-full"
+                  className="w-full truncate text-[13px] font-[400] tracking-wide"
                 >
                   {value.DescriptionLine1} <br /> {value.DescriptionLine2}{' '}
                   <br /> {value.DescriptionLine3}
                 </motion.p>
               </div>
               {/* Button */}
-              <div className="w-full justify-start flex">
+              <div className="flex w-full justify-start">
                 <Button
-                  className={`bg-${value.ColorDark} h-8 z-[1] flex px-8 cursor-default items-center rounded-lg text-white button-text-lower`}
+                  className={`bg-${value.ColorDark} button-text-lower z-[1] flex h-8 cursor-default items-center rounded-lg px-8 text-white`}
                   sx={{
                     '.MuiTouchRipple-child': {
                       backgroundColor: '#ffffff50 !important',
                     },
                   }}
                 >
-                  <div className="flex space-x-2 items-center justify-center">
+                  <div className="flex items-center justify-center space-x-2">
                     <ChevronRightIcon className="h-4" />
-                    <p className="text-[12px] tracking-wide font-[400]">
+                    <p className="text-[12px] font-[400] tracking-wide">
                       {value.Button}
                     </p>
                   </div>
@@ -219,7 +219,7 @@ function BannerContent(props: BannerContentProps) {
             !props.DisabledCarousel &&
             props.AutoPlay &&
             props.IntervalStatus === 'running' && (
-              <div className="absolute bottom-0 left-0 p-[25px] opacity-30 z-[30]">
+              <div className="absolute bottom-0 left-0 z-[30] p-[25px] opacity-30">
                 <DiscoverCarouselPieTimer Hide={props.IntervalStatus} />
               </div>
             )}

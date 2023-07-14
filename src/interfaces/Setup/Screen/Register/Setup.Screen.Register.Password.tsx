@@ -61,16 +61,16 @@ function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
 
   return (
     <m.div
-      className={`${props.AnimationDivClassName} w-full relative`}
+      className={`${props.AnimationDivClassName} relative w-full`}
       initial={props.Animation.Initial}
       animate={props.Animation.Final}
       transition={props.Animation.Transition}
     >
       <div
-        className={`${props.ContentClassName} w-full flex flex-col space-y-4`}
+        className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
-        <div className="flex justify-center items-center w-full">
-          <div className="flex space-x-2 items-center justify-center bg-white/5 py-1 pl-1 pr-3 rounded-full">
+        <div className="flex w-full items-center justify-center">
+          <div className="flex items-center justify-center space-x-2 rounded-full bg-white/5 py-1 pl-1 pr-3">
             <div className="min-h-[20px] min-w-[20px]">
               <Image
                 height={20}
@@ -80,7 +80,7 @@ function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
                 alt=""
               />
             </div>
-            <p className="text-white text-[13px] font-[300]">{EmailAddress}</p>
+            <p className="text-[13px] font-[300] text-white">{EmailAddress}</p>
           </div>
         </div>
         <SetupIconPasswordTextField
@@ -90,7 +90,7 @@ function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
           HandleSubmit={PasswordSubmitClick}
           Loading={props.Loading}
         />
-        <div className="opacity-75 flex space-x-2 w-full">
+        <div className="flex w-full space-x-2 opacity-75">
           <TooltipDark
             arrow
             placement="top"
@@ -98,12 +98,12 @@ function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
           >
             <InformationCircleIcon className="h-5 text-white" />
           </TooltipDark>
-          <p className="font-normal text-left w-full text-white text-sm">
+          <p className="w-full text-left text-sm font-normal text-white">
             Your password should contain at least 8 or more characters with a
             mix of letters of uppercase and lowercase, numbers & symbols.
           </p>
         </div>
-        <div className="flex justify-start w-full">
+        <div className="flex w-full justify-start">
           <YellowBulbHint
             Tooltip
             TooltipPlacement="top"
@@ -111,7 +111,7 @@ function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
             Label="Requires recent login / authentication"
           />
         </div>
-        <div className="w-full flex justify-start">
+        <div className="flex w-full justify-start">
           <SignInBackButton Label="Back" onClick={BackToEmailAddressScreen} />
         </div>
       </div>

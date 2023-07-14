@@ -24,7 +24,6 @@ function SetupInterface() {
       MainClassName="h-full md:h-[652px]"
       MainScreen={MainScreen}
       ErrorType={ErrorType}
-      Loading={Loading}
       Screen={Screen}
       setScreen={setScreen}
       SkipDialog={SkipDialog}

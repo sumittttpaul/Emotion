@@ -15,7 +15,7 @@ function AuthTabPanel(props: TabPanelProps) {
       hidden={value !== index}
       id={`auth-tabpanel-${index}`}
       aria-labelledby={`auth-tabpanel-${index}`}
-      className="w-full h-full"
+      className="h-full w-full"
       {...other}
     >
       {value === index && children}

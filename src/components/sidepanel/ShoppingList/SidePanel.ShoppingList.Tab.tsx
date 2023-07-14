@@ -15,7 +15,7 @@ import SwipeableViews from '../../../../packages/react-swipeable-views/src/index
 
 const SidePanelShoppingListTabCart = dynamic<SidePanelShoppingListTabCartProps>(
   () => import('./SidePanel.ShoppingList.Tab.Cart'),
-  { ssr: false }
+  { ssr: false },
 );
 
 function classNames(...classes: string[]) {
@@ -35,7 +35,7 @@ function SidePanelShoppingListTab() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col relative">
+    <div className="relative flex h-full w-full flex-col">
       <div className="w-full px-3 pb-3">
         <LayoutGroup>
           <Tab.Group>
@@ -44,8 +44,8 @@ function SidePanelShoppingListTab() {
                 onClick={handleWishlistClick}
                 className={({ selected }) =>
                   classNames(
-                    'w-full relative rounded-md text-[13px] outline-none custom-tab-transition-color cursor-default',
-                    selected ? 'text-white' : 'text-white/[0.50]'
+                    'custom-tab-transition-color relative w-full cursor-default rounded-md text-[13px] outline-none',
+                    selected ? 'text-white' : 'text-white/[0.50]',
                   )
                 }
               >
@@ -54,10 +54,10 @@ function SidePanelShoppingListTab() {
                 ) : (
                   <motion.div
                     layoutId="SegmentedControlActive"
-                    className="w-full h-full absolute rounded-md outline-none z-[1] bg-[#202020]"
+                    className="absolute z-[1] h-full w-full rounded-md bg-[#202020] outline-none"
                   />
                 )}
-                <div className="flex w-full py-2 relative justify-center space-x-1 z-[2]">
+                <div className="relative z-[2] flex w-full justify-center space-x-1 py-2">
                   <h6>Wishlist</h6>
                 </div>
               </Tab>
@@ -65,20 +65,20 @@ function SidePanelShoppingListTab() {
                 onClick={handleCartClick}
                 className={({ selected }) =>
                   classNames(
-                    'w-full relative rounded-md text-[13px] outline-none custom-tab-transition-color cursor-default',
-                    selected ? 'text-white' : 'text-white/[0.50]'
+                    'custom-tab-transition-color relative w-full cursor-default rounded-md text-[13px] outline-none',
+                    selected ? 'text-white' : 'text-white/[0.50]',
                   )
                 }
               >
                 {Tabvalue ? (
                   <motion.div
                     layoutId="SegmentedControlActive"
-                    className="w-full h-full absolute rounded-md outline-none z-[1] bg-[#202020]"
+                    className="absolute z-[1] h-full w-full rounded-md bg-[#202020] outline-none"
                   />
                 ) : (
                   ''
                 )}
-                <div className="flex w-full py-2 relative justify-center space-x-2 z-[2]">
+                <div className="relative z-[2] flex w-full justify-center space-x-2 py-2">
                   <h6>Cart</h6>
                 </div>
               </Tab>
@@ -94,7 +94,7 @@ function SidePanelShoppingListTab() {
         disabled={true}
         index={Tabvalue}
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        className="w-full h-full flex flex-col relative"
+        className="relative flex h-full w-full flex-col"
         id="SidepanelSwipeableViews"
         containerStyle={{
           transition: 'transform 0.35s cubic-bezier(0.15, 0.3, 0.25, 1) 0s',

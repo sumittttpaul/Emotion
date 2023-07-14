@@ -6,60 +6,60 @@ import useClientAuth from 'authentication/useClientAuth';
 
 const SetupLoginPhoneScreen = dynamic<SetupLoginPhoneScreenProps>(
   () => import('interfaces/Setup/Screen/Login/Setup.Screen.Login.Phone'),
-  { ssr: false }
+  { ssr: false },
 );
 
 const SetupLoginEmailScreen = dynamic<SetupLoginEmailScreenProps>(
   () => import('interfaces/Setup/Screen/Login/Setup.Screen.Login.Email'),
-  { ssr: false }
+  { ssr: false },
 );
 
 const SetupLoginOtherAccountScreen = dynamic<SetupLoginOtherAccountScreenProps>(
   () => import('interfaces/Setup/Screen/Login/Setup.Screen.Login.OtherAccount'),
-  { ssr: false }
+  { ssr: false },
 );
 
 const SetupLoginOTPScreen = dynamic<SetupLoginOTPScreenProps>(
   () => import('interfaces/Setup/Screen/Login/Setup.Screen.Login.OTP'),
-  { ssr: false }
+  { ssr: false },
 );
 
 const SetupLoginPasswordScreen = dynamic<SetupLoginPasswordScreenProps>(
   () => import('interfaces/Setup/Screen/Login/Setup.Screen.Login.Password'),
-  { ssr: false }
+  { ssr: false },
 );
 
 const SetupLoginForgotPasswordScreen =
   dynamic<SetupLoginForgotPasswordScreenProps>(
     () =>
       import('interfaces/Setup/Screen/Login/Setup.Screen.Login.ForgotPassword'),
-    { ssr: false }
+    { ssr: false },
   );
 
 const SetupRegisterNameScreen = dynamic<SetupRegisterNameScreenProps>(
   () => import('interfaces/Setup/Screen/Register/Setup.Screen.Register.Name'),
-  { ssr: false }
+  { ssr: false },
 );
 
 const SetupRegisterPhoneScreen = dynamic<SetupRegisterPhoneScreenProps>(
   () => import('interfaces/Setup/Screen/Register/Setup.Screen.Register.Phone'),
-  { ssr: false }
+  { ssr: false },
 );
 
 const SetupRegisterOTPScreen = dynamic<SetupRegisterOTPScreenProps>(
   () => import('interfaces/Setup/Screen/Register/Setup.Screen.Register.OTP'),
-  { ssr: false }
+  { ssr: false },
 );
 
 const SetupRegisterEmailScreen = dynamic<SetupRegisterEmailScreenProps>(
   () => import('interfaces/Setup/Screen/Register/Setup.Screen.Register.Email'),
-  { ssr: false }
+  { ssr: false },
 );
 
 const SetupRegisterPasswordScreen = dynamic<SetupRegisterPasswordScreenProps>(
   () =>
     import('interfaces/Setup/Screen/Register/Setup.Screen.Register.Password'),
-  { ssr: false }
+  { ssr: false },
 );
 
 const SetupRegisterVerifyEmailScreen =
@@ -68,7 +68,7 @@ const SetupRegisterVerifyEmailScreen =
       import(
         'interfaces/Setup/Screen/Register/Setup.Screen.Register.VerifyEmail'
       ),
-    { ssr: false }
+    { ssr: false },
   );
 
 const SetupRegisterProfilePictureScreen =
@@ -77,18 +77,18 @@ const SetupRegisterProfilePictureScreen =
       import(
         'interfaces/Setup/Screen/Register/Setup.Screen.Register.ProfilePicture'
       ),
-    { ssr: false }
+    { ssr: false },
   );
 
 const SetupRegisterBirthdayScreen = dynamic<SetupRegisterBirthdayScreenProps>(
   () =>
     import('interfaces/Setup/Screen/Register/Setup.Screen.Register.Birthday'),
-  { ssr: false }
+  { ssr: false },
 );
 
 const SetupRegisterGenderScreen = dynamic<SetupRegisterGenderScreenProps>(
   () => import('interfaces/Setup/Screen/Register/Setup.Screen.Register.Gender'),
-  { ssr: false }
+  { ssr: false },
 );
 
 interface IProps {
@@ -138,7 +138,7 @@ function SetupScreenContent({
   };
 
   return (
-    <div className={`${AnimationDivClassName} w-full flex relative`}>
+    <div className={`${AnimationDivClassName} relative flex w-full`}>
       <AnimatePresence mode="wait" initial={true}>
         {Screen === 'login-phone' && (
           <SetupLoginPhoneScreen
@@ -309,7 +309,7 @@ function SetupScreenContent({
         )}
       </AnimatePresence>
       {Loading && (
-        <div className="absolute h-full w-full top-0 bg-secondary-theme/50 z-[1] " />
+        <div className="absolute top-0 z-[1] h-full w-full bg-secondary-theme/50 " />
       )}
     </div>
   );

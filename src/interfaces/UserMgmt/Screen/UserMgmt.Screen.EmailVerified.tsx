@@ -105,19 +105,19 @@ function UserMgmtEmailVerifiedScreen(props: UserMgmtEmailVerifiedScreenProps) {
       )}
       {Screen === 'Success' && (
         <>
-          <div className="pt-20 pb-7 md:p-14 md:ml-14 relative flex w-full h-full justify-center items-center">
+          <div className="relative flex h-full w-full items-center justify-center pb-7 pt-20 md:ml-14 md:p-14">
             <div className="flex h-[125px] md:h-auto">
               <Image
                 height={370}
                 width={370}
                 src="/vectors/register-verify-email.svg"
                 alt="verify-email-success"
-                className="text-white text-xs"
+                className="text-xs text-white"
               />
             </div>
           </div>
-          <div className="md:p-9 space-y-5 relative w-full md:min-w-[400px] md-1000:min-w-[500px] flex flex-col items-center justify-center overflow-hidden">
-            <div className="px-5 relative flex space-x-5 items-start justify-center">
+          <div className="relative flex w-full flex-col items-center justify-center space-y-5 overflow-hidden md:min-w-[400px] md:p-9 md-1000:min-w-[500px]">
+            <div className="relative flex items-start justify-center space-x-5 px-5">
               <Image
                 height={30}
                 width={30}
@@ -127,7 +127,7 @@ function UserMgmtEmailVerifiedScreen(props: UserMgmtEmailVerifiedScreenProps) {
               />
               <SetupHeaderLabel>Your email is verified</SetupHeaderLabel>
             </div>
-            <h6 className="font-normal text-center w-full text-white/75 text-[15px] px-5">
+            <h6 className="w-full px-5 text-center text-[15px] font-normal text-white/75">
               Congratulations! Your email has been successfully verified.
               You&apos;re now few step closer to unlocking a world of
               possibilities.
@@ -142,19 +142,19 @@ function UserMgmtEmailVerifiedScreen(props: UserMgmtEmailVerifiedScreenProps) {
       )}
       {Screen === 'Error' && (
         <>
-          <div className="pt-20 pb-7 md:p-14 md:ml-14 relative flex w-full h-full justify-center items-center">
+          <div className="relative flex h-full w-full items-center justify-center pb-7 pt-20 md:ml-14 md:p-14">
             <div className="flex h-[125px] md:h-auto">
               <Image
                 height={370}
                 width={370}
                 src="/vectors/register-verify-email-error.svg"
                 alt="verify-email-error"
-                className="text-white text-xs"
+                className="text-xs text-white"
               />
             </div>
           </div>
-          <div className="md:p-9 space-y-5 relative w-full md:min-w-[400px] md-1000:min-w-[500px] flex flex-col items-center justify-center overflow-hidden">
-            <div className="px-5 relative flex space-x-5 items-start justify-center">
+          <div className="relative flex w-full flex-col items-center justify-center space-y-5 overflow-hidden md:min-w-[400px] md:p-9 md-1000:min-w-[500px]">
+            <div className="relative flex items-start justify-center space-x-5 px-5">
               <Image
                 height={30}
                 width={30}
@@ -168,7 +168,7 @@ function UserMgmtEmailVerifiedScreen(props: UserMgmtEmailVerifiedScreenProps) {
                   : 'Something went wrong'}
               </SetupHeaderLabel>
             </div>
-            <h6 className="font-normal text-center w-full text-white/75 text-[15px] px-5">
+            <h6 className="w-full px-5 text-center text-[15px] font-normal text-white/75">
               {Toast?.Description && Toast.Description.length > 0
                 ? Toast.Description
                 : 'We apologize for the inconvenience, but there seems to be an error with the email verification process.'}
@@ -192,19 +192,19 @@ function BottomLinkButton(props: {
 }) {
   return (
     <div className="w-full flex-col space-y-2">
-      <div className="px-5 w-full flex justify-start items-center">
+      <div className="flex w-full items-center justify-start px-5">
         <SignInNextButton
           onClick={props.ManageAccountClick}
           Label="Move to manage account"
         />
       </div>
-      <div className="px-5 w-full flex justify-start items-center">
+      <div className="flex w-full items-center justify-start px-5">
         <SignInNextButton
           onClick={props.SetupClick}
           Label="Continue with setup"
         />
       </div>
-      <div className="px-5 w-full flex justify-start items-center">
+      <div className="flex w-full items-center justify-start px-5">
         <SignInBackButton onClick={props.HomeClick} Label="Back to home" />
       </div>
     </div>

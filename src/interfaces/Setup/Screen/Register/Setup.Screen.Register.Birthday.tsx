@@ -32,13 +32,13 @@ function SetupRegisterBirthdayScreen(props: SetupRegisterBirthdayScreenProps) {
       const _dataYear = DateOfBirth.split('-')[2];
       const UserDOB = EncryptData(
         UserProfileEncrytionKey(FirebaseUser.uid, 'DateOfBirth'),
-        DateOfBirth
+        DateOfBirth,
       );
       const UserAge = EncryptData(
         UserProfileEncrytionKey(FirebaseUser.uid, 'Age'),
         CalculateAge(
-          _dataDay + '-' + CalculateMonthNumber(_dataMonth) + '-' + _dataYear
-        ).toString()
+          _dataDay + '-' + CalculateMonthNumber(_dataMonth) + '-' + _dataYear,
+        ).toString(),
       );
       const _data: IUserProfileDataUpdate = {
         '_data.dateOfBirth': UserDOB,
@@ -77,15 +77,15 @@ function SetupRegisterBirthdayScreen(props: SetupRegisterBirthdayScreenProps) {
 
   return (
     <m.div
-      className={`${props.AnimationDivClassName} w-full relative`}
+      className={`${props.AnimationDivClassName} relative w-full`}
       initial={props.Animation.Initial}
       animate={props.Animation.Final}
       transition={props.Animation.Transition}
     >
       <div
-        className={`${props.ContentClassName} w-full flex flex-col space-y-4`}
+        className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
-        <div className="w-full flex items-start justify-center pt-2">
+        <div className="flex w-full items-start justify-center pt-2">
           <DatePickerButton
             DOB={DateOfBirth}
             getDOB={(value: unknown) => setDateOfBirth(value as string)}
@@ -93,14 +93,14 @@ function SetupRegisterBirthdayScreen(props: SetupRegisterBirthdayScreenProps) {
             setSubmitDisabled={setSubmitDisabled}
           />
         </div>
-        <div className="w-full flex flex-col space-y-1">
-          <div className="w-full flex justify-start">
+        <div className="flex w-full flex-col space-y-1">
+          <div className="flex w-full justify-start">
             <SignInNextButton
               Label="I will add later"
               onClick={props.CheckInfoHandler}
             />
           </div>
-          <div className="w-full flex justify-start">
+          <div className="flex w-full justify-start">
             <SignInBackButton Label="Back" onClick={BackToPhoto} />
           </div>
         </div>

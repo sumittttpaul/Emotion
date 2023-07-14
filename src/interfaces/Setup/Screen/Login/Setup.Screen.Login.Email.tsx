@@ -47,13 +47,13 @@ function SetupLoginEmailScreen(props: SetupLoginEmailScreenProps) {
 
   return (
     <m.div
-      className={`${props.AnimationDivClassName} w-full relative`}
+      className={`${props.AnimationDivClassName} relative w-full`}
       initial={props.Animation.Initial}
       animate={props.Animation.Final}
       transition={props.Animation.Transition}
     >
       <div
-        className={`${props.ContentClassName} w-full flex flex-col space-y-4`}
+        className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
         <SetupIconTextField
           Type="Email"
@@ -63,14 +63,14 @@ function SetupLoginEmailScreen(props: SetupLoginEmailScreenProps) {
           ValidateValue={ValidateEmailAddress}
           Loading={props.Loading}
         />
-        <div className="w-full flex flex-col space-y-1">
-          <div className="w-full flex justify-start">
+        <div className="flex w-full flex-col space-y-1">
+          <div className="flex w-full justify-start">
             <SignInNextButton
               Label="Sign in with phone number"
               onClick={BackToSignInWithPhoneNumber}
             />
           </div>
-          <div className="w-full flex justify-start">
+          <div className="flex w-full justify-start">
             <SignInNextButton
               Label="Sign-in options"
               onClick={MoveToOtherSignInOptions}

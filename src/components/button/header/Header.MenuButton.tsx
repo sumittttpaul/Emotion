@@ -46,7 +46,7 @@ function HeaderMenuButton(props: IProps) {
         },
       }}
     >
-      <div className="h-full p-[13.3px] flex items-center justify-center">
+      <div className="flex h-full items-center justify-center p-[13.3px]">
         <svg width="20" height="20" viewBox="0 0 24 24">
           <motion.path
             stroke="#FFFFFF"

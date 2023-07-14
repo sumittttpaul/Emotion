@@ -22,11 +22,11 @@ import { FetchUserProfile } from 'hooks/Hooks.FetchUserProfile';
 
 const SetupCheckDialog = dynamic<SetupCheckDialogProps>(
   () => import('interfaces/Setup/Dialog/Setup.Dialog.Check'),
-  { ssr: false }
+  { ssr: false },
 );
 
 function SetupLoginOtherAccountScreen(
-  props: SetupLoginOtherAccountScreenProps
+  props: SetupLoginOtherAccountScreenProps,
 ) {
   type StringType = {
     FullName: string | undefined;
@@ -57,28 +57,28 @@ function SetupLoginOtherAccountScreen(
         user.displayName && user.displayName.length > 0
           ? EncryptData(
               UserProfileEncrytionKey(user.uid, 'FullName'),
-              user.displayName
+              user.displayName,
             )
           : '';
       const UserEmailAddress =
         user.email && user.email.length > 0
           ? EncryptData(
               UserProfileEncrytionKey(user.uid, 'EmailAddress'),
-              user.email
+              user.email,
             )
           : '';
       const UserPhoneNumber =
         user.phoneNumber && user.phoneNumber.length > 0
           ? EncryptData(
               UserProfileEncrytionKey(user.uid, 'PhoneNumber'),
-              user.phoneNumber
+              user.phoneNumber,
             )
           : '';
       const UserPhotoURL =
         user.photoURL && user.photoURL.length > 0
           ? EncryptData(
               UserProfileEncrytionKey(user.uid, 'PhotoURL'),
-              user.photoURL
+              user.photoURL,
             )
           : '';
       const UserEmailAddressVerified = user.emailVerified
@@ -176,7 +176,7 @@ function SetupLoginOtherAccountScreen(
             value && value._data && value._data.fullName
               ? DecryptData(
                   UserProfileEncrytionKey(user.uid, 'FullName'),
-                  value._data.fullName
+                  value._data.fullName,
                 )
               : undefined,
         });
@@ -186,7 +186,7 @@ function SetupLoginOtherAccountScreen(
             value && value._data && value._data.photoURL
               ? DecryptData(
                   UserProfileEncrytionKey(user.uid, 'PhotoURL'),
-                  value._data.photoURL
+                  value._data.photoURL,
                 )
               : undefined,
         });
@@ -326,21 +326,21 @@ function SetupLoginOtherAccountScreen(
   return (
     <>
       <m.div
-        className={`${props.AnimationDivClassName} w-full relative`}
+        className={`${props.AnimationDivClassName} relative w-full`}
         initial={props.Animation.Initial}
         animate={props.Animation.Final}
         transition={props.Animation.Transition}
       >
         <div
-          className={`${props.ContentClassName} w-full flex flex-col space-y-4`}
+          className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
         >
-          <div className="w-full flex flex-col space-y-2">
+          <div className="flex w-full flex-col space-y-2">
             <CustomButton onClick={GoogleSignIn} Label="Google" />
             <CustomButton onClick={FacebookSignIn} Label="Facebook" />
             <CustomButton onClick={AppleSignIn} Label="Apple" />
             <CustomButton onClick={MicrosoftSignIn} Label="Microsoft" />
           </div>
-          <div className="w-full flex justify-start">
+          <div className="flex w-full justify-start">
             <SignInBackButton
               Label="Back"
               onClick={BackToSignInWithPhoneNumber}
@@ -371,7 +371,7 @@ function CustomButton(props: CustomButtonProps) {
       aria-label="apple-sign-in-button"
       disableFocusRipple
       onClick={props.onClick}
-      className="bg-white/5 hover:bg-white/10 cursor-default text-white h-[50px] justify-center items-center flex w-full rounded-lg button-text-lower"
+      className="button-text-lower flex h-[50px] w-full cursor-default items-center justify-center rounded-lg bg-white/5 text-white hover:bg-white/10"
       sx={{
         '.MuiTouchRipple-child': {
           backgroundColor: '#ffffff50 !important',
@@ -382,8 +382,8 @@ function CustomButton(props: CustomButtonProps) {
         {/* <Image height={20} width={20} src={props.Icon} alt="" /> */}
         <div
           className={`${
-            props.Description ? '-space-y-1 ?' : ''
-          } w-full flex flex-col`}
+            props.Description ? '? -space-y-1' : ''
+          } flex w-full flex-col`}
         >
           <label className="w-full text-start text-[13px] font-normal tracking-wide">
             {props.Label}
@@ -394,7 +394,7 @@ function CustomButton(props: CustomButtonProps) {
         </div>
         <div className="flex h-full items-center justify-center">
           <ChevronRightIcon
-            className={`${props.Description ? 'mt-3' : 'mt-1'} h-4 w-4 block`}
+            className={`${props.Description ? 'mt-3' : 'mt-1'} block h-4 w-4`}
           />
         </div>
       </div>

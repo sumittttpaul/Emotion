@@ -8,7 +8,7 @@ interface IProps {
 
 function DiscoverTiles(props: IProps) {
   return (
-    <div className="px-3 mt-5 flex flex-col text-white p-0 m-0 box-border overflow-y-visible overflow-x-hidden">
+    <div className="m-0 mt-5 box-border flex flex-col overflow-x-hidden overflow-y-visible p-0 px-3 text-white">
       <DiscoverTilesBrowser
         Label={props.Label}
         ContentArray={props.ContentArray}

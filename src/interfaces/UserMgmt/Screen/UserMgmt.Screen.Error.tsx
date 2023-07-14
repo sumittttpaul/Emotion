@@ -23,31 +23,31 @@ function UserMgmtErrorScreen() {
   };
 
   return (
-    <div className="md:h-[652px] px-5 pt-20 md:p-14 relative flex flex-col w-full h-full justify-center items-center">
+    <div className="relative flex h-full w-full flex-col items-center justify-center px-5 pt-20 md:h-[652px] md:p-14">
       <Image
         height={100}
         width={100}
-        className="opacity-30 pb-7 text-white text-xs"
+        className="pb-7 text-xs text-white opacity-30"
         src="/vectors/emogi-face-error.svg"
         alt="setup-error"
       />
-      <div className="max-w-[500px] space-y-5 relative w-full flex flex-col items-center justify-center overflow-hidden">
+      <div className="relative flex w-full max-w-[500px] flex-col items-center justify-center space-y-5 overflow-hidden">
         <div className="flex">
           <SetupHeaderLabel>Something went wrong</SetupHeaderLabel>
         </div>
-        <h6 className="font-normal text-center w-full text-white/75 text-[15px]">
+        <h6 className="w-full text-center text-[15px] font-normal text-white/75">
           We apologize for the inconvenience, but there seems to be an error
           with the mode process.
         </h6>
       </div>
-      <div className="w-full flex-col space-y-2 mt-7 max-w-[750px]">
-        <div className="w-full flex justify-start items-center">
+      <div className="mt-7 w-full max-w-[750px] flex-col space-y-2">
+        <div className="flex w-full items-center justify-start">
           <SignInNextButton
             onClick={handleMoveToManageAccount}
             Label="Move to manage account"
           />
         </div>
-        <div className="w-full flex justify-start items-center">
+        <div className="flex w-full items-center justify-start">
           <SignInBackButton onClick={handleBackToHome} Label="Back to home" />
         </div>
       </div>
