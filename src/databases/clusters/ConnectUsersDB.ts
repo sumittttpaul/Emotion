@@ -24,7 +24,10 @@ const ConnectUsersDatabase = async () => {
   } catch (error) {
     if (error instanceof Error) {
       // return Promise.reject(error);
-      throw new IError({ name: error.name, message: error.message });
+      throw new IError({
+        name: 'Something went wrong',
+        message: error.message,
+      });
     }
   }
 };

@@ -195,7 +195,7 @@ function CheckInfoHandler({
           setMainScreen('Error');
           setErrorType('get-user-failed');
           setToast({
-            Title: error.name,
+            Title: 'Something went wrong',
             Description: error.message,
             Type: 'Error',
             Show: false,
@@ -206,7 +206,7 @@ function CheckInfoHandler({
       setMainScreen('Error');
       setErrorType('get-user-failed');
       setToast({
-        Title: value.error.name,
+        Title: 'Something went wrong',
         Description: value.error.message,
         Type: 'Error',
         Show: false,
@@ -216,7 +216,7 @@ function CheckInfoHandler({
   if (FirebaseError) {
     setMainScreen('Error');
     setToast({
-      Title: FirebaseError.name,
+      Title: 'Something went wrong',
       Description: FirebaseError.message,
       Type: 'Error',
       Show: false,

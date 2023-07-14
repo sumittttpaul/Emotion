@@ -138,7 +138,7 @@ function SetupScreenContent({
   };
 
   return (
-    <div className={`${AnimationDivClassName} w-full flex`}>
+    <div className={`${AnimationDivClassName} w-full flex relative`}>
       <AnimatePresence mode="wait" initial={true}>
         {Screen === 'login-phone' && (
           <SetupLoginPhoneScreen
@@ -308,6 +308,9 @@ function SetupScreenContent({
           />
         )}
       </AnimatePresence>
+      {Loading && (
+        <div className="absolute h-full w-full top-0 bg-secondary-theme/50 z-[1] " />
+      )}
     </div>
   );
 }

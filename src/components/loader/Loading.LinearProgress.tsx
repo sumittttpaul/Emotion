@@ -11,9 +11,19 @@ const LoadingLinearProgressUI = styled(LinearProgress)(() => ({
   },
 }));
 
-function LoadingLinearProgress() {
+interface IProps {
+  backDrop?: true;
+}
+
+function LoadingLinearProgress({ backDrop }: IProps) {
   return (
-    <div className="absolute z-10 top-0 w-full h-full bg-secondary-theme/50 cursor-wait">
+    <div
+      className={`${
+        backDrop
+          ? 'absolute z-10 top-0 w-full h-full bg-secondary-theme/50'
+          : 'absolute top-[50%] w-full'
+      }`}
+    >
       <LoadingLinearProgressUI
         sx={{
           color: '#202020',

@@ -52,7 +52,7 @@ function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
           if (error instanceof Error) {
             props.setLoading(false);
             setToast({
-              Title: error.name,
+              Title: 'Something went wrong',
               Description: error.message,
               Type: 'Error',
               Show: true,

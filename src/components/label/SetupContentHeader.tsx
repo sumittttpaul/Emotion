@@ -1,6 +1,7 @@
 interface IProps {
   ClassName?: string;
   children: React.ReactNode;
+  Animation?: AuthAnimationType;
 }
 
 function SetupContentHeader(props: IProps) {

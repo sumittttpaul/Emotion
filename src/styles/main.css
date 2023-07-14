@@ -195,10 +195,6 @@
   box-shadow: 0 10px 20px #00000075;
 }
 
-.Setup-DropShadow {
-  box-shadow: 0 0px 50px #000000;
-}
-
 .Custom-DropShadow {
   box-shadow: 0 0px 10px #00000090;
 }
@@ -258,6 +254,12 @@
     black 85%,
     transparent 100%
   );
+}
+
+@media (min-width: 768px) {
+  .md\:Setup-DropShadow {
+    box-shadow: 0 0px 50px #000000;
+  }
 }
 
 @media screen and (min-width: 640px) {

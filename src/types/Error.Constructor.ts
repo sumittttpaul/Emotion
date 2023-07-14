@@ -1,6 +1,6 @@
 export function CatchError(error: IError) {
   return {
-    name: error.name,
+    name: 'Something went wrong',
     message: error.message,
   };
 }
@@ -8,6 +8,6 @@ export function CatchError(error: IError) {
 export class IError extends Error {
   constructor(error: IError) {
     super(error.message);
-    this.name = error.name;
+    this.name = 'Something went wrong';
   }
 }

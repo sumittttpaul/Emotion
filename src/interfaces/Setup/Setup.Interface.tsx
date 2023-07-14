@@ -13,6 +13,12 @@ function SetupInterface() {
   const [ErrorType, setErrorType] = useState<AuthErrorType>(undefined);
   const [MainScreen, setMainScreen] = useState<AuthMainScreenType>('CheckInfo'); // CheckInfo
 
+  const Animation = {
+    Initial: { x: 50, opacity: 0 },
+    Final: { x: 0, opacity: 1 },
+    Transition: { type: 'tween' },
+  };
+
   return (
     <SetupScreenMain
       MainClassName="h-full md:h-[652px]"
@@ -26,7 +32,7 @@ function SetupInterface() {
       setMainScreen={setMainScreen}
       setSkipDialog={setSkipDialog}
     >
-      <SetupScreenTitle Screen={Screen} />
+      <SetupScreenTitle Screen={Screen} Loading={Loading} />
       <SetupScreenContent
         AnimationDivClassName="h-[350px]"
         ContentClassName="h-[300px]"
@@ -39,11 +45,7 @@ function SetupInterface() {
         setResetCaptcha={setResetCaptcha}
         setSkipDialog={setSkipDialog}
         setLoading={setLoading}
-        Animation={{
-          Initial: { x: 50, opacity: 0 },
-          Final: { x: 0, opacity: 1 },
-          Transition: { type: 'tween' },
-        }}
+        Animation={Animation}
       />
     </SetupScreenMain>
   );

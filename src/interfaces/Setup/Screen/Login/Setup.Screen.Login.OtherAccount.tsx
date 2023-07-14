@@ -132,7 +132,7 @@ function SetupLoginOtherAccountScreen(
         .catch((error) => {
           if (error instanceof Error)
             setToast({
-              Title: error.name,
+              Title: 'Something went wrong',
               Description: error.message,
               Type: 'Error',
               Show: true,
@@ -209,7 +209,7 @@ function SetupLoginOtherAccountScreen(
         if (error) {
           props.setMainScreen('Error');
           setToast({
-            Title: error.name,
+            Title: 'Something went wrong',
             Description: error.message,
             Type: 'Error',
             Show: false,

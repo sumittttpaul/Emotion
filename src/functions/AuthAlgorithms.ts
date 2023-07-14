@@ -95,11 +95,7 @@ export async function ResentOTP({
       Loading(false);
       const message = AuthErrorMessage(error.code);
       ShowToast(
-        error.name
-          ? error.name
-          : error.name
-          ? error.name
-          : 'Something went wrong',
+        'Something went wrong',
         message
           ? message
           : 'There is an error from server side of authentication.',
@@ -145,7 +141,7 @@ export async function VerifyOTP({
       const message = AuthErrorMessage(error.code);
       if (message == 'Invalid verification code') EmptyOTPBox();
       ShowToast(
-        error.name ? error.name : 'Something went wrong',
+        'Something went wrong',
         message
           ? message
           : 'There is an error from server side of authentication.',
@@ -178,7 +174,7 @@ export async function PasswordReset({
       Loading(false);
       const message = AuthErrorMessage(error.code);
       ShowToast(
-        error.name ? error.name : 'Something went wrong',
+        'Something went wrong',
         message
           ? message
           : 'There is an error from server side of authentication.',
@@ -214,7 +210,7 @@ export async function ConfirmPasswordReset({
               EmptyPassword();
               const message = AuthErrorMessage(error.code);
               ShowToast(
-                error.name ? error.name : 'Something went wrong',
+                'Something went wrong',
                 message
                   ? message
                   : 'There is an error from server side of authentication.',
@@ -228,7 +224,7 @@ export async function ConfirmPasswordReset({
           EmptyPassword();
           const message = AuthErrorMessage(error.code);
           ShowToast(
-            error.name ? error.name : 'Something went wrong',
+            'Something went wrong',
             message
               ? message
               : 'There is an error from server side of authentication.',
@@ -242,7 +238,7 @@ export async function ConfirmPasswordReset({
       EmptyPassword();
       const message = AuthErrorMessage(error.code);
       ShowToast(
-        error.name ? error.name : 'Something went wrong',
+        'Something went wrong',
         message
           ? message
           : 'There is an error from server side of authentication.',
@@ -275,7 +271,7 @@ export async function ConfirmVerifyEmailAddress({
         Screen('Error');
         const message = AuthErrorMessage(error.code);
         ShowToast(
-          error.name ? error.name : 'Something went wrong',
+          'Something went wrong',
           message
             ? message
             : 'There is an error from server side of authentication.',
@@ -321,7 +317,7 @@ export async function SignInWithPhoneNumber({
       Loading(false);
       const message = AuthErrorMessage(error.code);
       ShowToast(
-        error.name ? error.name : 'Something went wrong',
+        'Something went wrong',
         message
           ? message
           : 'There is an error from server side of authentication.',
@@ -355,7 +351,7 @@ export async function SignInWithEmailAndPassword({
       Loading(false);
       const message = AuthErrorMessage(error.code);
       ShowToast(
-        error.name ? error.name : 'Something went wrong',
+        'Something went wrong',
         message
           ? message
           : 'There is an error from server side of authentication.',
@@ -396,7 +392,7 @@ export async function SignInWithFacebook({
       Loading(false);
       const message = AuthErrorMessage(error.code);
       ShowToast(
-        error.name ? error.name : 'Something went wrong',
+        'Something went wrong',
         message
           ? message
           : 'There is an error from server side of authentication.',
@@ -434,7 +430,7 @@ export async function SignInWithGoogle({
       Loading(false);
       const message = AuthErrorMessage(error.code);
       ShowToast(
-        error.name ? error.name : 'Something went wrong',
+        'Something went wrong',
         message
           ? message
           : 'There is an error from server side of authentication.',
@@ -472,7 +468,7 @@ export async function SignInWithApple({
       Loading(false);
       const message = AuthErrorMessage(error.code);
       ShowToast(
-        error.name ? error.name : 'Something went wrong',
+        'Something went wrong',
         message
           ? message
           : 'There is an error from server side of authentication.',
@@ -510,7 +506,7 @@ export async function SignInWithMicrosoft({
       Loading(false);
       const message = AuthErrorMessage(error.code);
       ShowToast(
-        error.name ? error.name : 'Something went wrong',
+        'Something went wrong',
         message
           ? message
           : 'There is an error from server side of authentication.',
@@ -540,7 +536,7 @@ export async function AddFullName({
         Loading(false);
         const message = AuthErrorMessage(error.code);
         ShowToast(
-          error.name ? error.name : 'Something went wrong',
+          'Something went wrong',
           message
             ? message
             : 'There is an error from server side of authentication.',
@@ -575,7 +571,7 @@ export async function VerifyEmailAddress({
         Loading(false);
         const message = AuthErrorMessage(error.code);
         ShowToast(
-          error.name ? error.name : 'Something went wrong',
+          'Something went wrong',
           message
             ? message
             : 'There is an error from server side of authentication.',
@@ -611,7 +607,7 @@ export async function LinkWithEmailAndPassword({
         EmptyPasswordTextField();
         const message = AuthErrorMessage(error.code);
         ShowToast(
-          error.name ? error.name : 'Something went wrong',
+          'Something went wrong',
           message
             ? message
             : 'There is an error from server side of authentication.',
@@ -656,7 +652,7 @@ export async function LinkWithPhoneNumber({
         Loading(false);
         const message = AuthErrorMessage(error.code);
         ShowToast(
-          error.name ? error.name : 'Something went wrong',
+          'Something went wrong',
           message
             ? message
             : 'There is an error from server side of authentication.',
@@ -692,7 +688,7 @@ export async function VerifyOTPForLinkWithPhone({
         const message = AuthErrorMessage(error.code);
         if (message == 'Invalid verification code') EmptyOTPBox();
         ShowToast(
-          error.name ? error.name : 'Something went wrong',
+          'Something went wrong',
           message
             ? message
             : 'There is an error from server side of authentication.',
@@ -732,7 +728,7 @@ export async function ResentOTPForLinkWithPhone({
         Loading(false);
         const message = AuthErrorMessage(error.code);
         ShowToast(
-          error.name ? error.name : 'Something went wrong',
+          'Something went wrong',
           message
             ? message
             : 'There is an error from server side of authentication.',
@@ -783,7 +779,7 @@ export async function UploadAvatar({
           Loading(false);
           const message = AuthErrorMessage(error.code);
           ShowToast(
-            error.name ? error.name : 'Something went wrong',
+            'Something went wrong',
             message
               ? message
               : 'There is an error from server side of authentication.',
@@ -804,7 +800,7 @@ export async function UploadAvatar({
                   Loading(false);
                   const message = AuthErrorMessage(error.code);
                   ShowToast(
-                    error.name ? error.name : 'Something went wrong',
+                    'Something went wrong',
                     message
                       ? message
                       : 'There is an error from server side of authentication.',
@@ -853,7 +849,7 @@ export async function DeleteAvatar({
               Loading(false);
               const message = AuthErrorMessage(error.code);
               ShowToast(
-                error.name ? error.name : 'Something went wrong',
+                'Something went wrong',
                 message
                   ? message
                   : 'There is an error from server side of authentication.',
@@ -866,7 +862,7 @@ export async function DeleteAvatar({
           Loading(false);
           const message = AuthErrorMessage(error.code);
           ShowToast(
-            error.name ? error.name : 'Something went wrong',
+            'Something went wrong',
             message
               ? message
               : 'There is an error from server side of authentication.',
@@ -909,7 +905,7 @@ export async function DeleteAccount({
         Loading(false);
         const message = AuthErrorMessage(error.code);
         ShowToast(
-          error.name ? error.name : 'Something went wrong',
+          'Something went wrong',
           message
             ? message
             : 'There is an error from server side of authentication.',

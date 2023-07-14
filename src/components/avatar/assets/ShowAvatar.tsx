@@ -143,7 +143,7 @@ function ShowAvatar(props: IProps) {
           </Button>
         )}
       </div>
-      {props.ShowProgress && <LoadingLinearProgress />}
+      {props.ShowProgress && <LoadingLinearProgress backDrop />}
     </div>
   );
 }

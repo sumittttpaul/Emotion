@@ -93,7 +93,7 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
       .catch((error) => {
         if (error instanceof Error)
           setToast({
-            Title: error.name,
+            Title: 'Something went wrong',
             Description: error.message,
             Type: 'Error',
             Show: true,

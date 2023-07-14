@@ -9,10 +9,6 @@ import SetupLoadingScreen from 'interfaces/Setup/Screen/Setup.Screen.Loading';
 import CheckInfoHandler from 'functions/CheckInfoHandler';
 import useClientAuth from 'authentication/useClientAuth';
 
-const LoadingLinearProgress = dynamic(
-  () => import('components/loader/Loading.LinearProgress'),
-  { ssr: false }
-);
 const ToastDark = dynamic<ToastDarkProps>(
   () => import('components/toast/ToastDark'),
   { ssr: false }
@@ -124,7 +120,6 @@ function SetupScreenMain({
       {MainScreen === 'Finish' && (
         <SetupFinishScreen ClassName={MainClassName} />
       )}
-      {Loading && <LoadingLinearProgress />}
       <SetupSkipDialog Open={SkipDialog} onClose={() => setSkipDialog(false)} />
       <ToastDark
         Toast={{

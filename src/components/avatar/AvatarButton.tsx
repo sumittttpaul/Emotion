@@ -179,7 +179,7 @@ function AvatarButton() {
           if (error instanceof Error) {
             setAvatarLoading(false);
             setToast({
-              Title: error.name,
+              Title: 'Something went wrong',
               Description: error.message,
               Type: 'Error',
               Show: true,
@@ -218,7 +218,7 @@ function AvatarButton() {
           if (error instanceof Error) {
             setAvatarLoading(false);
             setToast({
-              Title: error.name,
+              Title: 'Something went wrong',
               Description: error.message,
               Type: 'Error',
               Show: true,

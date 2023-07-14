@@ -60,7 +60,7 @@ function SetupLoadingScreen(props: IProps) {
           <Skeleton
             variant="rectangular"
             width="100%"
-            height={250}
+            height={260}
             sx={{ backgroundColor: backgroundColor }}
           />
         </div>
@@ -68,7 +68,7 @@ function SetupLoadingScreen(props: IProps) {
           <Skeleton
             variant="rectangular"
             width={160}
-            height={50}
+            height={40}
             sx={{ backgroundColor: backgroundColor }}
           />
         </div>
