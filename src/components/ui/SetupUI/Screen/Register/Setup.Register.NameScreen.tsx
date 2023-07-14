@@ -1,5 +1,3 @@
-'use client';
-
 import { m } from 'framer-motion';
 import { AddFullName } from 'functions/AuthAlgorithms';
 import { ToastHook } from 'hooks/Hooks.Toast';

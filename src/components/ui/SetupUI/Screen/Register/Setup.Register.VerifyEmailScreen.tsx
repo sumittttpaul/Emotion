@@ -1,5 +1,3 @@
-'use client';
-
 import { m } from 'framer-motion';
 import { CircularProgress } from '@mui/material';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';

@@ -1,5 +1,3 @@
-'use client';
-
 import { m } from 'framer-motion';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';

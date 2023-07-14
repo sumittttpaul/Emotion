@@ -1,5 +1,3 @@
-'use client';
-
 import { ToastDarkProps } from 'components/toast/ToastDark';
 import { SetupSkipDialogProps } from 'components/ui/SetupUI/Dialog/Setup.SkipDialog';
 import { SetupErrorScreenProps } from 'components/ui/SetupUI/Screen/Setup.ErrorScreen';

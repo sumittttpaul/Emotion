@@ -1,5 +1,3 @@
-'use client';
-
 import { m } from 'framer-motion';
 import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';

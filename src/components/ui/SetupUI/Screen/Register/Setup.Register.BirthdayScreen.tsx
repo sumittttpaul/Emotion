@@ -1,5 +1,3 @@
-'use client';
-
 import { m } from 'framer-motion';
 import { useState } from 'react';
 import { CalculateAge, CalculateMonthNumber } from 'functions/UIAlgorithms';

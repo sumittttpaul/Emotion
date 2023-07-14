@@ -1,5 +1,3 @@
-'use client';
-
 import { m } from 'framer-motion';
 import { userProfileHook } from 'hooks/Hooks.UserProfile';
 import { ToastHook } from 'hooks/Hooks.Toast';
