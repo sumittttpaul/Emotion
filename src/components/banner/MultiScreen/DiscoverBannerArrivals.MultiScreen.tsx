@@ -1,6 +1,6 @@
 import { DiscoverBannerLightingDealContentProps } from 'contents/home/discover/Home.Discover.Banner';
 import { motion } from 'framer-motion';
-import { Poster_BlurDataURL } from 'components/loader/BlurDataURL';
+import { Poster_BlurDataURL } from 'components/loading/BlurDataURL';
 import Image from 'next/image';
 import useScreenSize from 'functions/ScreenSizeDetection';
 

@@ -1,5 +1,5 @@
 import { GalleryCarouselContentProps } from 'contents/gallery/Gallery.Carousel';
-import { Rectangle_BlurDataURL } from 'components/loader/BlurDataURL';
+import { Rectangle_BlurDataURL } from 'components/loading/BlurDataURL';
 import { AnimationControls, motion } from 'framer-motion';
 import Image from 'next/image';
 

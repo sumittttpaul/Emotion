@@ -33,7 +33,7 @@ function SetupInterface() {
     >
       <SetupScreenTitle Screen={Screen} Loading={Loading} />
       <SetupScreenContent
-        AnimationDivClassName="h-[350px]"
+        ParentDivClassName="h-[350px]"
         ContentClassName="h-[300px]"
         Screen={Screen}
         Loading={Loading}

@@ -1,7 +1,7 @@
 import { GalleryCarouselContentProps } from 'contents/gallery/Gallery.Carousel';
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Poster_BlurDataURL } from 'components/loader/BlurDataURL';
+import { Poster_BlurDataURL } from 'components/loading/BlurDataURL';
 import { Button } from '@mui/material';
 import { HeartIcon } from '@heroicons/react/outline';
 import Image from 'next/image';

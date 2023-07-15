@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { m } from 'framer-motion';
-import { Square_BlurDataURL } from 'components/loader/BlurDataURL';
+import { Square_BlurDataURL } from 'components/loading/BlurDataURL';
 import { SetupAvatarContentProps } from 'contents/setup/Setup.Avatar';
 
 interface IProps {

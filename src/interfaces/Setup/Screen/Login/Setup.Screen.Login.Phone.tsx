@@ -1,4 +1,3 @@
-import { m } from 'framer-motion';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import { SignInWithPhoneNumber } from 'functions/AuthAlgorithms';
@@ -60,12 +59,7 @@ function SetupLoginPhoneScreen(props: SetupLoginPhoneScreenProps) {
   };
 
   return (
-    <m.div
-      className={`${props.AnimationDivClassName} relative w-full`}
-      initial={props.Animation.Initial}
-      animate={props.Animation.Final}
-      transition={props.Animation.Transition}
-    >
+    <div className={`${props.ParentDivClassName} relative w-full`}>
       <div
         className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
@@ -108,7 +102,7 @@ function SetupLoginPhoneScreen(props: SetupLoginPhoneScreenProps) {
           Send OTP
         </SetupSubmitButton>
       </div>
-    </m.div>
+    </div>
   );
 }
 

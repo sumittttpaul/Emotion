@@ -46,7 +46,7 @@ function SetupLoginForgotPasswordScreen(
 
   return (
     <m.div
-      className={`${props.AnimationDivClassName} relative w-full`}
+      className={`${props.ParentDivClassName} relative w-full`}
       initial={props.Animation.Initial}
       animate={props.Animation.Final}
       transition={props.Animation.Transition}

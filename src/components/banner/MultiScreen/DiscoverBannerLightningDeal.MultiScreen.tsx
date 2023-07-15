@@ -1,7 +1,7 @@
 import { DiscoverBannerLightingDealContentProps } from 'contents/home/discover/Home.Discover.Banner';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Poster_BlurDataURL } from 'components/loader/BlurDataURL';
+import { Poster_BlurDataURL } from 'components/loading/BlurDataURL';
 import useScreenSize from 'functions/ScreenSizeDetection';
 
 const HeadingStyle =

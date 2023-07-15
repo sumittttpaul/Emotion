@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 import {
   Banner_BlurDataURL,
   Square_BlurDataURL,
-} from 'components/loader/BlurDataURL';
+} from 'components/loading/BlurDataURL';
 import Image from 'next/image';
 
 interface IProps {

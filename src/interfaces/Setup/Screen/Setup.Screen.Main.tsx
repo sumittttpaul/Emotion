@@ -4,7 +4,7 @@ import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import SetupLoadingScreen from 'interfaces/Setup/Screen/Setup.Screen.Loading';
+import SetupLoadingSkeleton from 'components/loading/Setup/SetupLoading';
 import CheckInfoHandler from 'functions/CheckInfoHandler';
 import useClientAuth from 'authentication/useClientAuth';
 
@@ -93,7 +93,7 @@ function SetupScreenMain({
         />
       )}
       {MainScreen === 'CheckInfo' && (
-        <SetupLoadingScreen ClassName={MainClassName} />
+        <SetupLoadingSkeleton ClassName={MainClassName} />
       )}
       {MainScreen === 'Setup' && (
         <main

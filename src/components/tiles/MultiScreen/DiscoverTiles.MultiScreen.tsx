@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { DiscoverTilesContentProps } from 'contents/home/discover/Home.Discover.Tiles';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Rectangle_BlurDataURL } from 'components/loader/BlurDataURL';
+import { Rectangle_BlurDataURL } from 'components/loading/BlurDataURL';
 import BannerSmallButton from 'components/button/banner/Banner.SmallButton';
 import useScreenSize from 'functions/ScreenSizeDetection';
 import UnderlineButtonDark from 'components/button/UnderlineButtonDark';

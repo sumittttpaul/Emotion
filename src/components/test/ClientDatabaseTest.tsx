@@ -13,7 +13,7 @@ function ClientDatabaseTest(props: IProps) {
   const [User, setUser] = useState<IUserProfile | undefined>(undefined);
   const [Error, setError] = useState<IError | undefined>(undefined);
 
-  const Update = () => {
+  function Update() {
     OperateUserProfile('UPDATE', {
       uid: createUser._uid,
       update: updateUser,
@@ -21,25 +21,25 @@ function ClientDatabaseTest(props: IProps) {
       setUser(undefined);
       setError(value);
     });
-  };
+  }
 
-  const Create = () => {
+  function Create() {
     OperateUserProfile('CREATE', { create: createUser }).catch(
       (value: IError) => {
         setUser(undefined);
         setError(value);
       },
     );
-  };
+  }
 
-  const Delete = () => {
+  function Delete() {
     OperateUserProfile('DELETE', { uid: createUser._uid }).catch(
       (value: IError) => {
         setUser(undefined);
         setError(value);
       },
     );
-  };
+  }
 
   const createUser: IUserProfile = {
     _uid: '1234567890',
@@ -66,8 +66,6 @@ function ClientDatabaseTest(props: IProps) {
   useEffect(() => {
     setUser(props.User);
     setError(props.Error);
-    console.log('user : ' + props.User);
-    console.log('error : ' + props.Error);
   }, [props.User, props.Error]);
 
   return (

@@ -4,7 +4,7 @@ import SetupHeaderLabel from 'components/label/SetupHeaderLabel';
 import dynamic from 'next/dynamic';
 
 const LoadingLinearProgress = dynamic(
-  () => import('components/loader/Loading.LinearProgress'),
+  () => import('components/loading/Loading.LinearProgress'),
   { ssr: false },
 );
 

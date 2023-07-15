@@ -1,7 +1,7 @@
-import SetupLoadingScreen from 'interfaces/Setup/Screen/Setup.Screen.Loading';
+import SetupLoadingSkeleton from 'components/loading/Setup/SetupLoading';
 
 function loading() {
-  return <SetupLoadingScreen />;
+  return <SetupLoadingSkeleton />;
 }
 
 export default loading;

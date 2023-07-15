@@ -103,7 +103,7 @@ function UserMgmtResetPasswordScreen(props: UserMgmtResetPasswordScreenProps) {
           initial={props.Animation.Initial}
           animate={props.Animation.Final}
           transition={props.Animation.Transition}
-          className={`${props.AnimationDivClassName} relative w-full overflow-hidden px-5`}
+          className={`${props.ParentDivClassName} relative w-full overflow-hidden px-5`}
         >
           <div
             className={`${props.ContentClassName} flex w-full flex-col space-y-4`}

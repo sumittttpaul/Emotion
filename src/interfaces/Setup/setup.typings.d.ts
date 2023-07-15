@@ -17,7 +17,7 @@ interface SetupSkipDialogProps {
 
 interface SetupLoginEmailScreenProps {
   ContentClassName?: string;
-  AnimationDivClassName?: string;
+  ParentDivClassName?: string;
   Animation: AuthAnimationType;
   setScreen: Dispatch<AuthScreenType>;
   Loading: boolean;
@@ -25,7 +25,7 @@ interface SetupLoginEmailScreenProps {
 
 interface SetupLoginForgotPasswordScreenProps {
   ContentClassName?: string;
-  AnimationDivClassName?: string;
+  ParentDivClassName?: string;
   Animation: AuthAnimationType;
   setScreen: Dispatch<AuthScreenType>;
   setLoading: Dispatch<boolean>;
@@ -33,7 +33,7 @@ interface SetupLoginForgotPasswordScreenProps {
 
 interface SetupLoginOtherAccountScreenProps {
   ContentClassName?: string;
-  AnimationDivClassName?: string;
+  ParentDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
   setScreen: Dispatch<AuthScreenType>;
@@ -44,7 +44,7 @@ interface SetupLoginOtherAccountScreenProps {
 
 interface SetupLoginOTPScreenProps {
   ContentClassName?: string;
-  AnimationDivClassName?: string;
+  ParentDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
   setScreen: Dispatch<AuthScreenType>;
@@ -57,7 +57,7 @@ interface SetupLoginOTPScreenProps {
 
 interface SetupLoginPasswordScreenProps {
   ContentClassName?: string;
-  AnimationDivClassName?: string;
+  ParentDivClassName?: string;
   Animation: AuthAnimationType;
   setScreen: Dispatch<AuthScreenType>;
   setLoading: Dispatch<boolean>;
@@ -66,8 +66,7 @@ interface SetupLoginPasswordScreenProps {
 
 interface SetupLoginPhoneScreenProps {
   ContentClassName?: string;
-  AnimationDivClassName?: string;
-  Animation: AuthAnimationType;
+  ParentDivClassName?: string;
   setScreen: Dispatch<AuthScreenType>;
   setLoading: Dispatch<boolean>;
   ResetCaptcha: boolean;
@@ -79,7 +78,7 @@ interface SetupLoginPhoneScreenProps {
 
 interface SetupRegisterBirthdayScreenProps {
   ContentClassName?: string;
-  AnimationDivClassName?: string;
+  ParentDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
   setScreen: Dispatch<AuthScreenType>;
@@ -89,7 +88,7 @@ interface SetupRegisterBirthdayScreenProps {
 
 interface SetupRegisterEmailScreenProps {
   ContentClassName?: string;
-  AnimationDivClassName?: string;
+  ParentDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
   setScreen: Dispatch<AuthScreenType>;
@@ -100,7 +99,7 @@ interface SetupRegisterEmailScreenProps {
 
 interface SetupRegisterGenderScreenProps {
   ContentClassName?: string;
-  AnimationDivClassName?: string;
+  ParentDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
   setScreen: Dispatch<AuthScreenType>;
@@ -110,7 +109,7 @@ interface SetupRegisterGenderScreenProps {
 
 interface SetupRegisterNameScreenProps {
   ContentClassName?: string;
-  AnimationDivClassName?: string;
+  ParentDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
   setSkipDialog: Dispatch<boolean>;
@@ -120,7 +119,7 @@ interface SetupRegisterNameScreenProps {
 
 interface SetupRegisterOTPScreenProps {
   ContentClassName?: string;
-  AnimationDivClassName?: string;
+  ParentDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
   setScreen: Dispatch<AuthScreenType>;
@@ -131,7 +130,7 @@ interface SetupRegisterOTPScreenProps {
 
 interface SetupRegisterPasswordScreenProps {
   ContentClassName?: string;
-  AnimationDivClassName?: string;
+  ParentDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
   setScreen: Dispatch<AuthScreenType>;
@@ -141,7 +140,7 @@ interface SetupRegisterPasswordScreenProps {
 
 interface SetupRegisterPhoneScreenProps {
   ContentClassName?: string;
-  AnimationDivClassName?: string;
+  ParentDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
   setScreen: Dispatch<AuthScreenType>;
@@ -154,7 +153,7 @@ interface SetupRegisterPhoneScreenProps {
 
 interface SetupRegisterProfilePictureScreenProps {
   ContentClassName?: string;
-  AnimationDivClassName?: string;
+  ParentDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
   setScreen: Dispatch<AuthScreenType>;
@@ -163,7 +162,7 @@ interface SetupRegisterProfilePictureScreenProps {
 
 interface SetupRegisterVerifyEmailScreenProps {
   ContentClassName?: string;
-  AnimationDivClassName?: string;
+  ParentDivClassName?: string;
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
   setLoading: Dispatch<boolean>;

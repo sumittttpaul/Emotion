@@ -20,7 +20,7 @@ import TooltipDark from 'components/tooltip/TooltipDark';
 import DialogContainerDark from 'components/dialog/DialogContainerDark';
 
 const LoadingLinearProgress = dynamic(
-  () => import('components/loader/Loading.LinearProgress'),
+  () => import('components/loading/Loading.LinearProgress'),
 );
 
 function SetupCheckDialog(props: SetupCheckDialogProps) {

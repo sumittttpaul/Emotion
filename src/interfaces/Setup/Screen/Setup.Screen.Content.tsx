@@ -3,10 +3,11 @@ import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { AnimatePresence } from 'framer-motion';
 import CheckInfoHandler from 'functions/CheckInfoHandler';
 import useClientAuth from 'authentication/useClientAuth';
+import PhoneEmailLoadingSkeleton from 'components/loading/Setup/PhoneEmailLoading';
 
 const SetupLoginPhoneScreen = dynamic<SetupLoginPhoneScreenProps>(
   () => import('interfaces/Setup/Screen/Login/Setup.Screen.Login.Phone'),
-  { ssr: false },
+  { ssr: false, loading: () => <PhoneEmailLoadingSkeleton /> },
 );
 
 const SetupLoginEmailScreen = dynamic<SetupLoginEmailScreenProps>(
@@ -93,7 +94,7 @@ const SetupRegisterGenderScreen = dynamic<SetupRegisterGenderScreenProps>(
 
 interface IProps {
   ContentClassName?: string;
-  AnimationDivClassName?: string;
+  ParentDivClassName?: string;
   Animation: AuthAnimationType;
   Screen: AuthScreenType;
   ResetCaptcha: boolean;
@@ -108,7 +109,7 @@ interface IProps {
 
 function SetupScreenContent({
   ContentClassName,
-  AnimationDivClassName,
+  ParentDivClassName,
   Animation,
   Screen,
   Loading,
@@ -138,13 +139,12 @@ function SetupScreenContent({
   };
 
   return (
-    <div className={`${AnimationDivClassName} relative flex w-full`}>
-      <AnimatePresence mode="wait" initial={true}>
+    <div className={`${ParentDivClassName} relative flex w-full`}>
+      <AnimatePresence mode="wait" initial={false}>
         {Screen === 'login-phone' && (
           <SetupLoginPhoneScreen
-            AnimationDivClassName={AnimationDivClassName}
+            ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
-            Animation={Animation}
             Loading={Loading}
             ResetCaptcha={ResetCaptcha}
             setScreen={setScreen}
@@ -154,7 +154,7 @@ function SetupScreenContent({
         )}
         {Screen === 'login-email' && (
           <SetupLoginEmailScreen
-            AnimationDivClassName={AnimationDivClassName}
+            ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
             Loading={Loading}
@@ -163,7 +163,7 @@ function SetupScreenContent({
         )}
         {Screen === 'login-others' && (
           <SetupLoginOtherAccountScreen
-            AnimationDivClassName={AnimationDivClassName}
+            ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
             setScreen={setScreen}
@@ -175,7 +175,7 @@ function SetupScreenContent({
         )}
         {Screen === 'login-otp' && (
           <SetupLoginOTPScreen
-            AnimationDivClassName={AnimationDivClassName}
+            ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
             Loading={Loading}
@@ -189,7 +189,7 @@ function SetupScreenContent({
         )}
         {Screen === 'login-password' && (
           <SetupLoginPasswordScreen
-            AnimationDivClassName={AnimationDivClassName}
+            ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
             Loading={Loading}
@@ -199,7 +199,7 @@ function SetupScreenContent({
         )}
         {Screen === 'login-forgot-password' && (
           <SetupLoginForgotPasswordScreen
-            AnimationDivClassName={AnimationDivClassName}
+            ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
             setScreen={setScreen}
@@ -208,7 +208,7 @@ function SetupScreenContent({
         )}
         {Screen === 'register-name' && (
           <SetupRegisterNameScreen
-            AnimationDivClassName={AnimationDivClassName}
+            ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
             Loading={Loading}
@@ -219,7 +219,7 @@ function SetupScreenContent({
         )}
         {Screen === 'register-phone' && (
           <SetupRegisterPhoneScreen
-            AnimationDivClassName={AnimationDivClassName}
+            ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
             Loading={Loading}
@@ -233,7 +233,7 @@ function SetupScreenContent({
         )}
         {Screen === 'register-otp' && (
           <SetupRegisterOTPScreen
-            AnimationDivClassName={AnimationDivClassName}
+            ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
             Loading={Loading}
@@ -245,7 +245,7 @@ function SetupScreenContent({
         )}
         {Screen === 'register-email' && (
           <SetupRegisterEmailScreen
-            AnimationDivClassName={AnimationDivClassName}
+            ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
             Loading={Loading}
@@ -257,7 +257,7 @@ function SetupScreenContent({
         )}
         {Screen === 'register-password' && (
           <SetupRegisterPasswordScreen
-            AnimationDivClassName={AnimationDivClassName}
+            ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
             Loading={Loading}
@@ -268,7 +268,7 @@ function SetupScreenContent({
         )}
         {Screen === 'register-verify-email' && (
           <SetupRegisterVerifyEmailScreen
-            AnimationDivClassName={AnimationDivClassName}
+            ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
             setLoading={setLoading}
@@ -277,7 +277,7 @@ function SetupScreenContent({
         )}
         {Screen === 'register-profile-picture' && (
           <SetupRegisterProfilePictureScreen
-            AnimationDivClassName={AnimationDivClassName}
+            ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
             setScreen={setScreen}
@@ -287,7 +287,7 @@ function SetupScreenContent({
         )}
         {Screen === 'register-date-of-birth' && (
           <SetupRegisterBirthdayScreen
-            AnimationDivClassName={AnimationDivClassName}
+            ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
             setLoading={setLoading}
@@ -298,7 +298,7 @@ function SetupScreenContent({
         )}
         {Screen === 'register-gender' && (
           <SetupRegisterGenderScreen
-            AnimationDivClassName={AnimationDivClassName}
+            ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
             setLoading={setLoading}

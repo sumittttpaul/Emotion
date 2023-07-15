@@ -14,7 +14,7 @@ async function UserMgmt() {
     <UserMgmtInterface
       userProfile={userProfile}
       MainClassName="h-full md:h-[652px]"
-      AnimationDivClassName="h-[350px]"
+      ParentDivClassName="h-[350px]"
       ContentClassName="h-[300px]"
       Animation={{
         Initial: { x: 50, opacity: 0 },

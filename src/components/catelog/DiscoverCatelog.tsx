@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Button } from '@mui/material';
-import { Rectangle_BlurDataURL } from '../loader/BlurDataURL';
+import { Rectangle_BlurDataURL } from '../loading/BlurDataURL';
 import { ChevronRightIcon } from '@heroicons/react/outline';
 
 function DiscoverCatelog() {

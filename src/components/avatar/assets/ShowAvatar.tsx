@@ -9,11 +9,11 @@ import {
 } from '@heroicons/react/outline';
 import { UsersIcon } from '@heroicons/react/solid';
 import TooltipDark from 'components/tooltip/TooltipDark';
-import { Circle_BlurDataURL } from 'components/loader/BlurDataURL';
+import { Circle_BlurDataURL } from 'components/loading/BlurDataURL';
 import dynamic from 'next/dynamic';
 
 const LoadingLinearProgress = dynamic(
-  () => import('components/loader/Loading.LinearProgress'),
+  () => import('components/loading/Loading.LinearProgress'),
 );
 
 interface IProps {

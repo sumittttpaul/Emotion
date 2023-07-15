@@ -6,7 +6,7 @@ interface UserMgmtEmailVerifiedScreenProps {
 }
 
 interface UserMgmtResetPasswordScreenProps {
-  AnimationDivClassName: string;
+  ParentDivClassName: string;
   ContentClassName: string;
   oobCode: string | null;
   Animation: AuthAnimationType;

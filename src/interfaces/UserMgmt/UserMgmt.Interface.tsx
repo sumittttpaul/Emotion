@@ -23,14 +23,14 @@ const ToastDark = dynamic<ToastDarkProps>(
   { ssr: false },
 );
 const LinearProgressLaoding = dynamic(
-  () => import('components/loader/Loading.LinearProgress'),
+  () => import('components/loading/Loading.LinearProgress'),
   { ssr: false },
 );
 
 interface IProps {
   userProfile?: IUserProfile;
   MainClassName: string;
-  AnimationDivClassName: string;
+  ParentDivClassName: string;
   ContentClassName: string;
   Animation: AuthAnimationType;
 }
@@ -38,7 +38,7 @@ interface IProps {
 function UserMgmtInterface({
   userProfile,
   MainClassName,
-  AnimationDivClassName,
+  ParentDivClassName,
   ContentClassName,
   Animation,
 }: IProps) {
@@ -63,7 +63,7 @@ function UserMgmtInterface({
       >
         {mode === 'resetPassword' && (
           <UserMgmtResetPasswordScreen
-            AnimationDivClassName={AnimationDivClassName}
+            ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
             oobCode={oobCode}
             Animation={Animation}

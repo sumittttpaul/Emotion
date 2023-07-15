@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import { FilmIcon } from '@heroicons/react/solid';
 import { Button } from '@mui/material';
-import { Poster_BlurDataURL } from 'components/loader/BlurDataURL';
+import { Poster_BlurDataURL } from 'components/loading/BlurDataURL';
 import { m } from 'framer-motion';
 import Image from 'next/image';
 import ScrollContainer from 'react-indiana-drag-scroll';

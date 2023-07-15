@@ -7,7 +7,7 @@ import { Button } from '@mui/material';
 import { IconButton } from '@mui/material';
 import TooltipDark from '../../tooltip/TooltipDark';
 import Image from 'next/image';
-import { Circle_BlurDataURL } from '../../loader/BlurDataURL';
+import { Circle_BlurDataURL } from '../../loading/BlurDataURL';
 
 interface IProps {
   backward: () => void;
