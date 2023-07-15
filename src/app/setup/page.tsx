@@ -1,6 +1,6 @@
 import SetupInterface from 'interfaces/Setup/Setup.Interface';
 
-async function Setup() {
+function Setup() {
   return <SetupInterface />;
 }
 
