@@ -9,7 +9,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const nextConfig = {
   experimental: {
     appDir: true,
+    typedRoutes: true,
     serverActions: true,
+    webVitalsAttribution: ['CLS', 'LCP'],
     serverComponentsExternalPackages: ['mongoose'],
   },
   reactStrictMode: true,
@@ -22,6 +24,7 @@ const nextConfig = {
       'lh3.googleusercontent.com',
     ],
   },
+  // env: { Example: 'value' },
   async headers() {
     return [
       {
