@@ -6,7 +6,7 @@ import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import RadioGroupDark from 'components/radiogroup/RadioGroupDark';
-import useClientAuth from 'authentication/useClientAuth';
+import UseClientAuth from 'authentication/UseClientAuth';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
@@ -14,7 +14,7 @@ import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
   const { Gender, setGender } = userProfileHook();
   const { setToast } = ToastHook();
-  const { FirebaseUser } = useClientAuth();
+  const { FirebaseUser } = UseClientAuth();
 
   // Validation
   const ValidateGender = Gender === '' && Gender.length < 1;

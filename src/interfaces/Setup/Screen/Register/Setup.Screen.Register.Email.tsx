@@ -6,13 +6,13 @@ import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
-import useClientAuth from 'authentication/useClientAuth';
+import UseClientAuth from 'authentication/UseClientAuth';
 import SetupIconTextField from '../../Input/Setup.Input.Icon';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 
 function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
-  const { FirebaseUser } = useClientAuth();
+  const { FirebaseUser } = UseClientAuth();
   const { EmailAddress, setEmailAddress } = userProfileHook();
   const { setToast } = ToastHook();
 

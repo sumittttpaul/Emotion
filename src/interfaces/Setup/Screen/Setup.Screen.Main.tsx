@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import SetupLoadingSkeleton from 'components/loading/Setup/SetupLoading';
 import CheckInfoHandler from 'functions/CheckInfoHandler';
-import useClientAuth from 'authentication/useClientAuth';
+import UseClientAuth from 'authentication/UseClientAuth';
 
 const ToastDark = dynamic<ToastDarkProps>(
   () => import('components/toast/ToastDark'),
@@ -50,7 +50,7 @@ function SetupScreenMain({
   SkipDialog,
   setSkipDialog,
 }: IProps) {
-  const { FirebaseUser, FirebaseLoading, FirebaseError } = useClientAuth();
+  const { FirebaseUser, FirebaseLoading, FirebaseError } = UseClientAuth();
   const { Toast, setToast } = ToastHook();
 
   const ActiveImageSrc =

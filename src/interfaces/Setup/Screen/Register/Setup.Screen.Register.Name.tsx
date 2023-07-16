@@ -7,12 +7,12 @@ import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
-import useClientAuth from 'authentication/useClientAuth';
+import UseClientAuth from 'authentication/UseClientAuth';
 import SetupIconTextField from '../../Input/Setup.Input.Icon';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
 function SetupRegisterNameScreen(props: SetupRegisterNameScreenProps) {
-  const { FirebaseUser } = useClientAuth();
+  const { FirebaseUser } = UseClientAuth();
   const { FullName, setFullName } = userProfileHook();
   const { setToast } = ToastHook();
 

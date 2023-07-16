@@ -1,25 +1,5 @@
 import router from 'next/navigation';
-import {
-  ResendOTPProps,
-  VerifyOTPProps,
-  SignInWithPhoneNumberProps,
-  SignInWithEmailAndPasswordProps,
-  SignInWithOtherAccountsProps,
-  UploadAvatarProps,
-  DeleteAvatarProps,
-  RecaptchaProps,
-  PasswordResentProps,
-  AddFullNameProps,
-  LinkWithEmailAndPasswordProps,
-  VerifyEmailProps,
-  LinkWithPhoneNumberProps,
-  VerifyOTPForLinkWithPhoneProps,
-  SignOutProps,
-  ConfirmPasswordResetProps,
-  ConfirmVerifyEmailAddressProps,
-  DeleteAccountProps,
-} from './Props/AuthProps';
-import { AuthErrorMessage } from 'authentication/AuthErrorMessage';
+import AuthErrorMessage from 'authentication/AuthErrorMessage';
 import { Home_Link } from 'routers/RouterLinks';
 import {
   FirebaseAuth,
@@ -55,12 +35,12 @@ function configureCaptcha({ ShowToast, ResetCaptcha }: RecaptchaProps) {
               'Recaptcha token expired',
               'Your recaptcha token has been expired, please refresh the page.',
               'Error',
-              true
+              true,
             );
           },
           defaultCountry: 'IN',
         },
-        FirebaseAuth
+        FirebaseAuth,
       );
     }
   }
@@ -88,7 +68,7 @@ export async function ResentOTP({
         'OTP sent successfully',
         'An OTP has been sent to your phone number.',
         'Success',
-        true
+        true,
       );
     })
     .catch((error) => {
@@ -100,7 +80,7 @@ export async function ResentOTP({
           ? message
           : 'There is an error from server side of authentication.',
         'Error',
-        true
+        true,
       );
     });
 }
@@ -117,7 +97,7 @@ export async function VerifyOTP({
   const code = OTP.toString();
   const credential = _firebaseAuth.PhoneAuthProvider.credential(
     window.confirmationResult.verificationId,
-    code
+    code,
   );
   _firebaseAuth
     .signInWithCredential(FirebaseAuth, credential)
@@ -146,7 +126,7 @@ export async function VerifyOTP({
           ? message
           : 'There is an error from server side of authentication.',
         'Error',
-        true
+        true,
       );
     });
 }
@@ -166,7 +146,7 @@ export async function PasswordReset({
         'Password reset link sent successfully',
         'A link to reset your password has been sent to your email address.',
         'Success',
-        true
+        true,
       );
       Next();
     })
@@ -179,7 +159,7 @@ export async function PasswordReset({
           ? message
           : 'There is an error from server side of authentication.',
         'Error',
-        true
+        true,
       );
     });
 }
@@ -215,9 +195,9 @@ export async function ConfirmPasswordReset({
                   ? message
                   : 'There is an error from server side of authentication.',
                 'Error',
-                true
+                true,
               );
-            })
+            }),
         )
         .catch((error) => {
           Loading(false);
@@ -229,9 +209,9 @@ export async function ConfirmPasswordReset({
               ? message
               : 'There is an error from server side of authentication.',
             'Error',
-            true
+            true,
           );
-        })
+        }),
     )
     .catch((error) => {
       Loading(false);
@@ -243,7 +223,7 @@ export async function ConfirmPasswordReset({
           ? message
           : 'There is an error from server side of authentication.',
         'Error',
-        true
+        true,
       );
     });
 }
@@ -264,7 +244,7 @@ export async function ConfirmVerifyEmailAddress({
       .then(() =>
         user
           .reload()
-          .then(() => user.getIdToken(true).then(() => Updatedatabase()))
+          .then(() => user.getIdToken(true).then(() => Updatedatabase())),
       )
       .catch((error) => {
         Loading(false);
@@ -276,7 +256,7 @@ export async function ConfirmVerifyEmailAddress({
             ? message
             : 'There is an error from server side of authentication.',
           'Error',
-          true
+          true,
         );
       });
   }
@@ -322,7 +302,7 @@ export async function SignInWithPhoneNumber({
           ? message
           : 'There is an error from server side of authentication.',
         'Error',
-        true
+        true,
       );
       EmptyPhoneNumber();
       setResetCaptcha(true);
@@ -356,7 +336,7 @@ export async function SignInWithEmailAndPassword({
           ? message
           : 'There is an error from server side of authentication.',
         'Error',
-        true
+        true,
       );
       EmptyPasswordTextField();
     });
@@ -380,8 +360,25 @@ export async function SignInWithFacebook({
         const IsNewUser = getAdditionalUserInfo.isNewUser;
         const user = FirebaseAuth.currentUser;
         if (user) {
-          if (IsNewUser) CreateDateBase(user);
-          else Checkdatabase(user);
+          if (IsNewUser) {
+            CreateDateBase({
+              Uid: user.uid,
+              displayName: user.displayName,
+              email: user.email,
+              phoneNumber: user.phoneNumber,
+              photoURL: user.photoURL,
+              emailVerified: user.emailVerified,
+            });
+          } else {
+            Checkdatabase({
+              Uid: user.uid,
+              displayName: user.displayName,
+              email: user.email,
+              phoneNumber: user.phoneNumber,
+              photoURL: user.photoURL,
+              emailVerified: user.emailVerified,
+            });
+          }
           // LoadingScreen(true);
           // Loading(false);
           // Router.push(Home_Link);
@@ -397,7 +394,7 @@ export async function SignInWithFacebook({
           ? message
           : 'There is an error from server side of authentication.',
         'Error',
-        true
+        true,
       );
     });
 }
@@ -418,8 +415,25 @@ export async function SignInWithGoogle({
         const IsNewUser = getAdditionalUserInfo.isNewUser;
         const user = FirebaseAuth.currentUser;
         if (user) {
-          if (IsNewUser) CreateDateBase(user);
-          else Checkdatabase(user);
+          if (IsNewUser) {
+            CreateDateBase({
+              Uid: user.uid,
+              displayName: user.displayName,
+              email: user.email,
+              phoneNumber: user.phoneNumber,
+              photoURL: user.photoURL,
+              emailVerified: user.emailVerified,
+            });
+          } else {
+            Checkdatabase({
+              Uid: user.uid,
+              displayName: user.displayName,
+              email: user.email,
+              phoneNumber: user.phoneNumber,
+              photoURL: user.photoURL,
+              emailVerified: user.emailVerified,
+            });
+          }
           // LoadingScreen(true);
           // Loading(false);
           // Router.push(Home_Link);
@@ -435,7 +449,7 @@ export async function SignInWithGoogle({
           ? message
           : 'There is an error from server side of authentication.',
         'Error',
-        true
+        true,
       );
     });
 }
@@ -456,8 +470,25 @@ export async function SignInWithApple({
         const IsNewUser = getAdditionalUserInfo.isNewUser;
         const user = FirebaseAuth.currentUser;
         if (user) {
-          if (IsNewUser) CreateDateBase(user);
-          else Checkdatabase(user);
+          if (IsNewUser) {
+            CreateDateBase({
+              Uid: user.uid,
+              displayName: user.displayName,
+              email: user.email,
+              phoneNumber: user.phoneNumber,
+              photoURL: user.photoURL,
+              emailVerified: user.emailVerified,
+            });
+          } else {
+            Checkdatabase({
+              Uid: user.uid,
+              displayName: user.displayName,
+              email: user.email,
+              phoneNumber: user.phoneNumber,
+              photoURL: user.photoURL,
+              emailVerified: user.emailVerified,
+            });
+          }
           // LoadingScreen(true);
           // Loading(false);
           // Router.push(Home_Link);
@@ -473,7 +504,7 @@ export async function SignInWithApple({
           ? message
           : 'There is an error from server side of authentication.',
         'Error',
-        true
+        true,
       );
     });
 }
@@ -494,8 +525,25 @@ export async function SignInWithMicrosoft({
         const IsNewUser = getAdditionalUserInfo.isNewUser;
         const user = FirebaseAuth.currentUser;
         if (user) {
-          if (IsNewUser) CreateDateBase(user);
-          else Checkdatabase(user);
+          if (IsNewUser) {
+            CreateDateBase({
+              Uid: user.uid,
+              displayName: user.displayName,
+              email: user.email,
+              phoneNumber: user.phoneNumber,
+              photoURL: user.photoURL,
+              emailVerified: user.emailVerified,
+            });
+          } else {
+            Checkdatabase({
+              Uid: user.uid,
+              displayName: user.displayName,
+              email: user.email,
+              phoneNumber: user.phoneNumber,
+              photoURL: user.photoURL,
+              emailVerified: user.emailVerified,
+            });
+          }
           // LoadingScreen(true);
           // Loading(false);
           // Router.push(Home_Link);
@@ -511,7 +559,7 @@ export async function SignInWithMicrosoft({
           ? message
           : 'There is an error from server side of authentication.',
         'Error',
-        true
+        true,
       );
     });
 }
@@ -541,7 +589,7 @@ export async function AddFullName({
             ? message
             : 'There is an error from server side of authentication.',
           'Error',
-          true
+          true,
         );
       });
   }
@@ -563,7 +611,7 @@ export async function VerifyEmailAddress({
           'Email verification link sent successfully',
           'A link to verify your email has been sent to your email address.',
           'Success',
-          true
+          true,
         );
         Next();
       })
@@ -576,7 +624,7 @@ export async function VerifyEmailAddress({
             ? message
             : 'There is an error from server side of authentication.',
           'Error',
-          true
+          true,
         );
       });
   }
@@ -595,7 +643,7 @@ export async function LinkWithEmailAndPassword({
   const user = FirebaseAuth.currentUser;
   const credential = _firebaseAuth.EmailAuthProvider.credential(
     EmailAddress,
-    Password
+    Password,
   );
   if (user) {
     _firebaseAuth
@@ -612,7 +660,7 @@ export async function LinkWithEmailAndPassword({
             ? message
             : 'There is an error from server side of authentication.',
           'Error',
-          true
+          true,
         );
       });
   }
@@ -657,7 +705,7 @@ export async function LinkWithPhoneNumber({
             ? message
             : 'There is an error from server side of authentication.',
           'Error',
-          true
+          true,
         );
         EmptyPhoneNumber();
         setResetCaptcha(true);
@@ -677,7 +725,7 @@ export async function VerifyOTPForLinkWithPhone({
   const user = FirebaseAuth.currentUser;
   const credential = _firebaseAuth.PhoneAuthProvider.credential(
     window.confirmationResult.verificationId,
-    code
+    code,
   );
   if (user) {
     _firebaseAuth
@@ -693,7 +741,7 @@ export async function VerifyOTPForLinkWithPhone({
             ? message
             : 'There is an error from server side of authentication.',
           'Error',
-          true
+          true,
         );
       });
   }
@@ -721,7 +769,7 @@ export async function ResentOTPForLinkWithPhone({
           'OTP sent successfully',
           'An OTP has been sent to your phone number.',
           'Success',
-          true
+          true,
         );
       })
       .catch((error) => {
@@ -733,7 +781,7 @@ export async function ResentOTPForLinkWithPhone({
             ? message
             : 'There is an error from server side of authentication.',
           'Error',
-          true
+          true,
         );
       });
   }
@@ -759,12 +807,12 @@ export async function UploadAvatar({
       const storage = _firebaseStorage.getStorage();
       const storageRef = _firebaseStorage.ref(
         storage,
-        `userAvatar/${user.uid}/profilePhoto.${extension}`
+        `userAvatar/${user.uid}/profilePhoto.${extension}`,
       );
       const uploadTask = _firebaseStorage.uploadBytesResumable(
         storageRef,
         File,
-        metadata
+        metadata,
       );
       uploadTask.on(
         'state_changed',
@@ -784,7 +832,7 @@ export async function UploadAvatar({
               ? message
               : 'There is an error from server side of authentication.',
             'Error',
-            true
+            true,
           );
         },
         () => {
@@ -805,11 +853,11 @@ export async function UploadAvatar({
                       ? message
                       : 'There is an error from server side of authentication.',
                     'Error',
-                    true
+                    true,
                   );
                 });
             });
-        }
+        },
       );
     } else {
       Loading(false);
@@ -817,7 +865,7 @@ export async function UploadAvatar({
         'Something went wrong',
         'The user is currently not signed in.',
         'Error',
-        true
+        true,
       );
     }
   } else {
@@ -854,7 +902,7 @@ export async function DeleteAvatar({
                   ? message
                   : 'There is an error from server side of authentication.',
                 'Error',
-                true
+                true,
               );
             });
         })
@@ -867,7 +915,7 @@ export async function DeleteAvatar({
               ? message
               : 'There is an error from server side of authentication.',
             'Error',
-            true
+            true,
           );
         });
     } else {
@@ -876,7 +924,7 @@ export async function DeleteAvatar({
         'Something went wrong',
         'The user is currently not signed in.',
         'Error',
-        true
+        true,
       );
     }
   } else {
@@ -910,7 +958,7 @@ export async function DeleteAccount({
             ? message
             : 'There is an error from server side of authentication.',
           'Error',
-          true
+          true,
         );
       });
   } else {

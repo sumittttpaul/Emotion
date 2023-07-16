@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { FirebaseAuth, _firebaseAuth } from 'authentication/clientApp';
 
-function useClientAuth() {
+function UseClientAuth() {
   const [FirebaseUser, FirebaseLoading, FirebaseError] =
     useAuthState(FirebaseAuth);
 
@@ -39,4 +39,4 @@ function useClientAuth() {
 
 export type ClientUserType = _firebaseAuth.User | null | undefined;
 
-export default useClientAuth;
+export default UseClientAuth;

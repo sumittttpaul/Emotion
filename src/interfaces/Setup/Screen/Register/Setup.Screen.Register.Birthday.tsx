@@ -9,7 +9,7 @@ import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
-import useClientAuth from 'authentication/useClientAuth';
+import UseClientAuth from 'authentication/UseClientAuth';
 import DatePickerButton from 'components/datepicker/DatePickerButton';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
@@ -17,7 +17,7 @@ function SetupRegisterBirthdayScreen(props: SetupRegisterBirthdayScreenProps) {
   const { DateOfBirth, setDateOfBirth } = userProfileHook();
   const [SubmitDisabled, setSubmitDisabled] = useState(true);
   const { setToast } = ToastHook();
-  const { FirebaseUser } = useClientAuth();
+  const { FirebaseUser } = UseClientAuth();
 
   // Screens
   const BackToPhoto = () => {

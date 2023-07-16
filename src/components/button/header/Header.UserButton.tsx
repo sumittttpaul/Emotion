@@ -7,7 +7,7 @@ import { Setup_Link } from 'routers/RouterLinks';
 import { HeaderUserButtonMenuProps } from './Header.UserButton.Menu';
 import { SignOut } from 'functions/AuthAlgorithms';
 import { LoaderHook } from 'hooks/global/Hooks.Loader';
-import useClientAuth, { ClientUserType } from 'authentication/useClientAuth';
+import UseClientAuth, { ClientUserType } from 'authentication/UseClientAuth';
 import TooltipDark from 'components/tooltip/TooltipDark';
 
 const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
@@ -16,7 +16,7 @@ const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
 );
 
 function HeaderUserButton() {
-  const { FirebaseUser, FirebaseLoading } = useClientAuth();
+  const { FirebaseUser, FirebaseLoading } = UseClientAuth();
   const { setLoader } = LoaderHook();
 
   if (FirebaseLoading)

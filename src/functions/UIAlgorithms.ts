@@ -1,12 +1,10 @@
-import { KeyboardEvent, MouseEvent } from 'react';
-
-export const InputNumberOnly = (evt: KeyboardEvent<HTMLInputElement>) => {
+export const InputNumberOnly = (evt: React.KeyboardEvent<HTMLInputElement>) => {
   if (!/[0-9]/.test(evt.key)) {
     evt.preventDefault();
   }
 };
 
-export const InputChangeFocus = (e: KeyboardEvent<HTMLInputElement>) => {
+export const InputChangeFocus = (e: React.KeyboardEvent<HTMLInputElement>) => {
   const target = e.currentTarget as HTMLInputElement;
   const maxLength = parseInt(target.getAttribute('maxlength') ?? '0', 10);
   const myLength = target.value.length;
@@ -38,7 +36,7 @@ export const InputChangeFocus = (e: KeyboardEvent<HTMLInputElement>) => {
   }
 };
 
-export const ClickToFocus = (e: MouseEvent<HTMLInputElement>) => {
+export const ClickToFocus = (e: React.MouseEvent<HTMLInputElement>) => {
   e.preventDefault();
   const target = e.currentTarget;
   target.focus();
@@ -51,7 +49,7 @@ export const CalculateAge = (DOB: string) => {
   const dob = new Date(
     +dateParts[2],
     parseInt(dateParts[1]) - 1,
-    +dateParts[0]
+    +dateParts[0],
   );
   const month_diff = Date.now() - dob.getTime();
   const age_dt = new Date(month_diff);

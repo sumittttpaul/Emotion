@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
-import useClientAuth from 'authentication/useClientAuth';
+import UseClientAuth from 'authentication/UseClientAuth';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
 const AvatarButtonDialog = dynamic<AvatarButtonDialogProps>(
@@ -21,7 +21,7 @@ const AvatarButtonDialog = dynamic<AvatarButtonDialogProps>(
 );
 
 function AvatarButton() {
-  const { FirebaseUser, FirebaseLoading } = useClientAuth();
+  const { FirebaseUser, FirebaseLoading } = UseClientAuth();
   const { setToast } = ToastHook();
   const userPhoto = FirebaseUser?.photoURL?.toString();
 

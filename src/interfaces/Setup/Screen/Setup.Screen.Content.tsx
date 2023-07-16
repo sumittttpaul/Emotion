@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { AnimatePresence } from 'framer-motion';
 import CheckInfoHandler from 'functions/CheckInfoHandler';
-import useClientAuth from 'authentication/useClientAuth';
+import UseClientAuth from 'authentication/UseClientAuth';
 import PhoneEmailLoadingSkeleton from 'components/loading/Setup/PhoneEmailLoading';
 
 const SetupLoginPhoneScreen = dynamic<SetupLoginPhoneScreenProps>(
@@ -121,7 +121,7 @@ function SetupScreenContent({
   setLoading,
   setResetCaptcha,
 }: IProps) {
-  const { FirebaseUser, FirebaseLoading, FirebaseError } = useClientAuth();
+  const { FirebaseUser, FirebaseLoading, FirebaseError } = UseClientAuth();
   const { setToast } = ToastHook();
 
   const CheckInfoData = {

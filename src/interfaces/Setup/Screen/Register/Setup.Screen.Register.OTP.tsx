@@ -12,10 +12,10 @@ import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SetupOTPTextField from '../../Input/Setup.Input.OTP';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
-import useClientAuth from 'authentication/useClientAuth';
+import UseClientAuth from 'authentication/UseClientAuth';
 
 function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
-  const { FirebaseUser } = useClientAuth();
+  const { FirebaseUser } = UseClientAuth();
   const [OTPs, setOTPs] = useState({
     OTP1: '',
     OTP2: '',

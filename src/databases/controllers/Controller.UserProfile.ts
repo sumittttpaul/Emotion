@@ -12,7 +12,7 @@ const ErrorMessage: IError = {
   message: 'No method has been specified',
 };
 
-export default async function OperateUserProfile(
+async function OperateUserProfile(
   Type: 'CREATE' | 'UPDATE' | 'DELETE',
   Data?: FetchDataType
 ) {
@@ -26,3 +26,5 @@ export default async function OperateUserProfile(
     return await DELETE_USER_PROFILE({ _uid: Data.uid });
   } else throw new IError(ErrorMessage);
 }
+
+export default OperateUserProfile;

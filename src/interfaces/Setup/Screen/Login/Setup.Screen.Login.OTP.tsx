@@ -64,7 +64,8 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
   };
 
   // database
-  function CreateDateBase(_uid: string) {
+  const CreateDateBase = async (_uid: string) => {
+    'use server';
     const UserPhoneNumber = EncryptData(
       UserProfileEncrytionKey(_uid, 'PhoneNumber'),
       PhoneNumber,
@@ -115,7 +116,7 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
           },
         });
       });
-  }
+  };
 
   // OTP Submit
   const OTPResend = () => {

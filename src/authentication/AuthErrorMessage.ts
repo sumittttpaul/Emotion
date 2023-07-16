@@ -1,4 +1,4 @@
-export const AuthErrorMessage = (Code: string) => {
+const AuthErrorMessage = (Code: string) => {
   switch (Code) {
     case 'auth/wrong-password':
       return 'Invalid password';
@@ -403,3 +403,5 @@ export const AuthErrorMessage = (Code: string) => {
       return 'initializeAuth() has already been called with different options. To avoid this error, call initializeAuth() with the same options as when it was originally called, or call getAuth() to return the already initialized instance.';
   }
 };
+
+export default AuthErrorMessage;

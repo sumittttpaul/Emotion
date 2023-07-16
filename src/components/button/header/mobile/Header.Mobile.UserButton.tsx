@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic';
 import { HeaderUserButtonMenuProps } from '../Header.UserButton.Menu';
 import { SignOut } from 'functions/AuthAlgorithms';
 import { LoaderHook } from 'hooks/global/Hooks.Loader';
-import useClientAuth, { ClientUserType } from 'authentication/useClientAuth';
+import UseClientAuth, { ClientUserType } from 'authentication/UseClientAuth';
 
 const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
   () => import('../Header.UserButton.Menu'),
@@ -16,7 +16,7 @@ const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
 );
 
 export function HeaderMobileUserButton() {
-  const { FirebaseUser, FirebaseLoading } = useClientAuth();
+  const { FirebaseUser, FirebaseLoading } = UseClientAuth();
   const { setLoader } = LoaderHook();
   const router = useRouter();
 

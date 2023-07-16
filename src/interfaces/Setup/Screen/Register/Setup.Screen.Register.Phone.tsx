@@ -8,12 +8,12 @@ import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
-import useClientAuth from 'authentication/useClientAuth';
+import UseClientAuth from 'authentication/UseClientAuth';
 import SetupIconNumberTextField from 'interfaces/Setup/Input/Setup.Input.IconNumber';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 
 function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
-  const { FirebaseUser } = useClientAuth();
+  const { FirebaseUser } = UseClientAuth();
   const { PhoneNumber, setPhoneNumber } = userProfileHook();
   const { setToast } = ToastHook();
 

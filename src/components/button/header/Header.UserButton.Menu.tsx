@@ -8,7 +8,7 @@ import {
 } from 'routers/RouterLinks';
 import Image from 'next/image';
 import UserIcon from '../../../../public/icons/user-fill.svg';
-import { ClientUserType } from 'authentication/useClientAuth';
+import { ClientUserType } from 'authentication/UseClientAuth';
 
 export interface HeaderUserButtonMenuProps {
   anchorEl: null | HTMLElement;

@@ -1,42 +1,48 @@
-import { Dispatch, SetStateAction } from 'react';
-import { ClientUserType } from '../../authentication/useClientAuth';
+type UserProfileEncrytionKeyType =
+  | 'FullName'
+  | 'EmailAddress'
+  | 'PhoneNumber'
+  | 'PhotoURL'
+  | 'DateOfBirth'
+  | 'Age'
+  | 'Gender';
 
-export interface RecaptchaProps {
+interface RecaptchaProps {
   ShowToast: (
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
   ResetCaptcha: boolean;
 }
 
-export interface ResendOTPProps {
+interface ResendOTPProps {
   PhoneNumber: number;
   Loading: Dispatch<boolean>;
   ShowToast: (
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
 
-export interface VerifyOTPProps {
+interface VerifyOTPProps {
   OTP: number;
   EmptyOTPBox: VoidType;
-  CreateDateBase: (value: string) => void;
+  CreateDateBase: Dispatch<string>;
   Loading: Dispatch<boolean>;
   LoadingScreen: (value: boolean) => void;
   ShowToast: (
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
 
-export interface ConfirmVerifyEmailAddressProps {
+interface ConfirmVerifyEmailAddressProps {
   oobCode: string;
   Loading: Dispatch<boolean>;
   Screen: Dispatch<SetStateAction<'Success' | 'Error' | null>>;
@@ -45,11 +51,11 @@ export interface ConfirmVerifyEmailAddressProps {
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
 
-export interface PasswordResentProps {
+interface PasswordResentProps {
   EmailAddress: string;
   Loading: Dispatch<boolean>;
   Next: VoidType;
@@ -57,11 +63,11 @@ export interface PasswordResentProps {
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
 
-export interface ConfirmPasswordResetProps {
+interface ConfirmPasswordResetProps {
   oobCode: string;
   Password: string;
   EmptyPassword: VoidType;
@@ -71,11 +77,11 @@ export interface ConfirmPasswordResetProps {
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
 
-export interface SignInWithPhoneNumberProps {
+interface SignInWithPhoneNumberProps {
   PhoneNumber: number;
   EmptyPhoneNumber: VoidType;
   ResetCaptcha: boolean;
@@ -86,11 +92,11 @@ export interface SignInWithPhoneNumberProps {
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
 
-export interface SignInWithEmailAndPasswordProps {
+interface SignInWithEmailAndPasswordProps {
   EmailAddress: string;
   Password: string;
   Loading: Dispatch<boolean>;
@@ -101,10 +107,10 @@ export interface SignInWithEmailAndPasswordProps {
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
-export interface SignInWithOtherAccountsProps {
+interface SignInWithOtherAccountsProps {
   Loading: Dispatch<boolean>;
   Checkdatabase: (user: ClientUserType) => void;
   CreateDateBase: (user: ClientUserType) => void;
@@ -112,11 +118,11 @@ export interface SignInWithOtherAccountsProps {
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
 
-export interface AddFullNameProps {
+interface AddFullNameProps {
   FullName: string;
   Loading: Dispatch<boolean>;
   Updatedatabase: VoidType;
@@ -124,11 +130,24 @@ export interface AddFullNameProps {
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
 
-export interface LinkWithEmailAndPasswordProps {
+interface AddFullNameUsingServerProps {
+  Uid: string;
+  FullName: string;
+  Loading: Dispatch<boolean>;
+  Updatedatabase: VoidType;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
+    show: boolean,
+  ) => void;
+}
+
+interface LinkWithEmailAndPasswordProps {
   EmailAddress: string;
   Password: string;
   Loading: Dispatch<boolean>;
@@ -139,11 +158,11 @@ export interface LinkWithEmailAndPasswordProps {
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
 
-export interface LinkWithPhoneNumberProps {
+interface LinkWithPhoneNumberProps {
   PhoneNumber: number;
   EmptyPhoneNumber: VoidType;
   ResetCaptcha: boolean;
@@ -154,11 +173,11 @@ export interface LinkWithPhoneNumberProps {
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
 
-export interface VerifyOTPForLinkWithPhoneProps {
+interface VerifyOTPForLinkWithPhoneProps {
   OTP: number;
   EmptyOTPBox: VoidType;
   Updatedatabase: VoidType;
@@ -167,11 +186,11 @@ export interface VerifyOTPForLinkWithPhoneProps {
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
 
-export interface AddPhoneNumberProps {
+interface AddPhoneNumberProps {
   OTP: number;
   PhoneNumber: string;
   EmptyOTPBox: VoidType;
@@ -182,35 +201,49 @@ export interface AddPhoneNumberProps {
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
 
-export interface VerifyEmailProps {
+interface VerifyEmailProps {
   Next: VoidType;
   Loading: Dispatch<boolean>;
   ShowToast: (
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
 
-export interface UploadAvatarProps {
-  Progress: (value: string) => void;
+interface UploadAvatarProps {
+  Progress: Dispatch<string>;
   File: File | undefined;
-  UpdatedatabaseWithURL: (value: string) => void;
+  UpdatedatabaseWithURL: Dispatch<string>;
   Loading: Dispatch<boolean>;
   ShowToast: (
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
 
-export interface DeleteAvatarProps {
+interface UploadAvatarUsingServerProps {
+  Uid: string
+  Progress: Dispatch<string>;
+  File: File | undefined;
+  UpdatedatabaseWithURL: Dispatch<string>;
+  Loading: Dispatch<boolean>;
+  ShowToast: (
+    title: string,
+    description: string,
+    type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
+    show: boolean,
+  ) => void;
+}
+
+interface DeleteAvatarProps {
   AvatarURL: string;
   DeletePhotoURLFromdatabase: VoidType;
   Loading: Dispatch<boolean>;
@@ -218,21 +251,30 @@ export interface DeleteAvatarProps {
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
 
-export interface SignOutProps {
+interface SignOutProps {
   Next: VoidType;
 }
 
-export interface DeleteAccountProps {
+interface DeleteAccountProps {
   Loading: Dispatch<boolean>;
-  Deletedatabase: (value: string) => void;
+  Deletedatabase: Dispatch<string>;
   ShowToast: (
     title: string,
     description: string,
     type: 'Error' | 'Success' | 'Info' | 'Warning' | '',
-    show: boolean
+    show: boolean,
   ) => void;
 }
+
+type RetriveUserDataType = {
+  Uid: StringType;
+  displayName: StringType;
+  email: StringType;
+  phoneNumber: StringType;
+  photoURL: StringType;
+  emailVerified: BooleanType;
+};

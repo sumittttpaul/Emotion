@@ -1,6 +1,6 @@
 'use client';
 
-import { ClientUserType } from 'authentication/useClientAuth';
+import { ClientUserType } from 'authentication/UseClientAuth';
 import { FetchUserProfile } from 'hooks/global/Hooks.FetchUserProfile';
 
 interface IProps {

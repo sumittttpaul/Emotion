@@ -164,3 +164,7 @@ interface ToastDarkProps {
     Type: 'Error' | 'Success' | 'Info' | 'Warning' | '';
   };
 }
+
+type StringType = string | undefined | null
+type BooleanType = boolean | undefined | null
+type NumberType = number | undefined | null

@@ -1,14 +1,13 @@
 import { FetchUserProfile } from 'hooks/global/Hooks.FetchUserProfile';
-import { verfyIdToken } from 'authentication/adminApp';
 import { cookies } from 'next/headers';
 import UserMgmtInterface from 'interfaces/UserMgmt/UserMgmt.Interface';
+import UseServerAuth from 'authentication/UseServerAuth';
 
 async function UserMgmt() {
   const cookieStore = cookies();
   const token = cookieStore.get('token');
-  const user = token ? await verfyIdToken(token.value) : undefined;
-  const uid = user ? user.uid : undefined;
-  const { userProfile } = await FetchUserProfile(uid); // eslint-disable-line react-hooks/rules-of-hooks
+  const FirebaseUser = await UseServerAuth(token?.value);
+  const { userProfile } = await FetchUserProfile(FirebaseUser?.uid);
 
   return (
     <UserMgmtInterface

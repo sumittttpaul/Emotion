@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Button } from '@mui/material';
 import { ArrowRightIcon } from '@heroicons/react/solid';
 import { LoaderHook } from 'hooks/global/Hooks.Loader';
-import { AuthErrorMessage } from 'authentication/AuthErrorMessage';
+import AuthErrorMessage from 'authentication/AuthErrorMessage';
 import { _firebaseAuth, _firebaseStorage } from 'authentication/clientApp';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { Home_Link } from 'routers/RouterLinks';
@@ -14,7 +14,7 @@ import { EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import useClientAuth from 'authentication/useClientAuth';
+import UseClientAuth from 'authentication/UseClientAuth';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 import TooltipDark from 'components/tooltip/TooltipDark';
 import DialogContainerDark from 'components/dialog/DialogContainerDark';
@@ -25,7 +25,7 @@ const LoadingLinearProgress = dynamic(
 
 function SetupCheckDialog(props: SetupCheckDialogProps) {
   const [Loading, setLoading] = useState(false);
-  const { FirebaseUser } = useClientAuth();
+  const { FirebaseUser } = UseClientAuth();
   const { setLoader } = LoaderHook();
   const { setToast } = ToastHook();
   const router = useRouter();

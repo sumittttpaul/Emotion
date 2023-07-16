@@ -13,7 +13,6 @@ import {
   SignInWithMicrosoft,
 } from 'functions/AuthAlgorithms';
 import { LoaderHook } from 'hooks/global/Hooks.Loader';
-import { ClientUserType } from 'authentication/useClientAuth';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { DecryptData, EncryptData } from 'functions/security/CryptionSecurity';
 import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
@@ -28,16 +27,16 @@ const SetupCheckDialog = dynamic<SetupCheckDialogProps>(
 function SetupLoginOtherAccountScreen(
   props: SetupLoginOtherAccountScreenProps,
 ) {
-  type StringType = {
+  type StringDataType = {
     FullName: string | undefined;
     PhotoUrl: string | undefined;
   };
   const [CheckDialog, setCheckDialog] = useState(false);
-  const [PrevData, setPrevData] = useState<StringType>({
+  const [PrevData, setPrevData] = useState<StringDataType>({
     FullName: undefined,
     PhotoUrl: undefined,
   });
-  const [NewData, setNewData] = useState<StringType>({
+  const [NewData, setNewData] = useState<StringDataType>({
     FullName: undefined,
     PhotoUrl: undefined,
   });
@@ -50,42 +49,42 @@ function SetupLoginOtherAccountScreen(
     props.setScreen('login-phone');
   };
 
-  // database
-  function CreateDateBase(user: ClientUserType) {
-    if (user) {
+  // databases
+  function CreateDateBase(_retriveData: RetriveUserDataType) {
+    if (_retriveData && _retriveData.Uid) {
       const UserFullName =
-        user.displayName && user.displayName.length > 0
+        _retriveData.displayName && _retriveData.displayName.length > 0
           ? EncryptData(
-              UserProfileEncrytionKey(user.uid, 'FullName'),
-              user.displayName,
+              UserProfileEncrytionKey(_retriveData.Uid, 'FullName'),
+              _retriveData.displayName,
             )
           : '';
       const UserEmailAddress =
-        user.email && user.email.length > 0
+        _retriveData.email && _retriveData.email.length > 0
           ? EncryptData(
-              UserProfileEncrytionKey(user.uid, 'EmailAddress'),
-              user.email,
+              UserProfileEncrytionKey(_retriveData.Uid, 'EmailAddress'),
+              _retriveData.email,
             )
           : '';
       const UserPhoneNumber =
-        user.phoneNumber && user.phoneNumber.length > 0
+        _retriveData.phoneNumber && _retriveData.phoneNumber.length > 0
           ? EncryptData(
-              UserProfileEncrytionKey(user.uid, 'PhoneNumber'),
-              user.phoneNumber,
+              UserProfileEncrytionKey(_retriveData.Uid, 'PhoneNumber'),
+              _retriveData.phoneNumber,
             )
           : '';
       const UserPhotoURL =
-        user.photoURL && user.photoURL.length > 0
+        _retriveData.photoURL && _retriveData.photoURL.length > 0
           ? EncryptData(
-              UserProfileEncrytionKey(user.uid, 'PhotoURL'),
-              user.photoURL,
+              UserProfileEncrytionKey(_retriveData.Uid, 'PhotoURL'),
+              _retriveData.photoURL,
             )
           : '';
-      const UserEmailAddressVerified = user.emailVerified
-        ? user.emailVerified
+      const UserEmailAddressVerified = _retriveData.emailVerified
+        ? _retriveData.emailVerified
         : false;
       const _data: IUserProfile = {
-        _uid: user.uid,
+        _uid: _retriveData.Uid,
         _data: {
           fullName: UserFullName,
           emailAddress: UserEmailAddress,
@@ -164,60 +163,62 @@ function SetupLoginOtherAccountScreen(
     }
   }
 
-  function Checkdatabase(user: ClientUserType) {
-    FetchUserProfile(user ? user.uid : undefined).then((getData) => {
-      const value = getData.userProfile;
-      const error = getData.error;
-      // PrevData. Value
-      if (user && value) {
-        setPrevData({
-          ...PrevData,
-          FullName:
-            value && value._data && value._data.fullName
-              ? DecryptData(
-                  UserProfileEncrytionKey(user.uid, 'FullName'),
-                  value._data.fullName,
-                )
-              : undefined,
-        });
-        setPrevData({
-          ...PrevData,
-          PhotoUrl:
-            value && value._data && value._data.photoURL
-              ? DecryptData(
-                  UserProfileEncrytionKey(user.uid, 'PhotoURL'),
-                  value._data.photoURL,
-                )
-              : undefined,
-        });
-        // NewData. Value
-        setNewData({
-          ...NewData,
-          FullName:
-            user.displayName && user.displayName.length > 0
-              ? user.displayName
-              : undefined,
-        });
-        setNewData({
-          ...NewData,
-          PhotoUrl:
-            user.photoURL && user.photoURL.length > 0
-              ? user.photoURL
-              : undefined,
-        });
-      } else {
-        if (error) {
-          props.setMainScreen('Error');
-          setToast({
-            Title: 'Something went wrong',
-            Description: error.message,
-            Type: 'Error',
-            Show: false,
+  function Checkdatabase(_retriveData: RetriveUserDataType) {
+    FetchUserProfile(_retriveData.Uid ? _retriveData.Uid : undefined).then(
+      (getData) => {
+        const value = getData.userProfile;
+        const error = getData.error;
+        // PrevData. Value
+        if (_retriveData && _retriveData.Uid && value) {
+          setPrevData({
+            ...PrevData,
+            FullName:
+              value && value._data && value._data.fullName
+                ? DecryptData(
+                    UserProfileEncrytionKey(_retriveData.Uid, 'FullName'),
+                    value._data.fullName,
+                  )
+                : undefined,
           });
+          setPrevData({
+            ...PrevData,
+            PhotoUrl:
+              value && value._data && value._data.photoURL
+                ? DecryptData(
+                    UserProfileEncrytionKey(_retriveData.Uid, 'PhotoURL'),
+                    value._data.photoURL,
+                  )
+                : undefined,
+          });
+          // NewData. Value
+          setNewData({
+            ...NewData,
+            FullName:
+              _retriveData.displayName && _retriveData.displayName.length > 0
+                ? _retriveData.displayName
+                : undefined,
+          });
+          setNewData({
+            ...NewData,
+            PhotoUrl:
+              _retriveData.photoURL && _retriveData.photoURL.length > 0
+                ? _retriveData.photoURL
+                : undefined,
+          });
+        } else {
+          if (error) {
+            props.setMainScreen('Error');
+            setToast({
+              Title: 'Something went wrong',
+              Description: error.message,
+              Type: 'Error',
+              Show: false,
+            });
+          }
         }
-      }
-    });
-    if (!user) {
+      },
+    );
+    if (!_retriveData) {
       setToast({
         Title: 'Something went wrong',
         Description: 'It seems like user is not exist.',

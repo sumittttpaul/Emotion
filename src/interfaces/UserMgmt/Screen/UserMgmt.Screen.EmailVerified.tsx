@@ -14,14 +14,14 @@ import SetupHeaderLabel from 'components/label/SetupHeaderLabel';
 import { ConfirmVerifyEmailAddress } from 'functions/AuthAlgorithms';
 import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
-import useClientAuth from 'authentication/useClientAuth';
+import UseClientAuth from 'authentication/UseClientAuth';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 import SetupConfirmEmailVerifySkeleton from 'components/loading/Setup/ConfirmEmailVerifyLoading';
 
 function UserMgmtEmailVerifiedScreen(props: UserMgmtEmailVerifiedScreenProps) {
   const [Loading, setLoading] = useState(true); // true
   const [Screen, setScreen] = useState<'Success' | 'Error' | null>(null);
-  const { FirebaseUser } = useClientAuth();
+  const { FirebaseUser } = UseClientAuth();
   const { Toast, setToast } = ToastHook();
   const { setLoader } = LoaderHook();
   const router = useRouter();
