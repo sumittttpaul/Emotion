@@ -16,7 +16,11 @@ declare global {
 
 // Captcha
 
-function configureCaptcha({ ShowToast, ResetCaptcha }: RecaptchaProps) {
+function configureCaptcha({
+  ShowToast,
+  ResetCaptcha,
+  Loading,
+}: RecaptchaProps) {
   if (typeof window === 'object') {
     if (ResetCaptcha) {
       window.recaptchaVerifier.render().then(function (widgetId: number) {
@@ -27,10 +31,14 @@ function configureCaptcha({ ShowToast, ResetCaptcha }: RecaptchaProps) {
         'verify-sign-in-recaptcha',
         {
           size: 'invisible',
+          onClose: () => {
+            Loading(false);
+          },
           callback: () => {
             // reCAPTCHA solved, allow signInWithPhoneNumber.
           },
           'expired-callback': () => {
+            Loading(false);
             ShowToast(
               'Recaptcha token expired',
               'Your recaptcha token has been expired, please refresh the page.',
@@ -38,6 +46,7 @@ function configureCaptcha({ ShowToast, ResetCaptcha }: RecaptchaProps) {
               true,
             );
           },
+          theme: 'dark',
           defaultCountry: 'IN',
         },
         FirebaseAuth,
@@ -111,7 +120,13 @@ export async function VerifyOTP({
           else {
             LoadingScreen(true);
             Loading(false);
-            router.redirect(Home_Link);
+            // router.redirect(Home_Link);
+            ShowToast(
+              'Authentication Successful !',
+              'Ho gaya bhai shayad',
+              'Success',
+              true,
+            );
           }
         }
       }
@@ -122,9 +137,7 @@ export async function VerifyOTP({
       if (message == 'Invalid verification code') EmptyOTPBox();
       ShowToast(
         'Something went wrong',
-        message
-          ? message
-          : 'There is an error from server side of authentication.',
+        message ? message : error.message, // 'There is an error from server side of authentication.',
         'Error',
         true,
       );
@@ -277,6 +290,7 @@ export async function SignInWithPhoneNumber({
   configureCaptcha({
     ShowToast: ShowToast,
     ResetCaptcha: ResetCaptcha,
+    Loading: Loading,
   });
   const number = '+91' + PhoneNumber;
   const appVerifier = window.recaptchaVerifier;
@@ -679,6 +693,7 @@ export async function LinkWithPhoneNumber({
   configureCaptcha({
     ShowToast: ShowToast,
     ResetCaptcha: ResetCaptcha,
+    Loading: Loading,
   });
   const number = '+91' + PhoneNumber;
   const appVerifier = window.recaptchaVerifier;

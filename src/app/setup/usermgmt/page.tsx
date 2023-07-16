@@ -1,12 +1,9 @@
 import { FetchUserProfile } from 'hooks/global/Hooks.FetchUserProfile';
-import { cookies } from 'next/headers';
 import UserMgmtInterface from 'interfaces/UserMgmt/UserMgmt.Interface';
 import UseServerAuth from 'authentication/UseServerAuth';
 
 async function UserMgmt() {
-  const cookieStore = cookies();
-  const token = cookieStore.get('token');
-  const FirebaseUser = await UseServerAuth(token?.value);
+  const FirebaseUser = await UseServerAuth();
   const { userProfile } = await FetchUserProfile(FirebaseUser?.uid);
 
   return (

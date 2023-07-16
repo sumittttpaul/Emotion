@@ -13,7 +13,7 @@ export interface HeaderNavMenuProps {
 
 interface INavLabel {
   label: 'Discover' | 'Offers' | 'Collections';
-  to: string;
+  to: RouteType;
 }
 
 const Links: INavLabel[] = [

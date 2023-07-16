@@ -1,8 +1,6 @@
-import { UserProfileEncrytionKeyType } from '../Props/CryptionProps';
-
-export const UserProfileEncrytionKey = (
+const UserProfileEncrytionKey = (
   UserId: string,
-  type: UserProfileEncrytionKeyType
+  type: UserProfileEncrytionKeyType,
 ) => {
   if (type === 'FullName') {
     return ('user_profile-' + `${UserId}` + '-fullname') as string;
@@ -26,3 +24,5 @@ export const UserProfileEncrytionKey = (
     return ('user_profile-' + `${UserId}` + '-gender') as string;
   } else return undefined;
 };
+
+export default UserProfileEncrytionKey;

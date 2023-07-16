@@ -1,7 +1,7 @@
 import { m } from 'framer-motion';
 import { useState } from 'react';
 import { CalculateAge, CalculateMonthNumber } from 'functions/UIAlgorithms';
-import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
+import UserProfileEncrytionKey from 'functions/security/CryptionKey';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import { ToastHook } from 'hooks/global/Hooks.Toast';

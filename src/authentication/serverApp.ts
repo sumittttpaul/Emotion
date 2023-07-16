@@ -3,7 +3,7 @@
 import * as _firebaseAdminUsingServer from 'firebase-admin';
 import { applicationDefault } from 'firebase-admin/app';
 
-const FirebaseAuthUsingServer = () => {
+const FirebaseAuthUsingServer = async () => {
   if (!_firebaseAdminUsingServer.apps.length) {
     _firebaseAdminUsingServer.initializeApp({
       credential: applicationDefault(),

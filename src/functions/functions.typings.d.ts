@@ -15,6 +15,7 @@ interface RecaptchaProps {
     show: boolean,
   ) => void;
   ResetCaptcha: boolean;
+  Loading: Dispatch<boolean>;
 }
 
 interface ResendOTPProps {

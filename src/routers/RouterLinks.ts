@@ -9,10 +9,10 @@ export const FAQ_Link = '#';
 export const Help_Link = '#';
 export const About_Us_Link = '#';
 //
-export const Offers_Link = '/offers';
-export const Collections_Link = '/collections';
-export const Wishlist_Link = '/account/wishlist';
-export const Cart_Link = '/account/cart';
+export const Offers_Link = '#'; // --- /offers
+export const Collections_Link = '#'; // --- /collections
+export const Wishlist_Link = '#'; // --- /account/wishlist
+export const Cart_Link = '#'; // --- /account/cart
 //
 export const Contact_Us_Link = '#';
 export const Track_Order_Link = '#';

@@ -11,7 +11,7 @@ import { _firebaseAuth, _firebaseStorage } from 'authentication/clientApp';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { Home_Link } from 'routers/RouterLinks';
 import { EncryptData } from 'functions/security/CryptionSecurity';
-import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
+import UserProfileEncrytionKey from 'functions/security/CryptionKey';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import UseClientAuth from 'authentication/UseClientAuth';

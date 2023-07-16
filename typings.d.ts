@@ -165,6 +165,8 @@ interface ToastDarkProps {
   };
 }
 
-type StringType = string | undefined | null
-type BooleanType = boolean | undefined | null
-type NumberType = number | undefined | null
+type StringType = string | undefined | null;
+type BooleanType = boolean | undefined | null;
+type NumberType = number | undefined | null;
+
+type RouteType = __next_route_internal_types__.RouteImpl<string>;

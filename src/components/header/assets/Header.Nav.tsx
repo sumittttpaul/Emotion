@@ -11,7 +11,7 @@ interface IProps {
 
 interface INavLabel {
   label: 'Discover' | 'Offers' | 'Collections';
-  to: string;
+  to: RouteType;
 }
 
 const NavLabel: INavLabel[] = [

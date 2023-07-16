@@ -4,7 +4,6 @@ import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
-import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
 import { DeleteAccount, ResentOTP, VerifyOTP } from 'functions/AuthAlgorithms';
 import OTPTimer from 'components/timer/OTPTimer';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
@@ -12,6 +11,7 @@ import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupOTPTextField from 'interfaces/Setup/Input/Setup.Input.OTP';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
+import UserProfileEncrytionKey from 'functions/security/CryptionKey';
 
 function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
   const [OTPs, setOTPs] = useState({
@@ -65,7 +65,6 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
 
   // database
   const CreateDateBase = async (_uid: string) => {
-    'use server';
     const UserPhoneNumber = EncryptData(
       UserProfileEncrytionKey(_uid, 'PhoneNumber'),
       PhoneNumber,

@@ -25,7 +25,6 @@ function SetupErrorScreen(props: SetupErrorScreenProps) {
 
   const handleReloadThePage = () => {
     router.refresh();
-    router.prefetch('');
   };
 
   return (

@@ -15,7 +15,7 @@ import {
 import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { DecryptData, EncryptData } from 'functions/security/CryptionSecurity';
-import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
+import UserProfileEncrytionKey from 'functions/security/CryptionKey';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 import { FetchUserProfile } from 'hooks/global/Hooks.FetchUserProfile';
 

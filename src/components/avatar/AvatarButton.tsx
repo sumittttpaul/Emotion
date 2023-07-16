@@ -10,7 +10,7 @@ import {
 import { DeleteAvatar, UploadAvatar } from 'functions/AuthAlgorithms';
 import { useEffect, useState } from 'react';
 import { EncryptData } from 'functions/security/CryptionSecurity';
-import { UserProfileEncrytionKey } from 'functions/security/CryptionKey';
+import UserProfileEncrytionKey from 'functions/security/CryptionKey';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import UseClientAuth from 'authentication/UseClientAuth';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
@@ -151,10 +151,10 @@ function AvatarButton() {
     ShowAvatarScreen();
     ShowAvatarDialog();
   };
-  function UpdatedatabaseWithURL(value: string) {
+  async function UpdatedatabaseWithURL(value: string) {
     if (FirebaseUser) {
-      const UserPhotoURL = EncryptData(
-        UserProfileEncrytionKey(FirebaseUser?.uid, 'PhotoURL'),
+      const UserPhotoURL = await EncryptData(
+        await UserProfileEncrytionKey(FirebaseUser?.uid, 'PhotoURL'),
         value,
       );
       const _data: IUserProfileDataUpdate = {
