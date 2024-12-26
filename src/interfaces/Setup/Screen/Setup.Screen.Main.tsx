@@ -99,7 +99,7 @@ function SetupScreenMain({
         <main
           className={`${MainClassName} relative box-border flex w-full flex-col items-center justify-center md:flex-row`}
         >
-          <div className="relative ml-14 hidden h-full w-full items-center justify-center p-14 md:flex">
+          <div className="relative items-center justify-center hidden w-full h-full ml-14 p-14 md:flex">
             {Screen && (
               <Image
                 height={370}

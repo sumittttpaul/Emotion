@@ -1,9 +1,12 @@
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 
 export const metadata: Metadata = {
   title: 'Setup your Emotion Account',
   description: 'Welcome to setup wizard of Emotion account | Emotion.store',
-  themeColor: '#202020',
+};
+
+export const viewport: Viewport = {
+  themeColor: '#0f0f0f',
 };
 
 function SetupLayout({ children }: ChildrenType) {

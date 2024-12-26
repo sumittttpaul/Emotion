@@ -1,6 +1,6 @@
-const UserProfileEncrytionKey = (
+const UserProfileEncryptionKey = (
   UserId: string,
-  type: UserProfileEncrytionKeyType,
+  type: UserProfileEncryptionKeyType,
 ) => {
   if (type === 'FullName') {
     return ('user_profile-' + `${UserId}` + '-fullname') as string;
@@ -25,4 +25,4 @@ const UserProfileEncrytionKey = (
   } else return undefined;
 };
 
-export default UserProfileEncrytionKey;
+export default UserProfileEncryptionKey;

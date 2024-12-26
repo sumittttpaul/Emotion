@@ -22,7 +22,7 @@ const ToastDark = dynamic<ToastDarkProps>(
   () => import('components/toast/ToastDark'),
   { ssr: false },
 );
-const LinearProgressLaoding = dynamic(
+const LinearProgressLoading = dynamic(
   () => import('components/loading/Loading.LinearProgress'),
   { ssr: false },
 );
@@ -80,7 +80,7 @@ function UserMgmtInterface({
           />
         )}
         {!mode && !LoadingMode && <UserMgmtErrorScreen />}
-        {PasswordResetLoading && <LinearProgressLaoding />}
+        {PasswordResetLoading && <LinearProgressLoading />}
       </main>
       <ToastDark
         Toast={{

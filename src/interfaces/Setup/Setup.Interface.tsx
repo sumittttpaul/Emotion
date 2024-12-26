@@ -9,8 +9,8 @@ function SetupInterface() {
   const [ResetCaptcha, setResetCaptcha] = useState(false);
   const [SkipDialog, setSkipDialog] = useState(false);
   const [Loading, setLoading] = useState(false);
-  const [Screen, setScreen] = useState<AuthScreenType>(undefined);
-  const [ErrorType, setErrorType] = useState<AuthErrorType>(undefined);
+  const [Screen, setScreen] = useState<AuthScreenType>(undefined); // undefined
+  const [ErrorType, setErrorType] = useState<AuthErrorType>(undefined); // undefined
   const [MainScreen, setMainScreen] = useState<AuthMainScreenType>('CheckInfo'); // CheckInfo
 
   return (

@@ -145,6 +145,7 @@ function SetupScreenContent({
           <SetupLoginPhoneScreen
             ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
+            Animation={Animation}
             Loading={Loading}
             ResetCaptcha={ResetCaptcha}
             setScreen={setScreen}

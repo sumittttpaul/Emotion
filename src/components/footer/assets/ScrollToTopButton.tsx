@@ -1,4 +1,4 @@
-import { ChevronUpIcon } from '@heroicons/react/solid';
+import { ChevronUpIcon } from '@heroicons/react/24/solid';
 import { IconButton } from '@mui/material';
 import React, { Component } from 'react';
 import TooltipDark from 'components/tooltip/TooltipDark';

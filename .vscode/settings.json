@@ -7,7 +7,7 @@
   "editor.fontFamily": "'Fira Code iScript','Courier New', monospace",
   "editor.fontSize": 16,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "workbench.colorTheme": "Night Owl (No Italics)",
+  "workbench.colorTheme": "Night Owl",
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
   "files.autoSave": "afterDelay",
@@ -30,6 +30,7 @@
           "storage.type", //class keyword
           "storage.modifier", //static keyword
           "storage.type.class.js",
+          "storage.type.js",
           "support.class.builtin",
           "constant",
           "constant.language",
@@ -55,5 +56,14 @@
         }
       }
     ]
-  }
+  },
+  "cSpell.words": [
+    "Checkdatabase",
+    "Cryption",
+    "Deletedatabase",
+    "Dont",
+    "Mgmt",
+    "Tassinari",
+    "Updatedatabase"
+  ]
 }

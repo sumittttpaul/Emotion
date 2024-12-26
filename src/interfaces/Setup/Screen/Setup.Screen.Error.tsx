@@ -35,7 +35,7 @@ function SetupErrorScreen(props: SetupErrorScreenProps) {
         height={100}
         width={100}
         className="pb-7 opacity-30"
-        src="/vectors/emogi-face-error.svg"
+        src="/vectors/emoji-face-error.svg"
         alt="setup-error"
       />
       <div className="relative flex w-full max-w-[500px] flex-col items-center justify-center space-y-5 overflow-hidden">
@@ -58,7 +58,7 @@ function SetupErrorScreen(props: SetupErrorScreenProps) {
             <YellowBulbHint
               Tooltip
               TooltipPlacement="top"
-              ToottipTitle={
+              TooltipTitle={
                 (props.Type === 'get-user-failed' &&
                   'Encountered a content loading failure. To resolve the issue, we recommend refreshing the page for a fresh attempt at loading the content.') ||
                 (props.Type === 'database-not-created' &&
@@ -78,20 +78,20 @@ function SetupErrorScreen(props: SetupErrorScreenProps) {
       </div>
       <div className="mt-7 w-full max-w-[750px] flex-col space-y-2">
         {props.Type !== undefined && (
-          <div className="flex w-full items-center justify-start">
+          <div className="flex items-center justify-start w-full">
             <SignInNextButton
               onClick={handleReloadThePage}
               Label="Reload the page"
             />
           </div>
         )}
-        <div className="flex w-full items-center justify-start">
+        <div className="flex items-center justify-start w-full">
           <SignInNextButton
             onClick={handleMoveToManageAccount}
             Label="Move to manage account"
           />
         </div>
-        <div className="flex w-full items-center justify-start">
+        <div className="flex items-center justify-start w-full">
           <SignInBackButton onClick={handleBackToHome} Label="Back to home" />
         </div>
       </div>

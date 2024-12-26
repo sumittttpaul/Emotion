@@ -3,7 +3,7 @@
 import * as _firebaseAdminUsingServer from 'firebase-admin';
 import { applicationDefault } from 'firebase-admin/app';
 
-const FirebaseAuthUsingServer = async () => {
+export async function FirebaseAuthUsingServer() {
   if (!_firebaseAdminUsingServer.apps.length) {
     _firebaseAdminUsingServer.initializeApp({
       credential: applicationDefault(),
@@ -11,6 +11,6 @@ const FirebaseAuthUsingServer = async () => {
     });
   }
   return _firebaseAdminUsingServer.auth();
-};
+}
 
-export { _firebaseAdminUsingServer, FirebaseAuthUsingServer };
+// export  { _firebaseAdminUsingServer };

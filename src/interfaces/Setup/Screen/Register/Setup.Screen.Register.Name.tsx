@@ -2,7 +2,7 @@ import { m } from 'framer-motion';
 import { AddFullName } from 'functions/AuthAlgorithms';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { EncryptData } from 'functions/security/CryptionSecurity';
-import UserProfileEncrytionKey from 'functions/security/CryptionKey';
+import UserProfileEncryptionKey from 'functions/security/CryptionKey';
 import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
@@ -23,7 +23,7 @@ function SetupRegisterNameScreen(props: SetupRegisterNameScreenProps) {
   function Updatedatabase() {
     if (FirebaseUser) {
       const UserFullName = EncryptData(
-        UserProfileEncrytionKey(FirebaseUser.uid, 'FullName'),
+        UserProfileEncryptionKey(FirebaseUser.uid, 'FullName'),
         FullName,
       );
       const _data: IUserProfileDataUpdate = {

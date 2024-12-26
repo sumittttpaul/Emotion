@@ -9,7 +9,7 @@ import {
   styled,
 } from '@mui/material';
 import Image from 'next/image';
-import { EyeIcon, EyeOffIcon, CheckIcon } from '@heroicons/react/solid';
+import { EyeIcon, EyeSlashIcon, CheckIcon } from '@heroicons/react/24/solid';
 import { IconPasswordTextFieldProps } from './AllTextFieldProps';
 
 const CustomTextField = styled((props: TextFieldProps) => (
@@ -159,7 +159,7 @@ function IconPasswordTextFieldDark(props: IconPasswordTextFieldProps) {
                 }}
               >
                 {values.showPassword ? (
-                  <EyeOffIcon
+                  <EyeSlashIcon
                     height={22}
                     width={22}
                     className="text-white opacity-50"

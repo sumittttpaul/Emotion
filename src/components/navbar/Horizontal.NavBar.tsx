@@ -97,7 +97,7 @@ function HorizontalNavBar() {
         initial="initial"
         variants={variants}
         onAnimationComplete={onAnimationComplete}
-        transition={{ type: 'twin', duration: 0.125 }}
+        transition={{ type: 'twin', duration: 0 }}
         className="h-[2px] bg-white"
       />
     </div>

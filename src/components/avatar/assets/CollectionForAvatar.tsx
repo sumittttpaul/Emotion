@@ -1,4 +1,7 @@
-import { ArrowLeftIcon, DotsVerticalIcon } from '@heroicons/react/outline';
+import {
+  ArrowLeftIcon,
+  EllipsisVerticalIcon,
+} from '@heroicons/react/24/outline';
 import { IconButton } from '@mui/material';
 import { CollectionMap } from './CollectionForAvatar/CollectionMap';
 import { SetupAvatarContentProps } from 'contents/setup/Setup.Avatar';
@@ -38,7 +41,7 @@ function CollectionForAvatar(props: IProps) {
             onClick={props.moreInfo}
             className="p-3 hover:bg-white/5"
           >
-            <DotsVerticalIcon className="h-5 text-white" />
+            <EllipsisVerticalIcon className="h-5 text-white" />
           </IconButton>
         </TooltipDark>
       </div>

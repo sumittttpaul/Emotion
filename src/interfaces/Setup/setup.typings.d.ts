@@ -67,6 +67,7 @@ interface SetupLoginPasswordScreenProps {
 interface SetupLoginPhoneScreenProps {
   ContentClassName?: string;
   ParentDivClassName?: string;
+  Animation: AuthAnimationType;
   setScreen: Dispatch<AuthScreenType>;
   setLoading: Dispatch<boolean>;
   ResetCaptcha: boolean;

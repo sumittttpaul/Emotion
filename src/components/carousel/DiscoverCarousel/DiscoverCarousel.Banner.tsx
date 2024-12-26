@@ -138,8 +138,8 @@ function DiscoverCarouselBanner(props: IProps) {
       CarouselOrder === 'left'
         ? AnimationValue(CarouselIndex)
         : CarouselIndex > 9
-        ? SecondCarouselAnimationValue
-        : FirstCarouselAnimationValue;
+          ? SecondCarouselAnimationValue
+          : FirstCarouselAnimationValue;
     if (CarouselIndex === 6 || CarouselIndex === 16) {
       animation.start({ x: -1817 });
     } else {
@@ -164,15 +164,14 @@ function DiscoverCarouselBanner(props: IProps) {
       CarouselOrder === 'left'
         ? AnimationValue(CarouselIndex)
         : CarouselIndex > 9
-        ? SecondCarouselAnimationValue
-        : FirstCarouselAnimationValue;
+          ? SecondCarouselAnimationValue
+          : FirstCarouselAnimationValue;
     animation.start({ x: CarouselOrderAnimationValue });
     props.setCarouselState(CarouselIndex);
   };
 
   const LoopCarousel = () => {
     setDisabledCarousel(false);
-    console.log('Final Animation Value : ' + x.get());
 
     // 5
     if (props.CarouselState === 4) {

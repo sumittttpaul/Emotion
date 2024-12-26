@@ -3,7 +3,7 @@ import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import { LinkWithPhoneNumber } from 'functions/AuthAlgorithms';
-import UserProfileEncrytionKey from 'functions/security/CryptionKey';
+import UserProfileEncryptionKey from 'functions/security/CryptionKey';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
@@ -37,7 +37,7 @@ function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
   const Updatedatabase = () => {
     if (FirebaseUser) {
       const UserPhoneNumber = EncryptData(
-        UserProfileEncrytionKey(FirebaseUser.uid, 'PhoneNumber'),
+        UserProfileEncryptionKey(FirebaseUser.uid, 'PhoneNumber'),
         PhoneNumber.toString(),
       );
       const _data: IUserProfileDataUpdate = {

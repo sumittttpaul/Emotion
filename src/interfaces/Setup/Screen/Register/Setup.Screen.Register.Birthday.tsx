@@ -1,7 +1,7 @@
 import { m } from 'framer-motion';
 import { useState } from 'react';
 import { CalculateAge, CalculateMonthNumber } from 'functions/UIAlgorithms';
-import UserProfileEncrytionKey from 'functions/security/CryptionKey';
+import UserProfileEncryptionKey from 'functions/security/CryptionKey';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
@@ -31,11 +31,11 @@ function SetupRegisterBirthdayScreen(props: SetupRegisterBirthdayScreenProps) {
       const _dataMonth = DateOfBirth.split('-')[1];
       const _dataYear = DateOfBirth.split('-')[2];
       const UserDOB = EncryptData(
-        UserProfileEncrytionKey(FirebaseUser.uid, 'DateOfBirth'),
+        UserProfileEncryptionKey(FirebaseUser.uid, 'DateOfBirth'),
         DateOfBirth,
       );
       const UserAge = EncryptData(
-        UserProfileEncrytionKey(FirebaseUser.uid, 'Age'),
+        UserProfileEncryptionKey(FirebaseUser.uid, 'Age'),
         CalculateAge(
           _dataDay + '-' + CalculateMonthNumber(_dataMonth) + '-' + _dataYear,
         ).toString(),

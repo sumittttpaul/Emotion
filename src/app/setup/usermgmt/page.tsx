@@ -1,4 +1,4 @@
-import { FetchUserProfile } from 'hooks/global/Hooks.FetchUserProfile';
+import { FetchUserProfile } from 'databases/helpers/Helper.FetchUserProfile';
 import UserMgmtInterface from 'interfaces/UserMgmt/UserMgmt.Interface';
 import UseServerAuth from 'authentication/UseServerAuth';
 

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Router from 'next/router';
+import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { Button, CircularProgress } from '@mui/material';
@@ -18,6 +18,7 @@ const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
 function HeaderUserButton() {
   const { FirebaseUser, FirebaseLoading } = UseClientAuth();
   const { setLoader } = LoaderHook();
+  const Router = useRouter();
 
   if (FirebaseLoading)
     return (

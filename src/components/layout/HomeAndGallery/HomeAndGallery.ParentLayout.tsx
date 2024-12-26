@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react';
 import { DeviceHook } from 'hooks/global/Hooks.Device';
 import SidePanel from 'components/sidepanel/SidePanel';

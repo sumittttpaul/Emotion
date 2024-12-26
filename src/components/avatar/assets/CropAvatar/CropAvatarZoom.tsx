@@ -1,4 +1,4 @@
-import { ZoomInIcon, ZoomOutIcon } from '@heroicons/react/outline';
+import { MagnifyingGlassPlusIcon, MagnifyingGlassMinusIcon } from '@heroicons/react/24/outline';
 import TooltipDark from 'components/tooltip/TooltipDark';
 import { m } from 'framer-motion';
 
@@ -22,7 +22,7 @@ export function CropAvatarZoom(props: IProps) {
         Tooltip="Zoom out of the image"
         Disabled={Zoom === 0}
         onClick={props.onZoomOut}
-        Icon={<ZoomOutIcon className="h-[18px] text-white" />}
+        Icon={<MagnifyingGlassMinusIcon className="h-[18px] text-white" />}
       />
       {/* <TooltipDark
         title="Shows the zoom percentage of the image"
@@ -38,7 +38,7 @@ export function CropAvatarZoom(props: IProps) {
         Tooltip="Zoom into the image"
         Disabled={Zoom === 100}
         onClick={props.onZoomIn}
-        Icon={<ZoomInIcon className="h-[18px] text-white" />}
+        Icon={<MagnifyingGlassPlusIcon className="h-[18px] text-white" />}
       />
     </div>
   );

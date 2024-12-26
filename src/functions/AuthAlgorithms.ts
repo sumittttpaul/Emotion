@@ -28,6 +28,7 @@ function configureCaptcha({
       });
     } else {
       window.recaptchaVerifier = new _firebaseAuth.RecaptchaVerifier(
+        FirebaseAuth,
         'verify-sign-in-recaptcha',
         {
           size: 'invisible',
@@ -49,7 +50,6 @@ function configureCaptcha({
           theme: 'dark',
           defaultCountry: 'IN',
         },
-        FirebaseAuth,
       );
     }
   }
@@ -884,6 +884,7 @@ export async function UploadAvatar({
       );
     }
   } else {
+    Loading(false);
     ShowToast('Check file', 'File not found.', 'Error', true);
   }
 }
@@ -943,6 +944,7 @@ export async function DeleteAvatar({
       );
     }
   } else {
+    Loading(false);
     ShowToast('Check avatar', 'Avatar not found.', 'Error', true);
   }
 }
@@ -977,6 +979,7 @@ export async function DeleteAccount({
         );
       });
   } else {
+    Loading(false);
     ShowToast('User not found', 'User is not signed it.', 'Error', true);
   }
 }

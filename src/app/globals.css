@@ -17,13 +17,14 @@ body {
   -moz-osx-font-smoothing: auto;
   -webkit-tap-highlight-color: transparent;
   -ms-tap-highlight-color: transparent;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito Sans', sans-serif !important;
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
+  -webkit-text-fill-color: #ffffff;
   background: transparent;
   box-shadow: none;
   text-shadow: none;

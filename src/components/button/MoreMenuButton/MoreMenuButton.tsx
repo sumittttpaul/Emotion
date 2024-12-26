@@ -1,4 +1,7 @@
-import { DotsHorizontalIcon, DotsVerticalIcon } from '@heroicons/react/outline';
+import {
+  EllipsisHorizontalIcon,
+  EllipsisVerticalIcon,
+} from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { IconButton } from '@mui/material';
 import { MoreMenuButtonMenuProps } from './MoreMenuButton.Menu';
@@ -41,9 +44,9 @@ function MoreMenuButton(props: IProps) {
         }}
       >
         {props.Orientation === 'horizontal' ? (
-          <DotsHorizontalIcon className="h-5" />
+          <EllipsisHorizontalIcon className="h-5" />
         ) : (
-          <DotsVerticalIcon className="h-5" />
+          <EllipsisVerticalIcon className="h-5" />
         )}
       </IconButton>
       <MoreMenuButtonMenu

@@ -1,4 +1,4 @@
-import { XIcon } from '@heroicons/react/solid';
+import { XMarkIcon } from '@heroicons/react/24/solid';
 import { Snackbar } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { useEffect, useRef } from 'react';
@@ -109,7 +109,7 @@ function ToastDarkContent(props: ToastDarkContentProps) {
               whileTap={{ scale: 0.9 }}
               className="m-0 cursor-default rounded-full bg-transparent p-2.5 hover:bg-white/10"
             >
-              <XIcon className="h-4 w-4 text-white" />
+              <XMarkIcon className="h-4 w-4 text-white" />
             </m.button>
           </div>
         </div>

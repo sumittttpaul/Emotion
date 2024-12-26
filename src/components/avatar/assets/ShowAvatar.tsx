@@ -2,12 +2,12 @@ import Image from 'next/image';
 import { IconButton, Button } from '@mui/material';
 import {
   CameraIcon,
-  DotsVerticalIcon,
+  EllipsisVerticalIcon,
   PencilIcon,
   TrashIcon,
-  XIcon,
-} from '@heroicons/react/outline';
-import { UsersIcon } from '@heroicons/react/solid';
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
+import { UsersIcon } from '@heroicons/react/24/solid';
 import TooltipDark from 'components/tooltip/TooltipDark';
 import { Circle_BlurDataURL } from 'components/loading/BlurDataURL';
 import dynamic from 'next/dynamic';
@@ -39,7 +39,7 @@ function ShowAvatar(props: IProps) {
             onClick={props.backward}
             className="p-3 hover:bg-white/5"
           >
-            <XIcon className="h-5 text-white" />
+            <XMarkIcon className="h-5 text-white" />
           </IconButton>
         </TooltipDark>
         <div className="flex w-full items-center justify-start space-x-1.5 px-1 sm:justify-center">
@@ -54,7 +54,7 @@ function ShowAvatar(props: IProps) {
             onClick={props.moreInfo}
             className="p-3 hover:bg-white/5"
           >
-            <DotsVerticalIcon className="h-5 text-white" />
+            <EllipsisVerticalIcon className="h-5 text-white" />
           </IconButton>
         </TooltipDark>
       </div>

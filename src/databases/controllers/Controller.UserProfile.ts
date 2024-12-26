@@ -1,11 +1,9 @@
-'use server';
-
 import { IError } from 'types/Error.Constructor';
 import {
   DELETE_USER_PROFILE,
   CREATE_USER_PROFILE,
   UPDATE_USER_PROFILE,
-} from '../helpers/Helper.UserProfile';
+} from '../functions/Function.UserProfile';
 
 const ErrorMessage: IError = {
   name: 'Internal Server Error',
@@ -14,7 +12,7 @@ const ErrorMessage: IError = {
 
 async function OperateUserProfile(
   Type: 'CREATE' | 'UPDATE' | 'DELETE',
-  Data?: FetchDataType
+  Data?: FetchDataType,
 ) {
   if (Type === 'CREATE' && Data?.create) {
     return await CREATE_USER_PROFILE({ _data: Data.create });

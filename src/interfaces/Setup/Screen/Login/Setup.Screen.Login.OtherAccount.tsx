@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { m } from 'framer-motion';
 import { Button } from '@mui/material';
-import { ChevronRightIcon } from '@heroicons/react/solid';
+import { ChevronRightIcon } from '@heroicons/react/24/solid';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import {
   DeleteAccount,
@@ -15,9 +15,9 @@ import {
 import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { DecryptData, EncryptData } from 'functions/security/CryptionSecurity';
-import UserProfileEncrytionKey from 'functions/security/CryptionKey';
+import UserProfileEncryptionKey from 'functions/security/CryptionKey';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
-import { FetchUserProfile } from 'hooks/global/Hooks.FetchUserProfile';
+import { FetchUserProfile } from 'databases/helpers/Helper.FetchUserProfile';
 
 const SetupCheckDialog = dynamic<SetupCheckDialogProps>(
   () => import('interfaces/Setup/Dialog/Setup.Dialog.Check'),
@@ -50,41 +50,41 @@ function SetupLoginOtherAccountScreen(
   };
 
   // databases
-  function CreateDateBase(_retriveData: RetriveUserDataType) {
-    if (_retriveData && _retriveData.Uid) {
+  function CreateDateBase(_retrieveData: RetrieveUserDataType) {
+    if (_retrieveData && _retrieveData.Uid) {
       const UserFullName =
-        _retriveData.displayName && _retriveData.displayName.length > 0
+        _retrieveData.displayName && _retrieveData.displayName.length > 0
           ? EncryptData(
-              UserProfileEncrytionKey(_retriveData.Uid, 'FullName'),
-              _retriveData.displayName,
+              UserProfileEncryptionKey(_retrieveData.Uid, 'FullName'),
+              _retrieveData.displayName,
             )
           : '';
       const UserEmailAddress =
-        _retriveData.email && _retriveData.email.length > 0
+        _retrieveData.email && _retrieveData.email.length > 0
           ? EncryptData(
-              UserProfileEncrytionKey(_retriveData.Uid, 'EmailAddress'),
-              _retriveData.email,
+              UserProfileEncryptionKey(_retrieveData.Uid, 'EmailAddress'),
+              _retrieveData.email,
             )
           : '';
       const UserPhoneNumber =
-        _retriveData.phoneNumber && _retriveData.phoneNumber.length > 0
+        _retrieveData.phoneNumber && _retrieveData.phoneNumber.length > 0
           ? EncryptData(
-              UserProfileEncrytionKey(_retriveData.Uid, 'PhoneNumber'),
-              _retriveData.phoneNumber,
+              UserProfileEncryptionKey(_retrieveData.Uid, 'PhoneNumber'),
+              _retrieveData.phoneNumber,
             )
           : '';
       const UserPhotoURL =
-        _retriveData.photoURL && _retriveData.photoURL.length > 0
+        _retrieveData.photoURL && _retrieveData.photoURL.length > 0
           ? EncryptData(
-              UserProfileEncrytionKey(_retriveData.Uid, 'PhotoURL'),
-              _retriveData.photoURL,
+              UserProfileEncryptionKey(_retrieveData.Uid, 'PhotoURL'),
+              _retrieveData.photoURL,
             )
           : '';
-      const UserEmailAddressVerified = _retriveData.emailVerified
-        ? _retriveData.emailVerified
+      const UserEmailAddressVerified = _retrieveData.emailVerified
+        ? _retrieveData.emailVerified
         : false;
       const _data: IUserProfile = {
-        _uid: _retriveData.Uid,
+        _uid: _retrieveData.Uid,
         _data: {
           fullName: UserFullName,
           emailAddress: UserEmailAddress,
@@ -163,19 +163,19 @@ function SetupLoginOtherAccountScreen(
     }
   }
 
-  function Checkdatabase(_retriveData: RetriveUserDataType) {
-    FetchUserProfile(_retriveData.Uid ? _retriveData.Uid : undefined).then(
+  function Checkdatabase(_retrieveData: RetrieveUserDataType) {
+    FetchUserProfile(_retrieveData.Uid ? _retrieveData.Uid : undefined).then(
       (getData) => {
         const value = getData.userProfile;
         const error = getData.error;
         // PrevData. Value
-        if (_retriveData && _retriveData.Uid && value) {
+        if (_retrieveData && _retrieveData.Uid && value) {
           setPrevData({
             ...PrevData,
             FullName:
               value && value._data && value._data.fullName
                 ? DecryptData(
-                    UserProfileEncrytionKey(_retriveData.Uid, 'FullName'),
+                    UserProfileEncryptionKey(_retrieveData.Uid, 'FullName'),
                     value._data.fullName,
                   )
                 : undefined,
@@ -185,7 +185,7 @@ function SetupLoginOtherAccountScreen(
             PhotoUrl:
               value && value._data && value._data.photoURL
                 ? DecryptData(
-                    UserProfileEncrytionKey(_retriveData.Uid, 'PhotoURL'),
+                    UserProfileEncryptionKey(_retrieveData.Uid, 'PhotoURL'),
                     value._data.photoURL,
                   )
                 : undefined,
@@ -194,15 +194,15 @@ function SetupLoginOtherAccountScreen(
           setNewData({
             ...NewData,
             FullName:
-              _retriveData.displayName && _retriveData.displayName.length > 0
-                ? _retriveData.displayName
+              _retrieveData.displayName && _retrieveData.displayName.length > 0
+                ? _retrieveData.displayName
                 : undefined,
           });
           setNewData({
             ...NewData,
             PhotoUrl:
-              _retriveData.photoURL && _retriveData.photoURL.length > 0
-                ? _retriveData.photoURL
+              _retrieveData.photoURL && _retrieveData.photoURL.length > 0
+                ? _retrieveData.photoURL
                 : undefined,
           });
         } else {
@@ -218,7 +218,7 @@ function SetupLoginOtherAccountScreen(
         }
       },
     );
-    if (!_retriveData) {
+    if (!_retrieveData) {
       setToast({
         Title: 'Something went wrong',
         Description: 'It seems like user is not exist.',
@@ -335,13 +335,13 @@ function SetupLoginOtherAccountScreen(
         <div
           className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
         >
-          <div className="flex w-full flex-col space-y-2">
+          <div className="flex flex-col w-full space-y-2">
             <CustomButton onClick={GoogleSignIn} Label="Google" />
             <CustomButton onClick={FacebookSignIn} Label="Facebook" />
             <CustomButton onClick={AppleSignIn} Label="Apple" />
             <CustomButton onClick={MicrosoftSignIn} Label="Microsoft" />
           </div>
-          <div className="flex w-full justify-start">
+          <div className="flex justify-start w-full">
             <SignInBackButton
               Label="Back"
               onClick={BackToSignInWithPhoneNumber}
@@ -393,7 +393,7 @@ function CustomButton(props: CustomButtonProps) {
             {props.Description}
           </p>
         </div>
-        <div className="flex h-full items-center justify-center">
+        <div className="flex items-center justify-center h-full">
           <ChevronRightIcon
             className={`${props.Description ? 'mt-3' : 'mt-1'} block h-4 w-4`}
           />

@@ -1,4 +1,4 @@
-type UserProfileEncrytionKeyType =
+type UserProfileEncryptionKeyType =
   | 'FullName'
   | 'EmailAddress'
   | 'PhoneNumber'
@@ -231,7 +231,7 @@ interface UploadAvatarProps {
 }
 
 interface UploadAvatarUsingServerProps {
-  Uid: string
+  Uid: string;
   Progress: Dispatch<string>;
   File: File | undefined;
   UpdatedatabaseWithURL: Dispatch<string>;
@@ -271,7 +271,7 @@ interface DeleteAccountProps {
   ) => void;
 }
 
-type RetriveUserDataType = {
+type RetrieveUserDataType = {
   Uid: StringType;
   displayName: StringType;
   email: StringType;

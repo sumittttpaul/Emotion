@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { DiscoverCarouselContentProps } from 'contents/home/discover/Home.Discover.Carousel';
 import { Button } from '@mui/material';
-import { ChevronRightIcon } from '@heroicons/react/outline';
+import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import DiscoverCarouselPieTimer from './DiscoverCarousel.PieTimer';
 import Image from 'next/image';
 

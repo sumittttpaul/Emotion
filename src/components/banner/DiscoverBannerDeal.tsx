@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useCallback, useState } from 'react';
 import { Button } from '@mui/material';
 import { DiscoverBannerLightingDealContentProps } from 'contents/home/discover/Home.Discover.Banner';
-import { ChevronRightIcon } from '@heroicons/react/outline';
+import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import ProductContextMenu from 'components/button/ProductContextMenu';
 
 interface IProps {
@@ -53,12 +53,12 @@ function DiscoverBannerDeal(props: IProps) {
   ];
 
   return (
-    <div className="relative mt-8 flex w-full p-3">
-      <div className="relative flex w-full items-center space-x-5 overflow-hidden rounded-xl bg-white/5">
+    <div className="relative flex w-full p-3 mt-8">
+      <div className="relative flex items-center w-full space-x-5 overflow-hidden rounded-xl bg-white/5">
         {/* Title */}
         <div className="mx-auto flex w-full min-w-[300px] max-w-[300px] cursor-default flex-col space-y-4 py-10 pl-10 text-white">
           <div className="flex justify-start">{props.Badge}</div>
-          <div className="flex w-full flex-col space-y-2">
+          <div className="flex flex-col w-full space-y-2">
             <div className="text-[30px] font-[500] leading-[35px] tracking-wide text-white">
               {props.Label}
             </div>
@@ -66,7 +66,7 @@ function DiscoverBannerDeal(props: IProps) {
               {props.Description}
             </div>
           </div>
-          <div className="flex w-full justify-start pt-2">
+          <div className="flex justify-start w-full pt-2">
             <Button
               className={`button-text-lower z-[1] flex h-8 cursor-default items-center rounded-lg bg-white/5 px-8 text-white hover:bg-white/10`}
               sx={{
@@ -87,6 +87,7 @@ function DiscoverBannerDeal(props: IProps) {
         {/* Content */}
         <>
           <Swiper
+            effect='creative'
             slidesPerView={5}
             spaceBetween={16}
             wrapperTag="ul"
@@ -106,7 +107,7 @@ function DiscoverBannerDeal(props: IProps) {
                 onContextMenu={handleClick}
                 className={`bg-${value.Color}-shadow button-text-lower group max-w-[220px] cursor-default space-y-1 rounded-xl bg-white/5 p-4 text-white transition-all hover:bg-white/10`}
               >
-                <div className="relative flex w-full flex-col">
+                <div className="relative flex flex-col w-full">
                   <div className="relative w-full overflow-hidden">
                     <Image
                       height={240}
@@ -128,8 +129,8 @@ function DiscoverBannerDeal(props: IProps) {
                   <h6 className="mt-1 line-clamp-2 w-full text-left text-[13px] font-normal leading-[18px] opacity-[0.75]">
                     {value.Description}
                   </h6>
-                  <div className="block h-5 w-full" />
-                  <div className="flex items-center space-x-2 pt-1 text-xs">
+                  <div className="block w-full h-5" />
+                  <div className="flex items-center pt-1 space-x-2 text-xs">
                     <div className="flex space-x-2 rounded-md bg-white/5 px-[8px] py-[5px]">
                       <h6 className="text-[12px] line-through opacity-70">
                         {`₹${value.OriginalPrice}`}

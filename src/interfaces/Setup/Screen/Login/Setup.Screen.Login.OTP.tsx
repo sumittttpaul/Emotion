@@ -4,14 +4,16 @@ import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
-import { DeleteAccount, ResentOTP, VerifyOTP } from 'functions/AuthAlgorithms';
+import { DeleteAccount, VerifyOTP } from 'functions/AuthAlgorithms';
+import { ResentOTP } from 'functions/AuthAlgorithms';
 import OTPTimer from 'components/timer/OTPTimer';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupOTPTextField from 'interfaces/Setup/Input/Setup.Input.OTP';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
-import UserProfileEncrytionKey from 'functions/security/CryptionKey';
+import UserProfileEncryptionKey from 'functions/security/CryptionKey';
+import { CREATE_USER_PROFILE } from 'databases/functions/Function.UserProfile';
 
 function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
   const [OTPs, setOTPs] = useState({
@@ -51,7 +53,7 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
     props.setScreen('login-phone');
     setToast({
       Title: 'Verification process failed',
-      Description: 'You have cancelled the otp verificaiton.',
+      Description: 'You have cancelled the otp verification.',
       Type: 'Error',
       Show: true,
     });
@@ -66,9 +68,10 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
   // database
   const CreateDateBase = async (_uid: string) => {
     const UserPhoneNumber = EncryptData(
-      UserProfileEncrytionKey(_uid, 'PhoneNumber'),
+      UserProfileEncryptionKey(_uid, 'PhoneNumber'),
       PhoneNumber,
     );
+    if (!_uid) throw new Error('_uid is required');
     const _data: IUserProfile = {
       _uid: _uid,
       _data: {
@@ -85,10 +88,40 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
         },
       },
     };
+    // Delete
+    console.log(_data);
+    try {
+      await CREATE_USER_PROFILE({ _data: _data });
+    } catch (error: unknown) {
+      if (error instanceof Error)
+        setToast({
+          Title: 'Something went wrong',
+          Description: error.message,
+          Type: 'Error',
+          Show: true,
+        });
+      DeleteAccount({
+        Loading: props.setLoading,
+        ShowToast: (Title, Description, Type, Show) =>
+          setToast({
+            Title: Title,
+            Description: Description,
+            Type: Type,
+            Show: Show,
+          }),
+        Deletedatabase: () => {
+          // Delete database if by any change it has been created,
+          props.setLoading(false);
+          props.setMainScreen('Error');
+          props.setErrorType('database-not-created');
+        },
+      });
+    }
+    // Delete
     OperateUserProfile('CREATE', { create: _data })
       .then(() => {
         props.CheckInfoHandler();
-        // setScreen('resgister-name')
+        // setScreen('register-name')
       })
       .catch((error) => {
         if (error instanceof Error)
@@ -135,6 +168,7 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
 
   const OTPSubmitClick = () => {
     if (ValidateOTP) {
+      props.setLoading(true);
       VerifyOTP({
         OTP: parseInt(
           OTPs.OTP1 + OTPs.OTP2 + OTPs.OTP3 + OTPs.OTP4 + OTPs.OTP5 + OTPs.OTP6,

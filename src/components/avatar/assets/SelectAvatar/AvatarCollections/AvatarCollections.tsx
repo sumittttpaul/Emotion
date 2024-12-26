@@ -1,4 +1,4 @@
-import { PhotographIcon } from '@heroicons/react/solid';
+import { PhotoIcon } from '@heroicons/react/24/solid';
 import { Button } from '@mui/material';
 import {
   Banner_BlurDataURL,
@@ -102,7 +102,7 @@ export function AvatarCollections(props: IProps) {
     <div className="relative box-border flex w-full flex-col  space-y-2 p-3 text-white">
       {/* Heading */}
       <div className="flex items-center space-x-2">
-        <PhotographIcon className="h-6" />
+        <PhotoIcon className="h-6" />
         <h6 className="text-center text-sm font-medium">Start exploring</h6>
       </div>
       {/* Main */}

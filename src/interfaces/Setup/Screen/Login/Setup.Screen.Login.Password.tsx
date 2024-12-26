@@ -72,8 +72,8 @@ function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
       <div
         className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
-        <div className="flex w-full items-center justify-center">
-          <div className="flex items-center justify-center space-x-2 rounded-full bg-white/5 py-1 pl-1 pr-3">
+        <div className="flex items-center justify-center w-full">
+          <div className="flex items-center justify-center py-1 pl-1 pr-3 space-x-2 rounded-full bg-white/5">
             <div className="min-h-[20px] min-w-[20px]">
               <Image
                 height={20}
@@ -93,19 +93,19 @@ function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
           HandleSubmit={PasswordSubmitClick}
           Loading={props.Loading}
         />
-        <div className="flex w-full flex-col space-y-1">
-          <div className="flex w-full justify-start">
+        <div className="flex flex-col w-full space-y-1">
+          <div className="flex justify-start w-full">
             <SignInNextButton
               Label="Forgot password ?"
               onClick={MoveToForgotPassword}
             />
           </div>
-          <div className="flex w-full justify-start">
+          <div className="flex justify-start w-full">
             <SignInBackButton Label="Back" onClick={BackToEmailScreen} />
           </div>
         </div>
       </div>
-      <div className="flex w-full justify-end">
+      <div className="flex justify-end w-full">
         <div className="flex">
           <SetupSubmitButton
             Disabled={!ValidatePassword}

@@ -10,7 +10,7 @@ import {
 import { DeleteAvatar, UploadAvatar } from 'functions/AuthAlgorithms';
 import { useEffect, useState } from 'react';
 import { EncryptData } from 'functions/security/CryptionSecurity';
-import UserProfileEncrytionKey from 'functions/security/CryptionKey';
+import UserProfileEncryptionKey from 'functions/security/CryptionKey';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import UseClientAuth from 'authentication/UseClientAuth';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
@@ -32,8 +32,8 @@ function AvatarButton() {
     FirebaseLoading
       ? '/images/loader/dark-circle.png'
       : userPhoto && ChangeAvatar
-      ? userPhoto
-      : '/images/default/user.png',
+        ? userPhoto
+        : '/images/default/user.png',
   );
   const [CropAvatarURL, setCropAvatarURL] = useState('');
   const [AvatarContainer, setAvatarContainer] = useState<AvatarContainerType>(
@@ -154,7 +154,7 @@ function AvatarButton() {
   async function UpdatedatabaseWithURL(value: string) {
     if (FirebaseUser) {
       const UserPhotoURL = await EncryptData(
-        await UserProfileEncrytionKey(FirebaseUser?.uid, 'PhotoURL'),
+        await UserProfileEncryptionKey(FirebaseUser?.uid, 'PhotoURL'),
         value,
       );
       const _data: IUserProfileDataUpdate = {

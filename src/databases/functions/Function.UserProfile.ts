@@ -2,7 +2,11 @@
 
 import { revalidateTag } from 'next/cache';
 import { TagForUserProfile } from 'databases/TagDB';
-import { DBCreateMessage } from 'databases/messages/Message.UserProfile';
+import {
+  DBCreateMessage,
+  DBDeleteMessage,
+  DBUpdateMessage,
+} from 'databases/messages/Message.UserProfile';
 import ConnectUsersDatabase from 'databases/clusters/ConnectUsersDB';
 import userProfileDB from 'databases/schemas/Schema.UserProfile';
 
@@ -17,12 +21,12 @@ export async function UPDATE_USER_PROFILE({ _uid, _data }: PUTType) {
   await ConnectUsersDatabase();
   await userProfileDB.findOneAndUpdate({ _uid: _uid }, { $set: _data });
   revalidateTag(TagForUserProfile);
-  return DBCreateMessage as ISuccess;
+  return DBUpdateMessage as ISuccess;
 }
 
 export async function DELETE_USER_PROFILE({ _uid }: DELETEType) {
   await ConnectUsersDatabase();
   await userProfileDB.findOneAndDelete({ _uid: _uid });
   revalidateTag(TagForUserProfile);
-  return DBCreateMessage as ISuccess;
+  return DBDeleteMessage as ISuccess;
 }

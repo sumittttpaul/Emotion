@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
-import { FilmIcon } from '@heroicons/react/solid';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import { FilmIcon } from '@heroicons/react/24/solid';
 import { Button } from '@mui/material';
 import { Poster_BlurDataURL } from 'components/loading/BlurDataURL';
 import { m } from 'framer-motion';

@@ -2,7 +2,7 @@ import { m } from 'framer-motion';
 import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { EncryptData } from 'functions/security/CryptionSecurity';
-import UserProfileEncrytionKey from 'functions/security/CryptionKey';
+import UserProfileEncryptionKey from 'functions/security/CryptionKey';
 import SetupSkipAllButton from 'components/button/Setup/RegisterSkipAllButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
@@ -37,7 +37,7 @@ function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
   const Updatedatabase = () => {
     if (FirebaseUser) {
       const UserEmailAddress = EncryptData(
-        UserProfileEncrytionKey(FirebaseUser.uid, 'EmailAddress'),
+        UserProfileEncryptionKey(FirebaseUser.uid, 'EmailAddress'),
         EmailAddress,
       );
       const _data: IUserProfileDataUpdate = {
@@ -104,19 +104,19 @@ function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
           ValidateValue={ValidateEmailAddress}
           Loading={props.Loading}
         />
-        <div className="flex w-full flex-col space-y-1">
-          <div className="flex w-full justify-start">
+        <div className="flex flex-col w-full space-y-1">
+          <div className="flex justify-start w-full">
             <SignInNextButton
               Label="I will add later"
               onClick={props.CheckInfoHandler}
             />
           </div>
-          <div className="flex w-full justify-start">
+          <div className="flex justify-start w-full">
             <SignInBackButton Label="Back" onClick={BackToPhone} />
           </div>
         </div>
       </div>
-      <div className="flex w-full justify-end">
+      <div className="flex justify-end w-full">
         <div className="flex space-x-2">
           <SetupSkipAllButton onClick={() => props.setSkipDialog(true)}>
             Skip all

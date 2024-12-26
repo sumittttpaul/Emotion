@@ -10,7 +10,7 @@ import { ConfirmPasswordReset } from 'functions/AuthAlgorithms';
 import TooltipDark from 'components/tooltip/TooltipDark';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
-import { InformationCircleIcon } from '@heroicons/react/solid';
+import { InformationCircleIcon } from '@heroicons/react/24/solid';
 import SetupContentHeader from 'components/label/SetupContentHeader';
 import SetupHeaderDescription from 'components/label/SetupHeaderDescription';
 import SetupHeaderLabel from 'components/label/SetupHeaderLabel';
@@ -64,7 +64,7 @@ function UserMgmtResetPasswordScreen(props: UserMgmtResetPasswordScreenProps) {
       } else {
         setToast({
           Title: 'Incorrect action code',
-          Description: 'Action code may be undefined or emplty.',
+          Description: 'Action code may be undefined or empty.',
           Type: 'Error',
           Show: true,
         });
@@ -81,7 +81,7 @@ function UserMgmtResetPasswordScreen(props: UserMgmtResetPasswordScreenProps) {
 
   return (
     <>
-      <div className="relative ml-14 hidden h-full w-full items-center justify-center p-14 md:flex">
+      <div className="relative items-center justify-center hidden w-full h-full ml-14 p-14 md:flex">
         <Image
           height={370}
           width={370}
@@ -123,16 +123,16 @@ function UserMgmtResetPasswordScreen(props: UserMgmtResetPasswordScreenProps) {
               >
                 <InformationCircleIcon className="h-5 text-white" />
               </TooltipDark>
-              <h6 className="w-full text-left text-sm font-normal text-white">
+              <h6 className="w-full text-sm font-normal text-left text-white">
                 Your password should contain at least 8 or more characters with
                 a mix of letters of uppercase and lowercase, numbers & symbols.
               </h6>
             </div>
-            <div className="flex w-full justify-start">
+            <div className="flex justify-start w-full">
               <SignInBackButton Label="Back" onClick={MoveToSetup} />
             </div>
           </div>
-          <div className="flex w-full justify-end">
+          <div className="flex justify-end w-full">
             <SetupSubmitButton
               Disabled={!ValidatePassword}
               onClick={PasswordSubmitClick}

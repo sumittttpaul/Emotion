@@ -52,7 +52,7 @@ function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
     props.setScreen('login-phone');
     setToast({
       Title: 'Verification process failed',
-      Description: 'You have cancelled the otp verificaiton.',
+      Description: 'You have cancelled the otp verification.',
       Type: 'Error',
       Show: true,
     });

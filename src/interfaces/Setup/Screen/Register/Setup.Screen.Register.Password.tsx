@@ -6,7 +6,7 @@ import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import TooltipDark from 'components/tooltip/TooltipDark';
-import { InformationCircleIcon } from '@heroicons/react/outline';
+import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import YellowBulbHint from 'components/hint/YellowBulbHint';
 import { LinkWithEmailAndPassword } from 'functions/AuthAlgorithms';
 import SetupIconPasswordTextField from '../../Input/Setup.Input.IconPassword';
@@ -107,7 +107,7 @@ function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
           <YellowBulbHint
             Tooltip
             TooltipPlacement="top"
-            ToottipTitle="Some security-sensitive actions, such as creating password and link email-password authentication to your account, require that you have recently logged in. If you have not logged in recently, you will be prompted to do so before you can continue."
+            TooltipTitle="Some security-sensitive actions, such as creating password and link email-password authentication to your account, require that you have recently logged in. If you have not logged in recently, you will be prompted to do so before you can continue."
             Label="Requires recent login / authentication"
           />
         </div>

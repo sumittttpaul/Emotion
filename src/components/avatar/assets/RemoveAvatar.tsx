@@ -1,8 +1,8 @@
 import {
   ArrowLeftIcon,
-  DotsVerticalIcon,
+  EllipsisVerticalIcon,
   TrashIcon,
-} from '@heroicons/react/outline';
+} from '@heroicons/react/24/outline';
 import { Button } from '@mui/material';
 import { IconButton } from '@mui/material';
 import TooltipDark from '../../tooltip/TooltipDark';
@@ -36,7 +36,7 @@ export function RemoveAvatar(props: IProps) {
             onClick={props.moreInfo}
             className="p-3 hover:bg-white/5"
           >
-            <DotsVerticalIcon className="h-5 text-white" />
+            <EllipsisVerticalIcon className="h-5 text-white" />
           </IconButton>
         </TooltipDark>
       </div>

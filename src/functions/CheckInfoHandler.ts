@@ -1,7 +1,7 @@
 'use client';
 
 import { ClientUserType } from 'authentication/UseClientAuth';
-import { FetchUserProfile } from 'hooks/global/Hooks.FetchUserProfile';
+import { FetchUserProfile } from 'databases/helpers/Helper.FetchUserProfile';
 
 interface IProps {
   Screen: ICheckInfoScreen;

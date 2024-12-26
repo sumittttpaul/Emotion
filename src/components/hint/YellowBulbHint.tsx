@@ -10,7 +10,7 @@ const TooltipDark = dynamic<TooltipProps>(
 interface IProps {
   Label: string;
   Tooltip?: true;
-  ToottipTitle?: string;
+  TooltipTitle?: string;
   TooltipPlacement?:
     | 'bottom'
     | 'left'
@@ -35,7 +35,7 @@ function YellowBulbHint(props: IProps) {
             <TooltipDark
               arrow
               placement={props.TooltipPlacement}
-              title={props.ToottipTitle}
+              title={props.TooltipTitle}
             >
               <Image
                 height={15}

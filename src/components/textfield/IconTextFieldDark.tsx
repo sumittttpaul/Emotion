@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import { IconTextFieldProps } from './AllTextFieldProps';
-import { CheckIcon } from '@heroicons/react/solid';
+import { CheckIcon } from '@heroicons/react/24/solid';
 
 const CustomTextField = styled((props: TextFieldProps) => (
   <TextField

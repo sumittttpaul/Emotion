@@ -4,9 +4,9 @@ import TooltipDark from 'components/tooltip/TooltipDark';
 import {
   SparklesIcon,
   DeviceTabletIcon,
-  DotsVerticalIcon,
+  EllipsisVerticalIcon,
   ArrowLeftIcon,
-} from '@heroicons/react/outline';
+} from '@heroicons/react/24/outline';
 import FromAvatars from './SelectAvatar/Options/FromAvatars';
 import FromComputer from './SelectAvatar/Options/FromComputer';
 import SelectAvatarTabItem from 'components/tab/SelectAvatar/SelectAvatarTabItem';
@@ -57,7 +57,7 @@ function SelectAvatar(props: IProps) {
             onClick={props.moreInfo}
             className="p-3 hover:bg-white/5"
           >
-            <DotsVerticalIcon className="h-5 text-white" />
+            <EllipsisVerticalIcon className="h-5 text-white" />
           </IconButton>
         </TooltipDark>
       </div>

@@ -1,5 +1,3 @@
-'use server';
-
 import mongoose from 'mongoose';
 import { IError } from 'types/Error.Constructor';
 
@@ -19,7 +17,7 @@ const ConnectUsersDatabase = async () => {
       NEXT_PUBLIC_EMOTION_CLOUD_CLUSTER_MONGO_USERDB_URI,
     );
     if (connection.readyState == 1) {
-      console.log('Users database connected to emotion-cloud-cluster/users');
+      console.log('Connected to emotion-cloud-cluster/users');
     }
   } catch (error) {
     if (error instanceof Error) {

@@ -1,4 +1,4 @@
-import { CheckIcon, XIcon } from '@heroicons/react/solid';
+import { CheckIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { Button } from '@mui/material';
 
 interface IProps {
@@ -21,7 +21,7 @@ function DatePickerDialogBottom(props: IProps) {
           },
         }}
       >
-        <XIcon className="h-5 text-red-400 group-hover:text-white" />
+        <XMarkIcon className="h-5 text-red-400 group-hover:text-white" />
       </Button>
       <Button
         aria-label="dob-submit-button"

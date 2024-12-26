@@ -2,7 +2,7 @@ import { m } from 'framer-motion';
 import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { EncryptData } from 'functions/security/CryptionSecurity';
-import UserProfileEncrytionKey from 'functions/security/CryptionKey';
+import UserProfileEncryptionKey from 'functions/security/CryptionKey';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import RadioGroupDark from 'components/radiogroup/RadioGroupDark';
@@ -24,7 +24,7 @@ function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
     if (FirebaseUser) {
       try {
         const UserGender = EncryptData(
-          UserProfileEncrytionKey(FirebaseUser.uid, 'Gender'),
+          UserProfileEncryptionKey(FirebaseUser.uid, 'Gender'),
           Gender,
         );
         const _data: IUserProfileDataUpdate = {

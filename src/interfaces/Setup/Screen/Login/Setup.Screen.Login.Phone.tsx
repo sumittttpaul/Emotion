@@ -6,6 +6,7 @@ import YellowBulbHint from 'components/hint/YellowBulbHint';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SetupIconNumberTextField from 'interfaces/Setup/Input/Setup.Input.IconNumber';
+import { m } from 'framer-motion';
 
 function SetupLoginPhoneScreen(props: SetupLoginPhoneScreenProps) {
   const { PhoneNumber, setPhoneNumber } = userProfileHook();
@@ -59,7 +60,12 @@ function SetupLoginPhoneScreen(props: SetupLoginPhoneScreenProps) {
   };
 
   return (
-    <div className={`${props.ParentDivClassName} relative w-full`}>
+    <m.div
+      className={`${props.ParentDivClassName} relative w-full`}
+      initial={props.Animation.Initial}
+      animate={props.Animation.Final}
+      transition={props.Animation.Transition}
+    >
       <div
         className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
@@ -88,7 +94,7 @@ function SetupLoginPhoneScreen(props: SetupLoginPhoneScreenProps) {
           <YellowBulbHint
             Tooltip
             TooltipPlacement="top"
-            ToottipTitle="When creating an Emotion account for the first time, new users are often presented with two primary options to initiate the registration process: they can either continue by providing their phone number or explore alternative sign-in methods, such as google account, facebook account, apple account or microsoft account."
+            TooltipTitle="When creating an Emotion account for the first time, new users are often presented with two primary options to initiate the registration process: they can either continue by providing their phone number or explore alternative sign-in methods, such as google account, facebook account, apple account or microsoft account."
             Label="New user continue with phone number or sign-in options."
           />
         </div>
@@ -102,7 +108,7 @@ function SetupLoginPhoneScreen(props: SetupLoginPhoneScreenProps) {
           Send OTP
         </SetupSubmitButton>
       </div>
-    </div>
+    </m.div>
   );
 }
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { DiscoverSliderContent } from 'contents/home/discover/Home.Discover.Slider';
 import { DiscoverCarouselContent } from 'contents/home/discover/Home.Discover.Carousel';
 import { DiscoverBannerFourContent } from 'contents/home/discover/Home.Discover.Banner';
@@ -12,7 +14,7 @@ import DiscoverBannerTop5 from 'components/banner/DiscoverBannerTop5';
 import DiscoverTiles from 'components/tiles/DiscoverTiles';
 import DiscoverBannerFour from 'components/banner/DiscoverBannerFour';
 import DiscoverBannerFive from 'components/banner/DiscoverBannerFive';
-import DiscoverCatelog from 'components/catelog/DiscoverCatelog';
+import DiscoverCatalog from 'components/catalog/DiscoverCatalog';
 import DiscoverCarousel from 'components/carousel/DiscoverCarousel';
 import DiscoverBannerDeal from 'components/banner/DiscoverBannerDeal';
 import LightningBadge from 'components/badge/LightningBadge';
@@ -51,7 +53,7 @@ function DiscoverInterface() {
         Label="Our services"
         ContentArray={DiscoverBannerFiveContent}
       />
-      <DiscoverCatelog />
+      <DiscoverCatalog />
     </div>
   );
 }

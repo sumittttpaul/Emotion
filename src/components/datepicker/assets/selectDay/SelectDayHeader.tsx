@@ -1,4 +1,4 @@
-import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/solid';
+import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
 import { m } from 'framer-motion';
 
 interface IProps {

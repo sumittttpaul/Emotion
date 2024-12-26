@@ -63,14 +63,14 @@ function SetupLoginEmailScreen(props: SetupLoginEmailScreenProps) {
           ValidateValue={ValidateEmailAddress}
           Loading={props.Loading}
         />
-        <div className="flex w-full flex-col space-y-1">
-          <div className="flex w-full justify-start">
+        <div className="flex flex-col w-full space-y-1">
+          <div className="flex justify-start w-full">
             <SignInNextButton
               Label="Sign in with phone number"
               onClick={BackToSignInWithPhoneNumber}
             />
           </div>
-          <div className="flex w-full justify-start">
+          <div className="flex justify-start w-full">
             <SignInNextButton
               Label="Sign-in options"
               onClick={MoveToOtherSignInOptions}
@@ -81,14 +81,14 @@ function SetupLoginEmailScreen(props: SetupLoginEmailScreenProps) {
           <YellowBulbHint
             Tooltip
             TooltipPlacement="top"
-            ToottipTitle="
+            TooltipTitle="
             When it comes to signing in, it is important to note that the option to sign in with an email address is exclusively available for existing users, meaning that individuals who have previously created an account on the Emotion platform can utilize this method as their primary or secondary means of authentication."
             Label="Sign-in with email address only works for existing user."
           />
         </div>
         <SetupFooter ButtonLabel="Next" />
       </div>
-      <div className="flex w-full justify-end">
+      <div className="flex justify-end w-full">
         <SetupSubmitButton
           Disabled={!ValidateEmailAddress}
           onClick={EmailSubmitClick}

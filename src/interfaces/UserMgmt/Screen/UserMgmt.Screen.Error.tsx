@@ -28,7 +28,7 @@ function UserMgmtErrorScreen() {
         height={100}
         width={100}
         className="pb-7 text-xs text-white opacity-30"
-        src="/vectors/emogi-face-error.svg"
+        src="/vectors/emoji-face-error.svg"
         alt="setup-error"
       />
       <div className="relative flex w-full max-w-[500px] flex-col items-center justify-center space-y-5 overflow-hidden">

@@ -1,5 +1,3 @@
-'use server';
-
 import { Schema, models, model, Document, Model } from 'mongoose';
 
 export interface IUserProfileDocument extends IUserProfile, Document {}
@@ -25,7 +23,7 @@ const userProfileSchema: Schema<IUserProfileDocument> = new Schema(
       },
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 userProfileSchema.statics.buildUserProfile = (args: IUserProfile) => {
@@ -36,7 +34,7 @@ const userProfileDB =
   models.user_profile ||
   model<IUserProfileDocument, IUserProfileModel>(
     'user_profile',
-    userProfileSchema
+    userProfileSchema,
   );
 
 export default userProfileDB;
