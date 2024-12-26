@@ -27,10 +27,10 @@ export function DiscoverBannerFourBrowser(
           LargeScreen || MediumLargeScreen
             ? 4
             : MediumScreen
-            ? 3
-            : SmallScreen
-            ? 1
-            : 2
+              ? 3
+              : SmallScreen
+                ? 1
+                : 2
         }
         spaceBetween={MediumLargeScreen ? 24 : 15}
         wrapperTag="ul"
@@ -46,7 +46,7 @@ export function DiscoverBannerFourBrowser(
               <div className="relative h-full w-full">
                 <div className="absolute z-[1] h-full w-full bg-gradient-to-t from-[#242424]" />
                 <Image
-                  className="rounded-t-xl"
+                  className="max-h-[275px] rounded-t-xl"
                   width={490}
                   height={275}
                   src={value.Image}
