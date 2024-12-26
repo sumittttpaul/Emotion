@@ -107,7 +107,7 @@ interface IProps {
   setMainScreen: Dispatch<AuthMainScreenType>;
 }
 
-function SetupScreenContent({
+export default function SetupScreenContent({
   ContentClassName,
   ParentDivClassName,
   Animation,
@@ -315,5 +315,3 @@ function SetupScreenContent({
     </div>
   );
 }
-
-export default SetupScreenContent;
