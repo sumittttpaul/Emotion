@@ -3,19 +3,12 @@
 import SetupContentHeader from 'components/label/SetupContentHeader';
 import SetupHeaderDescription from 'components/label/SetupHeaderDescription';
 import SetupHeaderLabel from 'components/label/SetupHeaderLabel';
-import dynamic from 'next/dynamic';
-
-const LoadingLinearProgress = dynamic(
-  () => import('components/loading/Loading.LinearProgress'),
-  { ssr: false },
-);
 
 interface IProps {
   Screen: AuthScreenType;
-  Loading: boolean;
 }
 
-function SetupScreenTitle({ Screen, Loading }: IProps) {
+function SetupScreenTitle({ Screen }: IProps) {
   return (
     <>
       <SetupHeaderLabel>
@@ -40,17 +33,17 @@ function SetupScreenTitle({ Screen, Loading }: IProps) {
       </SetupHeaderLabel>
       <SetupHeaderDescription>
         {Screen === 'login-phone' &&
-          `One account connects yourself across Emotion services and prodcuts.`}
+          `One account connects yourself across Emotion services and products.`}
         {Screen === 'login-email' &&
-          `One account connects yourself across Emotion services and prodcuts.`}
+          `One account connects yourself across Emotion services and products.`}
         {Screen === 'login-others' &&
-          `One account connects yourself across Emotion services and prodcuts.`}
+          `One account connects yourself across Emotion services and products.`}
         {Screen === 'login-otp' &&
-          `One account connects yourself across Emotion services and prodcuts.`}
+          `One account connects yourself across Emotion services and products.`}
         {Screen === 'login-password' &&
-          `One account connects yourself across Emotion services and prodcuts.`}
+          `One account connects yourself across Emotion services and products.`}
         {Screen === 'login-forgot-password' &&
-          `One account connects yourself across Emotion services and prodcuts.`}
+          `One account connects yourself across Emotion services and products.`}
         {Screen === 'register-name' &&
           `We will use this name in all your future orders and our services.`}
         {Screen === 'register-phone' &&
@@ -66,34 +59,28 @@ function SetupScreenTitle({ Screen, Loading }: IProps) {
         {Screen === 'register-profile-picture' &&
           `We will use this picture in all your future orders and all across services.`}
         {Screen === 'register-date-of-birth' &&
-          `We will add some additional rewards and disounts on your special day.`}
+          `We will add some additional rewards and discounts on your special day.`}
         {Screen === 'register-gender' &&
           `Get personalized search and browsing results base on your info.`}
       </SetupHeaderDescription>
-      <div className="relative h-full w-full">
-        {Loading ? (
-          <div className="relative flex h-7 w-full">
-            <LoadingLinearProgress />
-          </div>
-        ) : (
-          <SetupContentHeader>
-            {Screen === 'login-phone' && 'Sign In'}
-            {Screen === 'login-email' && 'Sign In'}
-            {Screen === 'login-others' && 'Sign-In Options'}
-            {Screen === 'login-otp' && 'Enter OTP'}
-            {Screen === 'login-password' && 'Enter Password'}
-            {Screen === 'login-forgot-password' && 'Forgot Password'}
-            {Screen === 'register-name' && 'Sign Up'}
-            {Screen === 'register-phone' && 'Sign Up'}
-            {Screen === 'register-otp' && 'Enter OTP'}
-            {Screen === 'register-email' && 'Sign Up'}
-            {Screen === 'register-verify-email' && 'Sign Up'}
-            {Screen === 'register-password' && 'Sign Up'}
-            {Screen === 'register-profile-picture' && 'Account setup'}
-            {Screen === 'register-date-of-birth' && 'Account setup'}
-            {Screen === 'register-gender' && 'Account setup'}
-          </SetupContentHeader>
-        )}
+      <div className="relative w-full h-full">
+        <SetupContentHeader>
+          {Screen === 'login-phone' && 'Sign In'}
+          {Screen === 'login-email' && 'Sign In'}
+          {Screen === 'login-others' && 'Sign-In Options'}
+          {Screen === 'login-otp' && 'Enter OTP'}
+          {Screen === 'login-password' && 'Enter Password'}
+          {Screen === 'login-forgot-password' && 'Forgot Password'}
+          {Screen === 'register-name' && 'Sign Up'}
+          {Screen === 'register-phone' && 'Sign Up'}
+          {Screen === 'register-otp' && 'Enter OTP'}
+          {Screen === 'register-email' && 'Sign Up'}
+          {Screen === 'register-verify-email' && 'Sign Up'}
+          {Screen === 'register-password' && 'Sign Up'}
+          {Screen === 'register-profile-picture' && 'Account setup'}
+          {Screen === 'register-date-of-birth' && 'Account setup'}
+          {Screen === 'register-gender' && 'Account setup'}
+        </SetupContentHeader>
       </div>
     </>
   );

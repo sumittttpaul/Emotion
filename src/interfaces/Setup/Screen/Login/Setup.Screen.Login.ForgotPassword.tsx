@@ -54,20 +54,21 @@ function SetupLoginForgotPasswordScreen(
       <div
         className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
-        <p className="w-full text-left text-sm font-normal tracking-wide text-white/75">
+        <p className="w-full text-sm font-normal tracking-wide text-left text-white/75">
           An email will be sent to the email address you provided earlier. You
           can use the link in the email to reset your password.
         </p>
-        <div className="flex w-full justify-start">
+        <div className="flex justify-start w-full">
           <SignInBackButton Label="Back" onClick={BackToPasswordScreen} />
         </div>
       </div>
-      <div className="flex w-full justify-end">
+      <div className="flex justify-end w-full">
         <div className="flex">
           {SubmitHide === false && (
             <SetupSubmitButton
               Disabled={SubmitHide}
               onClick={PasswordResetClick}
+              Loading={props.Loading}
             >
               Reset Password
             </SetupSubmitButton>

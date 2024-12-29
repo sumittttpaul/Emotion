@@ -7,7 +7,15 @@ import {
 const FETCH_API = 'http://localhost:3000/api/users/profile';
 
 export async function FetchUserProfile(uid: string | undefined) {
-  if (!uid) return { userProfile: undefined, error: undefined };
+  if (!uid) {
+    return {
+      userProfile: undefined,
+      error: {
+        name: 'UID is not available',
+        message: 'Failed to fetch user from database.',
+      } as IError,
+    };
+  }
   const _response = await fetch(`${FETCH_API}/${uid}`, {
     cache: 'no-cache',
     next: {

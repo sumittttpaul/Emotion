@@ -1,4 +1,3 @@
-import router from 'next/navigation';
 import AuthErrorMessage from 'authentication/AuthErrorMessage';
 import { Home_Link } from 'routers/RouterLinks';
 import {
@@ -96,6 +95,7 @@ export async function ResentOTP({
 
 export async function VerifyOTP({
   OTP,
+  Redirect,
   Loading,
   LoadingScreen,
   EmptyOTPBox,
@@ -120,13 +120,13 @@ export async function VerifyOTP({
           else {
             LoadingScreen(true);
             Loading(false);
-            // router.redirect(Home_Link);
             ShowToast(
               'Authentication Successful !',
-              'Ho gaya bhai shayad',
+              'You have successfully login into your emotion account.',
               'Success',
               true,
             );
+            Redirect(Home_Link);
           }
         }
       }
@@ -328,6 +328,7 @@ export async function SignInWithEmailAndPassword({
   Password,
   EmptyPasswordTextField,
   Loading,
+  Redirect,
   LoadingScreen,
   BackToEmailScreen,
   ShowToast,
@@ -338,7 +339,7 @@ export async function SignInWithEmailAndPassword({
     .then(() => {
       LoadingScreen(true);
       Loading(false);
-      router.redirect(Home_Link);
+      Redirect(Home_Link);
     })
     .catch((error) => {
       BackToEmailScreen();

@@ -62,8 +62,14 @@
     "Cryption",
     "Deletedatabase",
     "Dont",
+    "Fromdatabase",
+    "grecaptcha",
+    "intance",
+    "maxlength",
     "Mgmt",
+    "Phonecode",
     "Tassinari",
-    "Updatedatabase"
+    "Updatedatabase",
+    "USERDB"
   ]
 }

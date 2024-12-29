@@ -47,6 +47,7 @@ function SetupRegisterBirthdayScreen(props: SetupRegisterBirthdayScreenProps) {
       OperateUserProfile('UPDATE', { uid: FirebaseUser.uid, update: _data })
         .then(() => {
           props.CheckInfoHandler();
+          props.setLoading(false);
         })
         .catch((error) => {
           if (error instanceof Error) {
@@ -110,7 +111,11 @@ function SetupRegisterBirthdayScreen(props: SetupRegisterBirthdayScreenProps) {
           <SetupSkipAllButton onClick={() => props.setSkipDialog(true)}>
             Skip all
           </SetupSkipAllButton>
-          <SetupSubmitButton Disabled={SubmitDisabled} onClick={SubmitClick}>
+          <SetupSubmitButton
+            Disabled={SubmitDisabled}
+            onClick={SubmitClick}
+            Loading={props.Loading}
+          >
             Next
           </SetupSubmitButton>
         </div>

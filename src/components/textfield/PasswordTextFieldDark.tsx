@@ -126,9 +126,6 @@ function PasswordTextFieldDark(props: PasswordTextFieldProps) {
         autoComplete="off"
         autoCapitalize="off"
         type={values.showPassword ? 'text' : 'password'}
-        // inputProps={{
-        //   maxLength: 16,
-        // }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -158,7 +155,6 @@ function PasswordTextFieldDark(props: PasswordTextFieldProps) {
               </IconButton>
             </InputAdornment>
           ),
-          readOnly: props.readonly,
         }}
       />
     </div>

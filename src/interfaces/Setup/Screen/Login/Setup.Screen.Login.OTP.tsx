@@ -13,7 +13,7 @@ import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupOTPTextField from 'interfaces/Setup/Input/Setup.Input.OTP';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
 import UserProfileEncryptionKey from 'functions/security/CryptionKey';
-import { CREATE_USER_PROFILE } from 'databases/functions/Function.UserProfile';
+import { useRouter } from 'next/navigation';
 
 function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
   const [OTPs, setOTPs] = useState({
@@ -28,6 +28,7 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
   const { setLoader } = LoaderHook();
   const { Toast, setToast } = ToastHook();
   const { PhoneNumber } = userProfileHook();
+  const router = useRouter();
 
   // Validation
   const ValidateOTP: boolean =
@@ -88,40 +89,10 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
         },
       },
     };
-    // Delete
-    console.log(_data);
-    try {
-      await CREATE_USER_PROFILE({ _data: _data });
-    } catch (error: unknown) {
-      if (error instanceof Error)
-        setToast({
-          Title: 'Something went wrong',
-          Description: error.message,
-          Type: 'Error',
-          Show: true,
-        });
-      DeleteAccount({
-        Loading: props.setLoading,
-        ShowToast: (Title, Description, Type, Show) =>
-          setToast({
-            Title: Title,
-            Description: Description,
-            Type: Type,
-            Show: Show,
-          }),
-        Deletedatabase: () => {
-          // Delete database if by any change it has been created,
-          props.setLoading(false);
-          props.setMainScreen('Error');
-          props.setErrorType('database-not-created');
-        },
-      });
-    }
-    // Delete
     OperateUserProfile('CREATE', { create: _data })
       .then(() => {
-        props.CheckInfoHandler();
-        // setScreen('register-name')
+        props.setScreen('register-name');
+        props.setLoading(false);
       })
       .catch((error) => {
         if (error instanceof Error)
@@ -173,6 +144,7 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
         OTP: parseInt(
           OTPs.OTP1 + OTPs.OTP2 + OTPs.OTP3 + OTPs.OTP4 + OTPs.OTP5 + OTPs.OTP6,
         ),
+        Redirect: (value) => router.push(value),
         EmptyOTPBox: clearOTP,
         Loading: props.setLoading,
         LoadingScreen: (value) => setLoader(value),
@@ -236,7 +208,11 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
         </div>
       </div>
       <div className="flex w-full justify-end">
-        <SetupSubmitButton Disabled={!ValidateOTP} onClick={OTPSubmitClick}>
+        <SetupSubmitButton
+          Disabled={!ValidateOTP}
+          onClick={OTPSubmitClick}
+          Loading={props.Loading}
+        >
           Verify OTP
         </SetupSubmitButton>
       </div>

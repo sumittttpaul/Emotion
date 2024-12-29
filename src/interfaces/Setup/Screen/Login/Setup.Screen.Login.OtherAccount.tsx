@@ -101,32 +101,9 @@ function SetupLoginOtherAccountScreen(
       };
       OperateUserProfile('CREATE', { create: _data })
         .then(async () => {
-          props.CheckInfoHandler();
-          // const _data = props.userProfile;
-          // const FullName = _data._data.fullName;
-          // const PhoneNumber = _data._data.phoneNumber;
-          // const EmailAddress = _data._data.emailAddress;
-          // const EmailAddressVerified = _data._data.isVerified?.emailAddress;
-          // const ProfilePicture = _data._data.photoURL;
-          // if (!FullName || (FullName && FullName.length < 1)) {
-          //   setScreen('register-name');
-          // } else if (!PhoneNumber || (PhoneNumber && PhoneNumber.length < 1)) {
-          //   setScreen('register-phone');
-          // } else if (
-          //   !EmailAddress ||
-          //   (EmailAddress && EmailAddress.length < 1)
-          // ) {
-          //   setScreen('register-email');
-          // } else if (!EmailAddressVerified && EmailAddressVerified === false) {
-          //   setScreen('register-verify-email');
-          // } else if (
-          //   !ProfilePicture ||
-          //   (ProfilePicture && ProfilePicture.length < 1)
-          // ) {
-          //   setScreen('register-profile-picture');
-          // } else {
-          //   setScreen('register-date-of-birth');
-          // }
+          setLoader(true);
+          props.setLoading(false);
+          router.push('/');
         })
         .catch((error) => {
           if (error instanceof Error)
@@ -335,13 +312,13 @@ function SetupLoginOtherAccountScreen(
         <div
           className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
         >
-          <div className="flex flex-col w-full space-y-2">
+          <div className="flex w-full flex-col space-y-2">
             <CustomButton onClick={GoogleSignIn} Label="Google" />
             <CustomButton onClick={FacebookSignIn} Label="Facebook" />
             <CustomButton onClick={AppleSignIn} Label="Apple" />
             <CustomButton onClick={MicrosoftSignIn} Label="Microsoft" />
           </div>
-          <div className="flex justify-start w-full">
+          <div className="flex w-full justify-start">
             <SignInBackButton
               Label="Back"
               onClick={BackToSignInWithPhoneNumber}
@@ -393,7 +370,7 @@ function CustomButton(props: CustomButtonProps) {
             {props.Description}
           </p>
         </div>
-        <div className="flex items-center justify-center h-full">
+        <div className="flex h-full items-center justify-center">
           <ChevronRightIcon
             className={`${props.Description ? 'mt-3' : 'mt-1'} block h-4 w-4`}
           />

@@ -46,7 +46,11 @@ function SetupRegisterProfilePictureScreen(
           <SetupSkipAllButton onClick={() => props.setSkipDialog(true)}>
             Skip all
           </SetupSkipAllButton>
-          <SetupSubmitButton Disabled={false} onClick={MoveToBirthday}>
+          <SetupSubmitButton
+            Disabled={false}
+            onClick={MoveToBirthday}
+            Loading={props.Loading}
+          >
             Next
           </SetupSubmitButton>
         </div>

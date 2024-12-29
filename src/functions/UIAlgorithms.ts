@@ -6,39 +6,34 @@ export const InputNumberOnly = (evt: React.KeyboardEvent<HTMLInputElement>) => {
 
 export const InputChangeFocus = (e: React.KeyboardEvent<HTMLInputElement>) => {
   const target = e.currentTarget as HTMLInputElement;
-  const maxLength = parseInt(target.getAttribute('maxlength') ?? '0', 10);
-  const myLength = target.value.length;
-  if (myLength >= maxLength) {
-    let next: HTMLElement | null = target.nextElementSibling as EventTarget &
-      HTMLInputElement;
-    while (next) {
-      if (next.tagName.toLowerCase() === 'input') {
-        (next as HTMLInputElement).focus();
-        (next as HTMLInputElement).select();
-        break;
-      }
-      next = next.nextElementSibling as EventTarget & HTMLInputElement;
+  const maxLength = parseInt(target.getAttribute('maxlength') ?? '1', 10);
+  const valueLength = target.value.length;
+
+  if (valueLength >= maxLength) {
+    let next = target.nextElementSibling;
+    while (next && !(next instanceof HTMLInputElement)) {
+      next = next.nextElementSibling;
+    }
+    if (next instanceof HTMLInputElement) {
+      next.focus();
+      next.select();
     }
   }
 
-  if (myLength === 0) {
-    let previous: HTMLElement | null =
-      target.previousElementSibling as EventTarget & HTMLInputElement;
-    while (previous) {
-      if (previous.tagName.toLowerCase() === 'input') {
-        (previous as HTMLInputElement).focus();
-        (previous as HTMLInputElement).select();
-        break;
-      }
-      previous = previous.previousElementSibling as EventTarget &
-        HTMLInputElement;
+  if (valueLength === 0) {
+    let previous = target.previousElementSibling;
+    while (previous && !(previous instanceof HTMLInputElement)) {
+      previous = previous.previousElementSibling;
+    }
+    if (previous instanceof HTMLInputElement) {
+      previous.focus();
+      previous.select();
     }
   }
 };
 
 export const ClickToFocus = (e: React.MouseEvent<HTMLInputElement>) => {
-  e.preventDefault();
-  const target = e.currentTarget;
+  const target = e.currentTarget as HTMLInputElement;
   target.focus();
   target.select();
 };

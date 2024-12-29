@@ -9,12 +9,14 @@ import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SetupIconPasswordTextField from 'interfaces/Setup/Input/Setup.Input.IconPassword';
+import { useRouter } from 'next/navigation';
 
 function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
   const [Password, setPassword] = useState('');
   const { EmailAddress } = userProfileHook();
   const { setLoader } = LoaderHook();
   const { setToast } = ToastHook();
+  const router = useRouter();
 
   // Validation
   const passwordExpression =
@@ -43,6 +45,7 @@ function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
         EmptyPasswordTextField: EmptyPassword,
         Loading: props.setLoading,
         BackToEmailScreen: BackToEmailScreen,
+        Redirect: (value) => router.push(value),
         LoadingScreen: (value) => setLoader(value),
         ShowToast: (Title, Description, Type, Show) =>
           setToast({
@@ -72,8 +75,8 @@ function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
       <div
         className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
-        <div className="flex items-center justify-center w-full">
-          <div className="flex items-center justify-center py-1 pl-1 pr-3 space-x-2 rounded-full bg-white/5">
+        <div className="flex w-full items-center justify-center">
+          <div className="flex items-center justify-center space-x-2 rounded-full bg-white/5 py-1 pl-1 pr-3">
             <div className="min-h-[20px] min-w-[20px]">
               <Image
                 height={20}
@@ -91,25 +94,25 @@ function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
           setValue={setPassword}
           ValidateValue={ValidatePassword}
           HandleSubmit={PasswordSubmitClick}
-          Loading={props.Loading}
         />
-        <div className="flex flex-col w-full space-y-1">
-          <div className="flex justify-start w-full">
+        <div className="flex w-full flex-col space-y-1">
+          <div className="flex w-full justify-start">
             <SignInNextButton
               Label="Forgot password ?"
               onClick={MoveToForgotPassword}
             />
           </div>
-          <div className="flex justify-start w-full">
+          <div className="flex w-full justify-start">
             <SignInBackButton Label="Back" onClick={BackToEmailScreen} />
           </div>
         </div>
       </div>
-      <div className="flex justify-end w-full">
+      <div className="flex w-full justify-end">
         <div className="flex">
           <SetupSubmitButton
             Disabled={!ValidatePassword}
             onClick={PasswordSubmitClick}
+            Loading={props.Loading}
           >
             Login
           </SetupSubmitButton>

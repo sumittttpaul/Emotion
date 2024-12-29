@@ -81,7 +81,7 @@ function UserMgmtResetPasswordScreen(props: UserMgmtResetPasswordScreenProps) {
 
   return (
     <>
-      <div className="relative items-center justify-center hidden w-full h-full ml-14 p-14 md:flex">
+      <div className="relative ml-14 hidden h-full w-full items-center justify-center p-14 md:flex">
         <Image
           height={370}
           width={370}
@@ -113,7 +113,6 @@ function UserMgmtResetPasswordScreen(props: UserMgmtResetPasswordScreenProps) {
               setValue={setPassword}
               ValidateValue={ValidatePassword}
               HandleSubmit={PasswordSubmitClick}
-              Loading={props.Loading}
             />
             <div className="flex w-full space-x-2 opacity-75">
               <TooltipDark
@@ -123,16 +122,16 @@ function UserMgmtResetPasswordScreen(props: UserMgmtResetPasswordScreenProps) {
               >
                 <InformationCircleIcon className="h-5 text-white" />
               </TooltipDark>
-              <h6 className="w-full text-sm font-normal text-left text-white">
+              <h6 className="w-full text-left text-sm font-normal text-white">
                 Your password should contain at least 8 or more characters with
                 a mix of letters of uppercase and lowercase, numbers & symbols.
               </h6>
             </div>
-            <div className="flex justify-start w-full">
+            <div className="flex w-full justify-start">
               <SignInBackButton Label="Back" onClick={MoveToSetup} />
             </div>
           </div>
-          <div className="flex justify-end w-full">
+          <div className="flex w-full justify-end">
             <SetupSubmitButton
               Disabled={!ValidatePassword}
               onClick={PasswordSubmitClick}

@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import { IconTextFieldProps } from './AllTextFieldProps';
-import { CheckIcon } from '@heroicons/react/24/solid';
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
 
 const CustomTextField = styled((props: TextFieldProps) => (
   <TextField
@@ -113,13 +113,10 @@ function IconTextFieldDark(props: IconTextFieldProps) {
         variant="filled"
         autoCorrect="off"
         autoComplete="off"
-        InputProps={{
-          readOnly: props.readonly,
-        }}
       />
       {props.valid && (
         <div className="pointer-events-none absolute right-4 mt-5 flex cursor-text touch-none">
-          <CheckIcon className="h-5 text-green-400" />
+          <CheckCircleIcon className="h-6 w-6 text-green-400" />
         </div>
       )}
     </div>

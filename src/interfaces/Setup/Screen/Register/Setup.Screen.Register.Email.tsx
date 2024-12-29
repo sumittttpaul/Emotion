@@ -102,7 +102,6 @@ function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
           setValue={setEmailAddress}
           HandleSubmit={EmailSubmitClick}
           ValidateValue={ValidateEmailAddress}
-          Loading={props.Loading}
         />
         <div className="flex flex-col w-full space-y-1">
           <div className="flex justify-start w-full">
@@ -124,6 +123,7 @@ function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
           <SetupSubmitButton
             Disabled={!ValidateEmailAddress}
             onClick={EmailSubmitClick}
+            Loading={props.Loading}
           >
             Next
           </SetupSubmitButton>

@@ -100,9 +100,6 @@ function NumberTextFieldDark(props: NumberTextFieldProps) {
         onBlur={props.onBlur}
         variant="filled"
         data-phonecode={props.dataPhonecode}
-        InputProps={{
-          readOnly: props.readonly,
-        }}
       />
     </div>
   );

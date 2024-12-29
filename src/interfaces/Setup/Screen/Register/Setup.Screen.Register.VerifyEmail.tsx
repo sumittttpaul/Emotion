@@ -1,5 +1,4 @@
 import { m } from 'framer-motion';
-import { CircularProgress } from '@mui/material';
 import { VerifyEmailAddress } from 'functions/AuthAlgorithms';
 import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
@@ -38,6 +37,7 @@ function SetupRegisterVerifyEmailScreen(
       });
     } else {
       props.CheckInfoHandler();
+      props.setLoading(false);
     }
   };
 
@@ -63,7 +63,7 @@ function SetupRegisterVerifyEmailScreen(
           <GreenSuccessHint Label="Your email address has been verified successfully." />
         ) : (
           <>
-            <p className="w-full  text-left text-sm font-normal tracking-wide text-white/75">
+            <p className="w-full text-left text-sm font-normal tracking-wide text-white/75">
               To verify your email address, click Verify Email. A verification
               email will be sent to the email address you provided. Click the
               link in the email to verify your address.
@@ -79,36 +79,16 @@ function SetupRegisterVerifyEmailScreen(
       </div>
       <div className="flex w-full justify-end">
         <div className="flex">
-          <CustomSubmitButton
+          <SetupSubmitButton
             Loading={SubmitDisabled}
             Disabled={SubmitDisabled}
             onClick={VerifyEmailClick}
           >
             {isEmailVerified ? 'Next' : 'Verify Email'}
-          </CustomSubmitButton>
+          </SetupSubmitButton>
         </div>
       </div>
     </m.div>
-  );
-}
-
-interface CustomSubmitButtonProps {
-  Disabled: boolean;
-  onClick: VoidType;
-  Loading: boolean;
-  children: React.ReactNode;
-}
-
-function CustomSubmitButton(props: CustomSubmitButtonProps) {
-  return (
-    <SetupSubmitButton Disabled={props.Disabled} onClick={props.onClick}>
-      {props.children}
-      {props.Loading && (
-        <div className="absolute flex h-full w-full cursor-default items-center justify-center rounded-lg bg-[#104A82] text-white">
-          <CircularProgress className="text-white" size={20} />
-        </div>
-      )}
-    </SetupSubmitButton>
   );
 }
 

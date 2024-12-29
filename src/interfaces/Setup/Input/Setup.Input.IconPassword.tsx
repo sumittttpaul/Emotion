@@ -1,7 +1,6 @@
 'use client';
 
 import IconPasswordTextFieldDark from 'components/textfield/IconPasswordTextFieldDark';
-import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { useState } from 'react';
 
@@ -10,7 +9,6 @@ interface IProps {
   setValue: Dispatch<React.SetStateAction<string>>;
   ValidateValue: boolean;
   HandleSubmit: VoidType;
-  Loading: boolean;
 }
 
 function SetupIconPasswordTextField({
@@ -18,11 +16,9 @@ function SetupIconPasswordTextField({
   setValue,
   ValidateValue,
   HandleSubmit,
-  Loading,
 }: IProps) {
   const [ValueError, setValueError] = useState(false);
   const { Toast, setToast } = ToastHook();
-  const { Loader } = LoaderHook();
 
   const ValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -73,7 +69,6 @@ function SetupIconPasswordTextField({
       onkeyUp={ValueKeyUp}
       onBlur={ValueBlur}
       error={ValueError}
-      readonly={Loading || Loader}
       valid={ValidateValue}
     />
   );

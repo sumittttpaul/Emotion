@@ -3,7 +3,7 @@ import { OTPTextFieldProps } from './AllTextFieldProps';
 function OTPTextFieldDark(props: OTPTextFieldProps) {
   return (
     <input
-      id={props.id}
+      id={props.id ?? props.areaLabel}
       maxLength={1}
       autoCorrect="off"
       autoComplete="off"
@@ -13,11 +13,8 @@ function OTPTextFieldDark(props: OTPTextFieldProps) {
       onKeyDown={props.onkeyDown}
       onClick={props.onClick}
       value={props.value}
-      readOnly={props.readonly}
-      className={`${'h-[50px] w-[40px] items-center rounded-lg bg-[#0f0f0f] text-center font-[600] text-white focus:outline-none'} ${
-        props.className
-      }`}
-      aria-label="otp box"
+      className={`${props.className} ${'h-[50px] w-[40px] items-center rounded-lg bg-[#0f0f0f] text-center font-[600] text-white outline-none'}`}
+      aria-label={props.areaLabel}
       type="tel"
     />
   );

@@ -99,9 +99,6 @@ function TextFieldDark(props: PlainTextFieldProps) {
         onBlur={props.onBlur}
         variant="filled"
         type={props.type}
-        InputProps={{
-          readOnly: props.readonly,
-        }}
       />
     </div>
   );

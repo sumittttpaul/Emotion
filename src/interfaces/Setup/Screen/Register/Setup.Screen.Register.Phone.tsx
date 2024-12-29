@@ -112,21 +112,20 @@ function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
           setValue={setPhoneNumber}
           HandleSubmit={PhoneSubmitClick}
           ValidateValue={ValidatePhoneNumber}
-          Loading={props.Loading}
         />
-        <div className="flex w-full flex-col space-y-1">
-          <div className="flex w-full justify-start">
+        <div className="flex flex-col w-full space-y-1">
+          <div className="flex justify-start w-full">
             <SignInNextButton
               Label="I will add later"
               onClick={props.CheckInfoHandler}
             />
           </div>
-          <div className="flex w-full justify-start">
+          <div className="flex justify-start w-full">
             <SignInBackButton Label="Back" onClick={BackToName} />
           </div>
         </div>
       </div>
-      <div className="flex w-full justify-end">
+      <div className="flex justify-end w-full">
         <div className="flex space-x-2">
           <SetupSkipAllButton onClick={() => props.setSkipDialog(true)}>
             Skip all
@@ -134,6 +133,7 @@ function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
           <SetupSubmitButton
             Disabled={!ValidatePhoneNumber}
             onClick={PhoneSubmitClick}
+            Loading={props.Loading}
           >
             Next
           </SetupSubmitButton>

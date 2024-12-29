@@ -26,6 +26,7 @@ interface SetupLoginEmailScreenProps {
 interface SetupLoginForgotPasswordScreenProps {
   ContentClassName?: string;
   ParentDivClassName?: string;
+  Loading: boolean;
   Animation: AuthAnimationType;
   setScreen: Dispatch<AuthScreenType>;
   setLoading: Dispatch<boolean>;
@@ -85,6 +86,7 @@ interface SetupRegisterBirthdayScreenProps {
   setScreen: Dispatch<AuthScreenType>;
   setSkipDialog: Dispatch<boolean>;
   setLoading: Dispatch<boolean>;
+  Loading: boolean;
 }
 
 interface SetupRegisterEmailScreenProps {
@@ -106,6 +108,7 @@ interface SetupRegisterGenderScreenProps {
   setScreen: Dispatch<AuthScreenType>;
   setSkipDialog: Dispatch<boolean>;
   setLoading: Dispatch<boolean>;
+  Loading: boolean;
 }
 
 interface SetupRegisterNameScreenProps {
@@ -159,6 +162,7 @@ interface SetupRegisterProfilePictureScreenProps {
   CheckInfoHandler: VoidType;
   setScreen: Dispatch<AuthScreenType>;
   setSkipDialog: Dispatch<boolean>;
+  Loading: boolean;
 }
 
 interface SetupRegisterVerifyEmailScreenProps {
@@ -167,6 +171,7 @@ interface SetupRegisterVerifyEmailScreenProps {
   Animation: AuthAnimationType;
   CheckInfoHandler: VoidType;
   setLoading: Dispatch<boolean>;
+  Loading: boolean;
 }
 
 /* ---- Screen ---- */

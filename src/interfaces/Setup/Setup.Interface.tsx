@@ -19,13 +19,14 @@ function SetupInterface() {
       MainScreen={MainScreen}
       ErrorType={ErrorType}
       Screen={Screen}
+      Loading={Loading}
       setScreen={setScreen}
       SkipDialog={SkipDialog}
       setErrorType={setErrorType}
       setMainScreen={setMainScreen}
       setSkipDialog={setSkipDialog}
     >
-      <SetupScreenTitle Screen={Screen} Loading={Loading} />
+      <SetupScreenTitle Screen={Screen} />
       <SetupScreenContent
         ParentDivClassName="h-[350px]"
         ContentClassName="h-[300px]"

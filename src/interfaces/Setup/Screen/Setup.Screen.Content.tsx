@@ -203,6 +203,7 @@ export default function SetupScreenContent({
             ParentDivClassName={ParentDivClassName}
             ContentClassName={ContentClassName}
             Animation={Animation}
+            Loading={Loading}
             setScreen={setScreen}
             setLoading={setLoading}
           />
@@ -273,6 +274,7 @@ export default function SetupScreenContent({
             ContentClassName={ContentClassName}
             Animation={Animation}
             setLoading={setLoading}
+            Loading={Loading}
             CheckInfoHandler={() => SetCheckInfo('after-verify-email')}
           />
         )}
@@ -283,6 +285,7 @@ export default function SetupScreenContent({
             Animation={Animation}
             setScreen={setScreen}
             setSkipDialog={setSkipDialog}
+            Loading={Loading}
             CheckInfoHandler={() => SetCheckInfo('after-profile-picture')}
           />
         )}
@@ -294,6 +297,7 @@ export default function SetupScreenContent({
             setLoading={setLoading}
             setScreen={setScreen}
             setSkipDialog={setSkipDialog}
+            Loading={Loading}
             CheckInfoHandler={() => SetCheckInfo('after-date-of-birth')}
           />
         )}
@@ -305,12 +309,13 @@ export default function SetupScreenContent({
             setLoading={setLoading}
             setScreen={setScreen}
             setSkipDialog={setSkipDialog}
+            Loading={Loading}
             CheckInfoHandler={() => SetCheckInfo('after-gender')}
           />
         )}
       </AnimatePresence>
       {Loading && (
-        <div className="absolute top-0 z-[1] h-full w-full bg-secondary-theme/50 " />
+        <div className="absolute top-0 z-10 h-[85%] w-full bg-secondary-theme/50" />
       )}
     </div>
   );

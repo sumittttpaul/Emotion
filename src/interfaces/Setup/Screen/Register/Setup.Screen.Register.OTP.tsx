@@ -73,6 +73,7 @@ function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
       OperateUserProfile('UPDATE', { uid: FirebaseUser.uid, update: _data })
         .then(() => {
           props.CheckInfoHandler();
+          props.setLoading(false);
         })
         .catch((error) => {
           if (error instanceof Error) {
@@ -179,7 +180,11 @@ function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
         </div>
       </div>
       <div className="flex w-full justify-end">
-        <SetupSubmitButton Disabled={!ValidateOTP} onClick={OTPSubmitClick}>
+        <SetupSubmitButton
+          Disabled={!ValidateOTP}
+          onClick={OTPSubmitClick}
+          Loading={props.Loading}
+        >
           Verify OTP
         </SetupSubmitButton>
       </div>

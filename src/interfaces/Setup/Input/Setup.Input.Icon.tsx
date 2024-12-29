@@ -10,7 +10,6 @@ interface IProps {
   setValue: Dispatch<string>;
   ValidateValue: boolean;
   HandleSubmit: VoidType;
-  Loading: boolean;
 }
 
 function SetupIconTextField({
@@ -19,7 +18,6 @@ function SetupIconTextField({
   setValue,
   ValidateValue,
   HandleSubmit,
-  Loading,
 }: IProps) {
   const [ValueError, setValueError] = useState(false);
   const { Toast, setToast } = ToastHook();
@@ -76,7 +74,6 @@ function SetupIconTextField({
       onkeyUp={ValueKeyUp}
       onBlur={ValueBlur}
       error={ValueError}
-      readonly={Loading}
       valid={ValidateValue}
     />
   );

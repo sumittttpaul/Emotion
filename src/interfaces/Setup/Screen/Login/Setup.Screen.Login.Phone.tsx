@@ -74,16 +74,15 @@ function SetupLoginPhoneScreen(props: SetupLoginPhoneScreenProps) {
           setValue={setPhoneNumber}
           HandleSubmit={PhoneSubmitClick}
           ValidateValue={ValidatePhoneNumber}
-          Loading={props.Loading}
         />
-        <div className="flex w-full flex-col space-y-1">
-          <div className="flex w-full justify-start">
+        <div className="flex flex-col w-full space-y-1">
+          <div className="flex justify-start w-full">
             <SignInNextButton
               Label="Sign in with email address"
               onClick={MoveToSignInWithEmailAddress}
             />
           </div>
-          <div className="flex w-full justify-start">
+          <div className="flex justify-start w-full">
             <SignInNextButton
               Label="Sign-in options"
               onClick={MoveToOtherSignInOptions}
@@ -100,10 +99,11 @@ function SetupLoginPhoneScreen(props: SetupLoginPhoneScreenProps) {
         </div>
         <SetupFooter ButtonLabel="Send OTP" />
       </div>
-      <div className="flex w-full justify-end">
+      <div className="flex justify-end w-full">
         <SetupSubmitButton
           Disabled={!ValidatePhoneNumber}
           onClick={PhoneSubmitClick}
+          Loading={props.Loading}
         >
           Send OTP
         </SetupSubmitButton>

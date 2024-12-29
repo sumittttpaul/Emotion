@@ -9,7 +9,8 @@ import {
   styled,
 } from '@mui/material';
 import Image from 'next/image';
-import { EyeIcon, EyeSlashIcon, CheckIcon } from '@heroicons/react/24/solid';
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid';
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { IconPasswordTextFieldProps } from './AllTextFieldProps';
 
 const CustomTextField = styled((props: TextFieldProps) => (
@@ -140,12 +141,11 @@ function IconPasswordTextFieldDark(props: IconPasswordTextFieldProps) {
         //   maxLength: 16,
         // }}
         InputProps={{
-          readOnly: props.readonly,
           endAdornment: (
             <InputAdornment position="end">
               {props.valid && (
-                <div className="pointer-events-none mb-1 flex cursor-text touch-none">
-                  <CheckIcon className="h-5 text-green-400" />
+                <div className="pointer-events-none mb-1 mr-2 flex cursor-text touch-none">
+                  <CheckCircleIcon className="h-6 w-6 text-green-400" />
                 </div>
               )}
               <IconButton

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-async-client-component */
 'use client';
 
 import { ClientUserType } from 'authentication/UseClientAuth';
@@ -14,7 +15,79 @@ interface IProps {
   setToast: Dispatch<ToastSettingType>;
 }
 
-function CheckInfoHandler({
+function determineNextScreen(
+  userData: IUserProfileData,
+  currentScreen: ICheckInfoScreen,
+): AuthScreenType | null {
+  const {
+    fullName,
+    phoneNumber,
+    emailAddress,
+    isVerified,
+    photoURL,
+    dateOfBirth,
+    gender,
+  } = userData;
+
+  if (currentScreen === 'initial-login-load') {
+    if (!fullName) return 'register-name';
+    if (!phoneNumber) return 'register-phone';
+    if (!emailAddress) return 'register-email';
+    if (emailAddress && !isVerified?.emailAddress)
+      return 'register-verify-email';
+    if (!photoURL) return 'register-profile-picture';
+    if (!dateOfBirth) return 'register-date-of-birth';
+    if (!gender) return 'register-gender';
+  } else {
+    const firstSequence: string[] = [
+      'register-name',
+      'register-phone',
+      'register-otp',
+      'register-email',
+      'register-password',
+      'register-verify-email',
+      'register-profile-picture',
+      'register-date-of-birth',
+      'register-gender',
+    ];
+
+    const secondSequenceMapping: { [key: string]: string } = {
+      'after-name': 'register-name',
+      'after-phone': 'register-phone',
+      'after-email': 'register-email',
+      'after-verify-email': 'register-verify-email',
+      'after-profile-picture': 'register-profile-picture',
+      'after-date-of-birth': 'register-date-of-birth',
+      'after-gender': 'register-gender',
+    };
+
+    const fieldMissingChecks: { [key: string]: boolean } = {
+      'register-name': !fullName,
+      'register-phone': !phoneNumber,
+      'register-email': !emailAddress,
+      'register-profile-picture': !photoURL,
+      'register-date-of-birth': !dateOfBirth,
+      'register-gender': !gender,
+    };
+
+    const startingScreen = secondSequenceMapping[currentScreen];
+    if (!startingScreen) {
+      return null;
+    }
+
+    const startIndex = firstSequence.indexOf(startingScreen);
+
+    for (let i = startIndex + 1; i < firstSequence.length; i++) {
+      const screen = firstSequence[i];
+      if (fieldMissingChecks[screen]) {
+        return screen as AuthScreenType;
+      }
+    }
+  }
+  return null;
+}
+
+export default async function CheckInfoHandler({
   Screen,
   FirebaseUser,
   FirebaseLoading,
@@ -24,204 +97,61 @@ function CheckInfoHandler({
   setMainScreen,
   setToast,
 }: IProps) {
-  FetchUserProfile(
-    !FirebaseLoading && FirebaseUser ? FirebaseUser.uid : undefined,
-  ).then((value) => {
-    if (value.userProfile) {
-      try {
-        const FullName = value.userProfile._data.fullName;
-        const PhoneNumber = value.userProfile._data.phoneNumber;
-        const EmailAddress = value.userProfile._data.emailAddress;
-        const EmailAddressVerified =
-          value.userProfile._data.isVerified?.emailAddress;
-        const ProfilePicture = value.userProfile._data.photoURL;
-        const DateOfBirth = value.userProfile._data.dateOfBirth;
-        const Gender = value.userProfile._data.gender;
-        if (Screen === 'initial-login-load') {
-          if (!FullName || (FullName && FullName.length < 1)) {
-            setScreen('register-name');
-          } else if (!PhoneNumber || (PhoneNumber && PhoneNumber.length < 1)) {
-            setScreen('register-phone');
-          } else if (
-            !EmailAddress ||
-            (EmailAddress && EmailAddress.length < 1)
-          ) {
-            setScreen('register-email');
-          } else if (
-            EmailAddress &&
-            EmailAddress.length > 0 &&
-            !EmailAddressVerified &&
-            EmailAddressVerified === false
-          ) {
-            setScreen('register-verify-email');
-          } else if (
-            !ProfilePicture ||
-            (ProfilePicture && ProfilePicture.length < 1)
-          ) {
-            setScreen('register-profile-picture');
-          } else if (!DateOfBirth || (DateOfBirth && DateOfBirth.length < 1)) {
-            setScreen('register-date-of-birth');
-          } else if (!Gender || (Gender && Gender.length < 1)) {
-            setScreen('register-gender');
-          } else if (
-            FullName &&
-            PhoneNumber &&
-            EmailAddress &&
-            EmailAddressVerified &&
-            ProfilePicture &&
-            DateOfBirth &&
-            Gender
-          ) {
-            if (
-              FullName.length > 0 &&
-              PhoneNumber.length > 0 &&
-              EmailAddress.length > 0 &&
-              ProfilePicture.length > 0 &&
-              DateOfBirth.length > 0 &&
-              Gender.length > 0 &&
-              EmailAddressVerified === true
-            ) {
-              setMainScreen('Finish');
-            }
-          }
-        }
-        if (Screen === 'after-name') {
-          if (!PhoneNumber || (PhoneNumber && PhoneNumber.length < 1)) {
-            setScreen('register-phone');
-          } else if (
-            !EmailAddress ||
-            (EmailAddress && EmailAddress.length < 1)
-          ) {
-            setScreen('register-email');
-          } else if (
-            EmailAddress &&
-            EmailAddress.length > 0 &&
-            !EmailAddressVerified &&
-            EmailAddressVerified === false
-          ) {
-            setScreen('register-verify-email');
-          } else if (
-            !ProfilePicture ||
-            (ProfilePicture && ProfilePicture.length < 1)
-          ) {
-            setScreen('register-profile-picture');
-          } else if (!DateOfBirth || (DateOfBirth && DateOfBirth.length < 1)) {
-            setScreen('register-date-of-birth');
-          } else if (!Gender || (Gender && Gender.length < 1)) {
-            setScreen('register-gender');
-          } else {
-            setMainScreen('Finish');
-          }
-        }
-        if (Screen === 'after-phone') {
-          if (!EmailAddress || (EmailAddress && EmailAddress.length < 1)) {
-            setScreen('register-email');
-          } else if (
-            EmailAddress &&
-            EmailAddress.length > 0 &&
-            !EmailAddressVerified &&
-            EmailAddressVerified === false
-          ) {
-            setScreen('register-verify-email');
-          } else if (
-            !ProfilePicture ||
-            (ProfilePicture && ProfilePicture.length < 1)
-          ) {
-            setScreen('register-profile-picture');
-          } else if (!DateOfBirth || (DateOfBirth && DateOfBirth.length < 1)) {
-            setScreen('register-date-of-birth');
-          } else if (!Gender || (Gender && Gender.length < 1)) {
-            setScreen('register-gender');
-          } else {
-            setMainScreen('Finish');
-          }
-        }
-        if (Screen === 'after-email') {
-          if (
-            EmailAddress &&
-            EmailAddress.length > 0 &&
-            !EmailAddressVerified &&
-            EmailAddressVerified === false
-          ) {
-            setScreen('register-verify-email');
-          } else if (
-            !ProfilePicture ||
-            (ProfilePicture && ProfilePicture.length < 1)
-          ) {
-            setScreen('register-profile-picture');
-          } else if (!DateOfBirth || (DateOfBirth && DateOfBirth.length < 1)) {
-            setScreen('register-date-of-birth');
-          } else if (!Gender || (Gender && Gender.length < 1)) {
-            setScreen('register-gender');
-          } else {
-            setMainScreen('Finish');
-          }
-        }
-        if (Screen === 'after-verify-email') {
-          if (
-            !ProfilePicture ||
-            (ProfilePicture && ProfilePicture.length < 1)
-          ) {
-            setScreen('register-profile-picture');
-          } else if (!DateOfBirth || (DateOfBirth && DateOfBirth.length < 1)) {
-            setScreen('register-date-of-birth');
-          } else if (!Gender || (Gender && Gender.length < 1)) {
-            setScreen('register-gender');
-          } else {
-            setMainScreen('Finish');
-          }
-        }
-        if (Screen === 'after-profile-picture') {
-          if (!DateOfBirth || (DateOfBirth && DateOfBirth.length < 1)) {
-            setScreen('register-date-of-birth');
-          } else if (!Gender || (Gender && Gender.length < 1)) {
-            setScreen('register-gender');
-          } else {
-            setMainScreen('Finish');
-          }
-        }
-        if (Screen === 'after-date-of-birth') {
-          if (!Gender || (Gender && Gender.length < 1)) {
-            setScreen('register-gender');
-          } else {
-            setMainScreen('Finish');
-          }
-        }
-        if (Screen === 'after-gender') {
-          setMainScreen('Finish');
-        }
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          setMainScreen('Error');
-          setErrorType('get-user-failed');
-          setToast({
-            Title: 'Something went wrong',
-            Description: error.message,
-            Type: 'Error',
-            Show: false,
-          });
-        }
-      }
-    } else if (value.error) {
+  try {
+    if (FirebaseLoading || !FirebaseUser) {
       setMainScreen('Error');
       setErrorType('get-user-failed');
       setToast({
         Title: 'Something went wrong',
-        Description: value.error.message,
+        Description: 'User may be signout or not exits.',
         Type: 'Error',
-        Show: false,
+        Show: true,
       });
+      return;
     }
-  });
+
+    const result = await FetchUserProfile(FirebaseUser.uid);
+    const userProfile = result?.userProfile?._data;
+
+    if (!userProfile) {
+      setMainScreen('Error');
+      setErrorType('get-user-failed');
+      setToast({
+        Title: 'Something went wrong',
+        Description:
+          result.error?.message ||
+          'Failed to fetch user profile from database.',
+        Type: 'Error',
+        Show: true,
+      });
+      return;
+    }
+
+    const nextScreen = determineNextScreen(userProfile, Screen);
+    if (nextScreen) {
+      setMainScreen('Setup');
+      setScreen(nextScreen);
+    } else {
+      setMainScreen('Finish');
+    }
+  } catch (error) {
+    setMainScreen('Error');
+    setErrorType('get-user-failed');
+    setToast({
+      Title: 'Something went wrong',
+      Description: error instanceof Error ? error.message : 'Unknown error',
+      Type: 'Error',
+      Show: true,
+    });
+  }
+
   if (FirebaseError) {
     setMainScreen('Error');
     setToast({
       Title: 'Something went wrong',
       Description: FirebaseError.message,
       Type: 'Error',
-      Show: false,
+      Show: true,
     });
   }
 }
-
-export default CheckInfoHandler;

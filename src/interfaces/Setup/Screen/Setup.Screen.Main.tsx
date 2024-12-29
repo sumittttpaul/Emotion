@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { LazyMotion, domAnimation } from 'framer-motion';
 import { SetupImages } from 'contents/setup/Setup.Image';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
@@ -35,6 +36,7 @@ interface IProps {
   Screen: AuthScreenType;
   setScreen: Dispatch<AuthScreenType>;
   SkipDialog: boolean;
+  Loading: boolean;
   setSkipDialog: Dispatch<boolean>;
 }
 
@@ -46,6 +48,7 @@ function SetupScreenMain({
   ErrorType,
   setErrorType,
   Screen,
+  Loading,
   setScreen,
   SkipDialog,
   setSkipDialog,
@@ -78,12 +81,17 @@ function SetupScreenMain({
   };
 
   useEffect(() => {
-    if (!FirebaseUser) ProceedLogin();
-    else SetCheckInfo('initial-login-load');
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    if (!FirebaseLoading) {
+      if (!FirebaseUser) ProceedLogin();
+      else SetCheckInfo('initial-login-load');
+    }
+  }, [FirebaseLoading]);
 
   return (
     <LazyMotion features={domAnimation} strict>
+      {Loading && (
+        <div className="absolute top-0 z-30 w-full h-full bg-transparent" />
+      )}
       {MainScreen === 'Error' && (
         <SetupErrorScreen
           Type={ErrorType}

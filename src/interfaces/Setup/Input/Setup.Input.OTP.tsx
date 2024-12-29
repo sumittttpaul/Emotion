@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import OTPTextFieldDark from 'components/textfield/OTPTextFieldDark';
@@ -6,7 +7,6 @@ import {
   InputChangeFocus,
   InputNumberOnly,
 } from 'functions/UIAlgorithms';
-import { LoaderHook } from 'hooks/global/Hooks.Loader';
 
 interface IProps {
   OTP1: string;
@@ -41,8 +41,6 @@ function SetupOTPTextField({
   HandleSubmit,
   Loading,
 }: IProps) {
-  const { Loader } = LoaderHook();
-
   const OTP1Change = (event: React.ChangeEvent<HTMLInputElement>) => {
     setOTP1(event.target.value.trim());
   };
@@ -75,68 +73,20 @@ function SetupOTPTextField({
     if (event.key === 'Enter') HandleSubmit();
   };
 
-  const spaceBetween = 'ml-2';
-
   return (
     <div className="flex items-center justify-center">
-      <OTPTextFieldDark
-        onClick={OTPClick}
-        area-label="OTP1"
-        value={OTP1}
-        onChange={OTP1Change}
-        onkeyDown={NumberOnly}
-        onkeyUp={ChangeFocus}
-      />
-      <OTPTextFieldDark
-        onClick={OTPClick}
-        className={spaceBetween}
-        area-label="OTP2"
-        value={OTP2}
-        onChange={OTP2Change}
-        onkeyDown={NumberOnly}
-        onkeyUp={ChangeFocus}
-        readonly={Loader || Loading}
-      />
-      <OTPTextFieldDark
-        onClick={OTPClick}
-        className={spaceBetween}
-        area-label="OTP3"
-        value={OTP3}
-        onChange={OTP3Change}
-        onkeyDown={NumberOnly}
-        onkeyUp={ChangeFocus}
-        readonly={Loader || Loading}
-      />
-      <OTPTextFieldDark
-        onClick={OTPClick}
-        className="ml-8"
-        area-label="OTP4"
-        value={OTP4}
-        onChange={OTP4Change}
-        onkeyDown={NumberOnly}
-        onkeyUp={ChangeFocus}
-        readonly={Loader || Loading}
-      />
-      <OTPTextFieldDark
-        onClick={OTPClick}
-        className={spaceBetween}
-        area-label="OTP5"
-        value={OTP5}
-        onChange={OTP5Change}
-        onkeyDown={NumberOnly}
-        onkeyUp={ChangeFocus}
-        readonly={Loader || Loading}
-      />
-      <OTPTextFieldDark
-        onClick={OTPClick}
-        className={spaceBetween}
-        area-label="OTP6"
-        value={OTP6}
-        onChange={OTP6Change}
-        onkeyDown={NumberOnly}
-        onkeyUp={ChangeFocus}
-        readonly={Loader || Loading}
-      />
+      {[...Array(6)].map((_, index) => (
+        <OTPTextFieldDark
+          key={index}
+          onClick={OTPClick}
+          areaLabel={`OTP${index + 1}`}
+          value={eval(`OTP${index + 1}`)}
+          onChange={eval(`OTP${index + 1}Change`)}
+          onkeyDown={NumberOnly}
+          onkeyUp={ChangeFocus}
+          className={index == 3 ? 'ml-8' : index > 0 ? 'ml-2' : 'ml-0'}
+        />
+      ))}
     </div>
   );
 }

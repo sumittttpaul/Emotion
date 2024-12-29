@@ -32,6 +32,7 @@ interface ResendOTPProps {
 interface VerifyOTPProps {
   OTP: number;
   EmptyOTPBox: VoidType;
+  Redirect: (value: __next_route_internal_types__.RouteImpl<string>) => void;
   CreateDateBase: Dispatch<string>;
   Loading: Dispatch<boolean>;
   LoadingScreen: (value: boolean) => void;
@@ -100,6 +101,7 @@ interface SignInWithPhoneNumberProps {
 interface SignInWithEmailAndPasswordProps {
   EmailAddress: string;
   Password: string;
+  Redirect: (value: __next_route_internal_types__.RouteImpl<string>) => void;
   Loading: Dispatch<boolean>;
   LoadingScreen: (value: boolean) => void;
   EmptyPasswordTextField: VoidType;

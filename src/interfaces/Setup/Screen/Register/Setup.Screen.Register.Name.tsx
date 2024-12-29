@@ -32,6 +32,7 @@ function SetupRegisterNameScreen(props: SetupRegisterNameScreenProps) {
       OperateUserProfile('UPDATE', { uid: FirebaseUser.uid, update: _data })
         .then(() => {
           props.CheckInfoHandler();
+          props.setLoading(false);
         })
         .catch((error) => {
           if (error instanceof Error) {
@@ -95,16 +96,15 @@ function SetupRegisterNameScreen(props: SetupRegisterNameScreenProps) {
           setValue={setFullName}
           ValidateValue={ValidateFullName}
           HandleSubmit={FullNameSubmitClick}
-          Loading={props.Loading}
         />
-        <div className="flex w-full justify-start">
+        <div className="flex justify-start w-full">
           <SignInNextButton
             Label="I will add later"
             onClick={props.CheckInfoHandler}
           />
         </div>
       </div>
-      <div className="flex w-full justify-end">
+      <div className="flex justify-end w-full">
         <div className="flex space-x-2">
           <SetupSkipAllButton onClick={() => props.setSkipDialog(true)}>
             Skip all
@@ -112,6 +112,7 @@ function SetupRegisterNameScreen(props: SetupRegisterNameScreenProps) {
           <SetupSubmitButton
             Disabled={!ValidateFullName}
             onClick={FullNameSubmitClick}
+            Loading={props.Loading}
           >
             Next
           </SetupSubmitButton>

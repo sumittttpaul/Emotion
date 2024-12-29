@@ -23,10 +23,6 @@ function SetupErrorScreen(props: SetupErrorScreenProps) {
     router.push(Manage_Your_Account_Link);
   };
 
-  const handleReloadThePage = () => {
-    router.refresh();
-  };
-
   return (
     <div
       className={`${props.ClassName}  relative flex w-full flex-col items-center justify-center px-5 pt-20 md:p-14`}
@@ -50,7 +46,7 @@ function SetupErrorScreen(props: SetupErrorScreenProps) {
           {props.Type === 'database-not-created' &&
             'We apologize for the inconvenience, but there seems to be an error with the process of creation of database.'}
           {props.Type === 'get-user-failed' &&
-            'We apologize for the inconvenience, but there seems to be an error with the validating process.'}
+            'We apologize for the inconvenience, but there seems to be an error with the user fetching or validating process.'}
           {props.Type === undefined && props.ToastDescription}
         </p>
         {props.Type !== undefined && (
@@ -77,21 +73,13 @@ function SetupErrorScreen(props: SetupErrorScreenProps) {
         )}
       </div>
       <div className="mt-7 w-full max-w-[750px] flex-col space-y-2">
-        {props.Type !== undefined && (
-          <div className="flex items-center justify-start w-full">
-            <SignInNextButton
-              onClick={handleReloadThePage}
-              Label="Reload the page"
-            />
-          </div>
-        )}
-        <div className="flex items-center justify-start w-full">
+        <div className="flex w-full items-center justify-start">
           <SignInNextButton
             onClick={handleMoveToManageAccount}
             Label="Move to manage account"
           />
         </div>
-        <div className="flex items-center justify-start w-full">
+        <div className="flex w-full items-center justify-start">
           <SignInBackButton onClick={handleBackToHome} Label="Back to home" />
         </div>
       </div>
