@@ -8,7 +8,7 @@ import {
 } from 'databases/messages/Message.UserProfile';
 import { CatchError } from 'types/Error.Constructor';
 
-// GET (get a user) : http://localhost:3000/api/users/profile/[_uid]
+// GET (get a user) : https://emotionoutfit.vercel.app/api/users/profile/[_uid]
 export async function GET(req: NextRequest, context: { params: ParamType }) {
   ConnectUsersDatabase().catch(() => {
     return NextResponse.json(DBErrorMessage, ServerErrorMessage);
