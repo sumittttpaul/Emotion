@@ -1,8 +1,8 @@
 import { Metadata, Viewport } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Setup your Emotion Account',
-  description: 'Welcome to setup wizard of Emotion account | Emotion.store',
+  title: 'Setup your Emotion Account • Emotion Outfit',
+  description: 'Welcome to setup wizard of Emotion account • Emotion Outfit',
 };
 
 export const viewport: Viewport = {

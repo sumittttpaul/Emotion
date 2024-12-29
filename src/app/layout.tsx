@@ -10,8 +10,8 @@ import CssVarsProvider from 'providers/CssVarsProvider';
 import ContextProvider from 'providers/ContextProvider';
 
 export const metadata: Metadata = {
-  title: 'Emotion',
-  description: 'Welcome to emotion-outfit.com',
+  title: 'Emotion Outfit • Sumeet Kumar Paul',
+  description: 'Welcome to emotionoutfit.vercel.app by Sumeet Kumar Paul',
   icons: '/favicon.ico',
 };
 
