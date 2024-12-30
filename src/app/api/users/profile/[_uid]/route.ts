@@ -14,7 +14,7 @@ export async function GET(req: NextRequest, context: { params: ParamType }) {
     return NextResponse.json(DBErrorMessage, ServerErrorMessage);
   });
   try {
-    const _uid = context.params._uid;
+    const _uid = (await context.params)._uid;
     const _value = await userProfileDB.findOne({ _uid: _uid });
     if (!_value) return NextResponse.json(DataNullMessage, ServerErrorMessage);
     return NextResponse.json(_value as IUserProfile, { status: 200 });

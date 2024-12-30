@@ -10,16 +10,20 @@ const nextConfig = {
   experimental: {
     typedRoutes: true,
     webVitalsAttribution: ['CLS', 'LCP'],
-    serverComponentsExternalPackages: ['mongoose'],
   },
+  serverExternalPackages: ['mongoose'],
   reactStrictMode: true,
-  swcMinify: true,
   images: {
-    domains: [
-      'localhost',
-      'www.gstatic.com',
-      'firebasestorage.googleapis.com',
-      'lh3.googleusercontent.com',
+    remotePatterns: [
+      {
+        hostname: 'www.gstatic.com',
+      },
+      {
+        hostname: 'firebasestorage.googleapis.com',
+      },
+      {
+        hostname: 'lh3.googleusercontent.com',
+      },
     ],
   },
   // env: { Example: 'value' },

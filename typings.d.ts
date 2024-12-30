@@ -35,9 +35,9 @@ type FetchDataType = {
   update?: IUserProfileDataUpdate;
 };
 
-type ParamType = {
+type ParamType = Promise<{
   _uid: string;
-};
+}>;
 
 interface ISuccess {
   name: string;

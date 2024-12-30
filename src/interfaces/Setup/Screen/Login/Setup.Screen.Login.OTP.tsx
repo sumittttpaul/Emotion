@@ -1,18 +1,18 @@
-import { m } from 'framer-motion';
 import { useState } from 'react';
-import { ToastHook } from 'hooks/global/Hooks.Toast';
-import { EncryptData } from 'functions/security/CryptionSecurity';
-import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
-import { DeleteAccount, VerifyOTP } from 'functions/AuthAlgorithms';
+import { m } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { ResentOTP } from 'functions/AuthAlgorithms';
+import { ToastHook } from 'hooks/global/Hooks.Toast';
+import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
+import { EncryptData } from 'functions/security/CryptionSecurity';
+import { DeleteAccount, VerifyOTP } from 'functions/AuthAlgorithms';
 import OTPTimer from 'components/timer/OTPTimer';
-import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
+import UserProfileEncryptionKey from 'functions/security/CryptionKey';
+import SetupOTPTextField from 'interfaces/Setup/Input/Setup.Input.OTP';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
-import SetupOTPTextField from 'interfaces/Setup/Input/Setup.Input.OTP';
+import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
-import UserProfileEncryptionKey from 'functions/security/CryptionKey';
-import { useRouter } from 'next/navigation';
 
 function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
   const [OTPs, setOTPs] = useState({
@@ -102,13 +102,14 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
           });
         DeleteAccount({
           Loading: props.setLoading,
-          ShowToast: (Title, Description, Type, Show) =>
+          ShowToast: (Title, Description, Type, Show) => {
             setToast({
               Title: Title,
               Description: Description,
               Type: Type,
               Show: Show,
-            }),
+            });
+          },
           Deletedatabase: () => {
             // Delete database if by any change it has been created,
             props.setLoading(false);
@@ -124,13 +125,14 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
     ResentOTP({
       PhoneNumber: parseInt(PhoneNumber),
       Loading: props.setLoading,
-      ShowToast: (Title, Description, Type, Show) =>
+      ShowToast: (Title, Description, Type, Show) => {
         setToast({
           Title: Title,
           Description: Description,
           Type: Type,
           Show: Show,
-        }),
+        });
+      },
     });
     setBool(false);
   };
@@ -146,13 +148,14 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
         EmptyOTPBox: clearOTP,
         Loading: props.setLoading,
         CreateDateBase: CreateDateBase,
-        ShowToast: (Title, Description, Type, Show) =>
+        ShowToast: (Title, Description, Type, Show) => {
           setToast({
             Title: Title,
             Description: Description,
             Type: Type,
             Show: Show,
-          }),
+          });
+        },
       });
     }
   };

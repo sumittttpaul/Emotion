@@ -11,6 +11,7 @@ export default function UseClientAuth() {
 
   useEffect(() => {
     if (!FirebaseAuth) {
+      nookies.destroy(undefined, 'token');
       return;
     }
     return FirebaseAuth.onIdTokenChanged(async (user) => {
