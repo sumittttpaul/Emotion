@@ -120,9 +120,9 @@ function SetupRegisterPhoneScreen(props: SetupRegisterPhoneScreenProps) {
               onClick={props.CheckInfoHandler}
             />
           </div>
-          <div className="flex justify-start w-full">
+          {/* <div className="flex justify-start w-full">
             <SignInBackButton Label="Back" onClick={BackToName} />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="flex justify-end w-full">

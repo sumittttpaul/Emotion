@@ -2,7 +2,7 @@ import { m } from 'framer-motion';
 import { VerifyEmailAddress } from 'functions/AuthAlgorithms';
 import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { FirebaseAuth } from 'authentication/clientApp';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
 import SignInNextButton from 'components/button/Setup/SignInNextButton';
@@ -12,21 +12,14 @@ function SetupRegisterVerifyEmailScreen(
   props: SetupRegisterVerifyEmailScreenProps,
 ) {
   const { isEmailVerified, setIsEmailVerified } = userProfileHook();
-  const [SubmitDisabled, setSubmitDisabled] = useState(false);
   const { setToast } = ToastHook();
-
-  // Handle
-  const handleSubmitDisabled = () => {
-    setSubmitDisabled(true);
-  };
 
   // Submit
   const VerifyEmailClick = () => {
-    props.setLoading(true);
     if (!isEmailVerified) {
       VerifyEmailAddress({
         Loading: props.setLoading,
-        Next: handleSubmitDisabled,
+        Next: () => {},
         ShowToast: (Title, Description, Type, Show) =>
           setToast({
             Title: Title,
@@ -80,8 +73,8 @@ function SetupRegisterVerifyEmailScreen(
       <div className="flex w-full justify-end">
         <div className="flex">
           <SetupSubmitButton
-            Loading={SubmitDisabled}
-            Disabled={SubmitDisabled}
+            Loading={props.Loading}
+            Disabled={props.Loading}
             onClick={VerifyEmailClick}
           >
             {isEmailVerified ? 'Next' : 'Verify Email'}

@@ -87,26 +87,26 @@ function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
       <div
         className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
-        <div className="flex w-full items-start pt-2">
+        <div className="flex items-start w-full pt-2">
           <RadioGroupDark
             content={['Male', 'Female', 'Others']}
             value={Gender}
             onChange={(value) => (value ? setGender(value as string) : '')}
           />
         </div>
-        <div className="flex w-full flex-col space-y-1">
-          <div className="flex w-full justify-start">
+        <div className="flex flex-col w-full space-y-1">
+          <div className="flex justify-start w-full">
             <SignInNextButton
               Label="I will add later"
               onClick={props.CheckInfoHandler}
             />
           </div>
-          <div className="flex w-full justify-start">
+          {/* <div className="flex justify-start w-full">
             <SignInBackButton Label="Back" onClick={BackToBirthday} />
-          </div>
+          </div> */}
         </div>
       </div>
-      <div className="flex w-full justify-end">
+      <div className="flex justify-end w-full">
         <div className="flex space-x-2">
           <SetupSkipAllButton onClick={() => props.setSkipDialog(true)}>
             Skip all

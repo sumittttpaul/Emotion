@@ -86,7 +86,7 @@ function SetupRegisterBirthdayScreen(props: SetupRegisterBirthdayScreenProps) {
       <div
         className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
-        <div className="flex w-full items-start justify-center pt-2">
+        <div className="flex items-start justify-center w-full pt-2">
           <DatePickerButton
             DOB={DateOfBirth}
             getDOB={(value: unknown) => setDateOfBirth(value as string)}
@@ -94,19 +94,19 @@ function SetupRegisterBirthdayScreen(props: SetupRegisterBirthdayScreenProps) {
             setSubmitDisabled={setSubmitDisabled}
           />
         </div>
-        <div className="flex w-full flex-col space-y-1">
-          <div className="flex w-full justify-start">
+        <div className="flex flex-col w-full space-y-1">
+          <div className="flex justify-start w-full">
             <SignInNextButton
               Label="I will add later"
               onClick={props.CheckInfoHandler}
             />
           </div>
-          <div className="flex w-full justify-start">
+          {/* <div className="flex justify-start w-full">
             <SignInBackButton Label="Back" onClick={BackToPhoto} />
-          </div>
+          </div> */}
         </div>
       </div>
-      <div className="flex w-full justify-end">
+      <div className="flex justify-end w-full">
         <div className="flex space-x-2">
           <SetupSkipAllButton onClick={() => props.setSkipDialog(true)}>
             Skip all

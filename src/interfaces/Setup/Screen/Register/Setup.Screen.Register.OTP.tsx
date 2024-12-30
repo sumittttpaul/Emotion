@@ -166,7 +166,7 @@ function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
           HandleSubmit={OTPSubmitClick}
           Loading={props.Loading}
         />
-        <div className="flex h-8 w-full justify-start">
+        <div className="flex justify-start w-full h-8">
           {Bool ? (
             <SignInNextButton onClick={OTPResend} Label="Resend OTP" />
           ) : (
@@ -175,11 +175,11 @@ function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
             </div>
           )}
         </div>
-        <div className="flex w-full justify-start">
+        <div className="flex justify-start w-full">
           <SignInBackButton Label="Back" onClick={CancelOTPVerification} />
         </div>
       </div>
-      <div className="flex w-full justify-end">
+      <div className="flex justify-end w-full">
         <SetupSubmitButton
           Disabled={!ValidateOTP}
           onClick={OTPSubmitClick}

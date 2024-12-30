@@ -110,9 +110,9 @@ function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
               onClick={props.CheckInfoHandler}
             />
           </div>
-          <div className="flex justify-start w-full">
+          {/* <div className="flex justify-start w-full">
             <SignInBackButton Label="Back" onClick={BackToPhone} />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="flex justify-end w-full">
