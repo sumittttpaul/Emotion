@@ -11,7 +11,9 @@ function GreenSuccessHint(props: IProps) {
         <div className="mt-1 h-full min-w-[15px] items-start">
           <Image height={15} width={15} src="/icons/success-color.svg" alt="" />
         </div>
-        <p className="block text-[13px] font-normal">{props.Label}</p>
+        <p className="block text-[13px] font-normal text-white">
+          {props.Label}
+        </p>
       </div>
     </div>
   );
