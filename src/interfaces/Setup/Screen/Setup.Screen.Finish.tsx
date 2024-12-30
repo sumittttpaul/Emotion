@@ -4,14 +4,11 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import SetupHeaderLabel from 'components/label/SetupHeaderLabel';
 import SetupSubmitButton from 'components/button/Setup/SetupSubmitButton';
-import { LoaderHook } from 'hooks/global/Hooks.Loader';
 
 function SetupFinishScreen(props: SetupFinishScreenProps) {
-  const { setLoader } = LoaderHook();
   const router = useRouter();
 
   const handleFinish = () => {
-    setLoader(true);
     router.push('/');
   };
 

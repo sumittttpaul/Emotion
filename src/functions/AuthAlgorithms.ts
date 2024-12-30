@@ -97,7 +97,6 @@ export async function VerifyOTP({
   OTP,
   Redirect,
   Loading,
-  LoadingScreen,
   EmptyOTPBox,
   ShowToast,
   CreateDateBase,
@@ -118,7 +117,6 @@ export async function VerifyOTP({
         if (user) {
           if (IsNewUser) CreateDateBase(user.uid);
           else {
-            LoadingScreen(true);
             Loading(false);
             ShowToast(
               'Authentication Successful !',
@@ -329,7 +327,6 @@ export async function SignInWithEmailAndPassword({
   EmptyPasswordTextField,
   Loading,
   Redirect,
-  LoadingScreen,
   BackToEmailScreen,
   ShowToast,
 }: SignInWithEmailAndPasswordProps) {
@@ -337,7 +334,6 @@ export async function SignInWithEmailAndPassword({
   _firebaseAuth
     .signInWithEmailAndPassword(FirebaseAuth, EmailAddress, Password)
     .then(() => {
-      LoadingScreen(true);
       Loading(false);
       Redirect(Home_Link);
     })

@@ -12,7 +12,6 @@ import {
   SignInWithGoogle,
   SignInWithMicrosoft,
 } from 'functions/AuthAlgorithms';
-import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { DecryptData, EncryptData } from 'functions/security/CryptionSecurity';
 import UserProfileEncryptionKey from 'functions/security/CryptionKey';
@@ -40,7 +39,6 @@ function SetupLoginOtherAccountScreen(
     FullName: undefined,
     PhotoUrl: undefined,
   });
-  const { setLoader } = LoaderHook();
   const { setToast } = ToastHook();
   const router = useRouter();
 
@@ -101,7 +99,6 @@ function SetupLoginOtherAccountScreen(
       };
       OperateUserProfile('CREATE', { create: _data })
         .then(async () => {
-          setLoader(true);
           props.setLoading(false);
           router.push('/');
         })
@@ -289,7 +286,6 @@ function SetupLoginOtherAccountScreen(
       PrevData.FullName === NewData.FullName &&
       PrevData.PhotoUrl === NewData.PhotoUrl
     ) {
-      setLoader(true);
       props.setLoading(false);
       router.push('/');
     }

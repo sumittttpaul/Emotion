@@ -1,15 +1,12 @@
 import DialogContainerDark from 'components/dialog/DialogContainerDark';
 import { Button } from '@mui/material';
-import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { useRouter } from 'next/navigation';
 
 function SetupSkipDialog(props: SetupSkipDialogProps) {
-  const { setLoader } = LoaderHook();
   const router = useRouter();
 
   const handleContinue = () => {
     props.onClose();
-    setLoader(true);
     router.push('/');
   };
 

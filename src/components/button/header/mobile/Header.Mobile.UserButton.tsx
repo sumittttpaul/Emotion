@@ -7,7 +7,6 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { HeaderUserButtonMenuProps } from '../Header.UserButton.Menu';
 import { SignOut } from 'functions/AuthAlgorithms';
-import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import UseClientAuth, { ClientUserType } from 'authentication/UseClientAuth';
 
 const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
@@ -17,7 +16,6 @@ const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
 
 export function HeaderMobileUserButton() {
   const { FirebaseUser, FirebaseLoading } = UseClientAuth();
-  const { setLoader } = LoaderHook();
   const router = useRouter();
 
   if (FirebaseLoading)
@@ -40,7 +38,6 @@ export function HeaderMobileUserButton() {
         onClick={() => {
           setTimeout(() => {
             router.push(Setup_Link);
-            setLoader(true);
           }, 150);
         }}
       />
@@ -109,7 +106,6 @@ function UserButton(props: UserButtonProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const photoURL = props.user?.photoURL;
-  const { setLoader } = LoaderHook();
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -161,7 +157,6 @@ function UserButton(props: UserButtonProps) {
         user={props.user}
         handleClose={handleClose}
         SignOutUser={SignOutUser}
-        LoadingScreen={(value) => setLoader(value)}
       />
     </>
   );

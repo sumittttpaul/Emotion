@@ -1,14 +1,12 @@
 import { useRouter } from 'next/navigation';
 import { Home_Link } from 'routers/RouterLinks';
 import { FooterLogo } from 'components/logo/CompanyLogo';
-import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { HomePageHook } from 'hooks/target/Hooks.Page.Home';
 import FooterBottom from './assets/FooterBottom';
 import ScrollToTopButton from './assets/ScrollToTopButton';
 
 function FooterMobile() {
   const { setHomePage } = HomePageHook();
-  const { setLoader } = LoaderHook();
   const router = useRouter();
   return (
     <div className="w-full self-end px-3 pb-3 sm:px-5 sm:pb-5">
@@ -17,7 +15,6 @@ function FooterMobile() {
           <FooterLogo
             onValueChange={(value) => {
               setHomePage(value);
-              setLoader(true);
               router.push(Home_Link);
             }}
           />

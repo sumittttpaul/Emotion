@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { m } from 'framer-motion';
 import { useState } from 'react';
-import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import { SignInWithEmailAndPassword } from 'functions/AuthAlgorithms';
@@ -14,7 +13,6 @@ import { useRouter } from 'next/navigation';
 function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
   const [Password, setPassword] = useState('');
   const { EmailAddress } = userProfileHook();
-  const { setLoader } = LoaderHook();
   const { setToast } = ToastHook();
   const router = useRouter();
 
@@ -46,7 +44,6 @@ function SetupLoginPasswordScreen(props: SetupLoginPasswordScreenProps) {
         Loading: props.setLoading,
         BackToEmailScreen: BackToEmailScreen,
         Redirect: (value) => router.push(value),
-        LoadingScreen: (value) => setLoader(value),
         ShowToast: (Title, Description, Type, Show) =>
           setToast({
             Title: Title,

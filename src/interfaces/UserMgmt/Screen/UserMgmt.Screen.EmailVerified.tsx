@@ -12,7 +12,6 @@ import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
 import SetupHeaderLabel from 'components/label/SetupHeaderLabel';
 import { ConfirmVerifyEmailAddress } from 'functions/AuthAlgorithms';
-import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import UseClientAuth from 'authentication/UseClientAuth';
 import OperateUserProfile from 'databases/controllers/Controller.UserProfile';
@@ -23,21 +22,17 @@ function UserMgmtEmailVerifiedScreen(props: UserMgmtEmailVerifiedScreenProps) {
   const [Screen, setScreen] = useState<'Success' | 'Error' | null>(null);
   const { FirebaseUser } = UseClientAuth();
   const { Toast, setToast } = ToastHook();
-  const { setLoader } = LoaderHook();
   const router = useRouter();
 
   const handleBackToHome = () => {
-    setLoader(true);
     router.push(Home_Link);
   };
 
   const handleMoveToManageAccount = () => {
-    setLoader(true);
     router.push(Manage_Your_Account_Link);
   };
 
   const handleContinueWithSetup = () => {
-    setLoader(true);
     router.push(Setup_Link);
   };
 
@@ -105,7 +100,7 @@ function UserMgmtEmailVerifiedScreen(props: UserMgmtEmailVerifiedScreenProps) {
       )}
       {Screen === 'Success' && (
         <>
-          <div className="relative flex items-center justify-center w-full h-full pt-20 pb-7 md:ml-14 md:p-14">
+          <div className="relative flex h-full w-full items-center justify-center pb-7 pt-20 md:ml-14 md:p-14">
             <div className="flex h-[125px] md:h-auto">
               <Image
                 height={370}
@@ -117,7 +112,7 @@ function UserMgmtEmailVerifiedScreen(props: UserMgmtEmailVerifiedScreenProps) {
             </div>
           </div>
           <div className="relative flex w-full flex-col items-center justify-center space-y-5 overflow-hidden md:min-w-[400px] md:p-9 md-1000:min-w-[500px]">
-            <div className="relative flex items-start justify-center px-5 space-x-5">
+            <div className="relative flex items-start justify-center space-x-5 px-5">
               <Image
                 height={30}
                 width={30}
@@ -142,7 +137,7 @@ function UserMgmtEmailVerifiedScreen(props: UserMgmtEmailVerifiedScreenProps) {
       )}
       {Screen === 'Error' && (
         <>
-          <div className="relative flex items-center justify-center w-full h-full pt-20 pb-7 md:ml-14 md:p-14">
+          <div className="relative flex h-full w-full items-center justify-center pb-7 pt-20 md:ml-14 md:p-14">
             <div className="flex h-[125px] md:h-auto">
               <Image
                 height={370}
@@ -154,7 +149,7 @@ function UserMgmtEmailVerifiedScreen(props: UserMgmtEmailVerifiedScreenProps) {
             </div>
           </div>
           <div className="relative flex w-full flex-col items-center justify-center space-y-5 overflow-hidden md:min-w-[400px] md:p-9 md-1000:min-w-[500px]">
-            <div className="relative flex items-start justify-center px-5 space-x-5">
+            <div className="relative flex items-start justify-center space-x-5 px-5">
               <Image
                 height={30}
                 width={30}
@@ -191,20 +186,20 @@ function BottomLinkButton(props: {
   HomeClick: () => void;
 }) {
   return (
-    <div className="flex-col w-full space-y-2">
-      <div className="flex items-center justify-start w-full px-5">
+    <div className="w-full flex-col space-y-2">
+      <div className="flex w-full items-center justify-start px-5">
         <SignInNextButton
           onClick={props.ManageAccountClick}
           Label="Move to manage account"
         />
       </div>
-      <div className="flex items-center justify-start w-full px-5">
+      <div className="flex w-full items-center justify-start px-5">
         <SignInNextButton
           onClick={props.SetupClick}
           Label="Continue with setup"
         />
       </div>
-      <div className="flex items-center justify-start w-full px-5">
+      <div className="flex w-full items-center justify-start px-5">
         <SignInBackButton onClick={props.HomeClick} Label="Back to home" />
       </div>
     </div>

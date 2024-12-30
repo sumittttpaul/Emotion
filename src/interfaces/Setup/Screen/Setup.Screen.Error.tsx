@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { Home_Link, Manage_Your_Account_Link } from 'routers/RouterLinks';
 import SetupHeaderLabel from 'components/label/SetupHeaderLabel';
 import SignInBackButton from 'components/button/Setup/SignInBackButton';
@@ -10,16 +9,13 @@ import SignInNextButton from 'components/button/Setup/SignInNextButton';
 import YellowBulbHint from 'components/hint/YellowBulbHint';
 
 function SetupErrorScreen(props: SetupErrorScreenProps) {
-  const { setLoader } = LoaderHook();
   const router = useRouter();
 
   const handleBackToHome = () => {
-    setLoader(true);
     router.push(Home_Link);
   };
 
   const handleMoveToManageAccount = () => {
-    setLoader(true);
     router.push(Manage_Your_Account_Link);
   };
 

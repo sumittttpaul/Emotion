@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { m } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
 import { ConfirmPasswordReset } from 'functions/AuthAlgorithms';
 import TooltipDark from 'components/tooltip/TooltipDark';
@@ -19,7 +18,6 @@ import SetupIconPasswordTextField from 'interfaces/Setup/Input/Setup.Input.IconP
 
 function UserMgmtResetPasswordScreen(props: UserMgmtResetPasswordScreenProps) {
   const [Password, setPassword] = useState('');
-  const { setLoader } = LoaderHook();
   const { setToast } = ToastHook();
   const router = useRouter();
 
@@ -35,11 +33,9 @@ function UserMgmtResetPasswordScreen(props: UserMgmtResetPasswordScreenProps) {
 
   // Screen
   const MoveToHome = () => {
-    setLoader(true);
     router.push(Home_Link);
   };
   const MoveToSetup = () => {
-    setLoader(true);
     router.push(Setup_Link);
   };
 

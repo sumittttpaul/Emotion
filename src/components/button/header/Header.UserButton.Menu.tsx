@@ -1,5 +1,4 @@
 import { Menu, MenuItem, Button } from '@mui/material';
-import { useRouter } from 'next/navigation';
 import {
   Manage_Your_Account_Link,
   Track_Order_Link,
@@ -9,6 +8,7 @@ import {
 import Image from 'next/image';
 import UserIcon from '../../../../public/icons/user-fill.svg';
 import { ClientUserType } from 'authentication/UseClientAuth';
+import { useRouter } from 'next/navigation';
 
 export interface HeaderUserButtonMenuProps {
   anchorEl: null | HTMLElement;
@@ -16,7 +16,6 @@ export interface HeaderUserButtonMenuProps {
   user: ClientUserType;
   handleClose: () => void;
   SignOutUser: () => void;
-  LoadingScreen: (value: boolean) => void;
 }
 
 function HeaderUserButtonMenu(props: HeaderUserButtonMenuProps) {
@@ -103,7 +102,6 @@ function HeaderUserButtonMenu(props: HeaderUserButtonMenuProps) {
         onClick={() => {
           setTimeout(() => {
             props.handleClose();
-            props.LoadingScreen(true);
             router.push(Manage_Your_Account_Link);
           }, 150);
         }}
@@ -121,7 +119,6 @@ function HeaderUserButtonMenu(props: HeaderUserButtonMenuProps) {
         onClick={() => {
           setTimeout(() => {
             props.handleClose();
-            props.LoadingScreen(true);
             router.push(Track_Order_Link);
           }, 150);
         }}
@@ -139,7 +136,6 @@ function HeaderUserButtonMenu(props: HeaderUserButtonMenuProps) {
         onClick={() => {
           setTimeout(() => {
             props.handleClose();
-            props.LoadingScreen(true);
             router.push(Cart_Link);
           }, 150);
         }}
@@ -157,7 +153,6 @@ function HeaderUserButtonMenu(props: HeaderUserButtonMenuProps) {
         onClick={() => {
           setTimeout(() => {
             props.handleClose();
-            props.LoadingScreen(true);
             router.push(Redeem_Gift_Codes_Link);
           }, 150);
         }}

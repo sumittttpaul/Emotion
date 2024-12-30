@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Button } from '@mui/material';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
-import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import AuthErrorMessage from 'authentication/AuthErrorMessage';
 import { _firebaseAuth, _firebaseStorage } from 'authentication/clientApp';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
@@ -27,7 +26,6 @@ const LoadingLinearProgress = dynamic(
 function SetupCheckDialog(props: SetupCheckDialogProps) {
   const [Loading, setLoading] = useState(false);
   const { FirebaseUser } = UseClientAuth();
-  const { setLoader } = LoaderHook();
   const { setToast } = ToastHook();
   const router = useRouter();
 
@@ -40,7 +38,6 @@ function SetupCheckDialog(props: SetupCheckDialogProps) {
           photoURL: props.PrevPhotoUrl,
         })
         .then(() => {
-          setLoader(true);
           setLoading(false);
           router.push(Home_Link);
         })
@@ -111,7 +108,6 @@ function SetupCheckDialog(props: SetupCheckDialogProps) {
               update: _data,
             })
               .then(() => {
-                setLoader(true);
                 setLoading(false);
                 router.push(Home_Link);
               })

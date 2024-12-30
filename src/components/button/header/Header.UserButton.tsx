@@ -6,7 +6,6 @@ import { Button, CircularProgress } from '@mui/material';
 import { Setup_Link } from 'routers/RouterLinks';
 import { HeaderUserButtonMenuProps } from './Header.UserButton.Menu';
 import { SignOut } from 'functions/AuthAlgorithms';
-import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import UseClientAuth, { ClientUserType } from 'authentication/UseClientAuth';
 import TooltipDark from 'components/tooltip/TooltipDark';
 
@@ -17,7 +16,6 @@ const HeaderUserButtonMenu = dynamic<HeaderUserButtonMenuProps>(
 
 function HeaderUserButton() {
   const { FirebaseUser, FirebaseLoading } = UseClientAuth();
-  const { setLoader } = LoaderHook();
   const Router = useRouter();
 
   if (FirebaseLoading)
@@ -38,7 +36,6 @@ function HeaderUserButton() {
     <Container>
       <LoginButton
         onClick={() => {
-          setLoader(true);
           Router.push(Setup_Link);
         }}
       />
@@ -99,7 +96,6 @@ const UserLoading = () => {
 function UserButton(props: UserButtonProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const { setLoader } = LoaderHook();
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -161,7 +157,6 @@ function UserButton(props: UserButtonProps) {
         user={props.user}
         handleClose={handleClose}
         SignOutUser={SignOutUser}
-        LoadingScreen={(value) => setLoader(value)}
       />
     </>
   );

@@ -1,12 +1,10 @@
 import { useRouter } from 'next/navigation';
 import { Home_Link } from 'routers/RouterLinks';
 import { FooterLogo } from 'components/logo/CompanyLogo';
-import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { HomePageHook } from 'hooks/target/Hooks.Page.Home';
 import FooterBottom from './assets/FooterBottom';
 
 function Footer() {
-  const { setLoader } = LoaderHook();
   const { setHomePage } = HomePageHook();
   const router = useRouter();
   return (
@@ -16,7 +14,6 @@ function Footer() {
           <FooterLogo
             onValueChange={(value) => {
               setHomePage(value);
-              setLoader(true);
               router.push(Home_Link);
             }}
           />

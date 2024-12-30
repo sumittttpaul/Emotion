@@ -1,7 +1,6 @@
 import { HeaderLogo } from 'components/logo/CompanyLogo';
 import { HomePageHook } from 'hooks/target/Hooks.Page.Home';
 import { Home_Link } from 'routers/RouterLinks';
-import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { useRouter } from 'next/navigation';
 import SidePanelVerticalNavBar from './SidePanel.Vertical.NavBar';
 import SidePanelShoppingList from './ShoppingList/SidePanel.ShoppingList';
@@ -12,7 +11,6 @@ interface SidePanelProps {
 }
 
 function SidePanel(props: SidePanelProps) {
-  const { setLoader } = LoaderHook();
   const { setHomePage } = HomePageHook();
   const router = useRouter();
   return (
@@ -22,7 +20,6 @@ function SidePanel(props: SidePanelProps) {
         <HeaderLogo
           onValueChange={(value) => {
             setHomePage(value);
-            setLoader(true);
             router.push(Home_Link);
           }}
         />

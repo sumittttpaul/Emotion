@@ -1,7 +1,6 @@
 import { m } from 'framer-motion';
 import { useState } from 'react';
 import { ToastHook } from 'hooks/global/Hooks.Toast';
-import { LoaderHook } from 'hooks/global/Hooks.Loader';
 import { EncryptData } from 'functions/security/CryptionSecurity';
 import { userProfileHook } from 'hooks/global/Hooks.UserProfile';
 import { DeleteAccount, VerifyOTP } from 'functions/AuthAlgorithms';
@@ -25,7 +24,6 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
     OTP6: '',
   });
   const [Bool, setBool] = useState(false);
-  const { setLoader } = LoaderHook();
   const { Toast, setToast } = ToastHook();
   const { PhoneNumber } = userProfileHook();
   const router = useRouter();
@@ -147,7 +145,6 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
         Redirect: (value) => router.push(value),
         EmptyOTPBox: clearOTP,
         Loading: props.setLoading,
-        LoadingScreen: (value) => setLoader(value),
         CreateDateBase: CreateDateBase,
         ShowToast: (Title, Description, Type, Show) =>
           setToast({
