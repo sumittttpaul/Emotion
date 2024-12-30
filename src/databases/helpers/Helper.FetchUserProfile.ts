@@ -4,7 +4,7 @@ import {
   instanceOfUserProfileOverError,
 } from 'utils/intanceOf';
 
-const FETCH_API = 'http://localhost:3000/api/users/profile';
+const FETCH_API = 'https://emotionoutfit.vercel.app/api/users/profile';
 
 export async function FetchUserProfile(uid: string | undefined) {
   if (!uid) {
