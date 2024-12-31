@@ -1,4 +1,8 @@
+![emotionoutfit](https://github.com/user-attachments/assets/4d238f38-f95d-4a98-9564-c526e26219f9)
+
 Hello, I am Sumeet Kumar Paul and here is Fashion Ecommerce Store, so let's get started.
+
+Watch the video to learn about all the features of this project: [video/emotionoutfit](https://drive.google.com/file/d/1XbywEe0x5jZPfGj0l0mKpuHk82zqKzP4/view?usp=sharing)
 
 ## Getting Started
 
