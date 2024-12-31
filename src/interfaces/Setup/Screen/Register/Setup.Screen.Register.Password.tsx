@@ -73,8 +73,8 @@ function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
       <div
         className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
-        <div className="flex items-center justify-center w-full">
-          <div className="flex items-center justify-center py-1 pl-1 pr-3 space-x-2 rounded-full bg-white/5">
+        <div className="flex w-full items-center justify-center">
+          <div className="flex items-center justify-center space-x-2 rounded-full bg-white/5 py-1 pl-1 pr-3">
             <div className="min-h-[20px] min-w-[20px]">
               <Image
                 height={20}
@@ -101,12 +101,12 @@ function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
           >
             <InformationCircleIcon className="h-5 text-white" />
           </TooltipDark>
-          <p className="w-full text-sm font-normal text-left text-white">
+          <p className="w-full text-left text-sm font-normal text-white">
             Your password should contain at least 8 or more characters with a
             mix of letters of uppercase and lowercase, numbers & symbols.
           </p>
         </div>
-        <div className="flex justify-start w-full">
+        <div className="flex w-full justify-start">
           <YellowBulbHint
             Tooltip
             TooltipPlacement="top"
@@ -114,11 +114,11 @@ function SetupRegisterPasswordScreen(props: SetupRegisterPasswordScreenProps) {
             Label="Requires recent login / authentication"
           />
         </div>
-        <div className="flex justify-start w-full">
+        <div className="flex w-full justify-start">
           <SignInBackButton Label="Back" onClick={BackToEmailAddressScreen} />
         </div>
       </div>
-      <div className="flex justify-end w-full">
+      <div className="flex w-full justify-end">
         <div className="flex">
           <SetupSubmitButton
             Disabled={!ValidatePassword}

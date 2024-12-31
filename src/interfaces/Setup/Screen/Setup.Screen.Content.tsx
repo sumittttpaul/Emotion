@@ -132,6 +132,7 @@ export default function SetupScreenContent({
     setScreen: setScreen,
     setMainScreen: setMainScreen,
     setToast: setToast,
+    setLoading: setLoading
   };
 
   const SetCheckInfo = (Screen: ICheckInfoScreen) => {

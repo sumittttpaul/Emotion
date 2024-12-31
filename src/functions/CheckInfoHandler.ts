@@ -13,6 +13,7 @@ interface IProps {
   setScreen: Dispatch<AuthScreenType>;
   setMainScreen: Dispatch<AuthMainScreenType>;
   setToast: Dispatch<ToastSettingType>;
+  setLoading: Dispatch<boolean>;
 }
 
 function determineNextScreen(
@@ -96,14 +97,26 @@ export default async function CheckInfoHandler({
   setScreen,
   setMainScreen,
   setToast,
+  setLoading,
 }: IProps) {
   try {
+    if (FirebaseError) {
+      setMainScreen('Error');
+      setToast({
+        Title: 'Something went wrong',
+        Description: FirebaseError.message,
+        Type: 'Error',
+        Show: true,
+      });
+      return;
+    }
+
     if (FirebaseLoading || !FirebaseUser) {
       setMainScreen('Error');
       setErrorType('get-user-failed');
       setToast({
         Title: 'Something went wrong',
-        Description: 'User may be signout or not exits.',
+        Description: 'User may be signed out or not exist.',
         Type: 'Error',
         Show: true,
       });
@@ -143,15 +156,7 @@ export default async function CheckInfoHandler({
       Type: 'Error',
       Show: true,
     });
-  }
-
-  if (FirebaseError) {
-    setMainScreen('Error');
-    setToast({
-      Title: 'Something went wrong',
-      Description: FirebaseError.message,
-      Type: 'Error',
-      Show: true,
-    });
+  } finally {
+    setLoading(false);
   }
 }

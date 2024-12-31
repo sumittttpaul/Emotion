@@ -73,7 +73,6 @@ function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
       OperateUserProfile('UPDATE', { uid: FirebaseUser.uid, update: _data })
         .then(() => {
           props.CheckInfoHandler();
-          props.setLoading(false);
         })
         .catch((error) => {
           if (error instanceof Error) {
@@ -166,7 +165,7 @@ function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
           HandleSubmit={OTPSubmitClick}
           Loading={props.Loading}
         />
-        <div className="flex justify-start w-full h-8">
+        <div className="flex h-8 w-full justify-start">
           {Bool ? (
             <SignInNextButton onClick={OTPResend} Label="Resend OTP" />
           ) : (
@@ -175,11 +174,11 @@ function SetupRegisterOTPScreen(props: SetupRegisterOTPScreenProps) {
             </div>
           )}
         </div>
-        <div className="flex justify-start w-full">
+        <div className="flex w-full justify-start">
           <SignInBackButton Label="Back" onClick={CancelOTPVerification} />
         </div>
       </div>
-      <div className="flex justify-end w-full">
+      <div className="flex w-full justify-end">
         <SetupSubmitButton
           Disabled={!ValidateOTP}
           onClick={OTPSubmitClick}

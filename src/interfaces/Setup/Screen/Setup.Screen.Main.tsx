@@ -38,6 +38,7 @@ interface IProps {
   SkipDialog: boolean;
   Loading: boolean;
   setSkipDialog: Dispatch<boolean>;
+  setLoading: Dispatch<boolean>;
 }
 
 function SetupScreenMain({
@@ -49,6 +50,7 @@ function SetupScreenMain({
   setErrorType,
   Screen,
   Loading,
+  setLoading,
   setScreen,
   SkipDialog,
   setSkipDialog,
@@ -69,6 +71,7 @@ function SetupScreenMain({
     setScreen: setScreen,
     setMainScreen: setMainScreen,
     setToast: setToast,
+    setLoading: setLoading,
   };
 
   const SetCheckInfo = (Screen: ICheckInfoScreen) => {
@@ -90,7 +93,7 @@ function SetupScreenMain({
   return (
     <LazyMotion features={domAnimation} strict>
       {Loading && (
-        <div className="absolute top-0 z-30 w-full h-full bg-transparent" />
+        <div className="absolute top-0 z-30 h-full w-full bg-transparent" />
       )}
       {MainScreen === 'Error' && (
         <SetupErrorScreen
@@ -107,7 +110,7 @@ function SetupScreenMain({
         <main
           className={`${MainClassName} relative box-border flex w-full flex-col items-center justify-center md:flex-row`}
         >
-          <div className="relative items-center justify-center hidden w-full h-full ml-14 p-14 md:flex">
+          <div className="relative ml-14 hidden h-full w-full items-center justify-center p-14 md:flex">
             {Screen && (
               <Image
                 height={370}

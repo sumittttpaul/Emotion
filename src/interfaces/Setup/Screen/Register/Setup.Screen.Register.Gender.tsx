@@ -22,6 +22,7 @@ function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
   // database
   const updateUserData = () => {
     if (FirebaseUser) {
+      props.setLoading(true);
       try {
         const UserGender = EncryptData(
           UserProfileEncryptionKey(FirebaseUser.uid, 'Gender'),
@@ -33,7 +34,6 @@ function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
         OperateUserProfile('UPDATE', { uid: FirebaseUser.uid, update: _data })
           .then(() => {
             props.CheckInfoHandler();
-            props.setLoading(false);
           })
           .catch((error) => {
             if (error instanceof Error) {
@@ -73,7 +73,6 @@ function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
 
   // Submit
   const SubmitClick = () => {
-    props.setLoading(true);
     updateUserData();
   };
 
@@ -87,15 +86,15 @@ function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
       <div
         className={`${props.ContentClassName} flex w-full flex-col space-y-4`}
       >
-        <div className="flex items-start w-full pt-2">
+        <div className="flex w-full items-start pt-2">
           <RadioGroupDark
             content={['Male', 'Female', 'Others']}
             value={Gender}
             onChange={(value) => (value ? setGender(value as string) : '')}
           />
         </div>
-        <div className="flex flex-col w-full space-y-1">
-          <div className="flex justify-start w-full">
+        <div className="flex w-full flex-col space-y-1">
+          <div className="flex w-full justify-start">
             <SignInNextButton
               Label="I will add later"
               onClick={props.CheckInfoHandler}
@@ -106,7 +105,7 @@ function SetupRegisterGenderScreen(props: SetupRegisterGenderScreenProps) {
           </div> */}
         </div>
       </div>
-      <div className="flex justify-end w-full">
+      <div className="flex w-full justify-end">
         <div className="flex space-x-2">
           <SetupSkipAllButton onClick={() => props.setSkipDialog(true)}>
             Skip all

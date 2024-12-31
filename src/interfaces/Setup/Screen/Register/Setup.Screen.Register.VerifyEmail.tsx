@@ -30,7 +30,6 @@ function SetupRegisterVerifyEmailScreen(
       });
     } else {
       props.CheckInfoHandler();
-      props.setLoading(false);
     }
   };
 

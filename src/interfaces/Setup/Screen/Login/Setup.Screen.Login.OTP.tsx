@@ -139,7 +139,6 @@ function SetupLoginOTPScreen(props: SetupLoginOTPScreenProps) {
 
   const OTPSubmitClick = () => {
     if (ValidateOTP) {
-      props.setLoading(true);
       VerifyOTP({
         OTP: parseInt(
           OTPs.OTP1 + OTPs.OTP2 + OTPs.OTP3 + OTPs.OTP4 + OTPs.OTP5 + OTPs.OTP6,

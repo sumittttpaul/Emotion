@@ -36,6 +36,7 @@ function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
   // database
   const Updatedatabase = () => {
     if (FirebaseUser) {
+      props.setLoading(true);
       const UserEmailAddress = EncryptData(
         UserProfileEncryptionKey(FirebaseUser.uid, 'EmailAddress'),
         EmailAddress,
@@ -72,10 +73,7 @@ function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
   // Submit
   const EmailSubmitClick = () => {
     if (ValidateEmailAddress) {
-      if (FirebaseUser) {
-        props.setLoading(true);
-        Updatedatabase();
-      }
+      Updatedatabase();
     } else {
       setToast({
         Title: 'Incorrect email',
@@ -103,8 +101,8 @@ function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
           HandleSubmit={EmailSubmitClick}
           ValidateValue={ValidateEmailAddress}
         />
-        <div className="flex flex-col w-full space-y-1">
-          <div className="flex justify-start w-full">
+        <div className="flex w-full flex-col space-y-1">
+          <div className="flex w-full justify-start">
             <SignInNextButton
               Label="I will add later"
               onClick={props.CheckInfoHandler}
@@ -115,7 +113,7 @@ function SetupRegisterEmailScreen(props: SetupRegisterEmailScreenProps) {
           </div> */}
         </div>
       </div>
-      <div className="flex justify-end w-full">
+      <div className="flex w-full justify-end">
         <div className="flex space-x-2">
           <SetupSkipAllButton onClick={() => props.setSkipDialog(true)}>
             Skip all

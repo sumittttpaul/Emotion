@@ -25,6 +25,7 @@ function SetupInterface() {
       setErrorType={setErrorType}
       setMainScreen={setMainScreen}
       setSkipDialog={setSkipDialog}
+      setLoading={setLoading}
     >
       <SetupScreenTitle Screen={Screen} />
       <SetupScreenContent
